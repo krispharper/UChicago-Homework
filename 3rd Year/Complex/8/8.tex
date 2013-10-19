@@ -1,0 +1,187 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27000\\
+
+December 1, 2009
+\end{flushright}
+
+\begin{center}
+Homework 8
+\end{center}
+
+\begin{problem}
+(a) Let $u$ be real harmonic. Show that $u^2$ is subharmonic.\\
+(b) Let $u$ be real harmonic, $u = u(x,y)$. Show that
+\[
+(\textup{grad} u)^2 = (\textup{grad} u) \cdot (\textup{grad}u)
+\]
+is subharmonic.\\
+(c) Show that the function $u(x,y) = x^2 + y^2 - 1$ is subharmonic.\\
+(d) Let $u_1$, $u_2$ be subharmonic, and $c_1$, $c_2$ positive numbers. Show that $c_1 u_1 + c_2 u_2$ is subharmonic.
+\end{problem}
+\begin{proof}
+We have
+\[
+\frac{\partial u^2}{\partial x} = 2 u \frac{\partial u}{\partial x}
+\]
+and
+\[
+\frac{\partial u^2}{\partial x^2} = 2 \frac{\partial^2 u}{\partial x^2} u + 2 \left ( \frac{\partial u}{\partial x} \right )^2.
+\]
+Likewise
+\[
+\frac{\partial u^2}{\partial y^2} = 2 \frac{\partial^2 u}{\partial y^2} u + 2 \left ( \frac{\partial u}{\partial y} \right )^2.
+\]
+Adding these equations and noting that $\Delta u = 0$ we obtain
+\[
+\Delta u^2 = \frac{\partial u^2}{\partial x^2} + \frac{\partial u^2}{\partial x^2} = 2 \left ( \frac{\partial u}{\partial x} \right )^2 + 2 \left ( \frac{\partial u}{\partial x} \right )^2 \geq 0.
+\]
+
+(b) Let $v = (\textup{grad} u)^2$. Note that
+\[
+v = \left ( \frac{\partial u}{\partial x} \right )^2 + \left ( \frac{\partial u}{\partial y} \right )^2.
+\]
+Differentiating twice we find
+\[
+\frac{\partial^2 v}{\partial x^2} = 2 \left ( \frac{\partial^3 u}{\partial x^3} \frac{\partial u}{\partial x} + \left ( \frac{\partial^2 u}{\partial x^2} \right )^2 + \frac{\partial^3 u}{\partial y^2 \partial x} \frac{\partial u}{\partial x} + \left ( \frac{\partial^2 u}{\partial x \partial y} \right )^2 \right )^2
+\]
+and a similar expression for $y$. Adding these two equations and again using the fact that $\Delta u = 0$, we find that $\Delta v \geq 0$ as in part (a).
+
+(c) It's immediate that $\Delta u = 4 \geq 0$.
+
+(d) Since differentiation is linear, we have $\Delta (c_1 u_1 + c_2 u_2) = c_1 \Delta u_1 + c_2 \Delta u_2$. Since $c_1$ and $c_2$ are positive and $u_1$ and $u_2$ are subharmonic, it's immediate that this sum is greater than or equal to $0$.
+\end{proof}
+
+\begin{problem}
+Suppose that $\varphi$ is defined on an open set $U$ and is subharmonic on $U$. Prove the maximum principal, that no point $a \in U$ can be a strict maximum for $\varphi$, i.e. that for every disk of radius $r$ centered at $a$ with $r$ sufficiently small, we have
+\[
+\begin{tabular}{ccc}
+$\varphi(a) \leq \max \varphi(z)$ & for & $|z-a| = r$.
+\end{tabular}
+\]
+\end{problem}
+\begin{proof}
+Let $a \in U$ and choose $r$ small enough that $\overline{D}_r(a) \subseteq U$. Now since $\varphi$ is continuous on the circle $\partial \overline{D}_r(a)$ which is compact, it obtains a maximum on that set. Therefore $\varphi(a + re^{i \theta}) \leq \max_{z \in \partial \overline{D}_r(a)} \varphi(z)$ for every $\theta$. Now integrate over $\theta$ from $0$ to $2 \pi$.
+\[
+\varphi(a) \leq \int_0^{2\pi} \varphi(a + re^{i \theta}) \frac{d \theta}{2\pi} \leq \max_{z \in \partial \overline{D}_r(a)} \varphi(z).
+\]
+This is precisely the statement.
+\end{proof}
+
+\begin{problem}
+\label{boundarymax}
+Let $\varphi$ be subharmonic on an open set $U$. Assume that the closure $\overline{U}$ is compact, and that $\varphi$ extends to a continuous function on $\overline{U}$. Show that a maximum for $\varphi$ occurs on the boundary.
+\end{problem}
+\begin{proof}
+Since $\varphi$ is continuous and $\overline{U}$ is compact, we know $\varphi$ obtains a maximum on $\overline{U}$. Suppose this maximum is at $a$ in the interior of $U$. Choose $r$ small enough so that $\overline{D}_r(a) \subseteq U$. Define a function $f$ on $\partial \overline{D}_r(a)$ as $f(\theta) = \varphi(a) - \varphi(a + re^{i \theta})$. Note that $f \geq 0$. Suppose there exists $0 \leq \theta_0 \leq 2 \pi$ such that $f(\theta_0) > 0$. Then
+\[
+\int_0^{2 \pi} f(\theta) d \theta > 0
+\]
+since $f$ is continuous. But then
+\[
+\varphi(a) \leq \int_0^{2 \pi} \varphi(a + r e^{i \theta} \frac{d \theta}{2 \pi} < \varphi (a)
+\]
+and so $f$ must be constantly $0$. Therefore $\varphi$ is locally constant.
+
+For each connected open set $V \subseteq U$ we see that $\varphi(z) = \varphi(a)$ for $z \in V$. Suppose that $V$ is the largest such connected open set and suppose that $\partial V \nsubseteq U$. Then there exists $z \in \partial V$ with $z \in U$ and so there exists some $D_{\varepsilon}(z) \subseteq U$. But then $V \subseteq D_{\varepsilon}(z)$ is open, connected and contained in $U$ which contradicts the maximality of $V$. Thus $\partial V \subseteq \partial U$. Now using continuity, it must be that $\varphi(z) = \varphi(a)$ for $z \in \partial V$ and thus there exists $z \in \partial U$ such that $\varphi(z) = \varphi(a)$. Therefore, $\varphi$ attains a maximum on $\partial U$.
+\end{proof}
+
+\begin{problem}
+Let $U$ be a bounded open set. Let $u$, $v$ be continuous functions on $\overline{U}$ such that $U$ is harmonic on $U$, $v$ is subharmonic on $U$ and $u = v$ on the boundary of $U$. Show that $v \leq u$ on $U$. Thus a subharmonic function lies below the harmonic function having the same boundary value, whence its name.
+\end{problem}
+\begin{proof}
+The function $v-u$ is subharmonic by linearity of differentiations. That is
+\[
+\Delta (v-u) = \Delta v - \Delta u = \Delta v \leq 0.
+\]
+Note that on $\partial U$ we have $v-u \leq 0$ and so using Problem~\ref{boundarymax} we must have $v-u \leq 0$ on all of $U$. Thus $v \leq u$ on all of $U$.
+\end{proof}
+
+\begin{problem}
+\label{inequality}
+Define
+\[
+P_{R,r}(\theta) = \frac{1}{2 \pi} \frac{R^2 - r^2}{R^2 - 2Rr \cos \theta + r^2}
+\]
+for $0 \leq r < R$. Prove the inequalities
+\[
+\frac{R-r}{R+r} \leq 2 \pi P_{R,r} (\theta - \varphi) \leq \frac{R+r}{R-r}
+\]
+for $0 \leq r < R$.
+\end{problem}
+\begin{proof}
+Note that
+\[
+-2rR \leq -2rR\cos(\theta-\varphi) \leq 2rR
+\]
+which means
+\[
+(R-r)^2 \leq R^2 - 2rR\cos(\theta-\varphi) + r^2 \leq (R+r)^2.
+\]
+Now using $0 \leq r < R$ we have
+\[
+\frac{R^2-r^2}{(R+r)^2} \leq 2 \pi P_{R,r} (\theta - \varphi) \leq \frac{R^2 - r^2}{(R-r)^2}
+\]
+Now expand $R^2 - r^2 = (R+r)(R-r)$ to obtain
+\[
+\frac{R-r}{R+r} \leq 2 \pi P_{R,r} (\theta - \varphi) \leq \frac{R+r}{R-r}.
+\]
+\end{proof}
+
+\begin{problem}
+Let $f$ be analytic on the closed disk $\overline{D}(\alpha, R)$ and let $u = \textup{Re} (f)$. Assume that $u \geq 0$. Show that for $0 \leq r < R$ we have
+\[
+\frac{R-r}{R+r} u(\alpha) \leq u(\alpha + re^{i \theta}) \leq \frac{R+r}{R-r} u(\alpha).
+\]
+\end{problem}
+\begin{proof}
+We can assume $\alpha = 0$ by applying a translation of the disk. Note that $u$ is harmonic because it is the real part of an analytic function and therefore
+\[
+u(re^{i \varphi}) = \int_0^{2 \pi} u(r3^{i \theta})P_r(\theta-\varphi)d\theta.
+\]
+Now use Problem~\ref{inequality} and the fact that $u \geq 0$ to obtain
+\[
+\int_{0}^{2 \pi} u(re^{i\theta}) \frac{R-r}{R+r}\frac{d\theta}{2 \pi} \leq u(re^{i \varphi}) \leq \int_0^{2 \pi} u(re^{i \theta}) \frac{R+r}{R-r} \frac{d \theta}{2 \pi}.
+\]
+But since
+\[
+u(0) = \int_0^{2 \pi} u(re^{i \theta}) \frac{d \theta}{2 \pi}
+\]
+the result follows. Shifting back by $\alpha$ will finish the general case.
+\end{proof}
+
+\begin{problem}
+Prove that if $v(z) = \textup{Im} \left ( \left ( \frac{1+z}{1-z} \right )^2 \right )$, then $v$ is harmonic on $\mathbb{D}$ and $\lim_{r \uparrow 1} v(re^{i \theta}) = 0$ for all $\theta \in [0, 2 \pi)$. Why does this not contradict the maximum principal?
+\end{problem}
+\begin{proof}
+Let $z = x+ iy$. Then
+\begin{align*}
+\textup{Im} \left ( \left ( \frac{1+z}{1-z} \right )^2 \right )
+&= \textup{Im} \left ( \left ( \frac{x+iy+1}{-x-iy+1} \right )^2 \right )\\
+&= \textup{Im} \left ( \frac{1 + 2x + x^2 + 2iy + 2ixy - y^2}{1 - 2x + x^2 - 2iy + 2ixy - y^2} \right )\\
+&= \textup{Im} \left ( \frac{1 + 2x + x^2 + 2iy + 2ixy - y^2}{1 - 2x + x^2 - 2iy + 2ixy - y^2} \frac{1 - 2x + x^2 + 2iy - 2ixy - y^2}{1 - 2x + x^2 + 2iy - 2ixy - y^2} \right )\\
+&= \textup{Im} \left ( \frac{1 - 2x^2 + x^4 + 4iy - 4ix^2y - 6y^2 + 2x^2y^2 - 4iy^3 + y^4}{1 - 4x + 6x^2 - 4x^3 + x^4 + 2y^2 - 4xy^2 + 2x^2y^2 + y^4} \right )\\
+&= \frac{1 - 2x^2 + x^4 - 6y^2 + 2x^2y^2 + y^4}{1 - 4x + 6x^2 - 4x^3 + x^4 + 2y^2 - 4xy^2 + 2x^2y^2 + y^4}.
+\end{align*}
+But also
+\begin{align*}
+\frac{\partial^2v}{\partial x^2}
+&=\frac{\partial^2}{\partial x^2} \frac{1 - 2x^2 + x^4 - 6y^2 + 2x^2y^2 + y^4}{1 - 4x + 6x^2 - 4x^3 + x^4 + 2y^2 - 4xy^2 + 2x^2y^2 + y^4}\\
+&= \frac{8(2 - 2x^4 + x^5 - 16y^2 + 6y^4 + x^2(8 - 12y^2) - 2x^3 (1 + y^2) + x(-7 + 30y^2 - 3y^4))}{(1 - 2x + x^2 + y^2)^4}\\
+&= -\frac{\partial^2}{\partial y^2} \frac{1 - 2x^2 + x^4 - 6y^2 + 2x^2y^2 + y^4}{1 - 4x + 6x^2 - 4x^3 + x^4 + 2y^2 - 4xy^2 + 2x^2y^2 + y^4}\\
+&= -\frac{\partial^2v}{\partial y^2}.
+\end{align*}
+Thus $v(z)$ is harmonic.
+
+Note that $\frac{1+z}{1-z}$ maps $\mathbb{D}$ to the right half plane. Thus $\left (\frac{1+z}{1-z} \right )^2$ maps $\mathbb{D}$ to $\mathbb{C}$ without the negative imaginary axis and $v$ maps $\mathbb{D}$ to the upper half plane. Furthermore, note that $\frac{1+z}{1-z}$ takes $\partial \mathbb{D}$ to the imaginary axis and squaring this line results in the negative real axis. The imaginary part of this is obviously $0$ which shows why $\lim_{r \uparrow 1} v(re^{i \theta}) = 0$ for all $\theta \in [0, 2 \pi)$. This doesn't contradict the maximum principle because $v(z)$ is not continuous on $\partial \mathbb{D}$ at $1$.
+\end{proof}
+
+\end{document}

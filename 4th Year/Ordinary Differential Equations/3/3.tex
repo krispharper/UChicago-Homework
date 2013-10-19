@@ -1,0 +1,338 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27300\\
+
+January 28, 2011
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{problem}
+For the equation $u'' + u' = x$, find a particular integral by inspection. What is the most general solution? What is the solution with initial data $(u, u') = (0,0)$ at $x = 0$?
+\end{problem}
+
+A particular solution is $U(x) = x(x-2)/2$. It's easy to see two solutions for $u'' + u' = 0$ are $u_1(x) = 1$ and $u_2(x) = e^{-x}$. Thus the most general solution is
+\[
+u(x) = U(x) + c_1u_1(x) + c_2u_2(x) = \frac{x(x-2)}{2} + c_1 + c_2e^{-x}.
+\]
+Putting in $u(0) = c_1 + c_2 = 0$ and $u'(0) = -1 - c_2 = 0$ gives $c_2 = -1$ and $c_1 = 1$. Thus $u(x) = x(x-2)/2 - e^{-x} + 1$.
+
+\begin{problem}
+Carry out the construction of the influence function for the equation $u'' + u = r$.
+\end{problem}
+
+The solutions to the homogeneous equation $u'' + u = 0$ are $u_1(x) = \cos(x)$ and $u_2(x) = \sin(x)$. Then $W(u_1, u_2; x) = u_1(x)u_2'(x) - u_2(x)u_1'(x) = \cos^2(x) + \sin^2(x) = 1$. Thus
+\[
+G(x,s) =
+\begin{cases}
+\cos(s)\sin(x) - \sin(s)\cos(x) & s < x\\
+0 & s \geq x
+\end{cases}.
+\]
+
+\begin{problem}
+Verify directly that if $G(x, \xi)$ satisfies the initial value problem (2.27), then the expression (2.26) provides a particular integral.
+\end{problem}
+\begin{proof}
+We need to show that $U''(x) + p(x)U'(x) + q(x)U(x) = r(x)$. Note using differentiation under the integral we have
+\begin{align*}
+U''(x)
+&= \frac{d^2}{dx^2} \int_{x_0}^x \frac{u_1(s)u_2(x) - u_2(s)u_1(x)}{W(u_1, u_2; s)} r(s)ds\\
+&= \frac{d}{d x} \left ( \frac{u_1(x)u_2(x) - u_2(x)u_1(x)}{W(u_1, u_2; x)}r(x) + \int_{x_0}^x \frac{\partial}{\partial x} \frac{u_1(s)u_2(x) - u_2(s)u_1(x)}{W(u_1, u_2; s)} r(s)ds \right )\\
+&= \frac{d}{d x} \int_{x_0}^x \frac{u_1(s)u_2'(x) - u_2(s)u_1'(x)}{W(u_1, u_2; s)} r(s) ds\\
+&= \frac{u_1(x)u_2'(x) - u_2(x)u_1'(x)}{W(u_1, u_2; x)} r(x) + \int_{x_0}^x \frac{\partial}{\partial x} \frac{u_1(s)u_2'(x) - u_2(s)u_1'(x)}{W(u_1, u_2; s)} r(s) ds\\
+&= r(x) + \int_{x_0}^x \frac{u_1(s)u_2''(x) - u_2(s)u_1''(x)}{W(u_1, u_2; s)} r(s) ds.
+\end{align*}
+and
+\begin{align*}
+U'(x)
+&= \frac{d}{dx} \int_{x_0}^x \frac{u_1(s)u_2(x) - u_2(s)u_1(x)}{W(u_1, u_2; s)} r(s)ds\\
+&= \frac{u_1(x)u_2(x) - u_2(x)u_1(x)}{W(u_1, u_2; x)} r(x) + \int_{x_0}^x \frac{\partial}{\partial x} \frac{u_1(s)u_2(x) - u_2(s)u_1(x)}{W(u_1, u_2; s)} r(s)ds\\
+&= \int_{x_0}^x \frac{u_1(s)u_2'(x) - u_2(s)u_1'(x)}{W(u_1, u_2; s)} r(s) ds
+\end{align*}
+Now, putting this together with $U(x)$ and given that $u_1$ and $u_2$ are solutions to the homogeneous equation $Lu_1 = 0$ and $Lu_2 = 0$, we have
+\begin{align*}
+&U''(x) + p(x)U'(x) + q(x)U(x)\\
+&= r(x) + \int_{x_0}^x \frac{u_1(s)u_2''(x) - u_2(s)u_1''(x)}{W(u_1, u_2; s)} r(s) ds\\
+&~~~~~~+ p(x)\int_{x_0}^x \frac{u_1(s)u_2'(x) - u_2(s)u_1'(x)}{W(u_1, u_2; s)} r(s) ds + q(x)\int_{x_0}^x \frac{u_1(s)u_2(x) - u_2(s)u_1(x)}{W(u_1, u_2; s)} r(s) ds\\
+&= r(x) + \int_{x_0}^x \left ( \frac{u_1(s)u_2''(x) - u_2(s)u_1''(x)}{W(u_1, u_2; s)} + p(x)\frac{u_1(s)u_2'(x) - u_2(s)u_1'(x)}{W(u_1, u_2; s)} \right. \\
+&~~~~~~\left. + q(x)\frac{u_1(s)u_2(x) - u_2(s)u_1(x)}{W(u_1, u_2; s)} \right ) r(s) ds\\
+&= r(x) + \int_{x_0}^x \frac{u_1(s)(u_2''(x) + p(x)u_2'(x) + q(x)u_2(x)) - u_2(s)(u_1''(x) + p(x)u_1'(x) + q(x)u_1(x))}{W(u_1, u_2; s)} r(s) ds.\\
+&= r(x).
+\end{align*}
+\end{proof}
+
+\begin{problem}
+Consider the homogeneous equation $u'' + q(x)u = 0$ where
+\[
+q(x) =
+\begin{cases}
+0 & \text{if $x < 0$}\\
+1 & \text{if $x \geq 0$}
+\end{cases}.
+\]
+Require of solutions that they be $C^1$ for all real values of $x$ (i.e., continuous with continuous derivatives: the second derivative will in general fail to exist at $x = 0$). Construct a basis of solutions. Check its Wronskian.
+\end{problem}
+\begin{proof}
+Define the functions
+\[
+u_1(x) =
+\begin{cases}
+1 & x < 0\\
+\cos(x) & x \geq 0
+\end{cases}
+\]
+and
+\[
+u_2(x) =
+\begin{cases}
+x & x < 0\\
+\sin(x) & x \geq 0
+\end{cases}.
+\]
+Since both parts of both functions are continuous and they agree at $0$, both $u_1$ and $u_2$ are continuous. Furthermore
+\[
+u_1'(x) =
+\begin{cases}
+0 & x < 0\\
+-\sin(x) & x \geq 0
+\end{cases}
+\]
+and
+\[
+u_2'(x) =
+\begin{cases}
+1 & x < 0\\
+\cos(x) & x \geq 0
+\end{cases}
+\]
+both of which have continuous parts which agree at $0$, so are continuous. Furthermore, we've seen already that $1$ and $x$ are linearly independent and $\sin(x)$ and $\cos(x)$ are linearly independent. Thus $u_1$ and $u_2$ form a basis of solutions. The Wronskian is
+\[
+W(u_1, u_2; x) =
+\det \left (
+\begin{array}{cc}
+u_1 & u_2\\
+u_1' & u_2'
+\end{array}
+\right )
+=
+\begin{cases}
+1 - 0 & x < 0\\
+\cos^2(x) + \sin^2(x) & x \geq 0
+\end{cases}
+\]
+so $W(u_1, u_2; x) = 1$ for all $x$.
+\end{proof}
+
+\begin{problem}
+Find a basis of solutions for the system $u''' + u'' = 0$. Calculate the Wronskian and check the result against Theorem 2.2.2 (equation 2.33).
+\end{problem}
+
+Clearly $u_1(x) = 1$ and $u_2(x) = x$ satisfy the equation. Note also that $d^3/dx^3 (e^{-x}) = -e^{-x} = -d^2/dx^2 (e^{-x})$ so $e^{-x}$ is a solution as well. Thus $u_1(x)$, $u_2(x)$ and $u_3(x) = e^{-x}$ constitute a basis of solutions. The Wronskian is
+\[
+\det \left (
+\begin{array}{ccc}
+1 & x & e^{-x}\\
+0 & 1 & -e^{-x}\\
+0 & 0 & e^{-x}
+\end{array}
+\right )
+= e^{-x}.
+\]
+Theorem 2.2.2 tells us that $W(u_1, u_2, u_3; x) = W_0 \exp \left ( -\int_{x_0}^x 1 ds \right ) = W_0e^{-x}$. This is consistent with our calculated Wronskian.
+
+\begin{problem}
+For the operator $Lu = u''' + u'$, find the most general solution of the equation $Lu = 1$ (cf. Example 2.2.3).
+\end{problem}
+
+From the example we know $1$, $\cos(x)$ and $\sin(x)$ form a basis of solutions to the homogeneous problem. Furthermore $U(x) = x$ gives a particular solution to the problem. Thus, a general solution is
+\[
+u(x) = x + c_1 + c_2 \cos(x) + c_3 \sin(x).
+\]
+
+\begin{problem}
+For the operator of the proceeding problem, obtain the influence function for solving the inhomogeneous problem.
+\end{problem}
+
+Let $U(x)$ be a particular solution and write
+\[
+U(x) = \sum_{i=1}^3 c_i(x) u_i(x) = c_1(x) + c_2(x)\cos(x) + c_3(x)\sin(x).
+\]
+We now impose the two conditions
+\[
+0 = \sum_{i=1}^3 c_i'(x) u_i(x) = c_1'(x) + c_2'(x)\cos(x) + c_3'(x)\sin(x)
+\]
+and
+\[
+0 = \sum_{i=1}^3 c_i'(x) u_i'(x) = -c_2'(x)\sin(x) + c_3'(x)\cos(x).
+\]
+In order for $U(x)$ to satisfy $LU = r$ we must have
+\[
+r = \sum_{i=1}^3 c_i'(x) u_i''(x) = -c_2'(x)\cos(x) - c_3'(x)\sin(x).
+\]
+Now we have three equations in the three functions $c_i'(x)$, $1 \leq i \leq 3$. We can solve for them as
+\[
+c_1'(x) = r(x) = u_1(x)r(x)
+\]
+\[
+c_2'(x) = -r(x)\cos(x) = -u_2(x)r(x)
+\]
+and
+\[
+c_3'(x) = -r(x)\sin(x) = -u_3(x)r(x).
+\]
+Thus
+\[
+c_1 = \int_{x_0}^x r(s)ds
+\]
+\[
+c_2 = -\int_{x_0}^x \cos(s)r(s)ds
+\]
+and
+\[
+c_3 = -\int_{x_0}^x \sin(s)r(s)ds.
+\]
+Putting these back into $U(x)$ we find
+\[
+U(x) = \int_{x_0}^x (1 - \cos(s)\cos(x) - \sin(s)\sin(x))r(s)ds.
+\]
+Therefore an influence function must be
+\[
+G(x,s) =
+\begin{cases}
+1 - \cos(s)\cos(x) - \sin(s)\sin(x) & s < x\\
+0 & s \geq s
+\end{cases}.
+\]
+
+\begin{problem}
+Find the equivalent first order system (that is, find the matrix $A$ and the vector $R$ of equation (2.40)) for the second order equation
+\[
+u'' + x^2u' + x^4u = \frac{1}{1+x^2}.
+\]
+\end{problem}
+
+Define $a_1(x) = x^2$, $a_2(x) = x^4$ and $r(x) = 1/(1 + x^2)$. Let $v_1(x) = u(x)$ and $v_2(x) = u'(x)$. Then $v_1'(x) = v_2(x)$ and $v_2'(x) = u''(x) = r(x) - a_1(x)v_2(x) - a_2(x)v_1(x)$. Now let
+\[
+v =
+\left (
+\begin{array}{c}
+v_1\\
+v_2
+\end{array}
+\right )
+=
+\left (
+\begin{array}{c}
+u(x)\\
+u'(x)
+\end{array}
+\right).
+\]
+and
+\[
+A =
+\left (
+\begin{array}{cc}
+0 & 1\\
+-a_2(x) & -a_1(x)
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+0 & 1\\
+-x^4 & -x^2
+\end{array}
+\right ).
+\]
+Then to fit the equation $v' = Av + R$ we must have
+\[
+R =
+\left (
+\begin{array}{c}
+0\\
+r(x)
+\end{array}
+\right )
+=
+\left (
+\begin{array}{c}
+0\\
+\frac{1}{1 + x^2}
+\end{array}
+\right).
+\]
+
+\begin{problem}
+Deduce equation (3.11) and hence infer that for polynomials with real coefficients, if $\lambda$ is a root, so is $\overline{\lambda}$.
+\end{problem}
+\begin{proof}
+Let $p(x) = \sum_{i=0}^n a_i x^i$ be a polynomial with real coefficients. Note then that $\overline{a_i} = a_i$. Also we know the basics of conjugation like $\overline{zw} = \overline{z}\overline{w}$ and $\overline{z + w} = \overline{z} + \overline{w}$. Then
+\[
+p(\overline{\lambda}) = \sum_{i=0}^n a_i \overline{\lambda}^i = \sum_{i=0}^n a_i \overline{\lambda^i} = \sum_{i=0}^n \overline{a_i \lambda^i} = \overline{\sum_{i=0}^n a_i \lambda^i} = \overline{p(\lambda)}.
+\]
+Thus, if $p(\lambda) = 0$ then $0 = \overline{p(\lambda)} = p(\overline{\lambda})$ as well.
+\end{proof}
+
+\begin{problem}
+Find the solution of $u'' + 2au' + bu = 0$ if (i) $a^2 > b$, (ii) $a^2 < b$, (iii) $a^2 = b$.
+\end{problem}
+
+The characteristic polynomial is $p(x) = x^2 + 2ax + b$ and using the quadratic formula we see that the roots are
+\[
+x = \frac{-2a \pm \sqrt{4a^2 - 4b}}{2} = -a \pm \sqrt{a^2 - b}.
+\]
+
+(i) Since $a^2 > b$, the root is positive so we have two distinct real roots, $\lambda_1 = -a + \sqrt{a^2 - b}$ and $\lambda_2 = -a - \sqrt{a^2 - b}$. Thus the solution is $u(x) = c_1e^{\lambda_1 x} + c_2e^{\lambda_2 x}$.
+
+(ii) If $a^2 < b$ then the root is complex so we have two complex solutions $\lambda = -a + \sqrt{a^2 - b} = -a + i \sqrt{b - a^2}$ and $\overline{\lambda} = -a - i \sqrt{b - a^2}$. Then $u = c_1e^{-a x} \cos(x\sqrt{b - a^2}) + c_2e^{-a x}\sin(x\sqrt{b - a^2})$.
+
+(iii) If $a^2 = b$ then there is only one real root $\lambda = -a$ so $u(x) = c_1e^{-a x} + c_2xe^{-a x}$ is the solution.
+
+\begin{problem}
+Find a basis of solutions for the equation $u''' + 4u'' + 4u' = 0$.
+\end{problem}
+
+Clearly $1$ is a solution. Let $v(x) = u'(x)$ so we have the equation $v'' + 4v' + 4v = 0$. The characteristic polynomial of this equation is $p(x) = x^2 + 4x + 4 = (x+2)^2$ and has one repeated real root $x = -2$. Thus, a solution to $v$ is $v(x) = c_1e^{-2x} + c_2xe^{-2x}$ so
+\[
+u(x) = v'(x) = -2c_1e^{-2x} + c_2(1 - 2x)e^{-2x}.
+\]
+Adding in the first solution and renaming constants we see that
+\[
+u(x) = c_1 + c_2e^{-2x} + c_3(1-2x)e^{-2x}.
+\]
+
+\begin{problem}
+The same for the equation $u^{iv} + 2u'' + 3u = 0$.
+\end{problem}
+
+The characteristic polynomial is
+\[
+p(x) = x^4 + 2x^2 + 3 = \left (x - \sqrt{-1 + i \sqrt{2}} \right ) \left (x + \sqrt{-1 + i \sqrt{2}} \right ) \left (x - \sqrt{-1 - i \sqrt{2}} \right ) \left (x + \sqrt{-1 - i \sqrt{2}} \right ).
+\]
+Let $a + bi = \sqrt{-1 + i \sqrt{2}}$. Then $a^2 - b^2 + 2abi = (a+bi)^2 = -1 + i \sqrt{2}$ so $a^2 - b^2 = -1$ and $ab = \sqrt{2}/2$. Solving these we have
+\[
+b = \pm \sqrt{ \frac{1 + \sqrt{3}}{2}}
+\]
+and
+\[
+a = \pm \sqrt{ \frac{\sqrt{3} - 1}{2}}.
+\]
+A basis of solutions is then
+\begin{align*}
+& \left \{ \exp \left ( \sqrt{ \frac{\sqrt{3} + 1}{2}} \right ) \cos \left ( \sqrt{ \frac{\sqrt{3} - 1}{2}} \right ), \exp \left ( \sqrt{ \frac{\sqrt{3} + 1}{2}} \right ) \sin \left ( \sqrt{ \frac{\sqrt{3} - 1}{2}} \right ), \right.\\
+& ~~\left. \exp \left (- \sqrt{ \frac{\sqrt{3} + 1}{2}} \right ) \cos \left (- \sqrt{ \frac{\sqrt{3} - 1}{2}} \right ), \exp \left (- \sqrt{ \frac{\sqrt{3} + 1}{2}} \right ) \sin \left (- \sqrt{ \frac{\sqrt{3} - 1}{2}} \right ) \right \}.
+\end{align*}
+
+\end{document}

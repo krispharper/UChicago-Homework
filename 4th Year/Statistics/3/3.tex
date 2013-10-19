@@ -1,0 +1,248 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+STAT 24400\\
+
+October 21, 2010
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{problem}
+An experiment consists of throwing a fair coin four times. Find the frequency function and the cumulative distribution function of the following random variables: (a) the number of heads before the first tail, (b) the number of heads following the first tail, (c) the number of heads minus the number of tails, and (d) the number of tails times the number of heads.
+\end{problem}
+
+(a) The possible values are $0$, $1$, $2$, $3$. Note that $HHHH$ should count as $X = 0$ since there is no tail, and therefore no heads before it. Now $P(X = 0) = 9/16$, $P(X = 1) = 4/16 = 1/4$, $P(X = 2) = 2/16 = 1/8$ and $P(X = 3) = 1/16$. Thus
+\[
+p(x) =
+\begin{cases}
+\frac{9}{16} & x = 0\\
+\frac{1}{4} & x = 1\\
+\frac{1}{8} & x = 2\\
+\frac{1}{16} & x = 3\\
+0 & \text{otherwise}
+\end{cases}.
+\]
+For the cumulative distribution function we sum over the appropriate values so we have
+\[
+F(x) =
+\begin{cases}
+0 & x < 0\\
+\frac{9}{16} & 0 \leq x < 1\\
+\frac{13}{16} & 1 \leq x < 2\\
+\frac{15}{16} & 2 \leq x < 3\\
+1 & 3 \leq x
+\end{cases}.
+\]
+
+(b) The possible values are $0$, $1$, $2$ and $3$. Note again that $HHHH$ means that no heads follow the first tail, so this corresponds to $X = 0$. We have $P(X = 0) = 5/16$, $P(X = 1) = 6/16 = 3/8$, $P(X = 2) = 4/16 = 1/4$ and $P(X = 3) = 1/16$. Thus
+\[
+p(x) =
+\begin{cases}
+\frac{5}{16} & x = 0\\
+\frac{3}{8} & x = 1\\
+\frac{1}{4} & x = 2\\
+\frac{1}{16} & x = 3\\
+0 & \text{otherwise}
+\end{cases}.
+\]
+For the cumulative distribution function we sum over the appropriate values so we have
+\[
+F(x) =
+\begin{cases}
+0 & x < 0\\
+\frac{5}{16} & 0 \leq x < 1\\
+\frac{11}{16} & 1 \leq x < 2\\
+\frac{15}{16} & 2 \leq x < 3\\
+1 & 3 \leq x
+\end{cases}.
+\]
+
+(c) The possible values are $-4$, $-2$, $0$, $2$ and $4$. We have $P(X = -4) = 1/16$, $P(X = -2) = 4/16 = 1/4$, $P(X = 0) = 6/16 = 3/8$, $P(X = 2) = 4/16 = 1/4$ and $P(X = 4) = 1/16$. Thus
+\[
+p(x) =
+\begin{cases}
+\frac{1}{16} & x = \pm 4\\
+\frac{1}{4} & x = \pm 2\\
+\frac{3}{8} & x = 0\\
+0 & \text{otherwise}
+\end{cases}.
+\]
+For the cumulative distribution function we sum over the appropriate values so we have
+\[
+F(x) =
+\begin{cases}
+0 & x < -4\\
+\frac{1}{16} & -4 \leq x < -2\\
+\frac{5}{16} & -2 \leq x < 0\\
+\frac{11}{16} & 0 \leq x < 2\\
+\frac{15}{16} & 2 \leq x < 4\\
+1 & 4 \leq x
+\end{cases}.
+\]
+
+(d) The possible values are $0$, $3$ and $4$. We have $P(X = 0) = 2/16 = 1/8$, $P(X = 3) = 8/16 = 1/2$ and $P(X = 4) = 6/16 = 3/8$. Thus
+\[
+p(x) =
+\begin{cases}
+\frac{1}{8} & x = 0\\
+\frac{1}{2} & x = 3\\
+\frac{3}{8} & x = 4\\
+0 & \text{otherwise}
+\end{cases}.
+\]
+For the cumulative distribution function we sum over the appropriate values so we have
+\[
+F(x) =
+\begin{cases}
+0 & x < 0\\
+\frac{1}{8} & 0 \leq x < 3\\
+\frac{5}{8} & 3 \leq x < 4\\
+1 & 4 \leq x
+\end{cases}.
+\]
+
+\begin{problem}
+\label{binom}
+Consider the binomial distribution with $n$ trials and probability $p$ of success on each trial. For what value of $k$ is $P(X = k)$ maximized? This value is called the mode of the distribution.
+\end{problem}
+\begin{proof}
+Let $m$ be the value of $k$ for which $P(X = k)$ is maximized. Then we must have $p(m-1) \leq p(m) \geq p(m+1)$. Note that $p(m-1) \leq p(m)$ means
+\[
+1 \leq \frac{p(m)}{p(m-1)} = \frac{n-m+1}{m} \frac{p}{1-p}
+\]
+so $m \leq (n+1)p$. But also $p(m) \geq p(m+1)$ means
+\[
+1 \leq \frac{p(m)}{p(m+1)} = \frac{m+1}{n-m} \frac{1-p}{p}
+\]
+so $m \geq (n+1)p - 1$. Note then that if $(n+1)p$ is an integer, both of these values maximize our distribution. Otherwise we should take the floor of $(n+1)p$ to get the maximizing integer value. Furthermore if $p = 1$ then the maximum value should be $n$ and if $p = 0$ then the value should be $0$. Thus we have
+\[
+m =
+\begin{cases}
+0 & p = 0\\
+\lfloor (n+1)p \rfloor & (n+1)p \notin \mathbb{Z}\\
+\text{$(n+1)p$ and $(n+1)p - 1$} & \text{$(n+1)p \in \mathbb{Z}$ and $1 \leq (n+1)p \leq n$}\\
+n & p = 1
+\end{cases}.
+\]
+\end{proof}
+
+\begin{problem}
+The university administration assures a mathematician that he has only $1$ chance in $10,000$ of being trapped in a much-maligned elevator in the mathematics building. If he goes to work $5$ days a week, $52$ weeks a year for $10$ years, and always rides the elevator up to his office when he first arrives, what is the probability that he will never be trapped? The he will be trapped once? Twice? Assume that the outcomes on all the days are mutually independent (a dubious assumption in practice).
+\end{problem}
+
+We can use the binomial distribution with $p = 1/10,000$ and $n = 5 \cdot 52 \cdot 10 = 2600$. Then the probability that he never gets trapped is
+\[
+p(0) = \binom{2,600}{0} \left (\frac{1}{10,000} \right )^0 \left ( 1 - \frac{1}{10,000} \right )^{2600-0} \approx .77
+\]
+that he gets trapped once is
+\[
+p(1) = \binom{2,600}{1} \left (\frac{1}{10,000} \right )^1 \left ( 1 - \frac{1}{10,000} \right )^{2600-1} \approx .20
+\]
+and that he gets trapped twice is
+\[
+p(2) = \binom{2,600}{2} \left (\frac{1}{10,000} \right )^2 \left ( 1 - \frac{1}{10,000} \right )^{2600-2} \approx .03.
+\]
+
+\begin{problem}
+For what value of $k$ is the Poisson frequency function with parameter $\lambda$ maximized?
+\end{problem}
+\begin{proof}
+We use the same method as in Problem~\ref{binom}. Namely, let $m$ the maximizing value of $k$. Then we must have $p(m-1) \leq p(m) \leq p(m+1)$. The first inequality holds when
+\[
+1 \leq \frac{p(m)}{p(m-1)} = \frac{\lambda}{m}
+\]
+or when $m \leq \lambda$. The second inequality holds when
+\[
+1 \leq \frac{p(m)}{p(m-1}) = \frac{m+1}{\lambda}
+\]
+or when $m \geq \lambda - 1$. Thus if $\lambda \in \mathbb{Z}$ it should be both of these values so we have
+\[
+m =
+\begin{cases}
+\lfloor \lambda \rfloor & \lambda \notin \mathbb{Z}\\
+\text{$\lambda$ and $\lambda-1$} & \lambda \in \mathbb{Z}
+\end{cases}.
+\]
+\end{proof}
+
+\begin{problem}
+Let $f(x) = (1 + \alpha x)/2$ for $-1 \leq x \leq 1$ and $f(x) = 0$ otherwise, where $-1 \leq \alpha \leq 1$. Show that $f$ is a density, and find the corresponding cdf. Find the quartiles and the median of the distribution in terms of $\alpha$.
+\end{problem}
+
+Note
+\[
+\int_{\infty}^{\infty} f(x) dx = \int_{-1}^{1} \frac{1 + \alpha x}{2} dx = \left. \frac{x}{2} + \frac{\alpha x^2}{4} \right |_{-1}^{1} = \left (\frac{1}{2} + \frac{\alpha}{4} \right ) - \left (\frac{-1}{2} + \frac{\alpha}{4} \right ) = 1.
+\]
+The cdf is
+\[
+F(x) = \int_{-\infty}^{x} f(x) dx = \int_{-\infty}^{x} \frac{1 + \alpha x}{2} dx = \frac{x}{2} + \frac{\alpha x^2}{4}.
+\]
+To find the quartiles and the median we solve
+\[
+\frac{1}{4} = F(x_{1/4}) = \frac{x_{1/4}}{2} + \frac{\alpha (x_{1/4})^2}{4}
+\]
+which reduces to the quadratic $\alpha x_{1/4}^2 + 2 x_{1/4} - 1 = 0$. Using the quadratic formula we get
+\[
+x_{1/4} = \frac{-1 \pm \sqrt{1 + \alpha}}{\alpha}.
+\]
+Using the exact same method we also get
+\[
+x_{1/2} = \frac{-1 \pm \sqrt{1 + 2\alpha}}{\alpha},
+\]
+and
+\[
+x_{3/4} = \frac{-1 \pm \sqrt{1 + 3\alpha}}{\alpha}.
+\]
+
+\begin{problem}
+Suppose that $X$ has the density function $f(x) = cx^2$ for $0 \leq x \leq 1$ and $f(x) = 0$ otherwise.\\
+(a) Find $c$.\\
+(b) Find the cdf.\\
+(c) What is $P(.1 \leq X \leq .5)$?
+\end{problem}
+
+(a) We know
+\[
+1 = \int_{-\infty}^{\infty} f(x) dx = \int_0^1 cx^2 dx = \left. \frac{cx^3}{3} \right |_0^1 = \frac{c}{3}
+\]
+so $c = 3$.
+
+(b) The cdf is given as
+\[
+F(x) = \int_{-\infty}^{x} f(x) dx = \int_0^x 3x^2 = x^3.
+\]
+
+(c) We have
+\[
+P(.1 \leq X \leq .5) = \int_{.1}^{.5} f(x) dx = F(.5) - F(.1) = .5^3 - .1^3 = .124.
+\]
+
+\begin{problem}
+Let $T$ be an exponential random variable with parameter $\lambda$. Let $X$ be a discrete random variable defined as $X = k$ if $k \leq T < k+1$, $k = 0, 1, \dots$. Find the frequency function of $X$.
+\end{problem}
+
+Note that $T$ has distribution $\lambda e^{-\lambda x}$. Then
+\[
+p(k) = P(k \leq T \leq k+1) = \int_{k}^{k+1} \lambda e^{-\lambda x} dx = \left. 1 - e^{-\lambda x} \right |_{k}^{k+1} = e^{-\lambda k} - e^{-\lambda (k+1)}.
+\]
+
+\begin{problem}
+Find the density function of $Y = e^Z$, where $Z \sim N (\mu, \sigma^2)$. This is called the \emph{lognormal density}, since log $Y$ is normally distributed.
+\end{problem}
+
+Using the proposition
+\[
+f_Y(y) = f_Z(\log (y)) \frac{1}{|\log(y)|} = \frac{1}{|\log y| \sqrt{2 \pi \sigma^2}}e^{-\frac{(\log(y) - \mu)^2}{2\sigma^2}}.
+\]
+
+\end{document}

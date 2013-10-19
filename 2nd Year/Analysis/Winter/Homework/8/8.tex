@@ -1,0 +1,266 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\slope}{\text{slope }}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20800\\
+
+February 23, 2009
+\end{flushright}
+
+\begin{center}
+Homework 8
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Let
+\[
+f(x) =
+\begin{cases}
+2x^2 \sin \frac{1}{x} & x \neq 0\\
+0 & x = 0.
+\end{cases}
+\]
+Is $f$ increasing or decreasing on any neighborhood of the origin?
+\end{**}
+
+No.
+\begin{proof}
+The derivative of $f$ is $Df(x) = 4x \sin (1/x) - 2 \cos (1/x)$ for all $x \neq 0$. But there are infinitely many zeros of this function in any neighborhood of the origin. Thus, $Df$ is never strictly greater or less than $0$ for any neighborhood of the origin and therefore $f$ is neither increasing or decreasing for any neighborhood of the origin.
+\end{proof}
+
+\begin{**}
+Let
+\[
+f(x) =
+\begin{cases}
+e^{-\frac{1}{x^2}} & x \neq 0\\
+0 & x = 0.
+\end{cases}
+\]
+Show $f$ is differentiable infinitely many times at $0$ and the $k$th derivative at $0$ is $0$ for all $k$.
+\end{**}
+\begin{proof}
+Note that
+\[
+\lim_{x \rightarrow 0} e^{-\frac{1}{x^2}} = 0
+\]
+and so this function is continuous and thus differentiable at $x = 0$. For $x \neq 0$, using the chain rule we have
+\[
+Df(x) = \frac{a_1 e^{-\frac{1}{x^2}}}{x^3}
+\]
+where $a_1$ is some integer constant. Now suppose that the $k$th derivative for $x \neq 0$ is
+\[
+D^kf(x) = \frac{a_1 e^{-\frac{1}{x^2}}}{x^{(k+2)}} + \frac{a_2 e^{-\frac{1}{x^2}}}{x^{(k+4)}} + \dots + \frac{a_k e^{-\frac{1}{x^2}}}{x^{(k+2k)}}
+\]
+where $a_1, \dots , a_k$ are integer constants. Using the chain rule and the product rule, we can differentiate again to obtain
+\[
+D^{k+1}f(x) = \frac{a_1 e^{-\frac{1}{x^2}}}{x^{(k+3)}} + \frac{a_2 e^{-\frac{1}{x^2}}}{x^{(k+5)}} + \dots + \frac{a_k e^{-\frac{1}{x^2}}}{x^{(k+1+2(k))}} + \frac{a_{k+1} e^{-\frac{1}{x^2}}}{x^{(k+1+2(k+1))}}
+\]
+for all $x \neq 0$ where $a_1, \dots , a_k$ are different integer constants. Thus, by induction, the is the $k$th nonzero derivative. To show that each derivative is continuous at $0$, note that the first derivative for $x \neq 0$ is
+\[
+Df(x) = \frac{a_1 e^{-\frac{1}{x^2}}}{x^3}.
+\]
+Taking $\lim_{x \rightarrow 0} Df(x)$ we see that l'Hopital's Rule applies, and we end up with $\lim_{x \rightarrow 0} Df(x) = 0$. We can assume inductively that the $k$th derivative is continuous at $0$, and then use that fact and l'Hopital's Rule to show the $k+1$st derivative is continuous at $0$. Thus $D^kf(0)$ exists for all $k$ and $D^kf(0) = 0$ for all $k$.
+\end{proof}
+
+\begin{**}
+If $\alpha \notin \mathbb{Q}$ and $r \leq 2$, show $f_r$ is not differentiable at $\alpha$.
+\end{**}
+\begin{proof}
+Let $\alpha \notin \mathbb{Q}$ and let $r \leq 2$. Suppose that $Df_r(\alpha)$ exists. Then we have
+\[
+Df_r(\alpha) = \lim_{x \rightarrow \alpha} \left | \frac{f_r(x) - f_r(\alpha)}{x-\alpha} \right | = \lim_{x \rightarrow \alpha} \left | \frac{f_r(x)}{x-\alpha} \right |.
+\]
+For $x \notin \mathbb{Q}$ we have $f_r(x) = 0$, which means that $Df_r(\alpha) = 0$ on the irrationals. But also note that there are infinitely many $x \in \mathbb{Q}$ with $x = p/q$ such that $|\alpha - x| < 1/q^2 \leq |f_r(x)|$. Thus there are infinitely many $x \in \mathbb{Q}$ such that
+\[
+1 < \left | \frac{f_r(x)}{\alpha - x} \right |.
+\]
+But then $Df_r(\alpha)$ has different values on the rationals and irrationals. This is a contradiction and so $Df_r(\alpha)$ does not exist.
+\end{proof}
+
+\begin{**}
+Let
+\[
+f_1 =
+\begin{cases}
+x & 0 \leq x \leq \frac{1}{2}\\
+1-x & \frac{1}{2} \leq x \leq 1.
+\end{cases}
+\]
+Extend $f_1(x) = f_1(x+1)$. Let $f_n(x) = \frac{1}{2} f_{n-1} (2x)$. Let
+\[
+f(x) = \sum_{n=1}^{\infty} f_n(x).
+\]
+Show that $f$ is continuous on $\mathbb{R}$, but is differentiable nowhere.
+\end{**}
+\begin{proof}
+Each $f_n$ is piecewise linear and therefore continuous. Additionally, $(f_n)$ uniformly converges and so $f$ must be continuous. To see that $f$ is not differentiable, let $a \in \mathbb{R}$. Then consider
+\[
+\lim_{x \rightarrow a} \left |\frac{f(x) - f(a)}{x-a} \right | = \lim_{x \rightarrow a} \left |\frac{\sum_{n=1}^{\infty} f_n(x) - f_n(a)}{x-a} \right |.
+\]
+But between every two points in $\mathbb{R}$ there exists a ``spike'' of $f$ which separates the points. Thus, as $x$ approaches $a$, $f(x)$ and $f(a)$ will have opposite slopes, forcing the limit to not exist.
+\end{proof}
+
+\begin{**}
+What is the differentiability of $f_r$ at $0$?
+\end{**}
+\begin{proof}
+By definition we have $f_r(0) = 0$. Taking the difference quotient we have
+\[
+\lim_{h \rightarrow 0} \left | \frac{f_r(0 + h) - f_r(0) - Df_r(0)}{h} \right | = \lim_{h \rightarrow 0} \left | \frac{f_r(h) - Df_r(0)}{h} \right |.
+\]
+For $h \notin \mathbb{Q}$ we have $f_r(h) = 0$. For $h \in \mathbb{Q}$ we consider $\lim_{h \rightarrow 0} f_r(h)$. But this limit is $0$ since the denominator of $h$ will tend toward infinity as $h$ tends toward $0$. Thus, it must be the case that $Df_r(0) = 0$.
+\end{proof}
+
+\begin{**}
+Let $\alpha$ be a real, algebraic number of degree $n \geq 2$. Then there exists a constant $c(\alpha)$ depending only on $\alpha$ such that for all $p/q \in \mathbb{Q}$ we have
+\[
+\left | \alpha - \frac{p}{q} \right | > \frac{c(\alpha)}{q^n}.
+\]
+\end{**}
+\begin{proof}
+Let $\alpha \in \mathbb{A}_{\mathbb{R}}$ such that $f(\alpha) = a_n \alpha^n + a_{n-1} \alpha^{n-1} + \dots + a_0 = 0$ where each $a_i \in \mathbb{Z}$. Then choose
+\[
+M > \max_{\alpha - 1 \leq x \leq \alpha + 1} |f'(x)|.
+\]
+Note that $M$ is entirely determined by $\alpha$. Suppose $p/q \in \mathbb{Q}$ such that $p/q \in (\alpha - 1 ; \alpha + 1)$ and $f(p/q) \neq 0$. We can do this because $n \geq 2$. Then we have
+\[
+\left | f \left (\frac{p}{q} \right ) \right | = \frac{|a_np^n + a_{n-1}p^{n-1}q + \dots + a_1pq^{n-1} + a_0 q|}{q^n} \geq \frac{1}{q^n}
+\]
+because the numerator in a nonzero integer. Then by the mean value theorem there exists $x$ such that
+\[
+\frac{1}{q^n} \leq \left |f \left ( \frac{p}{q} \right ) - f(\alpha) \right | = \left | \left ( \frac{p}{q} - \alpha \right ) f'(x) \right | < M \left |\frac{p}{q} - \alpha \right |.
+\]
+Taking $c(\alpha) = 1/M$ completes the proof.
+\end{proof}
+
+\begin{**}
+Let $A \subseteq \mathbb{R}$ and suppose there exists a countable collection of intervals $\{I_i\}_{i \in \mathbb{N}}$ such that\\
+1)
+\[
+A \subseteq \bigcup_i I_i
+\]\\
+2)
+\[
+\sum_i Vol(I_i)
+\]
+is finite.\\
+3) If $a \in A$ then $a \in I_i$ for infinitely many $i \in \mathbb{N}$.\\
+Show that this is equivalent to $A$ having measure $0$.
+\end{**}
+\begin{proof}
+Suppose the above hypotheses are true for a set $A \subseteq \mathbb{R}$. Let $\varepsilon > 0$. If $\sum_i Vol (I_i) < \varepsilon$, we're finished. If $\sum_i Vol (I_i) \geq \varepsilon$ then we remove one interval, $I_{j_1}$ from the collection. Since $a \in A$ implies $a \in I_i$ for infinitely many $i$, it follows that $A \subseteq \bigcup_i I_i \backslash I_{j_1}$. Continue in this way until $\sum_i Vol(I_i) - \sum_k Vol(I_{j_k}) < \varepsilon$.\newline
+
+Now let $A$ be a set with measure $0$ and let $\varepsilon > 0$. Suppose that there exists $a \in A$ such that $a \in I_i$ for only finitely many $i$, say $I_{j_1}, \dots , I_{j_n}$. But then this is a contradiction because $\varepsilon$ is finite and so we can simply choose a smaller $\varepsilon$ to exclude $a$. Thus $a$ must be in infinitely many intervals.
+\end{proof}
+
+\begin{**}
+Show that, if $r \geq 2$, then $f_r$ is differentiable except on a set of measure $0$.
+\end{**}
+\begin{proof}
+Use the method of ** Problem 9 to show that $f$ is not differentiable on a thick set, then $r < 2$.
+\end{proof}
+
+\begin{lemma}
+Every thick subset of a complete metric space, $X$, is dense in $X$. If $X$ is the union of countably many closed sets, at least one has nonempty interior.
+\end{lemma}
+\begin{proof}
+A thick subset of $X$ is a countable intersection $G = \bigcap G_n$ of open dense subsets of $X$. A thin subset of $X$ is a countable union $H = \bigcup H_n$ of closed nowhere dense subsets of $X$. If $X = \emptyset$ then we're finished, so assume $X \neq \emptyset$. Let $G$ be a thick subset of $X$ and let $p_0 \in X$ and $\varepsilon > 0$. Choose $r_n < 1/n$ and create a sequence $(p_n) \in X$ by
+\[
+B_{2r_1} (p_1) \subseteq B_{\varepsilon} (p_0)
+\]
+\[
+B_{2r_2} (p_2) \subseteq B_{r_1} (p_1) \cap G_1
+\]
+\[
+\dots
+\]
+\[
+B_{2r_{n+1}} (p_{n+1}) \subseteq B_{r_n} (p_n) \cap G_1 \cap \dots \cap G_n.
+\]
+Since the $r_n \rightarrow 0$ as $n \rightarrow \infty$, $(p_n)$ is a Cauchy sequence in $X$, which converges to $p \in X$ since $X$ is complete. Since $p \in \overline{B_{r_n} (p_n)}$ we also have $p \in G_n$ and thus $p \in G \cap B_{\varepsilon} (p_0)$. Thus $G$ is dense in $X$.\newline
+
+Now suppose that $X = H = \bigcup H_n$ with each $H$ a nowhere dense closed set. Then each $G_n = ^c H_n$ is open dense and
+\[
+G = \bigcap G_n = ^c \left ( \bigcup K_n \right ) = \emptyset
+\]
+which contradicts the density of $G$.
+\end{proof}
+
+\begin{lemma}
+The set $PL$ of piecewise linear functions is dense in the set $C^0$ of all continuous linear functions from $\mathbb{R}$ to $\mathbb{R}$.
+\end{lemma}
+\begin{proof}
+Let $f \in C^0$ and $\varepsilon > 0$. Since $[a,b]$ is compact, $f$ is uniformly continuous on this interval and so there exists $\delta > 0$ such that $|t-s| < \delta$ implies $|f(t) - f(s)| < \varepsilon$ for all $s,t \in [a,b]$. Choose $n > (b-a)/\delta$ and partition $[a,b]$ into $n$ subintervals $I_i = [x_i-1, x_i]$, each of length less than $\delta$. Now create a piecewise linear function $\phi : [a,b] \rightarrow \mathbb{R}$ which connects each of the points $(x_{i-1}, f(x_{i-1}))$ and $(x_i, f(x_i))$ for all $0 \leq i \leq n$. Then $\phi(t)$ for $t \in I_i$ is between $f(x_{i-1})$ and $f(x_i)$, each of which differ from $f(t)$ by less than $\varepsilon$. Thus for all $t \in [a,b]$ we have $|f(t) - \phi(t)| < \varepsilon$.
+\end{proof}
+
+\begin{lemma}
+If $\phi \in PL$ and $\varepsilon > 0$, then there exists a sawtooth function $\sigma$ such that $||\sigma|| \leq \varepsilon$, $\sigma$ has period less than or equal to $\varepsilon$, and
+\[
+\min (|\slope \sigma|) > \max (|\slope \phi|) + \frac{1}{\varepsilon}.
+\]
+\end{lemma}
+\begin{proof}
+Choose $c \in \mathbb{R}$. The compressed sawtooth function $\sigma (x) = \varepsilon \sigma_0 (cx)$ has $||\sigma|| = \varepsilon$, period $1/c$, and slope $\pm \varepsilon c$. Choosing $c$ arbitrarily large will give the desired results.
+\end{proof}
+
+\begin{**}
+Let $f : [a, b] \rightarrow \mathbb{R}$. If $f$ is monotonically increasing on $[a,b]$, then $f$ is differentiable almost everywhere on $[a,b]$.
+\end{**}
+\begin{proof}
+We use the contrapositive. For $n \in \mathbb{N}$ define
+\[
+R_n = \{f \in C^0 \mid \forall x \in [a, b - \frac{1}{n}] \exists h > 0 \text{ such that } \left | \frac{f(x+h) - f(x)}{h} \right | > n\}
+\]
+\[
+L_n = \{f \in C^0 \mid \forall x \in [a + \frac{1}{n}], b \exists h < 0 \text{ such that } \left | \frac{f(x+h) - f(x)}{h} \right | > n\}
+\]
+\[
+G_n = \{f \in C^0 \mid \text{$f$ restricted to any interval of length $\frac{1}{n}$ is non-monotone}\}.
+\]
+We must show that each of these sets is open dense in $C^0$. Lemma 3 shows that the closure of $PL$ is $C^0$, so we must only show that the closure of each set contains $PL$. Let $\phi \in PL$ and $\varepsilon > 0$. By Lemma 3 there exists a sawtooth function $\sigma$ such that $||\sigma|| \leq \varepsilon$, $\sigma$ has period less than $1/n$ and
+\[
+\min (|\slope \sigma|) > \max (|\slope \phi|) + n.
+\]
+Consider $f = \phi + \sigma$ and note that $f \in PL$. It has slopes that are dominated by $\sigma$ and so they alternate in sign with period $1/2n$. At any $x \in [a, b + 1/n]$ there is a rightward slope either greater than $n$ or less than $-n$. Thus $f \in R_n$ and a similar argument shows $f \in L_n$. Since any interval of length $1/n$ contains a minimum or maximum of $\sigma$, it must contain a subinterval where $f$ is strictly increasing, and one where $f$ is strictly decreasing. Thus $f \in G_n$. Since $||f-\phi|| = \varepsilon$ we have $R_n$, $L_n$ and $G_n$ are dense in $C^0$.\newline
+
+Now suppose that $f \in R_n$. The for all $x \in [a, b - 1/n]$ there exists $h > 0$ such that
+\[
+\left | \frac{f(x+h) - f(x)}{h} \right | > n.
+\]
+Since $f$ is continuous, there exists some neighborhood $A_x \subseteq [a,b]$ of $x$ and a constant $y > 0$ such that
+\[
+\left | \frac{f(t+h) - f(t)}{h} \right | > n +y
+\]
+for all $t \in A_x$. Since $[a, b - 1/n]$ is compact, we only need finitely many of these intervals, $A_{x_1}, \dots , A_{x_m}$, to cover it. Again, since $f$ is continuous for all $t \in A_{x_i}$ we have
+\[
+\left | \frac{f(t+h_i) - f(t)}{h_i} \right | > n + y_i.
+\]
+Since there are only finitely many inequalities we can replace $f$ by a function $g$ with the distance between $f$ and $g$ small enough so that we have
+\[
+\left | \frac{g(t+h_i) - g(t)}{h_i} \right | > n.
+\]
+Thus $g \in R_n$ and $R_n$ is open in $C^0$. A similar proof holds for $L_n$ open in $C^0$.\newline
+
+Let $(f_k)$ be a sequence of functions in $^c G_n$ and such that $f_k$ uniformly converges to $f$. We must show that $f \in ^c G_n$. Each $f_k$ is monotone on some interval of $1/n$. Taking these intervals as a sequence, there is a subsequence which converges to some interval $I$. This interval must have length $1/n$ and by uniform convergence, $f$ is monotone on $I$. Thus $^cG_n$ is closed and therefore $G_n$ is open. Hence all of $R_n$, $L_n$ and $G_n$ are open dense in $C^0$.\newline
+
+Finally, suppose that $f$ belongs to the thick set $\bigcup_n R_n \cap L_n \cap G_n$. Then for each $x \in [a,b]$ there exists a sequence of nonzero $h_n$ such that
+\[
+\left | \frac{f(x + h_n) - f(x)}{h_n} \right | < n.
+\]
+The numerator is at most $2 ||f||$ and so $h_n \rightarrow 0$ as $n \rightarrow \infty$. This shows that $f$ is not differentiable at $x$. Moreover, since $f \in G_n$, $f$ is not monotone on any interval of length $1/n$ and since any interval $I$ contains an interval of length $1/n$ for $n$ large enough, $f$ is not monotone on $I$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

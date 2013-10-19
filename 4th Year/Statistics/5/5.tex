@@ -1,0 +1,211 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\var}{\textup{Var}}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+STAT 24400\\
+
+November 4, 2010
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{problem}
+(a) Let $T$ be an exponential random variable with parameter $\lambda$; let $W$ be a random variable independent of $T$, which is $\pm 1$ with probability $\frac{1}{2}$ each; and let $X = WT$. Show that the density of $X$ is
+\[
+f_X(x) = \frac{\lambda}{2} e^{-\lambda |x|}
+\]
+which is called the \emph{double exponential density}.
+
+(b) Show that for some constant $c$,
+\[
+\frac{1}{\sqrt{2\pi}} e^{-x^2/2} \leq c e^{-|x|}.
+\]
+Use this result and that of part (a) to show how to use the rejection method to generate random variables from a standard normal density.
+\end{problem}
+\begin{proof}
+(a) Note that
+\[
+F_X(x) = P(X \leq x) = P(WT \leq x) = \sum_{w = \pm 1} \int_{-\infty}^{xw} \frac{1}{2} \lambda e^{- \lambda t} dt = \frac{1}{2} \int_{-\infty}^x \lambda e^{-\lambda t} dt + \frac{1}{2} \int_{-\infty}^{-x} \lambda e^{-\lambda t}dt.
+\]
+The exponential distribution is $0$ if $x < 0$, so as long as $x \geq 0$, the right-hand integral is $0$. Then the statement evaluates to $\frac{1}{2}(1 - e^{- \lambda |x|})$, since $x$ must be nonnegative. We can find $f_X$ by taking the derivative, which is
+\[
+f_X(x) = \frac{d}{dx} \frac{1}{2} (1 - e^{- \lambda |x|}) = \frac{\lambda}{2} e^{- \lambda |x|}.
+\]
+
+(b) We can ignore the factor of $1/\sqrt{2 \pi}$ since we can vary $c$ to match it in the end. So we are trying to show there is some constant $c$ such that $e^{-x^2/2} \leq c e^{-|x|}$. Since $e^{-|x|}$ is always positive, we can divide to get
+\[
+e^{-x^2/2 + |x|} \leq c.
+\]
+The exponent on the left is a piecewise continuous function made up of two downward facing parabolas. In particular, this means that as $x \rightarrow \pm \infty$, $-x^2/2 + |x| \rightarrow -\infty$ and thus $e^{-x^2/2 + |x|} \rightarrow 0$. Therefore, this exponential is asymptotically decreasing in both limits and since it's clearly continuous everywhere, it must be bounded by some constant $c$.
+
+If we let $M(x) = ce^{-|x|}$ and $m(x) = M(x)/\int_a^b M(x) dx$, then we know from part (a) we can generate a random variable $X$ which has density $m(x)$. Since $M(x)$ is greater than or equal to the standard normal density, the rejection method can be used by generating a uniform variable $U$ and seeing if $M(X)U \leq f(X)$, where $f$ is the density of the standard normal distribution. If so, we accept $X$, otherwise we regenerate $X$.
+\end{proof}
+
+\begin{problem}
+Let $X$ have the cdf $F(x) = 1 - x^{-\alpha}$, $x \geq 1$.\\
+(a) Find $E(X)$ for those values of $\alpha$ for which $E(X)$ exists.\\
+(b) Find $\var(X)$ for those values of $\alpha$ for which it exists.
+\end{problem}
+(a) We know $f(x) = \alpha x^{-\alpha - 1}$. To find $E(X)$ we find
+\[
+\int_{-\infty}^{\infty} xf(x)dx = \alpha \int_1^{\infty} x^{-\alpha} dx = \left. \frac{\alpha}{1 - \alpha} x^{1-\alpha} \right |_1^{\infty} = \frac{\alpha}{1 - \alpha} \left ( \lim_{x \rightarrow \infty} x^{1 - \alpha} - 1 \right ).
+\]
+This limit converges to $0$ for $\alpha > 2$, so in this case we have
+\[
+E(X) =
+\begin{cases}
+\frac{1 - 2 \alpha}{\alpha - 1} & \alpha > 2\\
+\textup{undefined} & \alpha \leq 2
+\end{cases}.
+\]
+
+(b) First we find $E(X^2)$ as
+\[
+\int_{-\infty}^{\infty} x^2 f(x)dx = \alpha \int_1^{\infty} x^{- \alpha + 1} dx = \left. \frac{\alpha}{2 - \alpha} x^{2 - \alpha} \right |_1^{\infty} = \frac{\alpha}{2- \alpha} \left ( \lim_{x \rightarrow \infty} x^{2 - \alpha} - 1 \right ).
+\]
+This converges to $0$ for $\alpha > 3$, so in this case we have
+\[
+E(X^2) =
+\begin{cases}
+\frac{2(\alpha - 1)}{2 - \alpha} & \alpha > 3\\
+\textup{undefined} & \alpha \leq 3
+\end{cases}.
+\]
+Then we have
+\[
+\var(X) = E(X^2) - E(X)^2 =
+\begin{cases}
+\frac{2(\alpha - 1)}{2 - \alpha} - \left ( \frac{1 - 2 \alpha}{\alpha - 1} \right )^2 & \alpha > 3\\
+\textup{undefined} & \alpha \leq 3
+\end{cases}.
+\]
+
+\begin{problem}
+Show that if $X$ is a discrete random variable, taking values on the positive integers, then $E(X) = \sum_{k=1}^{\infty} P(X \geq k)$. Apply this result to find the expected value of a geometric random variable.
+\end{problem}
+\begin{proof}
+We have
+\[
+\sum_{k=1}^{\infty} P(X \geq k) = \sum_{k=1}^{\infty} \sum_{j=k}^{\infty} p(j) = \sum_{k=1}^{\infty} (p(k) + p(k+1) + \dots ).
+\]
+Note that there are precisely $k$ terms in this sum which contain $p(j)$ for some $j$, since the next one starts with $p(j+1)$. Then we can rearrange and combine these terms to get
+\[
+\sum_{k=1}^{\infty} (p(k) + p(k+1) + \dots ) = \sum_{k=1}^{\infty} kp(k) = E(X),
+\]
+\end{proof}
+
+Note that if $X$ is a geometric random variable then
+\[
+P(X \leq k) = \sum_{j=1}^k (1-p)^{j-1} p = 1 - (1 - p)^k
+\]
+so $P(X \geq k) = 1 - (1 - (1-p)^k) = (1-p)^k$. Then
+\[
+E(X) = \sum_{k=1}^{\infty} - (1-p)^k = \frac{1}{1 - (1-p)} = \frac{1}{p}.
+\]
+
+\begin{problem}
+This is a simplified inventory problem. Suppose that it costs $c$ dollars to stock an item and that the item sells for $s$ dollars. Suppose that the number of items that will be asked for by customers is a random variable with the frequency function $p(k)$. Find a rule for the number of items that should be stocked in order to maximize the expected income.
+\end{problem}
+
+Suppose we fix $n$ as the number of items in stock. Then the revenue will be
+\[
+s \left ( \sum_{k=1}^{n-1} k p(k) + n \sum_{k=n}^{\infty} p(k) \right ).
+\]
+The cost to stock an item is only realized if that item isn't sold. So we can then calculate the profit as
+\[
+P(n) = \sum_{k=1}^{n-1} (k s - (n-k) c)p(k) + n s \sum_{k=n}^{\infty} p(k).
+\]
+Now to maximize $n$ we look at $P(n+1) - P(n)$ which is
+\[
+\left ( \sum_{k=1}^{n} (k s - (n+1-k) c)p(k) + (n+1) s \sum_{k=n+1}^{\infty} p(k) \right ) - \left ( \sum_{k=1}^{n-1} (k s - (n-k) c)p(k) + n s \sum_{k=n}^{\infty} p(k) \right ).
+\]
+and simplifies to
+\[
+s\sum_{k=n+1}^{\infty} p(k) - c \sum_{k=1}^n p(k).
+\]
+Since $n$ is the value which maximizes $P(n)$, this value should be less than $0$ or
+\[
+s \sum_{k=n+1}^{\infty} p(k) < c \sum_{k=1}^n p(k).
+\]
+Similarly, if we compute $P(n-1) - P(n) < 0$ we get
+\[
+s \sum_{k=n}^{\infty} p(k) > c \sum_{k=1}^{n-1} p(k).
+\]
+These inequalities uniquely determine $n$, so $n$ is the number such that
+\[
+s \sum_{k=n}^{\infty} p(k) > c \sum_{k=1}^{n-1} p(k)
+\]
+and
+\[
+s \sum_{k=n+1}^{\infty} p(k) < c \sum_{k=1}^n p(k).
+\]
+
+\begin{problem}
+Let $X$ be a continuous random variable with the density function
+\[
+\begin{tabular}{cc}
+$f(x) = 2x$, & $0 \leq x \leq 1$
+\end{tabular}
+\]
+(a) Find $E(X)$.\\
+(b) Find $E(X^2)$ and $\var(X)$.
+\end{problem}
+
+(a) To find $E(X)$ we evaluate
+\[
+\int_{-\infty}^{\infty} xf(x) dx = \int_0^1 2x^2 dx = \frac{2}{3}.
+\]
+
+(b) To find $E(X^2)$ we evaluate
+\[
+\int_{-\infty}^{\infty} x^2 f(x) dx = \int_0^1 2x^3 dx = \frac{1}{2}.
+\]
+Then $\var(X) = E(X^2) - E(X)^2 = \frac{1}{2} - \frac{4}{9} = \frac{1}{18}$.
+
+\begin{problem}
+A random rectangle has sides the lengths of which are independent uniform random variables. Find the expected area of the rectangle, and compare this result to that of Problem 4.21.
+\end{problem}
+
+Let $X$ and $Y$ be the random variables corresponding to the sides. Then $A(X,Y) = XY$ is a function of $X$ and $Y$ so
+\[
+E(A) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} A(x,y)f(x,y)dydx = \int_0^1 \int_0^1 xy dydx = \int_0^1 \frac{x}{2}dx = \frac{1}{4}.
+\]
+In Problem 4.21 we have $X$ is a uniform random variable and $A(X) = X^2$. Then
+\[
+E(A) = \int_0^1 x^2 = \frac{1}{3}.
+\]
+
+\begin{problem}
+Find $E[1/(X+1)]$, where $X$ is a Poisson random variable.
+\end{problem}
+
+Note that $X$ has frequency function $p(x) = \frac{\lambda^x}{x!} e^{-\lambda}$. Then $E[1/(X+1)]$ is
+\[
+\sum_{x=0}^{\infty} \frac{1}{x+1} p(x) = \sum_{x=0}^{\infty} \frac{\lambda^x}{(x+1)!} e^{-\lambda} = \frac{1}{\lambda} \sum_{x=0}^{\infty} \frac{\lambda^{x+1}}{(x+1)!} e^{-\lambda} = \frac{1}{\lambda} \sum_{x=0}^{\infty} p(x+1) = \frac{1}{\lambda} \sum_{y=1}^{\infty} p(y) = \frac{1 - e^{-\lambda}}{\lambda}.
+\]
+
+\begin{problem}
+Consider the following scheme for group testing. The original lot of samples is divided into two groups, and each of the subgroups is tested as a whole. If either subgroup tests positive, it is divided in two, and the procedure is repeated. If any of the groups thus obtained tests positive, test every member of that group. Find the expected number of tests performed, and compare it to the number performed with no grouping and with the scheme described in Example 4.1.2 in Section 4.1.2.
+\end{problem}
+
+Suppose there are $n$ people in the population and there is a probability $p$ of a negative test on an individual. Let $X$ be a random variable denoting the number of tests needed to be performed. Then $p(2) = p^2$, $p(4) = p^3 (1 - p)$, $p(6) = p^4 (1 - p)^2$, $p(4 + n/4) = p^2 (1 - p)^2$, $p(4 + n/2) = p (1 - p)^3$, $p(6 + n/4) = p^3 (1 - p)^3$, $p(6 + n/2) = p^2 (1 - p)^4$, $p(6 + 3n/4) = p(1 - p)^5$ and $p(6 + n) = (1-p)^6$. Then the expected number of tests is
+\begin{align*}
+E(X)
+&= 2p^2 + 4p^3(1-p) + 6p^4(1-p)^2 + (4 + n/2)p^2(1-p)^2 + (4 + n/2)p(1-p)^3\\
+&~~~~~~~~+ (6 + n/4)p^3(1-p)^3 + (6 + n/2)p^2(1-p)^4 + (6 + 3n/4)p(1-p)^5 + (6 + n)(1-p)^6\\
+&= 6-26 p+60 p^2-70 p^3+50 p^4-24 p^5+6 p^6+\frac{1}{4} n (-1+p)^2 \left(4-11 p+17 p^2-10 p^3+2 p^4\right)
+\end{align*}
+
+The expected number of tests without grouping would be $n+1$ tests.
+
+\end{document}

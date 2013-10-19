@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 8, 2008
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Theorem 9}
+\textsl{Let $(f_n)$ be a sequence of continuous functions on $[a;b]$ that uniformly converges to $f$ on $[a;b]$. Then $f$ is continuous on $[a;b]$.}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\varepsilon/3$. We know $(f_n)$ uniformly converges to $f$ so there exists $N$ such that for all $n>N$ and for all $x,y \in [a;b]$ we have $|f(x)-f_n(x)| < \varepsilon/3$ and $|f(y)-f_n(y)| < \varepsilon/3$. Also $f_n$ is continuous for all $n$ so for all $n>N$ and for all $x \in [a;b]$ there exists $\delta_n > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta_n$ we have $|f_n(x) - f_n(y)| < \varepsilon/3$. Consider $\delta_{N+1}$. Then for all $x \in [a;b]$ there exists $\delta_{N+1} > 0$, which may depend on $x$, such that for all $y \in [a;b]$ with $|x-y| < \delta_{N+1}$ we have $|f_{N+1}(x)+f_{N+1}(y)| < \varepsilon/3$. By the triangle inequality we have $|f(x)-f_{N+1}(y)| \leq |f_{N+1}(x)-f_{N+1}(y)| + |f(x)-f_{N+1}(x)| < 2\varepsilon/3$ and then $|f(x)-f(y)| < |f(x)-f_{N+1}(y)| + |f(y)-f_{N+1}(y)| < \varepsilon$. Thus for all $x \in [a;b]$ there exists some $\delta > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta$ we have $|f(x)-f(y)| < \varepsilon$. Therefore $f$ is continuous on $[a;b]$.
+\end{proof}
+
+\textbf{Theorem 3 (Division Remainder)}
+\textsl{Let $a,b \in \mathbb{R}[x]$ be polynomials with $b \neq 0$. Then there exists unique $q,r \in \mathbb{R}[x]$ such that
+\[
+a = bq + r
+\]
+and
+\[
+\deg r < \deg b.
+\]}
+\begin{proof}
+To show existence consider the set $S = \{a-bc \mid c \in \mathbb{R}[x]\}$. Suppose that for all $r \in S$, $\deg(r) \geq \deg(b)$. Choose $p \in S$ such that $\deg(p)$ is the minimum degree of all elements of $S$ using the Well Ordering Principle. Note that $p=a-bc$ for some $c \in \mathbb{R}[x]$. Now let $q = p-bd$ for some $d \in \mathbb{R}[x]$. Then $q = a-bc-bd=a-b(c+d)$ and so $q \in S$. Thus $\deg(q) \geq \deg(p)$. But then if $p(x) = \sum_{i=0}^n a_i x^i$ and $b(x) = \sum_{i=0}^m b_i x^i$ then consider $d = a_n/b_m x^{(n-m)}$. Then $\deg(bd) = n$ and so $\deg(q) < \deg(p)$ since $q = p-bd$. This is a contradiction and so there exists $r \in S$ such that $\deg(r) < \deg(b)$. For uniqueness suppose that there exists $q,q',r,r'$ with $q \neq q'$ and $r \neq r'$ such that $a=bq+r$, $a=bq'+r'$, $\deg(r) < b$ and $\deg(r') < b$. Then $bq+r = bq'+r'$ and $b(q-q') = r'-r$. Note that since $q \neq q'$ and $r \neq r'$, $\deg(q-q') \geq 0$ and $\deg(r-r') \geq 0$. But then using Theorem 2 we have $\deg(r-r') < b$ and $\deg(b(q-q')) = \deg(b) + \deg(q-q') \geq \deg(b)$. This is a contradiction and so $q=q'$ and $r=r'$ which means $q$ and $r$ are unique.
+\end{proof}
+
+\end{flushleft}
+\end{document}

@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{10pt}
+\renewcommand{\textheight}{609pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25700\\October 14, 2009\\}
+\chead{Quiz 2\\}
+
+\begin{problem}
+Show that every left coset of the subgroup $\mathbb{Z}$ of the additive group of the real numbers contains exactly one element $x$ such that $0 \leq x < 1$.
+\end{problem}
+\begin{proof}
+Let $H = r + \mathbb{Z}$ be a left coset of $(\mathbb{R}, +)$ where $r \in \mathbb{R}$. Let $n = \lfloor r \rfloor$ be the greatest integer less than or equal to $r$. Then $0 \leq r-n$ since $r \geq n$ and furthermore, $r-n < 1$. This second inequality follows from the fact that $n$ is greater than or equal to any integer less than $r$. Thus $r + (-n) \in r+\mathbb{Z}$ is an element $x$ such that $0 \leq x < 1$. Now consider an arbitrary element $s \in r + \mathbb{Z}$ such that $0 \leq s < 1$. Since all elements of $r + \mathbb{Z}$ are of the form $r + m$ for $m \in \mathbb{Z}$, we know that the difference of two elements is $(r + m) - (r + m') = m - m'$. That is, the difference is always an integer. Therefore $r + (-n) - s \in \mathbb{Z}$. But since $r + (-n)$ and $s$ are both between $0$ and $1$ we must have that $r + (-n) - s = 0$ which means $r + (-n) = s$.
+\end{proof}
+
+\begin{problem}
+Show by counterexample that the following is false: If a group $G$ is such that every proper subgroup is cyclic, then $G$ is cyclic.
+\end{problem}
+\begin{proof}
+Consider the abelian Klein-4 group $G = \{1,a,b,c\}$ such that $a^2 = b^2 = c^2 = 1$ $ab = c$, $ac = b$ and $bc = a$. We've already verified that this is a group. If we consider a subset with more than $1$ nonidentity element, e.g. $\{1,a,b\}$, it's clear that this set isn't closed under multiplication. That is, for any two nonidentity elements of $G$, their product is always the third nonidentity element. Therefore, the only possible proper subgroups are $\langle a \rangle$, $\langle b \rangle$ and $\langle c \rangle$. However, it's obvious that $G$ isn't cyclic since each element has order $1$ or $2$, yet $|G| = 4$.
+\end{proof}
+
+\end{document}

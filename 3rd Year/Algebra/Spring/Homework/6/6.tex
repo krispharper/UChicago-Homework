@@ -1,0 +1,146 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr}
+
+\input xy
+\xyoption{all}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{10pt}
+\renewcommand{\textheight}{609pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\coker}{\textup{coker}\,}
+\newcommand{\im}{\textup{im}\,}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25900\\ June 2, 2010\\}
+\chead{Homework 6\\}
+
+\begin{problem}[17.1.2]
+\label{wd}
+This exercise defines the connecting map $\delta_n$ in the Long Exact Sequence of Theorem 2 and proves it is a homomorphism. In the notation of Theorem 2 let $0 \to \mathcal{A} \stackrel{\alpha}{\to} \mathcal{B} \stackrel{\beta}{\to} \mathcal{C} \to 0$ be a short exact sequence of cochain complexes, where for simplicity the cochain maps for $\mathcal{A}$, $\mathcal{B}$ and $\mathcal{C}$ are all denoted by the same $d$.\\
+(a) If $c \in C^n$ represents the class $x \in H^n(\mathcal{C})$ show that there is some $b \in B^n$ with $\beta_n(b) = c$.\\
+(b) Show that $d_{n+1}(b) \in \ker \beta_{n+1}$ and conclude that there is a unique $a \in A^{n+1}$ such that $\alpha_{n+1}(a) = d_{n+1}(b)$.\\
+(c) Show that $d_{n+2}(a) = 0$ and conclude that $a$ defines a class $\overline{a}$ in the quotient group $H^{n+1}(\mathcal{A})$.\\
+(d) Prove that $\overline{a}$ is independent of the choice of $b$, i.e., if $b'$ is another choice and $a'$ is its unique preimage in $A^{n+1}$ then $\overline{a} = \overline{a'}$, and that $\overline{a}$ is also independent of the choice of $c$ representing the class $x$.\\
+(e) Define $\delta_n(x) = \overline{a}$ and prove that $\delta_n$ is a group homomorphism from $H^n(\mathcal{C})$ to $H^{n+1}(\mathcal{A})$.
+\end{problem}
+\begin{proof}
+(a) Since our sequences are exact, we know $\beta_n$ is surjective. Thus there exists $b \in B^n$ with $\beta_n(b) = c$.
+
+(b) Note that $c \in \ker d_{n+1}$ by assumption so $d_{n+1}(c) = 0$. From the commutativity of the diagram we have $\beta_{n+1} d_{n+1} (b) = d_{n+1} \beta_n (b) = d_{n+1}(c) = 0$. Thus $d_{n+1}(b) \in \ker \beta_{n+1}$. Since $\ker \beta_{n+1} = \im \alpha_{n+1}$ we can write $d_{n+1}(b) = \alpha_{n+1}(a)$. By exactness, $\alpha_{n+1}$ is injective, so this $a$ is unique.
+
+(c) Note that by commutativity $\alpha_{n+2} d_{n+2}(a) = d_{n+2} \alpha_{n+1}(a) = d_{n+2} d_{n+1}(b) = 0$. Since $\alpha_{n+2}$ is injective, we must have $d_{n+2}(a) = 0$. Thus $a \in \ker d_{n+2}$ so it gives a class $\overline{a} \in \ker d_{n+2}/\im d_{n+1}$, or $H^{n+1}(\mathcal{A})$.
+
+(d) Suppose we choose $b' \in B^n$ such that $\beta_n(b') = c$. then $\beta_n(b-b') = \beta_n(b)-\beta_n(b') = c-c = 0$ so $b-b' \in \ker \beta_n$. By exactness we can write $b-b' = \alpha_n(p)$ for some $p \in A^n$. Then by commutativity we know $\alpha_{n+1} d_{n+1}(p) = d_{n+1} \alpha_n(p) = d_{n+1}(b-b') = d_{n+1}(b) - d_{n+1}(b') = \alpha_{n+1}(a) - \alpha_{n+1}(a') = \alpha_{n+1}(a-a')$. Thus $d_{n+1}(p) = a-a'$ so $a-a' \in \im d_{n+1}$ showing that $\overline{a} = \overline{a'}$.
+
+A different choice of $c$ has the form $c + d_n(c')$ for some $c' \in C^{n-1}$. We know $c' = \beta_{n-1}(b')$ for some $b' \in B^{n-1}$. Then by commutativity $c + d_n(c') = c + d_n \beta_{n-1}(b') = \beta_n d_n (b')  = \beta_n(b) + \beta_n d_n(b') = \beta_n(b + d_n(b'))$. Thus $b$ gets replaced with $b + d_n(b')$ leaving $d_{n+1}(b)$ unchanged since $d_nd_{n+1}(b') = 0$. Thus $a$ is also unchanged.
+
+(e) Suppose $\delta_n (x_1) = \delta_n(\overline{c}) = \overline{a_1}$ and $\delta_n (x_2) = \delta_n(\overline{c}) = \overline{a_2}$ through elements $b_1$ and $b_2$ in $B^n$. Then $\beta_n(b_1 + b_2) = \beta_n(b_1) + \beta_n(b_2) = c_1 + c_2$ and $\alpha_{n+1}(a_1 + a_2) = \alpha_{n+1}(a_1) + \alpha_{n+1}(a_2) = d_{n+1}(b_1) + d_{n+1}(b_2) = d_{n+1}(b_1 + b_2)$. Thus we have $\delta_n(x_1 + x_2) = \overline{a_1} + \overline{a_2}$.
+\end{proof}
+
+\begin{problem}[17.1.3]
+Suppose
+\[
+\xymatrix{
+& A \ar[r]^{\alpha} \ar[d]^f & B \ar[r]^{\beta} \ar[d]^g & C \ar[r] \ar[d]^h & 0\\
+0 \ar[r] & A' \ar[r]^{\alpha'} & B' \ar[r]^{\beta'} & C' &\\
+}
+\]
+is a commutative diagram of $R$-modules with exact rows.\\
+(a) If $c \in \ker h$ and $\beta(b) = c$ prove that $g(b) \in \ker \beta'$ and conclude that $g(b) = \alpha'(a')$ for some $a' \in A'$.\\
+(b) Show that $\delta(c) = a' \textup{ mod image } f$ is a well defined $R$-module homomorphism from $\ker h$ to the quotient $A'/\text{image } f$.\\
+(c) (\emph{The Snake Lemma}) Prove there is an exact sequence
+\[
+\xymatrix{
+\ker f \ar[r] & \ker g \ar[r] & \ker h \ar[r]^{\delta} & \coker{f} \ar[r] & \coker{g} \ar[r] & \coker{h}
+}
+\]
+where $\coker f$ (the \emph{cokernel} of $f$) is $A'/(\textup{image} f)$ and similarly for $\coker g$ and $\coker h$.\\
+(d) Show that if $\alpha$ is injective and $\beta'$ is surjective (i.e., the two rows in the commutative diagram above can be extended to short exact sequences) then the exact sequence in (c) can be extended to the exact sequence
+\[
+\xymatrix{
+0 \ar[r] & \ker f \ar[r] & \ker g \ar[r] & \ker h \ar[r]^{\delta} & \coker{f} \ar[r] & \coker{g} \ar[r] & \coker{h} \ar[r] & 0
+}.
+\]
+\end{problem}
+\begin{proof}
+(a) By commutativity and the fact that $c \in \ker h$ we know $\beta' g(b) = h \beta (b) = h(c) = 0$. Thus $g(b) \in \ker \beta'(b)$. By exactness $\ker \beta' = \im \alpha'$ so we can write $\beta'(b) = \alpha'(a')$ for some $a' \in A'$.
+
+(b) We need to show the class represented by $a'$ in the quotient by $\im f$ doesn't depend on the choice of $b \in B$ and that this map is actually a homomorphism. Both of these proofs are nearly identical to the corresponding statements in parts (d) and (e) from Problem~\ref{wd}.
+
+(c) Let's label the maps as follows
+\[
+\xymatrix{
+\ker f \ar[r]^{\gamma} & \ker g \ar[r]^{\epsilon} & \ker h \ar[r]^{\delta} & \coker{f} \ar[r]^{\zeta} & \coker{g} \ar[r]^{\xi} & \coker{h}
+}.
+\]
+Note that if $a \in \ker f$ then $g\alpha (a) = \alpha' f(a) = \alpha'(0) = 0$ so $\alpha (a) \in \ker g$. Thus $\alpha$ restricted to $\ker f$ gives our map $\gamma : \ker f \to \ker g$. A similar argument holds to show that $\beta$ restricted to $\ker g$ gives $\epsilon : \ker g \to \ker h$. Now suppose $\overline{a'} \in \coker f$ so that $\alpha'(a') \in B'$. Note that if $a' \in \im f$ then $\alpha' (a') \in \im g$ by commutativity. Thus we have a map $\zeta : \coker f \to \coker g$ and similarly a map $\xi : \coker g \to \coker h$.
+
+Let $b \in \im \gamma$ so that $\gamma(a) = b$. By how $\gamma$ is defined we know $b \in \im \alpha$ as well so $b \in \ker \beta$ by exactness. Since $\epsilon$ is a restriction of $\beta$, we must have $b \in \ker \epsilon$ as well so that $\im \gamma \subseteq \ker \epsilon$. Conversely, suppose $b \in \ker \epsilon$. Then $b \in \ker \beta$ as well so $b \in \im \alpha$ by exactness. Since $b \in \ker g$ we see that $b \in \im \gamma$ as well so $\im \gamma = \ker \epsilon$. This shows the sequence is exact at $\ker g$.
+
+Now let $\overline{b'} \in \im \zeta$. Then $b' \in \im \alpha'$ by how we defined $\zeta$, so by exactness we know $b' \in \ker \beta'$. But then by the definition of $\xi$ we must have $\overline{b'} \in \ker \xi$. Thus $\im \zeta \subseteq \ker \xi$. Conversely, suppose $\overline{b'} \in \ker \xi$. Then $b' \in \ker \beta'$ and $b' \in \im \alpha'$ as well. This means $\overline{b'} \in \im \zeta$ because $\zeta$ is induced from $\alpha'$. Therefore $\ker \zeta = \im \xi$ and the sequence is exact at $\coker g$.
+
+Let $c \in \im \epsilon$ so that $\epsilon(b) = c$ for $b \in \ker g$. From definition of $\delta$ we know $\delta(c)$ is the unique class $\overline{a'} \in \coker f$ such that $\alpha'(a') = g(b)$. But since $b \in \ker g$ we know $\alpha'(a') = 0$ and since $\alpha'$ is injective by exactness, we know $a' = 0$. Thus $c \in \ker \delta$ and $\im \epsilon \subseteq \ker \delta$. Conversely, suppose $c \in \ker \delta$ so that $\delta(c) = \overline{a'}$ with $\alpha'(a') = 0$ (since $\alpha'$ is injective). Then note that $\beta(b) = c$ and $\alpha'(a') = g(b) = 0$, so $b \in \ker g$ and we also have $\epsilon(b) = c$. Thus $c \in \im \epsilon$ and we have $\im \epsilon = \ker \delta$ so the sequence is exact at $\ker h$.
+
+Finally suppose $\overline{a'} \in \im \delta$ with $\delta(c) = \overline{a'}$. Then we know $\alpha'(a') = g(b)$ for some $b \in B$ with $\beta(b) = c$. Since $\alpha'$ induces $\zeta$ we see that $\zeta(\overline{a'}) = \overline{g(b)}$ so $\zeta(\overline{a'}) = 0$ since it's in the image of $g$. Thus $\im \delta \subseteq \ker \zeta$. Conversely, suppose $\overline{a'} \in \ker \zeta$ so that $\zeta(\overline{a'}) = \overline{b'}$ with $b' \in \im g$. From the definition of $\delta$ and $\zeta$ we know $\alpha'(a') = g(b)$ where $g(b) = b'$, and furthermore if we take $\beta(b) = c$ then we must have $\delta(c) = \overline{a'}$. Thus $\overline{a'} \in \im \delta$ and $\im \delta = \ker \zeta$ so the sequence is exact at $\coker f$.
+
+(d) Using part (c) all we need to show is that $\gamma$ is injective and $\xi$ is surjective. But since these maps are induced by $\alpha$ and $\beta'$ which are now assumed to be injective and surjective respectively, we get this immediately.
+\end{proof}
+
+\begin{problem}
+Let $0 \to \mathcal{A} \stackrel{\alpha}{\to} \mathcal{B} \stackrel{\beta}{\to} \mathcal{C} \to 0$ be a short exact sequence of cochain complexes. Prove that if any two of $\mathcal{A}$, $\mathcal{B}$, $\mathcal{C}$ are exact, then so is the third.
+\end{problem}
+\begin{proof}
+Given the exact sequence $0 \to \mathcal{A} \to \mathcal{B} \to \mathcal{C} \to 0$ we know we get a long exact sequence on cohomology groups $0 \to H^0(\mathcal{A}) \to H^0(\mathcal{B}) \to H^0(\mathcal{C}) \to H^1(\mathcal{A}) \to \dots$. Assuming two of the cochain complexes are exact we know all but every third term in this sequence is $0$, which forces every term to be $0$ by exactness. Thus all three cochain complexes have trivial homology groups so $\ker \delta_n = \im \delta_{n-1}$ and all three cochain complexes are exact.
+\end{proof}
+
+\begin{problem}
+Assume you have a commutative ring $R$ and two chain complexes $A$, $B$ of $R$-modules. We wish to construct a new chain complex $A \otimes B$ with constituent $R$-modules $(A \otimes B)_k = \bigoplus_{i=0}^k (A_i \otimes B_{k-i})$. As a matter of convention, let $a \in A_i$, $b \in B_j$.\\
+\begin{itemize}
+\item i) Defining the differential: Show that the map given on generators by $a \otimes b \mapsto da \otimes b + a \otimes db$ need not give the structure of a chain complex on $A \otimes B$, but that the map given by $a \otimes b \mapsto da \otimes b + (-1)^i a \otimes db$ does.
+\item ii) The twist map: With the differential as above, check that the map given by $a \otimes b \mapsto b \otimes a$ need not be map of chain complexes, but that $a \otimes b \mapsto (-1)^{ij} b \otimes a$ gives rise to an isomorphism $t : A \otimes B \to B \otimes A$ of chain complexes.
+\item iii) Chain homotopy: Let $I$ denote the chain complex $0 \to R \to R \to 0$, where the two $R$'s are in degrees $1$, $0$. First check that $I \otimes A$ at level $i$ is given by $A_i \oplus A_{i-1}$. Next, check that a map $I \otimes A \to B$ of chain complexes is given by maps $h_i : A_i \to B_i$ and $s_i : A_i \to B_{i+1}$ such that the $h_i$ give a map of chain complexes $A \to B$, and that the formula $d \circ s_i + s_{i-1} \circ d = h_i$ holds (here we are using $h_i$ to represent the difference $f_i - g_i$ of two chain-homotopic maps).
+\end{itemize}
+\end{problem}
+\begin{proof}
+i) We have
+\[
+d^2 (a \otimes b) = d(da \otimes b + (-1)^i a \otimes db) = (d^2a \otimes b) + ((-1)^{i-1} da \otimes db) + ((-1)^ida \otimes db) + (a \otimes d^2b) = 0 + ((-1)^{i-1} da + (-1)^i da) \otimes db + 0 = 0.
+\]
+Without the sign term we have
+\[
+d(da \otimes b + a \otimes db) = (d^2a \otimes b) + (da \otimes db) + (da \otimes db) + (a \otimes d^2b) = 2(da \otimes db).
+\]
+In particular, if $da \neq 0$ or $db \neq 0$ then this is not a differential.
+
+(ii) We have
+\[
+d((-1)^{ij} b \otimes a) = ((-1)^{ij} db \otimes a) + ((-1)^j(-1)^{ij}b \otimes da) = ((-1)^{ij} db \otimes a) + ((-1)^{(i+1)j} b \otimes da)
+\]
+and
+\[
+t(da \otimes b + (-1)^ia \otimes db) = ((-1)^{(i-1)j}b \otimes da) + ((-1)^{i(j-1)} db \otimes (-1)^ia) = ((-1)^{(i+1)j}b \otimes da) + ((-1)^{ij} db \otimes a).
+\]
+Since the two terms are equal we have $dt = td$ so that $t$ is a chain map. We see that $t$ is an isomorphism between $A \otimes B$ and $B \otimes A$ because it takes a generator to plus or minus a generator. If the sign term isn't present we have
+\[
+d(b \otimes a) = db \otimes a + (-1)^jb \otimes da
+\]
+and
+\[
+t(da \otimes b + (-1)^ia \otimes db) = b \otimes da + db \otimes (-1)^ia.
+\]
+So we need $(-1)^ia = a$ and $(-1)^jb = b$, for the maps to commute which won't happen for $i > 0$.
+
+iii) We have
+\[
+(I \otimes A)_i = \bigoplus_{k=0}^{i} I_k \otimes A_{i-k} = (A_i \otimes R) \oplus (A_{i-1} \otimes R) \oplus 0 \oplus \dots \oplus 0 = A_i \oplus A_{i-1}.
+\]
+Let $\varphi : I \otimes A \to B$ be a chain map. Note that $\varphi_i : (I \otimes A)_i \to B_i$ can be defined in terms of its components so that we have maps $h_i : A_i \to B_i$ and $s_i : A_{i-1} \to B_i$. By assumption $d \varphi = \varphi d$ and from this we have $ds_i + s_{i-1}d = h_i$.
+\end{proof}
+
+\end{document}

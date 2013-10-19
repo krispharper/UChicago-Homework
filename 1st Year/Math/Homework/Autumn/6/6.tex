@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16100
+
+Mikl\'{o}s Ab\'{e}rt
+
+November 6, 2007
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 3}
+\textsl{Show that Theorem 1 does not hold for the intersection of an infinite number of open sets.}
+\begin{proof}
+We see that for all $a \in C$ we have $\{a\}=C \backslash (C \backslash a)$ is closed since $\{a\}$ is a finite set and so $C \backslash a$ must be open. Now consider a point $p \in C$ and consider the intersection
+\[
+\bigcap_{a \in C, a \neq p} C \backslash a = \{p\}.
+\]
+Since $C \backslash a$ is infinite, this is an intersection of an infinite number of open sets. But their intersection is $\{p\}$ which is closed.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Show that Theorem 2 does not hold for the union of an infinite number of closed sets.}
+\begin{proof}
+Similarly, we take a point $p \in C$ and then consider all the sets containing a single point other than $p$. Then we have
+\[
+\bigcup_{a \in C, a \neq p} \{a\} = C \backslash p.
+\]
+Since $\{a\}$ is finite, it is closed for all $a \in C$ and since $C \backslash p$ is open and so we have a union of an infinite number of closed sets equaling an open set.
+\end{proof}
+
+\textbf{Corollary 9}
+\textsl{For all $a<b$ both $a$ and $b$ are limit points of the region $(a;b)$.}
+\begin{proof}
+Suppose that there exist $a<b$ such that $a$ is not a limit point of $(a;b)$. Then there exists a region $R=(p;q)$ such that $R$ contains $a$ but contains no points in $(a;b)$. But then $p<a<q$ and we see that $q<b$, otherwise $p<a<b<q$ and so $(a;b) \subseteq R$. Since $a<q$, we see there exists a $c \in C$ such that $a<c<q$. Thus $p<c<q$ and so $c \in R$, but also $a<c<b$ and so $c \in (a;b)$. This is a contradiction.\newline
+
+Similarly, if $b$ is not a limit point of $(a;b)$ then there exists a region $R=(p,q)$ which contains $b$, but no points in $(a;b)$. But then $p<b<q$ and we see that $a<p$ otherwise $p<a<b<q$ and so $(a;b) \subseteq R$. So we see there exists a $c \in C$ such that $p<c<b$. Thus, $p<c<q$ and so $c \in R$, but also $a<c<b$ and so $c \in (a;b)$. This is a contradiction.
+\end{proof}
+
+\textbf{Corollary 10}
+\textsl{Every point of a region is a limit point of that region.}
+\begin{proof}
+Let $A$ be a region and let $p \in A$. Then we see that for all regions $R$ such that $p \in R$, we have $R \cap A = (a;b) \neq \emptyset$. We know that $p \in (a;b)$ and so there exists a $c \in (a;b)$ such that $a<c<p$. But then for all regions $R$ we have $R \cap (A \backslash p) \neq \emptyset$ and so $p$ is a limit point of $A$.
+\end{proof}
+
+\textbf{Corollary 11}
+\textsl{Every nonempty region contains infinitely many points}
+\begin{proof}
+Suppose to the contrary that a nonempty region contains a finite number of points. Then it has no limit points. But by Corollary 10 we know that every point is a limit point and so this is a contradiction.
+\end{proof}
+
+\textbf{Corollary 12}
+\textsl{Every point in $C$ is a limit point of $C$}
+\begin{proof}
+Let $p \in C$. Then we see that every region $R$ which contains $p$ contains infinitely many points and so for all regions $R$ which contain $p$, we have $R \cap (C \backslash p) \neq \emptyset$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

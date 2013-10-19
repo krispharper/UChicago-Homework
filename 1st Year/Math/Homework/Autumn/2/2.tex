@@ -1,0 +1,122 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16100
+
+Mikl\'{o}s Ab\'{e}rt
+
+October 9, 2007
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{flushleft}
+
+1. \textsl{Show that for all $n, k \in \mathbb{N}$ we have
+\[
+\binom {n} {k} = \binom {n-1} {k-1} + \binom {n-1} {k}
+\]}\newline
+
+First we prove a lemma showing that for two sets $A$ and $B$, if $A \cap B = \emptyset$ then $| A | + | B | = | A \cup B |$.
+\begin{proof}
+We use contradiction. Suppose, to the contrary, that if $A$ and $B$ are sets and $A \cap B = \emptyset$ then $| A | + | B | \neq | A \cup B |$. Then there are two cases.\newline
+
+Case 1: $| A | + | B | > | A \cup B |$. Then there exists an element which is in $A$ and is in $B$ since all elements in $A$ or in $B$ are in $A \cup B$. But this is a contradiction since $A \cap B = \emptyset$.\newline
+
+Case 2: $| A | + | B | < | A \cup B |$. Then there exists an element in $A \cup B$ which is not in $A$ or in $B$. But this goes against the definition for $A \cup B$ and is a contradiction.\newline
+
+In both cases we have contradictions thus if $A \cap B = \emptyset$ then $| A | + | B | = | A \cup B |$.
+\end{proof}
+
+Now we prove the original result.
+
+\begin{proof}
+Let $S$ be a set with $n$ elements and let $A \subseteq S$ such that $A$ has $k$ elements. Then for a given element $a \in S$, we see that either $a \in A$ or $a \notin A$ for all $A \subseteq S$. Now let $X = \{ A \subseteq S \mid | A | = k, \; a \in A \}$ and let $Y = \{ A \subseteq S \mid | A | = k, \; a \notin A \}$. Because it is never the case that for some $a \in S$, $a \in A$ and $a \notin A$ for any $A \subseteq S$, $X$ and $Y$ have no common elements and so $X \cap Y = \emptyset$. Additionally, every subset of $S$ with $k$ elements is either in $X$ or in $Y$ and $X$ and $Y$ by definition only contain subsets of $S$ with $k$ elements. We see that $X \cup Y$ contains all the subsets of $S$ of size $k$ and since $| S | = n$, we have $| X \cup Y | = \binom{n}{k}$.\newline
+
+Now consider the set $X$. For every element $A \in X$, $A \subseteq S$, $| A | = k$ and $a \in A$ for some $a \in S$. Then for every $A \in X$ there exists a set $B \subseteq S \backslash \{a\}$ such that $a \notin B$ and $| B | = k-1$. Since $X$ only contains subsets $A \subseteq S$ and $| S \backslash \{a\} | = n-1$, we see that the number of elements of $X$ is equal to the number of sets with $k-1$ elements which are subsets of a set with $n-1$ elements. Thus $| X | = \binom{n-1}{k-1}$.\newline
+
+Finally consider the set $Y$. For every element $A \in Y$, $A \subseteq S$, $| A | = k$ and $a \notin A$. But if for all $A \subseteq S$, $a \notin A$, then $A \subseteq S \backslash \{a\}$. This is true for all $A \in Y$ since by definition, $A \in Y$ if $a \notin A$ for some $a \in S$. Then, since $| S \backslash \{a\} | = n-1$, $Y$ contains all the sets with $k$ elements which are subsets of set with $n-1$ elements. Thus, $| Y | = \binom{n-1}{k}$. But since $X \cap Y = \emptyset$, $| X \cup Y | = | X | + | Y |$ and so $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$.
+\end{proof}
+
+2. \textsl{(Binomial Theorem) Show that for all $a$, $b$ and $n \in \mathbb{N}$ we have
+\[
+(a+b)^n = \sum_{k=0}^n \binom {n} {k} a^k b^{n-k}.
+\]}
+\begin{proof}
+We use induction on $n$. We see that the theorem holds for $n=1$ since
+\[
+\sum_{k=0}^1 \binom {1} {k} a^k b^{1-k} = \binom {1} {0} a^0 b^1 + \binom {1} {1} a^1 b^0 = a + b = (a + b)^1.
+\]
+Now we assume that $(a+b)^j = \sum_{k=0}^j \binom {j} {k} a^k b^{j-k}$ for some $j \in \mathbb{N}$ and show that it holds for $j+1$. We see that
+\begin{align*}
+(a+b)^{j+1} &= (a+b)^j(a+b)\\
+			&= \left( \sum_{k=0}^j \binom{j}{k} a^k b^{j-k} \right) \left( a + b \right)\\
+			&= \sum_{k=0}^j \binom{j}{k} a^{k+1} b^{j-k} + \sum_{k=0}^j \binom{j}{k} a^k b^{j+1-k}\\
+			&= \sum_{k=0}^{j-1} \binom{j}{k} a^{k+1} b^{j-k} + \sum_{k=1}^j \binom{j}{k} a^k b^{j+1-k} + \binom{j}{0} a^0 b^{j+1} + \binom{j}{j} a^{j+1} b^0\\
+			&= \sum_{k=1}^j \binom{j}{k-1} a^k b^{j+1-k} + \sum_{k=1}^j \binom{j}{k} a^k b^{j+1-k} + \binom{j}{0} a^0 b^{j+1} + \binom{j}{j} a^{j+1} b^0\\
+			&= \sum_{k=1}^j \left( \binom{j}{k-1} + \binom{j}{k} \right) a^k b^{j+1-k} + \binom{j}{0} a^0 b^{j+1} + \binom{j}{j} a^{j+1} b^0\\
+			&= \sum_{k=1}^j \binom{j+1}{k} a^k b^{j+1-k} + \binom{j+1}{0} a^0 b^{j+1} + \binom{j+1}{j+1} a^{j+1} b^0\\
+			&=\sum_{k=0}^j \binom{j+1}{k} a^k b^{j+1-k}.\\
+\end{align*}
+Since the theorem is true for $n=1$ and it's true for $j+1$ when it is true for $j$ for all $j \in \mathbb{N}$ then we can conclude it is true for all $n \in \mathbb{N}$.
+\end{proof}
+
+3. \textsl{Prove that for all $n,k \in \mathbb{N}$ with $0 \leq k \leq n$ we have
+\[
+\binom{n}{k} = \frac {n!} {k!(n-k)!}.
+\]}
+\begin{proof}
+We use induction on $n$. We see that when $n=1$, $k$ can either equal $0$ or $1$. When $k=0$ we have $\binom{1}{0} = 1 = \frac{1!}{(0!)(1-0)!}$ and when $k=1$ we have $\binom{1}{1} = 1 = \frac{1!}{(1!)(1-1)!}$. We now assume that $\binom{j}{k} = \frac {j!} {k!(j-k)!}$ for some $j \in \mathbb{N}$ and $0 \leq k \leq j$ and show that this implies the statement is true for $j+1$. Note that
+\begin{align*}
+\binom{j+1}{k} &= \binom{j}{k} + \binom{j}{k-1} && \text{For } k \neq 0 \text{ and } k \neq j+1\\
+			   &= \frac{j!}{k! (j-k)!} + \frac{j!}{(k-1)! (j-(k-1))!} \\
+			   &= \frac {j!(j+1-k) + j!(k)} {k!(j+1-k)!} \\
+			   &= \frac{j!(j+1-k+k)}{k!(j+1-k)!} \\
+			   &= \frac{j!(j+1)}{k!(j+1-k)!} \\
+			   &= \frac{(j+1)!}{k!((j+1)-k)!}. \\
+\end{align*}
+We must now show that if $k = 0$ or $k = j+1$ the equality still holds. We see that $\binom{j+1}{0} = 1$ since there is only one way to choose the empty set from a set with $j+1$ elements. But also $\frac{(j+1)!}{0! (j+1-0)!} = 1$. So the equality holds. Additionally, $\binom{j+1}{j+1} = 1$ since there is only one subset with $j+1$ elements in a set with $j+1$ elements and $\frac{(j+1)!}{(j+1)! (j+1-(j+1))!} = 1$ and so the equality holds as well. Thus, the statement is true for all $0 \leq k \leq j+1$. Since we have shown the base case for $n=1$ and shown that the statement holds for $j+1$ when $j$ is true for all $j \in \mathbb{N}$, we can conclude that it's true for all $n \in \mathbb{N}$.
+\end{proof}
+
+4. \textsl{Prove that for all $n \in \mathbb{N}$ we have
+\[
+\sum_{k=0}^n \binom{n}{k} = 2^n.
+\]}
+\begin{proof}
+This is a special case of the Binomial Theorem. Let $a=b=1$. Then we have
+\begin{align*}
+2^n	 &= (1+1)^n \\
+	 &= \sum_{k=0}^n \binom{n}{k} (1)^k (1)^{n-k} \\
+	 &= \sum_{k=0}^n \binom{n}{k} \\
+\end{align*}
+since $1^k = 1$ for all $k \in \mathbb{N}$.
+\end{proof}
+
+5. \textsl{Is it true that for all $n \in \mathbb{N}$ we have
+\[
+\sum_{k=0}^n \binom{n}{k} \left( -1 \right)^k = 0?
+\]}
+\begin{proof}
+This is another special case of the Binomial Theorem. Let $a=-1$ and $b=1$. Then
+\begin{align*}
+0 &= (-1+1)^n \\
+  &= \sum_{k=0}^n \binom{n}{k} (-1)^k (1)^{n-k} \\
+  &= \sum_{k=0}^n \binom{n}{k} (-1)^k \\
+\end{align*}
+since $1^{n-k} = 1$ and $0^n=0$ for all $k,n \in \mathbb{N}$.
+\end{proof}
+
+
+
+
+
+
+
+\end{flushleft}
+\end{document}

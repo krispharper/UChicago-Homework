@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr,longtable}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{10pt}
+\renewcommand{\textheight}{600pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newcommand{\gal}{\textup{Gal}}
+\newcommand{\norm}{\textup{N}}
+\newcommand{\tr}{\textup{Tr}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25900\\May 5, 2010\\}
+\chead{Quiz 3\\}
+
+Consider $K = \mathbb{Q}(\sqrt{2}, \sqrt{3})$. Referring to \#17 and \#18 in D\&F page 582, compute each of the following and explain your answers briefly:
+
+\begin{problem}
+(a) $\norm_{K/\mathbb{Q}} (\sqrt{2})$.\\
+(b) $\norm_{K/\mathbb{Q}} (\sqrt{6})$.\\
+(c) $\norm_{K/\mathbb{Q}} (\sqrt{2} + \sqrt{3})$.\\
+(d) $\norm_{K/\mathbb{Q}} (2)$.
+\end{problem}
+\begin{proof}
+(a) The subgroup we're interested in is simply all of $\gal(K/\mathbb{Q}) = \{1, \sigma, \tau, \sigma \tau\}$ where $\sigma : \sqrt{2} \mapsto -\sqrt{2}$ and $\tau : \sqrt{3} \mapsto -\sqrt{3}$. Then
+\[
+\norm_{K/\mathbb{Q}} (\sqrt{2}) = \sqrt{2} \sigma(\sqrt{2}) \tau(\sqrt{2}) \sigma(\tau(\sqrt{2})) = (\sqrt{2})(-\sqrt{2})(\sqrt{2})(-\sqrt{2}) = 4.
+\]
+
+(b) Note $\sqrt{6} = \sqrt{2} \sqrt{3}$ so
+\[
+\norm_{K/\mathbb{Q}} (\sqrt{6}) = \sqrt{6} \sigma(\sqrt{6}) \tau(\sqrt{6}) \sigma(\tau(\sqrt{6})) = (\sqrt{6}) (-\sqrt{2} \sqrt{3}) (-\sqrt{3} \sqrt{2}) (-\sqrt{2})(-\sqrt{3}) = 36.
+\]
+
+(c) We have
+\begin{align*}
+\norm_{K/\mathbb{Q}} (\sqrt{2} + \sqrt{3})
+&= (\sqrt{2} + \sqrt{3}) (\sigma(\sqrt{2} + \sqrt{3})) (\tau(\sqrt{2} + \sqrt{3})) (\sigma(\tau(\sqrt{2} + \sqrt{3})))\\
+&= (\sqrt{2} + \sqrt{3}) (-\sqrt{2} + \sqrt{3}) (\sqrt{2} - \sqrt{3}) (-\sqrt{2} - \sqrt{3}) = 1.
+\end{align*}
+
+(d) Note $2 \in \mathbb{Q}$ so it's fixed by all the elements of $\gal(K/\mathbb{Q})$. Thus $\norm_{K/\mathbb{Q}} (2) = 16$.
+\end{proof}
+
+\begin{problem}
+(a) $\tr_{K/\mathbb{Q}} (\sqrt{2})$.\\
+(b) $\tr_{K/\mathbb{Q}} (\sqrt{6})$.\\
+(c) $\tr_{K/\mathbb{Q}} (\sqrt{2} + \sqrt{3})$.\\
+(d) $\tr_{K/\mathbb{Q}} (2)$.
+\end{problem}
+\begin{proof}
+(a) We have
+\[
+\tr_{K/\mathbb{Q}} (\sqrt{2}) = \sqrt{2} + \sigma(\sqrt{2}) + \tau(\sqrt{2}) + \sigma(\tau(\sqrt{2})) = \sqrt{2} - \sqrt{2} + \sqrt{2} - \sqrt{2} = 0.
+\]
+
+(b) Note $\sqrt{6} = \sqrt{2} \sqrt{3}$ so
+\[
+\tr_{K/\mathbb{Q}} (\sqrt{6}) = \sqrt{6} + \sigma(\sqrt{6}) + \tau(\sqrt{6}) + \sigma(\tau(\sqrt{6})) = \sqrt{6} - \sqrt{2} \sqrt{3} - \sqrt{3} \sqrt{2} + \sqrt{2} \sqrt{3} = 0.
+\]
+
+(c) We have
+\begin{align*}
+\tr_{K/\mathbb{Q}} (\sqrt{2} + \sqrt{3})
+&= (\sqrt{2} + \sqrt{3}) + \sigma(\sqrt{2} + \sqrt{3}) + \tau(\sqrt{2} + \sqrt{3}) + \sigma(\tau(\sqrt{2} + \sqrt{3}))\\
+&= (\sqrt{2} + \sqrt{3}) + (-\sqrt{2} + \sqrt{3}) + (\sqrt{2} - \sqrt{3}) + (-\sqrt{2} - \sqrt{3}) = 0.
+\end{align*}
+
+(d) Note $2 \in \mathbb{Q}$ so it's fixed by all the elements of $\gal(K/\mathbb{Q})$. Thus $\tr_{K/\mathbb{Q}} (2) = 8$.
+\end{proof}
+
+\end{document}

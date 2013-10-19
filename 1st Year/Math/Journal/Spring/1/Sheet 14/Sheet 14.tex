@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 15, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 14: Cauchy Sequences\newline
+
+\normalsize
+
+\textbf{Definition 1 (Cauchy Sequence)}
+\textsl{We say that a sequence $(a_n)$ is a Cauchy sequence if for each $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that if $n,m \geq N$, then $|a_n-a_m| < \varepsilon$.}\newline
+
+\textbf{Lemma 2}
+\textsl{Every convergent sequence has the Cauchy property.}
+\begin{proof}
+Let $(a_n)$ converge to $a$ and let $\varepsilon > 0$. Consider $\varepsilon/2$. Then there exists $N \in \mathbb{N}$ such that for all $n>N$ we have $a_n \in (a - \varepsilon/2 ; a + \varepsilon/2)$. But then also for all $m,n > N$ we have $a_m, a_n \in (a - \varepsilon/2 ; a + \varepsilon/2)$. Then the distance between $a_m$ and $a_n$ is no more than $\varepsilon / 2 + \varepsilon /2 = \varepsilon$. Thus, there exists $N \in \mathbb{N}$ such that for all $m,n > N$ we have $|a_m-a_n| < \varepsilon$.
+\end{proof}
+
+\textbf{Lemma 3}
+\textsl{Let $(a_n)$ be a Cauchy sequence and let $(b_k = a_{n_k})$ be a subsequence. If $(b_k)$ converges then so does $(a_n)$.}
+\begin{proof}
+Let $(b_k = a_{n_k})$ be a subsequence of $(a_n)$ which converges to $a$ and let $\varepsilon > 0$. Then there exists $N_1 \in \mathbb{N}$ such that for all $k > N_1$ we have $|a-b_k| < \varepsilon/2$. But also $(a_n)$ is a Cauchy sequence and so there exists some $N_2 \in \mathbb{N}$ such that for all $n,m > N_2$ we have $|a_m - a_n| < \varepsilon/2$. Let $N = \max (N_1,N_2)$. Then for all $n,m > N$ we have $|a-b_n| < \varepsilon/2$ and $|a_m - a_n| < \varepsilon/2$. Thus by the triangle inequality for all $n>N$ we have $|a - a_n| < \varepsilon$ and so $(a_n)$ converges to $a$.
+\end{proof}
+
+\textbf{Lemma 4}
+\textsl{Every Cauchy sequence is bounded.}
+\begin{proof}
+Let $(a_n)$ be a Cauchy sequence and let $\varepsilon > 0$. There exists $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_N - a_n| < \varepsilon$. Then there are finitely many $n \in \mathbb{N}$ such that $a_n \notin (-\varepsilon + a_N ; \varepsilon + a_N)$. Then the largest of these $a_n$ is greater than or equal to every other term of $(a_n)$. Note that if there are no terms of $(a_n)$ greater than $a_N + \varepsilon$, then we can choose a smaller epsilon so that such a term exists. A similar argument shows that there is a lower bound of $(a_n)$.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{A sequence is convergent if and only if it is Cauchy.}
+\begin{proof}
+Let $(a_n)$ be a Cauchy sequence. Then by Lemma 4 we know $(a_n)$ is bounded and therefore there exists a convergent subsequence of $(a_n)$ (13.16, 14.4). But then by Lemma 3 we know $(a_n)$ converges (14.3). Conversely if a sequence is convergent then it Cauchy by Lemma 2 (14.2).
+\end{proof}
+
+\textbf{Definition 6}
+\textsl{Let $(a_n)$ be a bounded sequence and $A$ be the set of its accumulation points. We define its limes inferior, $\lim \inf_{n \rightarrow \infty} a_n$, to be the first point of $A$ and the limes superior, $\lim \sup_{n \rightarrow \infty} a_n$, to be the last point of $A$.}\newline
+
+\textbf{Corollary 7}
+\textsl{Let $(a_n)$ be a bounded sequence. Then $\lim \inf_{n \rightarrow \infty} a_n \leq 
+\lim \sup_{n \rightarrow \infty} a_n$ and equality holds if and only if the sequence is convergent.}
+\begin{proof}
+Let $A$ be the set of accumulation points for $(a_n)$. Since $\lim \inf_{n \rightarrow \infty} a_n$ is the first point of $A$, we have $\lim \inf_{n \rightarrow \infty} a_n \leq a$ for all $a \in A$. But since $\lim \sup_{n \rightarrow \infty} a_n \in A$ we have $\lim \inf_{n \rightarrow \infty} a_n \leq \lim \sup_{n \rightarrow \infty} a_n$. Suppose now that $\lim \inf_{n \rightarrow \infty} a_n = \lim \sup_{n \rightarrow \infty} a_n$. Then the first and last points of $A$ are equal and so $A$ only has one accumulation point. But then since $(a_n)$ is bounded we have $(a_n)$ is convergent (13.17). Conversely assume that $(a_n)$ is convergent. Then $(a_n)$ only has one accumulation point and so $A$ contains one point (13.17). But then $\lim \inf_{n \rightarrow \infty} a_n = \lim \sup_{n \rightarrow \infty} a_n$.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{Let $(a_n)$ be a bounded sequence. Then
+\[
+\lim \inf_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} (\inf \{a_k \mid k > n\})
+\]
+and
+\[
+\lim \sup_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} (\sup \{a_k \mid k > n\}).
+\]}
+\begin{proof}
+Consider the sequence $(b_n)$ where $b_n = \inf \{a_k \mid k > n\}$. Then $(b_n)$ is bounded because $(a_n)$ is bounded and it's increasing because each infimum will either be less than or equal to the previous one. Thus $\lim_{n \rightarrow \infty} b_n = \sup \{b_n \mid n \in \mathbb{N}\} = s$ (13.18). Now consider some region $(p;q)$ with $s \in (p;q)$. Note that $p < \inf \{a_k \mid k > n\} = r$ for some $n$, otherwise there would exist some point in $(p;s)$ which would be an upper bound for $\{b_n \mid n \in \mathbb{N}\}$. Note that there are finitely many $n$ such that $a_n < r$ because of how $r$ is defined. Thus there are finitely many $n$ with $a_n < p$. But also there must be finitely many $n$ with $a_n > q$ because if there were infinitely many then there would exist $a_k > q$ such that $k$ is greater than every index of $a_n \leq q$. But this contradicts how $s$ is defined. Thus there are infinitely many $n$ with $a_n \in (p;q)$ and so $s$ is an accumulation point of $(a_n)$. But there can't be an accumulation point of $(a_n)$ less than $s$ because for each term or $(b_n)$ there are finitely many $n$ with $a_n$ less that it and an accumulation point would imply infinitely many such $n$. Thus $s = \lim \inf_{n \rightarrow \infty} a_n$. A similar proof holds to show $\lim \sup_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} (\sup \{a_k \mid k > n\})$.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{Let $(a_n)$ be a bounded sequence. Then
+\[
+\lim \inf_{n \rightarrow \infty} a_n = \sup \{x \mid \text{ there are finitely many $n$ with $a_n \in (-\infty ; x)$} \}
+\]
+and
+\[
+\lim \sup_{n \rightarrow \infty} a_n = \inf \{x \mid \text{ there are finitely many $n$ with $a_n \in (x ; \infty)$} \}
+\]}
+\begin{proof}
+Let $S = \{x \mid \text{ there are finitely many $n$ with $a_n \in (-\infty ; x)$} \}$. Note that $S$ is nonempty because $(a_n)$ is bounded. Thus a lower bound for $(a_n)$ shows that $S$ is nonempty and an upper bound for $(a_n)$ shows that $S$ is bounded. Thus $\sup S = t$ exists. Let $(b_n)$ be defined such that $b_n = \inf \{a_k \mid k > n\}$ and let $s = \lim_{n \rightarrow \infty} b_n = \sup \{b_n \mid n \in \mathbb{N}\}$ (13.18, 14,8). First suppose that $t > s$. Then there exists $x \in (s;t)$ such that there are finitely many $n$ with $a_n < x$. But then if we take the largest index, $i$, of all such $a_n$ we have $\inf \{a_k \mid k > i\} > s$ which is a contradiction. So $t \leq s$. Suppose that $t < s$. Then for all $x \in (t;s)$ there are infinitely many $n$ with $a_n < x$. But this implies that there are infinitely many $n$ with $a_n \in (t;s)$ because there exists $x < t$ such that there are finitely many $n$ with $a_n < x$. But then there exists some element of $b_n$ which is less than $s$, but greater than infinitely many terms of $(a_n)$. This cannot happen and so $s=t$. But then using Theorem 8 we have $t = \lim \inf_{n \rightarrow \infty} a_n$ (14.8).
+\end{proof}
+
+\end{flushleft}
+\end{document}

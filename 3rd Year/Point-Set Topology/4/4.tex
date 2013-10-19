@@ -1,0 +1,154 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\bd}{\textup{Bd}}
+\newcommand{\intr}{\textup{Int}}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26200\\
+
+February 4, 2010
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{problem}
+Let $X$ be an ordered set in the order topology. Show that $\overline{(a,b)} \subseteq [a,b]$. Under what conditions does equality hold?
+\end{problem}
+\begin{proof}
+We're asked to show that if $x \in \overline{(a,b)}$ then $x \in [a,b]$, and we will show the contrapositive, that if $x \notin [a,b]$ then $x \notin \overline{(a,b)}$. Suppose that $x \notin [a,b]$. Without loss of generality, we can take $x < a$. Then consider the open set $(c,a)$ where $c < x$ (if $x$ happens to be the least element of $X$, then take the set $[x,a)$). This open set contains $x$ and doesn't intersect $(a,b)$, so $x \notin \overline{(a,b)}$.
+
+Now suppose $x \in [a,b]$. Since $(a,b) \subseteq \overline{(a,b)}$, if $x \in (a,b)$ we automatically have $x \in \overline{(a,b)}$. Thus we need only worry about the cases when $x=a$ or $x=b$. Suppose $x=a$ and let $(c,d)$ be a basis element containing $x$. In order for $(c,d) \cap (a,b) \neq \emptyset$ we need some element $y \in X$ such that $a < y < d$. Since $d$ is an arbitrary element greater than $a$, the condition we need is "there exists a point of $X$ between any two given points of $X$". If we can find such a $y$, then $(c,d) \cap (a,b) \neq \emptyset$ and $x \in \overline{(a,b)}$. The case $x=b$ follows similarly.
+\end{proof}
+
+\begin{problem}
+Let $A$, $B$ and $A_{\alpha}$ denote subsets of a space $X$. Determine whether the following equations hold; if an equality fails, determine whether one of the inclusions $\supseteq$ or $\subseteq$ holds.\\
+(a) $\overline{A \cap B} = \overline{A} \cap \overline{B}$.\\
+(b) $\overline{\bigcap A_{\alpha}} = \bigcap \overline{A_{\alpha}}$.\\
+(c) $\overline{A \backslash B} = \overline{A} \backslash \overline{B}$.
+\end{problem}
+\begin{proof}
+(a) Let $x \in \overline{A \cap B}$ and let $U$ be an open set containing $x$. Then there exists $y \in U$ such that $y \in A \cap B$ which means $y \in A$ and $y \in B$. Since $U$ is arbitrary, $x \in \overline{A}$ and $x \in \overline{B}$ or $x \in \overline{A} \cap \overline{B}$. Therefore $\overline{A \cap B} \subseteq \overline{A} \cap \overline{B}$.
+
+Now consider $\mathbb{R}$ with the usual topology. Let $x = 0$ so that $x \in \overline{(-1,0)} \cap \overline{(0,1)}$. But note that $\overline{(-1,0) \cap (0,1)} = \overline{\emptyset} = \emptyset$ so it can't be that $x \in \overline{(-1,0) \cap (0,1)}$. Therefore in general we don't have the second inclusion.
+
+(b) Let $x \in \overline{\bigcap A_{\alpha}}$ where $\alpha \in J$ and let $U$ be a neighborhood of $x$. Then there exists $y \in U$ such that $y \in \bigcap A_{\alpha}$. Thus $y \in A_{\alpha}$ for each $\alpha \in J$. Since $U$ is arbitrary, we have that $x \in \overline{A_{\alpha}}$ for each $\alpha \in J$ and so $x \in \bigcap \overline{A_{\alpha}}$. Therefore $\overline{\bigcap A_{\alpha}} \subseteq \bigcap \overline{A_{\alpha}}$.
+
+We can produce a counter example similar to the one in part (a) even if $J$ is infinite by letting $x=0$ and taking intervals of the form $(0,r)$ and $(0,-r)$. Then $x$ will be in the closure of all of these intervals and thus in the intersection of their closures, but the intersection of the sets themselves is empty so $x$ cannot be in the closure of the intersection. Thus, as in part (a), the second inclusion doesn't hold in general.
+
+(c) Suppose $x \in \overline{A} \backslash \overline{B}$ and let $U$ be a neighborhood of $x$ such that $U \cap B = \emptyset$. Now let $V$ be any neighborhood of $x$ and consider $U \cap V$. Note that $(U \cap V) \cap B = \emptyset$ as well since $(U \cap V) \subseteq U$. But also $(U \cap V) \cap A \neq \emptyset$ since $x \in \overline{A}$ and the intersection of two open sets is open. So there's some point $y \in V$ such that $y \notin B$ and $y \in A$, that is $V \cap (A \backslash B) \neq \emptyset$. Since $V$ is arbitrary, we see that $x \in \overline{A \backslash B}$ and so $\overline{A} \cap \overline{B} \subseteq \overline{A \backslash B}$.
+
+Consider $\mathbb{R}$ with the usual topology. Let $x = 0$ and note that $\overline{(-1,1) \backslash (-1,0)} = \overline{[0,1)} = [0,1]$ so $x \in \overline{(-1,1) \backslash (-1,0)}$. But then note that $\overline{(-1,1)} = [-1,1]$ and $\overline{(-1,0)} = [-1,0]$ so $x \notin \overline{(-1,1)} \backslash \overline{(-1,0)}$.
+\end{proof}
+
+\begin{problem}
+If $A \subseteq X$, we define the \emph{boundary} of $A$ by the equation
+\[
+\bd A = \overline{A} \cap \overline{(X \backslash A)}.
+\]
+(a) Show that $\intr A$ and $\bd A$ are disjoint, and $\overline{A} = \intr A \cup \bd A$.\\
+(b) Show that $\bd A = \emptyset \iff A$ is both open and closed.\\
+(c) Show that $U$ is open $\iff \bd U = \overline{U} \backslash U$.\\
+(d) If $U$ is open, is it true that $U = \intr(\overline{U})$? Justify your answer.
+\end{problem}
+\begin{proof}
+(a) Let $x \in \intr A$. Since $\intr A$ is open, there exist some open set $U \subseteq A$ such that $x \in U$. But then $U \cap (X \backslash A) = \emptyset$ and so $x \notin \overline{(X \backslash A)}$. Therefore $x \notin \bd A$. Conversely, suppose that $x \in \bd A$. Then $x \in \overline{(X \backslash A)}$ so every open set containing $x$ intersects $X \backslash A$. In particular, there is no open set $U$ such that $x \in U$ and $U \subseteq \intr A$. Therefore $x \notin \intr A$ since $\intr A$ is open.
+
+Now suppose that $x \in \overline{A}$. If $x \in \intr A$ we're done, so suppose otherwise. Let $U$ be a neighborhood of $x$. Since $x \notin \intr A$, we know that $U \nsubseteq \intr A$, so $U \cap (X \backslash A) \neq \emptyset$. Since $U$ is arbitrary, we must have that $x \in \overline{(X \backslash A)}$. Therefore, because $x \in \overline{A}$ we have $x \in \bd A$ and $\overline{A} \subseteq \intr A \cup \bd A$.
+
+Conversely, suppose that $x \in \intr A \cup \bd A$. If $x \in \intr A$ then $x \in \overline{A}$ since $\intr A \subseteq A \subseteq \overline{A}$, so assume $x \in \bd A$. But then $x \in \overline{A}$ by definition, so $\intr A \cup \bd A \subseteq \overline{A}$.
+
+(b) Suppose that $\bd A = \emptyset$. Then from part (a) we have $\overline{A} = \intr A \cup \emptyset = \intr A$. But then $\intr A \subseteq A \subseteq \overline{A} \subseteq \intr A$ so we must have $A = \intr A = \overline{A}$ and thus $A$ is both open and closed.
+
+Conversely, suppose that $A$ is both open and closed. Then $A = \overline{A} = \intr A = \intr A \cup \emptyset$. By part (a), $\intr A$ and $\bd A$ are disjoint, so we must have $\bd A = \emptyset$.
+
+(c) Suppose that $U$ is open. Then $U = \intr U$. From part (a) we know $\overline{U} = \intr U \cup \bd U$ and basic set operations gives $\overline{U} \backslash U = \overline{U} \backslash \intr U = (\intr U \cup \bd U) \backslash \intr U = \bd U$. Conversely, suppose that $\overline{U} \backslash U = \bd U$. Then union $U$ to both sides to obtain $\overline{U} = \bd U \cup U$. From the equation in part (a) we're forced to conclude that $U = \intr U$ and $U$ is open.
+
+(d) No. Consider the set $(-1,0) \cup (0,1)$. This set is open in the standard topology on $\mathbb{R}$. Note that $\overline{(-1,0) \cup (0,1)} = [-1,1]$ and $\intr (\overline{(-1,0) \cup (0,1)}) = (-1,1) \neq (-1,0) \cup (0,1)$.
+\end{proof}
+
+\begin{problem}
+Suppose that $f : X \to Y$ is continuous. If $x$ is a limit point of the subset $A$ of $X$, is it necessarily true that $f(x)$ is a limit point of $f(A)$?
+\end{problem}
+\begin{proof}
+No. Consider the constant function, $f(x) = a$ for $a \in Y$. Then $f(A) = \{a\}$ and $f(x) = \{a\}$ so it's impossible for an open set containing $f(x)$ to contain any point of $f(A)$ other than $f(x)$. The statement holds, however, if $f$ is injective as the following proof shows.
+
+Let $U$ be a neighborhood of $f(x)$. Then $f^{-1}(U)$ is an open set in $X$ containing $x$. Therefore there exists some $y \in f^{-1}(U)$ such that $y \in A$ and $y \neq x$. Then $f(y) \in f(A)$ and since $y \in f^{-1}(U)$, $f(y) \in U$. But also, $f$ is injective so $f(x) \neq f(y)$. Since $U$ is arbitrary, we see that $f(x)$ must be a limit point of $f(A)$.
+\end{proof}
+
+\begin{problem}
+Let $Y$ be an ordered set in the order topology. Let $f,g : X \to Y$ be continuous.\\
+(a) Show that the set $\{x \mid f(x) \leq g(x)\}$ is closed in $X$.\\
+(b) Let $h : X \to Y$ be the function
+\[
+h(x) = \min \{f(x), g(x)\}.
+\]
+Show that $h$ is continuous.
+\end{problem}
+\begin{proof}
+(a) Let $h : X \to Y \times Y$ be defined as $h(x) = (f(x), g(x))$. Since $f$ and $g$ are continuous, we also have that $h$ is continuous. Let $A = \{(x,y) \mid x \leq y\}$ and note that $h^{-1}(A) = \{x \in X \mid h(x) \in A\} = \{x \in X \mid f(x) \leq g(x)\}$. Therefore, it suffices to show that $A$ is closed, or equivalently, that it's complement $B$ is open. Let $(x,y) \in B$ so we have $y < x$. Note that since $Y$ is ordered in the order topology, it is a Hausdorff space. Namely, we can find open intervals $(a,b)$ and $(c,d)$ containing $x$ and $y$ so that $c < y < d \leq a < x < b$. Now consider the basis element $(a,b) \times (c,d)$. A point $(x_0, y_0) \in (a,b) \times (c,d)$ has the property that $c < y_0 < d \leq a < x_0 < b$. In particular $y_0 < x_0$ so we have $(a,b) \times (c,d) \subseteq B$. Thus, any point of $B$ has a basis element containing it which is contained in $B$ so $B$ must be open and $A$ is closed. Then since $h$ is continuous, we also have $h^{-1}(A) = \{x \mid f(x) \leq g(x)\}$ is closed.
+
+(b) From part (a) we know the set $A = \{x \mid f(x) \leq g(x)\}$ is closed and a similar proof shows that $B = \{x \mid g(x) \leq f(x)\}$ is closed. It's clear that $A \cup B = X$ and $f(x) = g(x)$ for $x \in A \cap B$. Then it immediately follows that $h : X \to Y$ where $h(x) = f(x)$ for $x \in A$ and $h(x) = g(x)$ for $x \in B$ is continuous. But this is precisely the function $h(x) = \min \{f(x), g(x)\}$.
+\end{proof}
+
+\begin{problem}
+Let $\{A_{\alpha}\}$ be a collection of subsets of $X$; let $X = \bigcup_{\alpha} A_{\alpha}$. Let $f : X \to Y$; suppose that $f \mid A_{\alpha}$, is continuous for each $\alpha$.\\
+(a) Show that if the collection $\{A_{\alpha}\}$ is finite and each set $A_{\alpha}$ is closed, then $f$ is continuous.\\
+(b) Find an example where the collection $\{A_{\alpha}\}$ is countable and each $A_{\alpha}$ is closed, but $f$ is not continuous.\\
+(c) An indexed family of sets $\{A_{\alpha}\}$ is said to be \emph{locally finite} if each point $x$ of $X$ has a neighborhood that intersects $A_{\alpha}$ for only finitely many values of $\alpha$. Show that if the family $\{A_{\alpha}\}$ is locally finite and each $A_{\alpha}$ is closed, then $f$ is continuous.
+\end{problem}
+\begin{proof}
+(a) We use induction on $n$, the number of sets in $\{A_{\alpha}\}$. The case when $n = 2$ is a special case of the pasting lemma, since both functions in this case are $f \mid A_{1}$ and $f \mid A_{2}$, so they clearly agree on the intersection. Now suppose that for some positive integer $n$ we have that $f$ is continuous. Since a finite union of closed sets is closed, we have $\bigcup_{\alpha=1}^{n} A_{\alpha}$ is closed. By assumption, $f$ restricted to this set is continuous, as is $f \mid A_{n+1}$. Therefore, by the same reasoning as in the $n = 2$ case, we have $f$ is continuous on the union $\bigcup_{\alpha=1}^{n} A_{\alpha}$. Thus by induction, $f$ is continuous if the collection $\{A_{\alpha}\}$ is finite.
+
+(b) Let $f : [0,1] \to \mathbb{R}$ where both sets have the order topology. For $p \in \mathbb{Q}$ with $0 < p < 1$ define $f \mid [0,p]$ as $f(x) = x$ and $f(1) = 2$. Note that since $[0,1]$ has the order topology, it's a Hausdorff space and so $\{1\}$ is closed. Thus $f$ is continuous on each of the closed sets $[0,p]$ and the closed set $\{1\}$ and $[0,1] = \{1\} \cup \bigcup_{p \in \mathbb{Q}} [0,p]$. But $f$ is not continuous. Namely, $f^{-1}(3/2,5/2) = \{1\}$ which is not open.
+
+(c) Let $f : X \to Y$ and let $U$ be a closed subset of $Y$. Then $f^{-1}(U) \cap A_{\alpha}$ is closed for each $\alpha$ since $A_{\alpha}$ is closed and $f$ is continuous when restricted to $A_{\alpha}$. Note that since $\{A_{\alpha}\}$ is locally finite, it follows that $\{f^{-1}(U) \cap A_{\alpha}\}$ is locally finite as well. Thus, it suffices to show that the union of $\{f^{-1}(U) \cap A_{\alpha}\}$ is closed.
+
+Let $x$ be a point not in this union and let $V$ be a neighborhood of $x$ which intersects some $n$ sets in this collection. Call them $V_1, \dots , V_n$. Now for each $V_i$ choose an open set $V_i'$ which doesn't intersect $V_i$. Then $\bigcap_i V_i'$ will contain $x$ and have no intersection with any element of $\{f^{-1}(U) \cap A_{\alpha}\}$. Furthermore, since there are only finitely many $V_i'$, this is an open set which shows the intersection of $\{f^{-1}(U) \cap A_{\alpha}\}$ is closed. But note that this intersection is precisely the set $f^{-1}(U)$, so $f$ must be continuous since the preimage of a closed set is closed.
+\end{proof}
+
+\begin{problem}
+Let $\mathbb{R}^{\infty}$ be the subset of $\mathbb{R}^{\omega}$ consisting of all sequences that are ``eventually zero,'' that is, all sequences $(x_1, x_2, \dots )$ such that $x_i \neq 0$ for only finitely many values of $i$. What is the closure of $\mathbb{R}^{\infty}$ in $\mathbb{R}^{\omega}$ in the box and product topologies. Justify your answer.
+\end{problem}
+\begin{proof}
+First consider $\mathbb{R}^{\omega}$ in the box topology. Let $\mathbf{x}$ be an element of $\mathbb{R}^{\omega} \backslash \mathbb{R}^{\infty}$. Then $\mathbf{x}$ contains infinitely many nonzero coordinates. For each coordinate $x_i$ of $\mathbf{x}$ different from $0$ we can find an interval containing $x_i$ which doesn't contain $0$. For every coordinate where $x_i = 0$ simply take an interval around $0$. Then the product of all of these intervals is an open set in the box topology. Since infinitely many coordinates of this product don't contain $0$, this set cannot contain any elements from $\mathbb{R}^{\infty}$. Therefore the closure of $\mathbb{R}^{\infty}$ is itself in the box topology.
+
+Now consider $\mathbb{R}^{\omega}$ in the product topology. Let $\mathbf{x} \in \mathbb{R}^{\omega}$ and let $U$ be an open set in $\mathbb{R}^{\omega}$ containing $\mathbf{x}$. Note that all but finitely many coordinates of $U$ are $\mathbb{R}$ and so $U$ contains some element of $\mathbb{R}^{\infty}$. Thus, for an arbitrary element of $\mathbb{R}^{\omega}$ and any open set containing it, that open set intersects $\mathbb{R}^{\infty}$. Thus $\overline{\mathbb{R}^{\infty}} = \mathbb{R}^{\omega}$ in the product topology.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a set; let $\{X_{\alpha}\}_{\alpha \in J}$ be an indexed family of spaces; and let $\{f_{\alpha}\}_{\alpha \in J}$ be an indexed family of functions $f_{\alpha} : A \to X_{\alpha}$.\\
+(a) Show there is a unique coarsest topology $\mathcal{T}$ on $A$ relative to which each of the functions $f_{\alpha}$ is continuous.\\
+(b) Let
+\[
+\mathcal{S}_{\beta} = \{f^{-1}_{\beta}(U_{\beta}) \mid \text{$U_{\beta}$ is open in $X_{\beta}$}\},
+\]
+and let $\mathcal{S} = \bigcup \mathcal{S}_{\beta}$. Show that $\mathcal{T}$ is a subbasis for $\mathcal{T}$.\\
+(c) Show that a map $g : Y \to A$ is continuous relative to $\mathcal{T}$ if and on;y if each map $f_{\alpha} \circ g$ is continuous.\\
+(d) Let $f : A \to \prod X_{\alpha}$ be defined by the equation
+\[
+f(x) = (f_{\alpha}(a))_{\alpha \in J};
+\]
+let $Z$ denote the subspace $f(A)$ of the product space $\prod X_{\alpha}$. Show that the image under $f$ of each element of $\mathcal{T}$ is an open set of $Z$.
+\end{problem}
+\begin{proof}
+(a) Let $\{\mathcal{T}_i\}$ denote the set of all topologies on $A$ for which $f_{\alpha}$ is continuous. Now let $\mathcal{T} = \bigcap_i \mathcal{T}_i$. The empty set and $A$ are in $\mathcal{T}$ since they are both in each of the $\mathcal{T}_i$. An arbitrary union and a finite intersection of elements of $\mathcal{T}$ are in $\mathcal{T}$ since each of the elements involved in the union and intersection are in each of the $\mathcal{T}_i$ and each of these is closed under arbitrary union and finite intersection. Now consider any topology $\mathcal{U}$ of $A$ such that each $f_{\alpha}$ is continuous. By assumption this is some $\mathcal{T}_i$ and so $\mathcal{T} \subseteq \mathcal{U}$.
+
+(b) It's clear that the union of all the elements in $\mathcal{S}$ is $A$ since $f^{-1}_{\alpha}(X_{\alpha}) = A$ and $X_{\alpha}$ is open in itself. Let $\mathcal{U}$ be any topology on $A$ such that $f_{\alpha}$ is continuous for each $\alpha$. Then $\mathcal{U}$ necessarily contains at the very least every preimage of open sets in $X_{\alpha}$. Furthermore, $\mathcal{U}$ is a topology so it contains finite intersections and arbitrary unions of these sets. But these are precisely the elements of the topology generated by $\mathcal{S}$. Thus, this topology is coarser than $\mathcal{U}$ and since $\mathcal{U}$ is arbitrary, we must have that the topology generated by $\mathcal{S}$ is $\mathcal{T}$.
+
+(c) Suppose $f_{\alpha} \circ g$ is continuous and let $U \in \mathcal{T}$ be a subbasis element from part (b). Note that this implies $U = f^{-1}_{\alpha}(V)$ where $V$ is open in $X_{\alpha}$ for some $\alpha$ because of how we constructed the subbasis for $\mathcal{T}$ in part (b). Then $(f_{\alpha} \circ g)^{-1}(V) = g^{-1}(f_{\alpha}^{-1}(V)) = g^{-1}(U)$ is open since $f_{\alpha} \circ g$ is continuous. Therefore $g^{-1}$ takes subbasis elements to open sets and is continuous. For the converse, suppose that $g$ is continuous. Since we're using the topology $\mathcal{T}$ on $A$, we know $f_{\alpha}$ is continuous as well, so this is merely a composition of two continuous functions and $f_{\alpha} \circ g$ is continuous.
+
+(d) Note that $f$ is continuous because each $f_{\alpha}$ is continuous. Furthermore, note that $f^{-1}(Z) = A$ since everything in $A$ is mapped to $Z$. Since $A$ is open in $A$, $Z$ is open in $\prod X_{\alpha}$. Note also that $f' : A \to Z$ is surjective where $f'$ is just $f$ with a restricted domain. Now consider an open set $U \subseteq Z$. Since $f'$ is continuous, $f'^{-1}(U)$ is open in $A$ and must be some element of $\mathcal{T}$. But since $f'$ is surjective we also have $f'(f'^{-1}(U)) = U$. Therefore this element of $\mathcal{T}$ is actually an open set in $Z$ under $f'$ and therefore also under $f$ since $Z$ is open.
+
+Note that any element of $\mathcal{T}$ can be found this way because $\mathcal{T}$ has preimages of open sets in $X_{\alpha}$ as a subbasis. Namely, if $U \in \mathcal{T}$ is an arbitrary union of finite intersections of the sets $f^{-1}(U_{\beta}$ for $U_{\beta} \subseteq X_{\beta}$, then we can identify $U_{\beta}$ with the subset of $\prod X_{\alpha}$ which has $U_{\beta}$ in the $\beta^{\textup{th}}$ coordinate and $X_{\alpha}$ in all other coordinates. Then taking the intersection and union of these sets is preserved under $f^{-1}$ and is precisely the same as $U \in \mathcal{T}$.
+\end{proof}
+
+\end{document}

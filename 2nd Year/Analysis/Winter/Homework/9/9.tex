@@ -1,0 +1,528 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20800\\
+
+March 2, 2009
+\end{flushright}
+
+\begin{center}
+Homework 9
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Let $f : \mathbb{R}^n \rightarrow \mathbb{R}^m$. Then
+\[
+f((x_1, x_2, \dots , x_n)) = (f_1((x_1, x_2, \dots , x_n)), f_2((x_1, x_2, \dots , x_n)), \dots , f_m((x_1, x_2, \dots , x_n))).
+\]
+If $f_k : \mathbb{R}^n \rightarrow \mathbb{R}$ is differentiable for all $1 \leq k \leq m$, then $f$ is differentiable.
+\end{**}
+\begin{proof}
+Since $f_k$ is differentiable for all $1 \leq k \leq m$, there exists a linear transformation $L_k$ such that for all $x \in \mathbb{R}^n$ we have
+\[
+\lim_{h \rightarrow 0} \frac{|f_k(x + h) - f_k(x) - L_kh|}{|h|} = \lim_{h \rightarrow 0} \frac{|f_k((x_1 + h_1, x_2 + h_2, \dots , x_n + h_n)) - f_k((x_1, x_2, \dots , x_n)) - L_kh|}{|h|} = 0
+\]
+But then we must have
+\begin{align*}
+0
+&= \lim_{h \rightarrow 0} \frac{|(f_1((x_1+h_1, \dots , x_n+h_n))-f_1((x_1, \dots , x_n)), \dots , f_m((x_1+h_1, \dots , x_n+h_n)) - f_m((x_1, \dots , x_n)))|}{|h|}\\
+&= \lim_{h \rightarrow 0} \frac{|(f_1((x_1+h_1, \dots , x_n+h_n)), \dots , x_n+h_n)), \dots , f_m((x_1+h_1, \dots , x_n+h_n)))|}{|h|}\\
+&- \frac{(f_1((x_1, \dots , x_n)), \dots , f_m((x_1, \dots , x_n))) - Lh|}{|h|}\\
+&= \lim_{h \rightarrow 0} \frac{|f(x + h) - f(x) - Lh|}{|h|}
+\end{align*}
+\end{proof}
+
+\begin{**}
+Show that if $f : U \rightarrow \mathbb{R}$, $U \subseteq \mathbb{R}^n$ is differentiable at $x \in U$ then $D_v f(x) = \nabla f(x) \cdot v$.
+\end{**}
+\begin{proof}
+We have
+\[
+\nabla f(x) \cdot v = \sum_{i=1}^n D_if(x)v_i = \sum_{i=1}^n \lim_{t \rightarrow 0} \frac{f(x + te_i) - f(x)}{t} v_i = \lim_{t \rightarrow 0} \frac{f(x+tv) - f(x)}{t} = D_vf(x).
+\]
+\end{proof}
+
+\begin{**}
+Relative to the standard basis, we can represent $Df(a)$ by the $m \times n$ matrix $[D_j f_i (a)]$ where $j = 1, \dots , n$ and $i = 1, \dots , m$.
+\end{**}
+\begin{proof}
+We already know that in one variable, $f : \mathbb{R}^n \rightarrow \mathbb{R}$ we have
+\[
+Df(x) = (D_1 f(x), \dots , D_n f(x)).
+\]
+This immediately extends to $m$ dimensions if $f : \mathbb{R}^n \rightarrow \mathbb{R}^m$. We know each component function, $f_i : \mathbb{R}^n \rightarrow \mathbb{R}$ with $i = 1, \dots m$, is differentiable. Then the $i$th row of $f'(x)$ is $f_i'(x)$.
+\end{proof}
+
+\begin{**}
+Let $U$ be an open set in $\mathbb{R}^n$ and $f : \mathbb{R}^n \rightarrow \mathbb{R}$ such that $f$ is differentiable on $U$. Suppose $x,y \in U$ and the line segment
+\[
+L = \{(1-t)x + ty \mid 0 \leq t \leq 1\} \subseteq U.
+\]
+Then there exists $z \in L$ such that $f(y) - f(x) = Df(z) (y-x)$.
+\end{**}
+\begin{proof}
+Let $F(t) = f((1-t)x + ty)$ for $0 \leq t \leq 1$. Then by the Mean Value Theorem there exists $s \in [0,1]$ such that $F'(s) = f(x) - f(y)$. Then by the Chain Rule note that $F'(s) = f'((1-s)x + sy) (x-y)$. Taking $z = (1-s)x + sy$ gives the desired result.
+\end{proof}
+
+\begin{**}
+Let
+\[
+f(x,y) =
+\begin{cases}
+0 & \text{if $(x,y) = (0,0)$}\\
+\frac{x^3y + xy^3}{x^2 + y^2} & \text{if $(x,y) \neq (0,0)$}.
+\end{cases}
+\]
+Are $D_1 f(x,y)$ and $D_2 f(x,y)$ continuous at $(0,0)$?
+\end{**}
+
+Yes.
+\begin{proof}
+We have
+\[
+D_1f(x,y) = \frac{y(x^4 + 4x^2y^2-y^4)}{(x^2 + y^2)^2}.
+\]
+Since the power on the numerator always exceeds that of the denominator, we must have
+\[
+\lim_{(x,y) \rightarrow (0,0)} \frac{y(x^4 + 4x^2y^2-y^4)}{(x^2 + y^2)^2} = 0.
+\]
+A similar proof holds for $D_2f(x,y)$.
+\end{proof}
+
+\begin{**}
+Let $f : \mathbb{R}^2 \rightarrow \mathbb{R}$ be the function defined in ** Problem 5. Is $D_2(D_1f)(0,0) = D_1(D_2f)(0,0)$?
+\end{**}
+
+No.
+\begin{proof}
+We have
+\[
+D_1f(x,y) = \frac{y(x^4 + 4x^2y^2 - y^4}{(x^2 + y^2)^2}
+\]
+and
+\[
+D_2f(x,y) = \frac{x(x^4 - 4x^2y^2 - y^4}{(x^2 + y^2)^2}.
+\]
+Note that $D_2f(x,0) = x$ for all $x$ and $D_1f(0,y) = -y$ for all $y$. Now $D_2(D_1f)(0,0) = D(D_1f(0,y)) = D(-y) = -1$ and $D_1(D_2f)(0,0) = D(D_2f(x,0)) = D(x) = 1$.
+\end{proof}
+
+\begin{**}
+Take $f : U \rightarrow \mathbb{R}$ where $U \subseteq \mathbb{R}^n$ such that $f$ is differentiable and $D_j (D_i f)(x)$ exists for all $x \in U$. If $D_i (D_j f)$ is continuous for all $i,j$, then $D_i(D_jf) = D_j(D_if)$.
+\end{**}
+\begin{proof}
+Let $x \in U$. Consider the function
+\begin{align*}
+F_{ij}(h)
+&= (f(x_1, \dots , x_i+h, \dots , x_j+h, \dots , x_n) - f(x_1, \dots , x_i + h, \dots , x_j, \dots , x_n))\\
+&- (f(x_1, \dots , x_i, \dots, x_j + h, \dots , x_n) + f(x_1, \dots , x_n))
+\end{align*}
+and let
+\[
+g(y) = f(x_1, \dots , y, \dots , x_j + h, \dots , x_n) - f(x_1, \dots , y, \dots , x_j, \dots , x_n)
+\]
+then
+\[
+F_{ij}(h) = g(x_i + h) - g(x_i).
+\]
+By the Mean Value Theorem there exists $c \in [x_i, x_i+h]$ such that
+\[
+g(x_i + h) - g(x_i) = g'(c) h = h (D_if(x_1, \dots , c, \dots, x_j + h, \dots , x_n) - D_1f(x_1, \dots , c, \dots , x_j, \dots , x_n)).
+\]
+Now use the Mean Value Theorem again on $D_if$ so that there exists $d \in [x_j, x_j+h]$ such that
+\[
+D_if(x_1, \dots , c, \dots, x_j + h, \dots , x_n) - D_if(x_1, \dots , c, \dots , x_j, \dots , x_n) = D_{ij} (x_1, \dots , c, \dots , d, \dots , x_n)h.
+\]
+Now we have
+\[
+F_{ij}(h) = h^2 D_{ij}(x_1, \dots , c, \dots , d, \dots , x_n).
+\]
+Note that as $h \rightarrow 0$ we have $c \rightarrow x_i$ and $d \rightarrow x_j$, so by the continuity of $D_{ij} f$ we have
+\[
+\lim_{h \rightarrow 0} \frac{F_{ij}(h)}{h^2} = \lim_{c,d \rightarrow 0,0} D_{ij}f(x_1, \dots , c, \dots , d, \dots , x_n) = D_{ij}f(x_1, \dots , x_i, \dots , x_j, \dots , x_n).
+\]
+But then it's clear that $F_{ij} = F_{ji}$ which results in $D_{ij}f = D_{ji}f$.
+\end{proof}
+
+\begin{problem}
+Find $f'$ for the following:\\
+1) $f(x,y,z) = x^y$\\
+2) $f(x,y,z) = (x^y, z)$\\
+3) $f(x,y) = \sin (x \sin y)$\\
+4) $f(x,y,z) = \sin (x \sin (y \sin z))$\\
+5) $f(x,y,z) = x^{y^z}$\\
+6) $f(x,y,z) = x^{y+z}$\\
+7) $f(x,y,z) = (x+y)^z$\\
+8) $f(x,y) = \sin (xy)$\\
+9) $f(x,y) = (\sin xy)^{\cos 3}$\\
+10) $f(x,y) = (\sin xy, \sin (x \sin y), x^y)$.
+\end{problem}
+\begin{proof}
+1)
+\[
+\left (
+\begin{array}{ccc}
+yx^{y-1} & e^{y \ln x} \ln x & 0
+\end{array}
+\right )
+\]
+2)
+\[
+\left (
+\begin{array}{ccc}
+yx^{y-1} & e^{y \ln x} \ln x & 0\\
+0 & 0 & 1
+\end{array}
+\right )
+\]
+3)
+\[
+\left (
+\begin{array}{cc}
+\cos (x \sin y) \sin y & \cos (x \sin y) x \cos y
+\end{array}
+\right )
+\]
+4)
+\[
+\left (
+\begin{array}{ccc}
+\cos(x \sin (y \sin z)) \sin (y \sin z)) & \cos (x \sin (y \sin z)) \cos (y \sin z) \sin z & \cos (x \sin (y \sin z)) \cos (y \sin z) y \cos z
+\end{array}
+\right )
+\]
+5)
+\[
+\left (
+\begin{array}{ccc}
+y^z x^{y^z - 1} & e^{y^z \ln x} zy^{z-1} \ln x & e^{e^{z \ln y} \ln x} \left (\frac{1}{x} e^{z \ln y} + \ln x e^{z \ln y} \ln y \right )
+\end{array}
+\right )
+\]
+6)
+\[
+\left (
+\begin{array}{ccc}
+(y+z)x^{y+z-1} & e^{(y+z) \ln x} \ln x & e^{(y+z) \ln x} \ln x
+\end{array}
+\right )
+\]
+7)
+\[
+\left (
+\begin{array}{ccc}
+z(x+y)^{z-1} & z(x+y)^{z-1} & e^{z \ln (x+y)} \ln (x+y)
+\end{array}
+\right )
+\]
+8)
+\[
+\left (
+\begin{array}{cc}
+\cos(xy)y & \cos(xy)x
+\end{array}
+\right )
+\]
+9)
+\[
+\left (
+\begin{array}{cc}
+\cos(3) \sin(xy)^{\cos(3) - 1} y \cos(xy) & \cos(3) \sin(xy)^{\cos(3) - 1} x \cos(xy)
+\end{array}
+\right )
+\]
+10)
+\[
+\left (
+\begin{array}{cc}
+\cos(xy)y & \cos(xy)x\\
+\cos (x \sin y) \sin y & \cos (x \sin y) x \cos y\\
+yx^{y-1} & e^{y \ln x} \ln x
+\end{array}
+\right )
+\]
+\end{proof}
+
+\begin{problem}
+Find $f'$ for the following where $g : \mathbb{R} \rightarrow \mathbb{R}$ is continuous:\\
+1) $f(x,y) = \int_a^{x+y} g$\\
+2) $f(x,y) = \int_a^{xy} g$\\
+3) $f(x,y,z) = \int_{xy}^{\sin(x \sin (y \sin z))} g$.
+\end{problem}
+\begin{proof}
+1)
+\[
+\left (
+\begin{array}{cc}
+g(x+y) & g(x+y)
+\end{array}
+\right )
+\]
+2)
+\[
+\left (
+\begin{array}{cc}
+g(xy) y & g(xy) x
+\end{array}
+\right )
+\]
+3)
+\[
+g(\sin (x \sin (y \sin z))) Dh_1 (x,y,z) - g(x^y) Dh_2 (x,y,z)
+\]
+where $h_1 = \sin (x \sin (y \sin z))$ and $h_2 = x^y$ have solutions in Parts 1) and 4) of Problem 1.
+\end{proof}
+
+\begin{problem}
+A function $f : \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}^p$ is bilinear if for $x, x_1, x_2 \in \mathbb{R}^n$, $y, y_1, y_2 \in \mathbb{R}^m$ and $a \in \mathbb{R}$ we have
+\[
+f(ax, y) = a f(x, y) = f(x, ay),
+\]
+\[
+f(x_1 + x_2, y) = f(x_1, y) + f(x_2, y),
+\]
+\[
+f(x, y_1 + y_2) = f(x, y_1) + f(x, y_2).
+\]
+1) Prove that if $f$ is bilinear, then
+\[
+\lim_{(h,k) \rightarrow 0} \frac{|f(h,k)|}{|(h,k)|} = 0.
+\]\\
+2) Prove that $Df(a,b)(x,y) = f(a,y) + f(x,b)$.\\
+3) Show that $Dp(a,b)(x,y) = bx + ay$ where $p : \mathbb{R}^2 \rightarrow \mathbb{R}$ is defined by $p(x,y) = xy$ is a special case of Part 2).
+\end{problem}
+\begin{proof}
+Note that
+\[
+f(h,k) = \sum_{i=1}^n \sum_{j=1}^m h_i k_j f (e_i, e_j)
+\]
+and so this function is linear. Thus there exists some $M > 0$ such that
+\[
+|f(h,k)| \leq M \max (|h_i|) \max (|k_j|) \leq M |h| |k|.
+\]
+Since $|(h,k)| = \sqrt{|h|^2 + |k|^2}$, we need only show the result is true when $n = m = 1$ and $f$ is simply $p$, mentioned in Part 3). But this has already been shown to be true.\newline
+
+2) We have
+\[
+\lim_{(h,k) \rightarrow 0} \frac{|f(a+h, b+k) - f(a,b) - f(a,k) - f(h,b)|}{|(h,k)|} = \lim_{(h,k) \rightarrow 0} \frac{|f(h,k)|}{|(h,k)|} = 0
+\]
+by bilinearity and Part 1).\newline
+
+3) Taking $n=m=p=1$ we have $f : \mathbb{R}^2 \rightarrow \mathbb{R}$. If $f(x,y) = xy$ then from Part 2) we have $Df(a,b)(x,y) = f(a,y) + f(b,x) = bx + ay$.
+\end{proof}
+
+\begin{problem}
+Define $IP : \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}$ by $IP(x,y) = \langle x, y \rangle$.\\
+1) Find $D(IP)(a,b)$ and $(IP)'(a,b)$.\\
+2) If $f,g : \mathbb{R}^n \rightarrow \mathbb{R}$ are differentiable and $h : \mathbb{R} \rightarrow \mathbb{R}$ is defined by $h(t) = \langle f(t), g(t) \rangle$, show that
+\[
+h'(a) = \langle f'(a)^T, g(a) \rangle + \langle f(a), g'(a)^T \rangle.
+\]\\
+3) If $f : \mathbb{R} \rightarrow \mathbb{R}^n$ is differentiable and $|f(t)| = 1$ for all $t$, show that $\langle f'(t)^T, f(t) \rangle = 0$.\\
+4) Exhibit a differentiable function $f: \mathbb{R} \rightarrow \mathbb{R}$ such that the function $|f|$ defined by $|f|(t) = |f(t)|$ is not differentiable.
+\end{problem}
+\begin{proof}
+1) Since $IP$ is bilinear, we have $D(IP)(a,b)(x,y) = \langle b,x \rangle + \langle a,y \rangle$. Then $(IP)'(a,b) = (a,b)$\newline
+
+2) Note that $h(t) = (IP) \circ (f,g)$. Now we simply use the Chain Rule and Part 1) to obtain the result.\newline
+
+3) This is just Part 2) applied to $\langle f(t), f(t) \rangle = 1$. Differentiating both sides gives the desired result.\newline
+
+4) Take $f(t) = t$. Then $|f(t)|$ is not differentiable at $0$.
+\end{proof}
+
+\begin{problem}
+Let $E_i$ with $i = 1, \dots k$ be Euclidean spaces of various dimensions. A function $f : E_1 \times \dots \times E_k \rightarrow \mathbb{R}^p$ is called multilinear if for each choice of $x_j \in E_j$, $j \neq i$ the function $g : E_i \rightarrow \mathbb{R}^p$ defined by $g(x) = f(x_1, \dots , x_{i-1}, x, x_{i+1}, \dots , x_k)$ is a linear transformation.\\
+1) If $f$ is multilinear and $i \neq j$, show that for $h = (h_1, \dots h_k)$, with $h_l \in E_l$ we have
+\[
+\lim_{h \rightarrow 0} \frac{|f(a_1, \dots , h_i, \dots , h_j, \dots , a_k)|}{|h|} = 0.
+\]\\
+2) Prove that
+\[
+Df(a_1, \dots a_k)(x_1, \dots x_k) = \sum_{i=1}^k f(a_1, \dots , a_{i-1}, x, a_{i+1}, \dots , a_k).
+\]
+\end{problem}
+\begin{proof}
+1) Since $f(a_1, \dots , h_i, \dots , h_j, \dots , a_k)$ is bilinear, this is an immediate result of Part 2) of Problem 3.\newline
+
+2) This is a similar case to Part 3) of Problem 3. Using the definition of a derivative, we can expand the numerator in a similar fashion as in Part 3) of Problem 3. Then using Part 1) we obtain a similar result, with more terms. This limit finally goes to $0$ for the same reasons as in Part 3) of Problem 3.
+\end{proof}
+
+\begin{problem}
+Regard and $n \times n$ matrix as a point in the $n$-fold product $\mathbb{R}^n \times \dots \times \mathbb{R}^n$ by considering each row as a member of $\mathbb{R}^n$.\\
+1) Prove that $\det : \mathbb{R}^n \times \dots \times \mathbb{R}^n \rightarrow \mathbb{R}$ is differentiable and
+\[
+D(\det)(a_1, \dots , a_n)(x_1, \dots , x_n) = \sum_{i=1}^{n} \det (a_1, \dots , x_i, \dots , a_n)^T.
+\]\\
+2) If $a_{ij} : \mathbb{R} \rightarrow \mathbb{R}$ are differentiable and $f(t) = \det (a_{ij}(t))$, show that
+\[
+f'(t) = \sum_{j=1}^n \det
+\left (
+\begin{array}{ccc}
+a_{11}(t), & \dots & , a_{1n}(t)\\
+\vdots & & \vdots\\
+a_{j1}'(t), & \dots & , a_{jn}'(t)\\
+\vdots & & \vdots\\
+a_{n1}(t), & \dots & , a_{nn}(t)
+\end{array}
+\right ).
+\]\\
+3) If $\det (a_{ij}(t)) \neq 0$ for all $t$ and $b_1, \dots , b_n : \mathbb{R} \rightarrow \mathbb{R}$ are differentiable, let $s_1, \dots , s_n : \mathbb{R} \rightarrow \mathbb{R}$ be the functions such that $s_1 (t), \dots , s_n(t)$ are the solutions of the equations
+\[
+\sum_{j=1}^n a_{ji}(t)s_j(t) = b_i(t)
+\]
+for $i = 1, \dots , n$. Show that $s_i$ is differentiable and find $s_i'(t)$.
+\end{problem}
+\begin{proof}
+1) Since $\det$ is multilinear, this follows immediately from Problem 5, Part 2).\newline
+
+2) This is a direct consequence of Part 1) and the Chain Rule.\newline
+
+3) Using Cramer's Rule, we can write $s_i = \det (B_i) / \det (A)$ where $A = [a_{ij}(t)]$ and $B_i$ is the matrix obtained by replacing the $i$th column of $A$ with $(b_1(t), \dots , b_n(t))^T$. Taking the transpose of these matrices doesn't change the determinant, which allows us to use Part 2) and the quotient rule to find
+\[
+s_i'(t) = \frac{\det(B_i) \det'(A) - \det(A)\det'(B_i)}{\det^2(B_i)}.
+\]
+\end{proof}
+
+\begin{problem}
+Suppose $f : \mathbb{R}^n \rightarrow \mathbb{R}^n$ is differentiable and has a differentiable inverse $f^{-1} : \mathbb{R}^n \rightarrow \mathbb{R}^n$. Show that $(f^{-1})' (a) = (f' (f^{-1}(a)))^{-1}$.
+\end{problem}
+\begin{proof}
+Note that $f \circ f^{-1}(x) = x$. Differentiating both sides we have $f'(f^{-1}(x))(f^{-1})'(x) = 1$. Dividing gives the result.
+\end{proof}
+
+\begin{problem}
+A function $f : \mathbb{C} \rightarrow \mathbb{C}$ is complex differentiable at $z_0 \in \mathbb{C}$ if
+\[
+f'(z_0) = \lim_{z \rightarrow z_0} \frac{f(z) - f(z_0)}{z - z_0}
+\]
+exists. A function $f$ is analytic on an open set $U \subseteq \mathbb{C}$ if $f$ is differentiable at each point of $U$. Write $f(z) = u(x,y) + iv(x,y)$, where $u,v : \mathbb{R}^2 \rightarrow \mathbb{R}$, and $z = x + iy$.\\
+1) Suppose $f$ is analytic on an open set $U \subseteq \mathbb{C}$. Show that $u$ and $v$ are differentiable on $U$ considered as a subset of $\mathbb{R}^2$.\\
+2) Suppose $f$ is analytic on an open set $U \subseteq \mathbb{C}$. Show that $\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}$, and $\frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}$. These are the Cauchy-Riemann Equations.\\
+3) If $U \subseteq \mathbb{C}$ is an open set and $u$ and $v$ are in $C^1(U)$ and satisfy the Cauchy-Riemann Equations, show that $f(z) = u(x,y) + iv(x,y)$ is analytic on $U$.\\
+4) Find an example of a function $f : \mathbb{C} \rightarrow \mathbb{C}$ that is differentiable at one point, but not in a neighborhood of that point.
+\end{problem}
+\begin{proof}
+1) Let $z_0 = x_0 + i y_0 \in U$ and consider
+\begin{align*}
+f'(z_0)
+&= \lim_{z \rightarrow z_0} \frac{f(z) - f(z_0)}{z-z_0}\\
+&= \lim_{x + iy \rightarrow x_0 + iy_0} \frac{u(x,y) + iv(x,y) - u(x_0,y_0) + iv(x_0,y_0)}{x+iy - x_0+iy_0}\\
+&= \lim_{x + iy \rightarrow x_0 + iy_0} \frac{u(x,y) - u(x_0,y_0)}{x+iy - x_0+iy_0} + i\lim_{x + iy \rightarrow x_0 + iy_0} \frac{v(x,y) - v(x_0, y_0)}{x+iy - x_0+iy_0}.
+\end{align*}
+In $\mathbb{R}^2$ these last two terms correspond to
+\[
+\lim_{(x,y) \rightarrow (x_0,y_0)} \frac{u(x,y) - u(x_0,y_0)}{(x,y) - (x_0,y_0)}
+\]
+and
+\[
+\lim_{(x,y) \rightarrow (x_0,y_0)} \frac{v(x,y) - v(x_0,y_0)}{(x,y) - (x_0,y_0)}.
+\]
+Since these two limits exist, $u$ and $v$ are differentiable functions in $\mathbb{R}^2$.\newline
+
+2) We have
+\[
+Df = \frac{\partial f}{\partial x} \frac{\partial x}{\partial z} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial z} = \frac{1}{2} \left ( \frac{\partial f}{\partial x} - i \frac{\partial f}{\partial y} \right ).
+\]
+Substituting for $f(x+iy) = u(x,y) + iv(x,y)$ we have
+\[
+Df = \frac{1}{2} \left ( \left ( \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} \right ) - i \left (\frac{\partial u}{\partial y} + i \frac{\partial v}{\partial y} \right ) \right ) = \frac{1}{2} \left ( \left ( \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} \right ) + \left (-i\frac{\partial u}{\partial y} +  \frac{\partial v}{\partial y} \right ) \right ).
+\]
+Along the real axis $\partial f/\partial y = 0$, thus
+\[
+Df = \frac{1}{2} \left ( \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} \right ).
+\]
+Along the imaginary axis $\partial f/\partial x = 0$, thus
+\[
+Df = \frac{1}{2} \left ( -i \frac{\partial u}{\partial y} + \frac{\partial v}{\partial y} \right ).
+\]
+The value of the derivative must be the same in so
+\[
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}
+\]
+and
+\[
+\frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}.
+\]\newline
+
+3) Given that $u$ and $v$ satisfy the Cauchy-Riemann equations, then we must have
+\[
+\frac{1}{2} \left ( \left ( \frac{\partial u}{\partial x} - \frac{\partial v}{\partial y} \right ) + i \left (\frac{\partial u}{\partial y} +  \frac{\partial v}{\partial x} \right ) \right ) = \frac{1}{2} \left ( \left ( \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} \right ) + i \left (\frac{\partial u}{\partial y} + i\frac{\partial v}{\partial y} \right ) \right ) = \frac{1}{2} \left ( \frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y} \right ) = \frac{d f}{d \overline{z}}.
+\]
+But then this directly implies the differentiability of $f$ since the conjugate function is continuous.\newline
+
+4) Define $f(z) = x^2 + y^2 + ixy$ for $z = x + iy$. Then the Cauchy-Riemann equations are satisfied only at the origin. Thus, $f$ is differentiable at the origin, but not in any neighborhood of it.
+\end{proof}
+
+\begin{problem}
+Define $f : \mathbb{C} \rightarrow \mathbb{C}$, $f(z) = e^z$ as follows: $f(z) = f(x+iy) = e^x \cos y + ie^x \sin y$. Show that $f$ is analytic on $\mathbb{C}$.
+\end{problem}
+\begin{proof}
+We define $u(x,y) = e^x \cos y$ and $v(x,y) = e^x \sin y$. Note that
+\[
+\frac{\partial u}{\partial x} = e^x \cos y = \frac{\partial v}{\partial y}
+\]
+and
+\[
+\frac{\partial u}{\partial y} = -e^x \sin y = -\frac{\partial v}{\partial x}.
+\]
+By Part 3) of Problem 8 we see that $f$ is analytic on $\mathbb{C}$.
+\end{proof}
+
+\begin{problem}
+Let $z_0 \in \mathbb{C}$ and define $f : \mathbb{C} \rightarrow \mathbb{C}$ by $f(z) = \sum_{n=0}^{\infty} a_n (z-z_0)^n$, where $a_n \in \mathbb{C}$ for all $n$. Let $r > 0$ be the radius of convergence of this power series.\\
+1) Show that $f(z)$ is analytic on $B_r(z_0) = \{z \in \mathbb{C} \mid |z-z_0| < r\}$.\\
+2) Show that the radius of convergence of the power series for $f'(z)$ is equal to $r$.
+\end{problem}
+\begin{proof}
+1) Within the radius of convergence we can write
+\[
+f'(z) = \sum_{n=0}^{\infty} n a_n (z - z_0)^{n-1}
+\]
+which represents the term by term differentiation of $f(z)$.\newline
+
+2) We have $r = 1/\limsup{n \rightarrow \infty} |a_n|^{1/n}$. The series $\sum_{n=0}^{\infty} n a_n x^{n-1}$ will converge when the series $\sum_{n=0}^{\infty} n a_n x^n$ converges. Now consider $\limsup_{n \rightarrow \infty} |na_n|^{1/n} = \limsup_{n \rightarrow \infty} n^{1/n} |a_n|^{1/n} = \limsup_{n \rightarrow \infty} |a_n|^{1/n}$. Thus the radius of convergence of this series is the same as that of $f(z)$.
+\end{proof}
+
+\begin{problem}
+Let $f : \mathbb{R}^2 \rightarrow \mathbb{R}$ be defined by $f(x,y) = \sqrt{|x| + |y|}$. Find those points in $\mathbb{R}^2$ at which $f$ is differentiable.
+\end{problem}
+\begin{proof}
+We have $f$ is differentiable at all points such that $x \neq 0$ and $y \neq 0$. Suppose that $x = 0$. Then we have
+\[
+f'(x,y) = \lim_{h \rightarrow 0} \frac{|\sqrt{|y+h_2|} - \sqrt{|y|}}{\sqrt{h_1^2 + h_2^2}}.
+\]
+Based on the powers of the numerator and the denominator, we see that this limit doesn't exist. A similar case holds for $y = 0$.
+\end{proof}
+
+\begin{problem}
+Let $f : \mathbb{R}^n \rightarrow \mathbb{R}$ be a function such that $|f(x)| \leq ||x||^{\alpha}$ for some $\alpha > 1$. Show that $f$ is differentiable at $0$.
+\end{problem}
+\begin{proof}
+For $x = 0$ we have
+\[
+f'(x) = \lim_{h \rightarrow 0} \frac{|f(x + h) - f(x)|}{|h|} \leq \lim_{h \rightarrow 0} \frac{||h||^{\alpha}}{||h||}.
+\]
+Since $\alpha$ is strictly greater than $0$, this limit goes to $0$ and so $f$ is differentiable at $0$.
+\end{proof}
+
+\begin{problem}
+Let $f : \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}$ be defined by $f(x,y) = x \cdot y$.\\
+1) Show that $f$ is differentiable on $\mathbb{R}^n \times \mathbb{R}^n$.\\
+2) Show that $Df(a,b)(x,y) = ay + bx$.
+\end{problem}
+\begin{proof}
+Both parts follow from Problems 3 and 4.
+\end{proof}
+
+\end{flushleft}
+\end{document}

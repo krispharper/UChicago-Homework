@@ -1,0 +1,209 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27000\\
+
+October 15, 2009
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{problem}
+Give the terms of order $\leq 3$ in the power series $e^z \sin z$.
+\end{problem}
+\begin{proof}
+The terms of order $\leq 3$ for $e^z$ are $1$, $z$, $z^2/2$ and $z^3/6$. For $\sin z$ they are $z$ and $-z^3/6$. Making these into polynomials and multiplying them we find that the terms of order $\leq 3$ for $e^z \sin z$ are $z$, $z^2$ and $z^3/3$.
+\end{proof}
+
+\begin{problem}
+Determine the radius of convergence for the following power series.\\
+(a) $\sum n^n z^n$.\\
+(b) $\sum z^n/n^n$.\\
+(c) $\sum 2^n z^n$.\\
+(d) $\sum (\log n)^2 z^n$.\\
+(e) $\sum 2^{-n} z^n$.\\
+(f) $\sum n^2 z^n$.\\
+(g) $\sum \frac{n!}{n^n} z^n$.\\
+(h) $\sum \frac{(n!)^3}{(3n!)} z^n$.\\
+\end{problem}
+\begin{proof}
+(a) $r = (\limsup |n^n|^{1/n})^{-1} = (\limsup n)^{-1} = 0$.
+
+(b) $r = (\limsup |n^{-n}|^{1/n})^{-1} = (\limsup n^{-1})^{-1} = \infty$.
+
+(c) $r = (\limsup |2^n|^{1/n})^{-1} = (\limsup 2)^{-1} = 2$.
+
+(d) $r = (\limsup |(\log n)^2|^{1/n})^{-1} = (\limsup (\log n)^{2/n})^{-1} = 1$.
+
+(e) $r = (\limsup |2^{-n}|^{1/n})^{-1} = (\limsup 2^{-1})^{-1} = 2$.
+
+(f) $r = (\limsup |n^2|^{1/n})^{-1} = (\limsup n^{2/n})^{-1} = 1$.
+
+(g) $r = (\limsup |n!/n^n|^{1/n})^{-1} = (\limsup |e^{-n}|^{1/n})^{-1} = (\limsup e^{-1})^{-1} = e$.
+
+(h) $r = (\limsup |(n!)^3/(3n)|^{1/n})^{-1} = 27$.
+\end{proof}
+
+\begin{problem}
+Let $\sum a_n z^n$ and $\sum b_n z^n$ be two power series, with radius of convergence $r$ and $s$ respectively. What can you say about the radius of convergence of the series:\\
+(a) $\sum (a_n + b_n)z^n$.\\
+(b) $\sum a_n b_n z^n$.
+\end{problem}
+\begin{proof}
+(a) When we constructed formal power series we defined $\sum (a_n + b_n)z^n = \sum a_n z^n + \sum b_n z^n$. Therefore, the set of points for which the left side converges is given by the intersection of the two sets of convergence for the right side series. That is, if $t$ is the radius of convergence for $\sum (a_n + b_n) z^n$ then $t \leq \min (r,s)$.
+
+(b) Let $t$ be the radius of convergence of $\sum a_n b_n z^n$. Then
+\begin{align*}
+t
+&= (\limsup |a_n b_n|^{1/n})^{-1} \\
+&= (\limsup |a_n|^{1/n} |b_n|^{1/n})^{-1} \\
+&\geq (\limsup |a_n|^{1/n} \cdot \limsup |b_n|^{1/n})^{-1} \\
+&= (\limsup |a_n|^{1/n})^{-1} (\limsup |b_n|^{1/n})^{-1} \\
+&= rs.
+\end{align*}
+Thus the radius of convergence must be greater than or equal to the product of the two previous radii.
+\end{proof}
+
+\begin{problem}
+Show that the only complex numbers $z$ such that $\sin z = 0$ are $z = k \pi$, where $k$ is an integer. State and prove a similar statement for $\cos z$.
+\end{problem}
+\begin{proof}
+Using the power expansion of $e^z$ we see that
+\[
+e^{iz} = \sum i^n \frac{z^n}{n!}
+\]
+and
+\[
+e^{-iz} = \sum (-i)^n \frac{z^n}{n!} = \sum (-1)^n i^n \frac{z^n}{n!}.
+\]
+Then we must have
+\[
+\frac{e^{iz}-e^{-iz}}{2i} = \frac{1}{2i} \left ( \sum i^n \frac{z^n}{n!} - (-1)^n i^n \frac{z^n}{n!} \right ) = \sum (-1)^n \frac{z^{2n+1}}{(2n+1)!} = \sin z.
+\]
+A similar argument proves that $\frac{e^{iz} + e^{-iz}}{2} = \cos z$. Using this formula for $\sin z$ we have $\sin z = 0$ is equivalent to $e^{iz} = e^{-iz}$ or $e^{2iz} = 1$. Letting $z = x + iy$ we have $1 = e^{2iz} = e^{2ix}e^{-2y}$. Taking the modulus of both sides reveals that $e^{-2y} = 1$ and so $y = 0$. Therefore $e^{2ix} = 1$ where $x \in \mathbb{R}$. But we already know the solutions for this equation are $x = k \pi$ for an integer $k$. A similar argument holds showing that the only complex numbers $z$ for which $\cos z = 0$ are $z = k\pi/2$ for an integer $k$.
+\end{proof}
+
+\begin{problem}
+(a) Given an arbitrary point $z_0$, let $C$ be a circle of radius $r > 0$ centered at $z_0$, oriented counterclockwise. Find the integral
+\[
+\int_C (z-z_0)^n dz
+\]
+for all integers $n$, positive or negative.\\
+(b) Suppose $f$ has a power series expansion
+\[
+f(z) = \sum_{k = -m}^{\infty} a_k (z - z_0)^k,
+\]
+which is absolutely convergent on a disc of radius $> R$ centered at $z_0$. Let $C_R$ be the circle of radius $R$ centered at $z_0$. Find the integral
+\[
+\int_{C_R} f(z) dz.
+\]
+\end{problem}
+\begin{proof}
+(a) Let $n \neq -1$. Consider the function $g(z) = (z-z_0)^{n+1}/(n+1)$. Then we see that $g' = f$ and so $f$ is a continuous function with a primitive. Since $C$ is a closed path we see that
+\[
+\int_C (z-z_0)^n dz = 0.
+\]
+For the case $n = -1$ we can parameterize $C$ as $C = re^{i \theta} + z_0$. Then we have
+\[
+\int_C (z-z_0)^n dz = \int_0^{2 \pi} (re^{i \theta} + z_0 - z_0)^{-1}(ire^{i \theta}) d\theta = \int_0^{2 \pi} \frac{ire^{i \theta}}{re^{i \theta}} d \theta = \int_0^{2 \pi} i d\theta = 2 \pi i.
+\]
+
+(b) Let $f_n (z) = \sum_{-m}^{n} a_k(z - z_0)^k$. Then we know that the sequence $\int f_n$ converges to $\int f$. Since each term is a finite sum we can take the integral term by term. By part (a) we know that all terms are $0$ except for the case $k = -1$. Thus
+\[
+f(z) = \sum_{k = -m}^{\infty} a_k (z - z_0)^k = a_{-1}2 \pi i.
+\]
+\end{proof}
+
+\begin{problem}
+Find the integral of each one of the following functions over each one of the curves $\gamma_1 (t) = 1 + it$, $\gamma_2(t) = e^{-\pi i t}$, $\gamma_3(t) = e^{i \pi t}$, $\gamma_4(t) = 1 + it + t^2$.\\
+(a) $f(z) = z^3$.
+(b) $f(z) = \overline{z}$.
+(c) $f(z) = 1/z$.
+\end{problem}
+
+(a) $\gamma_1(t)$: $((1+i)^4-1)/4$, $\gamma_2(t)$: $0$, $\gamma_3(t)$: $0$, $\gamma_4(t)$: $((2+i)^4-1)/4$.
+
+(b) $\gamma_1(t)$: $i + 1/2$, $\gamma_2(t)$: $- \pi i$, $\gamma_3(t)$: $\pi i$, $\gamma_4(t)$: $2+2i/3$.
+
+(c) $\gamma_1(t)$: $\log \sqrt{2} + (i \pi)/4$, $\gamma_2(t)$: $- \pi i$, $\gamma_3(t)$: $\pi i$, $\gamma_4(t)$: $\log \sqrt{5} + i \arctan(1/2)$.
+
+\begin{problem}
+Let $\sigma$ be a vertical line segment, say parametrized by
+\[
+\sigma(t) = z_0 + itc, \text{ } -1 \leq t \leq 1,
+\]
+where $z_0$ is a fixed complex number, and $c$ is a fixed real number $> 0$. Let $\alpha = z_0 + x$ and $\alpha' = z_0 - x$, where $x$ is real positive. Find
+\[
+\lim_{x \rightarrow 0} \int_{\sigma} \left ( \frac{1}{z - \alpha} - \frac{1}{z - \alpha'} \right ) dz.
+\]
+\end{problem}
+\begin{proof}
+We have $\sigma(t) = z_0 + itc$ and $\sigma'(t) = ic$. Therefore we have
+\begin{align*}
+\lim_{x \rightarrow 0} \int_{\sigma} \left ( \frac{1}{z - \alpha} - \frac{1}{z - \alpha'} \right ) dz 
+&= \lim_{x \rightarrow 0} \int_{-1}^{1} \left ( \frac{1}{itc - x} - \frac{1}{itc + x} \right ) (ic) dt \\
+&= \lim_{x \rightarrow 0} (ic) \int_{-1}^{1} \frac{2x}{-(tc)^2 - x^2} dt \\
+&= \lim_{x \rightarrow 0} \frac{-2ic}{x} \int_{-1}^{1} \frac{1}{\left ( \frac{tc}{x} \right )^2 + 1} dt \\
+&= \lim_{x \rightarrow 0} \left. \frac{-2ic}{x} \frac{x}{c} \arctan \left (\frac{tc}{x} \right ) \right |_{-1}^{1} \\
+&= \lim_{x \rightarrow 0} -4i\arctan(c/x) \\
+&= -4i \left ( \frac{\pi}{2} \right ) \\
+&= -2 \pi i.
+\end{align*}
+\end{proof}
+
+\begin{problem}
+Let $F$ be a continuous complex-valued function on the interval $[a.b]$. Prove that
+\[
+\left | \int_a^b F(t) dt \right | \leq \int_a^b |F(t)| dt.
+\]
+\end{problem}
+\begin{proof}
+Let $P = [a = a_0, a_1, \dots , a_n = b]$ be a partition of $[a,b]$ such that $\max (a_{i+i}-a_i) < \delta$. Then we have
+\[
+\left | \int_a^b F - \sum_{k=0}^{n-1} F(a_k)(a_{k+1} - a_k) \right | < \varepsilon
+\]
+and
+\[
+\left | \int_a^b |F| - \sum_{k=0}^{n-1} |F(a_k)|(a_{k+1} - a_k) \right | < \varepsilon.
+\]
+Due to the triangle inequality we can write
+\[
+\left | \int_a^b F(t) dt \right | \leq \left | \sum_{k=0}^{n-1} F(a_k)(a_{k+1}-a_k) \right | + \varepsilon \leq \sum_{k=0}^{n-1} |F(a_k)|(a_{k+1}-a_k) + \varepsilon.
+\]
+Combining this with the second equation we get
+\[
+\left | \int_a^b F(t) dt \right | \leq \sum_{k=0}^{n-1} |F(a_k)|(a_{k+1} - a_k) + \varepsilon \leq \int_a^b |F(t)|dt + 2\varepsilon.
+\]
+Since this is true for arbitrary epsilon, the inequality follows.
+\end{proof}
+
+\begin{problem}
+Let $A, B \subseteq \mathbb{C}$ be such that $A$ is compact, $B$ is closed and $A \cap B = \emptyset$. Prove that the distance of $A$ and $B$ is strictly positive.
+\end{problem}
+\begin{proof}
+First consider the case of the distance $d(z, B)$ between a point $z$ and a closed set $B$. Suppose  $d(z, B) = 0$. Then any open set containing $z$ must contain points of $B$, otherwise we could find a disk around $z$ with some radius $r$ and this would give a nonzero distance between $z$ and $B$. Therefore, $z$ is an accumulation point of $B$, but $B$ is closed, and so $z \in B$. Now consider the case for $A$ compact and $B$ closed. If $z \in A$ then $z \notin B$ and so $d(z, B) > 0$, by the above argument. Now for each point $z \in A$ let $r_z = (1/2) d(z,B)$ and consider the disk $D_{r_z}(z)$. Since $A$ is compact, there are finitely many $z_k \in A$ such that $A \subseteq D_{r_{z_1}}(z_1) \cup \dots \cup D_{r_{z_n}}(z_n)$. Now let $r = (1/2) \min (r_{z_1}, \dots , r_{z_n})$. Now for an arbitrary point $z \in D$, $z \in D_{r_{k}}(z_k)$ for some $k$ and since $D_{2r_k}(z_k)$ contains no points of $B$, we have $0 < r \leq (1/2)r_k \leq |z-z'|$ for some $z' \in A$. This shows that $0 < r \leq \inf_{z' \in A, z \in B} |z-z'| \leq d(A,B)$.
+\end{proof}
+
+\begin{problem}
+(a) Let $f : U \rightarrow \mathbb{C}$ be continuous, with $U = \mathbb{C} \backslash \{0\}$, and assume that the integral of $f$ along the boundary of any triangle lying entirely in $U$ is $0$. Show that $f$ has a primitive on $U \backslash \mathbb{R}^-$.\\
+(b) Find all such primitives $F$ of $f$.\\
+(c) Give an example of $f$, $F$ as in (a) with $\lim_{\varepsilon \rightarrow 0} F(-1 + i \varepsilon) \neq \lim_{\varepsilon \rightarrow 0} F(-1 - i \varepsilon)$ (so $F$ cannot be extended on all of $U$.
+\end{problem}
+\begin{proof}
+(a) Since $f$ is defined for all $z_0 \neq 0$, and has integral of $0$ around the boundary of any triangle in $U$, we know there exists a primitive $F(z) = \int_{z_0}^z f$. Note that this implies that $F$ will not be defined for $z \in \mathbb{R}^-$.
+
+(b) Let $z_0$ be a point in $U$. Then for $z \in U$, $F(z) = \int_{z_0}^{z} f$.
+
+(c) Let $f = 1/z$ and $F = \log z$. Then $\lim_{\varepsilon \rightarrow 0} \log (-1 + i \varepsilon) \neq \lim_{\varepsilon \rightarrow 0} (-1 - i \varepsilon)$.
+\end{proof}
+
+\end{document}

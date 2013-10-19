@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27300\\
+
+February 25, 2011
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{problem}
+Consider the linear initial-value problem $w' = a(z)w + b(z)$, $w(0) = 0$. Suppose that the functions $a$ and $b$ are analytic in a disk centered at the origin and of radius $R$. Compare the estimate of equation (4.32) with that which know from the linear theory.
+\end{problem}
+\begin{proof}
+Note that in equation (4.29), $\rho$ and $\sigma$ are picked to be within the radius of convergence for $f(z,w)$. In our case this corresponds to picking two points in $(0,R)$. Then since $\rho < R$ and $\rho \exp(-\sigma/2M\rho) > 0$, we know $r < R$ in equation (4.32). So in this case we're guaranteed a radius of convergence at least as large as some $r < R$. On the other hand, in the linear case we're guaranteed a radius of convergence at least as large as $R$, so the later is a stronger statement.
+\end{proof}
+
+\begin{problem}
+Show that, for any complex constant $\mu$, the functions $z^{\mu}$ and $z^{\mu} \ln z$ are linear independent over the complex numbers.
+\end{problem}
+\begin{proof}
+Suppose we have $c_1z^{\mu} + c_2z^{\mu} \ln z = 0$. Differentiate to get
+\[
+0 = c_1 \mu z^{\mu - 1} + c_2 \mu z^{\mu - 1} \ln z + c_2 z^{\mu - 1} = z^{\mu - 1}(c_1 \mu + c_2(\mu \ln z + 1)).
+\]
+Assuming $z \neq 0$, we can divide by $z^{\mu}$ in the first equation and $z^{\mu - 1}$ in the second to obtain $0 = c_1 + c_2 \ln z$ and $0 = c_1 \mu + c_2(\mu \ln z + 1)$. If $\mu = 0$ then the functions $1$ and $\ln z$ are clearly linearly independent since $\ln z$ is nonconstant. Thus we may assume otherwise and solve for $c_1$ as $c_1 = -c_2 \ln z + c_2/\mu$. Putting this into the first equation gives $c_2/\mu = 0$ and $c_2 = 0$. Using the first equation again we have $c_1 = 0$ as well so the two functions are linearly independent.
+\end{proof}
+
+\begin{problem}
+Find the influence function for the differential equation
+\[
+u'' + 2x^{-1}u' - 2x^{-2}u = r(x)
+\]
+on the interval $[1, \infty]$ of the real axis.
+\end{problem}
+
+The indicial equation is given by $\mu^2 + (2 - 1) \mu - 2 = 0$, which has roots $\mu = -2$ and $\mu = 1$. Then the influence function is defined as
+\begin{align*}
+G(z,s)
+&=
+\begin{cases}
+\frac{u_1(s) u_2(z) - u_2(s) u_1(z)}{W(u_1,u_2;s)} & s < z\\
+0 & s \geq z
+\end{cases}\\
+&=
+\begin{cases}
+\frac{zs^{-2} - sz^{-2}}{W(u_1,u_2;s)} & s < z\\
+0 & s \geq z
+\end{cases}
+\end{align*}
+where $W(u_1,u_2;s) = \exp \left ( - 2\int_{z_0}^z \zeta^{-1} d \zeta \right ) = K z^2$.
+
+\begin{problem}
+In equation (5.1) put $p(z) = 1/z^2$ and verify that the solution $w(z)$ cannot have the form given in equation (5.6).
+\end{problem}
+\begin{proof}
+Making the substitution in equation (5.1) gives $w(z) + w'(z)/z^2 = 0$. If we write $w(z) = z^c \sum_{k=0}^{\infty} a_k z^k$ then
+\[
+z^{-2} w'(z) = z^{-2} \sum_{k=0}^{\infty} (k+c) a_k z^{k+c-1} = \sum_{k=0}^{\infty} (k+c) a_k z^{k+c-3}.
+\]
+Since $w(z) + w'(z)/z^2 = 0$, we must have $a_k + (k+c) a_{k+3} = 0$. Then $a_k/a_{k+3} = -(k+c)$. But this means $w(z)$ is only convergent at $z = 0$.
+\end{proof}
+
+\begin{problem}
+Find the indicial equation for Bessel's equation (5.10) and find the indices. For the case when $n$ is a non-negative integer, obtain the series solution for the index with maximum real part. Do the indices differ by an integer?
+\end{problem}
+
+In this case $P_0 = 1$ and $Q_0 = -n^2$ so the indicial equation is $I(t) = t(t-1) + t - n^2 = t^2 - n^2 = (t+n)(t-n)$. The solutions are thus $\pm n$ which clearly differ by an integer.
+
+The larger root of the indicial equation is $\mu = n$. Then $I(\mu + m) = m^2 + 2mn$. Now we can use the recursion relation
+\[
+a_m = \frac{-1}{I(\mu + m)} \sum_{k=0}^{m-1}((\mu + k) P_{m-k} + Q_{m-k}) a_k
+\]
+to find $a_m$. Note that we can arbitrarily pick $a_0 \neq 0$. Further, $P_0 = 1$ and $P_k = 0$ for all $k \neq 0$ and $Q_2 = 1$ and $Q_k = 0$ for all $k \neq 0$, $k \neq 2$. Using this we can deduce that
+\[
+a_m = \frac{-a_{m-2}}{m^2 + 2mn}
+\]
+
+\begin{problem}
+Suppose the coefficients of equation (5.7) are analytic and single-valued in a punctured neighborhood of the origin. Suppose it is known that the function $w(z) = f(z)\ln z$ is a solution, where $f$ is analytic and single-valued in the punctured neighborhood. Deduce that $f$ is also a solution.
+\end{problem}
+\begin{proof}
+Note that $w'(z) = f'(z) \ln z + f(z)/z$ and $w''(z) = f''(z) \ln z + f'(z)/z + f'(z)/z - f(z)/z^2$. Then
+\begin{align*}
+0
+&= w'' + p(z)w' + q(z)w\\
+&= f''(z) \ln z + 2f'(z)/z - f(z)/z^2 + p(z)f'(z) \ln z + p(z)f(z)/z + q(z)f(z)\ln z\\
+&= \ln z (f''(z) + p(z) f'(z) + q(z) f(z)) + 2 f'(z)/z - f(z)/z^2 + p(z)f(z)/z.
+\end{align*}
+But now note that we must have the term inside the parentheses equal to $0$ since the terms outside of it must evaluate to $0$. This means precisely that $f$ satisfies the equation.
+\end{proof}
+
+\begin{problem}
+Find the recursion relation for the coefficients $\{b_k\}$ in the power series expansion of the function $f_2$ appearing in equation (5.18). What determines the constant $C$?
+\end{problem}
+
+We have $w_2 = z^{\mu_2} f_2(z) + C w_1(z) \ln(z)$. Then $w_2'(z) = \mu_2 z^{\mu_2 -1} f_2(z) + z^{\mu} f_2'(z) + C w_1'(z) \ln(z) + C w_1(z)/z$ and
+\[
+w_2''(z) = \mu_2(\mu_2 - 1) z^{\mu_2 - 2} f_2(z) + 2\mu_2 z^{\mu_2 - 1}f_2'(z) + z^{\mu_2} f_2''(z) + Cw_1''(z) \ln(z) + 2Cw_1'(z)/z - Cw_1(z)/z^2.
+\]
+Since $z^2 w_2'' + zP(z)w_2' + Q(z)w_2 = 0$, we can now plug the above values in to get a recursion relation. Note that $f_2(z) = \sum_{k=0}^{\infty} b_k z^k$. Then we have
+\begin{align*}
+0
+&= z^2 w_2''(z) + zP(z)w_2'(z) + Q(z)w_2(z)\\
+&= \mu_2(\mu_2 - 1) z^{\mu_2 - 2} \sum_{k=0}^{\infty} b_k z^{k+2} + 2\mu_2 z^{\mu_2 - 1} \sum_{k=0}^{\infty} b_{k+1}(k+1)z^{k+2} + z^{\mu_2} \sum_{k=0}^{\infty} b_{k+2}(k+2)(k+1)z^{k+2}\\
+&~~~~ + z^2 C w_1''(z) \ln(z) + 2 z C w_1'(z) - C w_1(z) + \mu_2 z^{\mu_2 - 1} \left ( \sum_{k=0}^{\infty} b_{k+1}z^{k+2} \right ) \left ( \sum_{k=-2}^{\infty} P_{k+2} z^{k+2} \right )\\
+&~~~~ + z^{\mu_2} \left ( \sum_{k=0}^{\infty} b_k k z^k \right ) \left ( \sum_{k=0}^{\infty} P_k z^k \right ) + C z w_1'(z) \ln(z) P(z) + C w_1(z) P(z) + z^{\mu_2} \left ( \sum_{k=0}^{\infty} b_k z^k \right ) \left ( \sum_{k=0}^{\infty} Q_k z^k \right )\\
+&~~~~ + C w_1(z) \ln(z) Q(z).
+\end{align*}
+Now we can use the expansion of $w_1(z) = \sum_{k=0}^{\infty} c_k z^k$ and find the coefficients of the expanded and combined power series. Since each term must be zero, we can solve for the one $b_{k+2}$ term to get a recursion relation. The constant $C$ is $c_n$ in the power series expansion for $\psi/f_1^2$, where $\psi(z) = z^{P_0} W(z)$. So $C$ depends on the Wronskian, $P_0$ and $f_1 = z^{- \mu_1} w_1(z)$.
+
+\begin{problem}
+Consider the equation
+\[
+(1-z) z^2 w'' + (z-4) z w' + 6w = 0.
+\]
+(a) Verify that this equation has a regular singular point at the origin.\\
+(b) Find the indicial equation and the indices relative to this point.\\
+(c) For the index with the greater real part, find the recursion relation for the coefficients in the series solution.\\
+(d) Determine whether the second solution is given purely by a series solution (as in equation (5.12)) or involves in addition a logarithmic term (as in equation (5.18)).
+\end{problem}
+
+(a) Divide by $(1-z)$ to get $z^2 w'' + ((z-4)/(1-z)) z w' + 6/(1-z) = 0$. Since $(z-4)/(1-z)$ and $6/(1-z)$ are both analytic, this equation is of the form $z^2 w'' + zP(z)w' + Q(z)w = 0$, with $P$ and $Q$ analytic on a punctured disk, so the equation must have a regular singular point at the origin.
+
+(b) The indicial equation is $I(\mu) = \mu(\mu - 1) + P_0 \mu + Q_0 = \mu(\mu - 1) - 4 \mu + 6 = 0$ This factors as $(\mu - 2)(\mu - 3)$.
+
+(c) The index with greater real part is $\mu = 3$. Then $I(\mu + n) = n^2 + n$. Further note that $Q(z) = \sum_{k=0}^{\infty} 6z^k$ and $P(z) = -4 + \sum_{k=1}^{\infty} -3z^k$. Then we can use the following formula for the recursion relation. We have
+\[
+a_n = \frac{-1}{I(\mu + n)} \sum_{k=0}^{n-1} ((\mu + k) P_{n-k} + Q_{n-k}) a_k = \frac{-1}{n^2 + n} \sum_{k=0}^{n-1} ((3 + k) (-3) + 6) a_k = \frac{3}{n^2 + n} \sum_{k=0}^{n-1}(1-k)a_k.
+\]
+
+(d) Since the zeros of the indicial equation differ by an integer, the second solution has the structure of equation (5.18) and has a logarithmic term in it.
+
+The following four problems relate to singular points at infinity. These are investigated by making the transformation $t = 1/z$ and investigating the singular points at $t = 0$. In each case determine whether the point in question is a point of analyticity, a regular singular point or an irregular singular point. In the case of a regular singular point, find the indices.
+
+\begin{problem}
+Bessel's equation $z^2 w'' + z w' + (n^2 - z^2)w = 0$ where $n$ is a constant.
+\end{problem}
+
+Making the substitution $t = 1/z$ we now have $w''/t^2 + w'/t + (n^2 - 1/t^2) w = 0$. Multiply through by $t^4$ to obtain $t^2 w''+ t^3 w' + (n^2 t^4 - t^2) w = 0$. We now see that $0$ is a regular singular point, since we can write this as $t^2 w'' + tP(t)w' + Q(t)w = 0$ where $P(t) = t^2$ and $Q(t) = n^2t^4 - t^2$ are both analytic. The indices will be given by solving the equation $I(t) = t(t-1) + P_0t + Q_0 = t(t-1) + 0 + 0 = t^2 - t$. This has solutions $t = 0$ and $t = 1$.
+
+\begin{problem}
+Legendre's equation $(1-z^2) w'' - 2z w' + \lambda w = 0$ where $\lambda$ is a constant.
+\end{problem}
+
+Making the substitution $t = 1/z$ we now have $(1 - 1/t^2) w'' - 2w'/t + \lambda w = 0$. If we divide by $(1 - 1/t^2)$ then we have $w'' - 2w'/(t(1 - 1/t^2)) + \lambda w/(1 - 1/t^2) = 0$. At this point we note that $-2/(t^2(1 - 1/t^2)) = -2/(t^2 - 1) = 2/(1 - t^2)$ and $\lambda/(t^2(1 - 1/t^2)) = \lambda/(t^2 - 1)$ are both analytic functions. Letting $P(t) = 2/(1 - t^2)$ and $Q(t) = \lambda/(t^2 - 1)$ we can write the equation as $t^2 w'' + tP(t)w' + Q(t)w = 0$. Thus $0$ is a regular singular point. To find the indices we solve the equation $I(t) = t(t-1) + P_0t + Q_0 = t^2 + t - \lambda$, where we've used the power series expansions for $P$ and $Q$ to fill in $P_0$ and $Q_0$. This has solutions $t = (-1 \pm \sqrt{1 + 4 \lambda})/2$.
+
+\end{document}

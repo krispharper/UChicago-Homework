@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{10pt}
+\renewcommand{\textheight}{609pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\normal}{\unlhd}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25700\\November 4, 2009\\}
+\chead{Quiz 3\\}
+
+\begin{problem}
+If a subgroup $G$ of $S_n$ contains an odd permutation, then the order of $G$ is even and exactly half of the elements in $G$ are odd permutations.
+\end{problem}
+\begin{proof}
+Let $\sigma \in G$ be an odd permutation. Then we know the cycle decomposition of $\sigma$ contains an odd number of cycles of even length. In particular, there is at least one cycle of even length. The order of $\sigma$ is the least common multiple of the lengths of all the cycles in its cycle decomposition. Therefore $|\sigma|$ is even which means $|\langle \sigma \rangle|$ is even. By Lagrange's Theorem, an even number divides $|G|$ and thus $|G|$ is even.
+
+Now note that $\epsilon : G \to Z_2$ is a homomorphism. Furthermore, since $G$ is a subgroup, $(1) \in G$ and $\epsilon((1)) = 1$. Since $\epsilon(\sigma) = -1$ we know that $\epsilon(G) = Z_2$, that is, $\epsilon$ is surjective. Now note that $\ker \epsilon$ is the set of even permutations in $G$ and by the First Isomorphism Theorem, $G/\ker \epsilon \cong Z_2$. That is $|G : \ker \epsilon| = 2$ which means precisely half of $G$ is made up of even permutations. This leaves the remaining half to be odd permutations.
+\end{proof}
+
+\begin{problem}
+If $p$ is prime and $G$ has order a power of $p$ ($p$ to the $a$, some $a$), and if $N$ is a nontrivial normal subgroup of $G$, show that $N$ intersects $Z(G)$ nontrivially.
+\end{problem}
+\begin{proof}
+Let $G$ act on $N$ by conjugation. Since $N \normal G$, this satisfies the axioms for group actions. We can then write the class equation for $N$ as
+\[
+|N| = |N \cap Z(G)| + \sum_{i = 1}^{r} |G : C_G(g_i)|
+\]
+where $C_G(g_i)$ are proper subgroups of $G$. Now from Lagrange's Theorem $|N| = p^b$ for some $1 \leq b \leq a$ and additionally, $|C_G(g_i)| = p^{c_i}$ for some $1 \leq c_i < a$ (or such $C_G(g_i)$ don't exist for all $i$ in the case $a = 1$). This means $p \mid |N|$ and $p \mid \sum_{i=1}^{r} |G : C_G(g_i)|$ which forces $p \mid |N \cap Z(G)|$. Noting that $N \cap Z(G)$ is nonempty since $1 \in N \cap Z(G)$, we have $N \cap Z(G) \neq 1$.
+\end{proof}
+
+\end{document}

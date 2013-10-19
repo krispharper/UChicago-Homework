@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 12: Uniform Continuity\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{Let $f$ be a real function and let $a \in \mathbb{R}$. We say that $f$ approaches $a$ at $l$ from the left, or
+\[
+\lim_{x \rightarrow a^-} f(x) = l
+\]
+if for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ with $0 < a - x < \delta$ we have $|l - f(x)| < \varepsilon$. We say that $f$ approaches $a$ at $l$ from the right, or
+\[
+\lim_{x \rightarrow a^+} f(x) = l
+\]
+if for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ with $0 < x - a < \delta$ we have $|l - f(x)| < \varepsilon$.}\newline
+
+\textbf{Definition 2}
+\textsl{A real function $f \; : \; [a;b] \rightarrow \mathbb{R}$ is continuous on $[a;b]$ if it is continuous for every $x \in (a;b)$, $\lim_{x \rightarrow a^+} f(x) = f(a)$ and $\lim_{x \rightarrow b^-} f(x) = f(b)$.}\newline
+
+\textbf{Theorem 3}
+\textsl{Let $f$ be a real function and let $a \in \mathbb{R}$. Then $\lim_{x \rightarrow a} f(x) = l$ if and only if $\lim_{x \rightarrow a^+} f(x) = l$ and $\lim_{x \rightarrow a^-} f(x) = l$.}
+\begin{proof}
+Suppose that $\lim_{x \rightarrow a^+} f(x) = l$ and $\lim_{x \rightarrow a^-} f(x) = l$. Then for all $\varepsilon > 0$ there exist $\delta_1 > 0$ and $\delta_2$ such that for all $x \in \mathbb{R}$ when $0 < a - x < \delta_1$ and $0 < x - a < \delta_2$ we have $|l - f(x)| < \varepsilon$. Let $\delta = \min (\delta_1 , \delta_2)$. Then for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta$ we have $|l - f(x)| < \varepsilon$. Thus $\lim_{x \rightarrow a} f(x) = l$.\newline
+
+Conversely, assume $\lim_{x \rightarrow a} f(x) = l$. Then for all $\varepsilon > 0$ there exists some $\delta > 0$ such that for all $x \in \mathbb{R}$ with $0 < |a-x| < \delta$ we have $|l-f(x)| < \varepsilon$. But then for all $x \in \mathbb{R}$ with $0 < x - a < \delta$ we have $|l-f(x)| < \varepsilon$ and so $\lim_{x \rightarrow a^+} f(x) = l$ and likewise for all $x \in \mathbb{R}$ with $0 < a - x < \delta$ we have $|l-f(x)| < \varepsilon$ and so $\lim_{x \rightarrow a^-} f(x) = l$.
+\end{proof}
+
+\textbf{Definition 4}
+\textsl{A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is increasing if for all $x \leq y$ we have $f(x) \leq f(y)$.}\newline
+
+\textbf{Theorem 5}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be an increasing real function. Then for all $a \in \mathbb{R}$ the limits $\lim_{x \rightarrow a^+} f(x)$ and $\lim_{x \rightarrow a^-} f(x)$ both exist.}
+\begin{proof}
+Let $L= \{f(x) \mid a < x\}$. Since $f$ is defined for all $x>a$, $L \neq \emptyset$ and since $L$ is bounded below by $f(a)$, $\inf L$ exists. For all $\varepsilon > 0$ we have $\varepsilon + \inf L > \inf L$. So there exists some $y \in L$ such that $y \leq \inf L + \varepsilon$. Since $y \in L$, there exists some $x' > a$ such that $y = f(x')$. For $\varepsilon > 0$ let $\delta = x' - a > 0$. Now consider all $x \in \mathbb{R}$ such that $0 < x-a < x' -a$. Then we have $x<x'$ so $f(x) < f(x') \leq \inf L + \varepsilon$. So we have $|f(x) - \inf L| < \varepsilon$ when $0 < x-a < x'-a = \delta$. Thus $\inf L$ is the right hand limit of $f$. A similar proof holds for the left hand limit.
+\end{proof}
+
+\textbf{Theorem 6 (Intermediate Value Theorem)}
+\textsl{Let $f \; : \; [a;b] \rightarrow \mathbb{R}$ be continuous. Then $f$ takes on every value between $f(a)$ and $f(b)$ on $[a;b]$.}
+\begin{proof}
+Let $f \; : \; [a;b] \rightarrow \mathbb{R}$ be continuous. Without loss of generality suppose that $f(a)<f(b)$. For all $y \in (f(a);f(b))$ let $g(x)=f(x)-y$. We have $f(a) < y < f(b)$ for all $y \in (f(a);f(b))$ and so $g(a) < 0$ and $0 < g(b)$. But then for all $y \in (f(a);f(b))$ there exists $c \in [a;b]$. Such that $g(c)=f(c)-y=0$. Then $f(c)=y$ and so for all $y \in (f(a);f(b))$ there exists $x \in [a;b]$ such that $f(x)=y$.
+\end{proof}
+
+\textbf{Theorem 7 (Positive Continuous Functions are Bounded Away From Zero)}
+\textsl{Let $f \; : \; [a;b] \rightarrow \mathbb{R}$ be continuous. If $f(x) > 0$ for all $x \in [a;b]$  then there exists $C > 0$ such that $f(x) > C$ for all $x \in [a;b]$.}
+\begin{proof}
+From Theorem 10.8 we know that there exists some $c \in [a;b]$ such that $f(c) \leq f(x)$ for all $x \in [a;b]$. Let $C = f(c)/2$. Then we have $C < f(x)$ for all $x \in [a;b]$.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{A real function $f \; : \; [a;b] \rightarrow \mathbb{R}$ is continuous on $[a;b]$ if and only if for all $x \in [a;b]$ and for all $\varepsilon > 0$ there exists $\delta(x, \varepsilon) > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta(x, \varepsilon)$ we have $|f(x)-f(y)| < \varepsilon$.}
+\begin{proof}
+Let $f$ be continuous on $[a;b]$. Then for all $y \in (a;b)$ and all $\varepsilon > 0$ there exists $\delta > 0$ so that for all $x \in \mathbb{R}$ when $|y-x| < \delta$ we have $|f(y) - f(x)| < \varepsilon$. We can then confine our delta so that our definition holds only for $x \in [a;b]$. Let $\delta' = \min (\delta, |y-b|, |y-a|)$. But also $\lim_{x \rightarrow a^+} f(x) = f(a)$ so for all $\varepsilon > 0$ there exists $\delta > 0$ so that for all $x \in \mathbb{R}$, if $0 < x - a < \delta$ we have $|f(a) - f(x)| < \varepsilon$. But if $0 < x-a < \delta$ then $|a-x| < \delta$. Again truncate the $\delta$ so that $\delta' = \min (\delta, b)$. A similar statement can be said for the left hand limit and $f(b)$. Thus we have for all $y \in [a;b]$ and all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in [a;b]$ with $|y-x| < \delta$ we have $|f(y)-f(x)| < \varepsilon$.\newline
+
+Conversely suppose that for all $x \in [a;b]$ and for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta$ we have $|f(x) - f(y)| < \varepsilon$. Then the statement is true for all $x \in (a;b)$ as well. Note that for continuity we need to be able to choose $y$'s from $\mathbb{R}$, not just $[a;b]$, but as we've shown we can make equivalent statements about continuity for closed intervals if we restrict $\delta$ to be within the confines of $[a;b]$. We also have for $x=a$, there exists $\delta > 0$ such that for all $y \in [a;b]$ with $|a-y| < \delta$ we have $|f(a) - f(y)| < \varepsilon$. But if $|a-y| < \delta$ then $x-a < \delta$. So $\lim_{x \rightarrow a^+} f(x) = f(a)$. A similar statement can be made about $f(b)$. So we have these conditions implying continuity.
+\end{proof}
+
+\textbf{Exercise 9}
+\textsl{Calculate some good $\delta(x, \varepsilon)$ for the following real functions:
+1) $f(x) = 17$ ($x \in \mathbb{R}$)
+2) $f(x) = x$ ($x \in \mathbb{R}$)
+3) $f(x) = x^2$ ($x \in \mathbb{R}$)
+4) $f(x) = 1/x$ ($x \in \mathbb{R} \backslash \{0\}$).}\newline
+
+1) $\delta$ can be any value because for all $x \in \mathbb{R}$ we have $f(x)=17$. Then for all $a \in \mathbb{R}$ when $|a-x| < \delta$ we have $|f(a)-f(x)|=0<\varepsilon$.\newline
+
+2) Let $\delta=\varepsilon$. Then for all $a \in \mathbb{R}$ if $|a-x| < \delta = \varepsilon$ we have $|f(a) - f(x)| = |a-x| < \varepsilon = \delta$.\newline
+
+3) Let $\delta=\sqrt{\varepsilon}$. Then for all $a \in \mathbb{R}$ if $|a-x| < \delta$ we have $|f(a)-f(x)| = |a^2-x^2| < \varepsilon$.\newline
+
+4) Let $\delta=1/\varepsilon$. Then for all $a \in \mathbb{R}$ if $|a-x| < \delta=1/\varepsilon$ we have $|f(a)-f(x)| = |1/a - 1/x| < \varepsilon$.\newline
+
+\textbf{Definition 10}
+\textsl{Let $f$ be a real function and let $A$ be a subset of the domain of $f$. Then $f$ is uniformly continuous on $A$ if for all $\varepsilon > 0$ there exists $\delta(\varepsilon)>0$ such that for all $x,y \in A$ with $|x-y| < \delta(\varepsilon)$ we have $|f(x) - f(y)| < \varepsilon$.}\newline
+
+\textbf{Theorem 11 (Continuous Functions on Closed Intervals are Uniformly Continuous)}
+\textsl{Let $f \; : \; [a;b] \rightarrow \mathbb{R}$ be continuous. Then $f$ is uniformly continuous on $[a;b]$.}
+\begin{proof}
+Let $\varepsilon > 0$. Then for all $x \in [a;b]$ there exists $\delta_x > 0$ such that for all $y \in [a;b] \cap (x - \delta ; x + \delta)$ we have $f(y) \in (f(x) - \varepsilon ; f(x) + \varepsilon)$. Create an open cover for $[a;b]$ using $(x - \delta_x ; x + \delta_x)$ for all $x \in [a;b]$. Then $[a;b]$ is compact so there exist finitely many of these regions which will cover $[a;b]$. Choose the region with the smallest $\delta_x$ and call it $\delta$, note that $\delta$ will work for all the other regions in our cover since it is smaller than all of them. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x,y \in [a;b]$ if $|x-y| < \delta$ then $|f(x)-f(y)| < \varepsilon$.
+\end{proof}
+
+\textbf{Theorem 12}
+\textsl{Let $f \; : \; [a;b] \rightarrow \mathbb{R}$ be continuous and let $\varepsilon > 0$. For $x \in [a;b]$ let
+\[
+\Delta(x) = \sup \{\delta \mid \text{for all $y \in [a;b]$ with $|x-y| < \delta$, $|f(x)-f(y)| < \varepsilon$}\}.
+\]
+Then $\Delta$ is a continuous function of $x$.}
+
+\end{flushleft}
+\end{document}

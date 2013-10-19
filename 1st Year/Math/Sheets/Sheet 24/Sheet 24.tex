@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 24: Planar Graphs\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A planar graph is a graph that can be drawn on the plane so that no edges intersect.}\newline
+
+\textbf{Exercise 2}
+\textsl{Find a graph that is not planar.}
+\begin{proof}
+Take the complete graph defined by five vertices in the shape of a regular pentagon.
+
+\textbf{Exercise 3}
+\textsl{A planar graph is a tree if and only if it has one face.}
+\begin{proof}
+If a graph is a tree then there are no cycles and so there are no enclosed faces. This leaves the only face to be the infinite face. Conversely suppose that a planar graph only has the infinite face. Then it has no cycles.
+
+\textbf{Theorem 4}
+\textsl{Let $V$ denote the set of vertices, $E$ denote the set of edges and $F$ denote the set of faces. Let $v = |V|$, $e = |E|$ and $f = |F|$. Then in a connected planar graph on at least $3$ vertices, we have $3f \leq 2e$.}
+
+\textbf{Theorem 5 (Euler's Formula)}
+\textsl{In a connected planar graph we have 

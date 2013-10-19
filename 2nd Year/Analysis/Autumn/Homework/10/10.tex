@@ -1,0 +1,286 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{**}{** Problem}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20700\\
+
+December 9, 2008
+\end{flushright}
+
+\begin{center}
+Homework 10
+\end{center}
+
+\begin{flushleft}
+
+\begin{problem}
+If $(X, d)$ is a complete metric space, show that it is isometric to its completion, $(\widetilde{X}, \widetilde{d})$.
+\end{problem}
+\begin{proof}
+From the completion of $X$ we know there exists a function $\phi : X \rightarrow \widetilde{X}$ such that $\phi : X \rightarrow \phi (X)$ is an isometry. It is clear that $\phi (X) \subseteq \widetilde{X}$. It remains to be shown that $\widetilde{X} \subseteq \phi(X)$. Note that $\phi (x) = \overline{(x_k)}$ where $x_k = x$ for all $k \in \mathbb{N}$. Consider $\widetilde{x} \in \widetilde{X}$ such that $\widetilde{x} = \overline{(x_n)}$. Since $X$ is complete, $\lim_{n \rightarrow \infty} x_n$ exists in $X$. Call this limit $x$. But if this is the case, then $\lim_{n \rightarrow \infty} d(x, x_n) = 0$ and so $\lim_{n \rightarrow \infty} d(x_k, x_n) = 0$, where $x_k = x$ for all $k \in \mathbb{N}$. Thus $\phi (x) = \overline{(x_n)} = \widetilde{x}$ and so $\widetilde{x} \in \phi(X)$. Therefore $\widetilde{X} \subseteq \phi(X)$ and so $\phi(X) = \widetilde{X}$. Then $\phi$ is a isometry between $X$ and $\widetilde{X}$.
+\end{proof}
+
+\begin{problem}
+For a metric space $(X, d)$ and it's completion $(\widetilde{X}, \widetilde{d})$, prove that if $(X', d')$ is a complete metric space such that $X$ is isometric to a dense subset of $X'$, then $(\widetilde{X}, \widetilde{d})$ and $(X', d')$ are isometric.
+\end{problem}
+\begin{proof}
+Since $X$ is isometric to a dense subset of both $\widetilde{X}$ and $X'$, we know there exist functions $\phi : X \rightarrow \widetilde{X}$ and $\varphi : X \rightarrow X'$ such that $\phi(X)$ is dense in $\widetilde{X}$ and $\varphi(X)$ is dense in $X'$. Define a function $f : \widetilde{X} \rightarrow X'$ such that $f(\phi(x)) = \varphi(x)$. Note that for $x, y \in X$ we have
+\[
+\widetilde{d}(\phi(x), \phi(y)) = d(x,y) = d'(\varphi(x), \varphi(y))
+\]
+and so
+\[
+d'(f(\phi(x)), f(\phi(y))) = d'(\varphi(x), \varphi(y).
+\]
+Then it must be the case that $f$ preserves distances between elements of $\phi(X) and \varphi(X)$. Consider an element $x \in \widetilde{X}$ such that $x \notin \phi(X)$. Then $x$ can be identified with a Cauchy sequence, $(x_n)$, of points in $X$ such that $(\phi(x_n))$ is then a Cauchy sequence in $\widetilde{X}$ that converges to $x$. Then since $f$ preserves distance between $\phi(X)$ and $\varphi(X)$ we see that $(f(\phi(x_n)))$ is a Cauchy sequence in $X'$. Since $X'$ is complete, this sequence converges. Call its limit $y$ and define $f(x) = y$. If $x, y \in \widetilde{X}$ such that $x = \overline{(x_n)}$ and $y = \overline{(y_n)}$ then we defined $d(x,y) = \lim_{n \rightarrow \infty} d(x_n, y_n)$. Then $d(f(x), f(y)) = \lim_{n \rightarrow \infty} d'(f(x_n), f(y_n)) = d'(f(x), f(y))$ since we know $f$ preserves distances between $\phi(X)$ and $\varphi(X)$. Additionally, for an element $\varphi(x) \in \varphi(X)$ we can say that $f^{-1}(\varphi(x)) = \phi(x)$. A similar argument can then be used to show that $f^{-1}$ extends to elements of $X'$ which are not in $\varphi(X)$. Thus $f$ has an inverse $f^{-1} : X' \rightarrow \widetilde{X}$. Since $f$ is a bijection which preserves distances, it is an isometry between $\widetilde{X}$ and $X'$.
+\end{proof}
+
+\begin{problem}
+Let $(X,d)$ be a metric space, and for any $x, y \in X$, let $d'(x,y) = \frac{d(x,y)}{1+ d(x,y)}$.\\
+1) Show that $d'$ defines a metric on $X$.\\
+2) Show that $U$ is open in $(X, d)$ if and only if $U$ is open in $(X, d')$.\\
+3) If a set $A$ is compact in $(X, d)$, is it necessarily compact in $(X, d')$?\\
+4) If $(X, d')$ is complete, is $(X, d)$ necessarily complete?
+\end{problem}
+\begin{proof}
+1) It is clear that $d'(x,y) \geq 0$. Supposing that $d'(x,y) = 0$, then it must be the case that $d(x,y) = 0$ and so $x = y$. Conversely, if $x = y$ then $d(x,y) = 0$ and so $d'(x,y) = 0/1 = 0$. Also note that
+\[
+d'(x,y) = \frac{d(x,y)}{1 + d(x,y)} = \frac{d(y,x)}{1 + d(y,x)} = d'(y,x).
+\]
+Finally, for $z \in Z$ note that $d(x,z) \leq d(x,y) + d(y,z)$ and so
+\begin{align*}
+d'(x,z)
+&= \frac{d(x,z)}{1 + d(x,z)}\\
+&\leq \frac{d(x,y) + d(y,z)}{1 + d(x,y) + d(y,z)}\\
+&\leq \frac{d(x,y) + d(y,z) + d(x,y)d(y,z)}{1 + d(x,y) + d(y,z) + d(x,y)d(y,z)}\\
+&\leq \frac{d(x,y) + d(y,z) + 2d(x,y)d(y,z)}{1 + d(x,y) + d(y,z) + d(x,y)d(y,z)}\\
+&= \frac{d(x,y)(1 + d(y,z)) + d(y,z)(1 + d(x,y))}{(1 + d(x,y))(1 + d(y,z))}\\
+&= \frac{d(x,y)}{1 + d(x,y)} + \frac{d(y,z)}{1 + d(y,z)}\\
+&= d'(x,y) + d'(y,z).
+\end{align*}\newline
+
+2) Suppose that $U$ is open in $(X, d)$. Then for all $x \in U$ there exists $r \in \mathbb{R}$ such that $B_r(x) \subseteq U$. Consider some element $y \in B_r(x)$. Then $d(x,y) < r$. Choose $r' \in \mathbb{R}$ such that $r' < r/(1 + d(x,y))$. Then the set $\{y \in X \mid d(x,y) < (1 + d(x,y)) r'\} \subseteq B_r(x)$. But since $(1 + d(x,y)) \geq 1$, it must be the case that $d(x,y) < d(x,y)/(1 + d(x,y)) < r'$. Then $\{y \mid d'(x,y) < r'\} \subseteq B_r(x)$ and so $U$ is also open in $(X, d')$.\newline
+
+Conversely, suppose that $U$ is open in $(X, d')$. Then for all $x \in U$ there exists $r' \in \mathbb{R}$ such that $\{y \in X \mid d'(x,y) < r'\} \subseteq U$. Consider some element $y \in \{y \in X \mid d'(x,y) < r'\}$ and choose $r \in \mathbb{R}$ such that $r < (1 + d(x,y))r'$. Then $d(x,y) < r < (1 + d(x,y)) r'$. But then
+\[
+\{y \in X \mid d(x,y) < r\} \subseteq \{y \in X \mid d'(x,y) < r'\} \subseteq U
+\]
+and so $U$ is open in $(X, d)$.\newline
+
+3) No. Consider a compact space $(X, d)$ such that for $x,y \in X$ we have $d(x,y) \geq 1$. Then $d'(x,y) \leq 1$. But then there must exist an open cover for $X$ which has a finite subcover in $(X, d)$ but not in $(X, d')$ since all the distances are shorter.\newline
+
+4) Yes. Consider a Cauchy sequence $(a_n)$ in $(X, d)$. Then for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n, m > N$ we have $d(a_n, a_m) < \varepsilon$. But then using the same argument as in Part 1) we can find $N' \in \mathbb{N}$ such that for all $n, m > N'$ we have $d'(a_n, a_m) < \varepsilon$.
+\end{proof}
+
+\begin{**}
+On $\mathbb{R}^2$ with the usual metric, find all isometries $T : \mathbb{R}^2 \rightarrow \mathbb{R}^2$ such that $T(0) = 0$.
+\end{**}
+\begin{proof}
+Consider a linear transformation $T : \mathbb{R}^2 \rightarrow \mathbb{R}^2$. Note that since $T(0) = 0$, we know that a $T$ is not a translation. Suppose that $T$ is a rotation about $0$ or a reflection across a line passing through $0$. Then it's clear that each of these has an inverse, namely rotating in the opposite direction and reflecting across the same line again. Furthermore, we see that $T$ must preserve distance so that for two points $x, y \in \mathbb{R}^2$ we have $d(x, y) = d(T(x), T(y))$ where $d$ is the usual metric. As shown earlier, since $T$ is bijective and preserves distance, it must be a homeomorphism and therefore an isometry. Note that these are the only isometries with the given conditions because they are the only ones that will preserve distance.
+\end{proof}
+
+\begin{**}
+For $f \in \mathcal{C} ([0,1], \mathbb{R})$ define
+\[
+||f|| = \int_0^1 |f(x)| dx
+\]
+as a norm on this space. Is this space complete with respect to the metric defined by this norm?
+\end{**}
+No.
+\begin{proof}
+Consider the sequence $f_n = x^n$ and let $\varepsilon > 0$. Then choose $N \in \mathbb{N}$ such that $1/N < \varepsilon$ and choose $n, m > N$ such that $m < n$. Note that
+\[
+||f_n - f_m|| = \int_0^1 |x^n - x^m| dx = \int_0^1 (x^n - x^n) dx = \left. \frac{x^{n+1}}{n+1} - \frac{x^{m+1}}{m+1} \right |_{x=0}^{x=1} = \frac{1}{n+1} - \frac{1}{m+1} < \frac{1}{N} < \varepsilon
+\]
+and so $(f_n)$ is a Cauchy sequence in $\mathcal{C} ([0,1], \mathbb{R})$. Then suppose that $(f_n)$ converges to some function $f \in \mathcal{C} ([0,1], \mathbb{R})$. Then for all $\varepsilon > 0$ there exists $N$ such that for all $n > N$ we have $||f - f_n|| < \varepsilon$. Note that
+\[
+|\int_0^1 f(x) dx|
+\]
+is a constant and so choose
+\[
+0 < \varepsilon < \left | \int_0^1 f(x) dx \right |.
+\]
+But note that
+\[
+\varepsilon > ||f - f_n|| = \int_0^1 |f(x) - x^n| dx \geq \left | \int_0^1 (f(x) - x^n) dx \right | = \left | \int_0^1 f(x) dx - \int_0^1 x^n dx \right | = \left | \int_0^1 f(x) dx - \frac{1}{n+1} \right |.
+\]
+Then for large enough $n$, the last term will be larger than $\varepsilon$. This is a contradiction and so no function $f$ can exist. Thus, $\mathcal{C} ([0,1], \mathbb{R})$ is not complete with respect to this metric.
+\end{proof}
+
+\begin{**}
+For a metric space $(X, d)$ let $X'$ be the set of all Cauchy sequences on $X$ and define a relation on $X'$ where $(a_n) \sim (b_n)$ if $\lim_{n \rightarrow \infty} d(a_n, b_n) = 0$. Show that this is an equivalence relation.
+\end{**}
+\begin{proof}
+Since $d(a_n, a_n) = 0$ for all $n \in \mathbb{N}$ it's clear that $\lim_{n \rightarrow \infty} d(a_n, a_n) = 0$ and so $(a_n) \sim (a_n)$. Thus, $\sim$ is reflexive. Suppose that $\lim_{n \rightarrow \infty} d(a_n, b_n) = 0$. Then since $d$ is symmetric, we have $\lim_{n \rightarrow \infty} d(b_n, a_n) = 0$. Thus $\sim$ is symmetric. Finally, suppose that for a Cauchy sequence $(c_n) \in X'$ we have $(a_n) \sim (b_n)$ and $(b_n) \sim (c_n)$. Then we have $d(a_n, c_n) \leq d(a_n, b_n) + d(b_n, c_n)$. But then
+\[
+\lim_{n \rightarrow \infty} d(a_n, c_n) \leq \lim_{n \rightarrow \infty} d(a_n, b_n) + \lim_{n \rightarrow \infty} (b_n, c_n) = 0 + 0 = 0.
+\]
+Thus $(a_n) \sim (c_n)$ and $\sim$ is transitive. Therefore $\sim$ is an equivalence relation on $X'$.
+\end{proof}
+
+\begin{**}
+Show that $\widetilde{d}$ is well-defined.
+\end{**}
+\begin{proof}
+Let $\overline{(a_n)}, \overline{(b_n)}, \overline{(c_n)}, \overline{(d_n)} \in \widetilde{X}$ such that $(a_n) \sim (c_n)$ and $(b_n) \sim (d_n)$. Suppose that $\widetilde{d} (\overline{(a_n)}, \overline{(c_n)}) = d$. Then we know that
+\[
+\lim_{n \rightarrow \infty} d(a_n, c_n) = d
+\]
+and also that
+\[
+\lim_{n \rightarrow \infty} d(a_n, b_n) = \lim_{n \rightarrow \infty} d(c_n, d_n).
+\]
+Then for all $\varepsilon > 0$ there exist $N_1, N_2, N_3 \in \mathbb{N}$ such that for all $n > N_1$ we have $|d - d(a_n, c_n)| < \varepsilon/3$, for all $n > N_2$ we have $|d(a_n, b_n)| < \varepsilon/3$ and for all $n > N_3$ we have $|d(c_n, d_n)| < \varepsilon/3$. Let $N = \max (N_1, N_2, N_3)$ so that all three statements are true for all $n > N$. Then note that
+\begin{align*}
+|d - d(b_n, d_n)|
+& \leq |d - d(b_n, c_n) + d(c_n, d_n)|\\
+& \leq |d - d(a_n, c_n) + d(a_n, b_n) + d(c_n, d_n)|\\
+& \leq |d - d(a_n, c_n)| + |d(a_n, b_n)| + |d(c_n, d_n)|\\
+& \leq \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3}\\
+& = \varepsilon
+\end{align*}
+for all $n > N$. Thus $\lim_{n \rightarrow \infty} d(b_n, d_n) = \lim_{n \rightarrow \infty} d(a_n, c_n)$ and so $\widetilde{d}$ is well-defined.
+\end{proof}
+
+\begin{**}
+Show that $\widetilde{X}$ is complete.
+\end{**}
+\begin{proof}
+Consider a Cauchy sequence $(\widetilde{x}_n) \in \widetilde{X}$. Since $\phi(X)$ is dense in $\widetilde{X}$ we can choose $\widetilde{z}_n \in \phi(X)$ such that $\widetilde{d} (\widetilde{z}_n, \widetilde{x}_n) < \frac{1}{n}$ for every $n \in \mathbb{N}$. Then we have
+\[
+\widetilde{d} (\widetilde{z}_n, \widetilde{z}_m) \leq \widetilde{d} (\widetilde{z}_n, \widetilde{y}_n) + \widetilde{d} (\widetilde{y}_n, \widetilde{y}_m) + \widetilde{d} (\widetilde{y}_m, \widetilde{z}_m) < \frac{1}{n} + \varepsilon + \frac{1}{m}
+\]
+since $(\widetilde{y}_n)$ is Cauchy. This implies that $(\widetilde{z}_n)$ is Cauchy in $\widetilde{X}$. Since $\widetilde{z}_n \in \phi (X)$ for all $n$, let $x_n = \phi^{-1} (\widetilde{z}_n)$. Then $(x_n)$ is Cauchy in $X$ since $\phi$ is an isometry. Call $\widetilde{y}$ the element of $\widetilde{X}$ defined by the equivalence class containing $(x_n)$. Then
+\[
+\widetilde{d} (\widetilde{y}_n, \widetilde{y}) \leq \widetilde{d} (\widetilde{y}_n, \widetilde{z}_n) + \widetilde{d} (\widetilde{z}_n, \widetilde{y}) \leq \frac{1}{n} + \widetilde{d} (\widetilde{z}_n, \widetilde{y})
+\]
+and note that $\widetilde{d} (\widetilde{z}_n, \widetilde{y}) = \lim_{k \rightarrow \infty} (x_n, x_k)$. Since $(x_n)$ is Cauchy in $X$, for $n$ and $k$ large, $d(x_n, x_k)$ is arbitrarily small.
+\end{proof}
+
+\begin{**}
+For primes $p_1$ and $p_2$ with $p_1 \neq p_2$ show that $\mathbb{Q}_{p_1}$ is not isomorphic to $\mathbb{Q}_{p_2}$.
+\end{**}
+\begin{proof}
+Suppose that there exists a isomorphism, $f : \mathbb{Q}_{p_1} \rightarrow \mathbb{Q}_{p_2}$. From Problem 6 Part 9) we know that for $x, y \in \mathbb{Q}_{p_1}$ we have $x \in p_1^n U_{p_1}$ for some $n \in \mathbb{Z}$ and likewise for $y$. Suppose that $x, y \in p_1^n U_{p_1}$ for some $n \in \mathbb{Z}$. Then we have $|x|_{p_1} = |y|_{p_1} = p_1^{-n}$. Also, this implies that $|x+y|_{p_1} < p^{-n}$. Suppose that we chose $x$ and $y$ such that $|f(x)|_{p_2} \neq |f(y)|_{p_2}$. It is certainly possible to do this for $x, y \in \mathbb{Q}$. Then $|x|_{p_2} = p_2^{-j}$ and $|y|_{p_2} = p_2^{-k}$ for some $j \neq k$. Note $|f(x + y)|_{p_2}$ must be strictly less than each of these. But then this is a contradiction because $|f(x)|_{p_2} \neq |f(y)|_{p_2}$ and so $|f(x) + f(y)|_{p_2} = \max (|f(x)|_{p_2}, |f(y)|_{p_2}) \neq |f(x+y)|_{p_2}$.
+\end{proof}
+
+\begin{problem}
+1) Show that addition, multiplication and $| \cdot |_p$ are well-defined in $\mathbb{Q}_p$.\\
+2) Show that $\mathbb{Q}_p$ is a field with the operations given above.\\
+3) Show that $| \cdot |_p$ on $\mathbb{Q}_p$ satisfies the same properties as it does in $\mathbb{Q}$.\\
+4) Show that the image of $\mathbb{Q}_p$ under $| \cdot |_p$ is the same as that of $\mathbb{Q}$ under $| \cdot |_p$, that is, $\{p^k \mid k \in \mathbb{Z}\} \cup \{0\}$.\\
+5) Show that $\mathbb{Q}_p$ cannot be made into an ordered field.
+\end{problem}
+\begin{proof}
+Let $\overline{(a_n)}, \overline{(b_n)}, \overline{(c_n)}, \overline{(d_n)} \in \mathbb{Q}_p$ such that $(a_n) \sim (b_n)$ and $(c_n) \sim (d_n)$. Then
+\[
+\lim_{n \rightarrow \infty} |a_n - b_n|_p = \lim_{n \rightarrow \infty} |c_n - d_n|_p = 0.
+\]
+Then for all $\varepsilon > 0$ there exists $N$ such that for all $n > N$ we have
+\[
+|(a_n + c_n) - (b_n + d_n)|_p = |(a_n - b_n) + (c_n - d_n)|_p \leq |a_n - b_n|_p + |c_n - d_n|_p \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+Thus $\lim_{n \rightarrow \infty} |(a_n + c_n) - (b_n + d_n)|_p = 0$ which means $(a_n + c_n) \sim (b_n + d_n)$. Likewise, we have
+\[
+|a_n c_n - b_n d_n|_p \leq |a_n c_n - a_n d_n - b_n c_n + b_n d_n|_p = |(a_n - b_n)(c_n - d_n)|_p = |a_n - b_n|_p |c_n - d_n|_p \leq \sqrt{\varepsilon} \sqrt{\varepsilon} = \varepsilon.
+\]
+Thus $\lim_{n \rightarrow \infty} |a_n c_n - b_n d_n|_p = 0$ which means $(a_n c_n) \sim (b_n d_n)$. Finally,
+\[
+||a_n|_p - |b_n|_p|_p \leq |a_n - b_n|_p < \varepsilon
+\]
+which means that $\lim_{n \rightarrow \infty} ||a_n|_p - |b_n|_p|_p = 0$ and so $(|a_n|_p) \sim (|b_n|_p)$. This shows that $+$, $\cdot$ and $| \cdot |_p$ are well-defined on $\mathbb{Q}_p$.\newline
+
+2) Let $\overline{(a_n)}, \overline{(b_n)} \in \mathbb{Q}_p$. Then for all $\varepsilon > 0$ there exists $N_1$ such that for all $n, m > N_1$ we have $|a_n - a_m|_p < \varepsilon/2$ and there exists $N_2$ such that for all $n, m > N_2$ we have $|b_n - b_m|_p < \varepsilon/2$. Let $N = \max (N_1, N_2)$ so that both statements are true for all $n, m > N$. But then
+\[
+|(a_n + b_n) - (a_m + b_m)|_p = |(a_n - a_m) + (b_n - b_m)|_p \leq |a_n - a_m|_p + |b_n - b_m|_p \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+\]
+whenever $n, m > N$. Thus $(a_n + b_n)$ is Cauchy and $\mathbb{Q}_p$ is closed under addition. Likewise for $\sqrt{\varepsilon}$
+\[
+|a_n b_n - a_m b_m|_p \leq |a_n b_n - a_n b_m - a_m b_n + a_m b_m|_p = |(a_n - a_m)(b_n - b_m)|_p = |a_n - a_m|_p |b_n - b_m|_p \leq \sqrt{\varepsilon} \sqrt{\varepsilon} = \varepsilon
+\]
+for all $n, m > N$. Thus $(a_n b_m)$ is Cauchy and $\mathbb{Q}_p$ is closed under multiplication. Associativity and commutativity of addition and multiplication as well as the distributive property all follow from their counterparts in $\mathbb{Q}$ and the fact that addition and multiplication are term based operations. Also note that if $\overline{(0)} = 0$ is the constant zero sequence then
+\[
+\overline{(0)} + \overline{(a_n)} = \overline{(0 + a_n)} = \overline{(a_n)}
+\]
+and so $0$ is the additive identity. A similar proof holds to show that $\overline{(1)} = 1$ is the multiplicative identity. It follows that $-\overline{(a_n)} = \overline{(-a_n)}$ is the additive inverse of $\overline{(a_n)}$ since
+\[
+\overline{(-a_n)} + \overline{(a_n)} = \overline{(-a_n + a_n)} = \overline{(0)} = 0.
+\]
+Finally, since $a_n \in \mathbb{Q}$ for all $n$, it follows that $1/a_n \in \mathbb{Q}$ for all $n$. Thus $\overline{(a_n)}^{-1} = \overline{(1/a_n)}$ is the multiplicative inverse of $\overline{(a_n)}$ since
+\[
+\overline{(1/a_n)} \cdot \overline{(a_n)} = \overline{(1/a_n \cdot a_n)} = \overline{(1)} = 1.
+\]
+Since all the axioms are met, it follows that $\mathbb{Q}_p$ is a field.\newline
+
+3) Let $\overline{(a_n)}, \overline{(b_n)} \in \mathbb{Q}_p$ such that $a = \overline{(a_n)}$ and $b = \overline{(b_n)}$. Note that $|a|_p = |\overline{(a_n)}|_p = \lim_{n \rightarrow \infty} |a_n|_p$. Since each term in $(|a_n|_p)$ is greater than or equal to $0$, it follows that the limit is greater than or equal to zero. If $a = 0$ then we know $|a|_p = 0$ since $0 \in \mathbb{Q}$. If $|a|_p = 0$ then $\lim_{n \rightarrow \infty} |a_n|_p = 0$. But then $(a_n) \sim (0)$ and so $a = 0$. Next consider
+\[
+|ab|_p = \lim_{n \rightarrow \infty} |a_n b_n|_p = \lim_{n \rightarrow \infty} |a_n|_p |b_n|_p = \lim_{n \rightarrow \infty} |a_n|_p \lim_{n \rightarrow \infty} |b_n|_p = |a|_p \cdot |b|_p.
+\]
+Thirdly,
+\[
+|a + b|_p = \lim_{n \rightarrow \infty} |a_n + b_n|_p \leq \lim_{n \rightarrow \infty} \max(|a_n|_p, |b_n|_p) = \max \left ( \lim_{n \rightarrow \infty} |a_n|_p , \lim_{n \rightarrow \infty} |b_n|_p \right ) = \max (|a|_p, |b|_p).
+\]
+Finally, suppose that $|a|_p \neq |b|_p$. Then
+\[
+\lim_{n \rightarrow \infty} |a_n|_p \neq \lim_{n \rightarrow \infty} |b_n|_p
+\]
+which implies that $|a_n + b_n|_p = \max (|a_n|_p, |b_n|_p)$ for all $n$. But then
+\[
+|a + b|_p = \lim_{n \rightarrow \infty} |a_n + b_n|_p = \lim_{n \rightarrow \infty} \max (|a_n|_p, |b_n|_p) = \max \left ( \lim_{n \rightarrow \infty} |a_n|_p, \lim_{n \rightarrow \infty} |b_n|_p \right ) = \max (|a|_p, |b|_p).
+\]\newline
+
+4) Note that if $|a|_p = \lim_{n \rightarrow \infty} |a_n|_p \neq 0$ then $(|a_n|_p)$ is eventually constant and so it will converge to the eventual constant. Since this is the $p$-adic absolute value of a rational number, it must be the case that the image of $\mathbb{Q}_p$ under $| \cdot |_p$ is the same as that of $\mathbb{Q}$ under $| \cdot |_p$.\newline
+
+5) $\mathbb{Q}_p$ cannot be an ordered field because a square root of $-7$ exists in $\mathbb{Q}_2$ and a square root of $1-p$ exists in $\mathbb{Q}_p$ for $p > 2$. We can see this because the square root algorithm for $x \in \mathbb{Q}_p$, $a_n = 1/2 (a_{n-1} + x/a_{n-1})$, converges for these values.
+\end{proof}
+
+\begin{problem}
+Show that $R_p$ is a commutative ring with $1$.
+\end{problem}
+\begin{proof}
+Let $x, y \in R_p$. Then $|x|_p \leq 1$ and $|y|_p \leq 1$. But then $|x+y|_p \leq \max (|x|_p, |y|_p) \leq 1$ and so $R_p$ is closed under addition. Likewise $|xy|_p = |x|_p \cdot |y|_p \leq 1$ and so $R_p$ is closed under multiplication. Note that associativity and commutativity of addition and multiplication as well as the distributive property hold as they do in $\mathbb{Q}_p$. Also, $|0|_p = 0 \leq 1$ and so $0 \in R_p$ and then $|-x|_p = |x|_p \leq 1$ and so $R_p$ has additive inverses. Finally $|1|_p = 1 \leq 1$ and so $1 \in R_p$ which shows that $R_p$ is a commutative ring with $1$.
+\end{proof}
+
+\begin{problem}
+1) Show that $U_p$ is in fact the set of units in $R_p$.\\
+2) Show that $U_p$ is a group under multiplication.\\
+3) Show that $\mathcal{P}$ is an ideal in $R_p$.\\
+4) Show that $\mathcal{P}$ is a maximal ideal in $R_p$.\\
+5) For $n \in \mathbb{Z}$, define $\mathcal{P}^n = p^n R_p = \{p^n x \mid x \in R_p\} = \{x \in \mathbb{Q}_p \mid |x|_p \leq p^{-n} \}$. Show that $\mathcal{P}^n$ is a subgroup of $(\mathbb{Q}_p, +)$.\\
+6) Show that $\mathcal{P}^n \backslash \mathcal{P}^{n+1} = p^n U_p$.\\
+7) Show that, if $n > 0$, $\mathcal{P}^n$ is an ideal in $R_p$.\\
+8) Show that $\mathbb{Q}_p = \bigcup_{n \in \mathbb{Z}} \mathcal{P}^n$.\\
+9) Show that $\mathbb{Q}_p^{\times} = \bigcup_{n \in \mathbb{Z}} p^n U_p$.
+\end{problem}
+\begin{proof}
+1) Let $x \in U_p$ such that $x = \overline{(x_n)}$. Then $|x|_p = 1$ which means that $(|x_n|_p)$ is eventually constant. Thus there exists $N$ such that for all $n > N$ we have $|x_n|_p = 1$. But then since $p$ is not a factor of the numerator or denominator for all $x_n$ with $n > N$, we have $|1/x_n|_p = 1$ as well. Thus $(|1/x_n|_p)$ is eventually constant and converges to $1$ which means $|1/x|_p = 1$. Therefore $1/x \in U_p$ and so $U_p$ is a subset of the units of $R_p$. Now consider an element, $x \in R_p$ with $x = \overline{(x_n)}$ such that $x^{-1} \in R_p$. Since $x^{-1} \in R_p$ we have $|1/x|_p \leq 1$. Then the sequence $(|1/x_n|_p)$ is eventually constant and converges to $p^{-n}$ for some $n \in \mathbb{N}$. But this implies that $(|x|_p)$ is eventually constant and converges to $p^n$. Note that we also have $x \in R_p$ and so $|x|_p \leq 1$. Then the sequence $(|1/x_n|_p)$ is eventually constant and converges to $p^{-n}$ for some $n \in \mathbb{N}$. The only way this can happen is if $n = 0$ and so both $x$ and $1/x$ are in $U_p$. Therefore the set of units of in $R_p$ is a subset of $U_p$.\newline
+
+2) Let $x, y \in U_p$. Then $|x|_p = |y|_p = 1$ and $|xy|_p = |x|_p |y|_p = 1 \cdot 1 = 1$. Thus $U_p$ is closed under multiplication. Obviously $1 \in U_p$ and Part 1) Shows that multiplicative inverses are in $U_p$. Associativity and commutativity of multiplication are the same as in $\mathbb{Q}_p$.\newline
+
+3) Let $x \in R_p$ and let $a \in \mathcal{P}$. Then $|x|_p \leq 1$ and $|a|_p \leq 1/p$ which means $|ax|_p = |a|_p |x|_p \leq 1/p$. Thus $ax \in \mathcal{P}$.\newline
+
+4) Suppose that $x \in U_p$ and suppose there exists $A \subsetneq R_p$ such that $A$ is an ideal of $R_p$ containing $x$ and $\mathcal{P}$. Then consider some element $y \in R_p$ such that $y \notin A$. Since $y \notin \mathcal{P}$ we know that $|y|_p = 1$. But then choose some element $a \in \mathcal{P}$. Then $|ay|_p = |a|_p |y|_p \leq 1/p$ which means $ay \in \mathcal{P}$. Therefore $A$ is not an ideal in $R_p$.\newline
+
+5) Consider $x, y \in \mathcal{P}^n$. Then $|x|_p \leq p^{-n}$ and $|y|_p \leq p^{-n}$. But then $|x + y|_p \leq \max ( |x|_p, |y|_p ) \leq p^{-n}$. Thus $\mathcal{P}^n$ is closed under addition. Commutativity and associativity of addition hold as they do in $\mathbb{Q}_p$. Certainly $|0|_p = 0 \leq p^{-n}$ and so $0 \in \mathcal{P}^n$. Finally, additive inverses are in $\mathcal{P}^n$ since $|-x|_p = |x|_p$.\newline
+
+6) Note that
+\[
+\mathcal{P}^n \backslash \mathcal{P}^{n+1} = \{x \in \mathbb{Q}_p \mid p^{-(n+1)} < |x|_p \leq p^{-n}\} = \{x \in \mathbb{Q}_p \mid |x|_p = p^{-n} \} = \{p^n x \mid x \in U_p\} = p^n U_p.
+\]\newline
+
+7) Let $a \in \mathcal{P}^n$ and let $x \in R_p$. Then $|x|_p \leq 1$ and $|a|_p \leq p^{-n}$. Then $|ax|_p = |a|_p |x|_p \leq 1 \cdot p^{-n} = p^{-n}$. Thus $ax \in \mathcal{P}^n$.\newline
+
+8) Let $x \in \mathbb{Q}_p$. We know that the image of $\mathbb{Q}_p$ under $| \cdot |_p$ is $\{p^k \mid k \in \mathbb{Z}\} \cup \{0\}$ from Problem 4 Part 4). Thus $|x|_p = p^k$ for some $k \in \mathbb{Z}$. But then $x \in \mathcal{P}^{-k} = \{x \in \mathbb{Q}_p \mid |x|_p \leq p^k\}$ and $\mathcal{P}^{-k} \subseteq \bigcup_{n \in \mathbb{Z}} \mathcal{P}^n$. The converse is certainly true since $\mathcal{P}^n = \{x \in \mathbb{Q}_p \mid |x|_p \leq p^{-n}\}$ is clearly a subset of $\mathbb{Q}_p$.\newline
+
+9) This is a similar proof as Part 8). Since the image of $\mathbb{Q}_p$ under $| \cdot |_p$ is $\{p^k \mid k \in \mathbb{Z} \}$, it must be the case that for $x \in \mathbb{Q}^{\times}_p$ we have $|x|_p = p^k$ for some $k \in \mathbb{Z}$. But then $x \in p^{-k} U_p$. As in Part 8), we know that $p^n U_p \subseteq \mathbb{Q}^{\times}_p$ for all $n \in \mathbb{N}$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

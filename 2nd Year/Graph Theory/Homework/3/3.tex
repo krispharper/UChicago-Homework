@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+CMSC 27500\\
+
+April 22, 2009
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{flushleft}
+
+\begin{problem}
+Let $G$ be a connected graph and $e$ a link of $G$.\\
+1) Describe a one-to-one correspondence between the set of spanning trees of $G$ that contain $e$ and the set of spanning trees of $G / e$.
+\begin{proof}
+Let $T$ be a spanning tree of $G$ such that $T$ contains $e$ and consider the graph $T / e$. Since $T$ is a tree, $T / e$ is a tree as well, and a subgraph of $G / e$, thus it's a spanning tree of $G /e$. Now consider $A$ and $B$ distinct spanning trees of $G / e$ and let $A'$ and $B'$ be the resulting graphs with $e$ added back in. Note that $A$ and $B$ must differ in some edge and this edge cannot be $e$ since they are subgraphs of $G / e$. Therefore $A'$ and $B'$ are distinct spanning trees of $G$. This shows that edge contraction of $e$ is an injective map from the set of spanning trees of $G$ that contain $e$ and the set of spanning trees of $G / e$.
+\end{proof}
+2) Show $t(G) = t(G \backslash e) + t(G / e)$.
+\begin{proof}
+Note that the map defined in Part 1) is surjective, since given a spanning tree of $G / e$ we can add $e$ back in to find a spanning tree of $G$ which contains $e$. We can break $t(G)$ into the number of spanning trees containing $e$ and the number not containing $e$. We know there's an injection between spanning trees of $G$ which contain $e$ and spanning trees of $G /e$. Then this shows $t(G) - t(G / e) = t(G \backslash e)$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Show that the incidence matrix of a graph is totally unimodular if and only if the graph is bipartite.
+\begin{proof}
+Let $A$ be a matrix whose rows can be partitioned into two disjoint sets $B$ and $C$ such that every column of $A$ contains at most two nonzero entries, every entry is either $-1$, $0$ or $+1$, if two $1$s appear in a column then one entry is in a row from $B$ and the other from $C$, and if two elements of different sign appear in a column then they are both in $B$ or both in $C$. The $A$ is totally unimodular. The proof of this follows from the proof that an incidence matrix of a digraph is totally unimodular.\newline
+
+Now consider the incidence matrix, $A$, of a bipartite graph. Call the two sets of vertices $B$ and $C$. Since there are no edges between two vertices in $B$, there are no loops in $B$, and similarly for $C$. Thus, every element in $A$ is a $1$ or a $0$. Note also that one edge has exactly one head and one tail and so there are precisely two $1$s in each column of $A$. Finally, if a $1$ appears in a row in $B$, then the other $1$ in the column must be in $C$ since the corresponding edge goes from $B$ to $C$. Since it fulfills all the conditions, $A$ is totally unimodular.\newline
+
+Conversely, suppose the incidence matrix, $A$, of a graph is totally unimodular. Suppose that the graph is not bipartite. There there exists some odd cycle with vertices $\{v_1, v_2, \dots , v_n\}$ and edges $\{e_1, e_2, \dots , e_n\}$. Take the submatrix of $A$ with these rows and columns and order both the rows and columns by their indices. Note that this creates $1$s on the main diagonal and $1$s on the first lower diagonal as well as one $1$ in the upper right-hand corner. But this matrix will have determinant $2$ and so $A$ has a submatrix with determinant not equal to $-1$, $0$ or $1$. This is a contradiction and so the graph is bipartite.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Show that a digraph contains a directed odd cycle if and only if some strong component is not bipartite.
+\begin{proof}
+Let $D$ be a digraph which contains a directed odd cycle. Considering the underlying graph $G$ of $D$, we know $G$ contains an odd cycle, which means $G$, and thus $D$ is not bipartite. Conversely, assume some strong component of $D$ is not bipartite. Then the underlying graph of this component contains an odd cycle. But then the component contains a directed odd cycle.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+1) Show that a digraph $D$ has a spanning $x$-branching if and only if $\partial^+ (X) \neq \emptyset$ for every proper subset $X$ of $V$ that includes $x$.
+\begin{proof}
+Create the spanning $x$ branching as follows. First let $X_1 = \{x\}$. Then since $\partial^+ (X_1) \neq \emptyset$, there are vertices $U_1 = \{v_{1_1}, v_{1_2}, \dots , v_{1_n}\}$ such that there are arcs which join $x$ to all elements in $U_1$. Now let $X_2 = X_1 \cup U_1$. If $X_2 = V$ then we're done. Otherwise, we have $\partial^+ (X_2) \neq \emptyset$ and so there are vertices $U_2 = \{v_{2_1}, v_{2_2}, \dots , v_{2_m}\}$ such that there are arcs which join elements of $U_1$ to elements of $U_2$. Note that $x$ is not joined to any elements of $U_2$ since all of those connections are made to elements of $U_1$. Now let $X_3 = X_2 \cup U_2$. Proceed in this way until $X_k = V$. At this point we have an $x$-branching which covers every vertex in $V$ and is thus spanning.\newline
+
+Conversely, suppose that $D$ has a spanning $x$-branching and consider some proper subset $X \subseteq V$ such that $x \in X$. Let $v \notin X$ be a vertex of $D$. Note that since $D$ has a spanning $x$-branching, there exists a directed path from $x$ to $v$, and since $v \notin X$ we must have $\partial^+ (X) \neq \emptyset$.
+\end{proof}
+2) Deduce that a digraph is strongly connected if and only if it has a spanning $v$-branching for every vertex $v$.
+\begin{proof}
+If a directed graph $D$ has a spanning $v$-branching for every vertex $v$, then we have that for every proper subset $X \subseteq V$ we have $\partial^+ (X) \neq \emptyset$. But this is the definition of being strongly connected. Conversely, if $D$ is strongly connected then there's a directed connection between every vertex $v$ and every other vertex, which implies that there exists a spanning $v$-branching for every vertex $v$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $G$ be a connected graph, let $T_1$ and $T_2$ be the edges sets of two spanning trees of $G$, and let $e \in T_1 \backslash T_2$. Show that:\\
+1) There exists $f \in T_2 \backslash T_1$ such that $(T_1 \backslash \{e\}) \cup \{f\}$ is a spanning tree of $G$.
+\begin{proof}
+Let $a$ and $b$ be the ends of $e$. We must find $f \in T_2 \backslash T_1$ such that there is a path from $a$ to $b$, which doesn't go through $e$. Since $T_2$ is a tree, there exists a path, $P$, from $a$ to $b$ which lies in $T_2$. Note that all of $P$ cannot also lie in $T_1$ because then it would form a cycle with $e$. Thus there exists some edge $f$ with ends $c$ and $d$ which lies only in $T_2$. But since $T_1$ is spanning, there are paths from $a$ to $c$ and from $b$ to $d$. These paths together with $f$ form a path connecting $a$ to $b$ without using $e$.
+\end{proof}
+2) There exists $f \in T_2 \backslash T_1$ such that $(T_2 \backslash \{f\}) \cup \{e\}$ is a spanning tree of $G$.
+\begin{proof}
+Use the edge $f$ from Part 1). Then there are paths from $c$ to $a$ and $d$ to $b$ which lie in $T_2$ and these paths together with $e$ form a path from $c$ to $d$ without using $f$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $T$ be a spanning tree of a connected graph $G$. Show the following:\\
+1) The fundamental cycles of $G$ with respect to $T$ form a basis of its cycle space.
+\begin{proof}
+Let $C$ be an even subgraph of $G$ and let $S = C \cap \overline{T}$. We know that $C = \Delta \{C_e \mid e \in S\}$ and that this expresses $C$ uniquely. Then every even subgraph can be generated through symmetric differences of fundamental cycles and so these form a basis of the cycle space.
+\end{proof}
+2) The fundamental bonds of $G$ with respect to $T$ form a basis of its bond space.
+\begin{proof}
+A similar proof as in Part 1) shows that every edge cut can be expressed uniquely as a symmetric difference of fundamental bonds. This shows that these form a basis of the bond space.
+\end{proof}
+3) Determine the dimensions of these two spaces.
+\begin{proof}
+The dimension of a finite dimensional vector space is equal to the number of vectors in its basis. In this case, for every edge $e$ in $\overline{T}$ there is a unique path through $T$ which connects the ends. This shows that the number of fundamental cycles is number of edges in $\overline{T}$ and so $|\overline{T}|$ is the dimension of the cycle space. Each fundamental bond is created from one edge of $T$, and so the dimension of the bond space is $|T|$.
+\end{proof}
+\end{problem}
+
+\end{flushleft}
+\end{document}

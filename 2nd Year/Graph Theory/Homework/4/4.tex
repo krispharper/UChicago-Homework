@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+CMSC 27500\\
+
+April 29, 2009
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{flushleft}
+
+\begin{problem}
+Let $G$ be a connected graph on at least three vertices, and let $e = uv$ be a cut edge of $G$. Show that either $u$ or $v$ is a cut vertex of $G$.
+\begin{proof}
+Note that since $e$ is a cut edge of $G$, then $e$ belongs to no cycle. Since there is clearly a path from $u$ to $v$ through $e$, there can thus be no other path from $u$ to $v$. Because $G$ has at least three vertices, either $u$ or $v$ must have one other neighbor, $w$. Without loss of generality, suppose $u$ has neighbor $w$. Then $G-u$ results in a graph in which there is no path from $w$ to $v$, otherwise that path adjoined with $wu$ and $uv$ would make a cycle containing $e$. Since $G-u$ is now disconnected we have $c(G-u) > c(G)$ and so $u$ is cut vertex of $G$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $G$ be a nonseparable graph, and let $e$ be an edge of $G$. Show that the graph obtained from $G$ by subdividing $e$ is nonseparable.
+\begin{proof}
+Since $G$ is nonseparable, it is connected and has no separating vertices. It's clear that subdividing $e$ will keep $G$ connected, and so it remains to be shown that no separating vertices are introduced. In the case that $G$ consists of one vertex and a loop, subdividing $e$ creates the graph on two vertices with two parallel edges which is nonseparable. Assume that $G$ has more than one vertex, and so $G$ has no loops as it's nonseparable. Let $e = uv$ and subdivide $e$ so that the path $uwv$ is created. Call this new graph $G'$. Suppose that $w$ is a separating vertex. Then $G'$ consists of two connected components joined only at $w$. But the only neighbors of $w$ are $u$ and $v$ and so $G / uw$ is also separable with a separating vertex $u$. But this graph is $G$, which is nonseparable. Therefore $w$ is not a separating vertex. Since this is the only vertex introduced in the process, we know that $G'$ is nonseparable.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $G$ be a graph, and let $e$ be an edge of $G$. Show that:\\
+1) If $G \backslash e$ is nonseparable and $e$ is not a loop of $G$, then $G$ is nonseparable.
+\begin{proof}
+If $G \backslash e$ is nonseparable then it is connected and the graph $G$ is clearly connected as well as adding edges will not destroy any paths. We must show that if $e = uv$ then neither $u$ nor $v$ is a separating vertex in $G$. Suppose $u$ is a separating vertex of $G$. Then $G$ can be decomposed into two connected subgraphs which have only $u$ in common. Note that one of these subgraphs must not contain $e$. Suppose we remove $e$ from the other subgraph. Since $G \backslash e$ is nonseparable, it is connected and so there exists a path connecting each point in this subgraph to $u$. But then this subdivides $G \backslash e$ into two connected subgraphs which only intersect at $u$. This is a contradiction so $u$ is not a separating vertex and a similar case holds for $v$. Since $e$ is not a loop, we can state that $G$ is nonseparable.
+\end{proof}
+2) If $G / e$ is nonseparable and $e$ is neither a loop nor a cut edge of $G$, then $G$ is nonseparable.
+\begin{proof}
+Note that since $e$ is not a cut edge nor a loop, it must belong to a cycle, $C$, of $G$. Then since $G / e$ is nonseparable, an edge of $C$ and any other edge of $G$ lie in a common cycle. Now take $e'$ in $G$. We know that $e'$ lies on common cycle with some edge, $e''$ in $C$. Then we can form a cycle containing $e$ and $e'$ by combining the path connecting one end of $e'$ to $e''$, the path connecting the two ends of $e''$, which contains $e$, and the path connecting the other end of $e''$ to $e'$. This path combined with $e'$ creates a cycle containing $e$ and $e'$. Thus, any two edges of $G$ are contained in a common cycle and $G$ is nonseparable.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+1) Let $B$ be a block of a graph $G$, and let $P$ be a path in $G$ connecting two vertices of $B$. Show that $P$ is contained in $B$.
+\begin{proof}
+Suppose that $P$ is not entirely contained in $B$. Since $B$ is nonseparable, it is connected and so there exists a path entirely in $B$ connecting the ends of $P$. But then this path, combined with $P$ creates a cycle which is not contained in a single block. This is a contradiction and so $P$ must be entirely contained in $B$.
+\end{proof}
+2) Deduce that a spanning subgraph $T$ of a connected graph $G$ is a spanning tree of $G$ if and only if $T \cap B$ is a spanning tree of $B$ for every block $B$ of $G$.
+\begin{proof}
+Suppose $T$ is a spanning tree of $G$ and let $B$ be a block of $G$. Consider two vertices $u$ and $v$ of $B$. Since $T$ is a tree there exists a path in $T$ between $u$ and $v$, and by Part 1) this path lies entirely in $B$. Thus $T \cap B$ is a spanning tree of $B$. Conversely, suppose that $T$ is a spanning subgraph of $G$ such that $T \cap B$ is a spanning tree of $B$ for each block $B$ of $G$. Consider two vertices $u$ and $v$ of $G$ such that $u \in B_1$ and $v \in B_n$. Since $G$ is connected, it has a block tree $B(G)$. Then there's a path in $B(G)$ which connects $B_1$ and $B_n$. This path alternates blocks $B_1, B_2, \dots B_n$ with separating vertices, $s_1, s_2, \dots , s_{n-1}$. Now take the path in $T \cap B_1$ which connects $u$ with $s_1$, then adjoin it with the path in $T \cap B_2$ which connects $s_1$ with $s_2$. Continue in the way until we adjoin the path in $T \cap B_n$ which connects $s_{n-1}$ with $v$. This shows that $T$ is a spanning tree.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $G$ be a nonseparable graph and $v$ a vertex of $G$ of degree at least $4$ with at least two distinct neighbors. Also let $f$ be an edge of $G$ not incident to $v$. Let $H = G \backslash f$ be a separable graph whose block tree is a path. Suppose that $v$ is a separating vertex of $H$ such that there are two edges, $e_1 = vv_1$ and $e_2 = vv_2$, which are incident to $v$ and lie in distinct blocks of $H$. Let $G'$ be the graph obtained by splitting off $e_1$ and $e_2$ with an edge $e$. Show that:\\
+1) $G'$ is connected.
+\begin{proof}
+We need only consider paths in $G$ which contain $v$. Note that any such path must contain at least one of $e_1$ or $e_2$ since the block tree of $H$ is a path. Any path which contains $e_1$ and $e_2$ in succession remains intact in $G'$ since the connection $e_1e_2$ is simply replaced by $e$. Consider a path with endpoints $p_1$ and $p_2$ in $G$ which contains $e_1$ and is not followed by $e_2$. Since $G$ is nonseparable and $v$ has degree at least $4$, we know that $e_1$ lies on a cycle in $G$, and that this cycle must be contained in the block containing $e_1$. Then any path which contains $e_1$ can be replaced by the remainder of this cycle and likewise for $e_2$. This shows that $G'$ is connected.
+\end{proof}
+2) Each edge of $G'$ lies in a cycle.
+\begin{proof}
+Consider an edge, $e' \neq e$, in $G'$. Suppose first that $e'$ is completely contained in a block, $B$, of $H$ and does not have vertices which are separating vertices of $H$. We know that $G$ is nonseparable and so each pair of edges lies on a common cycle. Thus $e'$ and some other edge in $B$ lie on a common cycle of $G'$ and this cycle must lie entirely in $B$. If $e'$ contains a separating vertex of $H$, then it lies in part of the cycle formed by the path connecting all the separating vertices of $H$, and $f$. Finally, if $e' = e$, then $e$ lies in this cycle as well. Therefore every edge of $G'$ lies in a cycle.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $G$ be a nonseparable graph, and let $e$ be an edge of $G$ such that $G \backslash e$ is separable. Show that the block tree of $G \backslash e$ is a path.
+\begin{proof}
+Suppose that $B(G)$ is not a path and consider some vertex, $v$, which has degree at least $3$. Suppose that this vertex corresponds to a separating vertex, $s$, in $G \backslash e$. Then there are at least three blocks, $B_1$, $B_2$ and $B_3$ which intersect at $s$. Consider two edges $e_1 \in B_1$ and $e_2 \in B_2$. Note that since $G$ is nonseparable, there exists a cycle, $C$, containing $e_1$ and $e_2$. Since $G \backslash e$ is separable and $e_1$ and $e_2$ are in different blocks, this cycle must contain $e$. Moreover, $e$ must join $B_1$ and $B_2$ directly. Likewise, for two edges $e_2 \in B_2$ and $e_3 \in B_3$, there exists a cycle $C'$ which contains $e$, and $e$ joins $B_2$ and $B_3$ directly. But in a similar way, $e$ must join $B_1$ and $B_3$ directly, which is impossible.\newline
+
+Now suppose that $v$ corresponds to a block, $B$. Then there are at least three separating vertices which are part of $B$. Note that a leaf of $B(G)$ must correspond to a block, and so each of these separating vertices belongs to exactly one other block. There are then at least three blocks which are connected to $B$ and the above proof holds to show that this situation is impossible. Therefore each vertex of $B(G)$ has degree less than $3$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $F$ be a nonseparable proper subgraph of a graph $G$, and let $P$ be an ear of $F$. Then $F \cup P$ is nonseparable.
+\begin{proof}
+We know any two edges of $F$ lie on a common cycle in $F \cup P$. Consider the ends of $P$, $p_1$ and $p_2$. Since $F$ is nonseparable there exists a path in $F$ which connects $p_1$ and $p_2$. Then this path together with $P$ creates a cycle in $F \cup P$. Thus any two edges in $P$ lie in a cycle in $F \cup P$. Now consider some edge $e_1 = uv$ in $F$. There exist paths $P_1$ from $u$ to $p_1$ and $P_2$ from $v$ to $p_2$. Then for any edge $e_2$ in $P$ the cycle $P_1PP_2e_1$ contains both $e_1$ and $e_2$. Thus any two edges of $F \cup P$ lie on a common cycle.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Show that every edge of a nonseparable graph is either deletable or contractible.
+\begin{proof}
+In the case that $G = K_2$, the edge can be contracted to form $K_1$ which is also nonseparable. Assume that $G$ has three or more vertices. Let $e$ be an edge of a nonseparable graph $G$ and suppose that $G \backslash e$ is separable. Note that since $G$ is nonseparable, there are no cut vertices and so any two distinct vertices are connected by internally disjoint paths. Note that $e$ cannot be a loop since $G$ is nonseparable. Thus, $G \backslash e$ must have at least one cut vertex since it has a separating vertex. Therefore there exist two vertices, $u$ and $v$ which are not connected by internally disjoint paths in $G \backslash e$, but are in $G$. Therefore one of the paths contain $e$ and identifying the two ends of $e$ will necessarily preserve this connection. Then there are no cut vertices in $G / e$ and $G / e$ is thus nonseparable.\newline
+
+Now suppose that $G / e$ is separable. Since no connections are broken when contracting $e$, no paths are disconnected and so there are no cut vertices in $G / e$ except at the point where $e$ was contracted. Suppose that $e$ is contracted to the vertex $v$. Then $v$ must be a separating vertex of $G / e$. Note the a connected subgraph containing $v$ could not have only contained one vertex of $e$ in $G$, since then $G$ would have been separable. Thus, some connected subgraph contained both vertices of $e$ and thus made a cycle with $e$. Then in $G \backslash e$ this cycle is broken, but any paths which contained $e$ can be replaced with the remaining part of the cycle which joins the two ends of $e$. Thus, $G \backslash e$ is nonseparable.
+\end{proof}
+\end{problem}
+
+\end{flushleft}
+\end{document}

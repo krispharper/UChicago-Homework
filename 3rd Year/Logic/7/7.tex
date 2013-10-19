@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\renewcommand{\th}{\textup{Th}}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27700\\
+
+November 16, 2009
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{problem}
+Let $T$ be a countable theory in a countable language $\mathcal{L}$ and let $M \models T$, $A \subseteq |M|$. Say that $p(x_1, \dots , x_n)$ is an \emph{$n$-type of $T$ over $A$} if it is a consistent in the language $\mathcal{L}'$ in which we add constants for the elements of $A$ and it is realized in some model of $T$.\\
+(a) Let $M = \langle \mathbb{Q}, < \rangle$. Show that there are continuum many types of $\th(\mathbb{Q})$ over $\mathbb{Q}$.\\
+(b) Give an example of a model in a countable language in which there are continuum many distinct $1$-types of $\th(M)$ over $\emptyset$. Can they all be principal?\\
+(c) Give an example of a model in which there are only countably many $1$-types of $\th(M)$ over $\emptyset$.
+\end{problem}
+\begin{proof}
+(a) Let $r \in \mathbb{R}$ and consider the $1$-type $p_r(q) = \{x > q \mid q < r\} \cup \{x < q \mid q > r\}$. Every finite subset of $p(q)$ is realized in $M$. Additionally, since there exists a $p_r$ for each real number $r$, there are continuum many of them. To see that they're all distinct, consider two $p_r$ and $p_s$. Without loss of generality, let $r < s$ and let $q \in (r, s)$. Then $q$ realizes a formula in $p_r$, but not in $p_s$.
+
+(b) Let $M = \langle \mathbb{N}, <, \cdot, +, 0, 1 \rangle$. Let $P$ be the set of primes and let $X \subseteq P$. Define $p_X(y) = \{p \mid p \mid y, p \in X\}$. We can define the prime divisors of $y$ and so this is finitely satisfiable. But since $P$ is countable, there are continuum many types $p_X$. They can't all be principal, since a countable language implies countably many formulas and thus each formula can only label countably many things.
+
+(c) Let $M = \langle \mathbb{N}, S, 0 \rangle$. Let $p_n = \{x \neq S^n(0)\}$. Since $\mathbb{N}$ is countable, there are countably many $p_n$.
+\end{proof}
+
+\begin{problem}
+Let $S_0$ be the following topological space: the points $T$ are the maximal consistent sets of $\mathcal{L}$-sentences and for each $\mathcal{L}$-sentence $\varphi$, $O_{\varphi}= \{T \mid \varphi \in T\}$ is a basic open set.\\
+(a) Show that the complement of each basic open set is open. Show that for any two points $T_1$, $T_2$, there are $\varphi$, $\psi = \neg \varphi$ such that $T_1 \in O_{\varphi}$, $T_2 \in O_{\psi}$. (So $S_0$ is Hausdorff.)\\
+(b) Show that the compactness theorem is equivalent to the statement that $S_0$ is a compact space.
+\end{problem}
+\begin{proof}
+(a) Let $O_{\varphi}$ be an open set and note that $S_0 \backslash O_{\varphi} = \{T \mid \varphi \notin T\}$. But since the points $T$ are maximally consistent, this is the same as $\{T \mid \neg \varphi \in T\}$. Thus $S_0 \backslash O_{\varphi} = O_{\neg \varphi}$. Let $T_1$ and $T_2$ be two distinct points in $S_0$. Then there exists $\varphi \in T_1$ such that $\varphi \notin T_2$. But since $T_2$ is maximally consistent, $\neg \varphi \in T_2$ and thus $T_1 \in O_{\varphi}$ and $T_2 \in O_{\neg \varphi}$.
+
+(b) Assume that a theory $T$ is maximally consistent if and only if it is finitely satisfiable. Let $F = \{f_i \mid i \in I\}$ be a family of closed sets with the finite intersection property. From part (a) we can write each $f_i$ as the intersection of open sets
+\[
+f_i = S_0 \backslash \bigcup_{j} O_{\varphi_j} = \bigcap_{j} S \backslash O_{\varphi_j} = \bigcap_{j} O_{\varphi_{j}'}.
+\]
+We know that for each $k < \omega$, we have
+\[
+\bigcap_{i \leq k} f_i = \bigcap_{i \leq k} \bigcap_{j} O_{\varphi_j'} \neq \emptyset.
+\]
+Thus there exists a theory $T_k$ in this intersection which is maximally consistent. But then since $T_k$ is finitely satisfiable for each $k$, we can extend the intersection to all $i$ so that
+\[
+\bigcap_{i} f_i = \bigcap_i \bigcap_j O_{\varphi_j} \neq \emptyset
+\]
+and $S_0$ is a compact space. Now suppose the converse, that $S_0$ is compact. Then every collection of closed sets $F$ with the finite intersection property has nonempty intersection. Let $T$ be a theory which is finitely satisfiable. Let $T_i$ be a subset of $T$ and extend $T_i$ to a maximal consistent theory $T_i'$. Each $T_i'$ is a point in $S_0$, so each one corresponds to a closed set in $S_0$. This family of closed sets has the finite intersection property, and thus the entire family has nontrivial intersection. But this means precisely that $T \in S_0$ and is thus maximally consistent.
+\end{proof}
+
+\begin{problem}
+Explain how to modify the proof of the Omitting Types Theorem to omit \emph{two} nonprincipal types simultaneously.
+\end{problem}
+\begin{proof}
+The statement of the theorem will now be "Suppose $\mathcal{L}$ is a countable language and $T$ is a set of $\mathcal{L}$-structures. If $\Sigma_1$ and $\Sigma_2$ are nonprincipal types then there exists a model $M \models T$ which omits $\Sigma_1$ and $\Sigma_2$. Steps 1, 2 and 3 of the proof remain the same. In step 4, we need to write, "There are $\sigma_1 \in \Sigma_1$ and $\sigma_2 \in \Sigma_2$ such that $\neg \sigma_1(c_i) \in T_{i+1}$ and $\neg \sigma_2(c_i) \in T_{i+1}$.
+\end{proof}
+
+\begin{problem}
+Let $T$ be a complete countable theory and let $p_i$ ($i \in \mathbb{N}$) be a countable set of $1$-types of $T$ over $\emptyset$. Show that there exists a countable model of $T$ in which each $p_i$ is realized (i.e., for each $p_i$ there exists $a_i \in |M|$ such that $M \models \varphi(a_i)$ for each $\varphi \in p_i$).
+\end{problem}
+\begin{proof}
+Let $T$ be over a language $\mathcal{L}$ and let $\mathcal{L}' = \mathcal{L} \cup \{c_i \mid i \in \mathbb{N}\}$. Let $T' = T \cup \{\varphi(c_i) \mid \varphi \in p_i, i \in \mathbb{N}\}$. Since $T$ is countable and complete, we know there exists a countable model $M \models T$. Furthermore for each $i \in \mathbb{N}$ and each $k < \omega$, we know $T \models \exists x \bigwedge_{j = 1}^{k} \varphi_j(x)$ where $\varphi_j \in p_i$. But now just let $c_i$ be interpreted as elements of $M$ which satisfy $\varphi_k$ for each $p_i$. Then each $p_i$ is realized in $M$ and $M$ is still countable.
+\end{proof}
+
+\begin{problem}
+A model $M$ is said to be \emph{countably saturated} if for all finite $A \subseteq |M|$ and all $1$-types $p$ of $\th(M)$ over $A$, $p$ is realized in $M$. Suppose $M$, $N$ are countable and countably saturated. Write $(M, a_1, \dots , a_k) \equiv (N, b_1, \dots , b_k)$ to indicate $M \equiv N$ in the language where we add new constant symbols $c_1, \dots , c_k$ and $c_i$ is interpreted as $a_i$ in $M$ and as $b_i$ in $N$.\\
+(a) Suppose $(M, a_1, \dots , a_n) \equiv (N, b_1, \dots , b_n)$. For each $a_{n+1} \in |M|$, there exists $b_{n+1} \in |N|$ such that $(M, a_1, \dots , a_{n+1}) \equiv (N, b_1, \dots , b_{n+1})$.\\
+(b) Restate (a) in terms of a condition about realizing types over finite sets.\\
+(c) Show that any two countable countably saturated models which are elementary equivalent are isomorphic.\\
+(d) If a countable countably saturated model of $T$ exists, there cannot be more than countably many $1$-types of $T$ over $\emptyset$.
+\end{problem}
+\begin{proof}
+(a) Let $a_{n+1} \in |M|$ where $a_{n+1}$ is the interpretation of $c_{n+1}$ in $M$. Since $N$ is countably saturated, let $A = \{b_1, \dots , b_n\}$ so that every $1$-type over $A$ is realized in $N$. In particular, $p(x) = \{x \neq b_1, x \neq b_2, \dots , x \neq b_n\}$ is realized by some $b_{n+1}$. Then we must have $b_{n+1}$ is the interpretation of $c_{n+1}$ in $N$ and $(M, a_1, \dots , a_{n+1}) \equiv (N, b_1, \dots , b_{n+1})$.
+
+(b) Let $M \equiv N$. For each finite subset $A \subseteq |M|$ and let $x \notin A$ be the realization of a $1$-type over $A$. Then if $B \subseteq |N|$ with every element in $A$ corresponding to an element of $B$, there exists $y$, the realization of a $1$-type over $B$.
+
+(c) Let $M$ and $N$ be two elementary equivalent countably saturated countable models for $\mathcal{L}$. Add countably many constants $c_i$ to $\mathcal{L}$. Let $a_1$ be the interpretation of $c_1$ in $M$. From part (a) we know that there exists $b_1 \in |N|$ which is the interpretation of $c_1$ in $N$. Choosing $b_2 \in |N|$ as the interpretation of $c_2$, we again know there exists $a_2 \in |M|$ which is the interpretation of $c_2$ in $M$. Since $M$ and $N$ are countable, we can enumerate every element as an interpretation of some constant $c_i$, and so they must be isomorphic.
+
+(d) Let $M \models T$ be a countably saturated countable model of $T$. Then there are only countably many formulas. Thus each $1$-type can only be countable and there can only be countably many of them.
+\end{proof}
+
+\end{document}

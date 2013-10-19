@@ -1,0 +1,185 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newcommand{\sgn}{\textup{sgn}}
+\newcommand{\sym}{\textup{Sym}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26700\\
+
+November 8, 2010
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{problem}
+Using (a) and the description of $V_{\lambda}$ in the theorem show that
+\[
+V_{\lambda'} = V_{\lambda} \otimes U',
+\]
+where $\lambda'$ is the conjugate partition to $\lambda$ and $U'$ is the alternating representation.
+\end{problem}
+\begin{proof}
+Let $V$ and $W$ be subrepresentations of the regular representation and let $\varphi : V \to W$ be a map such that $\varphi(e_g) = \sgn(g) e_g$ and extend this map linearly. Then we claim there is an isomorphism between $W$ and $V \otimes U'$. Let $\iota : V \to V \otimes U'$ where $\iota : v \mapsto v \otimes u'$ for some basis element $u' \in U'$. Now let $e_g \in W$ so that we have
+\[
+h(\iota(\varphi^{-1}(e_g))) = h(\iota \sgn(g) e_g) = h(\sgn(g) e_g \otimes u') = \sgn(g) e_{hg} \otimes \sgn(h) u' = \sgn(gh)(e_{hg} \otimes u').
+\]
+and
+\[
+\iota(\varphi^{-1}(he_g)) = \iota(\varphi^{-1}(e_{hg})) =\iota(\sgn(hg) e_{hg}) = \sgn(hg)e_{hg} \otimes u' = \sgn(gh)(e_{hg} \otimes u')
+\]
+since $\sgn(gh) = \sgn(hg)$. So the map is $G$-linear and is obviously a bijection. Now let $\varphi : Aa_{\lambda}b_{\lambda} \to A$ be defined as $\varphi : e_g \mapsto \sgn(g)e_g$ and extended linearly. Then note that $\varphi(a_{\lambda}) = b_{\lambda'}$ and $\varphi(b_{\lambda}) = a_{\lambda'}$. By part (a) we know $Aa_{\lambda}b_{\lambda} = Ab_{\lambda}a_{\lambda}$. Also $\varphi$ is a $A$-homomorphism since
+\[
+\varphi(e_ge_h) = \varphi(e_{gh}) = \sgn(gh)e_{gh} = \sgn(g)\sgn(h)e_ge_h = \varphi(e_g)\varphi(e_h).
+\]
+Thus the image of $Ab_{\lambda}a_{\lambda}$ under $\varphi$ is $Aa_{\lambda'}b_{\lambda'} = V_{\lambda'}$. By the above, this is isomorphic to $V \otimes U'$.
+\end{proof}
+
+\begin{problem}
+\label{standard}
+Show that for general $d$, the standard representation $V$ corresponds to the partition $d = (d-1) + 1$. As a challenge, you can try to prove that the exterior powers of the standard representation $V$ are represented by a ``hook''.
+\end{problem}
+\begin{proof}
+We can deduce this by noting that the character of the standard representation is $\chi_V = \chi_{\mathbb{C}^d} - \chi_U$ where $U$ and $\mathbb{C}^d$ are the trivial and permutation representations respectively. So for a conjugacy class $C_i$, $\chi_V(C_i)$ is $-1$ plus the the number of things $C_i$ fixes in the permutation representation. Note that this is the number of $1$-cycles in the cycle-type of $C_i$, or $i_1$. Thus $\chi_V(C_i) = i_1 - 1$. By Problem~\ref{formula}, this is the character corresponding to $(d-1,1)$.
+\end{proof}
+
+\begin{problem}
+Deduce the hook length formula from the Frobenius formula (4.11).
+\end{problem}
+\begin{proof}
+We use induction. The base case for the trivial representation is clear. Suppose we're give a Young diagram from a partition $\lambda$ and we enter in the hook lengths $h_1, \dots , h_d$. From the Frobenius formula we know
+\[
+\dim (V_{\lambda}) = \frac{d!}{l_1! \cdots l_k!} \prod_{i<j}(l_i - l_j).
+\]
+Note that the numbers in the first column are the numbers $l_1, \dots , l_k$. If we ignore the first column then we have a smaller Young diagram which satisfies the hook length formula by induction. Call this partition $\lambda'$ and note $\prod_{i < j}((l_i - 1) - (l_j - 1)) = \prod_{i < j} (l_i - l_j)$. Then we have
+\[
+\dim (V_{\lambda'}) = \frac{(d-k)!}{\frac{1}{l_1 \cdots l_k} \prod_i h_i} = \frac{(d-k)!}{(l_1-1)! \cdots (l_k-1)!} \prod_{i < j} (l_i - l_j).
+\]
+Multiplying by $(d(d-1) \cdots (d-k+1))/(l_1 \cdots l_k)$ gives the formula for $V_{\lambda}$.
+\end{proof}
+
+\begin{problem}
+Use the hook length formula to show that the only irreducible representations of $S_d$ of dimension less than $d$ are the trivial and alternating representation $U$ and $U'$ of dimension $1$, the standard representation $V$ and $V' = V \otimes U'$ of dimension $d-1$ and three other examples: the two-dimensional representation $S_4$ corresponding to the partition $4 = 2 + 2$, and the two five-dimensional representations of $S_6$ corresponding to the partitions $6 = 3 + 3$ and $6 = 2 + 2 + 2$.
+\end{problem}
+\begin{proof}
+Note that $U$ and $U'$ clearly have dimension $1$ and $V$ corresponds to a partition $(d-1,1)$ by Problem~{standard} so it has dimension $d-1$ by the formula. By Problem~\ref{tensor}, $\dim(V) = \dim(V') = d-1$ as well. The dimension of the $S_4$ representation corresponding to $2 + 2$ is $4!/(3 \cdot 2 \cdot 2 \cdot 1) = 2$, the dimension of the $S_6$ representation corresponding to $3 + 3$ is $6!/(4 \cdot 3 \cdot 3 \cdot 2 \cdot 2 \cdot 1) = 5$ and this is the same as the dimension of the representation corresponding to $2 + 2 + 2$ by Problem~\ref{tensor}.
+
+We use induction. Assume that we have a Young diagram with the hook lengths $h_1, \dots , h_d$ filled in. Also assume that if we remove the first column, the resulting partition corresponds to a representation which isn't one of the above exceptions. By induction, this representation has dimension
+\[
+\dim (V_{\lambda'}) = \frac{(d-k)!}{\frac{1}{l_1 \cdots l_k} \prod_i h_i} \geq d-k.
+\]
+If we multiply both sides by $(d(d-1) \cdots (d-k+1))/(l_1 \cdots l_k)$ we
+\[
+\dim (V_{\lambda}) \geq \frac{d(d-1) \cdots (d-k)}{l_1 \cdots l_k}.
+\]
+The only possibility for $l_1 \cdots l_k$ containing a factor of $d$ is if $\lambda$ is a hook. Excluding the possibilities that $V_{\lambda}$ is $U$, $U'$, $V$ or $V'$, this means that $l_1 \cdots l_k$ is of the form $d (d-3)^2 (d-4)^2 \cdots 1^2$. In this case we're left with at least $(d-1)(d-2) > d$ in the numerator, so $\dim(V_{\lambda}) \geq d$.
+\end{proof}
+
+\begin{problem}
+\label{formula}
+Using Frobenius's formula or otherwise, show that:
+\[
+\chi_{(d-1,1)}(C_i) = i_1 - 1;
+\]
+\[
+\chi_{(d-2, 1 1)}(C_i) = \frac{1}{2} (i_1 - 1)(i_1 - 2) - i_2;
+\]
+\[
+\chi_{(d-2, 2)}(C_i) = \frac{1}{2} (i_1 - 1)(i_1 - 2) + i_2 - 1.
+\]
+Can you continue this list?
+\end{problem}
+\begin{proof}
+Let $\lambda = (d-1,1)$. Then by the Frobenius formula we have
+\begin{align*}
+\chi_{\lambda}(C_i)
+&= \left [ (x_1 - x_2)(x_1 + x_2)^{i_1}(x_1^2 + x_2^2)^{i_2} \cdots (x_1^d + x_2^d)^{i_d} \right ]_{(d,1)}\\
+&= \left [ (x_1 - x_2) \left (x_1^{i_1} + \binom{i_1}{1} x_1^{i_1-1}x_2 + \cdots \right)(x_1^2 + x_2^2)^{i_2} \cdots (x_1^d + x_2^d)^{i_d} \right ]_{(d,1)}
+\end{align*}
+where we've expanded the second term with the binomial formula. We need to find all the terms $x_1^{d-1}x_2$, so we look for terms where the exponent of $x_2$ is $1$. So we can choose a $-x_2$ from the first term, and all $x_1$ terms from the rest of the terms, or a $\binom{i_1}{1}x_1^{i_1-1}x_2$ term from the second term and all $x_1$ terms from the rest of the the terms. Summing these two gives $\chi_{\lambda}(C_i) = i-1$.
+
+Now let $\lambda = (d-2,1,1)$. Then by the Frobenius formula we have
+\begin{align*}
+\chi_{\lambda}(C_i)
+&= \left [ (x_1 - x_2)(x_2 - x_3)(x_1 - x_3)(x_1 + x_2 + x_3)^{i_1}(x_1^2 + x_2^2 + x_3^2)^{i_2} \cdots (x_1^d + x_2^d + x_3^d)^{i_d} \right ]_{(d,2,1)}\\
+&= \left [ (x_1 - x_2)(x_2 - x_3)(x_1 - x_3) \left (\binom{i_1}{i_1 - 1 \; 1} x_1^{i_1-1}x_3 + \binom{i_1}{i_1-1 \; 1} x_1^{i_1-1}x_2 + \binom{i_1}{i_1-2 \; 1 \; 1} x_1^{i_1-2}x_2x_3 \right. \right.\\
+& ~~~~\left .\left.+ \binom{i_1}{i_1-2 \; 2}x_1^{i_1-2}x_2^2 + \cdots \right ) \left (\binom{i_2}{i_2-1 \; 1} (x_1^2)^{i_2-1}x_2^2 + \cdots \right ) \cdots (x_1^d + x_2^d + x_3^d)^{i_d} \right ]_{(d,2,1)}
+\end{align*}
+where the relevant terms have been expanded using the multinomial formula. Now it's easy to pick out the only terms which have an exponent of $1$ for $x_3$. Starting from the right-most terms in the fourth term, these coefficients are
+\begin{align*}
+-\binom{i_1}{i_1-2 \; 2} + \binom{i_1}{i_1-2 \; 1 \; 1} - \binom{i_1}{i_1-1 \; 1} - \binom{i_1}{i_1-1 \; 1} - \binom{i_2}{i_2-1 \; 1}
+&= \frac{-i_1(i_1-1)}{2} + i_1(i_1-1) - 2i_1 - i_2\\
+&= \frac{1}{2}(i_1-1)(i_1-2)-i_2.
+\end{align*}
+
+Finally let $\lambda = (d-2,2)$. The by the Frobenius formula we have
+\begin{align*}
+\chi_{\lambda}(C_i)
+&= \left [(x_1-x_2)(x_1 + x_2)^{i_1}(x_1^2 + x_2)^{i_2} \cdots (x_1^d + x_2^d)^{i_d} \right ]_{(d-1,2)}\\
+&= \left [(x_1-x_2) \left (x_1^{i_1} + \binom{i_1}{1} x_1^{i_1-1}x_2 + \binom{i_1}{2} x_1^{i_1-2}x_2^2 + \cdots \right ) \right.\\
+&~~~\left. \left (x_1^{2i_2} + \binom{i_2}{1} x_1^{2(i_1-1)} x_2^2 + \cdots \right ) \cdots (x_1^d + x_2^d)^{i_d} \right ]_{(d-1,2)}
+\end{align*}
+where we've expanded the second and third terms using the binomial theorem. Now we're looking for terms with $x_2$ exponent $2$. There are three such terms found by either taking the second term from the third term, the third term from the second term, or the second term from the second term and the second term from the first term. Adding these coefficients up we have
+\[
+\binom{i_2}{1} + \binom{i_1}{2} - \binom{i_1}{1} = i_2 + \frac{i_1(i_1-1)}{2} - i_1 = \frac{1}{2} (i_1 - 1)(i_1 - 2) + i_2 - 1.
+\]
+\end{proof}
+
+\begin{problem}
+If $g$ is a cycle of length $d$ in $S_d$, show that $\chi_{\lambda}(g)$ is $\pm 1$ if $\lambda$ is a hook, and zero if $\lambda$ is not a hook:
+\[
+\chi_{\lambda}(g) =
+\begin{cases}
+(-1)^s & \text{if $\lambda = (d-s, 1, \dots , 1)$, $0 \leq s \leq d-1$}\\
+0 & \text{otherwise}
+\end{cases}.
+\]
+\end{problem}
+\begin{proof}
+Suppose that $\lambda = (d-s, 1, \dots , 1)$ is a hook. Note that $g \in C_i$ where $i_d = 1$ and $i_j = 0$ for $j \neq d$. The the frobenius formula reduces to
+\[
+\chi_{\lambda}(g) = [\Delta(x)(x_1^d + x_2^d + \dots + x_{s+1}^d)]_{(l_1, \dots , l_{s+1})}.
+\]
+Note also that $l_1 = d-s + (s+1)-1 = d$ and $l_j = s+2-j$ for $j > 1$. Since there are $s$ terms with $x_1$ in $\Delta(x)$, to get a term with exponent $d$ for $x_1$ we must choose $x_1^d$ from the last term and then choose $-x_i$ from all the $(x_1 - x_i)$ terms in $\Delta(x)$. This gives $(-1)^s$ so far.
+
+Now, one of these terms contained a $-x_2$, so we must choose $l_2-1 = s-1$ more, all of which must be from terms of the form $(x_2 - x_i)$, so this doesn't change the coefficient. Similarly, we must choose $s-3$ terms containing $x_3$. Continuing in this fashion, we eventually choose all the terms and so the coefficient remains at $(-1)^s$.
+
+On the other hand, if $\lambda$ is not a hook, then $l_1 \neq d$. But then the coefficient of $x_1^{l_1} \dots x_k^{l_k}$ in $\Delta(x) (x_1^d + \dots + x_k^d)$ must be zero. To see this, note that we must choose $x_1^d$ from the last term, and then some number of terms in $\Delta(x)$. But each time we choose $x_1$ from a term $(x_1 - x_i)$, there is a corresponding choice where we choose $-x_i$. All of these choices cancel out and so we end up with $0$ in the end.
+\end{proof}
+
+\begin{problem}
+If $V$ is the standard representation of $S_d$, prove the decompositions into irreducible representations:
+\[
+\sym^2 V \cong U \oplus V \oplus V_{(d-2,2)},
+\]
+\[
+V \otimes V = \sym^2 V \oplus \wedge^2 V \cong U \oplus V \oplus V_{(d-2,2)} \oplus V_{(d-2,1,1)}.
+\]
+\end{problem}
+\begin{proof}
+Let $g \in S_d$ and let $C_i$ be the conjugacy class of $g$. Using Problems~\ref{standard} and \ref{formula} we can evaluate the character on the right of the first formula as $\frac{1}{2}(i_1^2 - i_1 + 2i_2)$. To compute the lefthand side we can use the character formula for $\sym^2V$, namely $\frac{1}{2}(\chi_V(g)^2 + \chi_V(g^2))$. To compute $\chi_V(g^2) = i_1 - 1$, we need to find all the cycles which become $1$-cycles in $g^2$. This includes all the $1$-cycles of $g$, plus all the $2$-cycles of $g$ (which we multiply by $2$ since there are two elements in the cycle). Thus $\chi_V(g^2) = (i_1 + 2i_2) - 1$ and
+\[
+\chi_{\sym^2V}(g) = \frac{1}{2}((i_1 - 1)^2 + (i_1 + 2i_2) - 1) = \frac{1}{2}(i_1^2 - i_1 + 2i_2)
+\]
+as desired.
+
+For the second part, we already have all the formulas. For the character of the left hand side we add
+\[
+\chi_{\sym^2V}(g) + \chi_{\wedge^2 V}(g) = \frac{1}{2}(\chi_V(g)^2 + \chi_V(g^2)) + \frac{1}{2}(\chi_V(g)^2 - \chi_V(g^2)) = \chi_V(g)^2 = i_1^2 - 2i_1 + 1.
+\]
+For the righthand side, we simply add the character for $V_{d-2,1,1)}$ from Problem~\ref{formula} to the above character for $U \oplus V \oplus V_{(d-2,2)}$. This is
+\[
+\frac{1}{2}(i_1^2 - i_1 + 2i_2) + \frac{1}{2}(i_1-1)(i_1-2) - i_2) = i_1^2 - 2i_1 + 1
+\]
+so the characters are the same.
+\end{proof}
+
+\end{document}

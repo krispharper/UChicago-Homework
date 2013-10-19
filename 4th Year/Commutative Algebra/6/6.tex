@@ -1,0 +1,232 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newcommand{\ass}{\textup{Ass}}
+\newcommand{\supp}{\textup{Supp}}
+\newcommand{\ann}{\textup{ann}}
+\newcommand{\spec}{\textup{Spec}}
+\newcommand{\Max}{\textup{Max}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26800\\
+
+February 15, 2011
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{problem}
+\label{series}
+Let $A$ be a commutative ring and $E$ an $A$-module. Let $E_i$, $0 \leq i \leq n$, be submodules such that $E = E_0 \supseteq E_1 \supseteq \dots \supseteq E_{n-1} \supseteq E_n = 0$. Show that
+\[
+\ass(E) \subseteq \bigcup_{i=0}^{n-1} \ass(E_i/E_{i+1}).
+\]
+\end{problem}
+\begin{proof}
+We use induction on $n$. In the case that $n = 1$, we have $E_1 = 0$ so $\ass(E) = \ass(E/E_1)$. Now suppose the statement is true for some $n-1$ and consider a chain $E = E_0 \supseteq \dots \supseteq E_n = 0$. By the inductive hypothesis we have
+\[
+\ass(E_1) \subseteq \bigcup_{i=0}^{n-2} \ass(E_i/E_{i+1}).
+\]
+We also have the exact sequence $0 \to E_1 \to E \to E/E_1 \to 0$, so we know $\ass(E) \subseteq \ass(E_1) \cup \ass(E/E_1)$. Then substituting $\ass(E_1)$ with the above expression gives the exact result.
+\end{proof}
+
+\begin{problem}
+(a) Let $E_1$, $E_2$ be $A$-modules. Show that $\ass(E_1 \oplus E_2) = \ass(E_1) \cup \ass(E_2)$.\\
+(b) Let $E_1$, $E_2$ be sub-modules of an $A$-module $E$, such that $E = E_1 + E_2$. Prove or disprove that $\ass(E) = \ass(E_1) \cup \ass(E_2)$.
+\end{problem}
+\begin{proof}
+(a) We have the exact sequence
+\[
+0 \to E_1 \to E_1 \oplus E_2 \to E_2 \to 0
+\]
+and so we know $\ass(E_1 \oplus E_2) \subseteq \ass(E_1) \cup \ass(E_2)$. But we also know that if $F \subseteq E$ then $\ass(F) \subseteq \ass(E)$ since if a prime is the annihilator of an element of $F$, it's an annihilator of the same element of $E$. Since $E_1 \subseteq E_1 \oplus E_2$ and $E_2 \subseteq E_1 \oplus E_2$ then we have the reverse inclusion as well.
+
+(b) Let $E = (n\mathbb{Z} \oplus m\mathbb{Z})/(2n, 2m)$. Let $E_1 = n\mathbb{Z}$ and $E_2 = m\mathbb{Z}$. Then $E_1 \subseteq E$ by taking $n$ to $(n,0) + (2n,2m)$. On the other hand if we take $(x,y) + (2n,2m) \in E$, then $(x,0) \in E_1$ and $(0,y) \in E_2$ so $E_1 + E_2 \subseteq E$. Thus $E = E_1 + E_2$. But $\ann(E_1) = \ann(E_2) = 0$ and $\ann(E) = \{0, 2\mathbb{Z})$.
+\end{proof}
+
+\begin{problem}
+Let $E$ be a finite $A$-module. Show that $\ass(A/\ann(E)) \subseteq \ass(E)$ (here $\ann(E) = \{a \in A \mid aE = 0\}$). Show that in general, $\ass(A/ann(E)) = \ass(E)$ is not true for a finite $A$-module.
+\end{problem}
+\begin{proof}
+Let $P \in \ass(A/\ann(E))$ so that $P = \ann(x + \ann(E))$. Since $E$ is finitely generated we can write $E = \sum_{i=1}^n Ay_i$. Then
+\begin{align*}
+P
+&= \ann(x + \ann(E))\\
+&= \{a \in A \mid ax \in \ann(E)\}\\
+&= \{a \in A \mid axE = 0\}\\
+&= \left \{a \in A \mid ax\sum_{i=1}^n y_i = 0 \right \}\\
+&= \left \{a \in A \mid a \left ( x \sum_{i=1}^n y_i \right ) = 0 \right \}\\
+&= \ann \left ( x\sum_{i=1}^n y_i \right )
+\end{align*}
+so $P \in \ass(E)$ as well.
+
+As a counterexample, consider the $\mathbb{Z}$-module, $\mathbb{Z} \oplus \mathbb{Z}/2\mathbb{Z}$. The ideals $0$ and $2 \mathbb{Z}$ are annihilators of $(1,0)$ and $(0,1)$ respectively and it's easy to see that there are no other associated primes. But note that the only element which annihilates everything is $0$, so $\ann(\mathbb{Z} \oplus \mathbb{Z}/2\mathbb{Z}) = 0$. Thus, the quotient ring in question is just $\mathbb{Z}$, which only has $0$ as an associated prime, not $2 \mathbb{Z}$. Thus, the inclusion is proper.
+\end{proof}
+
+\begin{problem}
+Let $K$ be a field and $A = K[x,y]$. Let $I = Ax^2 + Axy$. Compute that $\ass(A/I)$.
+\end{problem}
+\begin{proof}
+Since $\ass(A/I) \subseteq \supp(A/I)$ we can start by computing the later. Note that $\supp(A/I) = V(I) = V(x^2) \cap V(xy)$. Using the affine plane constructions, we see that $V(x^2)$ is the line $x = 0$ and $V(xy)$ is the union of the two lines $x = 0$ and $y = 0$. Their intersection is then the line $x = 0$. The prime ideals which correspond to these points are $(x)$ and $(x,y-a)$ for all $a \in K$. Note that $\ass(A/I)$ is a finite set, so if any $(x,y-a)$ are in $\ass(A/I)$, then we can vary $a \in K$ to get all of these ideals in $\ass(A/I)$. But $K$ could be infinite, so none of them can be in $\ass(A/I)$. On the other hand, $(x) = \ann(y + I)$, so we have $\ass(A/I) = \{(x)\}$.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a commutative ring and $I_i$, $1 \leq i \leq n$ ideals in $A$ such that $I_i + I_j = A$ if $i \neq j$. Let $E$ be an $A$-module.\\
+(a) Show that $I_1 I_2 \cdots I_n = \bigcap_{i=1}^n I_i$.\\
+(b) Show
+\[
+E/(I_1 I_2 \cdots I_n)E \cong \bigoplus_{i=1}^n E/I_jE.
+\]
+\end{problem}
+\begin{proof}
+(a) First consider the case $n = 2$. Then note that we always have $I_1I_2 \subseteq I_1 \cap I_2$ since if $ab \in I_1I_2$ with $a \in I_1$ and $b \in I_2$ then $a(b) \in I_1$ and $(a)b \in I_2$. Since both ideals are closed under finite sums, we have this inclusion. For the reverse inclusion note that since $I_1 + I_2 = A$ we can write $1 = x+y$ for some $x \in I_1$ and $y \in I_2$. Now if $a \in I_1 \cap I_2$ then $c = c \cdot 1 = cx + cy$ which is in $I_1I_2$ since it's a finite sum of products of elements from both ideals. Now we induct on $n$ and suppose the statement is true for some $n-1$. By the above logic, it's enough to show that $I_1 \cdots I_{n-1} + I_n = A$. For each $1 \leq i \leq n-1$ we have elements $x_i \in I_i$ and $y_i \in I_n$ such that $x_i + y_i = 1$. Now consider the product of all these terms, $(x_1 + y_1) \cdots (x_{n-1} + y_{n-1}) = 1$. If we reduce modulo the ideal $I_n$, then each term is just $x_i$. Taking the preimage of this shows that the product must be in $I_1 \cdots I_{n-1} + I_n$.
+
+(b) Form the map $\varphi : E \to \bigoplus_{i=1}^n E/I_iE$ as $\varphi : x \mapsto (x + I_1E, \dots , x + I_nE)$. This is definitely a ring homomorphism since it's just the natural projection of $E$ onto each component. The kernel of $\varphi$ is the set of elements $x \in E$ such that $x$ is in each $I_iE$. So by part (a) we have
+\[
+\ker \varphi \bigcap_{i=1}^n I_iE = \left ( \bigcap_{i=1}^n I_i \right ) E = (I_1 \cdots I_n)E.
+\]
+By the first isomorphism theorem it's now enough to show $\varphi$ is surjective. We can do this inductively starting with $n = 2$. Since $I_1 + I_2 = A$, we can find $a \in I_1$ and $b \in I_2$ such that $a + b = 1$. Now pick $(x + I_1E, y + I_2E) \in E/I_1E \oplus E/I_2E$. Then we have
+\begin{align*}
+\varphi(ay + bx)
+&= \varphi(ay) + \varphi(bx)\\
+&= (ay + I_1E, ay + I_2E) + (bx + I_1E, by + I_2E)\\
+&= (0, (1-b)y + I_2E) + ((1-a)x + I_1E, 0)\\
+&= (x + I_1E, y + I_2E)
+\end{align*}
+so that $\varphi$ is surjective. Now simply induct on $n$ and use the same logic as in part (a) to show that $I_1 \cdots I_{n-1} + I_n = A$. Surjectivity follows in general so $\varphi$ is an isomorphism.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a Noetherian ring and $E$ a finite $A$-module. Show that there exist only finitely many minimal prime ideals in $\supp(E)$. If $P_1, \dots, P_r$ are minimal prime ideals of $\supp(E)$, then $(P_1 P_2 \dots P_r)^N E = 0$ for some $N > 0$.
+\end{problem}
+\begin{proof}
+Since $E$ is a finite $A$-module, $\supp(E) = V(\ann(E))$. Thus, all ideals in $\supp(E)$ contain $\ann(E)$. In general, consider the collection of all ideals $I \subseteq A$ such that there are infinitely many minimal prime ideals containing $I$. Since $A$ is Noetherian, we can pick $I$ to be the maximal ideal from this collection. Note that $I$ can't be prime (otherwise it would be the only minimal prime ideal containing it). Thus there exists $a,b \notin I$ such that $ab \in I$. Then $I$ is properly contained in $I + (a)$ and $I + (b)$, so there are only finitely many minimal prime ideals containing these two ideals. But note that $(I + (a))(I + (b)) \subseteq I$ so each prime ideal containing $I$ must contain one of these two ideals. Since there are infinitely many, this is a contradiction.
+
+This shows that there can only be finitely many minimal prime ideals containing $\ann(E)$, so there are only finitely many prime ideals in $\supp(E)$. Now note that $\sqrt{\ann(E)}$ is the intersection of all prime ideals containing it, but this is equivalent to the intersection of all minimal prime ideals containing it, since any prime ideal not in this collection must contain a minimal prime ideal. Thus $\sqrt{\ann(E)} = \bigcap_{i=1}^r P_r \supseteq P_1 \cdots P_r$. So the product is contained in the radical of $\ann(E)$. Since $A$ is Noetherian, each $P_i$ is finitely generated, so each generator raised to some power will lie in $\ann(E)$. Take $N$ to be the product of all these powers so that every element of $P_1 \cdots P_r$ lies in $\ann(E)$. Then $(P_1 \cdots P_r)E = 0$.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a commutative ring and $E$, $E'$ finite $A$-modules.\\
+(a) Show that $\supp(E) = \supp(E')$ if and only if $\sqrt{\ann(E)} = \sqrt{\ann(E')}$.\\
+(b) Let $I$, $J$ be ideals of $A$. Suppose that $E$ is a finite $A$-module with $\ann(E) = 0$ (i.e. E is a \emph{finite faithful $A$-module}). Show that $IE = JE$ implies $\sqrt{I} = \sqrt{J}$.
+\end{problem}
+\begin{proof}
+(a) First suppose $\supp(E) = \supp(E')$. Then since $E$ is finitely generated we have $\supp(E) = \{P \in \spec(A) \mid P \supseteq \ann(E)\}$. Then $\sqrt{\ann(E)} = \bigcap_{P \supseteq \ann(E)} P = \bigcap_{P \supseteq \ann(E')} P = \sqrt{\ann(E')}$. Conversely, suppose $\sqrt{\ann(E)} = \sqrt{\ann(E')}$. Then if $P \in \supp(E)$, we know $P \supseteq \ann(E)$. Note though, that $\sqrt{\ann(E)}$ is the collection of all elements who have a power which lands them in $\ann(E)$. Since $P$ is prime and contains $\ann(E)$, it contains all the powers of these elements and thus contains the elements themselves. Thus $P \supseteq \sqrt{\ann(E)} = \sqrt{\ann(E')} \supseteq \ann(E')$ so $P \in \supp(E')$ as well. The reverse inclusion is similar.
+
+(b) Suppose that $IE = JE$. Then $E/IE = E/JE$. If we look at the support of each side we have $\supp(E) \cap V(I) = \supp(E) \cap V(J)$. If a prime is present on the left, it must be in $V(I)$ and this must also be in $V(J)$. The reverse inclusion holds as well, so we have $V(I) = V(J)$. Since the sets of prime ideals containing $I$ and $J$ are the same, the intersection of all prime ideals in these sets must be the same so we have $\sqrt{I} = \sqrt{J}$.
+\end{proof}
+
+\begin{problem}
+\label{existsseries}
+(a) Let $A$ be a commutative ring and $E$ an $A$-module. Suppose $E_i$, $0 \leq i \leq n$ are submodules such that $E_i/E_{i+1} \cong A/P_i$, $P_i \in \spec(A)$, $0 \leq i \leq n-1$. Show that $\ass(E) = \{P_0, P_1, \dots , P_{n-1}\}$.\\
+(b) Let $F$ be a submodule of $E$ and $E/F = \overline{E}$. Let $\overline{E}_i$, $0 \leq i \leq r$ (respectively $F_i$, $0 \leq i \leq s$) such that $\overline{E} = \overline{E}_0 \supseteq \overline{E}_1 \supseteq \dots \supseteq \overline{E}_r = 0$ ($F = F_0 \supseteq F_1 \supseteq \dots \supseteq F_s = 0$) such that $\overline{E}_i/\overline{E}_{i+1} \cong A/P_i$, $P_i \in \spec(A)$, $0 \leq i \leq r-1$ ($F_i/F_{i+1} \cong A/Q_i$, $Q_i \in \spec(A)$, $0 \leq i \leq s-1$). Show that there exist submodules $E_i$, $0 \leq i \leq r+s$, of $E$ such that $E = E_0 \supseteq E_1 \supseteq \dots \supseteq E_{r+s} = 0$ are $E_i/E_{i+1} \cong A/P_i$, $0 \leq i \leq r-1$ and $E_i/E_{i+1} \cong A/Q_{j-r}$ for $r \leq j \leq r+s-1$.
+\end{problem}
+\begin{proof}
+(a) By the TA's recommendation, we can write $E = E_0 \supseteq E_1 \supseteq \dots \supseteq E_n = 0$. Then by Problem~\ref{series} we know $\ass(E) \subseteq \bigcap_{i=0}^{n-1} \ass(E_i/E_{i+1})$. But by assumption $E_i/E_{i+1} \cong A/P_i$, $P_i \in \spec(A)$. Then $\ass(A/P_i) = \{P_i\}$, so we have $\ass(E) \subseteq \{P_0, P_1, \dots , P_{n-1}\}$.
+
+(b) Note that each $\overline{E}_i$ corresponds to a submodule $E_i \subseteq E$ with $F \subseteq E_i$ so that $E_i/F \cong \overline{E}_i$. Then note that $E_i/E_{i+1} \cong (E_i/F)/(E_{i+1}/F) = \overline{E}_i/\overline{E}_{i+1} \cong A/P_i$. So now we've found $E_i \subseteq E$ with $E_i/E_{i+1} \cong A/P_i$, $0 \leq i \leq r-1$. But now note that $E_r = F = F_0 \supseteq F_1 \supseteq \dots \supseteq F_s = 0$ so we can complete the series by letting $E_i = F_i$ for $r \leq i \leq r+s$ and these modules also have the property that $E_i/E_{i+1} \cong A/Q_i$, $r \leq i \leq s-1$.
+\end{proof}
+
+\begin{problem}
+\label{existssub}
+Let $A$ be a commutative ring and $E$ an $A$-module. Show that a prime ideal $P \in \supp(E)$ if and only if there exists a submodule $F \subseteq E$ such that $P \in \ass(E/F)$.
+\end{problem}
+\begin{proof}
+First suppose that there exists such a submodule $F$ and take $P \in \ass(E/F)$. Then $P = \ann(x + F)$ for some $x \in E$. This is the set of all $a \in A$ such that $ax \in F$. Now localize $E$ at $P$. Suppose that $x/s = 0/t$ for all $x \in E$ and $s \notin P$. Then there exists $u \notin P$ such that $utx = 0$. But $ut \notin P$ so $utx \notin F$ and $0 \notin F$, a contradiction. Thus $E_p \neq 0$ and $P \in \supp(E)$.
+
+Conversely, take $x \in E$ with $x/1 \neq 0$ in $E_p$ and let $F = Px$. Then $P = \{a \in A \mid ax \in Px\} = \ann(x + Px)$. Since $x/1 \neq 0/1$ we're guaranteed that $x \notin Px$, so $x + Px \neq 0$. Thus $P \in \ass(E/Px)$.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a Noetherian ring and $E$ a finite $A$-module. Show that $P \in \supp(E)$ if and only if there exist submodules $E_i$, $0 \leq i \leq n$ such that $E = E_0 \supseteq E_1 \supseteq \dots \supseteq E_n = 0$, $E_i/E_{i+1} \cong A/P_i$, $P_i \in \spec(A)$, $0 \leq i \leq n-1$ and $P = P_i$ for some $i$.
+\end{problem}
+\begin{proof}
+To show one direction, we use induction on $n$. If $n = 1$ then $E_1 = 0$ so $E/E_1 = E$. If $E \cong A/P_0$ and $P = P_0$, note that $\supp(A/P_0) = V(P_0)$ which contains $P$. Thus $P \in \supp(E)$. Now assume the statement is true for some $n-1$ and suppose we have a sequence of length $n$ as above. First suppose some prime $P = P_i$ with $i > 0$. Then we just consider the sequence starting at $E_1$ so that $P \in \supp(E_1)$. Since $E_1 \subseteq E$, we know $\supp(E_1) \subseteq \supp(E)$ and $P \in \supp(E)$ as well. On the other hand, if $P = P_0$, then $A/P \cong E/E_1$. Now we have the exact sequence $0 \to E_1 \to E \to E/E_1 \to 0$ so that $\supp(E) = \supp(E_1) \cup \supp(E/E_1)$. So it's enough to show that $P \in \supp(E/E_1)$. But like in the base case, $\supp(E/E_1) = \supp(A/P) = V(P)$ which contains $P$, so $P \supp(E/E_1)$ and thus $P \in \supp(E)$.
+
+Now suppose $P \in \supp(E)$. Using Problem~\ref{existssub} we know there exists some submodule $F \subseteq E$ with $P \in \ass(E/F)$. Then there exists a sequence of submodules $E/F = \overline{E}_0 \supseteq \overline{E}_1 \supseteq \dots \supseteq \overline{E}_n = 0$ such that $\overline{E}_i/\overline{E}_{i+1} \cong A/P_i$, $P_i \in \spec(A)$ and $P = P_i$ for some $i$. This holds because $P$ is an associated prime of $E/F$. Then by Problem~\ref{existsseries} we know there is such a series for $E$ so that we have $E_i/E_{i+1} \cong A/P_i$ as well.
+\end{proof}
+
+\begin{problem}
+Let $K$ be a field and $A = K[x_1, x_2, \dots ]$ a polynomial ring over $K$ in infinite number of variables $x_1$, $x_2$, $x_3$,.... Let $I \subseteq A$ be the ideal generated by $x_1^2$, $x_2^3$, $x_3^4$,..., $x_n^{n+1}$,....\\
+(a) Compute $\supp(A/I)$.\\
+(b) Show that $\ass(A/I) = \emptyset$.\\
+(Thus if the ring is \emph{not} Noetherian, a nonzero module may have no associated prime ideals).
+\end{problem}
+\begin{proof}
+(a) Let $P = (x_1, x_2, \dots )$. This is the ideal of all polynomials in $A$ with $0$ as a constant term. Then $P \supseteq I$, and $P$ is prime since if $fg \in P$ then $fg$ has no constant term so $f$ and $g$ can't both have nonzero constant terms. So $P \in \supp(A/I)$ since $P \in V(I)$. But $P$ is a maximal ideal so we have $\supp(A/I) = \{P\}$.
+
+(b) Note that $\ass(A/I) \subseteq \supp(A/I)$. But note that any $f \in A/I$ is a polynomial in finitely many variables. So let $x_n$ be the variable of $f$ with the highest index. Then $x_{n+1}f \notin I$ since $f$ has no $x_{n+1}^{n+2}$ term. Thus $P \notin \ass(A/I)$ so $\ass(A/I) = \emptyset$.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a commutative ring and $x \in A$ a nonzero divisor. Show that $\supp(A/Ax^n) = \supp(A/Ax)$ and $\ass(A/Ax^n) = \ass(A/Ax)$ for $n \geq 1$.
+\end{problem}
+\begin{proof}
+Let $P \in \supp(A/Ax^n)$. Then $P \in V(Ax^n)$ so $P$ is a prime ideal containing $Ax^n$. An arbitrary element of $Ax^n$ is $ax^n$, $a \in A$. Since $P$ is prime, either $a$ or $x^n$ is in $P$. But it can't be the case that $a \in P$ for all $a \in A$, so $x^n \in P$. Since $P$ is prime, we also have $x \in P$, so $Ax \in P$ and $P \in V(Ax)$ so $P \in \supp(A/Ax)$. On the other hand if $P \in \supp(A/Ax)$ then $P \in V(Ax)$ so $P \supseteq Ax$. But then $x \in P$ so $x^n \in P$ and $Ax^n \subseteq P$. Thus $P \in V(Ax^n)$ and $P \in \supp(A/Ax^n)$.
+
+First note that we have a map $A \to Ax^{n-1}/Ax^n$ given by $a \mapsto ax^{n-1}$. The kernel of this map is $Ax$ since $ax \in Ax$ maps to $ax^n \in Ax^n$. So we have an isomorphism $A/Ax \cong Ax^{n-1}/Ax^nt$. Now take $P \in \ass(A/Ax)$. Then
+\[
+P = \ann(y + Ax) = \{a \in A \mid ay = bx\} = \{a \in A \mid ayx^{n-1} = bx^n\} = \ann(yx^{n-1} + Ax^n)
+\]
+so $P \in \ass(Ax^{n-1}/Ax^n)$. To prove the reverse inclusion we induct on $n$. We have the exact sequence
+\[
+0 \to Ax^{n-1}/Ax^n \to A/Ax^n \to A/Ax^{n-1} \to 0.
+\]
+So we have $\ass(A/Ax^n) \subseteq \ass(Ax^{n-1}/Ax^n) \sup \ass(A/Ax^{n-1})$. In the base case we have $\ass(A/Ax^n) \subseteq \ass(A/Ax) \cup \ass(0)$. In the inductive case we have the above inclusion, but $\ass(A/Ax^{n-1}) = \ass(A/Ax)$ by the inductive hypothesis. Using the above isomorphism we have the right hand side is just $\ass(A/Ax)$ so we're done.
+\end{proof}
+
+\begin{problem}
+\label{notinann}
+Let $E$ be an $A$-module and $F$ a submodule. Suppose $P \in \ass(E/F)$ and $P \notin V(\ann(F))$. Show that $P \in \ass(E)$.
+\end{problem}
+\begin{proof}
+Suppose $P = \ann(x + F)$ is in $\ass(E/F)$. Pick $c \in \ann(F)$ so that $c \notin P$. Then $cx \notin F$ since $P$ is the set of $a \in A$ with $ax \in F$. Now consider $\ann(cx) = \{a \in A \mid acx = 0\} = \{a \in A \mid c(ax) = 0\}$. Since $c \in \ann(F)$, this set contains $\{a \in A \mid ax \in F\} = P$. Now suppose we have proper containment and pick $a \in \ann(cx) \backslash P$. Then $ac \notin P$ (since $c \notin P$) and $acx = 0$. But since $ac \notin P$, $acx \notin F$ so $0 \notin F$, a contradiction. Thus $\ann(cx) = P$ and $P \in \ass(E)$.
+\end{proof}
+
+\begin{problem}
+Let $E$ be an $A$-module and $I \subseteq A$ an ideal. Let $F$ be the submodule defined by $F = \{x \in E \mid Ix = 0\}$. Show that $\ass(E/F) \subseteq \ass(E)$.
+\end{problem}
+\begin{proof}
+Note that $I \subseteq \ann(F)$ by definition. Let $P \in \ass(E/F)$ with $P = \ann(x + F)$. Using Problem~\ref{notinann}, it's enough to show that $I \nsubseteq P$. Note that $x \notin F$ so $Ix \neq 0$. Then there exists $a \in I$ with $ax \neq 0$. Suppose that $ax \in F$. Then $I(ax) = 0$. If $Ia = I$ then $Ix = 0$, a contradiction. Thus $ax \notin F$ and $a \notin P$, since $P = \{a \in A \mid ax \in F\}$. Since $a \in \ann(F)$, $P \in \ass(E)$ by Problem~\ref{notinann}.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a commutative ring and $E$ an $A$-module such that $M^nE = 0$ for some $M \in \Max(A)$ and $n > 0$. Suppose $E \neq 0$. Show that $\supp(E) = \ass(E) = \{M\}$. (Note that $A$ is not given to be a Noetherian ring).
+\end{problem}
+\begin{proof}
+First suppose $P \in \ass(E)$. Then $P \supseteq \ann(E)$. Note that $M^n \subseteq \ann(E)$, so $M^n \subseteq P$. Since $P$ is prime, $P \supseteq M$ and since $M$ is maximal, $P = M$. Thus $\ass(E) \subseteq \{M\}$. Now we want to show $M$ is the annihilator of some element of $E$. Pick $x \in E$. If $Mx = 0$, then we're done. Otherwise, pick $a_1 \in M$ such that $a_1x \neq 0$. Now consider $M(a_1x)$. If this equals $0$, then we're done since $M = \ann(a_1x)$ and $a_1x \neq 0$. Otherwise, pick $a_2 \in M$ with $a_1a_2x \neq 0$. Continue in this process until we either have $M = \ann(a_1a_2 \cdots a_kx)$ for some $k < n-1$, or we have $a_1a_2 \cdots a_{n-1}x \neq 0$. At this point we know that $Ma_1a_2 \cdots a_{n-1}x = 0$ since $M^nE = 0$. Therefore $M$ is the annihilator of some nonzero $x \in E$ and $M \in \ass(E)$. Thus $\ass(E) = \{M\}$.
+
+We know $\supp(E) = \emptyset$ if and only if $E = 0$, so it's enough to show that $\supp(P) \subseteq \{M\}$ since $E \neq 0$. Let $P \in \supp(P)$ so that $E_P \neq 0$ and $(M^nE)_P = 0$. The first statement guarantees us some element $x/s \neq 0/t$ in $E_P$. This means that for all $u \notin P$ we have $utx \neq 0$. On the other hand, since $(M^nE)_P = 0$, we have for all $y \in E$ and $a \in M$, there exists $w \notin P$ such that $wt(a^ny) = 0$. Applying this to our particular element from $E_P$ we see that we must have $wa^n \in P$. But $w \notin P$ and $P$ is prime so $a^n \in P$. But then $a \in P$ since $P$ is prime, and this statement is true for any $a \in M$. Thus $M \subseteq P$ and since $M$ is maximal, $M = P$. Therefore $\supp(E) \subseteq \{M\}$.
+\end{proof}
+
+\begin{problem}
+(a) Let $A$ be a Noetherian ring and $P,Q \in \spec(A)$. Suppose i) $P \neq Q$, ii) $P + Q = M$, $M \in \Max(A)$ and iii) $P \cap Q \neq PQ$. Show that $\ass(A/PA) = \{P, Q, M\}$.\\
+(b) Let $K$ be a field and $A = K[x,y,z]$. Let $P = Ax + Ay$, $Q = Ay + Az$. Compute $\ass(A/PQ)$.
+\end{problem}
+\begin{proof}
+(a) First suppose without loss of generality that $Q \subseteq P$. Then $P + Q = P = M$. Note that $\supp(A/PQ) = V(PQ)$ which contains both $P$ and $Q$. Suppose there is some prime $R$ with $PQ \subseteq R \subsetneq Q \subseteq P$. Then pick $a \in Q \backslash R$ and $b \in P$. Then $ab \in PQ$ so $ab \in R$ since $R$ is prime, either $a \in R$ or $b \in R$, but $a \notin R$ so $b \in R$. But $b \in P$ was arbitrary so $P \subseteq R$, a contradiction. Thus $Q$ is a minimal prime ideal of $PQ$ so $Q \in \ass(A/PQ)$.
+
+Now note that $(P \cap Q)/PQ \neq 0$ and $P((P \cap Q)/PQ) = 0$. Since $P \in \Max(A)$, we can use the previous problem to conclude $\ass((P \cap Q)/PQ) = \{P\}$. Now consider the exact sequence
+\[
+0 \to (P \cap Q)/PQ \to A/PQ \to A/(P \cap Q) \to 0
+\]
+so that $\ass(A/PQ) \subseteq \{P\} \cup \{Q\} = \{P,Q\}$. Furthermore, $P \in \ass(A/PQ)$ since $P/PQ \to A/PQ$ is an injection and $P \in \ass(P/PQ)$. This concludes the case that $P \subseteq Q$ or $Q \subseteq P$.
+
+Now suppose that $P \nsubseteq Q$ and $Q \nsubseteq P$. Then we have $\ass(A/(P \cap Q)) = \{P, Q\}$. Then note that we have
+\[
+0 \to (P \cap Q)/PQ \to A/PQ \to A/(P \cap Q) \to 0
+\]
+so that $\ass(A/PQ) \subseteq \{P, Q\} \cup \ass((P \cap Q)/PQ)$. But $M(P + Q) \supseteq PQ$ so by the previous problem $\ass((P \cap Q)/PQ) = \{M\}$. Furthermore, $P/PQ \to A/PQ$ is an injection so $P \in \ass(A/PQ)$ and so is $Q$ by a similar map. Then $M$ must be in $\ass(A/PQ)$ as well since $M$ will annihilate the sum of the elements that $P$ and $Q$ annihilate. Thus $\ass(A/PQ) = \{A, P, M\}$ as desired.
+
+(b) We know $P \neq Q$, $P + Q = Ax + A(y + y)  + Az$ is a maximal ideal (since it's all the polynomials without constant terms) and $P \cap Q \neq PQ$ since $y \in P \cap Q \backslash PQ$. The by part (a) we have $\ass(A/PQ) = \{P, Q, P + Q\}$.
+\end{proof}
+
+\end{document}

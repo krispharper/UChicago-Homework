@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16100
+
+Mikl\'{o}s Ab\'{e}rt
+
+October 30, 2007
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 1}
+\textsl{If two regions $A$ and $B$ have a point $x$ in common, then $A \cap B$ is also a region containing $x$.}
+\begin{proof}
+Let $A=(a_1,a_2)$ and $B=(b_1,b_2)$ be regions such that $x \in A$ and $x \in B$. Then we see that $x \in A \cap B$. Without loss of generality, let $a_1=b_1$ or $a_1<b_1$. Then we see that $a_2>b_1$, otherwise $A \cap B = \emptyset$. Thus there are six cases.\newline
+
+\textsl{Case 1:} Let $a_1<b_1$ and $a_2<b_2$ Then we have $a_1<b_1<a_2<b_2$ and so $A \cap B = (b_1,a_2)$.\newline
+
+\textsl{Case 2:} Let $a_1<b_1$ and $a_2>b_2$. Then we have $a_1<b_1<b_2<a_2$ and so $A \cap B = (b_1,b_2)$.\newline
+
+\textsl{Case 3:} Let $a_1<b_1$ and $a_2=b_2$. Then we have $a_1<b_1<b_2=a_2$ and so $A \cap B = (b_1,b_2)$.\newline
+
+\textsl{Case 4:} Let $a_1=b_1$ and $a_2<b_2$. Then we have $b_1=a_1<a_2<b_2$ and so $A \cap B = (b_1,a_2)$.\newline
+
+\textsl{Case 5:} Let $a_1=b_1$ and $a_2>b_2$. Then we have $a_1=b_1<b_2<a_2$ and so $A \cap B = (b_1,b_2)$.\newline
+
+\textsl{Case 6:} Let $a_1=b_1$ and $a_2=b_2$ Then we have $a_1=b_1<b_2=a_2$ and so $A \cap B = (b_1,b_2)$.\newline
+
+We see that in all cases, $A \cap B$ is a region which contains $x$.
+\end{proof}
+
+\textbf{Exercise 2}
+\textsl{There was a chess tournament in class. Every two students played at most once with each other (but it's possible that two students didn't play with each other). Show that there must be two students who played the same number of games.}
+\begin{proof}
+Assume to the contrary that no two students played the same number of games. Then every student played a different number of games. If there are $n$ students, then we see that no student can play more than $n-1$ games since there are $n$ people and a student can't play himself. So one student played $0$ games, one played $1$ game, etc. and one student played $n-1$ games. But since no student played another student more than once, then the student who played $n-1$ games must have played every student in the room other than himself. This includes the student who played $0$ games. This is a contradiction.
+\end{proof}
+
+\textbf{Exercise 3}
+\textsl{Is this true for infinitely many students?}\newline
+
+No.
+\begin{proof}
+If there are infinitely many students then we can index then as $a_1,a_2,a_3 \dots$ and so we can make a one to one correlation between the set of students and the set of games played, $\{0,1,2 \dots\}$. So the first student played $0$ games, the second played $1$ game, etc. The $nth$ student played $n-1$ games. Another way to say this is that there is always one more student to play so there is never the issue of the $nth$ student playing a game with the student who played $0$ games.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{In a group of 19 people, is it possible that everyone knows exactly 3 people?}\newline
+
+No.
+\begin{proof}
+We define the number of people someone knows as $p$, and for a group of people we define $P$ as the sum of all the values of $p$. Then since "knowing" is symmetric, $P$ grows twice as fast as $p$ and so $P$ is always an even number. But in this case we have $P=3 \cdot 19$ which is an odd number. This is a contradiction.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{In a group of 6 hippos, show that at least one of the following holds:\newline
+1) There are 3 that no 2 among them know each other;\newline
+2) There are 3 that any 2 among them know each other.}
+\begin{proof}
+Consider $4$ of the six hippos and call them $a$, $b$, $c$ and $d$. We see that out of all six hippos, hippo $a$ must either know $3$ of the others or not know $3$ of the others since there are five other hippos. Consider the case where hippo $a$ knows three other hippos $b$, $c$ and $d$. If any of $b$, $c$ or $d$ know each other, then together with $a$ we've found three hippos who all know each other, and so any two of them will know each other. But if none of $b$, $c$ and $d$ know each other then we have three hippos who any two among them don't know each other. Similarly, if $a$ doesn't know $b$, $c$ and $d$, then if any of $b$, $c$ and $d$ don't know each other we have three who don't know each other while if they all know each other, then we have three who all know each other.
+\end{proof}
+
+\textbf{Exercise 6}
+\textsl{Consider an $8 \times 8$ board. Some of the 64 cells are infected. If a cell has at least 2 infected neighbors it becomes infected. (Two cells are neighbors if they share a side.) An infected cell is never cured. Show that you cannot infect the full board with fewer than 8 initially infected cells.}
+\begin{proof}
+We see that a board with dimensions $1 \times 1$ needs only one cell to be infected. Now consider an $n \times n$ board and induct on $n$. We assume that an $n \times n$ board needs at least $n$ initially infected cells to infect the entire board. Then consider an $n+1 \times n+1$ board. We know that with $n$ initially infected cells we can infect $n$ rows and $n$ columns. The final row and column will be infected if the corner cell is also initially infected so we need $n+1$ initially infected cells to infect the whole board.
+\end{proof}
+
+
+
+
+\end{flushleft}
+\end{document}

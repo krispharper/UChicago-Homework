@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 10: Continuous Functions\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous if for all open subsets $O \subseteq \mathbb{R}$ the preimage $f^{-1} (O)$ is open.}\newline
+
+\textbf{Theorem 2}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a continuous function. Assume that there exist $a,b \in \mathbb{R}$ such that $f(a)<0$ and $f(b)>0$. Then there exists $c \in \mathbb{R}$ such that $f(c)=0$.}
+\begin{proof}
+Assume to the contrary that there exists no such point $c$. Then consider the sets $(- \infty ; 0)$ and $(0 ; + \infty)$. We know these sets are open. If we take the preimages of each of these and name them we have $A=f^{-1} ((- \infty ; 0)) = \{x \in \mathbb{R} \mid f(x) < 0\}$ and $B=f^{-1} ((0 ; + \infty)) = \{x \in \mathbb{R} \mid f(x) > 0\}$. Note that by definition $A$ and $B$ are disjoint. Additionally $\mathbb{R} \backslash (A \cup B) = \{x \in \mathbb{R} \mid f(x)=0\}$, but we assumed that this set was empty. Thus $A \cup B = \mathbb{R}$. We have $f(a)<0$ and so $a \in A$ and $f(b)>0$ and so $b \in B$ so neither $A$ or $B$ is empty. But then since $A$ and $B$ are disjoint and union to $\mathbb{R}$ they are complements of each other. So then $B$ is open but $A$ is open and so $\mathbb{R} \backslash A=B$ is closed. Since $B \neq \mathbb{R}$ and $B \neq \emptyset$ this is contradiction of Axiom 4.
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be continuous and let $a,b \in \mathbb{R}$ such that $a<b$. Let us define $g \; : \; \mathbb{R} \rightarrow \mathbb{R}$ as follows
+\[
+g(x)=
+\begin{cases}
+f(a) & \text{if $x \leq a$}\\
+f(x) & \text{if $a<x<b$}\\
+f(b) & \text{if $x \geq b$}
+\end{cases}
+\]
+Then $g$ is continuous.}
+\begin{proof}
+Let $O \subseteq \mathbb{R}$ be an open set and consider $g^{-1}(O)$. If $g^{-1}(O)$ is empty, then it is open so assume that there exists some $x \in g^{-1}(O)$. If $x < a$ then we have $f(a) \in O$ and so $(- \infty ; a) \subseteq g^{-1}(O)$. Thus there exists some $y \in \mathbb{R}$ such that $y<x$ and so $x \in (y;a)$ and $(y;a) \subseteq g^{-1}(O)$. A similar argument holds if $x > b$. If $x \in (a;b)$ then for $f(x) \in O$ there exists some region $R \subseteq O$ containing $f(x)$ by the open condition. But then $f^{-1}(R)$ is open since $R$ is open, $f$ is continuous and because of how $g$ is defined, $g^{-1}(R)$ is open as well. If $x=a$ then $f(a) \in O$ and so $(-\infty ; a) \subseteq g^{-1}(O)$. We know that $f^{-1}(O)$ is open so there exists some region $(p;q)$ containing $a$ such that $(p;q) \subseteq f^{-1}(O)$. But then consider $(a;q) \subseteq f^{-1}(O)$. For all $y \in (a;q)$ we have $f(y) \in O$. But $y>a$ so $g(y) \in O$ as well. Thus $(a;q) \subseteq (p;q) \subseteq g^{-1}(O)$. A similar argument holds for when $x=b$. In all cases there exists a region $R$ with $x \in R$ such that $R \subseteq g^{-1}(O)$ so $g^{-1}(O)$ is open by the open condition.
+\end{proof}
+
+\textbf{Theorem 4}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a continuous function. Assume that there exist $a,b \in \mathbb{R}$ such that $f(a)<0$ and $f(b)>0$. Then there exists $c \in (a;b)$ such that $f(c)=0$.}
+\begin{proof}
+Define a new function $g \; : \; \mathbb{R} \rightarrow \mathbb{R}$ as in Theorem 3. Then $g$ is continuous and so we know from Theorem 2 that there exists $c \in \mathbb{R}$ such that $g(c) = 0$. But we see that $c>a$ and $c<b$ because otherwise $g(c) \neq 0$. Thus there exists $c \in (a;b)$ such that $g(c)=0$. But then $f(c)=0$ as well.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a continuous function and let $C \subseteq \mathbb{R}$ be a compact set. Show that the image $f(C)$ is compact.}
+\begin{proof}
+Let $\mathcal{A}$ be an open cover for $f(C)$. Then for all $x \in C$ we have $f(x) \in f(C)$ and so for all $x \in C$ there exists an open set $O \in \mathcal{A}$ such that $f(x) \in O$. But then for all $x \in C$, $x \in f^{-1}(O)$ for some $O \in \mathcal{A}$. Then $C \subseteq \bigcup_{O \in \mathcal{A}} f^{-1} (O)$ and since $f$ is continuous $\{f^{-1} (O) \mid O \in \mathcal{A}\}$ covers $C$. But $C$ is compact and so there exists a finite subcover, $\{f^{-1} (O_1), f^{-1} (O_2), \dots ,f^{-1}(O_k)\}$, which covers $C$. So for all $x \in C$ there exists some $O_i \in \mathcal{A}$ such that $x \in f^{-1} (O_i)$. But then $f(x) \in O_i$ and since $f(C) =\{y \in \mathbb{R} \mid x \in C, f(x)=y\}$, we have for all $y \in f(C)$, $y \in O_i$. Since every $O_i \in \mathcal{A}$ we have found a finite subcover for $\mathcal{A}$ which covers $f(C)$. Thus $f(C)$ is compact.
+\end{proof}
+
+\textbf{Theorem 6}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a continuous function. Then for all $a<b$ the set $f([a;b])$ is bounded.}
+\begin{proof}
+For all $a<b$ we have $[a;b]$ is compact. By Theorem 5 we know that $f([a;b])$ is compact as well and we know that compact sets are bounded.
+\end{proof}
+
+\textbf{Lemma 7}
+\textsl{Let $C \subseteq \mathbb{R}$ be a nonempty compact set. Then $\sup C \in C$.}
+\begin{proof}
+Suppose that $\sup C \notin C$. Then by Theorem 6.8 we know that if $\sup C \notin C$ then it's a limit point of $C$. But $C$ is compact and so it's closed. Thus $C$ contains all its limit points so this is a contradiction.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a continuous function and let $a < b$. Then there exists $c \in [a;b]$ such that for all $x \in [a;b]$ we have $f(a) \leq f(c)$.}
+\begin{proof}
+From Theorem 6 we know $f([a;b])$ is bounded and we know it's nonempty because $f(a) \in f([a;b])$ and so $\sup f([a;b])$ exists. Let $f(c) = \sup f([a;b])$. Lemma 7 tells us that $f(c) \in f([a;b])$ and so there exists some $d \in [a;b]$ such that $f(d) = f(c)$.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous if and only if for all regions $A \subseteq \mathbb{R}$, the preimage $f^{-1}(A)$ is open.}
+\begin{proof}
+Let $f$ be continuous. Then we have $A \subseteq \mathbb{R}$ is a region which is open by definition. But then $f^{-1}(A)$ is open by definition. Conversely, suppose that for all regions $A \subseteq \mathbb{R}$ we have $f^{-1}(A)$ is open. Consider some open set $O \subseteq \mathbb{R}$. By the open condition $O$ is a union of regions and the preimage of each of these regions is open. But the preimage of a union of sets is the union of the preimages of each of those sets. To show this let $x \in f^{-1}(O)$. Then $f(x) \in O$ and so $f(x)$ is in some region which is a subset of $O$. But then $x$ must be in the preimage of that region and so $x$ is in the union of the preimages of all the regions which union to $O$. Since the preimage of each region is open, and the union of open sets is open, we have $f^{-1}(O)$ is open. Thus $f$ is continuous.
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous if and only if for all $a \in \mathbb{R}$ and all $\varepsilon > 0$ there exists $\delta > 0$ such that $(a - \delta ; a + \delta) \subseteq f^{-1}((f(a) - \varepsilon ; f(a) + \varepsilon))$.}
+\begin{proof}
+Suppose that $f$ is continuous and let $a \in \mathbb{R}$. Consider the region $(f(a) - \varepsilon ; f(a) + \varepsilon)$ for some $\varepsilon > 0$. We know that $a \in f^{-1}((f(a) - \varepsilon ; f(a) + \varepsilon))$ and we know that this preimage is open. Thus there exists some region $(a-m;a+n) \subseteq (f(a) - \varepsilon ; f(a) + \varepsilon)$. Now let $\delta = \min (m,n)$ so that we have $(a - \delta ; a + \delta) \subseteq (a-m;a+n) \subseteq (f(a) - \varepsilon ; f(a) + \varepsilon)$. To prove the converse consider an open set $O \subseteq \mathbb{R}$. We have $f^{-1}(O)$ may be empty, but $\emptyset$ is open and so let $a \in f^{-1}(O)$. Then $f(x) \in O$ and so by the open condition there exists some region $(f(a) - \varepsilon ; f(a) + \varepsilon) \subseteq O$ for $\varepsilon > 0$. Then there exists $\delta > 0$ such that $(a - \delta ; a + \delta) \subseteq (f(a) - \varepsilon ; f(a) + \varepsilon) \subseteq f^{-1} (O)$. Thus we have for all $a \in f^{-1} (O)$ there exists some region containing $a$ which is a subset of $f^{-1} (O)$ and so $f^{-1}(O)$ is open.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous if and only if for all $a \in \mathbb{R}$ and all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ with $|a-x| < \delta$ we have $|f(a)-f(x)| < \varepsilon$.}
+\begin{proof}
+Assume that $f$ is continuous. From Theorem 10 we know that for all $a \in \mathbb{R}$ and all $\varepsilon > 0$ there exists $\delta > 0$ such that $(a - \delta ; a + \delta) \subseteq (f(a) - \varepsilon ; f(a) + \varepsilon)$. Consider $x \in (a - \delta ; a + \delta)$. Then $- \delta < x-a < \delta$ and so $|a-x| < \delta$. But then $x \in f^{-1}((f(a) - \varepsilon ; f(a) + \varepsilon))$ and so $f(x) \in (f(a) - \varepsilon ; f(a) + \varepsilon)$. But then $|f(a) - f(x)| < \varepsilon$. To show the converse consider $x \in \mathbb{R}$ and $\epsilon > 0$ such that $|a-x| < \delta$ for $\delta > 0$. Then $x \in (a - \delta ; a + \delta)$. But we also know that $|f(a) - f(x)| < \epsilon$ and so $f(x) \in (f(a) - \varepsilon ; f(a) + \varepsilon)$. But then $x \in f^{-1}((f(a) - \varepsilon ; f(a) + \varepsilon))$. Thus by Theorem 10, $f$ must be continuous.
+\end{proof}
+
+\textbf{Definition 12 ($f$ is Continuous at $a$}
+\textsl{Let $a \in \mathbb{R}$. A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous at $a$ if for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ with $|a-x| < \delta$ we have $|f(a)-f(x)| < \varepsilon$.}
+
+\end{flushleft}
+\end{document}

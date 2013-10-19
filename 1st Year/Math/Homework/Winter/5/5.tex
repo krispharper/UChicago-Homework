@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16200
+
+Mikl\'{o}s Ab\'{e}rt
+
+February 12, 2008
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 1}
+\textsl{Show that if $\lim_{n \rightarrow \infty} a_n = 0$ and $(b_n)$ is bounded, then
+\[
+\lim_{n \rightarrow \infty} (a_nb_n) = 0.
+\]}
+\begin{proof}
+We have $(a_n)$ converges to $0$ and $(b_n)$ is bounded. Then there exists $l,u \in \mathbb{R}$ such that $l \leq b_n \leq u$ for all $n \in \mathbb{N}$. For $\varepsilon > 0$ we have there exists $N \in \mathbb{N}$ such that for all $n > N$, $a_n \in (-\varepsilon ; \varepsilon)$ and $b_n \in (l;u)$. Then using Lemma 12.10 we have $a_nb_n \in (\min (-\varepsilon l, \varepsilon l, \varepsilon u, \varepsilon u) ; \max (-\varepsilon l, \varepsilon l, \varepsilon u, \varepsilon u))$. But then let $\varepsilon = \max (-\varepsilon l, \varepsilon l, \varepsilon u, \varepsilon u)$ so that for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_n| < \varepsilon$.
+\end{proof}
+
+\textbf{Exercise 2}
+\textsl{Prove that the sequence $a_n=2^{-n}$ converges to $0$.}
+\begin{proof}
+Note that for all $n \in \mathbb{N}$ we have $a_n \in (0;1)$. Let $(p;q)$ be a region such that $0 \in (p;q)$. If $1/2 \leq q$ then there are no elements of $(a_n) \in (p;q)$ and so there are finitely many $n \in \mathbb{N}$ with $a_n \notin (p;q)$. Suppose that $q \in (0;1/2)$. Then $1/q > 1$. By the Archimedean Property exists $n \in \mathbb{N}$ with $1/q < n$. But since $1/q > 1$, we have $1/q < 2^n$. Then $2^n$ for $n \in \mathbb{N}$ is a subset of $\mathbb{N}$ so there exists a least $k \in \mathbb{N}$ such that $2^k > 1/q$. Then $q < 2^{-k}$. But there are a finite number of elements of $\mathbb{N}$ which are less than or equal to $k$ and so there are a finite number of $n \in \mathbb{N}$ with $a_n > q$. Thus $\lim_{n \rightarrow \infty} a_n = 0$.
+\end{proof}
+
+\textbf{Exercise 3}
+\textsl{Show that if $s>1$ and $n \in \mathbb{N}$, we have
+\[
+s^n \geq 1+n(s-1)
+\]}
+\begin{proof}
+Use induction on $n$. We see that for $s>1$ with $n=1$ we have $s = 1+s-1=1+n(s-1)$. Now assume that for $k \in \mathbb{N}$ we have $s^k \geq 1+k(s-1)$. Consider
+\[
+s^{k+1} \geq s + sn(s-1) = s + s^2n - sn.
+\]
+At this point notice that
+\[
+0 \leq (s-1)^2 = s^2 - 2s + 1.
+\]
+Thus $s^2 - s \geq s - 1$ so $ns^2 - ns \geq ns - n$. Note that this implies
+\[
+s + s^2n - sn \geq ns - n + s = 1 + (n+1)(s-1)
+\]
+as desired.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Prove that for each real number $t$ with $0<t<1$, the sequence $x_n=t^n$ converges to $0$.}
+\begin{proof}
+Let $s=t^{-1}$ for $0<t<1$ so that we have $s>1$. Then $s^n \geq 1+n(s-1)$ so $(t^{-1})^n \geq 1 + n(t^{-1} -1)$ which means
+\begin{align*}
+t^n & \leq \frac{1}{1+n(t^{-1} - 1)} \\
+    & = \frac{1}{1+n(\frac{1-t}{t})} \\
+    & = \frac{1}{\frac{t+n(1-t)}{t}} \\
+    & = \frac{t}{t+n(1-t)} \\
+    & = \frac{\frac{t}{n}}{\frac{t}{n} + (1-t)}.
+\end{align*}
+Using sum and product rules from Theorem 13.5 and convergent functions from Exercise 13.4 we have this expression converges to $0$. Using comparative limits from Theorem 13.5 and since $t^n > 0$ for all $n \in \mathbb{N}$ we know that $(a_n)$ must converge to $0$ as well.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{Show that for each real number $|t| < 1$, the sequence
+\[
+a_n = 1 + t + t^2 + \dots + t^{n-1}
+\]
+satisfies
+\[
+\lim_{n \rightarrow \infty} a_n = \frac{1}{1-t}.
+\]}
+\begin{proof}
+Note that $a_n=1+t+t^2+ \dots +t^{n-1}=\frac{1-t^n}{1-t}=\frac{1}{1-t} - \frac{t^n}{1-t}$. From Exercise 4 we have that $t^n$ converges to $0$ and using the product rule we have $\frac{t^n}{1-t}$ converges to $0$. Then using the addition rule we have $\lim_{n \rightarrow \infty} a_n = \frac{1}{1-t}$.
+\end{proof}
+
+\textbf{Exercise 6}
+\textsl{Prove that for any real number $a$, the sequence $x_n = a^n/(n!)$ converges to $0$.}
+\begin{proof}
+If $a=0$ the theorem is trivial. Let $a>0$. For all $n > a$ we have $a_{n-1} \leq \frac{a_n}{a_{n-1}}$. But then $\frac{a_n}{a_{n-1}} = \frac{a}{n}$ which converges to $0$ from Exercise 13.4. Using the sequence comparisons from Theorem 13.5 we know that $\lim_{n \rightarrow \infty} a_n \leq 0$. In the case where $a<0$ every other element of $(a_n)$ is less than $0$. In the case where $a>0$ we concluded that for every region $R$ with $0 \in R$ there were finitely many $n$ such that $a_n \notin R$. If we consider $|a_n|$ for all $n$ then this condition still holds which means that if half of the elements of $(a_n)$ are less than $0$ then there are still finitely many $n \in \mathbb{N}$ with $a_n \notin R$.
+\end{proof}
+
+
+\textbf{Exercise 7}
+\textsl{Let
+\[
+p(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0
+\]
+and
+\[
+q(x) = b_m x^m + b_{m-1} x^{m-1} + \dots + b_1 x + b_0
+\]
+be polynomials. What is
+\[
+\lim_{n \rightarrow \infty} \frac{p(n)}{q(n)}?
+\]}
+\begin{proof}
+We have
+\[
+p(x) = x^n(a_n + \frac{a_{n-1}}{x} + \dots + \frac{a_1}{x^{n-1}} + \frac{a_0}{x^n})
+\]
+and
+\[
+q(x) = x^m(b_m + \frac{b_{m-1}}{x} + \dots + \frac{b_1}{x^{m-1}} + \frac{b_0}{x^m}).
+\]
+Then
+\[
+\frac{p(x)}{q(x)}=x^{n-m} \left ( \frac{a_n + \frac{a_{n-1}}{x} + \dots + \frac{a_1}{x^{n-1}} + \frac{a_0}{x^n}}{b_m + \frac{b_{m-1}}{x} + \dots + \frac{b_1}{x^{m-1}} + \frac{b_0}{x^m}} \right ).
+\]
+When we take the limit as $x$ approaches $\infty$, we have $\frac{a_k}{x^{n-k}}$ converges to zero because $\frac{1}{x}$ converges to $0$ from Exercise 13.4 and Theorem 13.5. Then if $m=n$ we have $\lim_{x \rightarrow \infty} p(x)/q(x) = a_n/b_m$. If $n>m$ then the sequence diverges since $n-m>0$ and it is no longer bounded. If $n<m$ then $n-m<0$ and the sequence converges to $0$ by the same reasoning as above (i.e. $1/x$ converges to $0$ and we can make use of the product of two sequence).
+\end{proof}
+
+\textbf{Exercise 8}
+\textsl{What is
+\[
+\lim_{n \rightarrow \infty} \sqrt[n]{n}?
+\]}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $(1+\varepsilon)^k$. Let $k=1/\varepsilon^2$. Then we have $\varepsilon^2 (1 + \varepsilon)^{1/\varepsilon^2}=\varepsilon^{2\varepsilon^2}(1+\varepsilon) > 1$. By the Archimedean Property there exists some $n \in \mathbb{N}$ such that $n > 1/\varepsilon^2$. Then $(1+\varepsilon)^n > n$ and $\sqrt[n]{n} > 0$ so $|\sqrt[n]{n}-1| < \varepsilon$. Thus for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n > N$ we have $|\sqrt[n]{n} - 1| < \varepsilon$. Therefore $\lim_{n \rightarrow \infty} \sqrt[n]{n} = 1$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

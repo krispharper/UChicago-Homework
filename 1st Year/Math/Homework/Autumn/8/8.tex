@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16100
+
+Mikl\'{o}s Ab\'{e}rt
+
+November 20, 2007
+\end{flushright}
+
+\begin{center}
+Homework 8
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 2}
+\textsl{Let $p \in C$ be a point and let
+\[
+S = \{\textup{ext}(a;b) \mid p \in (a;b)\}.
+\]
+Show that $S$ is an open cover for $C \backslash p$.}
+\begin{proof}
+Let $x \in C \backslash p$. Then $x \in C$ and $x \neq p$ and so $x<p$ or $p<x$. Suppose $x<p$. Then by Theorem 5.8 there exists $a \in C$ such that $x<a<p$. And by Axiom 2.3 there exists $b \in C$ such that $p<b$. But then $p \in (a;b)$ and since $x < a$, $x \in \text{ext}(a;b)$. Because this is true for some region $(a;b)$, we see $x \in \bigcup_{A \in S} A$. Therefore, $C \backslash p \subseteq \bigcup_{A \in S} A$ and by Exercise 7.12 we know that $\text{ext}(a;b)$ is open so $S$ is an open cover for $C \backslash p$. A similar argument holds if $p < x$.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Show that the set
+\[
+A = \left\{ \frac{1}{n} \mid n \in \mathbb{N} \right\} \cup \{0\}.
+\]
+is closed.}
+\begin{proof}
+Let $p \in C$ be point such that $p \notin A$. Then there are three cases.\newline
+
+\textit{Case 1:} Let $p<0$. Then by Axiom 2.3 there exists a point $x \in C$ such that $x<p$ and so the region $(x;0)$ contains $p$ but no points in $A$.\newline
+
+\textit{Case 2:} Let $p>1$. Then by Axiom 2.3 there exists a point $y \in C$ such that $p<y$ and so the region $(1;y)$ contains $p$ but no points in $A$.\newline
+
+\textit{Case 3:} Let $p \in (0;1)$. Then $p=\frac{a}{b}$ and since $0 < \frac{a}{b} < 1$, we have $a<b$. Since $0<\frac{b}{a}$, by the Archimedean Property there exists a natural number $k$ such that $\frac{b}{a} < k$. But since $k \in \mathbb{N}$, by the Well Ordering Principle there exists a least such element $n$. Since $p \notin A$, $a \neq 1$ and so $\frac{b}{a} \notin \mathbb{N}$. But then $n-1 < \frac{b}{a} < n$ and so $\frac{1}{n}<p<\frac{1}{n-1}$. But then $p \in \left( \frac{1}{n};\frac{1}{n-1} \right)$ which doesn't contain any elements of $A$.\newline
+
+In all three cases there exists a region containing $p$ which contains no elements of $A$ and so $p$ cannot be a limit point of $A$. Therefore if $A$ has any limit points, they must be in $A$. Since $A$ contains all its limit points, it is closed.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{Prove that every open cover of $A$ has a finite subcover.}
+\begin{proof}
+Let $S$ be a cover of $A$. Then for every element of $A$, there exists an open set in $S$ which contains that element. But then there exists an open set $B$ in $S$ containing $0$. And so there exists a region $(a;b) \subseteq B$ such that $0 \in (a;b)$. There are two cases.\newline
+
+\textit{Case 1:} Let $1 \leq b$. Then $A \subseteq B$ and so the set containing $B$ is a finite subcover of $S$.\newline
+
+\textit{Case 2:} Let $b<1$. Then $b=\frac{p}{q}$ and since $0 < \frac{p}{q} < 1$, we have $p<q$. Since $0<\frac{q}{p}$, by the Archimedean Property there exists a natural number $k$ such that $\frac{q}{p} < k$. But since $k \in \mathbb{N}$, by the Well Ordering Principle there exists a least such element $n$. There are a finite number of natural numbers less than $n$ and since every element of $A$ is a reciprocal of a natural number, there are a finite number of elements $a$ of $A$ such that $\frac{1}{n} < a$. All the other elements of $A$ are less than $b$ so they are contained in $(a;b)$. Then the sets $B$ and the sets of $S$ which contain the elements of $A$ which are greater than $\frac{1}{n}$ form a finite subcover of $S$.
+\end{proof}
+
+\textbf{Exercise 7}
+\textsl{Let $S$ be the set of all regions. Show that no finite subset of $S$ covers $C$.}
+\begin{proof}
+Let $T$ be a finite subset of $S$. Then $T=\{(a_1;b_1),(a_2;b_2), \dots ,(a_n;b_n)\}$. But since there are a finite number of lower boundary points $a_i$ for regions in $T$, by Theorem 2.3 we can order them so that $x$ is a lower boundary point and $x \leq a_i$ for all regions in $T$. Then $x$ is less than every point in every region in $T$. But by Axiom 2.3 there exists a point $p \in C$ such that $p < x$ and so $C \nsubseteq \bigcup_{(a;b) \in T} (a;b)$.
+\end{proof}
+
+\textbf{Exercise 8}
+\textsl{Let $p \in C$ be a point and let $S=\{ \textup{ext}(a;b) \mid p \in (a;b) \}$. Show that no finite subset of $S$ covers $C \backslash p$.}
+\begin{proof}
+Let $T$ be a finite subset of $S$. Then $T=\{ \text{ext}(a_1;b_1), \text{ext}(a_2;b_2), \dots ,\text{ext}(a_n;b_n) \}$ such that $p \in (a;b)$ for all $\text{ext}(a;b) \in T$. Consider the finite set of values of $a_i$ for exteriors in $T$. By Theorem 2.3 there exists a last point $x$ so that $x \geq a_i$ for all exteriors in $T$. By Theorem 5.8 there exists a point $y \in C$ such that $x<y<p$ and so $y \notin \text{ext}(a_i;b_i)$ for any exterior in $T$. But then $C \backslash p \nsubseteq \bigcup_{A \in T} A$.
+\end{proof}
+
+\textbf{Exercise 12}
+\textsl{Closed intervals are closed}
+\begin{proof}
+Let $a,b,p \in C$ be points such that $a<b$ and $p \notin [a;b]$. Then $p<a$ or $p>b$. Let $p<a$. Then by Axiom 2.3 there exists a point $x \in C$ such that $x<p$. But then the region $(x;a)$ contains $x$ but no points in $[a;b]$. A similar argument holds for $b<p$ and so $p$ cannot be a limit point of $[a;b]$. But then any limit points of $[a;b]$ must be in $[a;b]$ and so $[a;b]$ is closed.
+\end{proof}
+
+\textbf{Lemma}
+\textsl{If two regions share a common point, then their union is a region which contains every point in either region.}
+\begin{proof}
+Let $A=(a_1,a_2)$ and $B=(b_1,b_2)$ be regions such that $x \in A$ and $x \in B$. Then we see that $x \in A \cup B$. Without loss of generality, let $a_1 \leq b_1$. Then we see that $a_2>b_1$, otherwise $A$ and $B$ would not both contain $x$. Thus there are three cases.\newline
+
+\textsl{Case 1:} Let $a_1 \leq b_1$ and $a_2<b_2$ Then we have $a_1 \leq b_1<a_2<b_2$ and so every element of $A$ is less than $b_2$ and every element of $B$ is greater than $a_1$. But then every element of $A$ or $B$ is between $a_1$ and $b_2$ so $A \cup B = (a_1,b_2)$.\newline
+
+\textsl{Case 2:} Let $a_1 \leq b_1$ and $a_2>b_2$. Then we have $a_1 \leq b_1<b_2<a_2$ and so every element of $A$ is less than $a_2$ and every element of $B$ is greater than $a_1$. But then every element of $A$ or $B$ is between $a_1$ and $a_2$ so $A \cup B = (a_1,a_2)$.\newline
+
+\textsl{Case 3:} Let $a_1 \leq b_1$ and $a_2=b_2$. Then we have $a_1 \leq b_1<b_2=a_2$ and so every element of $A$ is less than $a_2$ and every element of $B$ is greater than $a_1$. But then every element of $A$ or $B$ is between $a_1$ and $a_2$ so $A \cup B = (a_1,a_2)$.\newline
+
+We see that in all cases, $A \cup B$ is a region which contains every element of $A$ and $B$.
+\end{proof}
+
+\textbf{Exercise 14}
+\textsl{A chain of regions from $a$ to $b$ covers the the closed interval $[a;b]$.}
+\begin{proof}
+Let $a<b$ be points in $C$ and let $R_1,R_2, \dots ,R_n$ be a chain of $n$ regions going from $a$ to $b$. In the case where $n=1$ we have a region $R_1$ which contains both $a$ and $b$. Now use induction on $n$ and suppose that the union of a chain of $n$ regions such that for $1 \leq i \leq n-1$ we have $R_i \cap R_{i+1} \neq \emptyset$ is a region containing every point in each of the $n$ regions. Consider the case for $n+1$. We know that $R_1 \cup R_2 \cup  \dots \cup R_n$ is a region containing every element in $R_1$ through $R_n$. Because $R_n \cap R_{n+1} \neq \emptyset$, by the previous lemma we know that the union of this region with $R_{n+1}$ is a region containing every element of the regions $R_1,R_2, \dots ,R_{n+1}$. So for any natural number $n$ regions such that for $1 \leq i \leq n-1$ we have $R_i \cap R_{i+1} \neq \emptyset$ we see their union is a region containing every element in each of the regions. But if $a \in R_1$ and $b \in R_n$ the union of this chain of regions will contain $a$, $b$ and every element between $a$ and $b$. Since each region is open, the chain covers $[a;b]$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

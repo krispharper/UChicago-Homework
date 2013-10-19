@@ -1,0 +1,489 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 22: Integrals\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{Let $a<b$. A partition of the interval $[a;b]$ is a finite collection of points in $[a,b]$, one of which is $a$ and one of which is $b$.}\newline
+
+\textbf{Definition 2}
+\textsl{Suppose $f$ is bounded on $[a;b]$ and $P=\{t_0, \dots , t_n\}$ is a partition of $[a;b]$. Let
+\[
+m_i = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\}
+\]
+\[
+M_i = \sup \{f(x) \mid t_{i-1} \leq x \leq t_i\}.
+\]
+The lower sum of $f$ for $P$, denoted by $L(f,P)$, is defined as
+\[
+L(f,P) = \sum_{i=1}^n m_i (t_i - t_{i-1}).
+\]
+The upper sum of $f$ for $P$, denoted by $U(f,P)$, is defined as
+\[
+U(f,P) = \sum_{i=1}^n M_i (t_i - t_{i-1}).
+\]}\newline
+
+\textbf{Theorem 3}
+\textsl{Let $P_1$ and $P_2$ be partitions of $[a;b]$, and let $f$ be a function which is bounded on $[a;b]$. Then
+\[
+L(f,P_1) \leq U(f,P_2).
+\]}
+\begin{proof}
+Consider some partition $Q = \{t_0, \dots , t_n\}$ and some other partition $Q'$ such that $Q \subset Q'$. First consider the case where $Q'$ has only one more point than $Q$. Then $Q' = \{t_0, t_1, \dots , t_{k-1}, q, t_k, \dots t_n\}$. Let $m_i = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\}$, $m' = \inf \{f(x) \mid t_{k-1} \leq x \leq q\}$ and $m'' = \inf \{f(x) \mid q \leq x \leq t_k\}$. Then
+\[
+L(f,Q) = \sum_{i=1}^n m_i (t_i - t_{i-1})
+\]
+and
+\[
+L(f,Q') = \sum_{i=1}^{k-1} m_i (t_i-t_{i-1}) + m_1 (q-t_{k-1}) + m_2 (t_k-q) + \sum_{i=k+1}^n m_i (t_i-t_{i-1}.
+\]
+Note that
+\[
+\{f(x) \mid t_{k-1} \leq x \leq q\} \subseteq \{f(x) \mid t_{k-1} \leq x \leq t_k\}
+\]
+and
+\[
+\{f(x) \mid q \leq x \leq t_k\} \subseteq \{f(x) \mid t_{k-1} \leq x \leq t_k\}
+\]
+so $m_k \leq m_1$ and $m_k \leq m_2$. Thus
+\[
+m_k (t_k - t_{k-1}) = m_k (q - t_{k-1}) + m_k (t_k - q) \leq m_1 (q - t_{k-1}) + m_2 (t_k - q)
+\]
+and so $L(f,Q) \leq L(f,Q')$. Now consider the case where $Q'$ contains $n$ more points than $Q$. Then we can make a sequence of partitions which each contain one more point than the one before it $Q, Q_1, Q_2, \dots , Q_{n-1}, Q'$. Then
+\[
+L(f,Q) \leq L(f,Q_1) \leq \dots \leq L(f,Q_{n-1}) \leq L(f,Q').
+\]
+A similar proof holds to show for two partitions $Q \subseteq Q'$ that $U(f,Q) \geq U(f,Q')$. Now consider two partitions $P_1$ and $P_2$ of $[a;b]$ and let $P$ be a partition which contains both $P_1$ and $P_2$. Then since
+\[
+M_i = \sup \{f(x) \mid t_{i-1} \leq x \leq t_i\} \geq \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\} = m_i
+\]
+for $1 \leq i \leq n$ we have $L(f,P_1) \leq L(f,P) \leq U(f,P) \leq U(f,P_2)$.
+\end{proof}
+
+\textbf{Definition 4}
+\textsl{A function $f$ which is bounded on $[a;b]$ is integrable on $[a;b]$ if
+\[
+\sup \{L(f,P) \mid \text{$P$ is a partition of $[a;b]$} \} = \inf \{U(f,P) \mid \text{$P$ is a partition of $[a;b]$} \}.
+\]
+In this case, this common number is called the integral of $f$ on $[a;b]$ and is denoted by
+\[
+\int_a^b f = \int_a^b f(x) dx.
+\]
+When $f(x) \geq 0$ for all $x \in [a;b]$, the integral is also called the area of the region defined by $f$, $x=a$, $x=b$ and $f(x) = 0$.}\newline
+
+\textbf{Exercise 5}
+\textsl{Show that for $c \in \mathbb{R}$, the function $f(x) = c$ is integrable on the interval $[a;b]$.}
+\begin{proof}
+Let $P = \{t_0, \dots , t_n\}$ be some partition of $[a;b]$. Then note that since $f(x) = c$ for all $x \in [a;b]$ we have $m_i = c = M_i = c$ for all $0 \leq i \leq n$. Thus
+\[
+L(f,P) = \sum_{i=1}^n m_i (t_i-t_{i-1}) = \sum_{i=1}^n M_i (t_i-t_{i-1}) = U(f,P)
+\]
+for all partitions $P$. Thus
+\[
+\sup \{L(f,P) \mid \text{$P$ is a partition of $[a;b]$} \} = \inf \{U(f,P) \mid \text{$P$ is a partition of $[a;b]$} \}.
+\]
+and $f$ is integrable on $[a;b]$.
+\end{proof}
+
+\textbf{Exercise 6}
+\textsl{Let $f$ be defined by
+\[
+f(x) =
+\begin{cases}
+0 & \text{if $x$ is irrational}\\
+1 & \text{if $x$ is rational}.
+\end{cases}
+\]
+Show that $f$ is not integrable on the closed interval $[a;b]$.}
+\begin{proof}
+Let $P = \{t_0, \dots , t_n\}$ be a partition of $[a;b]$. Then note that for all $0 \leq i \leq n$ we have $m_i = 0$ because there exists an irrational in $[t_{i-1}; t_i]$ and $M_i = 1$ because there exists a rational in $[t_{i-1}; t_i]$. Then $L(f,P) = 0$ and $U(f,P) = b-a$ for all partitions and so it's not the case that
+\[
+\sup \{L(f,P) \mid \text{$P$ is a partition of $[a;b]$} \} = \inf \{U(f,P) \mid \text{$P$ is a partition of $[a;b]$} \}.
+\]
+Thus $f$ is not integrable on $[a;b]$.
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{If $f$ is bounded on $[a;b]$, then $f$ is integrable on $[a;b]$ if and only if for every $\varepsilon > 0$ there exists a partition, $P$, of $[a;b]$ such that
+\[
+U(f,P) - L(f,P) < \varepsilon.
+\]}
+\begin{proof}
+Suppose that for all $\varepsilon > 0$ there exists a partition, $P$, of $[a;b]$ such that $U(f,P) - L(f,P) < \varepsilon$. Note that $\inf \{U(f,P')\} \leq U(f,P)$ and $\sup \{L(f,P')\} \geq L(f,P)$ so we have
+\[
+\inf \{U(f,P')\} - \sup \{L(f,P')\} < \varepsilon.
+\]
+Note that it's never the case that $\inf \{U(f,P')\} < \sup \{L(f,P')\}$ and if $\inf \{U(f,P')\} > \sup \{L(f,P')\}$ then we have $\inf \{U(f,P')\} - \sup \{L(f,P')\} > 0$. Then there exists $c \in \mathbb{R}$ such that
+\[
+\inf \{U(f,P')\} - \sup \{L(f,P')\} > c > 0
+\]
+and letting $c = \varepsilon$ we have a contradiction. Thus $\inf \{U(f,P')\} = \sup \{L(f,P')\}$ which shows that $f$ is integrable. Conversely, assume that $\inf \{U(f,P')\} = \sup \{L(f,P')\}$. Then for all $\varepsilon > 0$ there exists partitions $P_1$ and $P_2$ such that $U(f,P_1) - L(f,P_2) < \varepsilon$. Then if $P$ is a partition such that $P_1 \subseteq P$ and $P_2 \subseteq P$, we have $U(f,P) \leq U(f,P_1)$ and $L(f,P) \geq L(f,P_2)$ (22.3). Thus
+\[
+U(f,P) - L(f,P) \leq U(f,P_1) - L(f,P_2) < \varepsilon.
+\]
+\end{proof}
+
+\textbf{Exercise 8}
+\textsl{Show that $y=x$ is integrable on the closed interval $[a;b]$.}
+\begin{proof}
+Let $f (x) = x$ and let $P = \{t_0, \dots , t_n\}$ be a partition of $[a;b]$ such that $t_i - t_{i-1} = (b-a)/n$. Then $t_i = a + ((b-a)i)/n = (an + (b-a)i)/n$. Then note that $m_i = t_{i-1}$ and $M_i = t_i$ for all $0 \leq i \leq n$. Then
+\[
+L(f,P) = \sum_{i=1}^n t_{i-1} (t_i-t_{i-1}) = \sum_{i=1}^n \left ( \frac{(an + (b-a)(i-1)}{n} \right ) \left ( \frac{b-a}{n} \right ) = \sum_{i=1}^n \frac{an(b-a) + (b-a)^2 (i-1)}{n^2}
+\]
+and likewise
+\[
+U(f,P) = \sum_{i=1}^n \frac{an(b-a) + (b-a)^2 i}{n^2}.
+\]
+Note that for all $\varepsilon > 0$ there exist $n$ such that $1/n < \varepsilon/(b-a)^2$ by the Archimedean Property. Then $(b-a)^2/n^2 < \varepsilon$. Thus
+\begin{align*}
+U(f,P) - L(f,P) &= \sum_{i=1}^n \frac{an(b-a) + (b-a)^2 i}{n^2} - \sum_{i=1}^n \frac{an(b-a) + (b-a)^2 (i-1)}{n^2} \\
+	&= \sum_{i=1}^n \frac{an(b-a) + (b-a)^2 i - (an(b-a) + (b-a)^2 (i-1))}{n^2} \\
+	&= \sum_{i=1}^n \frac{an(b-a) + (b-a)^2 i - an(b-a) - (b-a)^2 i + (b-a)^2}{n^2} \\
+	&= \sum_{i=1}^n \frac{(b-a)^2}{n^2} \\
+	&= \left ( \frac{b-a}{n} \right )^2 < \varepsilon
+\end{align*}
+which means that $f$ is integrable on $[a;b]$ (22.7).
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{If $f$ is continuous on $[a;b]$, then $f$ is integrable on $[a;b]$.}
+\begin{proof}
+Note that since $f$ is continuous on $[a;b]$, we know that $f$ is uniformly continuous on $[a;b]$. Thus for all $\varepsilon > 0$ there exists some $\delta > 0$ such that for all $x,y \in [a;b]$ with $|x-y| < \delta$ we have $|f(x) - f(y)| < \varepsilon/(b-a)$. Now choose a partition $P = \{t_0, \dots , t_n\}$ of $[a;b]$ such that $|t_i-t_{i-1}| < \delta$ for all $0 \leq i \leq n$. Then for all $0 \leq i \leq n$ with $x,y \in [t_{i-1};t_i]$ we have
+\[
+|f(x)-f(y)| < \frac{\varepsilon}{b-a}.
+\]
+Since $f$ is continuous on $[a;b]$ we know that it takes on $m_i$ and $M_i$ for each $i$. Thus for all $0 \leq i \leq n$ we have
+\[
+M_i - m_i < \frac{\varepsilon}{b-a}
+\]
+which means
+\[
+U(f,P) - L(f,P) = \sum_{i=1}^n (M_i-m_i) (t_i-t_{i-1}) < \frac{\varepsilon}{b-a} \sum_{i=1}^n (t_i-t_{i-1}) = \frac{\varepsilon}{b-a}(b-a) = \varepsilon
+\]
+and so $f$ is integrable on $[a;b]$ (22.7).
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{Let $a<c<b$ for $a,b,c \in \mathbb{R}$. Then $f$ is integrable on $[a;b]$ if and only if $f$ is integrable on $[a;c]$ and on $[c;b]$. Also, if $f$ is integrable on $[a;b]$, then
+\[
+\int_a^b f = \int_a^c f + \int_c^b f.
+\]}
+\begin{proof}
+Let $f$ be integrable on $[a;b]$. Then there exists some partition $P = \{t_0, \dots , t_n\}$ such that $U(f,P)-L(f,P) < \varepsilon$ for all $\varepsilon > 0$. In the case that $P$ doesn't include the point $c$ let $P'$ be a partition which includes every point in $P$ as well as $c$. Then $L(f,P) \leq L(f,P')$ and $U(f,P) \geq U(f,P')$ so
+\[
+U(f,P')-L(f,P') \leq U(f,P) - L(f,P) < \varepsilon
+\]
+which means we can assume that $P$ contains $c$. Then we let $P_1 = \{t_0, \dots , c\}$ and $P_2 = \{c, \dots , t_n\}$. We have $P = P_1 \cup P_2$ and so
+\[
+L(f,P) = L(f,P_1) + L(f,P_2)
+\]
+and
+\[
+U(f,P) = U(f,P_1) + U(f,P_2).
+\]
+Then
+\[
+(U(f,P_1)-L(f,P_1)) + (U(f,P_2) - L(f,P_2)) = U(f,P) - L(f,P) < \varepsilon
+\]
+and since each of the terms on the left is greater than or equal to $0$, each must be less than $\varepsilon$. Thus there exists partitions $P_1$ and $P_2$ such that $U(f,P_1)-L(f,P_1) < \varepsilon$ and $U(f,P_2) - L(f,P_2) < \varepsilon$ which means that $f$ is integrable on $[a;c]$ and on $[c;b]$ (22.7). Also we have
+\[
+L(f,P_1) \leq \int_a^c f \leq U(f,P_1)
+\]
+and
+\[
+L(f,P_2) \leq \int_c^b f \leq U(f,P_2)
+\]
+Which means
+\[
+L(f,P) \leq \int_a^c f + \int_c^b f \leq U(f,P).
+\]
+But since this is true for any partition we must have
+\[
+\sup \{L(f,P)\} \leq \int_a^c f + \int_c^b f \leq \inf \{U(f,P)\}
+\]
+which gives
+\[
+\int_a^c f + \int_c^b f = \int_a^b f.
+\]
+Conversely let $f$ be integrable on $[a;c]$ and on $[c;b]$. Then for all $\varepsilon > 0$ there exists partitions $P_1$ of $[a;c]$ and $P_2$ of $[c;b]$ such that
+\[
+U(f,P_1) - L(f,P_1) < \frac{\varepsilon}{2}
+\]
+and
+\[
+U(f,P_2) - L(f,P_2) < \frac{\varepsilon}{2}.
+\]
+Let $P = P_1 \cup P_2$. Then we have $L(f,P) = L(f,P_1) + L(f,P_2)$ and $U(f,P) = U(f,P_1) + U(f,P_2)$ so that
+\[
+U(f,P) - L(f,P) = (U(f,P_1) - L(f,P_1)) + (U(f,P_2) - L(f,P_2)) < \varepsilon
+\]
+which means that $f$ is integrable on $[a;b]$ (22.7).
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{If $f$ and $g$ are integrable functions on $[a;b]$, then $f+g$ is integrable on $[a;b]$ and
+\[
+\int_a^b (f+g) = \int_a^b f + \int_a^b g.
+\]}
+\begin{proof}
+Suppose that $f$ and $g$ are integrable on $[a;b]$. Let $P = \{t_0, \dots , t_n\}$ be some partition of $[a;b]$ and define
+\[
+m_i = \inf \{(f+g)(x) \mid t_{i-1} \leq x \leq t_i\},
+\]
+\[
+m_i' = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\}
+\]
+and
+\[
+m_i'' = \inf \{g(x) \mid t_{i-1} \leq x \leq t_i\},
+\]
+with $M_i$, $M_i'$ and $M_i''$ defined in a similar fashion. We have $m_i \geq m_i' + m_i''$ and $M_i \leq M_i' + M_i''$ (18.4). Then $L(f,P) + L(g,P) \leq L(f+g,P)$ and $U(f,P) + U(g,P) \geq U(f+g,P)$ and so
+\[
+L(f,P) + L(g,P) \leq L(f+g,P) \leq U(f+g,P) \leq U(f,P) + U(g,P).
+\]
+Since $f$ and $g$ are integrable on $[a;b]$ there exists partitions $P_1$ and $P_2$ such that
+\[
+U(f,P_1) - L(f,P_1) < \frac{\varepsilon}{2}
+\]
+and
+\[
+U(g,P_2) - L(g,P_2) < \frac{\varepsilon}{2}.
+\]
+If $P = P_1 \cup P_2$ then we have
+\[
+(U(f,P) + U(g,P)) - (L(f,P) + L(g,P) < \varepsilon
+\]
+and so $U(f+g,P) - L(f+g,P) < \varepsilon$ which means $f+g$ is integrable on $[a;b]$ (22.7). Also we have
+\[
+L(f,P) + L(g,P) \leq L(f+g,P) \leq U(f+g,P) \leq U(f,P) + U(g,P)
+\]
+for all partitions, $P$, of $[a;b]$. Thus
+\[
+\sup \{L(f,P')\} + \sup \{L(g,P')\} \leq \sup \{L(f+g,P')\} = \inf \{U(f+g,P')\} \leq \inf \{U(f,P')\} + \inf \{U(g,P')\}
+\]
+which means
+\[
+\int_a^b f + \int_a^b g = \int_a^b (f+g).
+\]
+\end{proof}
+
+\textbf{Theorem 12}
+\textsl{If $f$ is integrable on $[a;b]$, then for any number $c$, the function $cf$ is integrable on $[a;b]$ and
+\[
+\int_a^b cf = c \int_a^b f.
+\]}
+\begin{proof}
+Let $f$ be integrable on $[a;b]$ and suppose first that $c \geq 0$. Then for all $\varepsilon > 0$ there exists some partition $P = \{t_0, \dots , t_n\}$ such that $U(f,P) - L(f,P) < \varepsilon/c$. Then note that for all $i$ if $m_i = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\}$ then $cm_i = \inf \{cf(x) \mid t_{i-1} \leq x \leq t_i \}$. A similar statement can be made for $M_i$ and $cM_i$. Thus
+\[
+U(cf,P) - L(cf,P) = \sum_{i=1}^n (cM_i - cm_i) (t_i-t_{i-1}) = c \sum_{i=1}^n (M_i - m_i) (t_i-t_{i-1}) = c(U(f,P) - L(f,P)) < \varepsilon
+\]
+which shows that $cf$ is integrable on $[a;b]$ (22.7). If $c < 0$ then for all $\varepsilon > 0$ there exists some partition $P = \{t_0, \dots , t_n\}$ such that $U(f,P) - L(f,P) < - \varepsilon/c$. Then note that for all $i$ if $m_i = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\}$ then $cm_i = \sup \{cf(x) \mid t_{i-1} \leq x \leq t_i\}$. Also for all $i$ if $M_i = \sup \{f(x) \mid t_{i-1} \leq x \leq t_i\}$ then $cM_i = \inf \{cf(x) \mid t_{i-1} \leq x \leq t_i\}$. Thus
+\[
+U(cf,P) - L(cf,P) = \sum_{i=1}^n (cm_i - cM_i) (t_i-t_{i-1}) = -c \sum_{i=1}^n (M_i - m_i) (t_i-t_{i-1}) = c(U(f,P) - L(f,P)) < \varepsilon
+\]
+which shows that $cf$ is integrable on $[a;b]$ (22.7). Also since $L(cf,P) = c L(f,P)$ for all partitions, we have
+\[
+\int_a^b f = \sup L(cf,P) = c \sup L(f,P) = c \int_a^b f.
+\]
+\end{proof}
+
+\textbf{Exercise 13}
+\textsl{If $f$ is integrable on $[a;b]$, then so is $|f|$.}
+\begin{proof}
+Let $P = \{t_0, \dots , t_n\}$ be a partition of $[a;b]$ and let
+\[
+m_i = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\},
+\]
+\[
+M_i = \sup \{f(x) \mid t_{i-1} \leq x \leq t_i\},
+\]
+\[
+m_i' = \inf \{|f(x)| \mid t_{i-1} \leq x \leq t_i\}
+\]
+and
+\[
+M_i' = \sup \{|f(x)| \mid t_{i-1} \leq x \leq t_i\}.
+\]
+Then if $f \geq 0$ on $[t_{i-1}; t_i]$ we have $m_i = m_i'$ and $M_i = M_i'$. Thus $M_i' - m_i' \leq M_i - m_i$. If $f \leq 0$ on $[t_{i-1}; t_i]$ then $m_i = -M_i'$ and $m_i' = -M_i$ and so we have $M_i' - m_i' \leq M_i - m_i$. Now suppose that $f$ is both positive and negative on $[t_{i-1}; t_i]$. Then we have $m_i < 0 < M_i$. First suppose that $-m_i \leq M_i$. Then $M_i = M_i'$ and since $m_i < 0$ we have
+\[
+M_i' - m_i' \leq M_i' = M_i \leq M_i - m_i.
+\]
+We can consider $-f$ for the case where $-m_i \geq M_i$ and obtain the same result. Now supposing $f$ is integrable on $[a;b]$ for all $\varepsilon > 0$ we have $U(f,P) - L(f,P) < \varepsilon$. Then since $M_i' - m_i' \leq M_i - m_i$ we have
+\[
+U(|f|,P) - L(|f|,P) = \sum_{i=1}^n (M_i' - m_i') (t_i - t_{i-1}) \leq \sum_{i=1}^n (M_i - m_i) (t_i - t_{i-1}) = U(f,P) - L(f,P) < \varepsilon.
+\]
+Thus $|f|$ is also integrable on $[a;b]$.
+\end{proof}
+
+\textbf{Exercise 14}
+\textsl{If $f$ is integrable on $[a;b]$, then
+\[
+\left | \int_a^b f(x) dx \right | \leq \int_a^b |f(x)| dx.
+\]}
+\begin{proof}
+Define $m_i$, $M_i$, $m_i'$ and $M_i'$ as in Exercise 13. We showed that for a sequence we have
+\[
+\left | \sum_{i=1}^n m_i \right | \leq \sum_{i=1}^n |m_i|
+\]
+using induction (15.15). Then since $(t_i - t_{i-1}) \geq 0$ for all $i$ we have
+\[
+L(f,P) = \left | \sum_{i=1}^n m_i (t_i - t_{i-1}) \right | \leq \sum_{i=1}^n |m_i| (t_i - t_{i-1}) \leq \leq \sum_{i=1}^n m_i' (t_i - t_{i-1}) = L(|f|,P).
+\]
+Thus we have
+\[
+| \sup \{L(f,P)\} | = \left | \int_a^b f(x) dx \right | \leq \int_a^b |f(x)| dx = \sup \{L(|f|,P\}.
+\]
+\end{proof}
+
+\textbf{Lemma 15}
+\textsl{Suppose $f$ is integrable on $[a;b]$ and that
+\[
+m \leq f(x) \leq M
+\]
+for all $x \in [a;b]$. Then
+\[
+m (b-a) \leq \int_a^b f \leq M (b-a).
+\]}
+\begin{proof}
+Note that for a partition $P = \{t_0, t_1\}$ of $[a;b]$ we have
+\[
+m (b-a) \leq m_1 (b-a) = L(f,P) \leq \int_a^b f \leq U(f,P) = M_1 (b-a) \leq M (b-a).
+\]
+But then $P \subseteq P'$ for all partitions $P'$ of $[a;b]$. Thus for all partitions $P'$ of $[a;b]$ we have
+\[
+m (b-a) \leq L(f,P') \leq \sup \{L(f,P')\} = \int_a^b f = \inf \{U(f,P')\} \leq U(f,P') \leq M (b-a).
+\]
+\end{proof}
+
+\textbf{Theorem 16}
+\textsl{If $f$ is integrable on $[a;b]$ and $F$ is defined on $[a;b]$ by
+\[
+F(x) = \int_a^x f,
+\]
+then $F$ is continuous on $[a;b]$.}
+\begin{proof}
+Let $c \in [a;b]$. Since $f$ is integrable on $[a;b]$ it is bounded on $[a;b]$. Then there exists $M$ such that $-M \leq f(x) \leq M$ for all $x \in [a;b]$. Let $h > 0$. Then we have
+\[
+F(c+h) - F(c) = \int_a^{c+h} f - \int_a^c f = \int_c^{c+h} f
+\]
+and because $-M \leq f(x) \leq M$ for all $x \in [a;b]$ we have
+\[
+-M h \leq \int_c^{c+h} f \leq M h
+\]
+from Lemma 15 (22.15). Thus $-Mh \leq F(c+h) - F(c) \leq Mh$ and a similar inequality will result if $h < 0$ so that $Mh \leq F(c+h) - F(c) \leq -Mh$. Combining these we have $|F(c+h) - F(c)| \leq M |h|$ and so if $|h| < \varepsilon / M$ we have $|F(c+h) - F(c)| < \varepsilon$. Thus
+\[
+\lim_{h \rightarrow 0} F(c+h) = F(c)
+\]
+and so $F$ is continuous at $c$.
+\end{proof}
+
+\textbf{Theorem 17 (The First Fundamental Theorem of Calculus)}
+\textsl{Let $f$ be integrable on $[a;b]$, and define $F$ on $[a;b]$ by
+\[
+F(x) = \int_a^x f.
+\]
+If $f$ is continuous at $c \in [a;b]$, then $F$ is differentiable at $c$, and
+\[
+F'(c) = f(c).
+\]
+(If $c=a$ or $c=b$, then $F'(c)$ is understood to mean the right- or left-hand derivative of $F$.)}
+\begin{proof}
+Let $c \in (a;b)$ and suppose that $h > 0$. Define
+\[
+m_h = \{f(x) \mid c \leq x \leq c+h\}
+\]
+and
+\[
+M_h = \{f(x) \mid c \leq x \leq c+h\}.
+\]
+Then we have
+\[
+F'(c) = \lim_{h \rightarrow 0} \frac{F(c+h) - F(c)}{h}
+\]
+and
+\[
+m_h h \leq \int_c^{c+h} f \leq M_h h
+\]
+from Lemma 15 (22.15). Then since $h > 0$
+\[
+F(c+h) - F(c) = \int_c^{c+h} f
+\]
+and
+\[
+m_h \leq \frac{F(c+h) - F(c)}{h} \leq M_h.
+\]
+If $h < 0$ then we have
+\[
+m_h = \{f(x) \mid c+h \leq x \leq c\}
+\]
+and
+\[
+M_h = \{f(x) \mid c+h \leq x \leq c\}.
+\]
+Thus
+\[
+m_h(-h) = m_h (c-(c+h)) \leq \int_{c+h}^c f \leq M_h (c-(c+h)) = M_h(-h)
+\]
+and
+\[
+m_h \geq \frac{F(c) - F(c+h)}{h} \geq M_h.
+\]
+Multiplying by $-1$ we have
+\[
+m_h \leq \frac{F(c+h) - F(c)}{h} \leq M_h
+\]
+as before. Then since $f$ is continuous at $c$ we have $\lim_{h \rightarrow 0} f(c+h) = f(c)$ so
+\[
+\lim_{h \rightarrow 0} m_h = \lim_{h \rightarrow 0} M_h = \lim_{h \rightarrow 0} f(c+h) = f(c)
+\]
+which means that
+\[
+F'(c) = \lim_{h \rightarrow 0} \frac{F(c+h) - F(c)}{h} = f(c).
+\]
+\end{proof}
+
+\textbf{Theorem 18 (The Second Fundamental Theorem of Calculus)}
+\textsl{If $f$ is integrable on $[a;b]$ and $f=g'$ for some function $g$, then
+\[
+\int_a^b f = g(b)-g(a).
+\]}
+\begin{proof}
+Let $P = \{t_0, \dots , t_n\}$ be a partition of $[a;b]$. Let
+\[
+m_i = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\}
+\]
+and
+\[
+M_i = \sup \{f(x) \mid t_{i-1} \leq x \leq t_i\}.
+\]
+By the Mean Value Theorem there exists $x_i \in [t_{i-1}; t_i]$ such that
+\[
+g(t_i) - g(t_{i-1}) = g'(x_i) (t_i-t_{i-1}) = f(x_i) (t_i-t_{i-1}).
+\]
+Then we have
+\[
+m_i (t_i-t_{i-1}) \leq f(x) (t_i-t_{i-1}) \leq M_i (t_i - t_{i-1})
+\]
+which means
+\[
+m_i (t_i-t_{i-1}) \leq g(t_i) - g(t_{i-1}) \leq M_i (t_i - t_{i-1}).
+\]
+If we then take the sum for the entire interval $[a;b]$ we obtain
+\[
+L(f,P) = \sum_{i=1}^n m_i (t_i-t_{i-1}) \leq g(b) - g(a) \leq \sum_{i=1}^n M_i (t_i-t_{i-1}) = U(f,P).
+\]
+Since this is true for every partition $P$ we must have
+\[
+g(b) - g(a) = \int_a^b f.
+\]
+\end{proof}
+
+\end{flushleft}
+\end{document}

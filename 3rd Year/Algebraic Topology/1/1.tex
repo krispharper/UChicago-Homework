@@ -1,0 +1,136 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26300\\
+
+April 6, 2010
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{problem}
+Let $x$, $y$ and $z$ be loops in $X$ based at $x_0 \in X$. Based on the above picture, write down an explicit homotopy $F(s,t)$ between $(x \cdot y) \cdot z$ and $x \cdot (y \cdot z)$.
+\end{problem}
+\begin{proof}
+Note that if $f = (x \cdot y) \cdot z$ then $f \circ g = x \cdot (y \cdot z)$ where
+\[
+g =
+\begin{cases}
+\frac{1}{2}s & 0 \leq s \leq \frac{1}{2}\\
+s - \frac{1}{4} & \frac{1}{2} \leq s \leq \frac{3}{4}\\
+2s - 1 & \frac{3}{4} \leq s \leq 1
+\end{cases}.
+\]
+So now the homotopy $F : I^2 \to X$ defined by $F(s,t) = f((1-t)s + tg(s))$ gives a homotopy from $(x \cdot y) \cdot z$ to $x \cdot (y \cdot z)$. Expanding this out we get the homotopy
+\[
+F(s,t) =
+\begin{cases}
+x \left ( \frac{4}{1+t} s \right ) & 0 \leq s \leq \frac{1+t}{4}\\
+y (4s - (1+t)) & \frac{1+t}{4} \leq s \leq \frac{2+t}{4}\\
+z (2(1+t)s - (1+2t)) & \frac{2+t}{4} \leq s \leq 1
+\end{cases}.
+\]
+Then $F(s,0) = (x \cdot y) \cdot z$, $F(s,1) = x \cdot (y \cdot z)$ for all $s$ and $F(0,t) = F(1,t) = x(0) = z(1) = x_0$ for all $t$.
+\end{proof}
+
+\begin{problem}
+For a path-connected space $X$, show that $\pi_1(X)$ is abelian iff all basepoint-change homomorphisms $\beta_h$ depend only on the endpoints of the path $h$.
+\end{problem}
+\begin{proof}
+Suppose all $\beta_h$ are independent of paths. Let $[f],[g] \in \pi_1(X, x_0)$. We wish to show that the composed loop $f \cdot g$ is homotopic to $g \cdot f$. Note that $f$ is homotopic to a loop $h\overline{h'}$ where $h$ and $h'$ are paths from $x_0$ to $x_1$. To see this, let $y$ be a point on $f$ and let $f'$ be a path from $y$ to $x_1$. Then let $h$ be the path along $f$ to $y$ composed with $f'$ and let $\overline{h'}$ be $\overline{f'}$ composed with the path from $y$ to $x_0$ along $f$.
+\vspace{100pt}
+Now we've assumed that $\pi_1(X,x_0) \approx \pi_1(X,x_1)$ with the associated maps $\overline{h}gh$ and $\overline{h'}gh'$ the same. This relation can be rewritten as $h'\overline{h}g \simeq gh'\overline{h}$ and we've just shown that this is the same as $fg \simeq gf$ so $[fg] = [gf]$ and $\pi_1(X)$ is abelian.
+
+Conversely, suppose $\pi_1(X)$ is abelian and let $h$ and $h'$ be a paths in $X$ from $x_0$ to $x_1$ and $f \mapsto \overline{h}fh$ and $f \mapsto \overline{h'}fh'$ their associated homomorphisms. We know $h' \overline{h}$ is a loop in $X$ and is thus an element of $\pi_1(X,x_0)$. Thus for any loop $f$ we have $f (h' \overline{h}) \simeq (h' \overline{h})f$ which can be rewritten as $\overline{h}fh \simeq \overline{h'}fh'$ so the maps must be equal.
+\end{proof}
+
+\begin{problem}
+Show that for a space $X$, the following three conditions are equivalent:\\
+(a) Every map $S^1 \to X$ is homotopic to a constant map, with image a point.\\
+(b) Every map $S^1 \to X$ extends to a map $D^2 \to X$.\\
+(c) $\pi_1(X,x_0) = 0$ for all $x_0 \in X$.
+\end{problem}
+\begin{proof}
+Note that $\pi_1(X,x_0)$ is the set of maps $I \to X$ with $x_0$ the image of $0$ and $1$. But this is the same as the set of maps from $S^1 \to X$ with a fixed point $s_0$ mapping to $x_0$. Thus, every map $S^1 \to X$ being nullhomotopic is precisely the same as $\pi_1(X,x_0) = 0$. Therefore (a) and (c) are equivalent.
+
+To show that (b) implies (a), let $f : S^1 \to X$ be a map and let $f'$ be it's extension from $D^2$ to $X$. Note that in $D^2$, $S^1$ is nullhomotopic so there exists a homotopy $f_t$ taking $S_1$ to $s_0$ where $f(s_0) = x_0$. But then $f'f_t$ is a homotopy taking $f$ to $x_0$. Note that $f'f_0 = f$ and $f'f_1 = f'(s_0) = x_0$ so that this is indeed the homotopy we're after. Thus $f$ is nullhomotopic.
+\vspace{100pt}
+
+Finally, suppose every map $S^1 \to X$ is nullhomotopic and let $f : S^1 \to X$ be a map. Then there exists a homotopy $f_t$ taking $f$ to $x_0$. Now for each $t \in [0,1]$ define $f'(t,\theta) = f_t(\theta)$. Since $t$ takes on all values in $[0,1]$ and for each $t$ $f_t$ takes on all values in $S^1$, we see that $f'$ is a map $D^2 \to X$. Moreover, $f'$ is continuous since each $f_t$ is continuous in $\theta$ and $f_t$ varies continuously with $t$ since it's a homotopy. This gives an extension of $f$ to $D^2$ and proves that (a) implies (b).
+\vspace{100pt}
+\end{proof}
+
+\begin{problem}
+\label{phi}
+We can regard $\pi_1(X,x_0)$ as the set of basepoint-preserving homotopy classes of maps $(S^1,s_0) \to (X,x_0)$. Let $[S^1,X]$ be the set of homotopy classes of maps $S^1 \to X$, with no conditions on basepoints. Thus there is a natural map $\Phi : \pi_1(X,x_0) \to [S^1,X]$ obtained by ignoring basepoints. Show that $\Phi$ is onto if $X$ is path-connected, and that $\Phi([f]) = \Phi([g])$ iff $[f]$ and $[g]$ are conjugate in $\pi_1(X,x_0)$. Hence $\Phi$ induces a one-to-one correspondence between $[S^1,X]$ and set of conjugacy classes in $\pi_1(X)$, when $X$ is path connected.
+\end{problem}
+\begin{proof}
+Suppose $X$ is path connected and let $[f] \in [S^1,X]$. Let $g \in [f]$ with basepoint $x_1$ and let $y$ be a point on $g$. Since $X$ is path connected there exists a path $p$ from $y$ to $x_0$. Then the path which goes along $g$ from $x_1$ to $y$, then along $p$ from $y$ to $x_0$, then along $\overline{p}$ and finally along $g$ from $y$ to $x_1$ is a loop which is homotopic to $g$ and includes $x_0$. With an appropriate shift, this path is homotopic to a loop with basepoint $x_0$, so $[f]$ is the image of some element of $\pi_1(X,x_0)$ and $\Phi$ is surjective.
+\vspace{100pt}
+
+Now suppose $\Phi([f]) = \Phi([g])$ for some elements $[f],[g] \in \pi_1(X,x_0)$. Then there exists a homotopy $F : I^2 \to X$ such that $F(0,t) = F(1,t)$ for all $t$ and $F(s,0) = f(s)$ and $F(s,1) = g(s)$ for all $s$. Then Let $h : I \to X$ be defined by $h(t) = F(0,t)$. Note that $h(0) = F(0,0) = f(0) = g(0) = F(0,1) = h(1)$ so $h \in \pi_1(X,x_0)$.
+\vspace{100pt}
+Now note that
+\[
+f \simeq
+\begin{cases}
+h(3s) & s = 0\\
+F(s,0) & 0 \leq s \leq 1\\
+\overline{h}(3s-2) & s = 1
+\end{cases}
+\]
+and
+\[
+hg\overline{h} \simeq
+\begin{cases}
+h(3s) & 0 \leq s \leq \frac{1}{3}\\
+F\left (3 \left (s-\frac{1}{3} \right ),1 \right) & \frac{1}{3} \leq s \leq \frac{2}{3}\\
+\overline{h}(3s-2) & \frac{2}{3} \leq s \leq 1
+\end{cases}.
+\]
+So now we can create the homotopy $F' : I^2 \to X$ which takes $f$ to $hg\overline{h}$ as
+\[
+F'(s,t) =
+\begin{cases}
+h(3s) & 0 \leq s \leq \frac{t}{3}\\
+F \left ((1+2t) \left (s-\frac{t}{3} \right ),s \right ) & \frac{t}{3} \leq s \leq 1 - \frac{t}{3}\\
+\overline{h}(3s-2) & 1 - \frac{t}{3} \leq s \leq 1
+\end{cases}.
+\]
+We see that $F'(s,0) = f(t)$, $F'(s,1) = hg\overline{h}$ and $F'(0,t) = F'(1,t) = h(0) = x_0$, so $f$ and $g$ are conjugate through $h$. Thus $\Phi$ is injective.
+\end{proof}
+
+\begin{problem}
+Suppose you have a sandwich consisting of bread, ham and cheese (each a compact set in $\mathbb{R}^3$). Then the sandwich can be bisected with a single cut, i.e., a plane, such that each half contains the same amount of bread, ham and cheese.
+\end{problem}
+\begin{proof}
+Call the three sets $A$, $B$ and $C$ and suppose that $A$ is open, connected and bounded instead of compact. Draw a sphere $S$ big enough to encompass $A$, $B$ and $C$. Let $\mathbf{x}$ denote the vector pointing from $0$ to $x \in S$. Note that there is a unique plane containing $x$ and normal to $\mathbf{x}$. Define $f : S \times [-1,1] \to \mathbb{R}$ by $f(x,t)$ is the measure of $A$ lying on the side of the plane corresponding to $t\mathbf{x}$ in the direction that $\mathbf{x}$ points. This means that $f(x,t) + f(-x,-t) = \mu(A)$.
+\vspace{100pt}
+Note that $f$ is a continuous function since small changes in $x$ and $t$ amount to small changes in the corresponding plane and thus small changes in the measure of $A$ on either side of said plane. Note also that for each $x \in S$ we have $f(x,1) = 0$ and $f(x,-1) = m(A) \geq 0$ and for a fixed $x$, $f$ is monotonically decreasing. Thus, using the intermediate value theorem there is some point $g(x) \in [-1,1]$ such that $f(x,g(x)) = \mu(A)/2$. Note that $g(x)$ is a unique point because $A$ is open and connected so the plane corresponding to $g(x)\mathbf{x}$ necessarily intersects $A$, and $A$ is open so we could draw a ball with nonzero measure intersecting two potential planes dividing $A$ in half. The fact that $g$ is continuous follows from the fact that $f$ is continuous. Note that $g(x) = -g(-x)$.
+
+Now define $f_B$ and $f_C$ in the same way we defined $f$, but for the sets $B$ and $C$. Let $h : S \to \mathbb{R}^2$ be defined by $h(x) = (f_B(x,g(x)), f_C(x,g(x)))$. By the Borsuk-Ulam theorem there exists a pair of antipodal points $x$ and $-x$ such that $h(x) = h(-x)$. This means that $f_B(x,g(x)) = f_B(-x,g(-x)) = f_B(-x,-g(x))$ and likewise $f_C(x,g(x)) = f_C(-x,-g(x))$. But this precisely says that the measure of $B$ on one side of a plane normal to $x$ ($f_B(x,g(x))$) is the same as the measure of $B$ on the other side ($f_B(-x,-g(x))$). Thus, this plane must bisect the set $B$. Likewise, the same plane must bisect $C$. Then from how we defined $g$ we see that this plane also bisects $A$ so we're done.
+\end{proof}
+
+\begin{problem}
+Suppose $X$ is path-connected. Define $\pi_1(X,x_0,x_1)$, and show that this is a left $\pi_1(X,x_0)$-torsor.
+\end{problem}
+\begin{proof}
+Define $\pi_1(X,x_0,x_1)$ as the set of homotopy classes of paths in $X$ from $x_0$ to $x_1$. Define an action of $\pi_1(X,x_0)$ on $\pi_1(X,x_0,x_1)$ as $[f] \circ [h] = [f] \cdot [h] = [f \cdot h]$. That is, a loop in $\pi_1(X,x_0)$ acting on a path in $\pi_1(X,x_0,x_1)$ is just the composed path going around the loop and then following the path. This clearly satisfies the axioms of a group action since path composition is associative and composing with the identity loop in $\pi_1(X,x_0)$ will leave any element of $\pi_1(X,x_0,x_1)$ unaffected.
+
+Now suppose we have $h$ and $h'$ paths in $X$ from $x_0$ to $x_1$. Let $f$ be the loop which traverses $h'$ from $x_0$ to $x_1$, then traverses $\overline{h}$ from $x_1$ to $x_0$. So $f \in \pi_1(X,x_0)$ and $f \simeq h'\overline{h}$. But then $[f] \circ [h] = [f \cdot h] = [(h' \overline{h})h] = [h']$. Thus for any two paths $h$ and $h'$ there exists an element of $\pi_1(X,x_0)$ taking $h$ to $h'$.
+\vspace{100pt}
+Suppose that $g \in \pi_1(X,x_0)$ such that $[g] \circ [h] = [h']$. Since $X$ is path connected, $g$ is homotopic to a loop which contains $x_1$ using a similar argument as that in Problem~\ref{phi}. Thus $[gh]$ can be decomposed as a path from $x_0$ to $x_1$, followed by a path from $x_1$ to $x_0$ and then $h$, a path from $x_0$ to $x_1$. Since $[gh] = [h']$ it follows that the first of these paths is homotopic to $h'$, and the second is homotopic to $\overline{h}$.
+\vspace{100pt}
+Thus $g \simeq f$ and $[f]$ is the unique element of $\pi_1(X,x_0)$ taking $[h]$ to $[h']$. The fact that $\pi_1(X,x_0,x_1)$ is a right $\pi_1(X,x_1)$-torsor follows by a similar argument where we switch the order of all the functions involved.
+\end{proof}
+
+\end{document}

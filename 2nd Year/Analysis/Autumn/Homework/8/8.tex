@@ -1,0 +1,348 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{**}{** Problem}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20700\\
+
+November 24, 2008
+\end{flushright}
+
+\begin{center}
+Homework 8
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+The space $\ell_n^p (\mathbb{R})$ is complete for $1 \leq p \leq \infty$.
+\end{**}
+\begin{proof}
+Let $(\mathbf{a}_j)$ be a Cauchy sequence on $\ell_n^p (\mathbb{R})$ and let $\varepsilon' > 0$. Then there exists $N$ such that for all $i,j > N$ we have
+\[
+||\mathbf{a}_i - \mathbf{a}_j||_p = \left (\sum_{k=1}^{n} |a_{i,k}-a_{j,k}|^p \right )^{\frac{1}{p}} < \varepsilon'
+\]
+so $|a_{i,k}-a_{j,k}|^p \leq \sum_{k=1}^{n} |a_{i,k}-a_{j,k}|^p < \varepsilon'^p$ and $|a_{i,k}-a_{j,k}| < \varepsilon'$. Thus the $k$th coordinate of the terms of $(\mathbf{a}_j)$ forms a Cauchy sequence which converges to some $b_k$. Then let $\mathbf{b}=(b_1,b_2, \dots , b_n)$, let $\varepsilon > 0$ and consider $\varepsilon/n^{1/p}$. For all $k \leq n$ there exists some $N_k$ such that for $j > N_k$ we have $|a_{j,k}-b_{k}| < \varepsilon/n^{1/p}$. Let $N$ be the largest of all such $N_k$ so that for all $j>N$ we have $|a_{j,k}-b_{k}| < \varepsilon/n^{1/p}$. Then $|a_{j,k}-b_{k}|^p < \varepsilon^p/n$ and $\sum_{k=1}^{n} |a_{i,k}-b_{k}|^p < \varepsilon^p$. Then $||\mathbf{a}_i - \mathbf{b}||_p < \varepsilon$ for all $n > N$. Thus $\lim_{n \rightarrow \infty} \mathbf{a}_n = \mathbf{b}$ which means $\ell_n^p$ is complete.
+\end{proof}
+
+\begin{**}
+The space $\ell_n^p (\mathbb{C})$ is complete for $1 \leq p \leq \infty$.
+\end{**}
+\begin{proof}
+This follows from ** Problem 1 by changing $\mathbb{R}$ to $\mathbb{C}$.
+\end{proof}
+
+\begin{**}
+$\mathbb{Q}$ with the $p$-adic metric is not complete.
+\end{**}
+\begin{proof}
+The recursive sequence $a_n = 1/2(a_{n-1} + 2/a_{n-1})$ will converge to $\sqrt{2}$ in both the usual and $p$-adic metrics.
+\end{proof}
+
+\begin{problem}
+1) Every bounded sequence in $\mathbb{C}^n$ with the usual metric has a convergent subsequence.\\
+2) Prove 1) for $\mathbb{R}^n$ by proceeding coordinate by coordinate.
+\end{problem}
+\begin{proof}
+1) Let $(a_m)_{m \in \mathbb{N}})$ be a bounded sequence in $\mathbb{C}^n$. Denote $a_m = (a_{m,1}, a_{m,2}, \dots , a_{m,n})$. Use induction on $n$. For $n=1$ we simply have $\mathbb{C}$ where we know the statement is true. Assume that the statement is true for $n-1$. Let $a_m'$ be the $n-1$-tuple $(a_{m,1}, a_{m,2}, \dots , a_{m,n-1})$. Then $(a_m')$ is a bounded sequence in $\mathbb{C}^{n-1}$ and so $(a_m')$ has a convergent subsequence in $\mathbb{C}^{n-1}$. Call this subsequence $(a'_{m_j})$. Now the sequence $(a_{m_j,n})$ is a bounded sequence in $\mathbb{C}$ and has a convergent subsequence. Taking then the corresponding subsequence of $(a_{m_j})$, we get a convergent subsequence of $(a_m)$ in $\mathbb{C}^n$.\newline
+
+2) Let $(a_m)$ be a bounded sequence in $\mathbb{R}^n$. Denote $a_m = (a_{m,1}, a_{m,2}, \dots , a_{m,n})$. Note that since $(a_m)$ is bounded in $\mathbb{R}^n$, $(a_{m,1})$ forms a bounded sequence in $\mathbb{R}$. Then this has a convergent subsequence $(a_{m_{j1},1})$. The same can be said for $(a_{m,2}$ with a convergent subsequence $(a_{m_{j2},2})$. Taking the common terms in these sequences from $(a_m)$ we have a convergent subsequence in $\mathbb{R}^2$, $(a_{m_{j12},1,2})$. Continuing in this process, we eventually arrive at a convergent subsequence of $(a_m)$, $(a_{m_{j123\dots n}1,2,3, \dots , n})$.
+\end{proof}
+
+\begin{problem}
+The spaces $\mathcal{B} (X, \mathbb{R})$ and $\mathcal{B} (X, \mathbb{C})$ are complete.
+\end{problem}
+\begin{proof}
+Let $F = \mathbb{R}$ or $F = \mathbb{C}$. Let $(f_n)_{n \in \mathbb{N}}$ be a Cauchy sequence in $\mathcal{B} (X, F)$ and let $f$ be the pointwise limit of $(f_n)_{n \in \mathbb{N}}$. Let $\varepsilon > 0$ and choose $N \in \mathbb{N}$ such that for all $n,m > N$ we have
+\[
+\sup_{x \in X} |f_n(x) - f_n(x)| < \varepsilon/2.
+\]
+For $y \in X$ choose $N' \geq N$ such that
+\[
+|f_{N'}(y) - f(y)| < \varepsilon/2.
+\]
+Then
+\[
+|f_n(y) - f(y)| \leq |f_n(y) - f_{N'}(y)| + |f_{N'}(y) - f(y)| < \varepsilon
+\]
+if $n \geq N$. But this implies that $|f(x)| < |f_n(x)| + \varepsilon$ for all $x \in X$ where $f_n$ is a bounded function. Thus $f$ is bounded and in $\mathcal{B} (X, F)$.
+\end{proof}
+
+\begin{problem}
+Define $f : \mathbb{R} \rightarrow \mathbb{R}$ as
+\[
+f(x) =
+\begin{cases}
+\frac{1}{q} & \text{if $x = \frac{p}{q}$ (reduced to lowest terms, $x \neq 0$)}\\
+0 & \text{if $x = 0$ or $x \notin \mathbb{Q}$}.
+\end{cases}
+\]
+Show that $f$ is continuous at $0$ and every irrational point. Show that $f$ is not continuous at any nonzero rational point.
+\end{problem}
+\begin{proof}
+Note that $0 \leq f(x) \leq |x|$ for all $x \in \mathbb{R}$. Consider $a \leq 0$ and for all $\varepsilon > 0$ let $\delta = \varepsilon$. Then if $0 < |a-x| < \delta$ we have $x \in (a - \delta ; a + \delta)$ and so $f(x) \in (a - \delta ; a + \delta) = (a - \varepsilon ; a + \varepsilon)$. Thus $|a-f(x)| < \varepsilon$, but $a \leq 0$ and so $|-(-a+f(x))| < \varepsilon$ which means $0 \leq |f(x)| \leq |-a+f(x)| < \varepsilon$. Now consider $a > 0$ and let $\delta = \varepsilon + a$. Then if $0 < |a-x| < \delta$ we have $f(x) \in (a - \delta ; a + \delta) = (- \varepsilon ; \varepsilon)$ and so $|f(x)| < \varepsilon$. Thus for all $\varepsilon > 0$ there exists a $\delta> 0$ such that for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta$ we have $|f(x)| < \varepsilon$ and so $\lim_{x \rightarrow a} f(x) = 0$ for all $x \in \mathbb{R}$. But we know that for nonzero rationals, $f(x) \neq 0$ because of how $f$ is defined and since a function is only continuous at $a$ if $\lim_{x \rightarrow a} f(x) =f(a)$ we have $f$ is discontinuous at all nonzero rationals.
+\end{proof}
+
+\begin{problem}
+1) Let $X$ and $X'$ be metric spaces and suppose that $X$ has the discrete metric. Show that any function $f : X \rightarrow X'$ is continuous.\\
+2) Let $X = \mathbb{R}$ with the usual metric and let $f : X \rightarrow X$ be a polynomial function. Show that $f$ is continuous.\\
+3) Let $X = \mathbb{R}$ with the usual metric and $X' = \mathbb{R}$ with the discrete metric. Describe all continuous functions from $X$ to $X'$.
+\end{problem}
+\begin{proof}
+1) Note that for $f$ to be continuous, for every open set $A \subseteq X'$, it must be the case that $f^{-1}(A)$ is open in $X$. But since $X$ has the discrete metric, every set is open. Thus $f$ must be continuous.\newline
+
+2) Suppose that $f$ is a polynomial function such that $f = \sum_{i=0}^{n} a_i x^i$. Let $A \subseteq X$ be open and let $x \in f^{-1} (A)$. Then $f(x) \in A$ and since $A$ is open there exists $\varepsilon > 0$ such that $B_{\varepsilon}(f(x)) \subseteq A$. Note that $x \in f^{-1}(B_{\varepsilon}(f(x)))$. Choose $\delta < \varepsilon^{1/n}$. Then $B_{\delta}(x) \subseteq f^{-1}(B_{\varepsilon}(f(x))) \subseteq f^{-1}(A)$. Thus $f^{-1}(A)$ is open and so $f$ is continuous.\newline
+
+3) The only continuous functions from $X$ to $X'$ are constant functions. To see this, assume $f$ is continuous, let $\varepsilon = 1/2$ and let $x \in X$. Then there exists $\delta > 0$ such that $d(x,y) < \delta$ implies that $d'(f(x), f(y)) < 1/2$. But this will only happen if $f(x) = f(y)$. Thus $f(x) = f(y)$ for all $x,y \in X$ which means $f$ is constant.
+\end{proof}
+
+\begin{problem}
+Suppose that $(X,d)$ and $(X',d')$ are metric spaces and that $f : X \rightarrow X'$ is continuous. Prove or disprove the following:\\
+1) If $A$ is an open subset of $X$, then $f(A)$ is an open subset of $X'$.\\
+2) If $B$ is a closed subset of $X'$, then $f^{-1}(B)$ is a closed subset subset of $X$.\\
+3) If $A$ is a closed subset of $X$, then $f(A)$ is a closed subset $X'$.\\
+4) If $A$ is a bounded subset of $X$, then $f(A)$ is a bounded subset of $X'$.\\
+5) If $B$ is a bounded subset of $X'$, then $f^{-1}(B)$ is a bounded subset of $X$.\\
+6) If $A \subseteq X$ and $x_0$ is an isolated point of $A$, then $f(x_0)$ is an isolated point of $f(A)$.\\
+7) If $A \subseteq X$, $x_0 \in A$ and $f(x_0)$ is an isolated point of $f(A)$, then $x_0$ is an accumulation point of $f(A)$.\\
+8) If $A \subseteq X$ and $x_0$ is an accumulation point of $A$, then $f(x_0)$ is an accumulation point of $f(A)$.\\
+9) If $A \subseteq X$, $x_0 \in X$ and $f(x_0)$ is an accumulation point of $f(A)$, then $x_0$ is an accumulation point of $A$.\\
+10) Do any of the above statements change if $X$ and $X'$ are complete?
+\end{problem}
+\begin{proof}
+1) False. Let $X = X' = \mathbb{R}$ with the usual metric. Let $f(x) = x^2$ and let $A = (-1,1)$. Then $A$ is an open subset of $X$, but $f(A) = [0,1)$ is not open in $X'$.\newline
+
+2) False. Let $X = \mathbb{R}^+$ and $X' = \mathbb{R}$ with the usual metric. Let $f(x) = \sin x$ and let $B = [-1,1]$. Then $B$ is a closed subset of $X'$, but $f^{-1}(B) = (0, \infty)$ is not closed in $X$.\newline
+
+3) False. Let $X = X' = \mathbb{R}$ with the usual metric. Let $f(x) = \arctan(x)$ and let $A = \mathbb{R}$. Then $A$ is a closed subset of $X$, but $f(A) = (-\pi/2, \pi/2)$ is not closed in $X'$.\newline
+
+4) False. Let $X = X' = \mathbb{R}$ such that $X$ has the discrete metric and $X'$ has the usual metric. Let $f(x) = x$ and let $A = \mathbb{R}$. Then $A$ is a bounded subset of $X$ because $\mathbb{R} \subseteq B_1(0)$, but $f(A) = \mathbb{R}$ is not bounded in $X'$.\newline
+
+5) False. Let $X = X' = \mathbb{R}$ with the usual metric. Let $f(x) = \sin x$ and let $B = [-1,1]$. Then $B$ is a bounded subset of $X'$, but $f^{-1}(B) = \mathbb{R}$ is not bounded in $X$.\newline
+
+6) False. Let $X = X' = \mathbb{R}$ such that $X$ has the discrete metric and $X'$ has the usual metric. Let $f(x) = x$ and let $A = \mathbb{R}$. Then every point in $A$ is an isolated point, but none of the points in $f(A) = \mathbb{R}$ are isolated.\newline
+
+7) True. Let $A \subseteq X$ and let $x_0$ in $A$ then $f(x_0) \in f(A)$. The statement can be restated as, if $x_0$ is not an isolated point of $A$, then $f(x_0)$ is not an isolated point of $f(A)$. But since $x_0 \in A$, if $x_0$ is not an isolated point of $A$ we know that $x_0$ must be an accumulation point of $A$. The same can be said about $f(x_0)$ and $f(A)$. Then the proof is the same as 8).\newline
+
+8) True. Let $x_0$ be an accumulation point of $A$. Then there exists a sequence $(x_n)$ in $A$ which converges to $x_0$. But since $f$ is continuous we have $\lim_{n \rightarrow \infty} f(x_n) = f(x_0)$. Since $f(x_n) \in f(A)$ for all $n$, it must be the case that $f(x_0)$ is an accumulation point of $f(A)$.\newline
+
+9) False. Let $X = X' = \mathbb{R}$ such that $X$ has the discrete metric and $X'$ has the usual metric. Let $f(x) = x$ and let $A = [-1,1]$. Then $f(1) = 1$ is an accumulation point of $f(A) = [-1,1]$, but since there are no accumulation points in $X$ and so $1$ is not an accumulation point of $A$.\newline
+
+10) No, all of the counterexamples use complete metric spaces and the statements which are true for arbitrary metric spaces will be true for compete metric spaces as well.
+\end{proof}
+
+\begin{problem}
+Show that $\ell_n^p (\mathbb{C})$ and $\ell_n^q (\mathbb{C})$ are homeomorphic for $1 \leq p < q \leq \infty$.
+\end{problem}
+\begin{proof}
+Consider the identity map $I(x) = x$ from $\ell_n^p (\mathbb{C})$ to $\ell_n^q (\mathbb{C})$. We already know that for $p < q$ the unit ball in $\ell_n^p (\mathbb{C})$ is contained in the unit ball in $\ell_n^q (\mathbb{C})$. Consider $(z_1, z_2, \dots , z_n) \in \mathbb{C}^n$ such that $\max_{1 \leq i \leq n} (|x_i|) < 1/n$. Then $\sum_{i=1}^{n} |x_i| < 1$. Thus the $1/n$ ball in the $\ell_n^{\infty}$ metric is contained in the unit ball in the $\ell_n^1$ metric. Therefore, if we take the unit ball in $\ell_n^q (\mathbb{C})$ and multiply each coordinate by a factor of $1/n$, then this set of points is in the unit ball in $\ell_n^p (\mathbb{C})$. This shows that $I$ and $I^{-1}$ are both continuous and since $I$ is a bijection, we see that it is a homeomorphism.
+\end{proof}
+
+\begin{problem}
+Define an isometry as a bijection $f : X \rightarrow X'$ such that $d'(f(x_1), f(x_2)) = d(x_1, x_2)$ for all $x_1, x_2 \in X$. Show that this implies $f$ is a homeomorphism.
+\end{problem}
+\begin{proof}
+Let $\varepsilon > 0$ such that $\delta = \varepsilon$ and let $x_1 \in X$. Then for all $x_2 \in X$ such that $d(x_1, x_2) < \delta$ we have $d(x_1, x_2) = d'(f(x_1), f(x_2)) < \varepsilon$. Thus $f$ is continuous. Also, since $f$ is a bijection, we have $d(f^{-1}(x_1), f^{-1}(x_2)) = d(x_1, x_2)$ and using a similar proof as above we see that $f^{-1}$ is continuous. Since $f$ is a bijection and $f$ and $f^{-1}$ are continuous, $f$ is a homeomorphism.
+\end{proof}
+
+\begin{problem}
+Let $X = \mathbb{R}$ with the discrete metric and let $X' = \mathbb{R}$ with the usual metric. Define $f : X \rightarrow X'$ by $f(x) = x$. Show that $f$ is a continuous bijection that is not a homeomorphism.
+\end{problem}
+\begin{proof}
+Problem 4 Part 1) shows that $f$ is continuous and $f$ is clearly a bijection since $f^{-1}(x) = x$ and $f$ is injective and surjective. Problem 4 Part 3) shows that the only continuous functions from $X'$ to $X$ are constant functions. Thus $f^{-1}$ is not continuous and $f$ is not a homeomorphism.
+\end{proof}
+
+\begin{problem}
+Let $(X, d)$ be a metric space. Let $G$ be the collection of all homeomorphisms from $X$ to $X$. Prove that, under compositions of functions, $G$ is a group and the collection of all isometries of $X$ is a subgroup of $G$.
+\end{problem}
+\begin{proof}
+Let $f,g \in G$ and consider $f \circ g$. This function is a bijection since injective and surjective properties hold under composition. Because it's a homeomorphism, $g$ is an open map which means $f \circ g$ is continuous because the preimage of an open set under $f \circ g$ is open. Similarly, $(f \circ g)^{-1}$ is continuous. Thus $G$ is closed under function composition. The identity function is $I(x) = x$. Note that by definition of function composition, $I \circ f = f$. Also, the associative law holds as usual for function composition. Finally for $f,g \in G$ consider the function $g \circ f^{-1}$. Then $(g \circ f^{-1}) \circ f = g$ and so we have solvability. Thus $G$ is a group. Let $G'$ be the set of isometries of $X$ and now let $f,g \in G'$. Then consider $(f \circ g)(x_1)$ and $(f \circ g)(x_2)$. Then $d(x_1, x_2) = d(g(x_1), g(x_2))$ and since $g(x_1), g(x_2) \in X$, we have $d(g(x_1), g(x_2)) = d(f(g(x_1)), f(g(x_2)))$. Thus $f \circ g$ is an isometry as well. Therefore $G'$ is a subgroup of $G$.
+\end{proof}
+
+\begin{**}
+Show that $\mathcal{B} (X, F)$ is an algebra.
+\end{**}
+\begin{proof}
+We see that $\mathcal{B} (X, F)$ satisfies commutativity and associativity of addition and taking the $0$ function we have an additive identity. Since for $f \in \mathcal{B} (X, F)$, $-f \in \mathcal{B}(X, F)$ we see that every element has an additive inverse. Thus $\mathcal{B} (X, F)$ is an abelian group under addition. The following statements holds for $x \in X$. Note that for $a \in F$ and $f \in \mathcal{B} (X, F)$ we have $(af)(x) = af(x)$. Then for $f, g$ we have
+\[
+a (f + g)(x) = a(f(x) + g(x)) = af(x) + ag(x) = (af)(x) + (ag)(x).
+\]
+Also for $b \in F$ we have
+\[
+((a+b)f)(x) = (a+b)f(x) = af(x) + bf(x) = (af)(x) + (bf)(x)
+\]
+and similarly
+\[
+(abf(x)) = (ab)f(x) = a(bf)(x).
+\]
+Finally, note that for $1 \in F$ we have $1 \cdot f(x) = f(x)$. These axioms show that $\mathcal{B} (X, F)$ is a vector space over $F$. Now define $(fg)(x) = f(x)g(x)$. Then for $f,g,h \in \mathcal{B} (X, F)$ we have
+\[
+(f(gh))(x) = f(x)(gh(x)) = f(x)g(x)h(x) = (fg)(x)h(x) = ((fg)h(x))
+\]
+so associativity holds. Also left and right distributivity hold since they do in $F$. Finally, for $a \in F$ we have
+\[
+((af)(x))g(x) = (af(x))(g(x) = af(x)g(x) = a(fg)(x) = (afg)(x) = (fag)(x) = f(x)(ag)(x).
+\]
+Together these axioms show that $\mathcal{B} (X, F)$ is an algebra.
+\end{proof}
+
+\begin{**}
+Prove that $\mathcal{B} (X, F)$ is complete.
+\end{**}
+\begin{proof}
+This is Problem 2.
+\end{proof}
+
+\begin{**}
+Let $r \geq 1$ with $r \in \mathbb{R}$. Define
+\[
+f_r (x)= 
+\begin{cases}
+\frac{1}{q^r} & x = \frac{p}{q}, x \neq 0\\
+0 & x \notin \mathbb{Q}, x = 0.
+\end{cases}
+\]
+Show that $f_r$ is continuous for $x \notin \mathbb{Q}$ and $x = 0$. Show that it's discontinuous for $x \in \mathbb{Q} \backslash \{0\}$.
+\end{**}
+\begin{proof}
+The same proof holds as in Problem 3.
+\end{proof}
+
+\begin{**}
+Let $(X, d)$ and $(X', d')$ be metric spaces. A function $f : X \rightarrow X'$ is continuous if and only if for each open set $A \subseteq X'$, $f^{-1}(A)$ is open in $X$.
+\end{**}
+\begin{proof}
+Suppose that $f$ is continuous and let $A \subseteq X'$ be open. Let $y \in f^{-1}(A)$. Let $\varepsilon > 0$ such that $B_{\varepsilon}(f(y)) \subseteq A$. Then there exists $\delta > 0$ such that $f(B_{\delta}(y)) \subseteq B_{\varepsilon}(f(y))$. This implies that $B_{\delta}(y) \subseteq f^{-1}(B_{\varepsilon}(f(y))) \subseteq A$. Thus $f^{-1}(A)$ is open.\newline
+
+Conversely, assume that for every open set $A \subseteq X'$, we have $f^{-1}(A)$ is open in $X$. Then let $x \in X$ so that $f(x) \in X'$. Let $\varepsilon > 0$ so that $B_{\varepsilon}(f(x))$ is open in $X'$. Then $f^{-1}(B_{\varepsilon}(f(x)))$ is open in $X$. Note that $x \in f^{-1}(B_{\varepsilon}(f(x)))$ and so there exists $\delta > 0$ such that $B_{\delta}(x) \subseteq f^{-1}(B_{\varepsilon}(f(x)))$. Let $y \in X$ with $d(x,y) < \delta$. Then $y \in B_{\delta}(x)$ which means $y \in f^{-1}(B_{\varepsilon}(f(x)))$. But then $d'(f(x), f(y)) < \varepsilon$. Therefore $f$ is continuous for all $x \in X$.
+\end{proof}
+
+\begin{**}
+Show $\mathcal{BC} (X, F)$ is closed as a subset of $\mathcal{B} (X, F)$.
+\end{**}
+\begin{proof}
+Let $f$ be an accumulation point of $\mathcal{BC} (X, F)$. Then there exists a sequence of functions $(f_n)$ in $\mathcal{BC} (X, F)$ which converges to $f$. Let $\varepsilon > 0$. Then there exists $N$ such that for all $n > N$ we have $\sup_{x \in X} |f_n(x) - f(x)| < \varepsilon/3$. Let $x \in X$. Then for all $y \in X$ and $n > N$ we have
+\[
+|f(x) - f(y)| \leq |f(x) - f_n(x)| + |f_n(x) - f_n(y)| + |f(y) - f_n(y)| < \varepsilon/3 + |f_n(x) - f_n(y)| + \varepsilon/3.
+\]
+But since $f_n$ is continuous there exists a $\delta > 0$ such that $d(x,y) < \delta$ implies that $|f_n(x) - f_n(y)| < \varepsilon/3$. Thus $|f(x) - f(y)| < \varepsilon$ whenever $d(x,y) < \delta$. Therefore $f$ is continuous and so $f \in \mathcal{BC} (X, F)$ which means that $\mathcal{BC} (X, F)$ is closed.
+\end{proof}
+
+\begin{**}
+Show that a compact subset of a metric space $(X, d)$ is closed.
+\end{**}
+\begin{proof}
+Suppose that $C \subseteq X$ is compact and $C$ is not closed. If $C = \emptyset$ then the problem is trivial so let $C \neq \emptyset$. Let $p \notin C$ be an accumulation point of $C$. Let $\mathcal{A} = \{X \backslash \overline{B_r(p)} \mid r \in \mathbb{R}\}$. Since $p \notin C$, $\mathcal{A}$ covers $C$. Let $\mathcal{B}$ be a finite subset of $\mathcal{A}$ which covers $C$. If $\mathcal{B} = \emptyset$, $\mathcal{B}$ does not cover $C$. Then $\mathcal{B} = \{X \backslash \overline{B_{r_1}(p)}, X \backslash \overline{B_{r_2}(p)}, \dots , X \backslash \overline{B_{r_n}(p)}\}$. Take the smallest $r_i$ such that $X \backslash \overline{B_{r_i}(p)} \in \mathcal{B}$ and consider $B_{r_i/2}(p)$. This ball contains $p$, which is an accumulation point of $C$, and since balls are open, $B_{r_i/2}(p) \cap C \neq \emptyset$. But $B_{r_i/2}(p)$ is defined such that $B_{r_i/2}(p) \nsubseteq \bigcup_{B \in \mathcal{B}} B$ and so $C \nsubseteq \bigcup_{B \in \mathcal{B}} B$. But then $\mathcal{B}$ doesn't cover $C$ which is a contradiction. Therefore compact sets are closed.
+\end{proof}
+
+\begin{problem}
+Define a sequence of functions $f_n : (0,1) \rightarrow \mathbb{R}$ by
+\[
+f_n (x)=
+\begin{cases}
+\frac{1}{q^n} & \text{if $x = \frac{p}{q}$}\\
+0 & \text{if $x \notin \mathbb{Q}$}
+\end{cases}
+\]
+for $n \in \mathbb{N}$. Find the pointwise limit, $f$, of the sequence $(f_n)_{n \in \mathbb{N}}$ and show that $(f_n)_{n \in \mathbb{N}}$ uniformly converges to $f$.
+\end{problem}
+\begin{proof}
+Let $f(x) = 0$. For $x \in (0,1)$ with $x \notin \mathbb{Q}$ we have $f_n(x) = 0$ for all $n$ and so $\lim_{n \rightarrow \infty} f_n(x) = f(x) = 0$. For $x \in (0,1)$ with $x \in \mathbb{Q}$, let $x = p/q$ when reduced to lowest terms. Then $f_n(x) = 1/q^n$ which we know converges to $0$. Thus $f$ is the pointwise limit of $(f_n)$. Now let $\varepsilon > 0$. Choose $N$ such that $1/2^N < \varepsilon$. Then note that for all $n > N$ and all $x \in (0,1)$ we have $|f(x) - f_n(x)| = |f_n(x)| < 1/2^n < \varepsilon$. Thus, $(f_n)$ uniformly converges to $f$ on $(0,1)$.
+\end{proof}
+
+\begin{problem}
+1) A polynomial function $p(x)$ on $\mathbb{R}$ is uniformly continuous if and only if $\deg(p(x)) < 2$.\\
+2) The function $f(x) = \sin (x)$ is uniformly continuous on $\mathbb{R}$.
+\end{problem}
+\begin{proof}
+1) Suppose $\deg(p(x)) < 2$. Then $p(x) = a_1x + a_0$ where $a_1$ may be $0$. Choose $\delta = \varepsilon/|a_1|$. Then for all $x, y \in \mathbb{R}$ with $|x-y| < \delta$ we have
+\[
+|f(x) - f(x)| = |a_1x + a_0 - a_1y - a_0| = |a_1(x - y)| = |a_1||x-y| < |a_1|\delta = \varepsilon.
+\]
+Thus $p(x)$ is uniformly continuous. Now suppose that $\deg(p(x)) \geq 2$. Then $p(x) = \sum_{i=0}^{n} a_ix^i$ where at least one of $a_2, a_3, \dots , a_n$ is not $0$. Let $\varepsilon > 0$ and for all $x,y \in \mathbb{R}$ consider some $\delta > 0$ such that $|x-y| < \delta$ implies that $|f(x) - f(y)| < \varepsilon$. Note that
+\[
+|f(x) - f(y)| = |\sum_{i=1}^{n} a_i(x^i-y^i)|
+\]
+and that this cannot be reduced to a constant multiplied by $|x-y|$. Thus $\delta$ must depend on the value of $x$ and so $p(x)$ is not uniformly continuous.\newline
+
+2) Note that since $f'(x) = \cos x$ and $-1 \leq \cos x \leq 1$ for all $x \in \mathbb{R}$, for $x,y \in \mathbb{R}$ we have $|\sin x - \sin y|/|x-y| \leq 1$ by the mean value theorem. Then for all $\varepsilon > 0$ let $\delta = \varepsilon$ so that $|x-y| < \delta$ implies $|f(x) - f(y)| < \varepsilon$.
+\end{proof}
+
+\begin{problem}
+Determine whether the following functions are uniformly continuous on $(0, \infty)$:\\
+1) $f(x) = 1/x$\\
+2) $f(x) = \sqrt{x}$\\
+3) $f(x) = \ln (x)$\\
+4) $f(x) = x \ln (x)$
+\end{problem}
+\begin{proof}
+1) No. Let $\varepsilon = 1$. Assume there exists a $\delta > 0$ and let $\delta < 1$. Then let $x, y \in (0,1)$ such that $x = y + \delta/2$ and $y = \delta/2$. Then $|x-y| < \delta$ but
+\[
+|f(x) - f(y)| = |1/x - 1/y| = |1/\delta| > 1 = \varepsilon.
+\]
+Thus no delta can exist for $\varepsilon = 1$.\newline
+
+2) Yes. Let $\delta = \varepsilon^2$. Then let $x,y \in \mathbb{R}$ such that $|x-y| < \delta$. Then
+\[
+|\sqrt{x} - \sqrt{y}| \leq < |\sqrt{x-y}| < \sqrt{\delta} = \varepsilon.
+\]\newline
+
+3) No. Let $\varepsilon = 1$ Assume there exists a $\delta > 0$ and let $\delta < 1/e$ then let $x,y \in (0,1)$ such that $x = y + \delta/2$ and $y = 1/2$. Then $|x-y| < \delta$ but
+\[
+|f(x) - f(y)| = |\ln (x) - \ln (y)| = |\ln (x/y)| = |\ln (\delta)| > 1 = \varepsilon.
+\]\newline
+
+4) No. The same proof as in Part 3) holds, but we have $|\ln (x^x/y^y)| > \varepsilon$.
+\end{proof}
+
+\begin{problem}
+Prove the Heine-Borel theorem holds in $\mathbb{R}^n$ and $\mathbb{C}^n$ with the usual metrics.
+\end{problem}
+\begin{proof}
+Let $S$ be a set in $\mathbb{R}^n$ such that $S$ is closed and bounded. Since $S$ is bounded it is a subset of
+\[
+A_1 = [a_1, b_1] \times [a_2, b_2] \times \dots \times [a_n, b_n]
+\]
+where $a_i, b_i \in \mathbb{R}$ and $a_i < b_i$ for $1 \leq i \leq n$. Take the bisection of each $[a_i, b_i]$ to form $2n$ intervals which make $2^n$ subboxes. Assume that $A_1$ is not compact. Then for some open cover $\mathcal{C}$ there is no finite subcover. This means that at least one of the $2^n$ subboxes contains an infinite number of open sets from $\mathcal{C}$. Let this be $A_2$. Perform the same bisection process on $A_2$ so that we have $2^n$ subboxes of $A_2$, one of which has an infinite number of sets from $\mathbb{C}$ needed to cover it. This is $A_3$. Continuing in this process we have a set of nested boxes $A_1 \supseteq A_2 \supseteq A_3 \supseteq \dots$ which have side length that tends to $0$. Since each $A_i$ is bounded and closed we have
+\[
+\bigcup_{i=1}^{\infty} A_i \neq \emptyset
+\]
+and so this intersection contains some $x \in A_1$. Since $\mathcal{C}$ covers $A_1$, there exists an open set $U \in \mathcal{C}$ such that $x \in U$. Since $U$ is open there exists $\varepsilon > 0$ such that $B_{\varepsilon}(x) \subseteq U$. Then for large enough $n$ we have $A_n \subseteq B_{\varepsilon}(x) \subseteq U$. But we've made the assumption that each $A_i$ requires an infinite number of sets from $\mathcal{C}$ to cover it and now $U$ covers $A_n$. This is a contradiction and so $S$ must be compact. If $S \subseteq \mathbb{C}^n$ such that $S$ is closed and bounded, a similar proof holds where $A_1$ is a cross product of squares. That is,
+\[
+A_1 = [a_1, b_1] \times [c_1, d_1] \times [a_2, b_2] \times [c_2, d_2] \times \dots \times [a_n, b_n] \times [c_n, d_n].
+\]
+\end{proof}
+
+\begin{problem}
+1) Let $f : X \rightarrow X'$ be a continuous map of metric spaces. Show that if $A \subseteq X$ is compact then $f(A) \subseteq X'$ is compact.\\
+2) Suppose that $X$ is a compact metric space. Show that a continuous function $f : X \rightarrow \mathbb{R}$ is bounded.\\
+3) Suppose that $X $ is a compact metric space. Show that a continuous function $f : X \rightarrow \mathbb{R}$ attains a maximum and minimum value on $X$.
+\end{problem}
+\begin{proof}
+1) Let $\mathcal{A}$ be an open cover of $f(A)$. For all $x \in A$ we have $f(x) \in f(A)$ and so for all $x \in A$ there exist an open set $B \in \mathcal{A}$ such that $f(x) \in B$. But then for all $x \in A$, $x \in f^{-1}(B)$ for some $B \in \mathcal{A}$. So we have $A \subseteq \bigcup_{B \in \mathcal{A}} f^{-1}(B)$ and since $f$ is continuous $\{f^{-1}(B) \mid B \in \mathcal{A}\}$ is an open cover for $A$. But $A$ is compact so there exists a finite subcover, $\{f^{-1}(B_1), f^{-1}(B_2), \dots , f^{-1}(B_n)\}$ which covers $A$. So for all $x \in A$ there exists some $B_i \in \mathcal{A}$ such that $x \in f^{-1}(B_i)$. But then $f(x) \in B_i$ and since $f(A) = \{ y \in X' \mid x \in A, y=f(x) \}$, we have for all $y \in f(A)$, $y \in B_i$ for some $i$. Since every $B_i \in \mathcal{A}$ we have found a finite subcover of $\mathcal{A}$ which covers $f(A)$. Thus $f(A)$ is compact.\newline
+
+2) From Part 1) we know that if $f$ is continuous and $X$ is compact, then $f(X)$ is also compact. But compact sets are bounded.\newline
+
+3) Let $C$ be a nonempty compact set in $\mathbb{R}$ then $\sup C \in C$ because it is an accumulation point of $C$. Part 2) tells us that $f(X)$ is compact and assuming $X \neq \emptyset$ we see that $\sup f(X)$ exists and $\sup f(X) \in f(X)$. Let $f(c) = \sup f(X)$. Then there exists $d \in X$ such that $f(d) = f(c) = \sup f(X)$. But this value is greater than or equal to every value which $f$ takes on $X$. A similar proof holds for the minimum value.
+\end{proof}
+
+
+\begin{problem}
+Suppose $X$ and $X'$ are metric spaces with $X$ compact. Show the following:\\
+1) If $f : X \rightarrow X'$ is continuous on $X$, then $f$ is uniformly continuous on $X$.\\
+2) If $f : X \rightarrow X'$ is a continuous bijection, then $f$ is a homeomorphism.
+\end{problem}
+\begin{proof}
+1) Let $\varepsilon > 0$ and consider $\varepsilon/2 > 0$. We have $f$ is continuous so for all $x \in X$ there exists $\delta (x) > 0$ such that for all $y \in X$ with $d(x,y) < \delta (x)$ we have $d'(f(x),f(y)) < \varepsilon/2$. Consider the set of balls $\mathcal{A} = \{B_{\delta(x)}(x) \mid x\in X\}$ and let $\mathcal{A}' = \{B_{\delta(x)/2}(x) \mid B_{\delta(x)}(x) \in \mathcal{A}\}$. $\mathcal{A}'$ is an open cover for $X$ and since $X$ is compact there exists a finite subcover, $\mathcal{B} \subseteq \mathcal{A}'$. Let $\delta = \min \{\delta(x)/2 \mid B_{\delta(x)/2}(x) \in \mathcal{B} \}$. Then consider two points $x,y \in X$ such that $d(x,y) < \delta$. $\mathcal{B}$ is an open cover for $X$ so there exists some ball $B_{\delta(z)/2}(z) \in \mathcal{B}$ such that $x \in B_{\delta(x)/2}(z)$. Then $d(x,z) < \delta(z)/2 < \delta(z)$ and $d(x,y) < \delta \leq \delta(z)/2$ so $d(z,y) \leq d(z,x) + d(x,y) < \delta(z)$. But then $d'(f(z),f(x)) < \varepsilon/2$ and $d'(f(z),f(y)) < \varepsilon/2$ so $d'(f(x),f(y)) \leq d'(f(x),f(z)) + d'(f(z),f(y)) < \varepsilon$. Therefore for every $\varepsilon > 0$ there exists a $\delta > 0$ such that for all $x,y \in X$ with $d(x,y) < \delta$ we have $d'(f(x),f(y)) < \varepsilon$.\newline
+
+2) From Part 1) we know that $f$ is uniformly continuous which directly implies that $f^{-1}$ is continuous. This $f$ is a homeomorphism.
+\end{proof}
+
+\end{flushleft}
+\end{document}

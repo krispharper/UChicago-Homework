@@ -1,0 +1,199 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 30: Uniform Limits\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{Let $(f_n)$ be a sequence of functions defined on $A$ and let $f$ be defined on $A$. Then $f$ is the uniform limit of $(f_n)$ (or $\lim_{n \rightarrow \infty} f_n = f$) if for all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ and for all $x \in A$ we have $|f(x) - f_n(x)| < \varepsilon$.}\newline
+
+\textbf{Theorem 2}
+\textsl{Let $(f_n)$ be a sequence of continuous functions on $[a;b]$ that uniformly converges to $f$ on $[a;b]$. Then $f$ is continuous on $[a;b]$.}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\varepsilon/3$. We know $(f_n)$ uniformly converges to $f$ so there exists $N$ such that for all $n>N$ and for all $x,y \in [a;b]$ we have $|f(x)-f_n(x)| < \varepsilon/3$ and $|f(y)-f_n(y)| < \varepsilon/3$. Also $f_n$ is continuous for all $n$ so for all $n>N$ and for all $x \in [a;b]$ there exists $\delta_n > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta_n$ we have $|f_n(x) - f_n(y)| < \varepsilon/3$. Consider $\delta_{N+1}$. Then for all $x \in [a;b]$ there exists $\delta_{N+1} > 0$, which may depend on $x$, such that for all $y \in [a;b]$ with $|x-y| < \delta_{N+1}$ we have $|f_{N+1}(x)+f_{N+1}(y)| < \varepsilon/3$. By the triangle inequality we have $|f(x)-f_{N+1}(y)| \leq |f_{N+1}(x)-f_{N+1}(y)| + |f(x)-f_{N+1}(x)| < 2\varepsilon/3$ and then $|f(x)-f(y)| < |f(x)-f_{N+1}(y)| + |f(y)-f_{N+1}(y)| < \varepsilon$. Thus for all $x \in [a;b]$ there exists some $\delta > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta$ we have $|f(x)-f(y)| < \varepsilon$. Therefore $f$ is continuous on $[a;b]$.
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{Let $(f_n)$ be a sequence of functions which are integrable on $[a;b]$ and that $(f_n)$ uniformly converges to $f$ on $[a;b]$, which is integrable on $[a;b]$. Then
+\[
+\int_a^b f = \lim_{n \rightarrow \infty} \int_a^b f_n.
+\]}
+\begin{proof}
+Let $\varepsilon > 0$. Since $(f_n)$ uniformly converges to $f$ on $[a;b]$, then there exists $N$ such that for all $n>N$ and all $x \in [a;b]$ we have $|f(x) - f_n(x)| < \varepsilon/(b-a)$. Note that
+\[
+\left | \int_a^b f_n - \int_a^b f \right | \leq \left | \int_a^b f_n - f \right | < \int_a^b \frac{\varepsilon}{(b-a)} = \varepsilon
+\]
+for all $n>N$ (22.14). Thus we have
+\[
+\int_a^b f = \lim_{n \rightarrow \infty} \int_a^b f_n.
+\]
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Let $(f_n)$ be a sequence of functions which are integrable on $[a;b]$ and that $(f_n)$ uniformly converges to $f$ on $[a;b]$. Is $f$ integrable on $[a;b]$?}\newline
+
+Yes.
+\begin{proof}
+Let $\varepsilon > 0$. Since $f_n$ is integrable on $[a;b]$ for all $n$ we know there exists some partition $P = \{t_0, \dots , t_n\}$ such that
+\[
+U(f_n,P) - L(f_n,P) < \varepsilon.
+\]
+Since $(f_n)$ uniformly converges on $[a;b]$ there exists $N$ such that for all $n>N$ and all $x \in [a;b]$ we have $|f(x) - f_n(x)| < \varepsilon$. Let
+\[
+m_i = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\}
+\]
+\[
+m_{i_n} = \inf \{f_n(x) \mid t_{i-1} \leq x \leq t_i\}
+\]
+\[
+M_i = \sup \{f(x) \mid t_{i-1} \leq x \leq t_i\}.
+\]
+and
+\[
+M_{i_n} = \sup \{f_n(x) \mid t_{i-1} \leq x \leq t_i\}.
+\]
+Then since $|f(x) - f_n(x)| < \varepsilon$ for all $n>N$ and all $x \in [a;b]$ then we have $|m_i - m_{i_n}| < \varepsilon/(3(b-a))$ for all $i \leq i \leq n$. Thus
+\[
+|L(f,P) - L(f_n,P)| = \left | \sum_{i=1}^n m_i (t_i - t_{i-1}) - \sum_{i=1}^n m_{i_n} (t_i - t_{i-1}) \right | = \left | \sum_{i=1}^n (m_i - m_{i_n}) (t_i - t_{i_n}) \right | < \varepsilon/3.
+\]
+And a similar statement can be made to show $|U(f,P) - U(f_n,P)| < \varepsilon/3$. Also since
+\[
+0 < U(f_n,P) - L(f_n,P) < \frac{\varepsilon}{3} < \varepsilon
+\]
+we have
+\[
+|U(f_n,P) - L(f_n,P)| < {\varepsilon}{3}.
+\]
+Combining the second of these inequalities with the last we have
+\[
+|U(f,P) - L(f_n,P)| \leq |U(f,P) - U(f_n,P)| + |U(f_n,P) - L(f_n,P)| < \frac{2 \varepsilon}{3}
+\]
+and then
+\[
+|U(f,P) - L(f,P)| \leq |U(f,P) - L(f_n,P)| + |L(f,P) - L(f_n,P)| < \varepsilon
+\]
+and since $0 < U(f,P) - L(f,P)$ we have
+\[
+U(f,P) - L(f,P) < \varepsilon
+\]
+which means $f$ is integrable on $[a;b]$.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{Find a sequence of differentiable functions that uniformly converge to $f(x) = |x|$ on $[-1;1]$.}\newline
+
+Let
+\[
+f(x) =
+\begin{cases}
+(-x)^{\frac{1+n}{n}} & \text{if $x < 0$}\\
+x^{\frac{1+n}{n}} & \text{if $x \geq 0$}.
+\end{cases}
+\]
+
+\textbf{Exercise 6}
+\textsl{Let
+\[
+f_n = \frac{1}{n} \sin (n^2x).
+\]
+Then $f_n$ uniformly converges to $f=0$ but $\lim_{n \rightarrow \infty} f_n'$ does not exist.}
+\begin{proof}
+Let $\varepsilon > 0$. Note that $-1 \leq \sin (n^2x) \leq 1$ for all $n$ and all $x$. Then note that there exists some $N$ such that $1/N < \varepsilon$. Thus, for all $n>N$ we have $|1/n| < \varepsilon$ and since $|\sin (n^2 x)| < 1$, for all $n>N$ we have
+\[
+\left | \frac{1}{n} \sin (n^2 x) \right | < \varepsilon.
+\]
+Thus we have
+\[
+\lim_{n \rightarrow \infty} \frac{1}{n} \sin (n^2 x) = 0.
+\]
+Now note that $f_n'$ were to converge uniformly to some function $f$, then $f$ is also the pointwise limit of $(f_n')$ (19.7). We have $f_n' = 2 \cos (n^2 x)$. Thus for $x = \pi/2$ we have $2 \cos (n^2 x) = 0$ for even $n$ and $2 \cos (n^2) = 1$ for odd $n$. Then there are infinitely many $n$ with $f_n' (\pi/2) = 0$ and likewise for $1$ which means $0$ and $1$ are accumulations points for $(f_n' (\pi/2))$. Thus $\lim_{n \rightarrow \infty} f_n' (\pi/2)$ does not exist (13.10).
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{Let $(f_n)$ be a sequence of functions which are differentiable on $[a;b]$, with integrable derivatives $f_n'$ and that $(f_n)$ pointwise converges to $f$ on $[a;b]$. Suppose that $f_n'$ uniformly converges on $[a;b]$ to some continuous function $g$. Then $f$ is differentiable on $[a;b]$ and for all $x \in [a;b]$ we have
+\[
+f'(x) = \lim_{n \rightarrow \infty} f_n' (x)
+\]}
+\begin{proof}
+Since $g$ is continuous we know it's integrable on $[a;b]$ (22.9). Also because $(f_n)$ pointwise converges to $f$ on $[a;b]$ we have $\lim_{n \rightarrow \infty} f_n (x) = f(x)$ for all $x \in [a;b]$. Thus we have
+\[
+\int_a^x g = \lim_{n \rightarrow \infty} \int_a^x f_n' = \lim_{n \rightarrow \infty} (f_n(x) - f_n(a)) = f(x) - f(a)
+\]
+for all $x \in [a;b]$ by the Second Fundamental Theorem of Calculus and Theorem 3 (22.18, 30.3). If we let
+\[
+G(x) = \int_a^x g
+\]
+then $G'(x) = g(x)$ and so we have $G'(x) = (f(x) - f(a))' = f'(x)$ for all $x \in [a;b]$. Then it must be the case that $g = f'$ and so we have
+\[
+f'(x) = g(x) = \lim_{n \rightarrow \infty} f_n' (x).
+\]
+\end{proof}
+
+\textbf{Definition 8}
+\textsl{The series $\sum_{n=1}^{\infty} f_n$ converges uniformly to $f$ on $A$ if the sequence of partial sums $s_n = \sum_{i=1}^n f_n$ converges to $f$ uniformly.}\newline
+
+\textbf{Theorem 9}
+\textsl{Let $\sum_{n=1}^{\infty} f_n$ converge uniformly to $f$ on $[a;b]$. If $f_n$ is continuous on $[a;b]$ for all $n$, then $f$ is continuous on $[a;b]$. If $f_n$ is integrable on $[a;b]$ for all $n$ and $f$ is integrable on $[a;b]$ then
+\[
+\int_a^b f = \sum_{n=1}^{\infty} \int_a^b f_n.
+\]
+If $f_n$ has an integrable derivative for all $n$ and $\sum_{n=1}^{\infty} f_n'$ converges uniformly on $[a;b]$ to some continuous function then for all $x \in [a;b]$ we have
+\[
+f'(x) = \sum{n=1}^{\infty} f_n' (x).
+\]}
+\begin{proof}
+Let $f_n$ be continuous on $[a;b]$ for all $n$. Then since the sum of two continuous functions is still continuous, we have the partial sums of $\sum_{n=1}^{\infty} f_n$ are continuous. Thus $(s_n)$ is a sequence of continuous functions on $[a;b]$ which uniformly converges to $f$ on $[a;b]$. Thus $f$ is continuous on $[a;b]$ (30.2).\newline
+
+Let $f_n$ be integrable on $[a;b]$ for all $n$ and $f$ be integrable on $[a;b]$. Then since the sum of two integrable functions is still integrable, we have the partial sums, $s_n$ are a sequence of integrable functions on $[a;b]$ (22.11). Thus we have
+\[
+\sum_{n=1}^{\infty} \int_a^b f_n = \lim_{n \rightarrow \infty} \int_a^b s_n = \int_a^b f
+\]
+from Theorem 3 (30.3).\newline
+
+Let $f_n$ have an integrable derivative for all $n$ and $\sum_{n=1}^{\infty} f_n'$ converge uniformly on $[a;b]$ to some continuous function then for all $x \in [a;b]$. By the same argument as before, since the sum of integrable functions is still integrable we have the partial sums of $\sum_{n=1}^{\infty} f_n'$ are integrable (22.11). Thus we have
+\[
+f'(x) = \sum{n=1}^{\infty} f_n' (x).
+\]
+from Theorem 7 (30.7).
+\end{proof}
+
+\textbf{Theorem 10 (Weierstrass M-Test)}
+\textsl{Let $(f_n)$ be a sequence of functions defined on $A$ and suppose $|f_n|$ is bounded by $M_n$ on $A$. Suppose that $\sum_{n=1}^{\infty} M_n$ converges. Then for all $x \in A$ the series $\sum_{n=1}^{\infty} f_n (x)$ absolutely converges and $\sum_{n=1}^{\infty} f_n$ converges uniformly on $A$ to the function
+\[
+f(x) = \sum_{n=1}^{\infty} f_n (x).
+\]}
+\begin{proof}
+Let
+\[
+M = \sum_{n=1}^{\infty} M_n.
+\]
+Since for all $n$ we have $|f_n| \leq M_n$, we have
+\[
+\sum_{i=1}^n |f_n| \leq \sum_{i=1}^n M_n \leq M
+\]
+for all $n$. But since $0 \leq |f_n|$, the series of partial sums of $\sum_{n=1}^{\infty} |f_n|$ is a bounded increasing sequence so it must converge. Thus $\sum_{n=1}^{\infty} f_n$ is absolutely convergent on $A$. Note that since an absolutely convergent series implies a convergent series we have
+\[
+\sum_{i=1}^n f_n
+\]
+is convergent. Then we can write
+\[
+\left | \sum_{n=1}^{\infty} f_n - \sum_{n=1}^k f_n \right | = \left | \sum_{n=k+1}^{\infty} f_n \right | \leq \sum_{n=k+1}^{\infty} |f_n| \leq \sum_{n=k+1}^{\infty} M_n
+\]
+and taking the limit as $k$ goes to $\infty$ we see that
+\[
+\lim_{k \rightarrow \infty} \left | \sum_{n=1}^{\infty} f_n - \sum_{n=1}^k f_n \right | = 0
+\]
+so
+\[
+f(x) = \sum_{n=1}^{\infty} f_n (x).
+\]
+\end{proof}
+
+\end{flushleft}
+\end{document}

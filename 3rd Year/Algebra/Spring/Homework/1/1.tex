@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{10pt}
+\renewcommand{\textheight}{609pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newcommand{\tr}{\textup{tr}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25900\\April 2, 2010\\}
+\chead{Homework 1\\}
+
+\begin{problem}[12.2.1]
+\label{similar}
+Prove that similar linear transformations of $V$ (or $n \times n$ matrices) have the same characteristic and the same minimal polynomial.
+\end{problem}
+\begin{proof}
+Let $A$ and $B$ be two similar matrices. Then $A$ and $B$ have the same (unique) rational canonical form of a diagonal block matrix with the companion matrices for the invariant factors of $A$ or $B$ on the diagonal. Thus $A$ and $B$ have the same set of invariant factors. In particular, they have the same minimal polynomial, as this is one of the invariant factors, and the same characteristic polynomials, since this is the product of all the invariant factors.
+\end{proof}
+
+\begin{problem}[12.2.3]
+Prove that two $2 \times 2$ matrices over $F$ which are not scalar matrices are similar if and only if they have the same characteristic polynomial.
+\end{problem}
+\begin{proof}
+If the matrices are similar then they have the same characteristic polynomial by Problem~\ref{similar}. Conversely, suppose two $2 \times 2$ nonscalar matrices $A$ and $B$ have the same characteristic polynomial $p(x)$. Note that $\deg p(x) = 2$ and so if $p(x)$ is irreducible or factors as two distinct linear factors then the minimal polynomial is the same as the characteristic polynomial (since it divides the characteristic polynomial) and this is the only invariant factor for $A$ or $B$. Otherwise, it's possible that $p(x)$ factors as $(x-a)^2$. But in this case $(A-aI) \neq 0$ since $A$ is not scalar and so $p(x)$ is also the minimal polynomial for $A$ and similarly for $B$. In all cases $A$ and $B$ have the same set of invariant factors and so they must be similar.
+\end{proof}
+
+\begin{problem}[12.2.5]
+Prove directly from the fact that the collection of \emph{all} linear transformations of an $n$ dimensional vector space $V$ over $F$ to itself form a vector space over $F$ of dimension $n^2$ that the minimal polynomial of a linear transformation $T$ has degree at most $n^2$.
+\end{problem}
+\begin{proof}
+We can write $T$ as a linear combination of $n^2$ basis transformations from $V$ to $V$. But then raising this sum to the power $n^2$ necessarily results in $0$ as the product of any two basis elements is $0$.
+\end{proof}
+
+\begin{problem}[12.2.6]
+Prove that the constant term in the characteristic polynomial of the $n \times n$ matrix $A$ is $(-1)^n \det A$ and that the coefficient of $x^{n-1}$ is the negative of the sum of the diagonal entries of $A$ (the sum of the diagonal entries of $A$ is called the \emph{trace} of $A$). Prove that $\det A$ is the product of the eigenvalues of $A$ and that the trace of $A$ is the sum of the eigenvalues of $A$.
+\end{problem}
+\begin{proof}
+The characteristic polynomial for $A$ is $\det(xI - A)$. To find the constant term for this polynomial we plug in $x = 0$ and get $\det(-A) = (-1)^n \det(A)$. If we consider the expansion of $\det(xI - A)$ it's easy to see that all the terms in the sum are polynomials in $x$ of degree at most $x^{n-2}$ except for the term $\prod_{i=1}^{n} (x-a_{ii})$. Namely, if a permutation $\sigma \in S_n$ chooses one off diagonal element then it must also choose at least one other. So the coefficient of $x^{n-1}$ in the characteristic polynomial of $A$ is the coefficient of $x^{n-1}$ in $\prod_{i=1}^{n} (x-a_{ii})$ and this is clearly $- \sum_{i=1}^{n} a_{ii} = -\tr (A)$.
+
+The set of eigenvalues for $A$ are the roots of $\det(xI - A)$. In particular, if $\lambda_i$ is an eigenvalue for $A$ then $(x-\lambda_i)$ is a factor of $\det(xI - A)$ and so $\det(xI - A)$ is the product of all the linear factors $(x-\lambda_i)$ for $\lambda_i$ an eigenvalue of $A$. Plugging in $x = 0$ gives $(-1)^n \prod_{i=1}^{n} \lambda_i = (-1)^n \det(A)$ or $\det(A)$ is the product of all the eigenvalues of $A$.
+
+Finally, since the sum of the roots of a polynomial is the negative of the coefficient of $x^{n-1}$ we have the sum of the eigenvalues of $A$ is $\tr(A)$ from above.
+\end{proof}
+
+\begin{problem}[12.2.7]
+Determine the eigenvalues of the matrix
+\[
+\left(
+\begin{array}{cccc}
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+1 & 0 & 0 & 0
+\end{array}
+\right ).
+\]
+\end{problem}
+\begin{proof}
+We have
+\[
+\det \left ( xI - \left(
+\begin{array}{cccc}
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+1 & 0 & 0 & 0
+\end{array}
+\right ) \right )
+=
+\det \left ( \left(
+\begin{array}{cccc}
+x & -1 & 0 & 0\\
+0 & x & -1 & 0\\
+0 & 0 & x & -1\\
+-1 & 0 & 0 & x
+\end{array}
+\right ) \right )
+= x^4 - 1.
+\]
+This factors as $x^4 - 1 = (x-1)(x+1)(x^2 + 1) = (x-1)(x+1)(x+i)(x-i)$ so the eigenvalues are $\pm 1$ and $\pm i$.
+\end{proof}
+
+\begin{problem}[12.3.1]
+Suppose the vector space $V$ is the direct sum of the cyclic $F[x]$-modules whose annihilators are $(x+1)^2$, $(x-1)(x^2+1)^2$, $(x^4-1)$ and $(x+1)(x^2-1)$ Determine the invariant factors and elementary divisors for $V$.
+\end{problem}
+\begin{proof}
+The factors involved are $(x+1)$, $(x-1)$ and $(x^2+1)$. The first annihilator has a factor of $(x+1)^2$, the second has a factor of $(x^2+1)^2$ and the third has a factor of $(x+1)^2$ so the elementary divisors are $(x+1)^2$, $(x-1)$, $(x^2+1)^2$, $(x-1)$, $(x+1)$, $(x^2+1)$, $(x+1)^2$ and $(x-1)$. Now we group these into the largest possible groups to obtain the invariant factors. They are $(x-1)(x+1)$, $(x-1)(x^2+1)(x+1)^2$ and $(x-1)(x+1)^2(x^2+1)^2$.
+\end{proof}
+
+\begin{problem}[12.3.5]
+Compute the Jordan canonical form for the matrix
+\[
+\left (
+\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 0 & -2\\
+0 & 1 & 3
+\end{array}
+\right).
+\]
+\end{problem}
+\begin{proof}
+We have
+\[
+\det \left (xI -
+\left (
+\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 0 & -2\\
+0 & 1 & 3
+\end{array}
+\right) \right )
+=
+\left (
+\begin{array}{ccc}
+x-1 & 0 & 0\\
+0 & x & 2\\
+0 & -1 & x-3
+\end{array}
+\right)
+=
+x^3-4x^2+5x-2 = (x-2)(x-1)^2.
+\]
+This is the characteristic polynomial for the matrix and so the minimal polynomial is either $(x-2)(x-1)$ or $(x-2)(x-1)^2$. Plugging the matrix into the first polynomial gives $0$ so this is the minimal polynomial. Thus the elementary divisors are $(x-1)$, $(x-2)$ and $(x-1)$. The Jordan canonical form is then
+\[
+\left (
+\begin{array}{ccc}
+1 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 1
+\end{array}
+\right ).
+\]
+\end{proof}
+
+\begin{problem}[12.3.9]
+Prove that the matrices
+\[
+\begin{tabular}{cc}
+$
+A =
+\left (
+\begin{array}{ccc}
+-8 & -10 & -1\\
+7 & 9 & 1\\
+3 & 2 & 0
+\end{array}
+\right )
+$
+&
+$
+B =
+\left (
+\begin{array}{ccc}
+-3 & 2 & -4\\
+4 & -1 & 4\\
+4 & -2 & 5
+\end{array}
+\right )
+$
+\end{tabular}
+\]
+both have $(x-1)^2(x+1)$ as characteristic polynomial but that one can be diagonalized and the other cannot. Determine the Jordan canonical form for both matrices.
+\end{problem}
+\begin{proof}
+We have
+\[
+\det (xI - A) = \det \left (
+\left (
+\begin{array}{ccc}
+x+8 & 10 & 1\\
+-7 & x-9 & -1\\
+-3 & -2 & x
+\end{array}
+\right ) \right )
+= x^3 - x^2 - x + 1 = (x+1)(x-1)^2.
+\]
+and
+\[
+\det (xI - B) = \det \left (
+\left (
+\begin{array}{ccc}
+x+3 & -2 & 4\\
+-4 & x+1 & -4\\
+-4 & 2 & x-5
+\end{array}
+\right ) \right )
+= x^3 - x^2 - x + 1 = (x+1)(x-1)^2.
+\]
+The minimal polynomials for these matrices are then either $(x+1)(x-1)$ or $(x+1)(x-1)^2$. But now we see that $(A-I)(A+I) \neq 0$ and $(A-I)(A+I)^2 = 0$ while $(B-I)(B+I) = 0$. Thus the elementary divisors for $A$ are $(x+1)$ and $(x-1)^2$ while the elementary divisors for $B$ are $(x+1)$, $(x-1)$ and $(x-1)$. Thus the Jordan canonical forms for $A$ and $B$ are
+\[
+\left (
+\begin{array}{ccc}
+1 & 1 & 0\\
+0 & 1 & 0\\
+0 & 0 & -1
+\end{array}
+\right )
+\]
+and
+\[
+\left (
+\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & -1
+\end{array}
+\right ).
+\]
+This shows that $B$ can be diagonalized, but $A$ cannot since Jordan canonical form is unique.
+\end{proof}
+
+\end{document}

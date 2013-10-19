@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20900\\
+
+May 25, 2009
+\end{flushright}
+
+\begin{center}
+Homework 8
+\end{center}
+
+\begin{**}
+If $g \in N$, show that
+\[
+\int_{\mathbb{R}^n} f(g \cdot x) dx = \int_{\mathbb{R}^n} f(x) dx.
+\]
+\begin{proof}
+Let
+\[
+\left (
+\begin{array}{cccc}
+1 & a_{12} & \dots & a_{1n}\\
+0 & 1 & \dots & a_{2n}\\
+\vdots &&& \vdots\\
+0 & a_{n2} & \dots & 1
+\end{array}
+\right ).
+\]
+Then if $x = (x_1, x_2, \dots , x_n)^T$ we have
+\[
+g \cdot x=
+\left (
+\begin{array}{c}
+x_1 + a_{12} x_2 + \dots + a_{1n} x_n\\
+x_2 + a_{23} x_3 + \dots + a_{2n} x_n\\
+\dots \\
+x_n
+\end{array}
+\right ).
+\]
+Thus, $x_i$ will always appear without a multiple in the $i$th row of $g \cdot x$. Recall $dx_i$ is translation invariant. Since we integrate component-wise, and all other terms in this row are constants, we have the desired result.
+\end{proof}
+\end{**}
+
+\begin{**}
+What is the Haar measure on $\mathbb{C}^{\times} = \mathbb{T} \times \mathbb{R}_+^{\times}$?
+\begin{proof}
+We know that the Haar measure on $\mathbb{R}_+^{\times}$ is $dx/x$. Since we integrate component wise, we only need to find the Haar measure on $\mathbb{T}$ and then the product of the measures will suffice. Let $f$ be a function on $\mathbb{T}$. Then for a constant $a \in \mathbb{T}$ we have
+\[
+\int_{\mathbb{T}} f(ax) e^{i \theta} dx = \frac{1}{a} \int_{\mathbb{T}} f(ax) a e^{i \theta} dx = \int_{\mathbb{T}} f(x) e^{i \theta} dx.
+\]
+The desired measure is then $e^{i \theta} dxdy/x$.
+\end{proof}
+\end{**}
+
+\begin{**}
+For $\mathbb{C}$ and $\alpha \in \mathbb{C}$ what is $d(\alpha z)$?
+\begin{proof}
+Treat $\mathbb{C}$ as $\mathbb{R}^2$. Then $dz = dxdy$. Moreover, since we're only concerned with scaling areas in $\mathbb{R}^2$, we can consider only $|\alpha|$. Then we have
+\[
+d(\alpha z) = d(|\alpha|x) d(|\alpha| y) = |\alpha|^2 dxdy = |\alpha|^2 dz.
+\]
+\end{proof}
+\end{**}
+
+\begin{**}
+Show that every character is unitary over the group $(\mathbb{Q}_p, +)$.
+\begin{proof}
+Let $\chi : \mathbb{Q}_p \rightarrow \mathbb{C}^{\times}$ be an additive character and let $a \in \mathbb{Q}_p$. Note that by $p$-adic expansion, $a = \sum_{k = \gamma}^{\infty} a_k p^k$ where $|a|_p = p^{-\gamma}$ and $0 \leq a_k \leq p-1$. Then we have
+\[
+\chi(a) = \chi \left (\sum_{k = \gamma}^{\infty} a_k p^k \right ) = \prod_{k = \gamma}^{\infty} \chi(a_kp^k) = \prod_{k = \gamma}^{-1} e^{2 \pi i a_k p^k}.
+\]
+The last result uses the tail of $a$, $\sum_{k = \gamma}^{-1} a_k p^k$. Note that $|\chi(a)| = 1$ by Euler's identity.
+\end{proof}
+\end{**}
+
+\begin{**}
+Show $\hat{G}$ is a group.
+\begin{proof}
+Let $\chi_1, \chi_2, \chi_3 \in \hat{G}$. Then, since associativity holds in $\mathbb{C}$, we have
+\[
+((\chi_1\chi_2)\chi_3)(x) = (\chi_1\chi_2)(x)\chi_3(x) = (\chi_1(x) \chi_2(x)) \chi_3(x) = \chi_1(x)(\chi_2(x)\chi_3(x)) = \chi_1(x)(\chi_2\chi_3(x)) = (\chi_1(\chi_2\chi_3))(x).
+\]\newline
+Now consider the $1$ function which sends all values to $1$. Then for $\chi \in \hat{G}$, $(1 \cdot \chi)(x) = 1 \chi(x) = \chi(x)$.\newline
+Finally, for $\chi \in \hat{G}$, let $\chi^{-1} : G \mathbb{C}^{\times}$ such that $\chi^{-1}(x) = (\chi(x))^{-1}$. The fact that this map is continuous follows from the fact that $\chi(x) \neq 0$. To show $\chi^{-1}$ is a homomorphism, let $x, y \in G$. Then
+\[
+\chi^{-1}(xy) = (\chi(xy))^{-1} = (\chi(x)\chi(y))^{-1} = (\chi(x))^{-1} (\chi(y))^{-1} = \chi^{-1}(x) \chi^{-1}(y).
+\]
+Since associativity, identity and inverses hold, $\hat{G}$ is a group.
+\end{proof}
+\end{**}
+
+\begin{**}
+Read about the compact-open topology.
+\begin{proof}
+For the case of $\hat{G}$, let $K$ be a compact subset of $G$ and $U$ be an open subset of $\mathbb{C}$. If $V(K, U) \subseteq \hat{G}$ is the set of all elements of $\hat{G}$ such that $\chi(K) \subseteq U$, then $V(K,U)$ is a subbase for the compact-open topology.
+\end{proof}
+\end{**}
+
+\begin{**}
+Suppose $G = \mathbb{T}$ and $f \in L^1 (G)$ such that $f (e^{i \theta}) = 1$. Find $\hat{f}$.
+\begin{proof}
+By definition we know
+\[
+\hat{f} (\chi) = \int_{\mathbb{T}} f(x) \overline{\chi(x)} dx
+\]
+and since $f(e^{i \theta}) = 1$, this simplifies to
+\[
+\hat{f} (\chi) = \int_{\mathbb{T}} \overline{\chi(x)} dx.
+\]
+Since $|\chi(x)| = 1$ we can write $\chi(x) = e^{i(x+a)}$ for some constant $a \in \mathbb{R}$. Then we have
+\[
+\hat{f} = \int_{\mathbb{T}} e^{-i(x+a)}dx = \int_0^{2 \pi} e^{-i(x+a)}dx = 0.
+\]
+\end{proof}
+\end{**}
+
+\end{document}

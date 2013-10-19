@@ -1,0 +1,893 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+May 29, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 21: Derivatives\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A function $f$ is differentiable at $a$ if
+\[
+\lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h}
+\]
+exists.}\newline
+
+\textbf{Definition 2}
+\textsl{The function $f'$, called the derivative of $f$, is defined as the function whose domain is all $a$ such that $f$ is differentiable at $a$ and whose value at $a$ is
+\[
+\lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h}.
+\]
+The function $f'' = (f')'$ is the second derivative of $f$. Similarly $f''' = (f'')'$. We denote $f^{(n)}$ as the $n$th derivative of $f$ for $n \geq 4$.}\newline
+
+\textbf{Theorem 3}
+\textsl{If $f$ is differentiable at $a$, then $f$ is continuous at $a$.}
+\begin{proof}
+We have
+\[
+\lim_{h \rightarrow 0} f(a+h) - f(a) = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} h = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} \lim_{h \rightarrow 0} h = f'(a) \cdot 0 = 0.
+\]
+Thus $\lim_{h \rightarrow 0} f(a + h) = f(a)$ which means that $f$ is continuous at $a$.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Give and prove an example of a function that is continuous but not differentiable.}
+\begin{proof}
+Let $f(x) = |x|$ and consider $x = 0$. Let $\varepsilon > 0$ and let $\delta = \varepsilon$. Then if we have $|x| < \delta = \varepsilon$ we have $|f(x)| = ||x|| = |x| < \varepsilon$. Thus $f$ is continuous at $x = 0$. Then consider
+\[
+\lim_{h \rightarrow 0^+} \frac{f(x+h) - f(x)}{h} = \lim_{h \rightarrow 0^+} \frac{|h|}{h} = 1
+\]
+and
+\[
+\lim_{h \rightarrow 0^-} \frac{f(x+h) - f(x)}{h} = \lim_{h \rightarrow 0^-} \frac{|h|}{h} = -1
+\]
+because $|h| \geq 0$. Since the left and right hand limits are not the same the limit does not exist and $f$ is not differentiable at $0$.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{If $g(x) = f(x+c)$ then $g'(x) = f'(x+c)$. Also if $g(x) = f(cx)$ then $g'(x) = cf'(cx)$.}
+\begin{proof}
+Both of these can be proved with the Chain rule. Let $h(x) = x+c$. Then $f(h(x))' = f'(h(x))h'(x) = f'(x+c)$ (21.16). If $h(x) = cx$. Then $f(h(x))' = f'(h(x))h'(x) = cf'(cx)$ (21.16).
+\end{proof}
+
+\textbf{Exercise 6}
+\textsl{Let $f$ be a function such that $|f(x)| \leq x^2$ for all $x$. Show that $f$ is differentiable at $0$.}
+\begin{proof}
+Note that $f(0) = 0$ because $0 \leq |f(0)| \leq 0^2 = 0$. We have $|f(h)/h| \leq |h^2/h| \leq |h|$ which means that $\lim_{h \rightarrow 0} f(h)/h = 0$. Thus $f'(0) = 0$.
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{If $f(x) = c$ then $f'(x) = 0$.}
+\begin{proof}
+We have
+\[
+f'(x) = \lim_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \rightarrow 0} \frac{c - c}{h} \lim_{h \rightarrow 0} \frac{0}{h} = 0.
+\]
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{If $f(x) = ax+b$ then $f'(x) = a$.}
+\begin{proof}
+We have
+\[
+f'(x) = \lim_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \rightarrow 0} \frac{(a(x+h) + b) - (ax+b)}{h} \lim_{h \rightarrow 0} \frac{ax+ah+b-ax-b}{h} = \lim_{h \rightarrow 0} \frac{ah}{h} = \lim_{h \rightarrow 0} a = a.
+\]
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{If $f$ and $g$ are differentiable at $a$ then $f+g$ is also differentiable at $a$ and
+\[
+(f+g)'(a) = f'(a) + g'(a).
+\]}
+\begin{proof}
+Since $f$ and $g$ are both differentiable at $a$ we know
+\[
+\lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} = f'(a)
+\]
+and
+\[
+\lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} = g'(a)
+\]
+both exist. Then
+\begin{align*}
+f'(a) + g'(a) &= \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} + \lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{f(a+h) - f(a) + g(a+h) - g(a)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{(f+g)(a+h) - (f+g)(a)}{h}
+	&= (f+g)'(a).
+\end{align*}
+We know this limit exists because the sum of the limits of two functions is the limit of their sum.
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{If $f$ and $g$ are differentiable at $a$ then
+\[
+(fg)'(a) = f'(a)g(a) + f(a)g'(a).
+\]}
+\begin{proof}
+Since $f$ and $g$ are both differentiable at $a$ we know
+\[
+\lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} = f'(a)
+\]
+and
+\[
+\lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} = g'(a)
+\]
+both exist. Then $f(a)$ and $g(a)$ are both constants so
+\begin{align*}
+f'(a)g(a) + f(a)g'(a) &= \lim_{h \rightarrow 0} g(a) \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} + \lim_{h \rightarrow 0} f(a+h) \lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{f(a+h)g(a) - f(a)g(a)}{h} + \lim_{h \rightarrow 0} \frac{g(a+h)f(a+h) - g(a)f(a+h)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{f(a+h)g(a) - f(a+h)g(a) + g(a+h)f(a+h) - g(a)f(a)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{f(a+h)g(a+h) - f(a)g(a)}{h} \\
+	&= (fg)'(a).
+\end{align*}
+\end{proof}
+	
+\textbf{Theorem 11}
+\textsl{If $g(x) = cf(x)$ and $f$ is differentiable at $a$ then $g$ is differentiable at $a$ and
+\[
+g'(a) = cf'(a).
+\]}
+\begin{proof}
+We have $f$ is differentiable at $a$ so
+\begin{align*}
+cf'(a) &= c \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} \\
+	 &= \lim_{h \rightarrow 0} \frac{cf(a+h) - cf(a)}{h} \\
+	 &= \lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} \\
+	 &= g'(a).
+\end{align*}
+We know this limit exists because the limit of the product of two functions is the product of their limits.
+\end{proof}
+
+\textbf{Theorem 12}
+\textsl{If $f(x) = x^n$ for some $n \in \mathbb{N}$ then
+\[
+f'(a) = na^{n-1}.
+\]}
+\begin{proof}
+Note that for $n = 1$ we have $f'(a) = 1 \cdot a^0 = 1$ by Theorem 8 (21.8). Use induction on $n$ and suppose that if $f(x) = x^n$ for $n \in \mathbb{N}$ we have $f'(a) = na^{n-1}$. Consider a function $f(x) = x^{n+1} = x \cdot x^n$. Then from Theorem 10 we have
+\[
+f'(a) = x^n + x \cdot (nx^{n-1}) = x^n + nx^n = (n+1)x^n
+\]
+as desired.
+\end{proof}
+
+\textbf{Theorem 13}
+\textsl{If $f$ is differentiable at $a$ and $f(a) \neq 0$ then $1/f$ is differentiable at $a$ and
+\[
+\left ( \frac{1}{f} \right )' (a) = \frac{-f'(a)}{(f(a))^2}.
+\]}
+\begin{proof}
+We have
+\begin{align*}
+\left ( \frac{1}{f} \right )' (a) & = \lim_{h \rightarrow 0} \frac{\frac{1}{f(a+h)} - \frac{1}{f(a)}}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{\frac{f(a)-f(a+h)}{f(a+h)f(a)}}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{1}{f(a+h)f(a)} \frac{f(a)-f(a+h)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{1}{f(a+h)f(a)} \lim_{h \rightarrow 0} \frac{f(a)-f(a+h)}{h} \\
+	&= \frac{1}{(f(a))^2} \left ( -\lim_{h \rightarrow 0} \frac{f(a+h)-f(a)}{h} \right ) \\
+	&= \frac{-f'(a)}{(f(a))^2}.
+\end{align*}
+Note that $1/f$ is differentiable at $a$ because of the product rules for limits and $f'(a)$ exists.
+\end{proof}
+
+\textbf{Corollary 14}
+\textsl{If $f$ and $g$ are differentiable at $a$ and $g(a) \neq 0$ then $f/g$ is differentiable at $a$ and
+\[
+\left ( \frac{f}{g} \right )' (a) = \frac{g(a)f'(a) - f(a)g'(a)}{(g(a))^2}.
+\]}
+\begin{proof}
+We have
+\begin{align*}
+\left ( \frac{f}{g} \right )' (a) &= \left ( f \frac{1}{g} \right )'(a) \\
+	&= \frac{f'(a)}{g(a)} + \frac{-g'(a)f(a)}{(g(a))^2} \\
+	&=\frac{g(a)f'(a) - f(a)g'(a)}{(g(a))^2}.
+\end{align*}
+using Theorems 10 and 13 (21.10, 21.13).
+\end{proof}
+
+\textbf{Lemma 15}
+\textsl{Let $g$ be continuous at $a$ and let $f$ be differentiable at $g(a)$. Let
+\[
+\phi (h) =
+\begin{cases}
+\frac{f(g(a+h)) - f(g(a))}{g(a+h)-g(a)} & \text{if $g(a+h) - g(a) \neq 0$} \\
+f'(g(a)) & \text{if $g(a+h) - g(a) = 0$}.
+\end{cases}
+\]
+Then $\phi (x)$ is continuous at $0$.}
+\begin{proof}
+Since $f'(g(a))$ exists we have
+\[
+\lim_{k \rightarrow 0} \frac{f(g(a)+k) - f(g(a))}{k} = f'(g(a))
+\]
+which means that for all $\varepsilon > 0$ there exists $\delta_1 > 0$ such that if $0 < |m| < \delta_1$ we have
+\[
+\left | \frac{f(g(a) + m) - f(g(a))}{k} - f'(g(a)) \right | < \varepsilon.
+\]
+Since $g'(a)$ exists then $g$ is continuous at $a$ (21.3). Thus for all $\delta_1 > 0$ there exists $\delta_2 > 0$ such that for all $h$ if $|h| < \delta_2$ we have $|g(a+h) - g(a)| < \delta_1$. Now let$|h| < \delta_2$. If $k = g(a+h) - g(a) \neq 0$ then we have
+\[
+\phi (h) = \frac{f(g(a+h) - f(g(a))}{g(a+h) - g(a)} = \frac{f(g(a)+k) - f(g(a))}{k}.
+\]
+We know from our second continuity statement that $|k| < \delta_1$ and from our first continuity statement that $|\phi(h) - f'(g(a))| < \varepsilon$. If $g(a+h) - g(a) = 0$ then $\phi(h) = f'(g(a)$ and so we have $0 = |\phi(h) - f'(g(a)| < \varepsilon$. Thus
+\[
+\lim_{h \rightarrow 0} \phi (h) = f'(g(a))
+\]
+which means $\phi$ is continuous at $0$.
+\end{proof}
+
+\textbf{Theorem 16 (Chain Rule)}
+\textsl{If $g$ is differentiable at $a$ and $f$ is differentiable at $g(a)$ then $f \circ g$ is differentiable at $a$ and
+\[
+(f \circ g)' (a) = f'(g(a)) g'(a).
+\]}
+\begin{proof}
+Use the function from Lemma 15 and note that if $h \neq 0$ we have
+\[
+\frac{f(g(a+h)) - f(g(a))}{h} = \phi(h) \frac{g(a+h) - g(a)}{h}.
+\]
+Then
+\[
+(f \circ g)' (a) = \lim_{h \rightarrow 0} \frac{f(g(a+h)) - f(g(a))}{h} = \lim_{h \rightarrow 0} \phi(h) \lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} = f'(g(a)) g'(a)
+\]
+which exists because $g'(a)$ exists and because of the product rules for limits.
+\end{proof}
+
+\textbf{Exercise 17}
+\textsl{Differentiate
+\[
+f(x) = \sin \left ( \frac{x^3}{\cos \left (x^3 \right )} \right ).
+\]}
+\begin{proof}
+Using the chain rule we have
+\[
+f'(x) = \cos \left ( (x^3)(\cos x^3)^{-1} \right ) \left ( 3(x^5)(\cos x^3)^{-2}(\sin x^3) + 3(x^2)(\cos x^3)^{-1} \right ).
+\]
+\end{proof}
+
+\textbf{Exercise 18}
+\textsl{Let $a$ be a double root of the polynomial function $f$ if $f(x) = (x-a)^2g(x)$ for some polynomial function $g$. Show that $a$ is a double root of $f$ if and only if $a$ is a root of both $f$ and $f'$.}
+\begin{proof}
+Let $a$ be a double root of $f$. Then $f(x) = (x-a)^2g(x)$ for some polynomial function $g$. Then $f(a) = (a-a)^2g(a) = (0)g(x) = 0$ so $a$ is a root of $f$. Also using the product and chain rules we have $f'(x) = (x-a)^2g'(x) + 2(x-a)g(x) = (x-a)((x-a)g'(x) + 2g(x))$. Then $f'(a) = (a-a)((a-a)g'(a) + 2g(a)) = 0$ so $a$ is a root of $f'$. Conversely assume that $a$ is a root of both $f$ and $f'$. Then $f(a) = f'(a) = 0$. Thus $f(x) = (x-a)g(x)$ for some polynomial function $g(x)$ and $f'(x) = (x-a)g'(x) + g(x)$. But since $f'(a) = 0$ we have $g(a) = 0$. Thus $g(a) = (x-a) h(x)$ for some polynomial function $h$. But then $f(x) = (x-a)^2h(x)$. Therefore $a$ is a double root of $f$.
+\end{proof}
+
+\textbf{Definition 19}
+\textsl{Let $f$ be a function and $A$ a set of numbers contained in the domain of $f$. A point $x \in A$ is a maximum point for $f$ on $A$ if $f(x) \geq f(y)$ for all $y \in A$. The number $f(x)$ itself is called the maximum value of $f$ on $A$ and we say that $f$ has its maximum value on $A$ at $x$.}\newline
+
+\textbf{Theorem 20}
+\textsl{Let $f$ be a function defined on $(a;b)$. If $x$ is a maximum or minimum point for $f$ on $(a;b)$ and $f$ is differentiable at $x$ then $f'(x) = 0$.}
+\begin{proof}
+Consider $h$ such that $x+h \in (a;b)$. Then $f(x+h) - f(x) \leq 0$. If $h > 0$ then we have
+\[
+\frac{f(x+h) - f(x)}{h} \leq 0
+\]
+which means
+\[
+\lim_{h \rightarrow 0^+} \frac{f(x+h)-f(x)}{h} \leq 0.
+\]
+If $h < 0$ then we have
+\[
+\frac{f(x+h) - f(x)}{h} \geq 0
+\]
+which means
+\[
+\lim_{h \rightarrow 0^-} \frac{f(x+h)-f(x)}{h} \geq 0.
+\]
+Since $f$ is differentiable at $x$ these two limits must be equal to $f'(x)$ which means $0 \leq f'(x) \leq 0$ and so $f'(x) = 0$. If $x$ is a minimum point for $f$ on $(a;b)$ then consider $-f$ and we end up with the equality $0 \leq -f'(x) \leq 0$ as well.
+\end{proof}
+
+\textbf{Definition 21}
+\textsl{Let $f$ be a function and $A$ a set of numbers contained in the domain of $f$. A point $x$ in $A$ is a local maximum or minimum point for $f$ on $A$ if there is some $\delta > 0$ such that $x$ is a maximum or minimum point for $f$ on $A \cap (x - \delta; x + \delta)$.}\newline
+
+\textbf{Theorem 22}
+\textsl{Let $f$ be a function defined on $(a;b)$. If $x$ is a local maximum or local minimum point for $f$ on $(a;b)$ and $f$ is differentiable at $x$ then $f'(x) = 0$.}
+\begin{proof}
+Let $x$ be a local maximum or minimum for $f$ on $(a;b)$ then there exists $\delta > 0$ such that $x$ is a maximum or minimum for $f$ on $(a;b) \cap (x - \delta; x + \delta)$. But this set is a subset of the domain of $f$ and so $f'(x) = 0$ (21.20).
+\end{proof}
+
+\textbf{Definition 23}
+\textsl{A critical point of a function $f$ is a number $x$ such that $f'(x) = 0$. The number $f(x)$ itself is called a critical value of $f$.}\newline
+
+\textbf{Exercise 24}
+\textsl{Prove that $f(x) = x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$ has at most $n-1$ critical points.}
+\begin{proof}
+Taking the derivative of $f$ we have $f'(x) = nx^{n-1} + (n-1)a_{n-1}x^{n-2} + \dots + 2a_2 x + a_1$. This is a polynomial of degree $n-1$ and so it must have at most $n-1$ roots which means that $f'(x) = 0$ at at most $n-1$ points (19.9). Thus $f$ has at most $n-1$ critical points.
+\end{proof}
+
+\textbf{Theorem 25 (Rolle's Theorem)}
+\textsl{If $f$ is continuous on $[a;b]$, differentiable on $(a;b)$ and $f(a) = f(b)$ then there is some $x \in (a;b)$ such that $f'(x) = 0$.}
+\begin{proof}
+Since $f$ is continuous on $[a;b]$ there exists $x_1, x_2 \in [a;b]$ such that $f(x_1) \geq f(x)$ and $f(x_2) \leq f(x)$ for all $x \in [a;b]$ (10.9). If $x_1 \in (a;b)$ or $x_2 \in (a;b)$ then we have a maximum or minimum point for $f$ on $(a;b)$ in $(a;b)$. Thus $f'(x_1) = 0$ or $f'(x_2) = 0$ and we're done. If $x_1, x_2 \notin (a;b)$ then $x_1$ and $x_2$ are the values $a$ and $b$, not necessarily respectively. Then since $f(a) = f(b)$ the maximum and minimum values of $f$ are the same so $f$ must be constant on $[a;b]$. Then $f'(x) = 0$ for all $x \in [a;b]$.
+\end{proof}
+
+\textbf{Corollary 26 (Mean Value Theorem)}
+\textsl{If $f$ is continuous on $[a;b]$ and differentiable on $(a;b)$ then there exists some $x \in (a;b)$ such that
+\[
+f'(x) = \frac{f(b) - f(a)}{b-a}.
+\]}
+\begin{proof}
+Let
+\[
+g(x) = f(x) - \frac{f(b) - f(a)}{b-a} (x-a).
+\]
+Then $g(x)$ is continuous on $[a;b]$ and differentiable on $(a;b)$ and we have $g(a) = f(a)$, $g(b) = f(a) = g(a)$. Then we know that there exists some $x \in (a;b)$ such that
+\[
+0 = g'(x) = f'(x) - \frac{f(b) - f(a)}{b-a}
+\]
+from Rolle's Theorem (21.25). Thus we have
+\[
+f'(x) = \frac{f(b) - f(a)}{b-a}.
+\]
+\end{proof}
+
+\textbf{Exercise 27}
+\textsl{If $f$ is defined on an interval and $f'(x) = 0$ for all $x$ in the interval then $f$ is constant on the interval.}
+\begin{proof}
+Consider two points $a$ and $b$ in the interval with $a \neq b$. We know that there exists $x \in (a;b)$ such that
+\[
+0 = f'(x) = \frac{f(b) - f(a)}{b-a}
+\]
+which means that $f(a) = f(b)$ (21.26). So for any two points in the interval the value of $f$ is the same which means $f$ is constant on the interval.
+\end{proof}
+
+\textbf{Exercise 28}
+\textsl{If $f$ and $g$ are defined on the same interval and $f'(x) = g'(x)$ for all $x$ in the interval then there is some number $c$ such that $f = g + c$.}
+\begin{proof}
+For all $x$ in the interval we have $f'(x) - g'(x) = (f-g)' (x) = 0$. Then we must have $(f-g) (x) = c$ for some constant $c$ (21.27). Thus $f = g + c$.
+\end{proof}
+
+\textbf{Definition 29}
+\textsl{A function is increasing on an interval if $f(a) < f(b)$ for all $a$ and $b$ in the interval with $a < b$. The function $f$ is decreasing on an interval if $f(a) > f(b)$ for all $a$ and $b$ in the interval with $a < b$.}\newline
+
+\textbf{Exercise 30}
+\textsl{If $f'(x) > 0$ for all $x$ in an interval, then $f$ is increasing on the interval. If $f'(x) < 0$ for all $x$ in the interval then $f$ is decreasing on the interval.}
+\begin{proof}
+Let $f'(x) > 0$ for all $x$ in the interval and let $a$ and $b$ be two points in the interval with $a < b$. Then there exists $x \in (a;b)$ such that
+\[
+0 < f'(x) = \frac{f(b) - f(a)}{b-a}
+\]
+and so $f(b) - f(a) > 0$ (21.26). But then $f(b) > f(a)$ and so $f$ is increasing on the interval. A similar proof holds for decreasing $f$.
+\end{proof}
+
+\textbf{Theorem 31}
+\textsl{Suppose $f'(a) = 0$. If $f''(a) > 0$ then $f$ has a local minimum at $a$. If $f''(a) < 0$ then $f$ has a local maximum at $a$.}
+\begin{proof}
+Suppose that $f''(a) > 0$. Since $f'(a) = 0$ we have
+\[
+f'' (a) = \lim_{h \rightarrow 0} \frac{f'(a+h)}{h} > 0.
+\]
+Then $f'(a+h)/h > 0$ for small enough values of $h$. Thus for small values of $h > 0$ we have $f'(a+h) > 0$ which means $f$ is increasing on an interval to the right of $a$. Similarly $f$ is decreasing on an interval to the left of $a$. Then $f$ must have a minimum at $a$. A similar proof holds for $f''(a) < 0$.
+\end{proof}
+
+\textbf{Exercise 32}
+\textsl{Let $a + \frac{b}{2} + \frac{c}{3} + \frac{d}{4} + \frac{e}{5} = 0$. Show that the polynomial $p(x) = a + bx + cx^2 + dx^3 + ex^4$ has at least one real zero.}
+\begin{proof}
+Let $P(x) = ax + \frac{b}{2}x^2 + \frac{c}{3}x^3 + \frac{d}{4}x^4 + \frac{e}{5}x^5$ and note that $P'(x) = p(x)$. Also note that $P(0) = P(1) = 0$. Then we know there exists some $x \in (0;1)$ such that
+\[
+p(x) = P'(x) = \frac{P(1) - P(0)}{1-0} = 0
+\]
+from the Mean Value Theorem (21.26).
+\end{proof}
+
+\textbf{Theorem 33}
+\textsl{Suppose that $f$ is continuous at $a$ and that $f'(a)$ exists for all $x$ in some interval containing $a$, except perhaps for $x = a$. Suppose, moreover, that $\lim_{x \rightarrow a} f'(x)$ exists. Then $f'(a)$ also exists and
+\[
+f'(a) = \lim_{x \rightarrow a} f'(x).
+\]}
+\begin{proof}
+Note that if $h > 0$ is small enough then $f$ is continuous on $[a; a+h]$ and differentiable on $(a;a+h)$. We know there exists some value $y$ such that
+\[
+f'(y) = \frac{f(a+h) - f(a)}{h}
+\]
+by the Mean Value Theorem (21.26). Note that $y$ goes to $a$ as $h$ goes to $0$ because $y \in (a; a+h)$. Then
+\[
+f'(a) = \lim_{h \rightarrow 0^+} \frac{f(a+h) - f(a)}{h} = \lim_{h \rightarrow 0^+} f'(y) = \lim_{x \rightarrow a^+} f'(x).
+\]
+If $h < 0$ is small enough then $f$ is continuous on $[a+h; a]$ and differentiable on $(a+h;a)$. We know there exists some value $y$ such that
+\[
+f'(y) = \frac{f(a) - f(a+h)}{-h} = \frac{f(a+h) - f(a)}{h}
+\]
+by the Mean Value Theorem (21.26). Note that $y$ goes to $a$ as $h$ goes to $0$ because $y \in (a; a+h)$. Then
+\[
+f'(a) = \lim_{h \rightarrow 0^-} \frac{f(a+h) - f(a)}{h} = \lim_{h \rightarrow 0^-} f'(y) = \lim_{x \rightarrow a^-} f'(x).
+\]
+Since the left and right hand limits are the same we must have
+\[
+f'(a) = \lim_{x \rightarrow a} f'(x).
+\]
+\end{proof}
+
+\textbf{Theorem 34 (Cauchy Mean Value Theorem)}
+\textsl{If $f$ and $g$ are continuous on $[a;b]$ and differentiable on $(a;b)$ then there exists $x \in (a;b)$ such that
+\[
+(f(b) - f(a)) g'(x) = (g(b) - g(a)) f'(x).
+\]
+If $g(b) \neq g(a)$ and $g'(x) \neq 0$ this equation can be written
+\[
+\frac{f(b)-f(a)}{g(b)-g(a)} = \frac{f'(x}{g'(x)}.
+\]}
+\begin{proof}
+Let
+\[
+h(x) = f(x) (g(b)-g(a)) - g(x) (f(b)-f(a)).
+\]
+Then $h$ is continuous on $[a;b]$, differentiable on $(a;b)$ and $h(a) = h(b)$. Then $h'(x) = 0$ for some $x \in (a;b)$ (21.25). Thus
+\[
+0 = f'(x) (g(b)-g(a)) - g'(x) (f(b)-f(a))
+\]
+giving the desired equality.
+\end{proof}
+
+\textbf{Theorem 35 (L'H\^{o}pital's Rule)}
+\textsl{Suppose that
+\[
+\lim_{x \rightarrow a} f(x) = 0,
+\]
+\[
+\lim_{x \rightarrow a} g(x) = 0
+\]
+and $\lim_{x \rightarrow a} f'(x)/g'(x)$ exists. Then $\lim_{x \rightarrow a} f(x)/g(x)$ exists and
+\[
+\lim_{x \rightarrow a} f(x)/g(x) = \lim_{x \rightarrow a} f'(x)/g'(x).
+\]}
+\begin{proof}
+Note that $f(a)$ and $g(a)$ need not necessarily defined so let $f(a) = g(a) = 0$. Then $f$ and $g$ are continuous on $[a;x]$ and differentiable on $(a;x)$. Then there exists some $y \in (a;x)$ such that
+\[
+(f(x) - f(a)) g'(y) = (g(x) - g(a)) f'(y)
+\]
+which means
+\[
+\frac{f(x)}{g(x)} = \frac{f'(y)}{g'(y)}
+\]
+after using the Cauchy Mean Value Theorem on $f$ and $g$ (21.34). But then $y$ goes to $a$ as $x$ goes to $a$ because $y \in (a;x)$. Then we have
+\[
+\lim_{x \rightarrow a} \frac{f(x)}{g(x)} = \lim_{x \rightarrow a} \frac{f'(y)}{g'(y)} = \lim_{z \rightarrow a} \frac{f'(z)}{g'(z)}.
+\]
+\end{proof}
+
+\end{flushleft}
+
+\newpage
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+May 29, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 30: Uniform Limits\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{Let $(f_n)$ be a sequence of functions defined on $A$ and let $f$ be defined on $A$. Then $f$ is the uniform limit of $(f_n)$ (or $\lim_{n \rightarrow \infty} f_n = f$) if for all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ and for all $x \in A$ we have $|f(x) - f_n(x)| < \varepsilon$.}\newline
+
+\textbf{Theorem 2}
+\textsl{Let $(f_n)$ be a sequence of continuous functions on $[a;b]$ that uniformly converges to $f$ on $[a;b]$. Then $f$ is continuous on $[a;b]$.}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\varepsilon/3$. We know $(f_n)$ uniformly converges to $f$ so there exists $N$ such that for all $n>N$ and for all $x,y \in [a;b]$ we have $|f(x)-f_n(x)| < \varepsilon/3$ and $|f(y)-f_n(y)| < \varepsilon/3$. Also $f_n$ is continuous for all $n$ so for all $n>N$ and for all $x \in [a;b]$ there exists $\delta_n > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta_n$ we have $|f_n(x) - f_n(y)| < \varepsilon/3$. Consider $\delta_{N+1}$. Then for all $x \in [a;b]$ there exists $\delta_{N+1} > 0$, which may depend on $x$, such that for all $y \in [a;b]$ with $|x-y| < \delta_{N+1}$ we have $|f_{N+1}(x)+f_{N+1}(y)| < \varepsilon/3$. By the triangle inequality we have $|f(x)-f_{N+1}(y)| \leq |f_{N+1}(x)-f_{N+1}(y)| + |f(x)-f_{N+1}(x)| < 2\varepsilon/3$ and then $|f(x)-f(y)| < |f(x)-f_{N+1}(y)| + |f(y)-f_{N+1}(y)| < \varepsilon$. Thus for all $x \in [a;b]$ there exists some $\delta > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta$ we have $|f(x)-f(y)| < \varepsilon$. Therefore $f$ is continuous on $[a;b]$.
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{Let $(f_n)$ be a sequence of functions which are integrable on $[a;b]$ and that $(f_n)$ uniformly converges to $f$ on $[a;b]$, which is integrable on $[a;b]$. Then
+\[
+\int_a^b f = \lim_{n \rightarrow \infty} \int_a^b f_n.
+\]}
+\begin{proof}
+Let $\varepsilon > 0$. Since $(f_n)$ uniformly converges to $f$ on $[a;b]$, then there exists $N$ such that for all $n>N$ and all $x \in [a;b]$ we have $|f(x) - f_n(x)| < \varepsilon/(b-a)$. Note that
+\[
+\left | \int_a^b f_n - \int_a^b f \right | \leq \left | \int_a^b f_n - f \right | < \int_a^b \frac{\varepsilon}{(b-a)} = \varepsilon
+\]
+for all $n>N$ (22.14). Thus we have
+\[
+\int_a^b f = \lim_{n \rightarrow \infty} \int_a^b f_n.
+\]
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Let $(f_n)$ be a sequence of functions which are integrable on $[a;b]$ and that $(f_n)$ uniformly converges to $f$ on $[a;b]$. Is $f$ integrable on $[a;b]$?}\newline
+
+Yes.
+\begin{proof}
+Let $\varepsilon > 0$. Since $f_n$ is integrable on $[a;b]$ for all $n$ we know there exists some partition $P = \{t_0, \dots , t_n\}$ such that
+\[
+U(f_n,P) - L(f_n,P) < \varepsilon.
+\]
+Since $(f_n)$ uniformly converges on $[a;b]$ there exists $N$ such that for all $n>N$ and all $x \in [a;b]$ we have $|f(x) - f_n(x)| < \varepsilon$. Let
+\[
+m_i = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\}
+\]
+\[
+m_{i_n} = \inf \{f_n(x) \mid t_{i-1} \leq x \leq t_i\}
+\]
+\[
+M_i = \sup \{f(x) \mid t_{i-1} \leq x \leq t_i\}.
+\]
+and
+\[
+M_{i_n} = \sup \{f_n(x) \mid t_{i-1} \leq x \leq t_i\}.
+\]
+Then since $|f(x) - f_n(x)| < \varepsilon$ for all $n>N$ and all $x \in [a;b]$ then we have $|m_i - m_{i_n}| < \varepsilon/(3(b-a))$ for all $i \leq i \leq n$. Thus
+\[
+|L(f,P) - L(f_n,P)| = \left | \sum_{i=1}^n m_i (t_i - t_{i-1}) - \sum_{i=1}^n m_{i_n} (t_i - t_{i-1}) \right | = \left | \sum_{i=1}^n (m_i - m_{i_n}) (t_i - t_{i_n}) \right | < \varepsilon/3.
+\]
+And a similar statement can be made to show $|U(f,P) - U(f_n,P)| < \varepsilon/3$. Also since
+\[
+0 < U(f_n,P) - L(f_n,P) < \frac{\varepsilon}{3} < \varepsilon
+\]
+we have
+\[
+|U(f_n,P) - L(f_n,P)| < {\varepsilon}{3}.
+\]
+Combining the second of these inequalities with the last we have
+\[
+|U(f,P) - L(f_n,P)| \leq |U(f,P) - U(f_n,P)| + |U(f_n,P) - L(f_n,P)| < \frac{2 \varepsilon}{3}
+\]
+and then
+\[
+|U(f,P) - L(f,P)| \leq |U(f,P) - L(f_n,P)| + |L(f,P) - L(f_n,P)| < \varepsilon
+\]
+and since $0 < U(f,P) - L(f,P)$ we have
+\[
+U(f,P) - L(f,P) < \varepsilon
+\]
+which means $f$ is integrable on $[a;b]$.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{Find a sequence of differentiable functions that uniformly converge to $f(x) = |x|$ on $[-1;1]$.}\newline
+
+Let
+\[
+f(x) =
+\begin{cases}
+(-x)^{\frac{1+n}{n}} & \text{if $x < 0$}\\
+x^{\frac{1+n}{n}} & \text{if $x \geq 0$}.
+\end{cases}
+\]
+
+\textbf{Exercise 6}
+\textsl{Let
+\[
+f_n = \frac{1}{n} \sin (n^2x).
+\]
+Then $f_n$ uniformly converges to $f=0$ but $\lim_{n \rightarrow \infty} f_n'$ does not exist.}
+\begin{proof}
+Let $\varepsilon > 0$. Note that $-1 \leq \sin (n^2x) \leq 1$ for all $n$ and all $x$. Then note that there exists some $N$ such that $1/N < \varepsilon$. Thus, for all $n>N$ we have $|1/n| < \varepsilon$ and since $|\sin (n^2 x)| < 1$, for all $n>N$ we have
+\[
+\left | \frac{1}{n} \sin (n^2 x) \right | < \varepsilon.
+\]
+Thus we have
+\[
+\lim_{n \rightarrow \infty} \frac{1}{n} \sin (n^2 x) = 0.
+\]
+Now note that $f_n'$ were to converge uniformly to some function $f$, then $f$ is also the pointwise limit of $(f_n')$ (19.7). We have $f_n' = 2 \cos (n^2 x)$. Thus for $x = \pi/2$ we have $2 \cos (n^2 x) = 0$ for even $n$ and $2 \cos (n^2) = 1$ for odd $n$. Then there are infinitely many $n$ with $f_n' (\pi/2) = 0$ and likewise for $1$ which means $0$ and $1$ are accumulations points for $(f_n' (\pi/2))$. Thus $\lim_{n \rightarrow \infty} f_n' (\pi/2)$ does not exist (13.10).
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{Let $(f_n)$ be a sequence of functions which are differentiable on $[a;b]$, with integrable derivatives $f_n'$ and that $(f_n)$ pointwise converges to $f$ on $[a;b]$. Suppose that $f_n'$ uniformly converges on $[a;b]$ to some continuous function $g$. Then $f$ is differentiable on $[a;b]$ and for all $x \in [a;b]$ we have
+\[
+f'(x) = \lim_{n \rightarrow \infty} f_n' (x)
+\]}
+\begin{proof}
+Since $g$ is continuous we know it's integrable on $[a;b]$ (22.9). Also because $(f_n)$ pointwise converges to $f$ on $[a;b]$ we have $\lim_{n \rightarrow \infty} f_n (x) = f(x)$ for all $x \in [a;b]$. Thus we have
+\[
+\int_a^x g = \lim_{n \rightarrow \infty} \int_a^x f_n' = \lim_{n \rightarrow \infty} (f_n(x) - f_n(a)) = f(x) - f(a)
+\]
+for all $x \in [a;b]$ by the Second Fundamental Theorem of Calculus and Theorem 3 (22.18, 30.3). If we let
+\[
+G(x) = \int_a^x g
+\]
+then $G'(x) = g(x)$ and so we have $G'(x) = (f(x) - f(a))' = f'(x)$ for all $x \in [a;b]$. Then it must be the case that $g = f'$ and so we have
+\[
+f'(x) = g(x) = \lim_{n \rightarrow \infty} f_n' (x).
+\]
+\end{proof}
+
+\textbf{Definition 8}
+\textsl{The series $\sum_{n=1}^{\infty} f_n$ converges uniformly to $f$ on $A$ if the sequence of partial sums $s_n = \sum_{i=1}^n f_n$ converges to $f$ uniformly.}\newline
+
+\textbf{Theorem 9}
+\textsl{Let $\sum_{n=1}^{\infty} f_n$ converge uniformly to $f$ on $[a;b]$. If $f_n$ is continuous on $[a;b]$ for all $n$, then $f$ is continuous on $[a;b]$. If $f_n$ is integrable on $[a;b]$ for all $n$ and $f$ is integrable on $[a;b]$ then
+\[
+\int_a^b f = \sum_{n=1}^{\infty} \int_a^b f_n.
+\]
+If $f_n$ has an integrable derivative for all $n$ and $\sum_{n=1}^{\infty} f_n'$ converges uniformly on $[a;b]$ to some continuous function then for all $x \in [a;b]$ we have
+\[
+f'(x) = \sum{n=1}^{\infty} f_n' (x).
+\]}
+\begin{proof}
+Let $f_n$ be continuous on $[a;b]$ for all $n$. Then since the sum of two continuous functions is still continuous, we have the partial sums of $\sum_{n=1}^{\infty} f_n$ are continuous. Thus $(s_n)$ is a sequence of continuous functions on $[a;b]$ which uniformly converges to $f$ on $[a;b]$. Thus $f$ is continuous on $[a;b]$ (30.2).\newline
+
+Let $f_n$ be integrable on $[a;b]$ for all $n$ and $f$ be integrable on $[a;b]$. Then since the sum of two integrable functions is still integrable, we have the partial sums, $s_n$ are a sequence of integrable functions on $[a;b]$ (22.11). Thus we have
+\[
+\sum_{n=1}^{\infty} \int_a^b f_n = \lim_{n \rightarrow \infty} \int_a^b s_n = \int_a^b f
+\]
+from Theorem 3 (30.3).\newline
+
+Let $f_n$ have an integrable derivative for all $n$ and $\sum_{n=1}^{\infty} f_n'$ converge uniformly on $[a;b]$ to some continuous function then for all $x \in [a;b]$. By the same argument as before, since the sum of integrable functions is still integrable we have the partial sums of $\sum_{n=1}^{\infty} f_n'$ are integrable (22.11). Thus we have
+\[
+f'(x) = \sum{n=1}^{\infty} f_n' (x).
+\]
+from Theorem 7 (30.7).
+\end{proof}
+
+\textbf{Theorem 10 (Weierstrass M-Test)}
+\textsl{Let $(f_n)$ be a sequence of functions defined on $A$ and suppose $|f_n|$ is bounded by $M_n$ on $A$. Suppose that $\sum_{n=1}^{\infty} M_n$ converges. Then for all $x \in A$ the series $\sum_{n=1}^{\infty} f_n (x)$ absolutely converges and $\sum_{n=1}^{\infty} f_n$ converges uniformly on $A$ to the function
+\[
+f(x) = \sum_{n=1}^{\infty} f_n (x).
+\]}
+\begin{proof}
+Let
+\[
+M = \sum_{n=1}^{\infty} M_n.
+\]
+Since for all $n$ we have $|f_n| \leq M_n$, we have
+\[
+\sum_{i=1}^n |f_n| \leq \sum_{i=1}^n M_n \leq M
+\]
+for all $n$. But since $0 \leq |f_n|$, the series of partial sums of $\sum_{n=1}^{\infty} |f_n|$ is a bounded increasing sequence so it must converge. Thus $\sum_{n=1}^{\infty} f_n$ is absolutely convergent on $A$. Note that since an absolutely convergent series implies a convergent series we have
+\[
+\sum_{i=1}^n f_n
+\]
+is convergent. Then we can write
+\[
+\left | \sum_{n=1}^{\infty} f_n - \sum_{n=1}^k f_n \right | = \left | \sum_{n=k+1}^{\infty} f_n \right | \leq \sum_{n=k+1}^{\infty} |f_n| \leq \sum_{n=k+1}^{\infty} M_n
+\]
+and taking the limit as $k$ goes to $\infty$ we see that
+\[
+\lim_{k \rightarrow \infty} \left | \sum_{n=1}^{\infty} f_n - \sum_{n=1}^k f_n \right | = 0
+\]
+so
+\[
+f(x) = \sum_{n=1}^{\infty} f_n (x).
+\]
+\end{proof}
+
+\end{flushleft}
+
+\newpage
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+May 29, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 31: Taylor Series\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A function of the form
+\[
+f(x) = \sum_{n=0}^{\infty} a_n (x-a)^n
+\]
+is called a power series centered at $a$.}\newline
+
+\textbf{Theorem 2}
+\textsl{Suppose that the series
+\[
+\sum_{n=0}^{\infty} a_n x_0^n
+\]
+converges and let $0 < a < |x_0|$. Then on $B(0,a)$ the series
+\[
+f(x) = \sum_{n=0}^{\infty} a_n x^n
+\]
+and
+\[
+g(x) = \sum_{n=0}^{\infty} n a_n x^{n-1}
+\]
+uniformly and absolutely converge. Also $f$ is differentiable and
+\[
+f'(x) = g(x)
+\]
+for all $x \in B(0,a)$.}
+\begin{proof}
+Note that for $x \in B(0,a)$ we have $|x/x_0| < 1$ and so
+\[
+\sum_{n=0}^{\infty} \left | \frac{x}{x_0} \right |^n
+\]
+is convergent since it's a geometric series. Then by the Comparison Criterion we have
+\[
+\sum_{n=0}^{\infty} |a_n| \left | \frac{x}{x_0} \right |^n = \sum_{n=0}^{\infty} \left | a_n \frac{x^n}{x_0^n} \right |
+\]
+is convergent and so
+\[
+\sum_{n=0}^{\infty} |a_n x^n|
+\]
+is convergent. A similar proof holds to show that $g(x)$ is absolutely convergent using the fact that $1/n$ converges to $0$. Also we have $a_n x^n$ is bounded by $|a_n a^n|$ on $B(0,a)$ and $n a_n x^{n-1}$ is bounded by $|n a_n a^{n-1}|$ on $B(0,a)$ and since the series absolutely converge, we can use the Weierstrass M-test to show that $f$ and $g$ are uniformly convergent (30.10). Finally since $n a_n x^{n-1}$ is integrable on $[a;b]$, $n a_n x^{n-1}$ uniformly converges and $n a_n x^{n-1}$ is continuous so $g$ is continuous, we have $f'(x) = g(x)$ for all $x \in B(0,a)$ (30.9).
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{For a power series $\sum_{n=0}^{\infty} a_n x^n$ let
+\[
+A = \left \{ x \mid \sum_{n=0}^{\infty} a_n x^n \textup{ converges} \right \}
+\]
+be the set of converge for the power series. Then either $A$ is everything or there exists $a$ such that
+\[
+B(0,a) \subseteq A \subseteq \overline{B(0,a)}.
+\]
+This $a$ is called the radius of convergence of the power series.}
+\begin{proof}
+Suppose that $A$ is not everything. Then there exists $b \in \mathbb{R}$ such that $\sum_{n=1}^{\infty} a_n b^n$ diverges. Note then that for all $x \in \mathbb{R}$ with $x \geq b$ we have $\sum_{n=1}^{\infty} a_n x^n$ diverges. Note also that $\sum_{n=1}^{\infty} a_n (0)^n$ converges. Then note that $b$ is an upper bound for $A$ and $A$ is nonempty so let $a = \sup A$. Then we have $B(0,a) \subseteq A$. If we have $c > a$ then $\sum_{n=1}^{\infty} a_n c^n$ diverges so it must also be the case that $A \subseteq \overline{B(0,a)}$.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Find real power series centered at $0$ with sets of convergence $0$, $\mathbb{R}$, $(-1;1)$, $[-1;1)$ and $[-1;1]$.}\newline
+
+$0$:
+\[
+\sum_{n=0}^{\infty} n! x^n.
+\]
+$\mathbb{R}$:
+\[
+\sum_{n=0}^{\infty} \frac{x^n}{n!}.
+\]
+$(-1;1)$:
+\[
+\sum_{n=0}^{\infty} -x^{2n}.
+\]
+$[-1;1)$:
+\[
+\sum_{n=0}^{\infty} x^n.
+\]
+$[-1;1]$:
+\[
+\sum_{n=1}^{\infty} (-1)^n x^{2n}.
+\]
+
+\textbf{Theorem 5}
+\textsl{If $\sum_{n=0}^{\infty} a_n$ and $\sum_{n=0}^{\infty} b_n$ converge absolutely and $(c_n)$ is a sequence containing the products $a_i b_j$ for each pair $(i,j)$ then
+\[
+\sum_{n=0}^{\infty} c_n = \left ( \sum_{n=0}^{\infty} a_n \right ) \left ( \sum_{n=0}^{\infty} b_n \right ).
+\]}
+\begin{proof}
+Note that
+\[
+c_k = \sum_{i=0}^k a_i b_{k-i}.
+\]
+Since $\sum_{n=0}^{\infty} a_n$ and $\sum_{n=0}^{\infty} b_n$ are absolutely convergent, we can rearrange the terms and they will still converge to the same thing. Then the partial sums of $\sum_{n=0}^{\infty} b_n$ can be rearranged in the same way as $c_n$ so that the partials sums of $\sum_{n=0}^{\infty} c_n$ are just the product of the partial sums of $\sum_{n=0}^{\infty} a_n$ and $\sum_{n=0}^{\infty} b_n$. Then since the product of limits is the limit of products we have the desired relation.
+\end{proof}
+
+\textbf{Theorem 6 (Cauchy Product)}
+\textsl{Let $f(x) = \sum_{n=0}^{\infty} a_n x^n$ and $g(x) = \sum_{n=0}^{\infty} b_n x^n$ be the power series with radius of convergence at least $a$. Let
+\[
+c_n = \sum_{i=0}^{n} a_i b_{n-i}.
+\]
+Then the power series
+\[
+h(x) = \sum_{n=0}^{\infty} c_n x^n
+\]
+has radius of convergence of at least $a$ and for $x \in B(0,a)$ we have
+\[
+h(x) = f(x) g(x).
+\]}
+\begin{proof}
+We know that $f(x)$ and $g(x)$ are absolutely convergent on $B(0,a)$ (31.2). Also we know that $h(x)$ is uniformly and absolutely convergent on $B(0,a)$ because $f(x)$ and $g(x)$ are (31.2, 31.5). Also using Theorem 5 we know that for $x \in B(0,a)$ we have $h(x) = f(x)g(x)$.
+\end{proof}
+
+\textbf{Definition 7}
+\textsl{Let $f$ be a real function such that $f^{(n)} (a)$ exists for all $n$. Then the Taylor series of $f$ at $a$ is
+\[
+\sum_{n=0}^{\infty} \frac{f^{(n)} (a)}{n!} (x-a)^n.
+\]}
+
+\textbf{Theorem 8}
+\textsl{For all real $x$ we have
+\[
+\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{2n+1}}{(2n+1)!}
+\]
+\[
+\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \dots = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{2n}}{(2n)!}
+\]
+\[
+e^x = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots = \sum_{n=0}^{\infty} \frac{x^n}{n!}.
+\]}
+\begin{proof}
+Consider the function
+\[
+f(x) = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{2n+1}}{(2n+1)!} + \frac{(-1)^{n} x^{2n}}{(2n)!}
+\]
+and note that
+\[
+f'(x) = \sum_{n=0}^{\infty} -\frac{(-1)^{n} x^{2n+1}}{(2n+1)!} + \frac{(-1)^{n} x^{2n}}{(2n)!}
+\]
+and
+\[
+f''(x) = \sum_{n=0}^{\infty} -\frac{(-1)^{n} x^{2n+1}}{(2n+1)!} - \frac{(-1)^{n} x^{2n}}{(2n)!}.
+\]
+Then we can easily verify $f+f'' = 0$, $f(0) = 1$ and $f'(0) = 1$. Then we must have $f = \cos + \sin$ (27.14). Then since $\sin' = \cos$ it must be the case that
+\[
+\sin x = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{2n+1}}{(2n+1)!}
+\]
+and
+\[
+\cos x = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{2n}}{(2n)!}.
+\]
+Also we have $(e^x)' = e^x$ and $e^0 = 1$ so the Taylor series for $e^x$ is
+\[
+\sum_{n=0}^{\infty} \frac{x^n}{n!}.
+\]
+But note then that for all $n$, the remainder terms in the Taylor polynomial will converge to zero because of the $n!$ factor. Thus
+\[
+e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}.
+\]
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{For $x \in (-1;1)$ we have
+\[
+\log (1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{n+1}}{n+1}
+\]
+and
+\[
+\frac{1}{1-x} = \sum_{n=0}^{\infty} x^n
+\]}
+\begin{proof}
+We have $1/(1-x)$ is a geometric series (15.6). Also, using the Taylor polynomial definition we have the Taylor series for $\log$ is
+\[
+\sum_{n=0}^{\infty} \frac{(-1)^{n} x^{n+1}}{n+1}.
+\]
+Note that for $x < 1$ we know this series converges so the remainder terms must go to zero. Thus
+\[
+\log x = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{n+1}}{n+1}.
+\]
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{Let $f(x) = \sum_{n=0}^{\infty} a_n (x-a)^n$ be a convergent sequence in $B(a,r)$ for some $r>0$. Then the Taylor series of $f(x)$ at $a$ equals $\sum_{n=0}^{\infty} a_n (x-a)^n$.}
+\begin{proof}
+Note that since
+\[
+f(x) = \sum_{n=0}^{\infty} a_n (x-a)^n
+\]
+we have
+\[
+f'(x) = f(x) = \sum_{n=0}^{\infty} n a_n (x-a)^{n-1}
+\]
+and in general
+\[
+f^{(j)}(x) = \sum{n=0}^{\infty} \frac{n!}{(n-j)!} a_n (x-a)^{n-j}
+\]
+using Theorem 2 (31.2). But then each term in $f^{(j)} (a)$ is zero unless $n=j$ in which case we have
+\[
+f^{(j)}(a) = \frac{j!}{(j-j)!} a_j (a-a)^{j-j} = j! a_j (0)^{0} = j! a_j
+\]
+Thus $f^{(n)} (a) = n! a_n$. Using this in the Taylor Series definition we have
+\[
+\sum_{n=0}^{\infty} \frac{f^{(n)} (a)}{n!} (x-a)^n = \sum_{n=0}^{\infty} \frac{n! a_n}{n!} (x-a)^n = \sum_{n=0}^{\infty} a_n (x-a)^n = f(x).
+\]
+\end{proof}
+
+\end{flushleft}
+\end{document}

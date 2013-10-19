@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16200
+
+Mikl\'{o}s Ab\'{e}rt
+
+January 22, 2008
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 1}
+\textsl{Find a bijection between $(0,1)$ and $\mathbb{R}$ (write up one precisely).}
+\begin{proof}
+Define $f \; : \; (0,1) \rightarrow \mathbb{R}$ such that
+\[
+f(x)=
+\begin{cases}
+\frac{1}{x}-2 & \text{if } 0 < x \leq \frac{1}{2} \\
+\frac{-1}{1-x}+2 & \text{if } \frac{1}{2}<x<1.
+\end{cases}
+\]
+Pick $a,b \in (0,1)$ such that $a \neq b$. There are three possibilities. Let $a,b \leq \frac{1}{2}$. Then $f(a) = \frac{1}{a}-2$ and $f(b) = \frac{1}{b}-2$ but then since $\frac{1}{a} \neq \frac{1}{b}$ we have $f(a) \neq f(b)$. Now suppose that $a,b > \frac{1}{2}$. Then we have $f(a) = \frac{-1}{1-a}+2$ and $f(b) = \frac{-1}{1-b}+2$. But we have $a \neq b$ and so $1-a \neq 1-b$ and $\frac{1}{1-a} \neq \frac{1}{1-b}$. Thus $f(a) \neq f(b)$. Finally without loss of generality consider $a \leq \frac{1}{2}$ and $b > \frac{1}{2}$. Then $f(a) = \frac{1}{a}-2$ and $f(b) = \frac{-1}{1-b}+2$. Suppose $f(a)=f(b)$. Then $\frac{1}{a}+\frac{1}{1-b}=4$. But since $b > \frac{1}{2}$ and $a \leq \frac{1}{2}$ we have a contradiction. Thus $f(a) \neq f(b)$. Therefore $f$ is injective. To show that $f$ is surjective pick an arbitrary element $x$ from $\mathbb{R}$. If $x>0$ then $x+2>0$ and so $0<\frac{1}{x+2} \leq \frac{1}{2}$. Likewise if $x<0$ then $x-2<0$ and so $\frac{1}{2} < \frac{-1}{x-2}-1 < 1$. Therefore $f$ is surjective. Thus $f$ is a bijection.
+\end{proof}
+
+\textbf{Exercise 2}
+\textsl{Suppose a submarine is moving in a straight line at a constant speed in the plane such that at each hour, the submarine is at a lattice point. Suppose at each hour you can explode one depth charge at a lattice point that will kill the submarine if it is there. You do not know where the submarine is nor do you know where or when it started. Can you eventually destroy the submarine?}
+\begin{proof}
+To find the submarine we need information from three countable sets. First let $S$ be the set of all possible starting points for the submarine. Assume it starts on the hour on a lattice point so that $S=\mathbb{Z} \times \mathbb{Z}$. Then we have the set $T$ of all possible elapsed times which is always a natural number so $T = \mathbb{N}$. Finally we need a speed and direction and so we take $V$ to be the set of all 2-vectors so that $|V|=|\mathbb{Z} \times \mathbb{Z}|$. If we consider $S \times T \times V$ then we have a set which encompasses all possible locations of the sub at any given time. But this set is countable because $\mathbb{N} \times \mathbb{N}$ is countable and so the product of any two countable sets is countable (note that $S$, $T$ and $V$ are all countable). Since the location set is countable we can assign a natural number to every possible location for the sub and so we can eventually destroy it.
+\end{proof}
+
+\textbf{Exercise 3}
+\textsl{Find a bijection $f \; : \; [0,1] \rightarrow [0,1)$.}
+\begin{proof}
+Define a function $f \; : \; [0,1] \rightarrow [0,1)$ such that $f$ maps all the irrational numbers to themselves. We know there exists a bijection $g \; : \; \mathbb{N} \rightarrow \{x \in \mathbb{Q} \mid x \in [0,1]\}$ because $\mathbb{Q}$ is countable and we're considering a subset of it. Now let $h \; : \; \mathbb{N} \rightarrow \{x \in \mathbb{Q} \mid x \in [0,1]\}$ such that $h(n)=g(n+1)$. This way no rational gets mapped to $g(1)$. So let $f=h$ for all rationals besides $1$ and let $f$ map $1$ to $f(1)$. We see that $f$ is surjective because any irrational will have been mapped there by itself. Any rational will have been mapped there by it's respective $g(n-1)$ function. We have $f$ is injective because $h$ and $g$ are injective save for mapping $1$ to $0$ which $f$ takes care of.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Let $S$ be an infinite set of natural numbers of the form $2^a3^b$ (where $a,b \in \mathbb{N}$). Show that there exists $s, s' \in S$ such that $s \neq s'$ and $s \mid s'$.}
+\begin{proof}
+Suppose that for all $s \in S$ there exists no $s' \in S$ such that $s \mid s'$ and $s \neq s'$. Choose an element $s \in S$ such that $s=2^{a_1}3^{b_1}$. If another element $s'=2^a3^b$ where $a \geq a_1$ and $b \geq b_1$ were in $S$, then $s$ would divide $s'$ and so none of these are in $S$. We see that if $a<a_1$ and $b<b_1$, $s'$, will not divide $s$, but since $a_1$ and $b_1$ are natural numbers, there exists a finite number of these such elements. Thus, there must be an infinite number of $s' \in S$ such that $a \leq a_1$ and $b \geq b_1$ or $a \geq a_1$ and $b \leq b_1$. Without loss of generality assume the first case is true. Note that for a given $a<a_1$, there can only exist one $b \geq b_1$, or else one element of $S$ will divide the other. But there are a finite number of values less than $a_1$ and we need an infinite number of elements. This is a contradiction and so there must exist $s, s' \in S$ such that $s \neq s'$ and $s \mid s'$.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{There is an army inspection and the general finds that the soldiers are unshaven. Under the threat of execution, the barber is ordered to shave exactly those in the army who do not shave themselves. He commits suicide. Why?}\newline
+
+Let the set of men in the army who do not shave themselves be $S$. Then the barber doesn't know if he should include himself in $S$ or not. If he is in $S$ then by definition he doesn't shave himself, but he is under orders to shave everyone in $S$, including himself. If he is not in $S$ then by definition he must shave himself. But he can't shave himself unless he is in $S$.\newline
+
+\textbf{Exercise 6}
+\textsl{Let $X$ be an uncountable subset of $\mathbb{R}$. Then $X$ has a limit point.}
+\begin{proof}
+Suppose that $X$ has no limit point. Then for every point $p \in X$ there exists a region $R$ such that $p \in R$ and $R \cap (X \backslash p) = \emptyset$. We can choose these regions specifically so that they don't intersect each other nontrivially. That is if two of these regions have a nontrivial intersection, then we can make one or both of them smaller until they no longer do. We can do this because we can always choose points between two real numbers. Since all regions are disjoint from each other we can order them by their first boundary point. But then this ordering can be mapped to the natural numbers by taking the first boundary as $1$, the second as $2$ and so on. Thus, the set of regions is countable, but each region only contains one point in $X$ which is uncountable. This is a contradiction and so $X$ must have a limit point.
+\end{proof}
+
+\end{flushleft}
+\end{document}

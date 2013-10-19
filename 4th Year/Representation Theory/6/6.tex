@@ -1,0 +1,287 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newcommand{\sgn}{\textup{sgn}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26700\\
+
+November 15, 2010
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{problem}
+(a) Prove that $SO(n)$ is connected.\\
+(b) Prove that $O(n)$ is not connected. Do this by first proving that $\det : GL(n, \mathbb{R}) \to \mathbb{R}^*$ is continuous.
+\end{problem}
+\begin{proof}
+(a) Note that $SO(n)$ is the group of rotations in $\mathbb{R}^n$. Any rotation can be specified by picking a point on $(x_1, \dots , x_n) \in S^{n-1}$ and forming the isometry where $(1,0, \dots , 0)$ moves to $(x_1, \dots , x_n)$. We need $n-1$ angles to specify such a point, so we get a map
+\[
+\varphi : [0, 2 \pi]^{n-2} \times [0, \pi] \to SO(n).
+\]
+This map takes an $(n-1)$-tuple of angles and uses sine and cosine to specify a point on $S^{n-1}$, and then this point corresponds to some rotation of $SO(n)$ which is a matrix with entires $\sin$ and $\cos$ of the angles from the $(n-1)$-tuple. But note then that since sine and cosine are both continuous, we must have $\varphi$ is continuous. Since the domain of $\varphi$ is connected, its image must also be connected. But we've already shown that $\varphi$ is onto, so $SO(n)$ is connected.
+
+(b) The determinant of $A = [a_{ij}]$ is a continuous function simply because it's a polynomial in the $n^2$ variables $a_{11}, \dots , a_{21}, \dots , a_{nn}$, given by
+\[
+\det(A) = \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n A_{i\sigma(j)}.
+\]
+Since polynomials are continuous, the determinant must be. Now note that $R^*$ is not connected since $(-\infty,0)$ and $(0,\infty)$ provide a separation. The determinant map is surjective since for $a \in \mathbb{R}$ we can form the matrix $a_{11} = a$, $a_{ii} = 1$ for $i \neq 1$ and $a_{ij} = 0$ for $i \neq j$. Then if $O(n)$ were connected, we would have a continuous map from a connected space into a disconnected space, which is a contradiction.
+\end{proof}
+
+\begin{problem}
+Let $G$ be a topological group. Prove that a representation $\rho : G \to GL(n,\mathbb{C})$ is a continuous (by the definition given in class) if and only if $\rho$ is a continuous map, where $GL(n,\mathbb{C})$ is given the standard topology.
+\end{problem}
+\begin{proof}
+Suppose $\rho$ is continuous as a representation. Then the map $\varphi : G \times V \to V$ given by $\varphi : (g,v) \mapsto gv$ is continuous. Now, $V$ is $n$-dimensional, so if we fix a basis for $V$ as $e_1, \dots , e_n$, then $(g,e_i) \mapsto ge_i$ is a continuous map $G \to V$ for each $1 \leq i \leq n$. The product of theses maps is still continuous. Now fix some $g$ for each component in the product. Then we have a continuous map which takes $g \in G$ to an $n$-tuple of basis vectors under the image of $g$. But this is precisely the matrix representation of $g$, so this is the map $\rho : G \to GL(n, \mathbb{C})$. Thus $\rho$ is continuous as a topological map.
+
+Now suppose $\rho$ is continuous as a topological map. We have $n$ projection maps $\pi_i : GL(n, \mathbb{C}) \to V$ which give the $i^{\textup{th}}$ column of an element of $GL(n, \mathbb{C})$. Then the maps $\pi_i \rho : G \to V$ are each continuous maps which give the image under $g$ of the $i^{\textup{th}}$ basis vector of $V$. Now if we have some vector $v = \sum_{i=1}^n a_ie_i$ then we can form the map $(g,v) \mapsto \sum_{i=1}^n a_i (\pi_i \rho (g)) = gv$. This is a sum of scaled continuous maps, so it's continuous. Thus $\rho$ is continuous as a representation.
+\end{proof}
+
+\begin{problem}
+Let $\psi : \mathbb{R} \to \mathbb{C}^*$ be a continuous map satisfying for all $s,t \in \mathbb{R}$:\\
+(a) $\psi (s + t) = \psi(s) \psi(t)$.\\
+(b) $\psi(t) = 1$ for all $t = 2 \pi n$, $n \in \mathbb{Z}$.\\
+Prove that there exists $c \in \mathbb{C}^*$ and $\zeta \in \mathbb{C}$ so that $\psi(t) = ce^{t \zeta}$ for all $t$.
+\end{problem}
+\begin{proof}
+Define $\zeta$ to be the real number such that $\psi(1) = ce^{i \zeta}$ for some $c \in \mathbb{R}$ (since $\psi(1)$ is some complex number it has this form). Then by property (a) we know for any integer $n$ we have $\psi(n) = \psi(1)^n = ce^{n \zeta}$. In particular, $\psi(0) = ce^0 = c = 1$. Now if we have $1/n \in \mathbb{Q}$ then $\psi(1) = \psi(1/n + \dots + 1/n) = \psi(1/n)^n$ so $\psi(1/n) = \psi(1)^{1/n} = e^{i \zeta/n}$. Then if we have $p/q \in \mathbb{Q}$ we must have $\psi(p/q) = \psi(1/q)^p = \psi(1)^{p/q} = e^{i p\zeta/q}$. Now let $t \in \mathbb{R}$ and pick a sequence of rationals $(x_n)$ converging to $t$. Then $\lim_{n \rightarrow \infty} x_n = t$ and since $\psi$ is continuous $\psi(t) = \lim_{n \rightarrow \infty} \psi(x_n) = \lim_{n \rightarrow \infty} e^{i x_n \zeta} = e^{i t \zeta}$.
+\end{proof}
+
+\begin{problem}
+Let $V_{m,n}$ denote the vector space of the homogenous complex polynomials of degree $m$ in $n$ variables (under addition).\\
+(a) Extend the case $m = 3$ in class to define a continuous representation
+\[
+\pi_{m,n} : SO(n) \to GL(V_{m,n}).
+\]
+Prove this is indeed a continuous representation.\\
+(b) What is the degree of $\pi_{m,n}$, i.e. what is the dimension of $V_{m,n}$?\\
+(c) For which $\pi_{m,n}$ does there exists an $SO(n)$-invariant vector?
+\end{problem}
+\begin{proof}
+(a) To show continuity we need to show that the map $(g,p) \mapsto gp$ is continuous for all $g \in G$ and polynomials $p \in V_{m,n}$. Since $g$ acts linearly and $V_{m,n}$ is a space under addition, it's enough to show continuity for monomials $p$. Note that if $p(x_1, \dots , x_n) = c\prod_{j=1}^n x_j^{m_j}$ with $\sum_{j=1}^n m_j = m$, and $g^{-1} = [a_{ij}]$ then we have
+\[
+gp = p(g^{-1}(x_1, \dots , x_n)) = p \left (\sum_{i=1}^n a_{i1}x_1, \dots , \sum_{i=1}^n a_{in}x_n \right ) = c\prod_{j=1}^n \left ( \sum_{i=1}^n a_{ij} x_j \right)^{m_j}.
+\]
+To check continuity we need to make sure that small changes in the entires of $g$ and small changes $c$ will result in a small change in $gp$. Clearly if $c$ changes by $\delta$, then $gp$ will change by a corresponding amount. If the entries $g_{ij}$ in $g$ change by some $\delta_{ij}$ then the entires $a_{ij}$ will also change by some small $\delta_{ij}'$ since the inverse map is continuous. Then we note that the terms in $gp$ are just polynomial functions in $a_{ij}$, that is, just summing them and raising them to $m_j$. This is a continuous function, so the change in $gp$ is small if the $\delta_{ij}'$ are small enough. Thus $(g,p) \mapsto gp$ is continuous.
+
+(b) The dimension is given by the number of $n$-variable monomials of degree $m$. To count these consider an arbitrary monomial $x_1^{m_1} \cdots x_n^{m_n}$ and take the corresponding multiset of terms
+\[
+\{x_1, x_1, \dots , x_2, x_2, \dots , x_n, x_n \}
+\]
+so that the cardinality of this multiset is $m$. We can group these terms as
+\[
+\{x_1, \dots , x_1 \mid x_2, \dots , x_2 \mid x_3, \ldots \mid \dots , x_{n-1} \mid x_n, \dots , x_n \}.
+\]
+Now the number of such multisets (and thus, of such monomials) is the number of ways to arrange the $n-1$ vertical bars. But this is just the number of ways to choose an $(n-1)$-sized subset out of an $(n + m - 1)$-sized set. Thus the dimension is
+\[
+\binom{n+m-1}{n-1} = \binom{n+m-1}{m}.
+\]
+
+(c) Note that by definition for $g \in SO(n)$ and $x \in \mathbb{R}^n$ we have
+\[
+\langle gx, gx \rangle = \langle x, x \rangle = x_1^2 + \dots + x_n^2.
+\]
+So if $p(x_1, \dots , x_n) = \langle x,x \rangle^k$ for some $k$, then this vector is fixed under $g$ by definition since $g$ acts by first acting with $g^{-1}$ on $(x_1, \dots , x_n)$ and then evaluating at $p(x_1, \dots , x_n)$. Thus, for all even $m$ we have an $SO(n)$-invariant vector $\langle x, x \rangle^{m/2}$.
+\end{proof}
+
+\begin{problem}
+Let $g \in SU(2)$.\\
+(a) Prove that $g$ must have the form
+\[
+g = \left ( \begin{array}{cc} a & b\\ -\overline{b} & \overline{a} \end{array} \right )
+\]
+where $a,b \in \mathbb{C}$ and $|a|^2 + |b|^2 = 1$.\\
+(b) For $\alpha, \theta \in [0, 2 \pi]$ define:
+\[
+\begin{tabular}{ccc}
+$\displaystyle{
+s(\alpha) = \left ( \begin{array}{cc} e^{i \alpha} & 0\\ 0 & e^{-i\alpha} \end{array} \right )}$
+& and
+& $\displaystyle{
+r(\theta) = \left ( \begin{array}{cc} \cos \theta & \sin \theta \\ -\sin \theta & \cos \theta \end{array} \right )}$
+\end{tabular}
+\]
+Prove that each $g \in SU(2)$ can be decomposed as a product
+\[
+\left (
+\begin{array}{cc}
+a & b\\
+-\overline{b} & \overline{a}
+\end{array}
+\right )
+=
+s(-\alpha/2)r(-\beta/2)s(-\gamma/2)
+\]
+for some $\alpha, \gamma \in [0,2 \pi]$ and $\beta \in [0,\pi]$. As a corollary note that $SU(2)$ is generated by all matrices of the form $s(\alpha)$, $r(\beta)$.\\
+(c) Check that the measure
+\[
+dg = (1/8\pi^2) \sin \beta d \alpha d \beta d \gamma
+\]
+is left invariant (it is actually bi-invariant) and has total mass $1$, so it is the Haar measure on $SU(2)$.
+\end{problem}
+\begin{proof}
+(a) Let
+\[
+g=
+\left ( \begin{array}{cc} a & b\\ c & d \end{array} \right ).
+\]
+We know
+\[
+\left ( \begin{array}{cc} \overline{a} & \overline{c}\\ \overline{b} & \overline{d} \end{array} \right )
+= \overline{g}^T
+= g^{-1}
+\frac{1}{ad-bc} \left ( \begin{array}{cc} d & -b\\ -c & a \end{array} \right )
+\]
+and $ad-bc = 1$ since $\det(g) = 1$. Then we immediately have $d = \overline{a}$ and $c = - \overline{b}$.
+
+(b) Note that
+\begin{align*}
+s(-\alpha/2)r(-\beta/2)s(-\gamma/2)
+&= \left (
+\begin{array}{cc}
+e^{-i\alpha/2} & 0\\
+0 & e^{i\alpha/2}
+\end{array}
+\right )
+\left (
+\begin{array}{cc}
+\cos (-\beta/2) & \sin (-\beta/2)\\
+-\sin (-\beta/2) & \cos (-\beta/2)
+\end{array}
+\right )
+\left (
+\begin{array}{cc}
+e^{-i\gamma/2} & 0\\
+0 & e^{i\gamma/2}
+\end{array}
+\right )\\
+&= \left (
+\begin{array}{cc}
+e^{-i\alpha/2} & 0\\
+0 & e^{i\alpha/2}
+\end{array}
+\right )
+\left (
+\begin{array}{cc}
+e^{-i\gamma/2} \cos(-\beta/2) & e^{i\gamma/2} \sin(-\beta/2)\\
+-e^{-i\gamma/2 \sin(-\beta/2)} & e^{i\gamma/2} \cos(-\beta/2)
+\end{array}
+\right )\\
+&= \left (
+\begin{array}{cc}
+e^{-i(\alpha + \gamma)/2} \cos(-\beta/2) & e^{i(\gamma - \alpha)/2} \sin(-\beta/2)\\
+-e^{-i(\gamma - \alpha)/2} \sin(-\beta/2) & e^{i(\alpha + \gamma)/2} \cos(-\beta/2)
+\end{array}
+\right ).
+\end{align*}
+Now let $g \in SU(2)$ and from part (a) we know $g$ has the form
+\[
+g
+= \left ( \begin{array}{cc} a & b\\ -\overline{b} & \overline{a} \end{array} \right )
+= \left ( \begin{array}{cc} ce^{i\theta} & de^{i\psi}\\ -de^{i\psi} & ce^{-i\theta} \end{array} \right )
+\]
+where $\theta,\psi \in [0,2 \pi]$ and $|c|^2 + |d|^2 = 1$. Then $(c,d)$ lies on the unit circle so we can find $\beta \in [0, \pi]$ such that $\cos(-\beta/2) = c$ and $\sin(-\beta/2) = d$. Also, if we let $\alpha = -\theta - \psi$ and $\gamma = \psi - \theta$ then $g$ has the exact form above.
+
+(c) To check that the total mass is $1$ we simply find
+\begin{align*}
+\int_G dg
+&= \frac{1}{8 \pi^2} \int \int \int \sin \beta d \alpha d \beta d \gamma\\
+&= \frac{1}{8 \pi^2} \int_0^{2\pi} \int_0^{\pi} \int_0^{2 \pi} \sin \beta d \alpha d \beta d \gamma\\
+&= \frac{1}{8 \pi^2} \int_0^{2 \pi} d \alpha \int_0^{\pi} \sin \beta d \beta \int_0^{2 \pi} d \gamma\\
+&= \frac{1}{8 \pi^2} (2 \pi) (2) (2 \pi)\\
+&= 1.
+\end{align*}
+
+To show that the measure is left invariant, we note that by part (a) $SU(2)$ is the set of complex numbers $x_1 + ix_2, x_3 + ix_4 \in \mathbb{C}$ such that
+\[
+1 = |x_1 + ix_2|^2 + |x_3 + ix_4|^2 = x_1^2 + x_2^2 + x_3^2 + x_4^2.
+\]
+But this is exactly the subset $S^3 \subseteq \mathbb{R}^4$. The standard measure on $\mathbb{R}^4$, $dx_1dx_2dx_3dx_4$ is left invariant, so if we can change variables to $r^3 \sin \beta d \alpha d \beta d \gamma d r$, we will show that $dg$ is left invariant.
+
+Now, to find equations for $x_1$, $x_2$, $x_3$ and $x_4$ in terms of $\alpha$, $\beta$, $\gamma$ and $r$ we can use part (b) and note that $x_1 + ix_2 = e^{-i (\alpha + \gamma)/2} \cos (-\beta/2)$ and $x_3 + i x_4 = e^{i(\gamma - \alpha)/2 \sin(-\beta/2)} \sin(-\beta/2)$. Thus
+\[
+x_1 = r \cos \left (-\frac{\beta}{2} \right ) \cos \left (-\frac{\alpha + \gamma}{2} \right )
+\]
+\[
+x_2 = r \cos \left (-\frac{\beta}{2} \right ) \sin \left (-\frac{\alpha + \gamma}{2} \right )
+\]
+\[
+x_3 = r \sin \left (-\frac{\beta}{2} \right ) \cos \left (\frac{\gamma - \alpha}{2} \right )
+\]
+\[
+x_4 = r \sin \left (-\frac{\beta}{2} \right ) \sin \left (\frac{\gamma - \alpha}{2} \right )
+\]
+This gives (after some simplification) the sixteen partial derivatives
+\[
+\frac{\partial x_1}{\partial \alpha} = -\frac{r}{2} \cos \left ( \frac{\beta}{2} \right ) \sin \left (\frac{\alpha + \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_1}{\partial \beta} = -\frac{r}{2} \sin \left ( \frac{\beta}{2} \right ) \cos \left (\frac{\alpha + \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_1}{\partial \gamma} = -\frac{r}{2} \cos \left ( \frac{\beta}{2} \right ) \sin \left (\frac{\alpha + \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_1}{\partial r} = \cos \left ( \frac{\beta}{2} \right ) \cos \left (\frac{\alpha + \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_2}{\partial \alpha} = -\frac{r}{2} \cos \left ( \frac{\beta}{2} \right ) \cos \left (\frac{\alpha + \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_2}{\partial \beta} = \frac{r}{2} \sin \left ( \frac{\beta}{2} \right ) \sin \left (\frac{\alpha + \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_2}{\partial \alpha} = -\frac{r}{2} \cos \left ( \frac{\beta}{2} \right ) \cos \left (\frac{\alpha + \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_2}{\partial r} = -\cos \left ( \frac{\beta}{2} \right ) \sin \left (\frac{\alpha + \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_3}{\partial \alpha} = \frac{r}{2} \sin \left ( \frac{\beta}{2} \right ) \sin \left (\frac{\alpha - \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_3}{\partial \beta} = -\frac{r}{2} \cos \left ( \frac{\beta}{2} \right ) \cos \left (\frac{\alpha - \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_3}{\partial \gamma} = -\frac{r}{2} \sin \left ( \frac{\beta}{2} \right ) \sin \left (\frac{\alpha - \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_3}{\partial r} = -\sin \left ( \frac{\beta}{2} \right ) \cos \left (\frac{\alpha - \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_4}{\partial \alpha} = \frac{r}{2} \sin \left ( \frac{\beta}{2} \right ) \cos \left (\frac{\alpha - \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_4}{\partial \beta} = \frac{r}{2} \cos \left ( \frac{\beta}{2} \right ) \sin \left (\frac{\alpha - \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_4}{\partial \gamma} = -\frac{r}{2} \sin \left ( \frac{\beta}{2} \right ) \cos \left (\frac{\alpha - \gamma}{2} \right )
+\]
+\[
+\frac{\partial x_4}{\partial r} = \sin \left ( \frac{\beta}{2} \right ) \sin \left (\frac{\alpha - \gamma}{2} \right ).
+\]
+We now transform the differentials using the change of variables formula so $dx_1dx_2dx_3dx_4 = \det(D) d \alpha d \beta d \gamma d r$ where $D$ is the Jacobian of the transformation. Thus
+\[
+\det(D) = \left | \left (
+\begin{array}{cccc}
+\frac{\partial x_1}{\partial \alpha} & \frac{\partial x_1}{\partial \beta} & \frac{\partial x_1}{\partial \gamma} & \frac{\partial x_1}{\partial r}\\
+\frac{\partial x_2}{\partial \alpha} & \frac{\partial x_2}{\partial \beta} & \frac{\partial x_2}{\partial \gamma} & \frac{\partial x_2}{\partial r}\\
+\frac{\partial x_3}{\partial \alpha} & \frac{\partial x_3}{\partial \beta} & \frac{\partial x_3}{\partial \gamma} & \frac{\partial x_3}{\partial r}\\
+\frac{\partial x_4}{\partial \alpha} & \frac{\partial x_4}{\partial \beta} & \frac{\partial x_4}{\partial \gamma} & \frac{\partial x_4}{\partial r}
+\end{array}
+\right ) \right |
+= \frac{1}{8} r^3 \sin(\beta).
+\]
+We're fixing $r = 1$ in this case, so this leaves us with $dx_1dx_2dx_3dx_4 = (1/8)\sin(\beta) d \alpha d \beta d \gamma$. Thus, up to a constant, this is the same as $dg$ so it must be left invariant.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{10pt}
+\renewcommand{\textheight}{609pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25800\\January 11, 2010\\}
+\chead{Quiz 1\\}
+
+\begin{problem}
+An element in a ring is an idempotent if $a^2 = a$. Show that a division ring has exactly $2$ idempotent elements.
+\end{problem}
+\begin{proof}
+Let $a$ be a nonzero element of a division ring $R$. Then $R$ contains some $a^{-1}$. Thus if $a^2 = a$ we can multiply on the left by $a^{-1}$ to obtain $a = 1$. Furthermore, $0 \cdot b = 0$ for any element $b \in R$ so in particular, $0^2 = 0$. Thus, the only two elements of $R$ which are idempotent are $0$ and $1$.
+\end{proof}
+
+\begin{problem}
+Find a polynomial of degree greater than $0$ in $(\mathbb{Z}/4\mathbb{Z})[x]$ that is a unit.
+\end{problem}
+\begin{proof}
+Consider the element $2x+1$. If we square this element we obtain $4x^2 + 2x + 2x + 1 = 4x^2 + 4x + 1 = 1$.
+\end{proof}
+
+\begin{problem}
+Find the sum and product of $f(x) = 4x - 5$ and $g(x) = 2x^2 - 4x + 2$ in $(\mathbb{Z}/8\mathbb{Z})[x]$.
+\end{problem}
+\begin{proof}
+The sum is carried out component wise so we have
+\[
+f(x) + g(x) = 4x - 5 + 2x^2 - 4x + 2 = 2x^2 + 5.
+\]
+For the product we have
+\begin{align*}
+f(x)g(x)
+&= (4x - 5)(2x^2 - 4x + 2)\\
+&= 4x(2x^2 - 4x + 2) - 5(2x^2 - 4x + 2)\\
+&= 8x^3 - 16x^2 + 8x - 10x^2 + 20x - 10\\
+&= 0 + 0 + 0 + 6x^2 + 4x + 6\\
+&= 6x^2 + 4x + 6.
+\end{align*}
+\end{proof}
+
+\begin{problem}
+In the group ring $\mathbb{Z}D_8$ compute the product $\beta \alpha$ for $\alpha = r + r^2 - 2s$ and $\beta = -3r^2 + rs$.
+\end{problem}
+\begin{proof}
+We have
+\begin{align*}
+\beta \alpha
+&= (-3r^2 + rs)(r + r^2 - 2s)\\
+&= -3r^2(r + r^2 - 2s) + rs(r + r^2 - 2s)\\
+&= -3r^3 - 3r^4 + 6r^2s + rsr + rsr^2 - 2rs^2\\
+&= -3 - 3r + 6r^2s + s + r^2s - 2r\\
+&= -3 - 5r + 6r^2s + s + r^2s.
+\end{align*}
+\end{proof}
+
+\end{document}

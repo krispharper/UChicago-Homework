@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 8: Proving Connectedness\newline
+
+\normalsize
+
+\textbf{Theorem 1}
+\textsl{Let $A$ be a bounded infinite set. Then $A$ has a limit point.}
+\begin{proof}
+Assume that $A$ has no limit points. Then $A$ is closed because it vacuously contains all its limit points. Because $A$ is closed and bounded it is compact. Since $A$ has no limit points, for all $a \in A$ there exists some region $R_a$ with $a \in R_a$ such that $R_a \cap (A \backslash a) = \emptyset$. Let $\mathcal{A} = \{R_a \mid a \in A\}$ be an open cover for $A$. Since $A$ is compact there exists a finite subcover, $\mathcal{B}$, of $\mathcal{A}$ for $A$. But then $\mathcal{B}$ is a finite open cover for $A$ containing only regions which contain one point of $A$ and $A$ is an infinite set. This is a contradiction and so $A$ must have a limit point.
+\end{proof}
+
+\textbf{Theorem 2}
+\textsl{Let $O$ be a nonempty, bounded, open set. Then $\sup O$ is a limit point of both $O$ and the complement of $O$.}
+\begin{proof}
+We have $O$ is nonempty and bounded so $\sup O$ exists. Let $(a;b)$ be a region containing $\sup O$. Suppose there are no points of $O$ in $(a;\sup O)$. We know that regions are nonempty and since $\sup O$ is greater than every point in $O$, there exists a point in $(a; \sup O)$ which is greater than every point in $O$, but is less than $\sup O$. This is a contradiction and so there exists a point in $(a; \sup O)$ which is also in $O$ and in $(a;b)$. Thus, any region containing $\sup O$ must also contain an additional point from $O$ and so $\sup O$ is a limit point of $O$. Additionally if we take the region $(a;b)$ containing $\sup O$ then $(\sup O;b)$ is a nonempty region containing at least one point greater than $\sup O$ which is therefore not in $O$. Thus $(a;b)$ contains a point which is in the complement of $O$ and so $\sup O$ is a limit point of the complement of $O$.
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{Let $A$ be a set which is open and closed such that $A \neq \emptyset$ and $A \neq C$. Let $B$ be the complement of $A$. Let $a \in A$ and $b \in B$ and without loss of generality assume that $a < b$. Now let $s = \sup (A \cap (a;b))$. Then $s$ is a limit point of $A$ and $B$.}
+\begin{proof}
+Suppose that $s$ is not a limit point of $A$. Then there exists some region $(p;q)$ which contains $s$ but no other points of $A$. Thus $(p;q)$ contains no points of $(A \cap (a;b)) \backslash s$ as well. But $s \geq x$ for all $x \in A \cap (a;b)$ there exists an element of $(p;s)$ which is greater than or equal to every element of $A \cap (a;b)$ but less than $s$. This is a contradiction and so $s$ must be a limit point of $A$.\newline
+
+To show $s$ is a limit point of $B$ consider two cases.\newline
+
+\textit{Case 1:} Suppose $s \neq b$. First suppose $s>b$. Then there exists $c \in (b;s)$. For all $x \in A \cap (a;b)$ we have $x < b < c$ so $c$ is an upper bound for $A \cap (a;b)$ which is less than $s$. This is a contradiction so $s<b$. Suppose that $s<a$. Then for all $x \in A \cap (a;b)$ we have $s<a<x$ which is a contradiction since $s \geq x$ for all $x \in A \cap (a;b)$. Thus, $s \in (a;b)$. Consider the region $(s;b)$. Suppose there exists $x \in (s;b)$ such that $x \in A$. Then $x \in A \cap (s;b) \subseteq A \cap (a;b)$. But this is a contradiction since $x > s$. So for all $x \in (s;b)$ we have $x \in B$ so $(s;b) \subseteq B$. But then every region containing $s$ will contain a point in $(s;b) \subseteq B$ so $s$ is a limit point of $B$.\newline
+
+\textit{Case 2:} Suppose $s=b$. Then $A$ is closed and so $B$ is open. Thus there exists some region $R \subseteq B$ such that $s \in R$. But then every region containing $s$ will intersect $R \backslash s$ nontrivially so $s$ must be a limit point of  $B$.
+\end{proof}
+
+\textbf{Theorem 4}
+\textsl{If every bounded nonempty point set has a least upper bound and regions are nonempty, then the only sets that are both open and closed are $C$ and $\emptyset$.}
+\begin{proof}
+Suppose to the contrary that there exists an open and closed set $A$ such that $A \neq \emptyset$ and $A \neq C$. Then we can construct $B$, $(a;b)$ and $s$ as in Theorem 3 so that $s$ is a limit point of both $A$ and $B$. But $A$ is closed so $s \in A$. But $A$ is open so $B$ is closed and since $s$ is a limit point of $B$ we have $s \in B$ which is a contradiction. Therefore the only sets which are open and closed must be $\emptyset$ and $B$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

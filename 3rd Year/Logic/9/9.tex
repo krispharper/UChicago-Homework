@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27700\\
+
+December 2, 2009
+\end{flushright}
+
+\begin{center}
+Homework 9
+\end{center}
+
+\begin{problem}
+$T$ is not necessarily complete.\\
+(a) If $T$ has arbitrarily large finite models then $T$ has an infinite model.\\
+(b) If $T$ has a model of some infinite cardinality, then it has a model of every infinite cardinality $\kappa \geq \lambda$.\\
+(c) Part (a) can be shown simply by writing down a new set of sentences, without appeal to new constants. Why would that same proof not work in (b)?
+\end{problem}
+\begin{proof}
+(a) For each $k \geq 2$ we can write the sentence $\varphi_k = \exists x_1 \dots \exists x_k \left (\bigwedge_{1 \leq i < j \leq k} x_i \neq x_j \right )$. That is, there are $k$ distinct elements. Now let $T' = T \cup \{\varphi_k \mid k < \omega\}$. Since $T$ is satisfiable, every finite subset of $T'$ is satisfiable and thus $T'$ must be satisfiable. But the model that models $T'$ must be infinite, so $T$ has an infinite model.
+
+(b) This follows directly from L\"{o}wenheim-Skolem. Since $T$ has a model of infinite cardinality, we know that $\mathcal{L}$ cannot be finite. Thus $\lambda \geq \aleph_0$. Now since $T$ is consistent, it has a model of size $|\mathcal{L}|$. But then we know that $T$ has a model of every infinite cardinal $\kappa \geq |\mathcal{L}| \geq \aleph_0$ and thus every infinite cardinal $\kappa \geq \lambda$.
+
+(c) We can only write down countably many $\mathcal{L}$-sentences and each sentence can only be finite in length. Thus we can only identify finitely many distinct elements at a time. This is enough to show countably many distinct elements, but not uncountably many.
+\end{proof}
+
+\begin{problem}
+(a) Suppose $\mathcal{L}$ is countable and $T$ has infinite models. Show that it has at most $2^{\aleph_0}$-many countable models, and at least $1$.\\
+(b) Suppose $\mathcal{L}$ is countable. Show that there are at most $2^{\aleph_0}$-many elementary equivalence classes of $\mathcal{L}$-structures (of any possible cardinality).
+\end{problem}
+\begin{proof}
+(a) Since $\mathcal{L}$ is countable and $T$ is consistent, we know $T$ has a model of size $|\mathcal{L}|$ and a model of every infinite cardinality $\lambda \geq |\mathcal{L}|$. In particular it has a model of size $2^{\aleph_0}$. Also since $\mathcal{L}$ is countable there are only $\aleph_0$ many sentences in $T$. Since every model either satisfies a sentence or doesn't satisfy it, there are at most $2^{\aleph_0}$ many possible models for $T$.
+
+(b) Since $\mathcal{L}$ is countable, there are countably many $\mathcal{L}$-sentences and there are only $2^{\aleph_0}$ many subsets of $\mathcal{L}$-sentences. Since two models are elementary equivalent if they have the same theory (a set of $\mathcal{L}$-sentences), there can only be as many equivalence classes as there are subsets. Thus there are at most $2^{\aleph_0}$ many elementary equivalence classes of models of $\mathcal{L}$.
+\end{proof}
+
+\begin{problem}
+Suppose $\mathcal{L}$ includes a binary relation $R$. Show that none of the following sentences logically implies the other.\\
+(a) $\forall y \forall z (R(y,z) \wedge R(z,y) \rightarrow z = y)$.\\
+(b) $\forall y \forall z (y \neq z \rightarrow \exists z (R(x,y) \wedge \neg R(x,z)))$.\\
+(c) $\forall y \forall z \forall x (R(y,z) \wedge R(z,x) \rightarrow R(y,x))$.
+\end{problem}
+\begin{proof}
+We need to find three models in which only one of (a), (b) and (c) are true. For (a) take the model $\langle \mathbb{Z}, \leq \rangle$ where $\leq$ is carried out $\pmod{n}$. That is $a \leq b$ if $a \pmod{n} \leq b \pmod{n}$. Then (a) holds because $\leq$ is anti symmetric. If $y \leq z$ and $z \leq y$ it must be that $z = y$. Part (b) doesn't hold because if $y \equiv n-1 \pmod{n}$ and $z \equiv n \pmod{n}$, then whenever $x \leq y$ we must also have $x \leq z$. Also the sentence from (c) fails to hold because $\leq$ is not transitive in this finite field. That is $0 \leq 1 \leq 2 \leq 0$ for $n = 3$.
+
+For (b) take the model $\langle \mathbb{Z}, R \rangle$ where $R(x,y)$ means $x \neq y$. Then (b) holds because if $y \neq z$, then there exists $x$, namely $x = z$, such that $x \neq y$ but $x = z$. Part (a) certainly doesn't hold because $y \neq z$ and $z \neq y$ will never imply $z = y$. The sentence from (c) doesn't hold because $\neq$ isn't transitive. For example $1 \neq 2$ and $2 \neq 1$, but $1 = 1$.
+
+For (c), take the model $\langle \mathbb{Z}, R \rangle$ with $R(x,y)$ meaning $x \equiv y \pmod{n}$ where $n > 1$. This relation is transitive, so (c) holds. The sentence in part (b) fails to hold because if $y \neq z$ but $R(y,z)$, then for each $x$ with $R(x,y)$ we also have $R(x,z)$ by transitivity. Part (a) fails to hold because $\equiv$ is a symmetric relation, but not antisymmetric. For example, $0 \equiv 2 \pmod{2}$ and $2 \equiv 0 \pmod{2}$, but $0 \neq 0$.
+\end{proof}
+
+\begin{problem}
+(a) Show that every element of the domain of $\langle \mathbb{N}, +, \times, 0, 1, < \rangle$ is definable. Prove, using diagonalization, that there exists some undefinable set in this model. Prove this on the grounds of cardinality.\\
+(b) Prove that the successor relation is definable in $\langle \mathbb{Z}, < \rangle$. Prove that $<$ is not definable in a nonstandard model of $\langle \mathbb{Z}, S \rangle$ where $S$ is the successor relation.
+\end{problem}
+\begin{proof}
+(a) Let $n \in \mathbb{N}$. If $n = 0$ then the formula $\exists x (x = 0)$ defines $n$. Otherwise, the formula $\exists x (x = S(S(\dots (0) \dots )))$ where there are $n$ copies of $S$, defines $n$. Suppose that every subset of this model is definable. Then we can construct an undefinable set by picking some element which is not in each subset and taking the union of all these elements. On the other hand, we can note that there are only countably many possible formulas in any theory for this model, but there are uncountably many subsets of $\mathbb{N}$, so at least one must be undefinable.
+
+(b) We can define $S$ with the formula
+\[
+\forall x \exists y ((x < y) \wedge (\forall z (z < y) \rightarrow ((z = x) \vee (z < x)))).
+\]
+Then for each $x \in Z$ we define this particular $y$ to be $S(x)$. To show $<$ is not definable in $\langle \mathbb{Z}, S \rangle$, suppose we have two $\mathbb{Z}$-chains. We can then take an automorphism which takes $0$ in one to $0$ in the other. This still preserves successor, but it doesn't preserve $<$ so $<$ is not definable in a nonstandard model of $\langle \mathbb{Z}, S \rangle$.
+\end{proof}
+
+\begin{problem}
+(a) Prove that addition, as a ternary relation, is not definable in $\langle \mathbb{N}, \times \rangle$.\\
+(b) Can a nonstandard model of $\langle \mathbb{N}, +, \times, 0, 1, < \rangle$ have exactly one $\mathbb{Z}$-chain of nonstandard elements?
+\end{problem}
+\begin{proof}
+(a) Let $P$ be the set of primes in $\mathbb{N}$ and let $g : P \to P$ such that $g(2) = 3$, $g(3) = 2$ and $g(p) = p$ for all other primes. Then $g$ extends to a bijection of $\mathbb{N}$, $\overline{g}$, by taking the prime factorization of an element $x = p_1^{a_1} \dots p_n^{a_n}$ and letting $\overline{g} = g(p_1)^{a_1} \dots g(p_n)^{a_n}$. Now suppose that $x \times y = z$. We need to show that $\overline{g}(x) \times \overline{g}(y) = \overline{g}(z)$. Note that $x$, $y$ and $z$ all have unique prime factorizations (that is, they are unique to each element, not necessarily among $x$, $y$ and $z$). So now we have $(p_1^{a_1} \dots p_n^{a_n})(p_1^{b_1} \dots p_n^{b_n}) = p_1^{a_1 + b_1} \dots p_n^{a_n+b_n}$. Note that the number of primes in the factorizations of $x$ and $y$ may be different, but we will simply write $p_i^0$ at the end of one until they are the same length. But then
+\begin{align*}
+\overline{g}(x) \times \overline{g}(y)
+&= \overline{g}(p_1^{a_1} \dots p_n^{a_n}) \times \overline{g}(p_1^{b_1} \dots p_n^{b_n})\\
+&= g(2)^{a_1}g(3)^{a_2}p_3^{a_3} \dots p_n^{a_n} \times g(2)^{b_1}g(3)^{b_2}p_3^{b_n} \dots p_n^{b_n}\\
+&= 3^{a_1}2^{a_2}p_3^{a_3} \dots p_n^{a_n} \times 3^{b_1}2^{b_2}p_3^{b_3} \dots p_n^{b_n}\\
+&= 2^{a_2+b_2}3^{a_1+b_1}p_3^{a_3 + b_3} \dots p_n^{a_n + b_n}\\
+&= \overline{g}(p_1^{a_1+b_1}p_2^{a_2 + b_2} \dots p_n^{a_n+b_n})\\
+&= \overline{g}(z).
+\end{align*}
+Therefore $\overline{g}$ is an automorphism of $\langle \mathbb{N}, \times \rangle$. But then if $+$ is a ternary relation we have $1 + 2 = 3$ and so $\overline{g}(1) + \overline{g}(2) = \overline{g}(3)$. This gives $1 + 3 = 2$ which isn't true in $\langle \mathbb{N}, + \rangle$. Therefore $+$ is not definable in $\langle \mathbb{N}, \times \rangle$.
+
+(b) No. Suppose that we have $\mathbb{N}$ followed by one $\mathbb{Z}$-chain. Let $0, 1 \in \mathbb{Z}$ and $0', 1' \in \mathbb{Z}$ be the usual elements. Then $0 + 1 = 1$ and $0' + 1' = 1'$. Since $0 < 0'$ and $1 < 1'$ we have $1 < 1'$, but also $1 < 0 + 1' < 1'$. If $0 + 1' = n$ for some $n \in \mathbb{N}$ then $1' = n$ which can't happen as $1' \notin \mathbb{N}$. On the other hand, if $0 + 1' = n'$ for some $n' \in \mathbb{Z}$, then $0 = n'-1'$ which can't happen since $n'-1' \in \mathbb{Z}$ as $\mathbb{Z}$ has no least element. Thus, $0 + 1'$ must be in another $\mathbb{Z}$-chain between $\mathbb{N}$ and $\mathbb{Z}$ and so there is more than one $\mathbb{Z}$-chain in a nonstandard model.
+\end{proof}
+
+\end{document}

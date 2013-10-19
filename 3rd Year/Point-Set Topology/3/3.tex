@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26200\\
+
+January 28, 2010
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{problem}
+Show that if $Y$ is a subspace of $X$, and $A$ is a subset of $Y$, then the topology $A$ inherits as a subspace of $Y$ is the same as the topology it inherits as a subspace of $X$.
+\end{problem}
+\begin{proof}
+Let $\mathcal{T}$ be the topology $A$ inherits as a subspace of $Y$ and let $\mathcal{T}'$ be the topology $A$ inherits as a subspace of $X$. Let $B \in \mathcal{T}$. Then $B = U \cap A$ where $U$ is open in $Y$. But then $U = V \cap Y$ where $V$ is open in $X$. Note now that since $A \subseteq Y$, we have $B = V \cap Y \cap A = V \cap A$. Thus $C \in \mathcal{T}'$ and $\mathcal{T} \subseteq \mathcal{T}'$.
+
+Conversely, suppose that $C \in \mathcal{T}'$. Then $C = U \cap A$ where $U$ is open in $X$. Since $U$ is open in $X$, we know $V = U \cap Y$ is open in $Y$. But because $A \subseteq Y$, we have $C = U \cap A = U \cap A \cap Y = V \cap A$ where $C$ is open in $Y$. Thus $C \in \mathcal{T}$ and $\mathcal{T}' = \mathcal{T}$.
+\end{proof}
+
+\begin{problem}
+If $\mathcal{T}$ and $\mathcal{T}'$ are topologies on $X$ and $\mathcal{T}'$ is strictly finer than $\mathcal{T}$, what an you say about the corresponding subspace topologies on the subset $Y$ of $X$?
+\end{problem}
+\begin{proof}
+Let $\mathcal{U}$ and $\mathcal{U}'$ be the respective subspace topologies $Y$ inherits from $\mathcal{T}$ and $\mathcal{T}'$. It's clear that $\mathcal{U} \subseteq \mathcal{U'}$. To see this, let $U \in \mathcal{U}$ and write $U = V \cap X$ where $V \in \mathcal{T}$. Then $V \in \mathcal{T'}$ as well, and so $U \in \mathcal{U}'$.
+
+Now, if $Y = X$, then $\mathcal{U} = \mathcal{T}$ and $\mathcal{U}' = \mathcal{T}'$. In this case, we have that $\mathcal{U}'$ is strictly finer than $\mathcal{U}$. On the other hand, if $Y = \{x\}$ a single point, then $Y$ inherits the indiscrete topology as a subspace. That is, any set from $\mathcal{T}$ or from $\mathcal{T}'$ intersected with $Y$ will either be $Y$ or $\emptyset$. In this case $\mathcal{U} = \mathcal{U}'$ and so we no longer have strict containment. Thus, while $\mathcal{U}'$ is necessarily finer than $\mathcal{U}$, it may or may not be strictly finer depending on $Y$.
+\end{proof}
+
+\begin{problem}
+Let $X$ and $X'$ prime denote a single set in the topologies $\mathcal{T}$ and $\mathcal{T}'$, respectively; let $Y$ and $Y'$ denote a single set in the topologies $\mathcal{U}$ and $\mathcal{U}'$ respectively. Assume these sets are nonempty.\\
+(a) Show that if $\mathcal{T}' \supseteq \mathcal{T}$ and $\mathcal{U}' \supseteq \mathcal{U}$, then the product topology on $X' \times Y'$ is finer than the product topology on $X \times Y$.\\
+(b) Does the converse of (a) hold? Justify your answer.
+\end{problem}
+\begin{proof}
+(a) Let $U \times V$ be a basis element for the product topology on $X \times Y$ and let $(u,v) \in U \times V$. Then $u \in U$ and $v \in V$ where $U$ and $V$ are open in $X$ and $Y$ respectively. Thus $U \in \mathcal{T}$ and $V \in \mathcal{U}$. By assumption then, $U \in \mathcal{T}'$ and $V \in \mathcal{U}'$ so $U \times V$ is a basis element of the product topology on $X' \times Y'$ which contains $(u,v)$. Therefore the product topology on $X' \times Y'$ is finer than the product topology on $X \times Y$.
+
+(b) Assume that the product topology on $X' \times Y'$ is finer than the product topology on $X \times Y$. Let $\mathcal{B}$ be a basis for $\mathcal{T}$, $\mathcal{C}$ be a basis for $\mathcal{U}$, $\mathcal{B}'$ be a basis for $\mathcal{T}'$ and $\mathcal{C}'$ be a basis for $\mathcal{U}'$. Let $x \in X$ and $y \in Y$ and let $B \in \mathcal{B}$ and $C \in \mathcal{C}$ be basis elements containing $x$ and $y$ respectively. Then $(x,y) \in B \times C$ and there exists a basis element $B' \times C'$ such that $(x,y) \in B' \times C'$ and $B' \times C' \subseteq B \times C$. But then $B' \subseteq B$, $C' \subseteq C$, $x \in B'$ and $y \in C'$.  Thus $\mathcal{T} \subseteq \mathcal{T}'$ and $\mathcal{U} \subseteq \mathcal{U}'$.
+\end{proof}
+
+\begin{problem}
+If $L$ is a straight line in the plane, describe the topology $L$ inherits as a subspace of $\mathbb{R}_{\ell} \times \mathbb{R}$ and as a subspace of $\mathbb{R}_{\ell} \times \mathbb{R}_{\ell}$. In each case it is a familiar topology.
+\end{problem}
+\begin{proof}
+Note that open intervals $(a,b)$ form a basis for $\mathbb{R}$ and half-open intervals $[a,b)$ form a basis for $\mathbb{R}_{\ell}$. Thus, sets of the form $[a,b) \times (c,d)$ form a basis for $\mathbb{R}_{\ell} \times \mathbb{R}$. These are rectangles in the plane, where the ``left side'' is closed and the other three sides are open. Since these sets are a basis for $\mathbb{R}_{\ell} \times \mathbb{R}$, their intersection with $L$ gives a basis for the subspace topology on $L$.
+
+If $L$ is a vertical line in the plane, then its intersection with any of these open sets is an open interval in $L$, and so the subspace topology is just the standard topology on $\mathbb{R}$. Now suppose $L$ is not vertical. Then given a basis element of $\mathbb{R}_{\ell} \times \mathbb{R}$, $L$ will either intersect the ``left side'' of this element or it won't. In the former case, the intersection forms a half-open interval $[a,b)$ in $L$ and in the later case the intersection is an open interval $(a,b)$ in $L$. But note that an open interval of this form can be expressed as an infinite union of half open intervals, so a basis for the subspace topology on $L$ is given by half-open intervals $[a,b)$, which is the lower limit topology $\mathbb{R}_{\ell}$.
+
+Now consider the basis elements for the product topology on $\mathbb{R}_{\ell} \times \mathbb{R}_{\ell}$. These are sets of the form $[a,b) \times [c,d)$ which are rectangles with the ``left'' and ``bottom'' sides closed and other sides open. Now if $L$ is vertical or horizontal, its intersection with these basis elements gives half open intervals $[a,b)$ on $L$ and so the subspace topology is $\mathbb{R}_{\ell}$ as above. On the other hand, if $L$ has some positive slope, then $L$ intersects one or two of the ``left'' and ``bottom'' sides of a given basis element and one  of the ``top'' or ``right'' sides. In both cases, the intersection is a half open interval of the form $[a,b)$ and so the subspace topology is once again $\mathbb{R}_{\ell}$. Finally, suppose that $L$ has negative slope. Then for each point on $L$ there exists some basis element which intersects the corner where the ``left'' and ``bottom'' sides meet. Note that this is a single point, which means that every point in $L$ is open. Thus, the subspace topology on $L$ is the discrete topology.
+\end{proof}
+
+\begin{problem}
+Show that the dictionary order topology on the set $\mathbb{R} \times \mathbb{R}$ is the same as the product topology $\mathbb{R}_d \times \mathbb{R}$, where $\mathbb{R}_d$ denotes $\mathbb{R}$ in the discrete topology. Compare this topology with the standard topology on $\mathbb{R}^2$.
+\end{problem}
+\begin{proof}
+Let $\mathcal{T}$ be the dictionary order topology on $\mathbb{R} \times \mathbb{R}$ and let $\mathcal{T}'$ be the product topology on $\mathbb{R}_d \times \mathbb{R}$. Let $x \times y \in \mathbb{R} \times \mathbb{R}$ and let $(a \times b, c \times d)$ be a basis element of $\mathcal{T}$ containing $x \times y$. First suppose that $a = c$. Then $(a \times b, c \times d) = \{a \times i \mid b < i < d\}$. But this is precisely the set $\{a\} \times (b,d)$ in $\mathcal{T}'$. Since $\{a\}$ is open in $\mathbb{R}_d$ and $(b,d)$ is open in $\mathbb{R}$, this is a basis element of $\mathbb{R}_d \times \mathbb{R}$. This basis element contains $x \times y$ and is clearly contained in $(a \times b, c \times d)$. If it's the case that $a < c$, then the same argument follows since $(a,c)$ is open in $\mathbb{R}_d$ as well. Thus $\mathcal{T} \subseteq \mathcal{T}'$.
+
+Now let $x \times y \in \mathbb{R}_d \times \mathbb{R}$ and let $U \times (a,b)$ be a basis element of $\mathcal{T}'$ containing $x \times y$. This means that $x \in U$ and $a < y < b$. Note then that $(x \times a, x \times b)$ must contain $x \times y$ and is contained in $U \times (a,b)$. Since $(x \times a, x \times b)$ is a basis element from $\mathcal{T}$, we have $\mathcal{T}' \subseteq \mathcal{T}$ and since both inclusions hold, we must have $\mathcal{T} = \mathcal{T}'$.
+
+Let $\mathcal{T}''$ be the standard topology on $\mathbb{R} \times \mathbb{R}$. Let $(a,b) \times (c,d)$ be a basis element of $\mathcal{T}''$ and let $x \times y \in (a,b) \times (c,d)$. But note that this set is also a basis element of $\mathcal{T}'$ since $(a,b)$ is open in $\mathbb{R}_d$. Thus $\mathcal{T}'' \subseteq \mathcal{T}' = \mathcal{T}$. On the other hand, the element $\{a\} \times (b,c)$ is a basis element of $\mathcal{T}'$, but no basis element of $\mathcal{T}''$ is contained in this set since $\{a\}$ is not open in the standard topology on $\mathbb{R}$. Thus, the dictionary order topology on $\mathbb{R} \times \mathbb{R}$ is the same as the product topology on $\mathbb{R}_d \times \mathbb{R}$ which is strictly finer than the standard topology on $\mathbb{R} \times \mathbb{R}$.
+\end{proof}
+
+\begin{problem}
+Prove Theorem 19.2.
+\end{problem}
+\begin{proof}
+We first consider the box topology on $\prod_{\alpha \in J} X_{\alpha}$. Let $(x_{\alpha})_{\alpha \in J} \in \prod_{\alpha \in J} X_{\alpha}$. Then $x_{\alpha} \in X_{\alpha}$ for each $\alpha \in J$. But since each $X_{\alpha}$ has a basis $\mathcal{B}_{\alpha}$, for each $\alpha \in J$ there exists some $B_{\alpha}$ which contains $x_{\alpha}$. Then $(x_{\alpha})_{\alpha \in J} \in \prod_{\alpha \in J} B_{\alpha}$ so the first condition of bases is satisfied. For the second condition note that $\prod_{\alpha \in J} B_{\alpha} \cap \prod_{\alpha \in J} C_{\alpha} = \prod_{\alpha \in J} (B_{\alpha} \cap C_{\alpha})$ where $B_{\alpha}, C_{\alpha} \in \mathcal{B}_{\alpha}$. Then since each $\mathcal{B}_{\alpha}$ is a basis, there exists a $D_{\alpha} \in \mathcal{B}_{\alpha}$ such that $D_{\alpha} \subseteq B_{\alpha} \cap C_{\alpha}$. But then $\prod_{\alpha \in J} D_{\alpha} \subseteq \prod_{\alpha \in J} B_{\alpha} \cap \prod_{\alpha \in J} C_{\alpha}$ so the second condition is also satisfied.
+
+Now consider the product topology. Note that $\prod_{\alpha \in J} X_{\alpha}$ is one of the sets which we are considering since $B_{\alpha} \in \mathcal{B}_{\alpha}$ for finitely (namely zero) indices $\alpha$ and is equal to $X_{\alpha}$ for the remaining indices. Thus, the first condition of being a basis is trivially satisfied. Now suppose we have two such sets $\prod_{\alpha \in J} B_{\alpha}$ and $\prod_{\alpha \in J} C_{\alpha}$ where $B_{\alpha}, C_{\alpha} \in \mathcal{B}_{\alpha}$ for finitely many indices (not necessarily the same ones). Then $\prod_{\alpha \in J} B_{\alpha} \cap \prod_{\alpha \in J} C_{\alpha} = \prod_{\alpha \in J} (B_{\alpha} \cap C_{\alpha})$. There are four possibilities for the sets involved in this product---$B_{\alpha} \cap X_{\alpha}$, $X_{\alpha} \cap C_{\alpha}$, $X_{\alpha} \cap X_{\alpha}$ or $B_{\alpha} \cap C_{\alpha}$. The first three cases evaluate to $B_{\alpha}$, $C_{\alpha}$ and $X_{\alpha}$ respectively, and in the last case we know there exists some $D_{\alpha} \in \mathcal{B}_{\alpha}$ such that $D_{\alpha} \subseteq B_{\alpha} \cap C_{\alpha}$. Since all but finitely many of these terms are in $\mathcal{B}_{\alpha}$ we see that there exists some product containing finitely many basis elements from the sets $\mathcal{B}_{\alpha}$ which is a subset of the intersection $\prod_{\alpha \in J} B_{\alpha} \cap \prod_{\alpha \in J} C_{\alpha}$. This completes the second criterion for a basis and so we're done.
+\end{proof}
+
+\begin{problem}
+Prove Theorem 19.3.
+\end{problem}
+\begin{proof}
+Let $U$ be a basis element in $\prod_{\alpha \in J} A_{\alpha}$ when given the box topology. Then $U = \prod_{\alpha \in J} U_{\alpha}$ where each $U_{\alpha}$ is open in $A_{\alpha}$. But since each $A_{\alpha}$ is a subspace of $X_{\alpha}$, we can write $U_{\alpha} = V_{\alpha} \cap A_{\alpha}$ where $V_{\alpha}$ is open in $X_{\alpha}$. Then $U = \prod_{\alpha \in J} U_{\alpha} = \prod_{\alpha \in J} (V_{\alpha} \cap A_{\alpha}) = \prod_{\alpha \in J} V_{\alpha} \cap \prod_{\alpha \in J} A_{\alpha}$. Since each $V_{\alpha}$ is open in $X_{\alpha}$, this is the intersection of $\prod_{\alpha \in J} A_{\alpha}$ with an open set in $\prod_{\alpha \in J} X_{\alpha}$. Thus each basis element of $\prod_{\alpha \in J} A_{\alpha}$ can be written this way which shows that any open set can be written this way since open sets are unions of basis elements. Therefore $\prod_{\alpha \in J} A_{\alpha}$ is a subspace of $\prod_{\alpha \in J} X_{\alpha}$.
+
+Now let $U$ be a subbasis element in $\prod_{\alpha \in J} A_{\alpha}$ when given the product topology. Then $U = \prod_{\alpha \in J} U_{\alpha}$ where all but finitely many $U_{\alpha}$ are $A_{\alpha}$ and the rest are open in $A_{\alpha}$. Note that the finitely many $U_{\alpha}$ which are open in $A_{\alpha}$ can be written as $V_{\alpha} \cap A_{\alpha}$ where $V_{\alpha}$ is open in $X_{\alpha}$. So now $U = \prod_{\alpha \in J} (V_{\alpha} \cap A_{\alpha}) = \prod_{\alpha \in J} V_{\alpha} \cap \prod_{\alpha \in J} A_{\alpha}$ where all but finitely many $V_{\alpha}$ are $A_{\alpha}$. Note that all but finitely many of these intersections are $A_{\alpha} \cap A_{\alpha} = X_{\alpha} \cap A_{\alpha}$. Thus $U = \prod_{\alpha \in J} V_{\alpha} \cap \prod_{\alpha \in J} A_{\alpha}$ where finitely many of the $V_{\alpha}$ are $X_{\alpha}$ and the rest are open in $\prod_{\alpha \in J} X_{\alpha}$. This shows that any subbasis element of $\prod_{\alpha \in J} A_{\alpha}$ can be written as the intersection of an open set in $\prod_{\alpha \in J} X_{\alpha}$ with $\prod_{\alpha \in J} A_{\alpha}$ and is thus open in the subspace topology on $\prod_{\alpha \in J} A_{\alpha}$. Since open sets are just finite intersections of subbasis elements, we see that the result holds for any open set in $\prod_{\alpha \in J} A_{\alpha}$.
+\end{proof}
+
+\end{document}

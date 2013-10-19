@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26200\\
+
+March 4, 2010
+\end{flushright}
+
+\begin{center}
+Homework 8
+\end{center}
+
+\begin{problem}
+Let $A$ and $B$ be disjoint compact subspace of the Hausdorff space $X$. Show that there exist disjoint open sets $U$ and $V$ containing $A$ and $B$, respectively.
+\end{problem}
+\begin{proof}
+Note that since $A$ and $B$ are compact subspaces of a Hausdorff space they are necessarily closed. Then $X \backslash A$ and $X \backslash B$ are open. Since $A$ and $B$ are disjoint, $V = X \backslash A$ contains $B$ and $U = X \backslash B$ contains $A$.
+\end{proof}
+
+\begin{problem}
+Let $f : X \to Y$; let $Y$ be compact Hausdorff. Then $f$ is continuous if and only if the \emph{graph} of $f$,
+\[
+G_f = \{x \times f(x) \mid x \in X\},
+\]
+is closed in $X \times Y$.
+\end{problem}
+\begin{proof}
+Let $f(x_0) \in Y$ and consider a neighborhood $V$ of $f(x_0)$. Note that $Y \backslash V$ is closed. If $G_f$ is closed then $G_f \cap (X \times (Y \backslash V))$ is closed as well. But we also know that the projection $\pi_1 : X \times Y \to X$ is a closed map. If we apply $\pi_1$ to this set, we get all the $x \in X$ such that $f(x) \in Y \backslash V$. In particular, this set is closed and doesn't contain $x$. The complement of this set is a neighborhood $U$ of $x$ such that $U \times Y$ doesn't intersect $G_f \cap (X \times (Y \backslash V))$. This means that $f(U) \subseteq V$ and that $f$ is continuous.
+
+Conversely, suppose that $f$ is continuous. Let $(x,y) \in (X \times Y) \backslash G_f$. Then $y \neq f(x)$ so we can find disjoint neighborhoods $U$ and $V$ of $y$ and $f(x)$ respectively. Since $f$ is continuous there exists a neighborhood $W$ of $x$ such that $f(W) \subseteq V \subseteq Y \backslash U$. Therefore $W \times U \subseteq (X \times Y) \backslash G_f$. Thus $G_f$ is closed.
+\end{proof} 
+
+\begin{problem}
+Let $A$ and $B$ be subspaces of $X$ and $Y$, respectively; let $N$ be an open set in $X \times Y$ containing $A \times B$. If $A$ and $B$ are compact, then there exist open sets $U$ and $V$ in $X$ and $Y$, respectively, such that
+\[
+A \times B \subseteq U \times V \subseteq N.
+\]
+\end{problem}
+\begin{proof}
+Let $a \in A$. Cover the set $\{a\} \times B$ with basis elements $U_i \times V_i$. Since $B$ is compact we can choose finitely many of these sets to cover this set. Furthermore, we can choose $U_i$ and $V_i$, which are open in $A$ and $B$, to be basis elements in the subspace topology so that $U_i = U_i' \cap A$ and $V_i = V_i' \cap B$ where $U_i'$ and $V_i'$ are open in $X$ and $Y$ respectively. Let $W_a = \bigcap_i U_i'$. This is an open set in $X$ which contains $a$. Also, let $V_a = \bigcup_i V_i'$. This is an open set in $Y$ which contains $B$. Now, the sets $W_a$ form an open cover for $A$ so some finite subcover covers $A$. Let $U$ be the union of this finite collection and let $V$ be the intersection of the corresponding $V_a$. Since there are only finitely many of these sets, $V$ is open in $Y$. Furthermore, since each $V_a$ contains $B$, $B \subseteq V$ as well. Thus, $A \subseteq U$ and $B \subseteq V$. Since for each $a \in A$ we have $W_a \times V_a \subseteq N$, we also have $U \times V \subseteq N$.
+\end{proof}
+
+\begin{problem}
+Let $X$ be a compact Hausdorff space. Let $\mathcal{A}$ be a collection of closed connected subset of $X$ that is simply ordered by proper inclusion. Then
+\[
+Y = \bigcap_{A \in \mathcal{A}} A
+\]
+is connected.
+\end{problem}
+\begin{proof}
+Let $\{C, D\}$ be a separation of $Y$. Note that $C$ and $D$ are necessarily open in $Y$ so they are of the form $\bigcup_i (U_i \cap Y) = Y \cap \bigcup_i U_i$ and $\bigcup_i (V_i \cap Y) = Y \cap \bigcup_i V_i$ where $U_i$ and $V_i$ are open in $X$. Letting $U = \bigcup_i U_i$ and $V = \bigcup_i V_i$ we have disjoint sets $U$ and $V$ containing $C$ and $D$. Note that for $A \in \mathcal{A}$ the set $A \backslash (U \cup V)$ is closed. To see this, note that $X \backslash (A \backslash (U \cup V)) = X \backslash A$ which is open. Furthermore, since $\mathcal{A}$ was assumed to be ordered by inclusion, it follows that the sets of $A \backslash (U \cup V)$ is also ordered by inclusion. Finally, note that $A \backslash (U \cup V) \neq \emptyset$ since each $A$ is connected and otherwise $\{U \cap A, V \cap A\}$ would form a separation of $A$. Therefore this collection of $A \backslash (U \cup V)$ with $A \in \mathcal{A}$ is a collection of nonempty, nested, closed sets in a compact space $X$. Thus the set
+\[
+\bigcap_{A \in \mathcal{A}} (A \backslash (U \cup V)) = \left ( \bigcap_{A \in \mathcal{A}} A \right ) \backslash (U \cup V) \neq \emptyset.
+\]
+But this is a contradiction since $U \cap Y$ and $V \cap Y$ were assumed to form a separation of $Y$. Thus $Y$ must be connected.
+\end{proof}
+
+\begin{problem}
+Let $X$ be a compact Hausdorff space; let $\{A_n\}$ be a countable collection of closed sets of $X$. Show that if each set $A_n$ has empty interior in $X$, then the union $\bigcup A_n$ has empty interior in $X$.
+\end{problem}
+\begin{proof}
+Let $U$ be an open set of $X$. We wish to find a point of $U$ which is not in $\bigcup A_n$. Otherwise we would have $U \subseteq \bigcup A_n$ and the interior of the union would not be empty. Since the interior of $A_1$ is empty, we know $U \nsubseteq A_1$. Let $y \in U \backslash A_1$. Since $X$ is compact and Hausdorff and $A_1$ is closed we can find a neighborhood $U_1$ of $y$ such that $\overline{U_1} \cap A_1 = \emptyset$ and $\overline{U_1} \subseteq U$. For each $n$ and each set $U_{n-1}$ we choose a point $y \in U_{n-1} \backslash A_n$ and find a neighborhood $U_n$ of $y$ such that $\overline{U_n} \cap A_n = \emptyset$ and $\overline{U_n} \subseteq U_{n-1}$. Now note that $\{\overline{U_n}\}$ is a collection of nested, closed, nonempty sets in a compact space with the finite intersection property. Thus $\bigcap \overline{U_n}$ contains some point $x$. But $x \notin A_n$ for each $n$ and $U_1 \subseteq U$ so $x \in U$. Thus $x \in U \backslash \bigcup A_n$ and $\bigcup A_n$ must have empty interior.
+\end{proof}
+
+\begin{problem}
+Let $X$ be limit point compact.\\
+(a) If $f : X \to Y$ is continuous, does it follow that $f(X)$ is limit point compact?\\
+(b) If $A$ is a closed subset of $X$, does it follow that $A$ is limit point compact?\\
+(c) If $X$ is a subspace of the Hausdorff space $Z$, does it follow that $X$ is closed in $Z$?
+\end{problem}
+\begin{proof}
+(a) No. Consider the set $Y$, the indiscrete topology on two points, and let $X = \mathbb{Z}_+ \times Y$. Then $X$ is limit point compact. Let $f$ be $\pi_1 : \mathbb{Z}_+ \times Y \to \mathbb{Z}_+$. This map is continuous since given some subset $A \subseteq \mathbb{Z}_+$ we have $\pi_1^{-1}(A) = A \times Y = \{a_1\} \times Y \cup \{a_2\} \times Y \cup \dots$ which is open. But the image $\pi_1(X) = \mathbb{Z}_+$ is not limit point compact because $\mathbb{Z}_+$ has no limit points.
+
+(b) Let $A$ be a closed subset of $X$ and let $B$ be an infinite subset of $A$. Then $B$ has a limit point $x \in X$ because $X$ is limit point compact. But since $A$ is closed, $x \in A$ and $A$ is limit point compact as well.
+
+(c) No. Consider $\overline{S_{\Omega}}$ which is Hausdorff and contains $S_{\Omega}$. But $S_{\Omega}$ isn't closed in $\overline{S_{\Omega}}$ since it doesn't contain all its limit points.
+\end{proof}
+
+\end{document}

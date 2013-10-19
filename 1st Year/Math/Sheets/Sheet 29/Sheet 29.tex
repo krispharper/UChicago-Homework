@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 29: \pi is Irrational\newline
+
+\normalsize
+
+\textbf{Lemma 1}
+\textsl{For $n \in \mathbb{N}$ and some $a,b \in \mathbb{Z}$ let
+\[
+f(x) = \frac{1}{n!} x^n (a-bx)^n.
+\]
+Then $f(x) = f(a/b-x)$.}
+\begin{proof}
+We have
+\[
+f(\frac{a}{b} - x) = \frac{1}{n!} \left ( \frac{a}{b} - x \right )^n \left ( a-b \left ( \frac{a}{b}-x \right ) \right )^n = \frac{1}{n!} \left ( \frac{a-bx}{b} \right )^n \left (a - a + bx)^n = \frac{1}{n!} = \frac{1}{n!} (a-bx)^n x^n = f(x).
+\]
+\end{proof}
+
+\textbf{Lemma 2}
+\textsl{For $0 \leq x \leq a/b$ we have
+\[
+0 \leq f(x) \leq \frac{1}{n!} \left ( \frac{a}{b} \right )^n a^n.
+\]}
+\begin{proof}
+We have $f(x) \geq 0$ for $x \geq 0$ and so $0 \leq f(x)$ for $0 \leq x \leq a/b$. It now suffices to show that for $0 \leq x \leq a/b$ we have
+\[
+x^n (a-bx)^n \leq \left ( \frac{a}{b} \right )^n a^n.
+\]
+Notice that since $x \leq a/b$ the first term on the right hand side must be less than $(a/b)^n$ and clearly $(a-bx)^n < a^n$ which means we have the desired inequality.
+\end{proof}
+
+\textbf{Lemma 3}
+\textsl{We have $f^{(j)} (0)$ and $f^{(j)}(a/b)$ are integers for all $j$.}
+\begin{proof}
+Using the Chain Rule and the rules of differentiation we know that
+\[
+f^{(j)} = \frac{1}{n!} \sum_{k=1}^j \left ( \frac{n!}{(n-k)!} \right ) x^{n-k} \left ( \frac{n!}{(n-(j-k))!} \right ) (a-bx)^{n-(j-k)} (-b)^{j-k}
+\]
+for $0 \leq j \leq n$ (21.12, 21.16).
+Note then that $f^{(j)} (0) 
+\end{proof}
+
+\textbf{Lemma 4}
+\textsl{Let
+\[
+F(x) = f(x) + \dots + (-1)^j f^{(2j)} (x) + \dots + (-1)^n f^{(2n)} (x).
+\]
+Then $F(0)$ and $F(1)$ are integers.}

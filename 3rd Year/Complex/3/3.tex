@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27000\\
+
+October 22, 2009
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{problem}
+\label{star}
+A set $S$ is called star-shaped if there exists a point $z_0$ in $S$ such that the line segment between $z_0$ and any point $z$ in $S$ is contained in $S$. Prove that a star-shaped set is simply connected, that is, every closed path is homotopic to a point.
+\end{problem}
+\begin{proof}
+Let $\gamma$ be a closed path in $S$. Consider the function $\psi(t,s) = sz_0 + (1-s)\gamma(t)$. It's easy to see that $\psi_s$ is a closed curve for each $s$ and that $\psi$ is continuous. Also $\psi_0(t) = \gamma(t)$ and $\psi_1(t) = z_0$. Therefore each closed curve in $S$ is homotopic to a point.
+\end{proof}
+
+\begin{problem}
+Show that the set $\mathbb{C} \backslash \{z \mid \textup{Re}(z) \leq 0 \text{ and } |\textup{Im}(z)| \leq 1\}$ is simply connected (provide an explicit homotopy between any closed curve and a point).
+\end{problem}
+\begin{proof}
+Let $S = \mathbb{C} \backslash \{z \mid \textup{Re}(z) \leq 0 \text{ and } |\textup{Im}(z)| \leq 1\}$ and let $\gamma$ be a closed curve in $S$. Note that we may take $\gamma$ to be continuous by reparametrization. Thus $\gamma$ is the continuous image of a compact set is thus compact. Now let $a = \inf \{\text{Re}(z) \mid z \in \gamma\}$ and $b = \inf \{|\text{Im}(z)| - 1 \mid z \in \gamma\}$. Since $\gamma$ is compact, these sets are bounded and nonempty and so $a$ and $b$ exist. Note that $a$ is the "most negative" real part of $\gamma$ and $b$ is the closest $\gamma$ gets to $\{z \mid |\text{Im}(z)| \leq 1\}$. Furthermore, since $\gamma$ is compact, it has two points $a'$ and $b'$ such that $\text{Re}(a') = a$ and $\text{Im}(b') = b$. That is, it realizes these values.
+
+Now consider the real-valued function $f(x) = (-a/b)x + c$. Let $c = \text{Im}(a') + (a/b)\text{Re}(a')$. Then $f$ is a line in one variable. Furthermore, for $x \leq 0$, we see that $f(x) > 1$. This follows from how $a$ and $b$ are defined. Now let $z$ be the point such that $f(z) = 0$ and let $z_0 > z$. Define $\psi(s,t) = sz_0 + (1-s)\gamma(t)$ as in Problem~\ref{star}. It follows that $\psi$ is continuous and that $\psi_0 (t) = \gamma(t)$ and $\psi_1 (t) = z_0$. Additionally, for each $t \in [a,b]$, the line between $\gamma(t)$ and $z_0$ does not contain points in $\{z \mid \textup{Re}(z) \leq 0 \text{ and } |\textup{Im}(z)| \leq 1\}$. This follows because of how $f(x)$ is defined, and consequently how $z_0$ is defined. Therefore $\psi_s(t) \in S$ for all $s$ and $t$. Since we can find a $z_0$ for each closed curve, we see that each one is homotopic to a point and therefore $S$ is simply connected.
+\end{proof}
+
+\begin{problem}
+Let $U$ be a simply connected open set and let $f$ be a holomorphic function on $U$. Is $f(U)$ simply connected?
+\end{problem}
+\begin{proof}
+Consider the set $H = \{z \mid \text{Im}(z) > 0\}$ and let $f(z) = e^{2 \pi i z}$. If $z = x + iy$ then we have $f(z) = e^{-2 \pi y}e^{2 \pi i x}$. If $y > 0$ then $0 < e^{-2 \pi y} < 1$ and so $f(H) = D_1(0) \backslash \{0\}$ which is not simply connected. Any circle containing the origin is not homotopic to a point. Since $H$ is simply connected (it is an open convex set), we see that $f(U)$ is not always simply connected for a holomorphic function $f$ and a simply connected set $U$.
+\end{proof}
+
+\begin{problem}
+Prove: If $f \in C(\mathbb{C}$ and $f(z) \rightarrow 0$ as $|z| \rightarrow \infty$, then $f$ is bounded.
+\end{problem}
+\begin{proof}
+Let $\varepsilon > 0$. From the statement of the result, we know there exists $m > 0$ such that $|f(x)| < \varepsilon$ whenever $|z| > m$. Thus, $f$ is bounded on the set $\{z \mid |z| > m\}$. But the set $\{z \mid |z| \leq m\}$ is a compact set, and since $f$ is continuous, $f(\{z \mid |z| \leq m\})$ is compact, and thus bounded. Therefore $f$ is bounded on all of $\mathbb{C}$.
+\end{proof}
+
+\begin{problem}
+Find the integrals over the unit circle $\gamma$:\\
+(a) $\int_{\gamma} \frac{\cos z}{z} dz$.\\
+(b) $\int_{\gamma} \frac{\sin z}{z} dz$.\\
+(c) $\int_{\gamma} \frac{\cos (z^2)}{z} dz$.
+\end{problem}
+\begin{proof}
+(a) Use the Local Cauchy Theorem letting $f(z) = \cos z$ and $z_0 = 0$. Then
+\[
+1 = \cos(0) = f(z_0) = \frac{1}{2 \pi i} = \int_{\gamma} \frac{f(z)}{z-z_0} dz = \frac{1}{2 \pi i}\int_{\gamma} \frac{\cos z}{z} dz.
+\]
+Therefore $\int_{\gamma} \frac{\cos z}{z} dz = 2 \pi i$.
+
+(b) Use the method of part (a) letting $f(z) = \sin z$ and $z_0 = 0$. Since $f(z_0) = 0$, we know $\int_{\gamma} \frac{\sin z}{z} dz = 0$.
+
+(c) Use the method of part (a) letting $f(z) = \cos(z^2)$ and $z_0 = 0$. Since $f(z_0) = 1$ we know $\int_{\gamma} \frac{\cos (z)^2}{z} dz = 2 \pi i$.
+\end{proof}
+
+\begin{problem}
+Let $f \in H(U)$ and $g \in H(f(U))$ be such that $f'$ has no zero in the open set $U$ while $g$ has a zero of order $k$ at $w_0 = f(z_0)$ for some $z_0 \in U$. Show that $h = g \circ f$ has a zero of order $k$ at $z_0$.
+\end{problem}
+\begin{proof}
+Note that $h(z_0) = g(f(z_0)) = g(w_0) = 0$. Furthermore, note that each term of $h^{(n)}(z_0)$ for $1 \leq n < k$ has at least one power of $g^{(m)}(f(z_0)) = 0$ where $1 \leq m < n$. That is, every term is $0$. This can be verified by using the chain rule and product rule repeatedly and noting that each term must contain $g^{(m)}$ for some $1 \leq m < n$. But now note that $h^{(k)}(z_0)$ will contain the term $g^{(k)}(f(z_0))f'(z_0)^k$. Again, this term can be found by differentiating $g(f(z_0))$ $k$ times using the product and chain rules and always taking the first term of the result. But since $g(f(z_0))$ is a zero of order $k$ and $f'(z_0) \neq 0$, we see that $h^{(k)}(z_0) \neq 0$ and so $h$ has a zero of order $k$ at $z_0$.
+\end{proof}
+
+\begin{problem}
+\label{disk}
+Let $\mathbb{D} = D_1(0)$ and $f \in H(\mathbb{D})$ be such that $|f(z)| < 1$ for all $z \in \mathbb{D}$. Show that $|f'(0)| \leq 1$ (notice that $f$ need not be defined on $\partial \mathbb{D}$). How about if ``$|f(z)| < 1$'' is replaced by ``$|f(z) - 10i| < 1$''?
+\end{problem}
+\begin{proof}
+Let $R < 1$. Then $f \in H(\overline{D}_R(0))$ and thus $f$ is analytic on $\overline{D}_R(0)$. Now let $0 < R_1 < R$. Note that $||f||_R < 1$ by hypothesis. Now recall that for each $c \in \mathbb{C}$ we have
+\[
+|f'(0)| \leq \frac{R}{(R-R_1)^2} ||f-c||_R.
+\]
+This must be true for all $0 < R_1 < R < 1$ and for $c = 0$ as $R_1$ approaches $0$ and $R$ approaches $1$, the term on the right approaches $1$. Therefore $|f'(0)| \leq 1$. Letting $c = -10i$ handles the second case in the same manner.
+\end{proof}
+
+\begin{problem}
+Let $f \in H(\mathbb{D})$ be such that $\textup{Re}f(z) > 0$ for all $z \in \mathbb{D}$ and $f(0) = 1$. Show that $|f'(0)| \leq 2$.
+\end{problem}
+\begin{proof}
+Let $R = \{z \mid \text{Re}z > 0\}$. Let $g : R \rightarrow \mathbb{D}$ be a function such that $g(z) = \frac{1-z}{1+z}$. Then note that $|g(z) = \frac{|z-1|}{|z+1|} < 1$ for $z \in R$. This map is clearly injective, and is also surjective since $g^{-1}(z) = \frac{z+1}{1-z}$ as can easily be seen. Thus $g$ is a bijection from $R$ into $\mathbb{D}$. Let $h = g \circ f$. From Problem~\ref{disk} we know $1 \geq |h'(0)| = |g'(f(0))f'(0)|$. We know $f(0) = 1$ and $g'(z) = \frac{2}{(z+1)^2}$ so $g'(f(0)) = \frac{1}{2}$. Therefore $|f'(0)| \leq 2$.
+\end{proof}
+
+\begin{problem}
+Find $U$ open and $f \in H(U)$ such that $f$ is $2$-to-$1$ on $U$ (i.e., for all $w \in f(U)$ we have $|\{z \in U \mid f(z) = w\}| = 2$).
+\end{problem}
+\begin{proof}
+Let $U = \mathbb{C} \backslash 0$ and let $f = z^2$. We've shown that $z^n$ is an $n$-to-$1$ function and this is the case $n=2$. Note that $0$ is not included in the set since $0^2 = 0$. Then for $w \neq 0$ with $w = r^{i\theta}$ we have $w_1 = |w|e^{i\theta/2}$ and $w_2 = |w|e^{i\theta/2} e^{2 \pi i \theta/2}$.
+\end{proof}
+
+\begin{problem}
+Show that if $f$ is as in Problem 9, then $f'$ has no zeros in $U$.
+\end{problem}
+\begin{proof}
+If $f(z) = z^2$ then $f'(z) = 2z$. But then $f'(z) = 0$ only if $z = 0$ and $0 \notin U$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{**}{** Problem}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20700\\
+
+November 17, 2008
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Determine whether for a closed set $A$ and a single point $x$ the distance $d(x, A)$ is assumed for the following:\\
+1) For $\ell_n^2(\mathbb{R})$.\\
+2) For an arbitrary metric space, $(X, d)$.
+\end{**}
+\begin{proof}
+1) Suppose that $a = d(x,A) = \inf \{d(x,y) \mid y \in A\}$ is not assumed. Then we can choose points of $A$ which have a distance from $x$ which is arbitrarily close to $a$. Consider the set $S = \{y \in \mathbb{R}^n \mid d(x,y) = a\}$. Since $d(x, A)$ is not assumed, none of the points in $S$ are in $A$. Also, since $A$ is closed, none of these points are accumulation points of $A$. Thus for all $y \in A$ there exists $r_y \in \mathbb{R}$ such that $B_{r_y} (y) \cap A = \emptyset$. Let $s = \inf \{r_y \mid y \in S\}$. Then note that the set
+\[
+T = \bigcup_{y \in S} B_s(y)
+\]
+contains no points of $A$. Since $d(x, A)$ is not assumed, there exists a point of $y \in A$ such that $d(x,y) = a + s/2$. But then $y \in T$ as well. This is a contradiction and so $d(x, A)$ must be assumed.\newline
+
+2) Consider the $\mathbb{R} \backslash \{0\}$ with the usual metric. Then the set $(0,1]$ is closed since it contains all it's accumulation points, but $d(-1, (0,1])$ is not assumed since $0$ is not in the metric space.
+\end{proof}
+
+\begin{**}
+Given $p(x)/q(x) \in \mathbb{R}(x)$ with $p(x)/q(x) > 0$ show that there exists $N \in \mathbb{N}$ such that $1/x^N < p(x)/q(x)$.
+\end{**}
+\begin{proof}
+Choose $N > \deg(q(x))$. Since $p(x)/q(x) \neq 0$ we have $\deg(p(x)) \geq 0$. Then $\deg(p(x) x^N) \geq N > \deg(q(x))$ which implies that $q(x) < p(x) x^N$ and so $1/x^N < p(x)/q(x)$.
+\end{proof}
+
+\begin{**}
+For $p(x)/q(x) \in \mathbb{R}(x)$ define $|p(x)/q(x)| = 2^{\deg(p(x))-\deg(q(x))}$. Show that for $u,v \in \mathbb{R}(x)$ we have $|u+v| \leq \max (|u|, |v|)$ and equality holds if $|u| \neq |v|$.
+\end{**}
+\begin{proof}
+Note that for polynomials $p,q$ we have $\deg(p + q) \leq \max (\deg(p) + \deg(q))$. Let $u,v \in \mathbb{R}(x)$ such that $u = p/q$ and $v = r/s$ with $p,q,r,s \in \mathbb{R}[x]$. Then $u + v = (ps - qr)/qs$ and so
+\begin{align*}
+|u+v|
+&= \left | \frac{ps - qr}{qs} \right |\\
+&= 2^{\deg(ps - qr) - \deg(qs)}\\
+&\leq 2^{\max (\deg(ps), \deg(qr)) - \deg(q) - \deg(s)}\\
+&= 2^{\max (\deg(p) + \deg(s), \deg(q) + \deg(r)) - \deg(q) - \deg(s)}\\
+&= \max (2^{\deg(p) + \deg(s) - \deg(q) - \deg(s)}, 2^{\deg(q) + \deg(r) - \deg(q) - \deg(s)})\\
+&= \max (|u|, |v|).
+\end{align*}
+Suppose that $|u| \neq |v|$ and without loss of generality suppose that $|u| < |v|$. Then
+\[
+2^{\deg(p) - \deg(q)} < 2^{\deg(r) - \deg(s)}
+\]
+and
+\[
+\deg(p) + \deg(s) < \deg(r) + \deg(q).
+\]
+Then in the above calculation note that
+\[
+\max (\deg(p) + \deg(s), \deg(r) , \deg(q)) = \deg(r) + \deg(q)
+\]
+and so we have
+\[
+|u+v| = 2^{\deg(r) + \deg(q) - \deg(q) - \deg(s)} = 2^{\deg(r) - \deg(s)} = |v| = \max (|u|, |v|).
+\]
+\end{proof}
+
+\begin{**}
+Let $V$ be a vector space over $\mathbb{R}$ or $\mathbb{C}$. Show that if we have a norm defined on $V$ then for $u,v \in V$ $d(u,v) = ||u-v||$ is a metric on $V$.
+\end{**}
+\begin{proof}
+By definition of a norm $||v|| \geq 0$ and $||v|| = 0$ if and only if $v = 0$. Because of closure under addition, this directly implies that $d(u,v) \geq 0$ and $d(u,v) = 0$ if and only if $u = v$. Next, note that in a vector space we have commutativity of addition and so $u-v = -v+u$ and from the definition of a norm for some $a \in \mathbb{R}$ we have $||a v|| = |a| \cdot ||v||$. Then note that
+\[
+d(u,v) = ||u-v|| = |1| \cdot ||u-v|| = |-1| \cdot ||u-v|| = ||-1(u-v)|| = ||-u + v|| = ||v-u|| = d(v,u).
+\]
+Finally, let $w \in V$. From the definition of a norm we have $||u+v|| \leq ||u|| + ||v||$ and so
+\[
+d(u,w) = ||u-w|| = ||(u-v) + (v-w)|| \leq ||u-v|| + ||v-w||.
+\]
+Thus $d$ is a metric on $V$.
+\end{proof}
+
+\begin{**}
+$\mathbb{R}(x)$ is not complete.
+\end{**}
+\begin{proof}
+Let
+\[
+a_n = \sum_{i=0}^n \frac{1}{x^i}.
+\]
+Then let $N \in \mathbb{N}$ so that we have $1/x^N > 0$. Choose $M \in \mathbb{N}$ such that $M > N$. Let $m, n > M$ and without loss of generality suppose that $m < n$. Then we have
+\[
+|a_n - a_m| = \left | \sum_{i=m+1}^{n} \frac{1}{x^i} \right | = \left | \sum_{i=m+1}^{n} \frac{x^i}{x^n} \right | < \left | \frac{1}{x^M} \right | < \left | \frac{1}{x^N} \right |
+\]
+where the final sum is a ratio of a polynomial of degree $m+1$ over a polynomial of degree $n$ with $m < n$ and $m,n > M$. Thus, the sequence is a Cauchy sequence. Suppose that it converges to $p(x)/q(x) \in \mathbb{R}(x)$. Then consider
+\[
+\left | a_n - \frac{p(x)}{q(x)} \right | = \left | \sum_{i=0}^{n} \frac{1}{x^i} - \frac{p(x)}{q(x)} \right | = \left | \sum_{i=0}^{n} \frac{x^i}{x^n} - \frac{p(x)}{q(x)} \right | = \left | \frac{q(x) \sum_{i=0}^{n} x^i - x^n p(x)}{x^n q(x)} \right | \geq 2^{n + \min (\deg(p(x), q(x)) - n - \deg(q(x))}.
+\]
+Since we can bound the degree of the difference between the $n$th term and $p(x)/q(x)$ below, we see that the sequence cannot converge. For it to converge, the difference in degrees of the numerator and the denominator would have to tend towards $- \infty$.
+\end{proof}
+
+\begin{**}
+A set $A \subseteq \mathbb{R}(x)$ is open in the order topology if and only if it is open in the metric topology.
+\end{**}
+\begin{proof}
+Let $A \subseteq \mathbb{R}(x)$ be open in the order topology. Let $u = p/q$. Then there exists $N \in \mathbb{N}$ such that $(u - 1/x^N, u + 1/x^N) \subseteq A$. Note that this implies that $-1/x^N < u < 1/x^N$. Define
+\[
+B_{2^{-N}}(u) = \{a \in \mathbb{R}(x) \mid d(u,a) < 2^{-N}\}
+\]
+and let $v \in B_{2^-{N}}(a)$ such that $v = r/s$. Then $|u-v| < 2^{-N}$ and so
+\[
+\deg(ps-qr) - \deg(qs) < -N.
+\]
+This implies
+\[
+\deg(ps-qr) + N < \deg(qs)
+\]
+which means $(ps-qr)x^N < qs$. We then have $u-v < 1/x^N$. Thus $v \in (u - 1/x^N, u + 1/x^N)$ and so $B_{2^{-N}}(u) \subseteq (u - 1/x^N, u + 1/x^N) \subseteq A$. Therefore, if $A$ is open in the order topology it is also open in the metric topology.\newline
+
+Conversely, assume that $A$ is open in the metric topology. Then for all $u \in A$ with $u = p/q$ there exists some $r \in \mathbb{R}$ such that $B_r(u) \subseteq A$. Note that we can replace $r$ with $2^{-N}$ for some $N \in \mathbb{N}$ such that $2^{-N} < r$. Then $B_{2^{-N}}(u) \subseteq A$. Let $v \in (u - 1/x^N, u + 1/x^N)$ such that $v = r/s$. Then $-1/x^N < u-v < 1/x^N$ and
+\[
+(ps - qr)x^N < qs.
+\]
+This implies
+\[
+\deg(ps-qr) + N < \deg(qs)
+\]
+so
+\[
+\deg(ps - qr) - \deg(qs) < -N.
+\]
+Then $|u-v| < 2^{-N}$ and so $v \in B_{2^{-N}}(u)$. Therefore $(u - 1/x^N, u + 1/x^N) \subseteq B_{2^{-N}}(u)$. Therefore if $A$ is open in the metric topology it is also open in the order topology.
+\end{proof}
+
+\end{flushleft}
+\end{document}

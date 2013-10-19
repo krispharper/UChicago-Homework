@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\rank}{\text{rank}}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+CMSC 27500\\
+
+April 15, 2009
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{flushleft}
+
+\begin{problem}
+Let $G$ be a simple graph with incidence matrix $M$.\\
+1) Show that the adjacency matrix of its line graph $L(G)$ is $M^TM - 2I$, where $I$ is the $m \times m$ identity matrix.\\
+2) Using the fact that $M^TM$ is positive-semidefinite, deduce that each eigenvalue of $L(G)$ is at least $-2$ and if the rank of $M$ is less than $m$, then $-2$ is an eigenvalue of $L(G)$.
+\end{problem}
+\begin{proof}
+1) Consider the $ij$th element of $M^TM$. This is the $i$th column of $M^T$ dotted with the $j$th row of $M$. These vectors correspond to $i$th and $j$th edges of $G$, respectively, with a $1$ for each vertex the edge ends at and a $0$ otherwise. Since $G$ is simple, each of these vectors will have exactly two $1$ entries, one for each of the two ends, and all other entries as $0$. In the dot product sum, the only terms which will be nonzero are those in which the edges share a vertex. Then this will give the correct number for the adjacency matrix for the line graph. Notice, however, that the diagonal elements of $M^TM$ will always be $2$, since an edge vector dotted with itself will count the two ends of the edge and nothing else. Thus, we must subtract $2$ from each diagonal element to obtain the true adjacency matrix, $M^TM - 2I$.\newline
+
+2) Since $M^TM$ is positive-semidefinite, for all real vectors $x \in \mathbb{R}^m$ we have $x^T(M^TM)x \geq 0$. Consider some eigenvalue, $\lambda$, of $M^TM - 2I$. Then we have
+\[
+(M^TM - 2I)x = \lambda x
+\]
+and
+\[
+x^T(M^TM - 2I)x = x^T \lambda x = x^Tx \lambda.
+\]
+By the distributive property we have
+\[
+\lambda x^Tx = x^T(M^TM)x - x^T(2I)x \geq 0 - 2 = -2.
+\]
+Note that $x^Tx \geq 0$ and so $\lambda \geq -2$. Now suppose $\rank (M) < m$. Note that $\rank(M) = \rank(M^TM) < m$. But then we can write one column of $M^TM$ as a linear combination of the others and so $\det (M^TM) = 0$. But then there's some eigenvalue $\lambda$ of $M^TM$ which is $0$ and so there exists an eigenvalue of $M^TM - 2I$ which is $-2$.
+\end{proof}
+
+\begin{problem}
+Let $T$ be a triangle and consider a triangulation of $T$. Assign the colors red, blue, and green to the vertices of these triangles in such a way that each color is missing from one side of T but appears on the other two sides.\\
+1) Show that the number of triangles in the subdivision whose vertices receive all three colors is odd.\\
+2) Deduce that there is always at least one such triangle.
+\end{problem}
+\begin{proof}
+1) Create a graph, $G$, from the triangulation such that each triangle corresponds to one vertex of $G$ and a final vertex is placed outside of $T$. Two vertices are connected by an edge if they share a side with endpoints that are red and blue. Consider the side of $T$ between its red and blue vertices. This side must have an odd number of red-blue edges since it starts on red and ends on blue. Thus the degree of the vertex outside of $T$ must be odd. But we know there are an even number of vertices with odd degree, and so in the rest of the graph there must be an odd number of vertices with odd degree. Note that there can be no vertices with degree $3$ since that would imply a triangle has three red-blue sides. The only positive odd number less than $3$ is $1$, which clearly corresponds to having one red-blue side and a green third vertex. Therefore, there must be an odd number of triangles with three differently colored vertices.\newline
+
+2) It's clear that since $0$ is even, $1$ is the fewest number of such triangles possible.
+\end{proof}
+
+\begin{problem}
+1) Let $(P, \mathcal{L})$ be a finite projective plane. Show that there is an integer $n \geq 2$ such that $|P| = |\mathcal{L}| = n^2 + n + 1$, each points lies on $n+1$ lines, and each line contains $n+1$ points (the instance $n=2$ is the Fano plane).\\
+2) How many vertices has the incidence graph of a finite projective plane of order $n$, and what are their degrees?
+\end{problem}
+\begin{proof}
+1) Let $p \in P$ and $l \in \mathcal{L}$ such that $p \in l$. Every point on $l$ is joined to $p$ by a distinct line. Likewise, every line through $p$ intersects $l$ at a distinct point. Thus, the number of points on $l$ and lines through $p$ must be the same. Now consider a new line $m$ and a new point $q$ such that $q$ is not on $l$ or $m$. The number of lines through $q$ must be equal to the number of points on $l$ as well as the number of points on $m$. Thus, the number of lines through $p$ and the number of lines through $q$ are the same and the number of points on $l$ and the number of points on $m$ are the same. Thus, every line has the same number of points as every point has lines. Call this number $n+1$. Now consider a line $l$. There are $n+1$ points on $l$, and each point as $n$ other lines going through it. All of these lines are distinct because two points on $l$ cannot coincide with one line other than $l$. Thus there are $n(n+1)$ lines passing through $l$, plus $l$ itself so there are $n^2 + n + 1$ total lines. Now consider a point $p$. There are $n+1$ lines passing through $p$. Each of these lines has $n+1$ points, one of which is $p$. All these points are distinct, there can't be two lines passing through $p$ which share a common point since they already share $p$. Thus there are $n(n+1)$ points on lines passing through $p$, plus $p$ itself for a total of $n^2 + n + 1$ points.\newline
+
+2) The incidence graph of a finite projective plane is a bipartite graph where one set of vertices is the set of points and the other set of vertices is the set of lines. Since there are $n^2+n+1$ points and lines, there are $2(n^2+n+1)$ vertices in the incidence graph. Since each point is on $n+1$ lines and each line contains $n+1$ points, the degree of each vertex is $n+1$.
+\end{proof}
+
+\begin{problem}
+1) Show that the $n$-cube is a Cayley graph.\\
+2) Let $G$ be a Cayley graph $CG(\Gamma, S)$ and let $x$ be an element of $\Gamma$. Show that the mapping $\alpha_x$ defined by the rule that $\alpha_x(y) = yx$ is an automorphism of $G$. Deduce that every Cayley graph is vertex-transitive.\\
+3) By considering the Peterson graph, show that not every vertex-transitive graph is a Cayley graph.
+\end{problem}
+\begin{proof}
+1) Consider the set of all binary $n$-tuples. This forms a group under addition where $(x_1, x_2, \dots , x_n)$ and $(y_1, y_2, \dots , y_n)$ add component-wise using the laws of $\mathbb{F}_2$. Note then that every element of this group is its own inverse, since adding two $1$s or two $0$s still produces a $0$. Now let $S$ be the set of all $n$-tuples which have a $1$ for one component and $0$ for all others. Consider two $n$-tuples which differ by one component, say $a = (x_1, x_2, \dots , 0, \dots , x_n)$ and $b = (x_1, x_2, \dots , 1, \dots , x_n)$. Since $b^{-1} = b$ we have $a+b^{-1} = a+b = (0, 0, \dots , 1, \dots , 0)$ and so $a + b^{-1} \in S$. If two $n$-tuples differ by more than one element then they can't be in $S$ since their sum will have more than one component with a $1$. This shows that the $n$-cube is a Cayley graph.\newline
+
+2) The properties of a group show that $\alpha_x$ is a permutation of the vertices in $G$. It remains to be shown that adjacency is preserved. Let $ab$ be an edge in $G$. Then $\alpha_x(a) = ax$ and $\alpha_x(b) = bx$. Note that $ab^{-1}$ is in the generating set $S$ since $ab$ is an edge in $G$. Then $a(xx^{-1})b^{-1} = (ax)(x^{-1}b^{-1}) = (ax)(bx)^{-1}$ is in $S$. Then adjacency is preserved since $\alpha_x(a)\alpha_x(b)$ is an edge. Give $a,b \in \Gamma$, there must exist $x \in \Gamma$ such that $ax = b$. Namely, $x = a^{-1}b$. Now $\alpha_x(a) = b$ which shows that any two points of $G$ are similar.\newline
+
+3) Note that the Petersen graph is vertex transitive, as is shown by various isomorphic drawings of it. Suppose that the Petersen graph is a Cayley graph. Then the vertices compose a group, $G$, of order $10$. There are $30$ edges in the graph, but the subset $S \subseteq G$ which determines the edges can have at most $9$ elements (the identity cannot be part of $S$). The symmetry of the graph prevents $30$ edges from being reduced to only $9$ elements. Thus there are more than $9$ elements of $S$ which is a contradiction. Therefore the Petersen graph is not a Cayley graph.
+\end{proof}
+
+\begin{problem}
+Let $D$ be a digraph.\\
+1) Show that $\sum_{v \in V} d^- (v) = m$.\\
+2) Using the Principle of Directional Duality, deduce that $\sum_{v \in V} d^+ (v) = m$.
+\end{problem}
+\begin{proof}
+1) Every edge in $D$ has precisely one head and $d^-(v)$ counts all of the heads which end at $v$. Summing over all $v \in V$ counts all the heads in $D$. But then this must be the total number of edges in $D$.\newline
+
+2) We take the converse, $D'$, of $D$ and observe that the sum of all indegrees is equal to $m$ in $D'$. Thus, sum sum of all outdegrees in $D$ must be equal to $m$ as well.
+\end{proof}
+
+\begin{problem}
+Let $M$ be the incidence matrix of a digraph.\\
+1) Show that $M$ is totally unimodular.\\
+2) Deduce that the matrix equation $Mx = b$ has a solution in integers provided that it is consistent and the vector $b$ is integral.
+\end{problem}
+\begin{proof}
+1) Note that by definition, $M$ only contains elements which are $-1$, $0$, and $1$. Let $A$ be a $n \times n$ submatrix of $M$ and use induction on $n$. The base case is trivial, since each element is $-1$, $0$, or $1$. Suppose that all $n \times n$ submatrices of $M$ have a determinant $-1$, $0$ or $1$. Consider an $n+1 \times n+1$ submatrix. The $n+1$st row of this matrix must contain either all $0$s, one of $1$ or $-1$ or precisely one of each $1$ and $-1$. In the case of a row of $0$s, we have $\det (A) = 0$. In the case of exactly one of each $1$ and $-1$, we have the rows are linearly dependent and so we can create a row of $0$s. Now suppose that there is exactly one nonzero element. We can extend $A$ to include this row and the apply the induction hypothesis. This shows that any $n \times n$ submatrices have determinant $-1$, $0$ or $1$.\newline
+
+2) Since the matrix $M$ is unimodular, all row operations on $M$ will only result in a matrix with elements $-1$, $0$ and $1$. This means that $M$ can be row-reduced so that the solutions to each value of $x$ is simply the positive or negative corresponding value of $b$. Since $b$ is integral, the result follows.
+\end{proof}
+
+\end{flushleft}
+\end{document}

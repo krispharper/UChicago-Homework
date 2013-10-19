@@ -1,0 +1,219 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\renewcommand{\th}{^{\textup{th}}}
+\newcommand{\tr}{\textup{Tr}}
+\newcommand{\aut}{\textup{Aut}}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26700\\
+
+October 11, 2010
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{problem}
+Let $V$ be any $G$-representation, $G$ finite. Prove that for any $g \in G$
+\[
+| \chi_V(g) | \leq \dim (V).
+\]
+\end{problem}
+\begin{proof}
+Let $g \in G$ with order $k$ and suppose $\dim(V) = n$. Note that $\chi_V(g) = \tr(g|_V)$ is the sum of the eigenvalues for $g$. This can be seen by putting the matrix representation for $g$ in Jordan canonical form so that the eigenvalues are on the diagonal. Note also that each eigenvalue is an $k\th$ root of unity since $g$ has finite order. Thus, we are reduced to showing that the sum of $n$ $k\th$ roots of unity have norm less than $n$. But this is obvious using the triangle inequality
+\[
+|\chi_V(g)| = | \tr(g|_V) | = \left | \sum \lambda_i \right | \leq \sum | \lambda_i | = n = \dim(V).
+\]
+\end{proof}
+
+\begin{problem}
+If $V$ is the permutation representation associated to the action of a group $G$ on a finite set $X$, show that $\chi_V(g)$ is the number of elements of $X$ fixed by $g$.
+\end{problem}
+\begin{proof}
+Let $g \in G$ and suppose $g \mapsto \sigma$ in $\aut(X)$. Let $X = \{x_1, \dots x_n\}$. Then consider the matrix $A = [a_{ij}]$ where
+\[
+a_{ij} =
+\begin{cases}
+1 & \text{if $\sigma(x_i) = x_j$}\\
+0 & \text{otherwise}
+\end{cases}.
+\]
+Note that for an arbitrary vector $\mathbf{x} = (\alpha_1, \dots , \alpha_n)$ in $V$, we have $A \mathbf{x} = (\alpha_{\sigma(1)}, \dots , \alpha_{\sigma(n)})$. Thus, $A$ is the matrix representation of $g$. Therefore $\chi_V(g) = \tr(A) = \sum a_{ii}$ is the number of elements with $\sigma(x_i) = x_i$, or $g x_i = x_i$.
+\end{proof}
+
+\begin{problem}
+Find the decomposition of the representation $V^{\otimes n}$ using character theory.
+\end{problem}
+\begin{proof}
+By the multiplicative property of characters, $V^{\otimes n}$ has character $(\chi_V)^n$ which takes values $2^n$, $0$ and $(-1)^n$ on the conjugacy classes $[1]$, $[(1 \; 2)]$ and $[(1 \; 2 \; 3)]$ respectively. We are now looking for $a_n$, $b_n$, $c_n$ such that $(\chi_V)^n = a_n \chi_U + b_n \chi_{U'} + c_n \chi_V$. Let
+\[
+\begin{tabular}{ccc}
+$\displaystyle{a_n = b_n = \frac{2^{n-1} - (-1)^{n-1}}{3}}$ & and & $\displaystyle{c_n = \frac{2^n - (-1)^n}{3}}$.
+\end{tabular}
+\]
+Then on $[1]$,
+\begin{align*}
+a_n \chi_U(1) + b_n \chi_{U'}(1) + c_n \chi_V(1)
+&= \frac{2^{n-1} - (-1)^{n-1}}{3} + \frac{2^{n-1} - (-1)^{n-1}}{3} + 2 \frac{2^n - (-1)^n}{3}\\
+&= \frac{2}{3} (2^{n-1} - (-1)^{n-1} + 2^n - (-1)^n)\\
+&= \frac{2}{3} (3 \cdot 2^{n-1} + 1 - 1)\\
+&= 2^n\\
+&= (\chi_V(1))^n
+\end{align*}
+on $[(1 \; 2)]$,
+\[
+a_n \chi_U((1 \; 2)) + b_n \chi_{U'}((1 \; 2)) + c_n \chi_V((1 \; 2)) = \frac{2^{n-1} - (-1)^{n-1}}{3} - \frac{2^{n-1} - (-1)^{n-1}}{3} = 0 = (\chi_V((1 \; 2)))^n
+\]
+and on $[(1 \; 2 \; 3)]$,
+\begin{align*}
+a_n \chi_U((1 \; 2 \; 3)) + b_n \chi_{U'}((1 \; 2 \; 3)) + c_n \chi_V((1 \; 2 \; 3))
+&= \frac{2^{n-1} - (-1)^{n-1}}{3} + \frac{2^{n-1} - (-1)^{n-1}}{3} - \frac{2^n - (-1)^n}{3}\\
+&= 2 \frac{2^{n-1} - (-1)^{n-1}}{3} - \frac{2^n - (-1)^n}{3}\\
+&= \frac{2^n - 2(-1)^{n-1} - 2^n + (-1)^n}{3}\\
+&= (-1)^n\\
+&= (\chi_V((1 \; 2 \; 3)))^n.
+\end{align*}
+Thus $V^{\otimes n} \cong U^{a_n} \oplus U'^{b_n} \oplus V^{c_n}$ with the values of $a_n$, $b_n$ and $c_n$ given.
+\end{proof}
+
+\begin{problem}
+The orthogonality of the rows of the character table is equivalent to an orthogonality for the columns (assuming the fact that there are as many rows as columns). Written out, this says:\\
+(i) For $g \in G$,
+\[
+\sum_{\chi} \overline{\chi(g)} \chi(g) = \frac{|G|}{c(g)},
+\]
+where the sum is over all the irreducible characters, and $c(g)$ is the number of elements in the conjugacy class of $g$.\\
+(ii) If $g$ and $h$ are elements of $G$ that are not conjugate, then
+\[
+\sum_{\chi} \overline{\chi(g)} \chi(h) = 0.
+\]
+\end{problem}
+\begin{proof}
+Let $C$ be the square matrix with entries from a given character table. Define $C'$ by taking each column in $C$ and multiplying each element of this column by $\sqrt{c(g)/|G|}$. Note that for the rows of $C$ we have
+\[
+\frac{1}{|G|}\sum_{g \in G} \overline{\chi_V(g)} \chi_W(g) = \sum_{[g]} \frac{c(g)}{|G|} \overline{\chi_V(g)}\chi_W(g) = \begin{cases} 1 & V \cong W\\ 0 & \text{otherwise} \end{cases}.
+\]
+Thus multiplying by this factor causes the rows of $C'$ to be orthonormal under the standard inner product.
+
+Now, supposing the columns of $C'$ are orthonormal using the standard inner product, then the columns of $C$ must be orthonormal using the given inner product because a factor of $|G|/c(g)$ will pull out of $\sum_{\chi} \overline{\chi(g)}\chi(g)$.
+
+Therefore, all that remains to be shown is that if a matrix has orthonormal rows, then it has orthonormal columns. Suppose $A$ is a matrix with orthonormal rows and let $A^*$ denote the conjugate transpose of $A$. Then by the definition of matrix multiplication we have $A A^* = I$. Hence $A$ has an inverse $A^* = A^{-1}$. Multiplying on the left by $A^{-1}$ and then on the right by $A$ gives $A^* A = I$. But again by the definition of matrix multiplication this is precisely what it means for the columns of $A$ to be orthonormal. Thus if the rows of $A$ are orthonormal, the columns must be as well.
+\end{proof}
+
+\begin{problem}
+Verify the last row of this table from (2.10) or (2.20).
+\end{problem}
+\begin{proof}
+We compute the following inner products
+\begin{align*}
+(\chi_U, \chi_W)
+&= \frac{1}{|G|} \sum_{g \in G} \overline{\chi_U(g)} \chi_W(g)\\
+&= \frac{1}{|G|} \sum_{[g]} c(g) \overline{\chi_U(g)} \chi_W(g)\\
+&= \frac{1}{24} (1 (1 \cdot 2) + 6 (1 \cdot 0) + 8(1 \cdot -1) + 6(1 \cdot 0) + 3(1 \cdot 2)) = 0.
+\end{align*}
+\begin{align*}
+(\chi_{U'}, \chi_W)
+&= \frac{1}{|G|} \sum_{g \in G} \overline{\chi_{U'}(g)} \chi_W(g)\\
+&= \frac{1}{|G|} \sum_{[g]} c(g) \overline{\chi_{U'}(g)} \chi_W(g)\\
+&= \frac{1}{24} (1 (1 \cdot 2) + 6 (-1 \cdot 0) + 8(1 \cdot -1) + 6(-1 \cdot 0) + 3(1 \cdot 2)) = 0.
+\end{align*}
+\begin{align*}
+(\chi_V, \chi_W)
+&= \frac{1}{|G|} \sum_{g \in G} \overline{\chi_V(g)} \chi_W(g)\\
+&= \frac{1}{|G|} \sum_{[g]} c(g) \overline{\chi_V(g)} \chi_W(g)\\
+&= \frac{1}{24} (1 (3 \cdot 2) + 6 (1 \cdot 0) + 8(0 \cdot -1) + 6(-1 \cdot 0) + 3(-1 \cdot 2)) = 0.
+\end{align*}
+\begin{align*}
+(\chi_{V'}, \chi_W)
+&= \frac{1}{|G|} \sum_{g \in G} \overline{\chi_{V'}(g)} \chi_W(g)\\
+&= \frac{1}{|G|} \sum_{[g]} c(g) \overline{\chi_{V'}(g)} \chi_W(g)\\
+&= \frac{1}{24} (1 (3 \cdot 2) + 6 (-1 \cdot 0) + 8(0 \cdot -1) + 6(1 \cdot 0) + 3(-1 \cdot 2)) = 0.
+\end{align*}
+\begin{align*}
+(\chi_W, \chi_W)
+&= \frac{1}{|G|} \sum_{g \in G} \overline{\chi_W(g)} \chi_W(g)\\
+&= \frac{1}{|G|} \sum_{[g]} c(g) \overline{\chi_W(g)} \chi_W(g)\\
+&= \frac{1}{24} (1 (2 \cdot 2) + 6 (0 \cdot 0) + 8(-1 \cdot -1) + 6(0 \cdot 0) + 3(2 \cdot 2)) = 1.
+\end{align*}
+\end{proof}
+
+\begin{problem}
+\label{a4table}
+The alternating group $A_4$ has four conjugacy classes. Three representations $U$, $U'$ and $U''$ come from the representations of
+\[
+A_4 / \{1, (1 \; 2)(3 \; 4), (1 \; 3)(2 \; 4), (1 \; 4)(2 \; 3)\} \cong \mathbb{Z}/3\mathbb{Z},
+\]
+so there is one more irreducible representation $V$ of dimension $3$. Compute the character table, with $\omega = e^{2 \pi i/3}$:
+\[
+\begin{array}{c|cccc}
+& 1 & 4 & 4 & 3\\
+A_4 & 1 & (1 \; 2 \; 3) & (1 \; 3 \; 2) & (1 \; 2)(3 \; 4)\\
+\hline
+U & 1 & 1 & 1 & 1\\
+U' & 1 & \omega & \omega^2 & 1\\
+U'' & 1 & \omega^2 & \omega & 1\\
+V & 3 & 0 & 0 & -1
+\end{array}
+\]
+\end{problem}
+\begin{proof}
+Let $U$ be the trivial representation so that $\chi_U$ has values $(1, 1, 1, 1)$. We also have the one dimensional representations $U'$ and $U''$ which have values $(1, \omega, \omega^2, 1)$ and $(1, \omega^2, \omega, 1)$. Note that $(\chi_{U'}, \chi_{U'}) = (\chi_{U''}, \chi_{U''}) = 1$ so each of these are irreducible. To find the values for the remaining character $\chi_V$, we note that $V$ must have dimension $3$ so that $1^2 + 1^2 + 1^2 + (3^2) = 12$. Thus $\chi_V$ has values $(3, a, b, c)$ such that $9 + 4a^2 + 4b^2 + 3c^2 = 12$, or $4a^2 + 4b^2 + 3c^2 = 3$. Since $a$, $b$, and $c$ are integral, it follows immediately that $a = b = 0$ and $c = \pm 1$. Now, taking the inner product $(\chi_U, \chi_V) = 1(1 \cdot 3) + 4(1 \cdot 0) + 4(1 \cdot 0) + 3(1 \cdot c) = 0$, we see that $c = -1$. Thus $\chi_V$ has values $(3, 0, 0, -1)$ and the table is as desired.
+\end{proof}
+
+\begin{problem}
+Consider the representations of $S_4$ and their restrictions to $A_4$. Which are still irreducible when restricted, and which decompose? Which pairs of nonisomorphic representations of $S_4$ become isomorphic when restricted? Which representations of $A_4$ arise as restrictions from $S_4$?
+\end{problem}
+\begin{proof}
+Let $X = U^{a_1} \oplus U'^{a_2} \oplus V^{a_3} \oplus V'^{a_4} \oplus W^{a_5}$ be an arbitrary representation of $S_4$ and let $Y = U^{b_1} \oplus U'^{b_2} \oplus U''^{b_3} \oplus V^{b_4}$ be it's restriction to $A_4$. It can be easily seen from the character tables that $U$ and $U'$ both restrict to $U$ and $V$ and $V'$ both restrict to $V$. Thus $b_1 = a_1 + a_2$ and $b_4 = a_3 + a_4$. Furthermore $W$ decomposes into $U'$ and $U''$ since adding these characters gives the character for $W$. Thus $b_2 = b_3 = a_5$.
+
+To answer which representations are irreducible and which decompose we set one $a_i = 1$ and $a_j = 0$ for $i \neq j$. Then it's clear that the representation will be irreducible if $i = 1$, $i = 2$, $i = 3$ or $i = 4$ and will decompose if $i = 5$.
+
+For the second question, we pick two nonisomorphic representations $X$ and $Z$ of $S_4$ with multiplicities $a_i$ and $c_i$ such that $a_i \neq c_i$ for at least one $i$. Clearly if $i = 5$, the restriction will be nonisomorphic. If $i = 1$ and we have $a_1 \neq c_1$, $a_2 \neq c_2$ with $a_1 + a_2 = c_1 + c_2$, then the restriction will be isomorphic. The same can be said about $a_3$, $c_3$, $a_4$ and $c_4$. This covers all the possibilities, so the nonisomorphic pairs which become isomorphic are $X$ and $Z$ with multiplicities $a_i$ and $c_i$ such that $a_1 \neq c_1$ but $a_1 + a_2 = c_1 + c_2$ or $a_3 \neq c_3$ but $a_3 + a_4 = c_3 + c_4$.
+
+To answer the final question we simply look at the values for $a_i$ and $b_i$. The only restriction needed is that $b_2 = b_3$ since any nonzero values for $b_1$ and $b_4$ can be written as sums $a_1 + a_2$ and $a_3 + a_4$ respectively. Thus representations of $A_4$ in which $U'$ and $U''$ have the same multiplicity are restrictions from $S_4$.
+\end{proof}
+
+\begin{problem}
+Let $V$ be the standard representation of the symmetric group $S_4$. Decompose the tensor product $V \otimes V$ as a sum of irreducible representations. You are allowed to use the character table for $S_4$.
+\end{problem}
+\begin{proof}
+We know $V$ takes the values $(3, 1, 0, -1, -1)$ so $\chi_{V \otimes V} = (\chi_V)^2$ has values $(9, 1, 0, 1, 1)$. So now we seek $a$, $b$, $c$, $d$, and $e$ such that
+\[
+a \left ( \begin{array}{c} 1 \\ 1 \\ 1 \\ 1 \\ 1 \end{array} \right ) + b \left ( \begin{array}{c} 1 \\ -1 \\ 1 \\ -1 \\ 1 \end{array} \right ) + c \left ( \begin{array}{c} 3 \\ 1 \\ 0 \\ -1 \\ -1 \end{array} \right ) + d \left ( \begin{array}{c} 3 \\ -1 \\ 0 \\ 1 \\ -1 \end{array} \right ) + e \left ( \begin{array}{c} 2 \\ 0 \\ -1 \\ 0 \\ 2 \end{array} \right ) = \left ( \begin{array}{c} 9 \\ 1 \\ 0 \\ 1 \\ 1 \end{array} \right ).
+\]
+We can find these values by row reducing the following matrix
+\[
+\left (
+\begin{array}{ccccc|c}
+1 & 1 & 3 & 3 & 2 & 9\\
+1 & -1 & 1 & -1 & 0 & 1\\
+1 & 1 & 0 & 0 & -1 & 0\\
+1 & -1 & -1 & 1 & 0 & 1\\
+1 & 1 & -1 & -1 & 2 & 1
+\end{array}
+\right ).
+\]
+This reduces to
+\[
+\left (
+\begin{array}{ccccc|c}
+1 & 0 & 0 & 0 & 0 & 1\\
+0 & 1 & 0 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0 & 1\\
+0 & 0 & 0 & 1 & 0 & 1\\
+0 & 0 & 0 & 0 & 1 & 1
+\end{array}
+\right )
+\]
+so we have $a = c = d = e = 1$ and $b = 0$. Using the character table for $S_4$ it's easy to see that $\chi_{U} + \chi_{V} + \chi_{V'} + \chi_W = (\chi_V)^2 = \chi_{V \otimes V}$. Therefore $V \otimes V \cong U \oplus V \oplus V' \oplus W$.
+\end{proof}
+
+\end{document}

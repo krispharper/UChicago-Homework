@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,vmargin}
+
+\begin{document}
+\setpapersize{USletter}
+\setmargnohfrb{.05 in}{.25 in}{.05 in}{.25 in}
+
+\begin{tabular}{|l | l | l|}
+\hline
+\multicolumn{3}{|c|}{\textbf{Maxwell's Equations}} \\ \hline
+
+\text{Name} & \text{Differential Form} & \text{Integral Form} \\ \hline
+\text{Gauss' Law} & $ \displaystyle \nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}$ & $ \displaystyle \Phi_{\mathbf{E}} = \int_S \mathbf{E} \cdot d\mathbf{S} = \frac{Q_{enc}}{\varepsilon_0}$ \\
+
+\text{Faraday's Law of Induction} & $ \displaystyle \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t}$ & $ \displaystyle \mathcal{E} = \oint_C \mathbf{E} \cdot d\mathbf{l} = - \frac{d}{dt} \int_S \mathbf{B} \cdot d\mathbf{S} = - \frac {d \Phi_{\mathbf{B}}}{dt}$ \\
+
+\text{Gauss' Law for Magnetism} & $\displaystyle \nabla \cdot \mathbf{B} = 0$ & $ \displaystyle\Phi_{\mathbf{B}} = \int_S \mathbf{B} \cdot d\mathbf{S} = 0$ \\
+
+\text{Ampere's Law} & $ \displaystyle \nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t}$ & $ \displaystyle \oint_C \mathbf{B} \cdot d\mathbf{l} = \mu_0 I_{enc} + \mu_0 \varepsilon_0 \frac{d \Phi_{\mathbf{E}}}{dt}$ \\ \hline
+\end{tabular}
+
+\begin{tabular}{|l | l|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Energy and Force}} \\ \hline
+
+$ \displaystyle u = \frac{1}{2} \varepsilon_0 \mathbf{E}^2 = \frac{1}{2 \mu_0} \mathbf{B}^2$ & $ \displaystyle U = \frac{1}{2} CV^2 = \frac{1}{2} Li^2 = \frac{1}{2} \int_{\tau} \rho \phi d \tau = \frac{q_1 q_2}{4 \pi \varepsilon_0 r} = -\mathbf{m} \cdot \mathbf{B} = -\mathbf{p} \cdot \mathbf{E} = \int P dt$ \\ \hline
+
+$ \displaystyle \tau = \mathbf{m} \times \mathbf{B} = \mathbf{p} \times \mathbf{E}$ & $ \displaystyle F = -q \mathbf{E} + q \mathbf{v} \times \mathbf{B} = I \mathbf{L} \times \mathbf{B} = \int_{\tau} \mathbf{J} \times \mathbf{B} d \tau$ \\ \hline
+\end{tabular}
+
+\begin{tabular}{| l | l | l | l | l|}
+\hline
+
+\multicolumn{5}{|c|}{\textbf{Miscellaneous}} \\ \hline
+
+$ \displaystyle P = IV = I^2R = \frac{V^2}{R}$ & $ \displaystyle \mathbf{E} = -\nabla \phi$ & $ \displaystyle \mathbf{m} = IA\mathbf{\hat n} = I \int d\mathbf{A}$ & $ \displaystyle I = \frac{dq}{dt}$ & $ \displaystyle C = \frac{A \varepsilon_0}{d}$ \\ \hline
+
+$ \displaystyle \frac{1}{\sigma} = \rho = \frac{R A}{l} = \frac{E}{J}$ & $ \displaystyle \phi = - \oint_C \mathbf{E} d \mathbf{l}$ & $ \displaystyle W = q_t \int_{\infty}^{r} \mathbf{E} dr$ & $ \displaystyle \nabla \cdot \mathbf{J} + \frac{d \rho}{dt} = 0$ & $ \displaystyle 2 \pi f = \omega$\\ \hline
+\end{tabular}
+
+\begin{tabular}{|l | l | l | l|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Field Formulae}} \\ \hline
+
+\multicolumn{2}{|c}{\text{Electric}} & \multicolumn{2}{|c|}{\text{Magnetic}} \\ \hline
+
+\text{Infinite Wire} & $\displaystyle \frac{\lambda}{2 \pi r \varepsilon_0}$ & \text{Infinite Wire} & $ \displaystyle \frac{\mu_0 I}{2 \pi r}$ \\ \hline
+
+\text{Finite Wire} & $\displaystyle \frac{\lambda x}{4 \pi \varepsilon_0 y \sqrt{y^2 + x^2}} \Bigg|_{x_1}^{x_2}$ & \text{Finite Wire} & $ \displaystyle \frac{\mu_0 I}{4 \pi r} \int_{\theta_1}^{\theta_2} \cos \phi d \phi$ \\ \hline
+
+\text{Infinite Sheet} & $\displaystyle \frac{\sigma}{2 \varepsilon_0}$ & \text{Ring} & $ \displaystyle \frac{\mu_0 I r^2}{2(z^2 + r^2)^{\frac{3}{2}}}$ \\ \hline
+
+\text{Point Charge} & $ \displaystyle \frac{Q}{4 \pi \varepsilon_0 r^2} \mathbf{\hat r}$ & \text{Biot-Savart} & $ \displaystyle d\mathbf{B} = \frac{\mu_0 I d \mathbf{l} \times \mathbf{\hat r}}{4 \pi r^2}$ \\ \hline
+
+\text{Hemisphere} & $ \displaystyle \frac{Q}{8 \pi r^2 \varepsilon_0}$ & \text{Solenoid} & $ \displaystyle \mu_0 n I$ \\ \hline
+
+\text{Ring} & $ \displaystyle \frac{Q z}{2 \pi \varepsilon_0 (r^2 + z^2)^{\frac{3}{2}}}$ & \multicolumn{2}{|l|}{} \\ \hline
+\end{tabular}
+
+\begin{tabular}{|l | l | l|}
+\hline
+
+\multicolumn{3}{|c|}{\textbf{AC Circuits}} \\ \hline
+
+$ \displaystyle \mathcal{E} = \mathcal{E}_0 \sin (\omega t)$ & $ \displaystyle i = i_0 \sin (\omega t + \phi)$ & $ \displaystyle z = \sqrt{R^2 + \left ( \omega L - \frac{1}{\omega C} \right )^2 }$ \\ \hline
+
+\end{tabular}
+
+\begin{tabular}{| l | l | l|}
+\hline
+
+\multicolumn{3}{|c|}{\textbf{Inductors and Transformers}} \\ \hline
+
+\multicolumn{2}{|c|}{$ \displaystyle \mathcal{E} = -\mu_0 n_1 N_2 A_1 \frac{di}{dt}$} & $ \displaystyle R_{eff} = R_s \left ( \frac{\mathcal{E}_p^2}{\mathcal{E}_s^2} \right ) = R_s \left( \frac{N_p}{N_s} \right )$ \\ \hline
+$ \displaystyle \mathcal{E}_p = - N_p \frac{d \Phi}{dt}$ & $ \displaystyle \frac{\mathcal{E}_p}{\mathcal{E}_s} = \frac{N_p}{N_s}$ & $ \displaystyle P_s = P_p = i_p \mathcal{E}_p = i_s \mathcal{E}_s = \frac{\mathcal{E}_s^2}{R_s}$ \\ \hline
+\end{tabular}
+
+\begin{tabular}{|l | l | l | l|}
+\hline
+
+\multicolumn{4}{|c|}{\textbf{Circuits}} \\ \hline
+
+$ \displaystyle i = \frac{V}{R} \left (1 - e^{-\frac{t R}{L}} \right )$ & $ \displaystyle i = \frac{V}{R} e^{-\frac{t}{RC}}$ & $ \displaystyle Q=CV$ & $\displaystyle V=IR$ \\ \hline
+\end{tabular}
+
+\end{document}

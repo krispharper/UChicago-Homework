@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,MnSymbol,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27700\\
+
+October 5, 2009
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{problem}
+Prove IP2 by induction on the property $Q(x) = ``P(k)$ holds for all $k < x$.''
+\end{problem}
+\begin{proof}
+Note $Q(0)$ is vacuously true since there are no natural numbers less than $0$. Suppose $Q(n)$ is true. Then $P(k)$ holds for all $k < n$. Now if $P(n)$ is true, then $P(k)$ holds for all $k < n+1$ and thus $Q(n+1)$ is true. Then $Q$ holds for any natural number $n$ which means $P$ holds for the same set of numbers. This proves IP2 holds.
+\end{proof}
+
+\begin{problem}
+Prove that the relation $<$, as we defined it in class, is transitive on $\mathbb{N}$. That is, show that for all $k, m, n \in \mathbb{N}$, if $k < m$ and $m < n$ then $k < n$.
+\end{problem}
+\begin{proof}
+Let $P(n)$ be the statment ``For all $k < m$ and $m < n$, $k < n$''. Note that $P(0)$ is vacuously true since there are no natural numbers less than $0$. Suppose $P(n)$ is true. Choose $k < n+1$ and $m < k$. If $m < n$ then we know $k < n$ by our inductive hypothesis. It remains to show the case $k = n$. Suppose $k = n$ and $m < n$. Then $m \subseteq n$. But note that $n + 1 = n \cup \{n\}$. Thus $m \subseteq n+1$ and so $m < n+1$. By the principle of induction, $P(n)$ holds for all $n \in \mathbb{N}$.
+\end{proof}
+
+\begin{problem}
+Prove that $(\mathbb{N}, <)$ is a well ordered set.
+\end{problem}
+\begin{proof}
+Let $A \subseteq \mathbb{N}$ be a subset with no least element. Let $B = \mathbb{N} \backslash A$ be the set of natural numbers not in $A$. Note that $0 \in B$ because $0$ is less than every natural number and so it would be the least element of $A$. Also, if $n \in B$, then $n+1 \in B$ as well, otherwise $n+1$ would be a least element of $A$. But then $B = \mathbb{N}$ and so $A = \emptyset$. Thus all nonempty subsets of $\mathbb{N}$ have least elements.
+\end{proof}
+
+\begin{problem}
+Prove that there is no function $f : \mathbb{N} \to \mathbb{N}$ such that for all $n \in \mathbb{N}$, $f(n) > f(n+1)$.
+\end{problem}
+\begin{proof}
+Suppose such a function $f$ exists. We can show that each element of $f(\mathbb{N})$ is distinct. Suppose $f(k) < f(n)$ for all $k < n$. Then note that $f(n) < f(n+1)$ and by the transitivity of $<$ on $\mathbb{N}$, we have $f(k) < f(n+1)$ for each $k < n+1$. Thus by the second version of the induction principle, we know every element of $f(\mathbb{N})$ is distinct.
+
+Let $f(0) = k$. Note that there are only $k$ natural numbers less than $k$. Consider $f(k+1)$. We know $f(k+1) < f(k), f(k-1), \dots , f(1), f(0)$. Since each of $f(0), f(1), \dots , f(k)$ is distinct, by the pigeon hole principle, one of these must be equal to $f(k+1)$. This is a contradiction and so $f$ cannot exist.
+\end{proof}
+
+\begin{problem}
+Verify that the definition we gave in class for $\models$ is unambiguous for each wff $A$.
+\end{problem}
+\begin{proof}
+Let $\mathcal{S}$ be a set of sentence symbols and $M \subseteq \mathcal{S}$ be a model. First suppose that $A$ has length $1$. Then either $A \in M$ or $A \notin M$ and so either $M \models A$ or $M \nmodels A$. Now suppose that for all wffs $B$ of length $n$, we have $M \models B$. Then by definition $M \nmodels A = (\neg (B))$. Also, if $C$ is a wff of length $n$, then $M \models A = ((B) \wedge (C))$. Since these are the only two ways of making a wff, by the principle of induction there is no ambiguity in the symbol $\models$ for any wff $A$.
+\end{proof}
+
+\end{document}

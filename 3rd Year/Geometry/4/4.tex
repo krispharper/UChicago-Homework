@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 24100\\
+
+May 7, 2010
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{problem}
+Suppose $A$, $B$, $C$ and $D$ are distinct points on an affine line $D_{\alpha} \subseteq \mathbf{P}^1$. Recall that for a triple of points on an affine line, we can make sense of the ``ratio of distances'' $\frac{CB}{CA}$. Show that the cross ratio satisfies
+\[
+(A,B;C,D) = \frac{CA}{CB} \left /\frac{DA}{DB} \right .
+\]
+\end{problem}
+\begin{proof}
+We can arbitrarily pick an origin for our projective line and let $A$, $B$, $C$ and $D$ be the points $x_1$, $x_2$, $x_3$ and $x_4$ on the line. Then the quantity on the right is simply $(x_3-x_1)(x_4-x_2)/(x_3-x_2)(x_4-x_1)$. The quantity on the left is formed by considering the points $A$, $B$, $C$ and $D$ as lines in a $2$-dimensional vector space, choosing four representatives from these lines, writing two representatives as linear combinations of the other two and taking the ratio of the resulting coefficients. But we've shown that the cross ratio is independent of the choice of representatives. Thus the coefficients in these linear combinations must correspond precisely to the distances in the resulting projective line.
+\end{proof}
+
+\begin{problem}
+Let $P$, $Q$ and $R$ be distinct elements of $k \cup \{\infty\}$. Show that there exists an element of $PGL(2,k)$ taking $0$, $1$ and $\infty$ to $P$, $Q$ and $R$ respectively. Recall that $PGL(2,k)$ acts on $k \cup \{\infty\}$ by fractional linear transformations:
+\[
+\left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right )
+x =
+\frac{ax + b}{cx+d}.
+\]
+\end{problem}
+\begin{proof}
+Let
+\[
+A =
+\left (
+\begin{array}{cc}
+Q-R & -P(Q-R)\\
+Q-P & -R(Q-P)
+\end{array}
+\right).
+\]
+This has determinant $-R(Q-P)(Q-R) + P(Q-P)(Q-R) = (P-R)(Q-P)(Q-R)$ which is nonzero since $P$, $Q$ and $R$ are distinct. Since this isn't a scalar matrix, we see that $A$ is an element of $PGL(2,k)$. Now $A$ has the associated matrix
+\[
+\frac{(Q-R)x - P(Q-R)}{(Q-P)x - R(Q-P)} = \frac{(x-P)(Q-R)}{(x-R)(Q-P)}.
+\]
+This clearly takes $P$ to $0$, $Q$ to $1$ and $R$ to $\infty$. But $A$ is invertible so $A^{-1}$ takes $0$ to $P$, $1$ to $Q$ and $\infty$ to $R$.
+\end{proof}
+
+\begin{problem}
+Express the element
+\[
+C =
+\left (
+\begin{array}{cc}
+0 & 1\\
+1 & 0
+\end{array}
+\right )
+\]
+of $PGL(2,k)$ as a product of perspectivities.
+\end{problem}
+\begin{proof}
+Using fractional linear transformations we see that $C$ takes a point $x$ to the point $1/x$ on the projective line. We can express this map as a composition of three perspectivities. The first will take the $x$-axis to the line at infinity, $\ell_{\infty}$
+\vspace{200pt}
+about the point $(0,1)$. Note that this takes the point $(x,0)$ to the point $1/x$ on $\ell_{\infty}$ since that's the slope of the line through $(x,0)$ and $(0,1)$. Now we take $\ell_{\infty}$ to the vertical axis
+\vspace{200pt}
+through the point $(1,0)$. This takes the point $1/x$ on $\ell_{\infty}$ to the point $(0,1/x)$. Now we simply take the vertical axis to the horizontal axis about the point $-1$ on $\ell_{\infty}$. This corresponds to the line with slope $-1$ so $(0,1/x)$ gets taken to $(1/x,0)$. These three perspectivities then combine to take $(x,0)$ to $(1/x,0)$ so they must be $C$.
+\end{proof}
+
+\end{document}

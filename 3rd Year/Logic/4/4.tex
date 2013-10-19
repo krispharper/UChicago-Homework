@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27700\\
+
+October 26, 2009
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{problem}
+Let $A$ be a wff which does not contain $\neg$. Show that the length of $A$ is odd. Show that no proper initial segment of $A$ is a wff.
+\end{problem}
+\begin{proof}
+We induct on the complexity of $A$. For the base case, let $A$ be a single sentence symbol. Then $(A)$ has length $3$. Furthermore none of $($, $(A$ or the empty string are wffs. Now suppose that $A = ((B) \wedge (C))$ for some wffs $B$ and $C$ which satisfy the stated properties. Then $B$ and $C$ both have odd length, and there are $7$ more elements of $\mathcal{L}$ added to create $A$. Therefore $A$ has odd length. Furthermore, since no proper initial segment of $B$ is a wff, we know that no initial segment of $A$ which doesn't include all of $B$ will not be a wff. This follows because adding parentheses to the beginning of any proper initial segment of $B$ will not make it a wff. The same is true for the initial segments $((B$, $((B)$, $((B) \wedge$ and proper initial segments which contain initial segments of $C$ using a similar argument. Also $((B) \wedge (C)$ is not a wff since the first parenthesis is never closed, and the empty string is not a wff. Therefore no proper initial string of $A$ is a wff. Since $A$ doesn't contain $\neg$, we have shown by induction that the statement is true for all wffs which don't contain $\neg$.
+\end{proof}
+
+\begin{problem}
+Let $T$, $\Gamma$ be sets of wffs. Suppose $T \vdash A$ for all $A \in \Gamma$.\\
+(a) If $T \cup \Gamma \vdash B$, then $T \vdash B$.\\
+(b) If $T$ is consistent then $\Gamma$ is consistent. In particular the set of all wffs which can be deduced from $T$ is consistent.
+\end{problem}
+\begin{proof}
+(a) Let $C_1, C_2, \dots , C_n$ be a deduction of $B$ from $T \cup \Gamma$. For each $C_i \in \Gamma$, replace $C_i$ with the deduction $C_{i_1}, C_{i_2}, \dots , C_{i_{m_i}}$ of $C_i$ from $T$. Then $C_{1_1}, \dots , C_{1_{m_1}}, \dots , C_{n_1}, \dots , C_{n_{m_n}}$ is a deduction of $B$ from $T$ so $T \vdash B$.
+
+(b) Suppose $T$ is consistent. Then there exists $M$, a model for $T$. Let $C_{i_j}$ be an element of the deduction of $C_i$ as in part (a). Then $C_{i_j}$ is either in $T$, in which case $M \models C_{i_j}$, a tautology, so that once again $M \models C_{i_j}$ or the result of modus ponens from two earlier elements in the deduction. In the last case, $M \models C_{i_j}$ since $\rightarrow$ can be written using $\neg$ and $\wedge$. Since $\Gamma$ can be written entirely as deductions of elements from $T$, we see that $M \models \Gamma$ as well.
+\end{proof}
+
+\begin{problem}
+Let $T$, $\Sigma$ be sets of wffs and let $A$, $B$ be wffs. Prove or refute the following statements:\\
+(a) If $T, \Sigma \models A$ then either $T \models A$ or $\Sigma \models A$.\\
+(b) If $T \models A \vee B$ then either $T \models A$ or $T \models B$.\\
+Do either of the answers change if we assume $T$ is maximal consistent?
+\end{problem}
+\begin{proof}
+(a) Let $T = S_1$, $\Sigma = S_2$ and $A = S_1 \wedge S_2$. Then $T, \Sigma \models A$, but $T$ does not model $A$ and $\Sigma$ does not model $A$.
+
+(b) Suppose $T \models A \vee B$ and let $M$ be a model of $T$. Then $M \models A \vee B$ and thus $M \models \neg (\neg A \wedge \neg B)$. But then $M$ does not model $\neg A \wedge \neg B$, which means $M$ does not model $\neg A$ or $M$ does not model $\neg B$. Therefore $M \models A$ or $M \models B$.
+
+If $T$ is maximal consistent then if $T, \Sigma \models A$ then either $T \models A$ or $\Sigma \models A$. This follows from the fact that either $T \cup \Sigma$ is not maximally consistent, or $T \cup \Sigma = T$. The answer to part (b) is the same.
+\end{proof}
+
+\begin{problem}
+Let $IP_x$ be the statement that:\\
+\emph{
+Let $P(x)$ be some property and suppose that $k \in \mathbb{N}$ is fixed. If\\
+(a) $P(k)$ holds, and\\
+(b) For all $n \geq k$, if $P(n)$ holds then $P(n+1)$ holds\\
+then $P(n)$ holds for all natural numbers $n \geq k$.\\
+}
+Prove that, for fixed $k$, our first induction principle implies $IP_k$. What is $IP_0$?
+\end{problem}
+\begin{proof}
+Let $Q_k(x)$ be the statement such that $Q_k(x-k)$ holds whenever $P(x)$ holds. Then $Q_k(0)$ is true if $P(k)$ is true. If $Q_k(n)$ is true for $n \geq 0$, then $P(k+n)$ is true. Thus $P(k+n+1)$ is true implies that $Q_k(n+1)$ is true. Therefore $Q_k(x)$ holds for all $x \in \mathbb{N}$ and therefore $P(x+k)$ holds for $x+k \geq k$. Thus $IP_k$ is implied by induction. $IP_0$ is the first induction principle.
+\end{proof}
+
+\begin{problem}
+Suppose $\mathcal{L}$ contains two ternary relations, one binary relation, and two constants and consider the model $\langle \mathbb{N}, +, \times, <, 0, 1 \rangle$ (with the usual meanings). Give a formula which defines:\\
+(a) $\{0\}$.\\
+(b) $\{m \mid m \text{ is divisible by } 3\}$.\\
+(c) $\{(m,n) \mid \text{$m$, $n$ have no common divisors besides $1$}\}$.\\
+Give an example of a set which is not definable (you do not need to justify your answer).
+\end{problem}
+\begin{proof}
+(a) $\exists x \forall y ((x < y) \wedge (\neg (x = y)))$.
+
+(b) $\exists m \exists n (m = ((1 + 1 + 1) \times n))$.
+
+(c) $\exists m \exists n (\neg (\exists d \exists p \exists q ((\neg (d = 1)) \wedge (m = dp) \vee (n = dq))))$\\.
+
+The set $\{2\}$ is not definable.
+\end{proof}
+
+\end{document}

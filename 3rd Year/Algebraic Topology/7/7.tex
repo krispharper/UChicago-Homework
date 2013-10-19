@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\input xy
+\xyoption{all}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\im}{\textup{im}\,}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26300\\
+
+May 25, 2010
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{problem}
+Given a map $f : S^{2n} \to S^{2n}$, show that there is a point $x \in S^{2n}$ with wither $f(x) = x$ or $f(x) = -x$. Deduce that every map $\mathbb{R}P^{2n} \to \mathbb{R}P^{2n}$ has a fixed point. Construct maps $\mathbb{R}P^{2n-1} \to \mathbb{R}P^{2n-1}$ without fixed points from linear transformations $\mathbb{R}^{2n} \to \mathbb{R}^{2n}$ without eigenvectors.
+\end{problem}
+\begin{proof}
+Suppose $\varphi : S^{2n} \to S^{2n}$ with $\varphi(x) \neq x$ and $\varphi(x) \neq -x$ for all $x \in S^{2n}$. Since $\varphi(x) \neq -x$ for all $x \in S^{2n}$ we know $(1-t)\varphi(x) + tx \neq 0$ for $t \in [0,1]$ so we get a homotopy $H(t,x) = ((1-t)\varphi(x) + tx)/|(1-t)\varphi(x) + tx|$ from $\varphi$ to the identity map. Thus $\deg(\varphi) = 1$. But since $\varphi$ has no fixed points we already know $\deg(\varphi) = -1^{2n+1} = -1$. This is a contradiction, so no such map can exist.
+
+Suppose now $f : \mathbb{R}P^{2n} \to \mathbb{R}P^{2n}$ is any map. Compose $f$ with the quotient map $g : S^{2n} \to \mathbb{R}P^{2n}$ to get $fg : S^{2n} \to \mathbb{R}P^{2n}$. Since $S^{2n}$ is a covering space with trivial fundamental group for $\mathbb{R}P^{2n}$ we see that $fg$ lifts to some map $h : S^{2n} \to S^{2n}$. This means that $gh = fg$ and since $h : S^{2n} \to S^{2n}$ we know there is some $x \in S^{2n}$ such that $h(x) = \pm x$. Then $f(g(x)) = g(h(x)) = g(\pm x) = g(x)$ since $g$ identifies antipodal points. Thus $f$ has a fixed point $g(x)$.
+
+Let $T : \mathbb{R}^{2n} \to \mathbb{R}^{2n}$ be a linear transformation defined as $T(x_1, \dots , x_{2n}) = (-x_{2n}, x_1, x_2, \dots , x_{2n-1})$. Note that $-T^{2n}$ is the identity transformation so $x^{2n} + 1$ divides the characteristic polynomial for $T$ and since this has degree $2n$ it must be the characteristic polynomial. But this polynomial has no real roots and thus no real eigenvalues or eigenvectors. Since $T$ has no eigenvectors we have $T(x) \neq x$ and $T(x) \neq -x$ for all $x \in S^{2n-1}$ where $S^{2n-1} \subseteq \mathbb{R}^{2n}$. Furthermore, since $T(-x) = -T(x)$ we see that $T$ gives a map $\mathbb{R}P^{2n-1} \to \mathbb{R}P^{2n-1}$ which has no fixed points.
+\end{proof}
+
+\begin{problem}
+A polynomial $f(z)$ with complex coefficients, viewed as a map $\mathbb{C} \to \mathbb{C}$, can always be extended to a continuous map of one-point compactifications $\hat{f} : S^2 \to S^2$. Show that the degree of $\hat{f}$ equals the degree of $f$ as a polynomial. Show also that the local degree of $\hat{f}$ at a root of $f$ is the multiplicity of the root.
+\end{problem}
+\begin{proof}
+Let $z_1, \dots z_r$ be the distinct roots of $f$ with multiplicities $m_1, \dots m_r$. There are disjoint neighborhoods of $U_1, \dots , U_r$ of each $z_i$ in $S^2$ such that $f(U_i) \subseteq V_i$ where $V_i$ is a neighborhood of $0 \in S^2$. We then have the induced map on homology $\hat{f}_* : H_2(U_i,U_i \backslash \{z_i\}) \to H_2(V_i, V_i \backslash \{0\})$. Both these groups are $\mathbb{Z}$ so $\hat{f}_*$ is multiplication by some integer $d$, which by construction we know to be the local degree of $\hat{f}$ at $z_i$. Note that $\hat{f}$ restricted to a local neighborhood of $z_i$ is an $m_i$-to-$1$ map onto $V_i$. But then a generator of $H_2(U_i, U_i \backslash \{z_i\})$ is mapped to $m_i$ times a generator of $H_2(V_i, V_i \backslash \{0\})$. Thus the local degree of $\hat{f}$ is $m_i$. Now we know $\deg \hat{f} = \sum_i \deg \hat{f} | z_i = \sum_i m_i = \deg f$.
+\end{proof}
+
+\begin{problem}
+Compute the homology groups of the following $2$-complexes:\\
+(a) The quotient of $S^2$ obtained by identifying north and south poles to a point.\\
+(b) $S^1 \times (S^1 \vee S^1)$.\\
+(c) The space obtained from $D^2$ by first deleting the interiors of two disjoint subdisks in the interior of $D^2$ and then identifying all three resulting boundary circles together via homeomorphisms preserving clockwise orientations of these circles.\\
+(d) The quotient space of $S^1 \times S^1$ obtained by identifying points in the circle $S^1 \times \{x_0\}$ that differ by $2 \pi / m$ rotation and identifying points in the circle $\{x_0\} \times S^1$ that differ by $2 \pi / n$ rotation.
+\end{problem}
+\begin{proof}
+(a) This structure can be constructed using one $0$-cell, one $1$-cell and one $2$-cell so we have the chain complex
+\[
+\xymatrix{
+\mathbb{Z} \ar[r]^{d_2} & \mathbb{Z} \ar[r]^{d_1} & \mathbb{Z} \ar[r] & 0.
+}
+\]
+Attach the $1$-cell to the $0$-cell and then attach half of the two cell boundary to the $1$-cell, then attach the other half backwards so that our attaching map is of the form $aa^{-1}$. Since the attaching map for the $2$-cell is trivial, we know $d_2 = 0$. Since there's only $1$ $0$-cell, we also know $d_1 = 0$. Thus the homology groups are the same as the chain complex groups. Namely, $H_n \approx \mathbb{Z}$ for $n = 0$, $n = 1$ and $n = 2$ and $H_n = 0$ for $n > 2$.
+
+(b) We can draw this space using the following diagram. There is one $0$-cell $v$, three $1$-cells $a$, $b$ and $c$ and two $2$-cells $U$ and $L$. This gives the chain complex
+\[
+\xymatrix{
+\mathbb{Z}^2 \ar[r]^{d_2} & \mathbb{Z}^3 \ar[r]^{d_1} & \mathbb{Z} \ar[r] & 0.
+}
+\]
+\vspace{100pt}
+First we identify the three line segments labeled $c$ in the diagram which forms the $1$-skeleton for $I \times (S^1 \vee S^1)$. Then we identify the sides labeled $a$ and $b$ so that we get $S^1 \times (S^1 \vee S^1)$. We then see the $2$-cell $U$ is attached via the identification $aca^{-1}c^{-1}$ and the $2$-cell $L$ is attached via the identification $bcb^{-1}c^{-1}$. Since there's only $1$ $0$-cell we must have $d_1 = 0$. Also $d_2$ is $0$ because each $a_i$, $b_i$ or $c_i$ appears with its inverse in $aca^{-1}c^{-1}$ and $bcb^{-1}c^{-1}$. Thus the homology groups are the same as the chain complex groups. Namely, $H_2 \approx \mathbb{Z}^2$, $H_1 \approx \mathbb{Z}^3$, $H_0 \approx \mathbb{Z}$ and $H_n = 0$ for $n > 2$.
+
+(c) This space can be constructed using one $0$-cell, one $1$-cell, $a$, and one $2$-cell, $f$, so we get the following chain complex
+\[
+\xymatrix{
+\mathbb{Z} \ar[r]^{d_2} & \mathbb{Z} \ar[r]^{d_1} & \mathbb{Z} \ar[r]^{d_0} & 0.
+}
+\]
+We know $d_1$ is $0$ because there's only one $1$-cell. Furthermore, $f$ is attached to $a$ $3$-fold and since the orientation is preserved each time we know the generator of this attaching map is $a^3$. Therefore $d_2$ takes a generator of $\mathbb{Z}$ to $3$ times that generator so $\deg(d_2) = 3$. Thus $H_1 \approx \ker d_1/\im d_2 \approx \mathbb{Z}/3\mathbb{Z}$. Also $H_2 \approx \ker d_2/\im d_1 \approx 0$ and $H_0 \approx \ker d_0/\im d_1 \approx \mathbb{Z}$. Clearly $H_n = 0$ for $n > 2$.
+
+(d) The space can be described using the following diagram.
+\vspace{100pt}
+There is one $0$-cell, two $1$-cells and one $2$-cell.
+This gives the chain complex
+\[
+\xymatrix{
+\mathbb{Z} \ar[r]^{d_2} & \mathbb{Z} \oplus \mathbb{Z} \ar[r]^{d_1} & \mathbb{Z} \ar[r] & 0.
+}
+\]
+Note that $d_1 = 0$ as before since there's only one $0$-cell. The $2$-cell is attached via the product $a^mb^n(-a)^m(-b)^n$. But the abelianization of this is clearly $0$ which implies $d_2 = 0$ as well. This means our chain complex forms the actual homotopy groups. In particular $H_n = H_n(S^1 \times S^1)$.
+\end{proof}
+
+\begin{problem}
+Show that the quotient map $S^1 \times S^1 \to S^2$ collapsing the subspace $S^1 \vee S^1$ to a point is not nullhomotopic by showing that it induces an isomorphism on $H_2$. On the other hand, show via covering spaces that any map $S^2 \to S^1 \times S^1$ is nullhomotopic.
+\end{problem}
+\begin{proof}
+Note that $(S^1 \times S^1, S^1 \vee S^1)$ is a good pair and we know all the homology groups in question, so we have the long exact sequence
+\[
+0 = H_2(S^1 \vee S^1) \to H_2(S^1 \times S^1) \approx \mathbb{Z} \to H_2(S^1 \times S^1, S^1 \vee S^1) \approx H_2(S^1 \times S^1/S^1 \vee S^1) \approx H_2(S^2) \approx \mathbb{Z}
+\]
+Since the first term is $0$, we see that the map $H_2(S^1 \times S^1) \to H_2(S^2)$ is injective and since it's into the same space, it must be an isomorphism. Thus the quotient map cannot be nullhomotopic.
+
+Let $f : S^2 \to S^1 \times S^1$ and let $p : \mathbb{R}^2 \to S^1 \times S^1$ be the universal cover of $S^1 \times S^1$. Since $S^2$ has trivial fundamental group, we can use the lifting criterion to get a lift $h : S^2 \to \mathbb{R}^2$ such that $gh = f$. But then since $\mathbb{R}^2$ is contractable, we know $h$ is nullhomotopic. It follows that $f$ must be nullhomotopic as well.
+\end{proof}
+
+\begin{problem}
+A map $f : S^n \to S^n$ satisfying $f(x) = f(-x)$ for all $x$ is called an \emph{even map}. Show that an even map $S^n \to S^n$ must have even degree, and that the degree must in fact be zero when $n$ is even. When $n$ is odd, show there exist even maps of any given even degree.
+\end{problem}
+\begin{proof}
+Let $f$ be even. Since $f(x) = f(-x)$ we can view $f$ as a function $\mathbb{R}P^n \to S^n$ where $x$ and $-x$ are identified. So $f$ factors as $\xymatrix{S^n \ar[r]^g & \mathbb{R}P^n \ar[r]^h & S^n}$ where $g$ is the quotient map. Then $\deg(f) = \deg(g) \deg(h)$ and we've already seen that $\deg(g) = 1 + (-1)^n$. Thus $\deg(f)$ is even and if $n$ is even then $\deg(g) = 0$ so $\deg(f) = 0$ as well. When $n$ is odd $\deg(g) = 2$. Since there are maps $h : \mathbb{R}P^n \to S^n$ of any degree we see that $\deg(f) = \deg(g) \deg(h) = 2\deg(h)$ can be any even number.
+\end{proof}
+
+\begin{problem}
+Show the isomorphism between cellular and singular homology is natural in the following sense: A map $f : X \to Y$ that is cellular --- satisfying $f(X^n) \subseteq Y$ for all $n$ --- induces a chain map $f_*$ between the cellular chain complexes of $X$ and $Y$, and the map $f_* : H_n^{CW}(X) \to H_n^{CW}(Y)$ induced by this chain map corresponds to $f_* : H_n(X) \to H_n(Y)$ under the isomorphism $H_n^{CW} \approx H_n$.
+\end{problem}
+\begin{proof}
+Since $f$ is a cellular map we know that for each $n$, the restriction of $f$ to the $n$-skeleton of $X$ gives a map of pairs $(X^n, X^{n-1}) \to (Y^n, Y^{n-1})$ which gives a map on relative homology $f_* : H_n(X^n, X^{n-1}) \to H_n(Y^n, Y^{n-1})$. These are precisely the cellular chain groups so $f$ induces a chain map between the cellular chain complexes for $X$ and $Y$. Note here that $f_*$ commutes with the boundary maps $d_n$ because $f_*$ commutes with the relative homology boundary maps $\partial_n$ and $j_n$.
+
+Given this, we know $f_*$ induces a map $f_*' : H_n^{CW}(X) \to H_n^{CW}(Y)$ and we already have a map $f_* : H_n(X) \to H_n(Y)$. Let $\gamma : H_n(X) \to H_n^{CW}(X)$ and $\delta : H_n(Y) \to H_n^{CW}(Y)$ be the isomorphisms between the singular and cellular homology groups. We're reduced to showing that the following diagram commutes
+\[
+\xymatrix{
+H_n(X) \ar[r]^{f_*} \ar[d]^{\gamma} & H_n(Y) \ar[d]^{\delta}\\
+H_n^{CW}(X) \ar[r]^{f_*'} & H_n^{CW}(Y).
+}
+\]
+Note that we already have the following commutative diagram from from the proof that $\gamma$ is an isomorphism.
+\[
+\xymatrix{
+&& H_n(X) &\\
+& H_n(X^n) \ar[ru]^{\alpha} \ar[rd]^{j_n} &&\\
+H_{n+1}(X^{n+1},X^n) \ar[rr]^{d_{n+1}} \ar[ru]^{\partial_{n+1}} \ar[d]^{f_*} && H_n(X^n, X^{n-1}) \ar[r]^-{d_n} \ar[d]^{f_*} & H_{n-1}(X^{n-1}, X^{n-2}) \ar[d]^{f_*}\\
+H_{n+1}(Y^{n+1},Y^n) \ar[rr]^{d_{n+1}} \ar[rd]^{\partial_{n+1}} && H_n(Y^n, Y^{n-1}) \ar[r]^-{d_n} & H_{n-1}(Y^{n-1}, Y^{n-2})\\
+& H_n(Y^n) \ar[rd]^{\beta} \ar[ru]^{j_n} &&\\
+&& H_n(Y) &\\
+}
+\]
+If we look at the two three-term diagonal sequences we get the following diagram
+\[
+\xymatrix{
+H_{n+1}(X^{n+1},X^n) \ar[r]^-{\partial_{n+1}} \ar[d]^{f_*} & H_n(X^n) \ar[r]^{\alpha} & H_n(X) \ar@{-->}[d]\\
+H_{n+1}(Y^{n+1},Y^n) \ar[r]^-{\partial_{n+1}} & H_n(Y^n) \ar[r]^{\beta} & H_n(Y).
+}
+\]
+But note that the horizontal sequences are the long exact sequences of the pairs $(X^{n+1}, X^n)$ and $(Y^{n+1}, Y^n)$, so by the naturality of the long exact sequence, the dotted arrow must be $f_*$ and the first diagram actually commutes.
+\end{proof}
+
+\end{document}

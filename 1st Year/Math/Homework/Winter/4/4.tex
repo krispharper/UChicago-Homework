@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16200
+
+Mikl\'{o}s Ab\'{e}rt
+
+February 5, 2008
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 1}
+\textsl{Is it true that $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous if and only if it maps compact sets to compact sets?}\newline
+
+No. Use the counterexample of the floor function, $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ where $f(x)=\lfloor x \rfloor$ or $f(x)$ is the least integer less than or equal to $x$. Let $C$ be a compact set and let $C \subseteq [a;b]$. Then because $[a;b]$ is bounded there will be a least and greatest element of $f([a;b])$ and $f$ only outputs integers so we have $f([a;b])$ is a finite set of integers. Then $f(C) \subseteq f([a;b])$ and so $f(C)$ is finite set of integers as well. So $f(C)$ is compact because it's closed and bounded, but $f$ is discontinuous because the left and right hand limits as $x$ approaches some integer are different.\newline
+
+\textbf{Exercise 2}
+\textsl{Let the real function $f$ be defined as follows.
+\[
+f(x)
+\begin{cases}
+0 & \text{if $x=0$ or $x$ is irrational}\\
+\frac{1}{q} & \text{if $x$ is rational of reduced form $\frac{p}{q}$}.
+\end{cases}
+\]
+Then $f$ is not continuous at nonzero rational numbers but for all $a \in \mathbb{R}$ we have
+\[
+\lim_{x \rightarrow a} f(x) = 0.
+\]}
+\begin{proof}
+Note that $0 \leq f(x) \leq |x|$ for all $x \in \mathbb{R}$. Consider $a \leq 0$ and for all $\varepsilon > 0$ let $\delta = \varepsilon$. Then if $0 < |a-x| < \delta$ we have $x \in (a - \delta ; a + \delta)$ and so $f(x) \in (a - \delta ; a + \delta) = (a - \varepsilon ; a + \varepsilon)$. Thus $|a-f(x)| < \varepsilon$, but $a \leq 0$ and so $|-(-a+f(x))| < \varepsilon$ which means $0 \leq |f(x)| \leq |-a+f(x)| < \varepsilon$. Now consider $a > 0$ and let $\delta = \varepsilon + a$. Then if $0 < |a-x| < \delta$ we have $f(x) \in (a - \delta ; a + \delta) = (- \varepsilon ; \varepsilon)$ and so $|f(x)| < \varepsilon$. Thus for all $\varepsilon > 0$ there exists a $\delta> 0$ such that for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta$ we have $|f(x)| < \varepsilon$ and so $\lim_{x \rightarrow a} f(x) = 0$ for all $x \in \mathbb{R}$. But we know that for nonzero rationals, $f(x) \neq 0$ because of how $f$ is defined and since a function is only continuous at $a$ if $\lim_{x \rightarrow a} f(x) =f(a)$ we have $f$ is discontinuous at all nonzero rationals.
+\end{proof}
+
+\textbf{Exercise 3}
+\textsl{Let $a \in \mathbb{R}$ such that $0 \leq a$. Show that there exists $x \in \mathbb{R}$ such that $x^2=a$.}
+\begin{proof}
+If $a=0$ then $0^2=a$ so we can assume that $0 < a$. Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ where $f(x)=x^2$ be a function. Consider the function $g \; : \; \mathbb{R} \rightarrow \mathbb{R}$ where $g(x)=x$. Let $O \subseteq \mathbb{R}$ be an open set. Clearly $g^{-1}(O)$ is open and so $g$ is continuous. But then $f=g \cdot g$ is continuous as well since the product of two continuous functions is continuous. Since $0<a$ we have $f(0)=0<a$ and $a<a^2+2a+1=f(a+1)$. But since $f$ is continuous, by the Intermediate Value Theorem $f$ takes on every value between $0 and (a+1)^2$ on the interval $[0;a+1]$ which means there exists some $x \in \mathbb{R}$ such that $x^2=a$.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Is there a continuous function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ that takes on every real number exactly twice?}
+\begin{proof}
+Suppose to the contrary that there exists such a function $f$. Then we have $f(a)=f(b)=0$ for some $a,b \in \mathbb{R}$ such that $a \neq b$. Without loss of generality suppose that $a<b$. There exists $c \in [a;b]$ such that $f(c) \neq 0$. Suppose first that $f(c)>0$. Then by the Intermediate Value Theorem $f$ takes on every value between $0$ and $f(c)$ on $[a;c]$ and on $[c;b]$. But then $f$ takes on every value between $0$ and $f(c)$ exactly twice on $[a;b]$. We know there exists some $d \in \mathbb{R}$ such that $f(d)=f(c)$ and $d \neq c$. Note that also $d \neq a$ and $d \neq b$. Consider the case where $d<a$. Then $f$ takes on every value between $0$ and $f(d)=f(c)$ on $[d;a]$. But this is a contradiction because $f$ has already taken on these values twice. A similar proof holds for $d>b$. If $d \in (a;b)$ and $d<c$ then $f$ takes on every value between $0$ and $f(d)$ on $[a;d]$ but this is also a contradiction because $f$ has already taken on these values twice. So for all $d \in \mathbb{R}$ we have $f$ taking on values of $\mathbb{R}$ more than two times. A similar proof holds for $f(c)<0$. Since we have a contradiction, $f$ cannot exist.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{Define $\lim_{x \rightarrow \infty} f(x) = l$ and $\lim_{x \rightarrow -\infty} f(x) = l$.}\newline
+
+Let $f$ be a real function. We say that $f$ approaches $l$ as $x$ goes to infinity, or
+\[
+\lim_{x \rightarrow \infty} f(x) = l
+\]
+if for all $\varepsilon > 0$ there exists $n > 0$ such that if $x > n$ then we have $|f(x)-l| < \varepsilon$. We say that $f$ approaches $l$ as $x$ goes to negative infinity, or
+\[
+\lim_{x \rightarrow -\infty} f(x) = l
+\]
+if for all $\varepsilon > 0$ there exists $n > 0$ such that if $x < n$ then we have $|f(x)-l| < \varepsilon$.\newline
+
+\textbf{Exercise 6}
+\textsl{We have
+\[
+\lim_{x \rightarrow a} f(x) = \lim_{h \rightarrow 0} f(a + h).
+\]}
+\begin{proof}
+Assume that $\lim_{x \rightarrow a} f(x) = l$. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta$ we have $|f(x)-l| < \varepsilon$. Now let $h=x-a$. So then we have for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $a+h \in \mathbb{R}$ when $0 < |0-h| < \delta$ we have $|f(a+h)-l| < \varepsilon$. So we have $\lim_{h \rightarrow 0} f(a+h) = l = \lim_{x \rightarrow a} f(x)$.\newline
+
+Likewise, assume that $\lim_{h \rightarrow 0} f(a+h) = l$. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $a+h \in \mathbb{R}$ when $0 < |-h| < \delta$ we have $|f(a+h)-l| < \varepsilon$. Now let $x=a+h$. So then we have for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta$ we have $|f(x)-l| < \varepsilon$. So we have $\lim_{x \rightarrow a} f(x) = l = \lim_{h \rightarrow 0} f(a+h)$.\newline
+
+We can rename $x=h+a$ because the definition is still true for all $x \in \mathbb{R}$ if we do this.
+\end{proof}
+
+\end{flushleft}
+\end{document}

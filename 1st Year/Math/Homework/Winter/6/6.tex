@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16200
+
+Mikl\'{o}s Ab\'{e}rt
+
+February 19, 2008
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 1}
+\textsl{Show that if
+\[
+p(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0
+\]
+is a polynomial, such that $n$ is odd and $a_n \neq 0$ then there exists $c \in \mathbb{R}$ with $p(c) = 0$.}
+\begin{proof}
+Suppose that $a_n > 0$. From Homework 5 we have $\lim_{x \rightarrow \infty} p(x)/(a_n x^n) = 1$. Let $\varepsilon = 1/2$. Then there exists $m \in \mathbb{R}$ such that for all $x > m$ we have $|p(x)/(a_n x^n) - 1| < 1/2$. Thus there exists $x_1>0$ such that $1/2 < p(x_1)/(a_n x_1^n)$. Since $x_1, a_n > 0$ and $n$ is odd we have $0 < (a_n x_1^n)/2 < p(x_1)$. Thus $p(x_1)$ is positive. Similarly take $\lim_{x \rightarrow -\infty} p(x)/(a_n x^n) = 1$ and let $\varepsilon = 1/2$. Then there exists $m \in \mathbb{R}$ such that for all $x<m$ we have $|p(x)/(a_n x^n)-1| < 1/2$. Then there exists $x_2 < 0$ such that $1/2 < p(x)/(a_n x^n)$. But since $x_2<0$ and $a_n > 0$ we have $a_n x^n < 0$ so then $p(x) < (a_n x^n)/2 < 0$. Thus $p(x_2) < 0$. Therefore there exist $x_1,x_2 \in \mathbb{R}$ with $p(x_2) < 0$ and $p(x_1) > 0$ so there must exist $c \in (x_2;x_1)$ with $p(c) = 0$ by the Intermediate Value Theorem. A very similar proof holds if $a_n < 0$ where the limits give values of opposite signs as in this proof.
+\end{proof}
+
+First we prove a lemma showing that for $a \in \mathbb{R}$, $a^2 \geq 0$.
+\begin{proof}
+Let $a \in \mathbb{R}$. If $a=0$ then $a^2=0 \cdot 0=0$. If $a > 0$ then $a^2 = a \cdot a > 0$. If $a<0$ then $a^2 = a \cdot a = - |a| \cdot - |a| = (-1)^2 \cdot |a| \cdot |a| = |a| \cdot |a| > 0$. In all cases $a^2 \geq 0$.
+\end{proof}
+
+\textbf{Exercise 2}
+\textsl{Show that if $a,b \geq 0$ then
+\[
+\sqrt{ab} \leq \frac{a+b}{2}
+\]
+and equality holds if and only if $a=b$.}
+\begin{proof}
+Note that $0 \leq (a-b)^2 = a^2 - 2ab + b^2$ so $4ab \leq a^2 + 2ab + b^2 = (a+b)^2$. Then $ab \leq (a+b)^2/4$ and since $a,b \geq 0$ we have $\sqrt{ab} \leq (a+b)/2$. To show equality suppose $\sqrt{ab} = (a+b)/2$. Then $4ab=(a+b)^2=a^2+2ab+b^2$ and so then $(a-b)^2=0$ which means $a-b=0$ and $a=b$. Conversely we assume $a=b$ so $a-b=0$ and $0=(a-b)^2=a^2-2ab+b^2$. Then $4ab=a^2 + 2ab + b^2=(a+b)^2$ so $ab=(a+b)^2/4$ and since $ab>0$ we have $\sqrt{ab} = (a+b)/2$.
+\end{proof}
+
+\textbf{Exercise 3}
+\textsl{Show that if $a,b \in \mathbb{R}$ then
+\[
+\frac{a+b}{2} \leq \sqrt{\frac{a^2+b^2}{2}}
+\]
+and equality holds if and only if $a=b$.}
+\begin{proof}
+Again note that $0 \leq (a-b)^2 = a^2 - 2ab + b^2$ so we have $2ab \leq a^2 + b^2$ and $2(a^2+b^2) \geq a^2 + 2ab + b^2 = (a+b)^2$. Then $(a+b)^2/4 \leq (a^2+b^2)/2$ and since both of these terms are positive, we have $(a+b)/2 \leq \sqrt{(a^2+b^2)/2}$. To show equality we assume $(a+b)/2 = \sqrt{(a^2+b^2)/2}$. Then $(a^2+2ab+b^2)/4 = (a^2 + b^2)/2$ so $a^2+2ab+b^2 = 2(a^2+b^2)$. Thus, $0=a^2 - 2ab + b^2=(a-b)^2$ so $a-b=0$ and $a=b$. Conversely assume that $a=b$. Then $0=a-b=(a-b)^2=a^2-2ab+b^2$ and $2ab=a^2+b^2$ so $a^2+2ab+b^2=2(a^2+b^2)$. Thus $(a+b)^2/4=(a^2+b^2)/2$. Since these terms are positive we have $(a+b)/2=\sqrt{(a^2+b^2)/2}$.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Show that if $a,b > 0$ then
+\[
+\frac{2}{\frac{1}{a}+\frac{1}{b}} \leq \sqrt{ab}
+\]
+and equality holds if and only if $a=b$.}
+\begin{proof}
+Once again note that $0 \leq (a-b)^2 = a^2 - 2ab + b^2$ so $4ab \leq a^2 + 2ab + b^2 = (a+b)^2$. Then since $(a+b)^2 \neq 0$ we have $4ab / (a+b)^2 \leq 1$. Since $ab > 0$ we have $(2ab)^2/(a+b)^2 \leq ab$ and also
+\[
+\sqrt{ab} \geq \frac{2ab}{a+b} = \frac{2}{\frac{a+b}{ab}} = \frac{2}{\frac{1}{a} + \frac{1}{b}}.
+\]
+To show equality assume
+\[
+\sqrt{ab} = \frac{2}{\frac{1}{a} + \frac{1}{b}}.
+\]
+Then
+\[
+ab = \left ( \frac{2}{\frac{1}{a} + \frac{1}{b}} \right )^2 = \left ( \frac{2}{\frac{a+b}{ab}} \right )^2 = \left ( \frac{2ab}{a+b} \right )^2 = \frac{4a^2b^2}{a^2+2ab+b^2}.
+\]
+Then $(ab),(a+b)^2 > 0$ so $1 = 4ab/(a^2+2ab+b^2)$ and $4ab = a^2 + 2ab + b^2$. Then $0=(a-b)^2=a-b$ so $a=b$. Conversely assume that $a=b$. Then $0=a-b=(a-b)^2=a^2-2ab+b^2$. Thus $4ab = a^2 + 2ab + b^2$ and since $(a^2 + 2ab + b^2) > 0$ we have $(4ab)/(a+b)^2=1$ and $(2ab)^2/(a+b)^2=ab$. Then
+\[
+ab = \frac{4a^2b^2}{a^2+2ab+b^2} = \left ( \frac{2ab}{a+b} \right )^2 = \left ( \frac{2}{\frac{a+b}{ab}} \right )^2 = \left ( \frac{2}{\frac{1}{a} + \frac{1}{b}} \right )^2
+\]
+and since both of these quantities are greater than zero we have
+\[
+\sqrt{ab} = \frac{2}{\frac{1}{a} + \frac{1}{b}}.
+\]
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{Show that if $a,b,c \in \mathbb{R}$ then
+\[
+\frac{a+b+c}{3} \leq \sqrt{\frac{a^2+b^2+c^2}{3}}
+\]
+and equality holds if and only if $a=b=c$.}
+\begin{proof}
+Note that $0 \leq (a-b)^2 + (b-c)^2 + (a-c)^2 = 2a^2 + 2b^2 + 2c^2 - 2ab - 2bc - 2ac$ so $2ab + 2bc + 2ac \leq 2a^2 + 2b^2 + 2c^2$. Then $3(a^2+b^2+c^2) \geq a^2+b^2+c^2+2ab+2bc+2ac=(a+b+c)^2$ and so $(a+b+c)^2/9 \leq (a^2+b^2+c^2)/3$. Since both of these values are positive we have $(a+b+c)/3 \leq \sqrt{(a^2+b^2+c^2)/3}$. To show equality, assume that
+\[
+\frac{a+b+c}{3} = \sqrt{\frac{a^2+b^2+c^2}{3}}.
+\]
+Then we have $3(a^2+b^2+c^2) = (a+b+c)^2 = a^2+b^2+c^2+2ab+2bc+2ac$. Then $2ab+2bc+2ac=2a^2+2b^2+2c^2$ so $0=2a^2+2b^2+2c^2-2ab-2bc-2ac=(a-b)^2+(b-c)^2+(a-c)^2$. But these three terms are all greater than or equal to zero so each must be equal to zero. Then $a=b=c$. Conversely, assume that $a=b=c$. Then $0=(a-b)=(b-c)=(a-c)=(a-b)^2=(b-c)^2=(a-c)^2=(a-b)^2+(b-c)^2+(a-c)^2=2a^2+2b^2+2c^2-2ab-2bc-2ac$. Thus $2a^2+2b^2+2c^2=2ab+2bc+2ac$ and $3(a^2+b^2+c^2)=a^2+b^2+c^2+2ab+2bc+2ac=(a+b+c)^2$. Then $(a+b+c)^2/9 = (a^2+b^2+c^2)/3$ and since both of these terms are positive we have
+\[
+\frac{a+b+c}{3} = \sqrt{\frac{a^2+b^2+c^2}{3}}.
+\]
+\end{proof}
+
+\textbf{Exercise 6}
+\textsl{Is there are real function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ that takes on every real number an even number of times?}\newline
+
+Yes.
+\begin{proof}
+Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be defined as
+\[
+f(x) = 
+\begin{cases}
+|x| & \text{if $x \notin \mathbb{N}$} \\
+1 & \text{if $x=0$} \\
+x+1 & \text{if $x \in \mathbb{N}$}.
+\end{cases}
+\]
+We see that $f(x)>0$ for all $x \in \mathbb{R}$ so for $y \leq 0$, $f$ takes on $y$ zero times. Consider $y>0$. If $y \in \mathbb{N}$ and $y \neq 1$ then $y-1 \in \mathbb{N}$ so we have $f(y-1)=(y-1)+1=y$ and also $f(-y)=|-y|=y$. Note that by definition of absolute value, for $a \in \mathbb{R}$ with $a \neq 0$ there are only two real numbers $a,-a$ which will have an absolute value of $|a|$. Also there is only one number $z \in \mathbb{R}$ such that $z+1=y$. Thus, there are exactly two elements of $\mathbb{R}$ which map to $y$. If $y=1$ then $f(0) = y$ and $f(-1)=|-1|=1=y$. We have every natural number mapping to something greater than $1$, and the only other element of $\mathbb{R}$ with an absolute value of $1$ is $1$ and $f(1)=2$. Thus, there are exactly two elements of $\mathbb{R}$ which map to $y$. Finally, if $y \notin \mathbb{N}$ then $f(y)=|y|=y$ since $y>0$ and $f(-y)=|-y|=y$. There are no other elements of $\mathbb{R}$ with an absolute value of $y$ so there are exactly two elements of $\mathbb{R}$ which map to $y$. In all cases we have $f$ taking on every value of $\mathbb{R}$ either $0$ or $2$ times.
+\end{proof}
+
+\end{flushleft}
+\end{document}

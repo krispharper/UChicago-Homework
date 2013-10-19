@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20900\\
+
+May 6, 2009
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{**}
+For all maps $f : X \rightarrow Y$, for any collection of subsets of $Y$, $\mathcal{E} \subseteq \mathcal{P}(Y)$, we have $\sigma(f^{-1}(\mathcal{E})) = f^{-1}(\sigma(\mathcal{E}))$.
+\begin{proof}
+Note that $f^{-1}(\sigma(\mathcal{E}))$ is a $\sigma$-algebra of subsets of $X$ including $f^{-1}(\mathcal{E})$, so $\sigma(f^{-1}(\mathcal{E})) \subseteq f^{-1}(\sigma(\mathcal{E}))$. Now let
+\[
+\mathcal{F} = \{A \in \sigma(\mathcal{E}) \mid f^{-1}(A) \in \sigma(f^{-1}(\mathcal{E}))\}
+\]
+Then $\mathcal{F}$ is a $\sigma$-algebra of subsets of $X$ which includes $\mathcal{E}$ and so $\sigma(\mathcal{E}) = \mathcal{F}$. Thus $f^{-1}(\sigma(\mathcal{E})) = f^{-1}(\mathcal{F}) \subseteq \sigma(f^{-1}(\mathcal{E}))$. Since both inclusions hold, we have equality of the sets.
+\end{proof}
+\end{**}
+
+\begin{**}
+If $f$ and $g$ are measurable functions on $(X, \mathcal{F})$, then $fg$ is measurable.
+\begin{proof}
+If either $f = 0$ or $g = 0$ then we have $fg = 0$, which is clearly measurable. Suppose that neither $f$ nor $g$ is the $0$ function. Then we have
+\[
+\{x \in X \mid fg(x) < a, a \in \mathbb{R}\} = \{x \in X \mid f(x) < \frac{a}{g(x)}, a \in \mathbb{R}\}.
+\]
+Since $h(x) = a/g(x)$ is a measurable function as $g \neq 0$, we have then reduced the problem to
+\[
+\{x \in X \mid f(x) < h(x), a \in \mathbb{R}\}
+\]
+which we know is a measurable set. Thus, $fg$ is measurable.
+\end{proof}
+\end{**}
+
+\begin{**}
+Let $(f_n)$ be a sequence of pointwise convergent measurable functions which converge to $f$ almost everywhere. Show that $f = \lim_{n \rightarrow \infty} f_n$ is measurable.
+\begin{proof}
+Suppose each function $f_n : X \rightarrow Y$ such that $d$ is a metric on $Y$. Let $A$ be a nonempty closed set in $Y$. It suffices to show that $f^{-1}(A)$ is measurable in $X$. Define $G_n = \{y \in Y \mid d(y, A) < 1/n\}$ for every $n$. Note that each $G_n$ is open and $\bigcap_{n} G_n = A$. We want to show
+\[
+f^{-1}(A) = \bigcap_{k} \bigcup_{m} \bigcap_{n \geq m} f_n^{-1} (G_k).
+\]
+First suppose that $x \in f^{-1}(A)$. Then $f(x) \in A$. Since $f_n(x)$ converges to $f(x)$ and for every $k$, $G_k$ is a neighborhood of $x$, there exists an $m$ such that for all $n \geq m$ we have $f_n(x) \in G_k$. Therefore $x \in \bigcap_{k} \bigcup_{m} \bigcap_{n \geq m} f_n^{-1} (G_k).$ Now suppose that $x \in \bigcap_{k} \bigcup_{m} \bigcap_{n \geq m} f_n^{-1} (G_k)$. Then for each $k$, the point $f_n(x)$ eventually lies in $G_k$. Therefore $f(x) = \lim_{n \rightarrow \infty} f_n(x)$ and $f(x) \in \overline{G_k}$. But since $\overline{G_{k+1}} \subseteq G_k$ we can write $\bigcap_{k} \overline{G_k} = \bigcap_{k} G_k$ and so $f(x) \in \bigcap_{k} G_k = F$. Thus $x \in f^{-1}(F)$ and so both inclusions have been shown.
+\end{proof}
+\end{**}
+
+\end{document}

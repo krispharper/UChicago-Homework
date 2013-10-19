@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20800\\
+
+February 16, 2009
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Let $f : \mathbb{R}^n \rightarrow \mathbb{R}^m$ and let $L$ be the derivative of $f$ at $x_0 \in \mathbb{R}^n$. Show that $L$ is unique.
+\end{**}
+\begin{proof}
+Let $L$ and $M$ be the derivatives of $f$ at $x_0$. Then we have
+\begin{align*}
+\lim_{h \rightarrow 0} \frac{|Lh - Mh|}{|h|}
+&= \lim_{h \rightarrow 0} \frac{|(Lh - f(x_0 + h) + f(x_0)) + (f(x_0 + h) - f(x_0) - Mh)|}{|h|}\\
+&\leq \lim_{h \rightarrow 0} \frac{|f(x_0 + h) - f(x_0) - Lh|}{|h|} + \lim_{h \rightarrow 0} \frac{|f(x_0 + h) - f(x_0) - Mh|}{|h|}.
+\end{align*}
+If $x \in \mathbb{R}^n$, then $tx \rightarrow 0$ as $t \rightarrow 0$. Thus for $x \neq 0$ we have
+\[
+0 = \lim_{t \rightarrow 0} \frac{|M(tx) - L(tx)|}{|tx|} = \frac{M(x) - L(x)|}{|x|}
+\]
+and $M = L$.
+\end{proof}
+
+\begin{**}
+Suppose $f, g : \mathbb{R}^n \rightarrow \mathbb{R}^m$ are differentiable at $x \in \mathbb{R}^n$. Show that $f+g$ and $\alpha f$ are differentiable at $x$ for $\alpha \in \mathbb{R}$ and
+\[
+D(f+g)(x) = Df(x) + Dg(x)
+\]
+and
+\[
+D(\alpha f)(x) = \alpha Df(x).
+\]
+\end{**}
+\begin{proof}
+We have
+\begin{align*}
+Df(x) + Dg(x)
+&= \lim_{h \rightarrow 0} \frac{|f(x + h) - f(x)|}{|h|} + \lim_{h \rightarrow 0} \frac{|g(x + h) - g(x)|}{|h|}\\
+&= \lim_{h \rightarrow 0} \frac{|f(x + h) - f(x)| + |g(x+h) - g(x)|}{|h|}\\
+&= \lim_{h \rightarrow 0} \frac{|f(x+h) + g(x+ h) - f(x) - g(x)|}{|h|}\\
+&= D(f+g)(x)
+\end{align*}
+for small enough values of $h$. Also
+\begin{align*}
+\alpha Df(x)
+&= \lim_{h \rightarrow \infty} \frac{\alpha |f(x+h) - f(x)|}{|h|}\\
+&= \lim_{h \rightarrow \infty} \frac{|\alpha (f(x+h) - f(x))|}{|h|}\\
+&= \lim_{h \rightarrow \infty} \frac{|(\alpha f)(x+h) - (\alpha f)(x)|}{|h|}\\
+&= D(\alpha f)(x)
+\end{align*}
+and this limit exists because scalar multiples apply to limits.
+\end{proof}
+
+\begin{**}
+Show that if $f : \mathbb{R}^n \rightarrow \mathbb{R}$ is differentiable at $x$ then $D_vf(x)$ exists for all $v \in \mathbb{R}^n$.
+\end{**}
+\begin{proof}
+Let $v \in \mathbb{R}^n$. Since $f$ is differentiable at $x$ we have for a given $\varepsilon > 0$ there exists a $\delta > 0$ such that
+\[
+\frac{|f(x+h) - f(x)|}{|h|} < \varepsilon
+\]
+whenever $|h| < \delta$. So choose $|h| < \delta$ and choose $t \in \mathbb{R}$ such that $0 < |h| < |t| < \delta$. Then we have
+\[
+\frac{f(x+tv) - f(x)}{t} < \frac{|f(x+h) - f(x)|}{|h|} < \varepsilon.
+\]
+Thus $D_vf(x)$ exists.
+\end{proof}
+
+\begin{**}
+Find $f : \mathbb{R}^n \rightarrow \mathbb{R}$ defined on an open set $U \subseteq \mathbb{R}^n$ and $x \in U$ such that $D_vf(x)$ exists for all $v \in \mathbb{R}^n$ but $f$ is not differentiable at $x$.
+\end{**}
+\begin{proof}
+Let $f : \mathbb{R}^n \rightarrow \mathbb{R}$ be the norm on $\ell_n^2$ denoted by $| \cdot |$. Let $U$ be the open unit ball in $\mathbb{R}^n$ and let $x = 0$. Then we have
+\[
+\lim_{h \rightarrow 0} \frac{|f(x+h) - f(x) - Df(h)|}{|h|} = \lim_{h \rightarrow 0} \frac{||h| - Df(h)|}{|h|}.
+\]
+Thus, $Df$ must be a linear transformation which is always positive, if $|h| - Df(h) = 0$. But a linear transformation from $\mathbb{R}^n$ to $\mathbb{R}$ must take on values less than $0$. Thus $Df(0)$ doesn't exist. Now consider
+\[
+D_vf(0) = \lim_{t \rightarrow 0} \frac{|tv|}{t} = \lim_{t \rightarrow 0} \frac{t|v|}{t} = |v|.
+\]
+Thus $D_vf(0)$ exists for all $v \in \mathbb{R}^n$.
+\end{proof}
+
+\begin{**}
+If $f : \mathbb{R}^n \rightarrow \mathbb{R}$ is differentiable at $a \in \mathbb{R}^n$ then
+\[
+Df(a) = (D_1 f(a) , D_2 f(a), \dots , D_n f(x)).
+\]
+\end{**}
+\begin{proof}
+Define $g : \mathbb{R} \rightarrow \mathbb{R}^n$ by $g(x) = (a_1, a_2, \dots , x , \dots , a_n)$ where $x$ is in the $j$th place. Then $D_j f(a) = D(f \circ g) (a_j)$ and $D(f \circ g)(a_j) = Df(a) \cdot Dh(a_j)$. But this last term is a vector with only one nonzero entry. Thus $D_j f(a)$ is the $j$th entry in the matrix $(D_1 f(a) , D_2 f(a), \dots , D_n f(x))$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

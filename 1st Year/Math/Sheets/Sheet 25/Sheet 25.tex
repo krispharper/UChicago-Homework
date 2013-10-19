@@ -1,0 +1,491 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 25: Complex Numbers\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A complex number is a an ordered pair of real numbers. The set of complex numbers is denoted by $\mathbb{C}$.}\newline
+
+\textbf{Definition 2}
+\textsl{For $z_1 = (a_1,b_1) \in \mathbb{C}$ and $z_2 = (a_2,b_2) \in \mathbb{C}$ let
+\[
+z_1 + z_2 = (a_1 + a_2, b_1 + b_2)
+\]
+and let
+\[
+z_1 \cdot z_2 = (a_1a_2 - b_1b_2, a_1b_2 + a_2b_1).
+\]}\newline
+
+\textbf{Theorem 3}
+\textsl{$\mathbb{C}$ endowed with $+$ and $\cdot$ is a commutative ring.}
+\begin{proof}
+Let $z_1 = (a_1,b_1) \in \mathbb{C}$, $z_2 = (a_2,b_2) \in \mathbb{C}$ and $z_3 = (a_3,b_3) \in \mathbb{C}$. Then note that
+\[
+z_1 + z_2 = (a_1 + a_2, b_1 + b_2) = (a_2 + a_1, b_2 + b_1) = z_2 + z_1.
+\]
+Also
+\begin{align*}
+(z_1 + z_2) + z_3 &= (a_1 + a_2, b_1 + b_2) + (a_3, b_3) \\
+			    &= (a_1 + a_2 + a_3, b_1 + b_2 + b_3) \\
+			    &= (a_1 + (a_2 + a_3), b_1 + (b_2 + b_3)) \\
+			    &= (a_1, b_1) + (a_2 + a_3, b_2 + b_3) \\
+			    &= z_1 + (z_2 + z_3).
+\end{align*}
+Furthermore let $0 = (0, 0)$ so we have
+\[
+z_1 + 0 = (a_1, b_1) + (0, 0) = (a_1 + 0, b_1 + 0) = (a_1, b_1) = z_1
+\]
+Supposing there are two distinct $0$s we have $0 = 0 + 0' = 0' + 0 = 0'$ which shows that $0$ is unique. Letting $-z_1 = (-a_1, -b_1)$ we have
+\[
+z_1 + -z_1 = (a_1, b_1) + (-a_1, -b_1) = (a_1 + -a_1, b_1 + -b_1) = (0, 0) = 0.
+\]
+Supposing there are two distinct values of $-z_1$ we have $z_1 + (-z_1) = 0$ and $z_1 + (-z_1') = 0$. Then
+\begin{align*}
+-z_1 &= -z_1 + 0 \\
+	&= -z_1 + (0, 0) \\
+	&= -z_1 + (a_1 - a_1, b_1 - b_1) \\
+	&= -z_1 + (a_1, b_1) + (-a_1, -b_1) \\
+	&= -z_1 + z_1 + (-a_1, -b_1) \\
+	&= -z_1' + z_1 + (-a_1, -b_1) \\
+	&= -z_1' + (a_1, b_1) + (-a_1, -b_1) \\
+	&= -z_1' + (a_1 - a_1, b_1 - b_1) \\
+	&= -z_1' + (0,0) \\
+	&= -z_1' + 0 \\
+	&= -z_1'
+\end{align*}
+So we have shown additive commutativity, associativity, identity and inverse. Now consider
+\[
+z_1 \cdot z_2 = (a_1a_2 - b_1b_2, a_1b_2 + a_2b_1) = (a_2a_1 - b_2b_1, a_2b_1 + a_1b_2) = z_2 \cdot z_1.
+\]
+Also
+\begin{align*}
+(z_1 \cdot z_2) \cdot z_3 &= (a_1a_2 - b_1b_2, a_1b_2 + a_2b_1) \cdot (a_3, b_3) \\
+	&= (a_3(a_1a_2 - b_1b_2) - b_3(a_1b_2 + a_2b_1), b_3(a_1a_2 - b_1b_2) + a_3(a_1b_2 + a_2b_1)) \\
+	&= (a_1a_2a_3 - a_3b_1b_2 - a_1b_2b_3 - a_2b_1b_3, a_1a_2b_3 - b_1b_2b_3 + a_1a_3b_2 + a_2a_3b_1) \\
+	&= (a_1(a_2a_3 - b_2b_3) - b_1(a_2b_1 + a_3b_2), b_1(a_2a_3 - b_2b_3) + a_1(a_2b_3 + a_3b_2)) \\
+	&= (a_1, b_1) \cdot (a_2a_3 - b_2b_3, a_2b_3 + a_3b_2) \\
+	&= z_1 \cdot (z_2 \cdot z_3)
+\end{align*}
+Let $1 = (1,0)$ so we have
+\[
+z_1 \cdot 1 = (a_1, b_1) \cdot (1, 0) = (a_1 \cdot 1 - b_1 \cdot 0, a_1 \cdot 0 + b_1 \cdot 1) = (a_1, b_1) = z_1.
+\]
+Supposing there are two distinct $1$s we have $1 = 1 \cdot 1' = 1' \cdot 1 = 1'$ which shows that $1$ is unique. Finally note that
+\begin{align*}
+z_1 \cdot (z_2 + z_3) &= (a_1, b_1) \cdot ((a_2, b_2) + (a_3, b_3)) \\
+	&= (a_1, b_1) \cdot (a_2 + a_3, b_2 + b_3) \\
+	&= (a_1(a_2 + a_3) - b_1(b_2 + b_3), a_1(b_2 + b_3) + b_1(a_2 + a_3)) \\
+	&= (a_1a_2 + a_1a_3 - b_1b_2 - b_1b_3, a_1b_2 + a_1b_3 + b_1a_2 + b_1a_3) \\
+	&= (a_1a_2 - b_1b_2 + a_1a_3 - b_1b_3, a_1b_2 + a_2b_1 + a_1b_3 + a_3b_1) \\
+	&= (a_1a_2 - b_1b_2, a_1b_2 + a_2b_1) + (a_1a_3 - b_1b_3, a_1b_3 + a_3b_1) \\
+	&= (a_1, b_1) \cdot (a_2, b_2) + (a_1, b_1) \cdot (a_3, b_3) \\
+	&= z_1 \cdot z_2 + z_1 \cdot z_3.
+\end{align*}
+Thus we have shown multiplicative commutativity, associativity and identity as well as distributivity. Therefore $\mathbb{C}$ is a commutative ring.
+\end{proof}
+
+\textbf{Definition 4}
+\textsl{The imaginary number
+\[
+i = (0,1).
+\]}\newline
+
+\textbf{Theorem 5}
+\textsl{Define $\varphi \; : \; \mathbb{R} \rightarrow \mathbb{C}$ be defined by $\phi (x) = (x,0)$. Then $\varphi$ is injective and for all $x,y \in \mathbb{R}$ we have $\varphi (x+y) = \varphi (x) + \varphi (y)$ and $\varphi (xy) = \varphi(x) \cdot \varphi (y)$.}
+\begin{proof}
+Let $x_1, x_2 \in \mathbb{R}$ such that $x_1 \neq x_2$. Then $\varphi (x_1) = (x_1, 0)$ and $\varphi (x_2) = (x_2, 0)$. But since $x_1 \neq x_2$ we have $(x_1, 0) \neq (x_2, 0)$ and so $\varphi$ is injective. Now let $x,y \in \mathbb{R}$. Then we have
+\[
+\varphi (x+y) = (x+y,0) = (x+y,0+0) = (x,0) + (y,0) = \varphi (x) + \varphi (y).
+\]
+Also
+\[
+\varphi (xy) = (xy,0) = (xy - 0 \cdot 0, x \cdot 0 + y \cdot 0) = (x,0) \cdot (y,0) = \varphi (x) \cdot \varphi (y).
+\]
+\end{proof}
+
+\textbf{Lemma 6}
+\textsl{We have
+\[
+i \cdot i = -1
+\]}
+\begin{proof}
+We have
+\[
+i \cdot i = (0,1) \cdot (0,1) = (0\cdot 0 - 1 \cdot 1, 0 \cdot 1 + 0 \cdot 1) = (-1,0) = \varphi (-1) = 1.
+\]
+\end{proof}
+
+\textbf{Definition 7}
+\textsl{Let $z = (a,b)$ be a complex number. Then the real part
+\[
+\text{Re} \, z = a
+\]
+and the imaginary part
+\[
+\text{Im} \, z = b.
+\]}\newline
+
+\textbf{Lemma 8}
+\textsl{Let $z$ be a complex number. Then we have
+\[
+z = \text{Re} \, z + i \cdot \text{Im} \, z.
+\]}
+\begin{proof}
+Let $z = (a,b)$. We have
+\begin{align*}
+z &= (a,b) \\
+  &= (a+0,0+b) \\
+  & = (a,0) + (0,b) \\
+  &= \varphi (a) + (0 \cdot b - 1 \cdot 0, 0 \cdot 0 + b \cdot 1) \\
+  &= a + (0,1) \cdot (b,0) \\
+  &= a + i \cdot \varphi (b) \\
+  & = a + i \cdot b \\
+  & = \text{Re} \, z + i \cdot \text{Im} \, z.
+\end{align*}
+\end{proof}
+
+\textbf{Definition 9}
+\textsl{Let $z = a + bi$ be a complex number. Then the complex conjugate of $z$ is
+\[
+\overline{z} = a - bi.
+\]}\newline
+
+\textbf{Lemma 10}
+\textsl{For $0 \neq z \in \mathbb{C}$ we have
+\[
+z \frac{\overline{z}}{z \overline{z}} = 1.
+\]
+That is,
+\[
+z^{-1} = \frac{\overline{z}}{z \overline{z}}.
+\]}
+\begin{proof}
+Let $z = a+bi$. We have
+\[
+\frac{z \overline{z}}{z \overline{z}} = \frac{(a+bi)(a-bi)}{(a+bi)(a-bi)} = \frac{a^2+b^2}{a^2+b^2} = 1.
+\]
+\end{proof}
+
+\textbf{Exercise 11}
+\textsl{Show that $(1+i)/(2+3i) = (5-i)/13$.}
+\begin{proof}
+We have
+\[
+\frac{1+i}{2+3i} = \frac{(1+i)(2-3i)}{(2+3i)(2-3i)} = \frac{2-i+3}{13} = \frac{5-i}{13}.
+\]
+\end{proof}
+
+\textbf{Definition 12}
+\textsl{For $z \in \mathbb{C}$ let the absolute value of $z$ be
+\[
+|z| = \sqrt{z \overline{z}}.
+\]}\newline
+
+\textbf{Theorem 13}
+\textsl{Let $z$ and $w$ be complex numbers. Then the following hold:\newline
+1) $\overline{\overline{z}} = z$;\newline
+2) $\overline{z} = z$ if and only if $z$ is real;\newline
+3) $\overline{z+w} = \overline{z} + \overline{w}$;\newline
+4) $-\overline{z} = \overline{-z}$;\newline
+5) $\overline{zw} = \overline{z} \cdot \overline{w}$;\newline
+6) $\overline{z^{-1}} = \overline{z}^{-1}$ if $z \neq 0$;\newline
+7) $|z| = 0$ if and only if $z = 0$;\newline
+8) $|z+w| \leq |z| + |w|$;\newline
+9) $|zw| = |z||w|$.}
+\begin{proof}
+Let $z = a+bi$ and $w = c+di$.\newline
+
+1) $\overline{\overline{z}} = \overline{a-bi} = a - (-bi) = a+bi = z$.\newline
+
+2) Let $\overline{z} = z$. Then $a-bi = a+bi$ which means $-b = b$ so $b = 0$. Thus $z$ has no imaginary part and is real. Now suppose $z$ is real. Then $b=0$ so we have $\overline{z} = a = z$.\newline
+
+3) $\overline{z+w} = \overline{a+c + (b+d)i} = a+c -(b+d)i = a-bi + c-di = \overline{z} + \overline{w}$.\newline
+
+4) $-\overline{z} = -(a-bi) = (-a + bi) = \overline{-z}$.\newline
+
+5) $\overline{zw} = \overline{ac-bd + (ad + bc)i} = ac-bd-adi-bci = (a-bi) \cdot (c-di) = \overline{z} \cdot \overline{w}$. \newline
+
+6) Let $z \neq 0$. Then
+\[
+\overline{z^{-1}} = \overline{\frac{\overline{z}}{z \overline{z}}} = \overline{\frac{a-bi}{a^2 + b^2}} = \frac{a}{a^2 + b^2} + \frac{bi}{a^2+b^2} = \frac{a+bi}{a^2 + b^2} = \frac{z}{z \overline{z}} = \overline{z}^{-1}.
+\]
+
+7) Let $|z| = 0$. Then $0 = \sqrt{z \overline{z}} = \sqrt{a^2 + b^2}$ so $a^2 + b^2 = 0$ and since $a^2$ and $b^2$ are both greater than or equal to $0$, they must both be $0$. Then $a = b = 0$ so $z = 0$. Now suppose $z = 0$. Then $|z| = \sqrt{z \overline{z}} = \sqrt{a^2 + b^2} = \sqrt{0} = 0$.\newline
+
+8) We have
+\[
+b^2c^2 + a^2d^2 -2abcd = (ad-bc)^2 \geq 0
+\]
+so
+\[
+b^2c^2 + a^2d^2 \geq 2abcd
+\]
+and
+\[
+(a^2 + b^2)(c^2 + d^2) = a^2c^2 +b^2c^2 + a^2d^2 + b^2d^2 \geq a^2c^2 + 2abcd + b^2d^2 = (ac+bd)^2.
+\]
+Then we have
+\[
+2 \sqrt{(a^2 + b^2)(c^2 + d^2)} \geq 2(ac+bd)
+\]
+so
+\begin{align*}
+(|z| + |w|)^2 &= (\sqrt{a^2 + b^2} + \sqrt{c^2 + d^2})^2 \\
+		   &= a^2 + b^2 + 2 \sqrt{(a^2 + b^2)(c^2 + d^2)} + c^2 + d^2 \\
+		   & \geq a^2 + b^2 + 2(ac+bd) + c^2 + d^2 \\
+		   &= (a+c)^2 + (b+d)^2 \\
+		   &= |z+w|^2.
+\end{align*}
+Thus $|z| + |w| \geq |z+w|$.\newline
+
+9) We have
+\begin{align*}
+|zw| &= |(ac-bd) + (ad+bc)i| \\
+	&= \sqrt{(ac-bd)^2 + (ad+bc)^2} \\
+	&= \sqrt{a^2c^2 -2abcd + b^2d^2 + a^2d^2 + 2abcd + b^2c^2} \\
+	&= \sqrt{a^2c^2 + b^2d^2 + a^2d^2 + b^2c^2} \\
+	&= \sqrt{(a^2 + b^2)(c^2 + d^2)} \\
+	&= \sqrt{a^2 + b^2} \sqrt{c^2 + d^2} \\
+	&= |z||w|.
+\end{align*}
+\end{proof}
+
+\textbf{Definition 14}
+\textsl{Let $z \in \mathbb{C}$. A real number $\alpha$ satisfying the equality $z = |z| (\cos \alpha + i \sin \alpha)$ is called an argument of $z$.}\newline
+
+\textbf{Theorem 15}
+\textsl{If $\alpha$ and $\beta$ are arguments of $z$ then $\alpha - \beta = 2k \pi$ for some $k \in \mathbb{Z}$.}
+\begin{proof}
+Let $\alpha$ and $\beta$ be arguments of $z$. Then $z = |z| (\cos \alpha + i \sin \alpha) = |z| (\cos \beta + i \sin \beta)$ so $\cos \alpha + i\sin \alpha = \cos \beta + i\sin \beta$. Multiplying both sides by $\cos \beta - i \sin \beta$ we have
+\begin{align*}
+\cos (\alpha - \beta) + i \sin (\alpha - \beta) &= \cos \alpha \cos \beta + \sin \alpha \sin \beta + i (\sin \alpha \cos \beta - \sin \beta \cos \alpha) \\
+	&= \cos \alpha \cos \beta + i \sin \alpha \cos \beta - i \sin \beta \cos \alpha + \sin \alpha \sin \beta \\
+	&= (\cos \alpha + i \sin \alpha)(\cos \beta - i \sin \beta) \\
+	&= (\cos \beta + i \sin \beta)(\cos \beta - i \sin \beta) \\
+	&= \cos^2 \beta + \sin^2 \beta \\
+	&= 1.
+\end{align*}
+Thus $(\cos (\alpha - \beta) + i \sin (\alpha - \beta)) = 1$ which only occurs if $\cos (\alpha - \beta) = 1$ and $i \sin (\alpha - \beta) = 0$. Thus $\alpha - \beta = 2k \pi$ for $k \in \mathbb{Z}$.
+\end{proof}
+
+\textbf{Theorem 16}
+\textsl{Let $z = |z| (\cos \alpha + i \sin \alpha)$ and $w = |w| (\cos \beta + i \sin \beta)$. Then
+\[
+zw = |z||w| (\cos (\alpha + \beta) + i \sin (\alpha + \beta))
+\]}
+\begin{proof}
+We have
+\begin{align*}
+zw &= (|z| (\cos \alpha + i \sin \alpha)) (|w| (\cos \beta + i \sin \beta)) \\
+    &= |z||w| (\cos \alpha \cos \beta - \sin \alpha \sin \beta + i (\sin \alpha \cos \beta + \cos \alpha \sin \beta)) \\
+    &= |z||w| (\cos (\alpha+\beta) + i \sin (\alpha + \beta)).
+\end{align*}
+\end{proof}
+
+\textbf{Corollary 17}
+\textsl{Let $z = |z| (\cos \alpha + i \sin \alpha)$. Then
+\[
+z^n = |z|^n (\cos n \alpha + i \sin n \alpha).
+\]}
+\begin{proof}
+Note that for $n=1$ we have $z^1 = z = |z| (\cos \alpha + i \sin \alpha) = |z|^1 (\cos (1 \cdot \alpha) + i \sin (1 \cdot \alpha))$. Induct on $n$ and assume that for $n \in \mathbb{N}$ we have $z^n = |z|^n (\cos n \alpha + i \sin n \alpha)$. Then from Theorem 16 we have
+\begin{align*}
+z^{n+1} &= z \cdot z^n \\
+	   &= (|z| (\cos \alpha + i \sin \alpha)) (|z|^n (\cos n \alpha + i \sin n \alpha)) \\
+	   &= |z|^{n+1} (\cos (n+1) \alpha + i \sin (n+1) \alpha)
+\end{align*}
+as desired (25.17).
+\end{proof}
+
+\textbf{Definition 18}
+\textsl{A complex number $z$ is an $n$th root of unity if it satisfies
+\[
+z^n = 1.
+\]}\newline
+
+\textbf{Theorem 19}
+\textsl{Let $n$ be a natural number. Then there are exactly $n$ $n$th roots of unity, namely
+\[
+\varepsilon_{n,k} = \cos \left ( k \frac{2 \pi}{n} \right ) + i \sin \left ( k \frac{2 \pi}{n} \right ) \textup{ for } 0 \leq k \leq n-1.
+\]}
+\begin{proof}
+Note that from Theorem 21 we know that there are at most $n$ roots of the polynomial $x^n - 1$ which means there are at most $n$ solutions to the equation $x^n = 1$. From Corollary 17 we know
+\[
+\varepsilon_{n,k}^n = \cos \left ( k 2 \pi \right ) + i \sin \left ( k 2 \pi \right ) = 1
+\]
+where $0 \leq k \leq n-1$ (25.17). Suppose that there are two values of $k$, $k_1 \neq k_2$, such that $\varepsilon_{n,k_1} = \varepsilon_{n,k_2}$. Then we have
+\[
+\cos \left ( k_1 \frac{2 \pi}{n} \right ) + i \sin \left ( k_1 \frac{2 \pi}{n} \right ) = \cos \left ( k_2 \frac{2 \pi}{n} \right ) + i \sin \left ( k_2 \frac{2 \pi}{n} \right ).
+\]
+But then $(2 k_1 \pi)/n - (2 k_2 \pi)/n = 2 m \pi$ for some $m \in \mathbb{Z}$ (25.15). Thus $k_1 - k_2 = mn$ and $k_2 - k_1 = -mn$. Note that $m \neq 0$ because $k_1 \neq k_2$ and so the positive difference between $k_1$ and $k_2$ must be greater than or equal to $n$. But we have $0 \leq k_1, k_2 \leq n-1$, so $k_i - k_j < n$ for all values of $k$. Thus for distinct values of $k$ we have distinct values of $\varepsilon_{n,k}$. Therefore there are least and at most $n$ $n$th roots of unity which means there are $n$ $n$th roots of unity.
+\end{proof}
+
+\textbf{Theorem 20}
+\textsl{Let $0 \neq z \in \mathbb{C}$ and let $n \in \mathbb{N}$. Then there are exactly $n$ complex numbers satisfying the equality
+\[
+w^n = z.
+\]}
+\begin{proof}
+Let $z = |z| \left ( \cos \left (\alpha \right ) + i \sin \left ( \alpha \right ) \right )$. Then from Theorem 21 we know that there are at most $n$ values satisfying $w^n = z$. Consider
+\[
+w = |z|^{1/n} \left ( \cos \left ( \frac{\alpha + 2 k \pi}{n} \right ) + i \sin \left ( \frac{\alpha + 2 k \pi}{n} \right ) \right ).
+\]
+Then
+\begin{align*}
+w^n &= |z| \left ( \cos \left ( \alpha + 2k \pi \right ) + i \sin \left ( \alpha + 2k \pi \right ) \right )\\
+	&= |z| \left ( \cos \left ( \alpha \right ) + i \sin \left ( \alpha \right ) \right ) \\
+	&= z.
+\end{align*}
+from Corollary 17 (25.17). We know that each of the values $0 \leq k \leq n-1$ is distinct using a similar argument as in Theorem 19.
+\end{proof}
+
+\textbf{Theorem 21}
+\textsl{Let $p(x) \in \mathbb{C}[x]$ be a complex polynomial of degree $n$. Then $p(x)$ has at most $n$ roots.}
+\begin{proof}
+Suppose that $\deg(p) = n$ and $p$ has $m$ distinct roots with $m>n$. Let the $m$ roots be $\alpha_1, \alpha_2, \dots ,\alpha_m$. In the case where $\alpha_i = \alpha_j$ for all $1 \leq i,j < m$ we have $p(x) = (x-\alpha_1)^m$ which has degree higher than $n$. Thus we can assume that there exists two $\alpha_i$ and $\alpha_j$ such that $\alpha_i \neq \alpha_j$ and $i \neq j$. We know that $p = (x-\alpha_i)q_i$ for some $q \in \mathbb{C}[x]$ (19.8). We also know that since $\alpha_j$ is a root of $p$ it is a root of $(x-\alpha_i)$ or $q_i$ (19.7). Since $\alpha_j-\alpha_i \neq 0$, $\alpha_j$ is a root of $q_i$. Thus $q_i = (x-\alpha_j)q_j$ and $p = (x-\alpha_i)(x-\alpha_j)q_j$ (19.8). We can continue in this process $m$ times until we have
+\[
+p = \prod_{i=1}^m (x-\alpha_i) q_m.
+\]
+But then $\deg(p) = m \neq n$ which is a contradiction.
+\end{proof}
+
+\textbf{Exercise 22}
+\textsl{Where is the mistake in the following?
+\[
+1 = \sqrt{1} = \sqrt{-1 \cdot -1}  = \sqrt{-1} \cdot \sqrt{-1} = i \cdot i = -1.
+\]}
+
+The square root function is only defined for non-negative real numbers. It makes no sense to say $\sqrt{-1 \cdot -1} = \sqrt{-1} \cdot \sqrt{-1}$ because $\sqrt{-1}$ is meaningless.\newline
+
+\textbf{Exercise 23}
+\textsl{Let $u,w$ be complex numbers. Find the complex numbers $z$ such that $u,w,z$ form a equilateral triangle. Express the centers of these triangles.}
+\begin{proof}
+Given the three points $u,w,z$, the centroid of the triangle formed by them should be
+\[
+x = \frac{u+w+z}{3}.
+\]
+Given this and the two points $u$ and $w$ we want the condition each of $u$ $w$ and $z$ are a distance $L$ from the center, $x$, and are separated by an angle of $2 \pi /3$. Thus
+\[
+u-x = L \left ( \cos \left ( \alpha \right ) + i \sin \left ( \alpha \right ) \right ),
+\]
+\[
+z-x = L \left ( \cos \left ( \alpha - \frac{2 \pi}{3} \right ) + i \sin \left ( \alpha - \frac{2 \pi}{3} \right ) \right )
+\]
+and
+\[
+w-x = L \left ( \cos \left ( \alpha + \frac{2 \pi}{3} \right ) + i \sin \left ( \alpha + \frac{2 \pi}{3} \right ) \right )
+\]
+for some angle $\alpha$. This implies that $(u-x)(w-x) = (z-x)^2$ which after substituting for $x$ and expanding gives us
+\[
+u^2 + w^2 + z^2 = uw + uz + wz.
+\]
+Using the quadratic formula to solve for $z$ we end up with
+\[
+z = \frac{u + w \pm i \sqrt{3}(u-w)}{2}.
+\]
+The center of the triangle is then at
+\[
+\frac{u+w}{2} \pm \frac{i \sqrt{3} (u-w)}{6}.
+\]
+\end{proof}
+
+\textbf{Exercise 24}
+\textsl{Take an arbitrary and draw an equilateral triangle on all sides looking outward. Prove that the centers of these triangles forms an equilateral triangle.}
+\begin{proof}
+Let $a$, $b$ and $c$ be vertices of an equilateral triangle and $x$, $y$ and $z$ be the centers of the outer equilateral triangles formed. Then
+\[
+x = \frac{a+b}{2} \pm \frac{i \sqrt{3} (a-b)}{6},
+\]
+\[
+y = \frac{b+c}{2} \pm \frac{i \sqrt{3} (b-c)}{6}
+\]
+and
+\[
+z = \frac{c+a}{2} \pm \frac{i \sqrt{3} (c-a)}{6}.
+\]
+Then we can verify that
+\[
+x^2 + y^2 + z^2 = xy + yz + xz
+\]
+which is the condition we had earlier for an equilateral triangle.
+\end{proof}
+
+\textbf{Exercise 25}
+\textsl{Compute $(1+i)^{2006}$.}\newline
+
+Let $z = 1+i$. Note that $|z| = \sqrt{z \overline{z}} = \sqrt{2}$. Then let $\alpha = \pi/4$ so that
+\[
+z = \sqrt{2} \left ( \frac{1}{\sqrt{2}} + \frac{i}{\sqrt{2}} \right ) = |z| (\cos \alpha + i \sin \alpha).
+\]
+Then
+\[
+z^{2006} = \sqrt{2}^{2006} \left ( \cos \left ( \frac{1003 \pi}{2} \right ) + i \sin \left ( \frac{1003 \pi}{2} \right ) \right ) = -i 2^{1003}\]
+
+\textbf{Exercise 26}
+\textsl{What is the sum of the $n$th roots of unity?}
+\begin{proof}
+Note that the $k$th root of unity is given by
+\[
+\varepsilon_{n,k} = \cos \left ( k \frac{2 \pi}{n} \right ) + i \sin \left ( k \frac{2 \pi}{n} \right ).
+\]
+Let $n > 1$ and let $k = 1$. Then
+\[
+\varepsilon_{n,1} = \cos \left (\frac{2 \pi}{n} \right ) + i \sin \left (\frac{2 \pi}{n} \right ) \neq 1
+\]
+and the arguments of $\varepsilon_{n,k}$ are $(2 \pi)/n$. But then
+\begin{align*}
+\varepsilon_{n,1}^k &= |\varepsilon_{n,1}| \left ( \cos \left ( k \frac{2 \pi}{n} \right ) + i \sin \left ( k \frac{2 \pi}{n} \right ) \right ) \\
+			    &= \cos \left ( k \frac{2 \pi}{n} \right ) + i \sin \left ( k \frac{2 \pi}{n} \right ) \\
+			    &= \varepsilon_{n,k}
+\end{align*}
+by Corollary 17 (25.17). Thus if we have one nontrivial root of unity we can find the rest by taking powers of the first for powers $0 \leq k \leq n-1$. But then
+\[
+\sum_{k=0}^{n-1} \varepsilon_{n,k} = \sum_{k=0}^{n-1} \varepsilon_{n,1}^k = \frac{1-\varepsilon_{n,1}^n}{1-\varepsilon_{n,1}} = 0
+\]
+because $\varepsilon_{n,1} = 1$.
+\end{proof}
+
+\textbf{Exercise 27}
+\textsl{What is the product of the $n$th roots of unity?}
+\begin{proof}
+Similarly
+\[
+\prod_{k=0}^{n-1} \varepsilon_{n,k} = \prod_{k=0}^{n-1} \varepsilon_{n,1}^k = \varepsilon_{n,1}^{\frac{n(n-1)}{2}}.
+\]
+For $n$ odd we can write this as
+\[
+\left ( \varepsilon_{n,1}^n \right )^{\frac{n-1}{2}} = 1.
+\]
+For $n$ even we can write
+\[
+\left ( \varepsilon_{n,1}^{\frac{n}{2}} \right )^{n-1}.
+\]
+Note that
+\[
+\varepsilon_{n,1}^{\frac{n}{2}} = |\varepsilon_{n,1}|^{\frac{n}{2}} \left ( \cos \left ( \frac{n}{2} \frac{2 \pi}{n} \right ) + i \sin \left ( \frac{n}{2} \frac{2 \pi}{n} \right ) \right ) = \cos \pi + i \sin \pi = -1.
+\]
+Thus we have $-1^{n-1}$ and since $n$ is even this is $-1$. Therefore the product of the $n$th roots of unity is $1$ for $n$ odd and $-1$ for $n$ even.
+\end{proof}
+
+\textbf{Exercise 28}
+\textsl{What is the sum of the squares of the $n$th roots of unity?}
+\begin{proof}
+We have
+\[
+\sum_{k=0}^{n-1} \varepsilon_{n,k}^2 = \sum_{k=0}^{n-1} \varepsilon_{n,1}^{2k} = \varepsilon_{n,1}^0 + \varepsilon_{n,1}^2 + \dots + \varepsilon_{n,1}^{2n-2}.
+\]
+If we multiply both sides of this equation by $1-\varepsilon_{n,1}^2$ we have
+\[
+\sum_{k=0}^{n-1} \varepsilon_{n,1}^{2k} = \frac{1-\varepsilon_{n,1}^{2n}}{1-\varepsilon_{n,1}^2} = \frac{1 - \left ( \varepsilon_{n,1}^n \right )^2}{1 - \varepsilon_{n,1}} = 0.
+\]
+\end{proof}
+
+\end{flushleft}
+\end{document}

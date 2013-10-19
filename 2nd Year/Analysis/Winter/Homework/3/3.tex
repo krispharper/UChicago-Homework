@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20800\\
+
+January 21, 2009
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Are $c(F)$ and $c_0(F)$ complete?
+\end{**}
+
+Yes.
+\begin{proof}
+Let $c = c(F)$ and $c_0 = c_0(F)$. Let $(a_{jk})$ be a Cauchy sequence of elements in $c$ where $a_{jk}$ is the $k$th term in the sequence and the $j$th term in that term. Then for all $\varepsilon > 0$ there exists $N$ such that for all $n,m > N$ we have
+\[
+||a_{jn} - a_{jm}|| = \sup_{j \in \mathbb{N}} |a_{jn} - a_{jm}| < \varepsilon.
+\]
+Now create a subsequence $(a_{jk_i})$ such that $||a_{jk_i} - a_{jk_{i+1}}|| < 2^{-i}$. Then this subsequence must converge since the series $\sum_{i = 1}^{\infty} 2^{-i}$ converges. But because $(a_{jk})$ is a Cauchy sequence with a convergent subsequence, it must be convergent as well. Therefore $c$ is complete. The same proof holds for $c_0$ since $2^{-i}$ goes to $0$ as $i$ goes to infinity. Thus if $(a_{jk}) \in c_0$, there's a subsequence which converges to a sequence which converges to $0$. This proves $(a_{jk})$ is convergent, and that $c_0$ is complete.
+\end{proof}
+
+\begin{**}
+Which of the following are separable?\\
+1) $\mathcal{BC}(X, F)$, where $X$ is infinite.\\
+2) $\ell^p(F)$.\\
+3) $\mathcal{B}(X, F)$, where $X$ is infinite.\\
+4) $L^p([a,b])$.\\
+5) $c(F)$.\\
+6) $c_0(F).$
+\end{**}
+\begin{proof}
+1) $\mathcal{BC}(X, F)$ is separable if and only if $X$ is compact. To show this, first suppose $X$ is a compact metric space. Then we can apply the Stone-Weierstrass Theorem to $\mathcal{BC}(X, F)$ so that any subset of $\mathcal{BC}(X, F)$ which contains a constant function and separates points is dense in $\mathcal{BC}(X, F)$. The set of rational valued polynomials is a countable set which satisfies this. Therefore $\mathcal{BC}(X, F)$ is separable. Conversely, suppose that $\mathcal{BC}(X, F)$ is separable. Then there exists a countable dense subset, $A \subseteq \mathcal{BC}(X, F)$. It may be assumed that $A$ contains a nonzero constant function. Then by the Stone-Weirstrass Theorem, $A$ separates points. Let $\mathcal{A}$ be an open cover for $X$. But the existence of a countable dense subset of continuous functions from $X$ to $F$ shows that $\mathcal{A}$ has a finite subcover, which shows that $X$ is compact.\newline
+
+2) For $1 \leq p < \infty$ the space is separable. To see this, consider the set, $A$, of all sequences where each term is rational (if $F = \mathbb{C}$ then the real and imaginary parts are rational) and all but finitely many terms are $0$. Each of these sequences is in $\ell^p(F)$, since the associated series is finite. Also, $A$ is countable since it can be associated with finitely many products of $\mathbb{Q}$. It is also dense for the same reason that $\mathbb{Q}$ is dense in $\mathbb{R}$. If $p = \infty$ then the space is not separable. To see this, consider the set, $B$, of sequences in which terms are either $0$ or $1$. It is clear that $B$ is uncountable because it corresponds to the unit interval of the real line. Additionally, for two distinct elements in $B$, the distance between them is $1$. Now consider the set of all open balls of radius $1/2$ around elements of $B$. These balls must all be disjoint, but any dense subset must have at least one point in each of them, which means no dense subset is countable.\newline
+
+3) If $X$ is countable then this is a special case of part 2) where $p = \infty$. This is because we can map each element of $X$ to an element of $\mathbb{N}$ and then $\mathcal{B}(X, F)$ just becomes sequences. If $X$ is uncountable, the the same proof will hold. Simply take a countable subset of $X$ and make a sequence out of it as in the case where $X$ is countable, then let every other element map to $0$. These elements are a subset of $\mathcal{B}(X, F)$ but they are enough to show that any dense subset must be uncountable.
+
+4) This space is separable. The space of integrable step functions is dense in $L^p([a,b])$. If we consider only rational step functions then we have a countable dense subset of $L^p([a,b])$.\newline
+
+5) The space $c = c(F)$ is separable. The set, $A$, of sequences where each term is rational and all but finitely many terms are $0$ is a countable dense subset. This set is in the space and is countable for the same reasons it was in part 2). To see that it's dense, note that an element $(x_n) \in c$ must converge to $0$. Then for the same reason that $\mathbb{Q}$ is dense in $\mathbb{R}$, finitely many terms of $(x_n)$ are arbitrarily close to corresponding nonzero terms from some element of $A$. The rest of the terms of $(x_n)$ get arbitrarily close to $0$, and thus to the remaining terms of this element of $A$. Thus $(x_n)$ is arbitrarily close to some element of $A$, and so $A$ is dense in $X$.\newline
+
+6) This space is separable for the exact same reasons as in part 5).
+\end{proof}
+
+\begin{**}
+For $u \in V / V_0$, is $||u||$ necessarily assumed?
+\end{**}
+
+No.
+\begin{proof}
+Consider $u \in V / V_0$ such that $u = u + V_0$. Let $\varepsilon > 0$. Then there must exist some element $v \in V_0$ such that $||u - v|| < ||u + V_0|| + \varepsilon$. Since $\varepsilon$ is arbitrary we have $||w|| \leq ||u||$ where $w = u-v$, $w \in V$ and $u = u + V_0$.
+\end{proof}
+
+\begin{**}
+If $V$ is a complete vector space and $V_0$ a closed subspace of $V$. Show that $V / V_0$ is complete.
+\end{**}
+\begin{proof}
+Let $(u_n)$ be a Cauchy sequence in $V / V_0$ where $u_n$ is the coset $u_n + V_0$. Since $(u_n)$ is Cauchy, we can choose a subsequence $(u_{n_k})$ such that $||u_{n_k} - u_{n_{k+1}}|| < 2^{-k}$. Now create a sequence $(v_k)$ such that $||v_k - v_{k+1}|| < 2||u_{n_k} - u_{n_{k+1}}||$. We can do this because of the definition of the norm. It is then clear that $(x_k)$ is Cauchy and so it converges to $v \in V$ since $V$ is complete. Let $u = v + V_0$. Then using the definition of a norm we see that $||u_{n+k} - u|| < ||x_k - x||$ so that $(u_{n_k})$ converges to $u$. Since $(u_n)$ is Cauchy, this implies that $(u_n)$ converges to $u$ as well.
+\end{proof}
+
+\begin{**}
+If $V / V_0$ is complete, is $V$ necessarily complete?
+\end{**}
+
+No.
+\begin{proof}
+Suppose that the result is true. Then consider some incomplete vector space $V$, and note that $V$ is a closed subspace of itself. Then if $V / V$ is complete, it should directly imply $V$ is complete, but this is clearly not the case.
+\end{proof}
+
+\end{flushleft}
+\end{document}

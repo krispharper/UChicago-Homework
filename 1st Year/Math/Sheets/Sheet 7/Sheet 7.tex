@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 7: Return of the Continuum\newline
+
+\normalsize
+
+\textbf{Definition 1 (Open Cover)}
+\textsl{Let $X \subseteq C$ be a set and let $\mathcal{A}$ be a set of subsets of $C$. We say that $\mathcal{A}$ is an open cover for $X$ if for all $A \in \mathcal{A}$ the set $A$ is open and
+\[
+X \subseteq \bigcup_{A \in \mathcal{A}} A.
+\]}\newline
+
+\textbf{Exercise 2}
+\textsl{Let $p \in C$ be a point and let
+\[
+\mathcal{A} = \{\textup{ext}(a;b) \mid p \in (a;b)\}.
+\]
+Show that $\mathcal{A}$ is an open cover for $C \backslash p$.}
+\begin{proof}
+Let $x \in C \backslash p$. Then $x \in C$ and $x \neq p$ and so $x<p$ or $p<x$. Suppose $x<p$. Since regions are nonempty there exists $a \in C$ such that $x<a<p$ (5.8). And because $C$ has no last point there exists $b \in C$ such that $p<b$ (A2.3). But then $p \in (a;b)$ and since $x < a$, $x \in \text{ext}(a;b)$. Because this is true for some region $(a;b)$, we see $x \in \bigcup_{A \in \mathcal{A}} A$. Therefore, $C \backslash p \subseteq \bigcup_{A \in \mathcal{A}} A$. From Exercise 12 we see that $\text{ext}(a;b)$ is open and so $\mathcal{A}$ is an open cover for $C \backslash p$ (7.12). A similar argument holds if $p < x$ because $C$ has no first point (A2.3). Note that Exercise 12 does not depend on this exercise.
+\end{proof}
+
+\textbf{Definition 3 (Subcover)}
+\textsl{Let $\mathcal{A}$ be an open cover for $X$. A subset $\mathcal{B} \subseteq \mathcal{A}$ is a subcover if
+\[
+X \subseteq \bigcup_{B \in \mathcal{B}} B.
+\]}\newline
+
+\textbf{Exercise 4}
+\textsl{Show that the set
+\[
+A = \left\{ \frac{1}{n} \mid n \in \mathbb{N} \right\} \cup \{0\}.
+\]
+is closed.}
+\begin{proof}
+Let $p \in C$ be point such that $p \notin A$. Then there are three cases.\newline
+
+\textit{Case 1:} Let $p<0$. Then since $C$ has no first point there exists a point $x \in C$ such that $x<p$ and so the region $(x;0)$ contains $p$ but no points in $A$ (A2.3).\newline
+
+\textit{Case 2:} Let $p>1$. Then since $C$ has no last point there exists a point $y \in C$ such that $p<y$ and so the region $(1;y)$ contains $p$ but no points in $A$ (A2.3).\newline
+
+\textit{Case 3:} Let $p \in (0;1)$. Then $p=\frac{a}{b}$ for some $a,b \in \mathbb{N}$ and since $0 < \frac{a}{b} < 1$, we have $a<b$. Since $0<\frac{b}{a}$, by the Archimedean Property there exists a natural number $k$ such that $\frac{b}{a} < k$ (4.20). But since $k \in \mathbb{N}$, by the Well Ordering Principle there exists a least such element $n$. Since $p \notin A$, $a \neq 1$ and so $\frac{b}{a} \notin \mathbb{N}$. But then $n-1 < \frac{b}{a} < n$ and so $\frac{1}{n}<p<\frac{1}{n-1}$. Therefore $p \in \left( \frac{1}{n};\frac{1}{n-1} \right)$ which doesn't contain any elements of $A$.\newline
+
+In all three cases there exists a region containing $p$ which contains no elements of $A$ and so $p$ cannot be a limit point of $A$. Therefore if $A$ has any limit points, they must be in $A$. Since $A$ contains all its limit points, it is closed.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{Prove that every open cover of $A$ has a finite subcover.}
+\begin{proof}
+Let $\mathcal{A}$ be a cover of $A$. Then for every element of $A$, there exists an open set in $\mathcal{A}$ which contains that element. But then there exists an open set $B$ in $\mathcal{A}$ containing $0$. And so there exists a region $(a;b) \subseteq B$ such that $0 \in (a;b)$ by the open condition (3.17). There are three cases.\newline
+
+\textit{Case 1:} Let $1 < b$. Then $A \subseteq B$ and so the set containing $B$ is a finite subcover of $\mathcal{A}$.\newline
+
+\textit{Case 2:} Let $b=1$. Then the region $(a;b)$ contains all the elements of $A$ except for $1$. Thus the set containing $B$ and a set from $\mathcal{A}$ containing $1$ is a finite subcover of $A$.\newline
+
+\textit{Case 2:} Let $b < 1$. Then $b=\frac{p}{q}$ for some $p,q \in \mathbb{N}$ and since $0 < \frac{p}{q} < 1$, we have $p<q$. Since $0<\frac{q}{p}$, by the Archimedean Property there exists a natural number $k$ such that $\frac{q}{p} < k$ (4.20). But since $k \in \mathbb{N}$, by the Well Ordering Principle there exists a least such element $n$. There are a finite number of natural numbers less than $n$ and since every element of $A$ is a reciprocal of a natural number, there are a finite number of elements $x$ of $A$ such that $\frac{1}{n} < x$. All the other elements of $A$ are less than $b$ so they are contained in $(a;b)$. For each element of $A$ greater than $\frac{1}{n}$ there exists a set in $\mathcal{A}$ containing that element. There are finitely many of these elements so there exist finitely many sets of $\mathcal{A}$ containing them. So those sets and $B$ form a finite subcover of $\mathcal{A}$.
+\end{proof}
+
+\textbf{Definition 6 (Compact Set)}
+\textsl{A set $X$ is compact if every open cover of $X$ has a finite subcover.}\newline
+
+\textbf{Exercise 7}
+\textsl{Let $\mathcal{A}$ be the set of all regions. Show that no finite subset of $\mathcal{A}$ covers $C$.}
+\begin{proof}
+Let $\mathcal{B}$ be a finite subset of $\mathcal{A}$. If $\mathcal{B} = \emptyset$ then it is clear that it is not an open cover for $C$. Then $\mathcal{B}=\{(a_1;b_1),(a_2;b_2), \dots ,(a_n;b_n)\}$. But since there are a finite number of lower boundary points $a_i$ for regions in $\mathcal{B}$, we can order them so that $x$ is a lower boundary point and $x \leq a_i$ for all regions in $\mathcal{B}$. Then $x$ is less than every point in every region in $\mathcal{B}$. But since $C$ has no first point there exists a point $p \in C$ such that $p < x$ and so $C \nsubseteq \bigcup_{(a;b) \in \mathcal{B}} (a;b)$ (A2.3).
+\end{proof}
+
+\textbf{Exercise 8}
+\textsl{Let $p \in C$ be a point and let $\mathcal{A}=\{ \textup{ext}(a;b) \mid p \in (a;b) \}$. Show that no finite subset of $\mathcal{A}$ covers $C \backslash p$.}
+\begin{proof}
+Let $\mathcal{B}$ be a finite subset of $\mathcal{A}$. Clearly if $\mathcal{B} = \emptyset$ then it is not an open cover for $C \backslash p$. Then $\mathcal{B}=\{ \text{ext}(a_1;b_1), \text{ext}(a_2;b_2), \dots ,\text{ext}(a_n;b_n) \}$ such that $p \in (a;b)$ for all $\text{ext}(a;b) \in \mathcal{B}$. Consider the finite set of values of $a_i$ for exteriors in $\mathcal{B}$. Since this set is finite there exists a last point $x$ so that $x \geq a_i$ for all exteriors in $\mathcal{B}$ (2.2). Since regions are nonempty there exists a point $y \in C$ such that $x<y<p$ and so $y \notin \text{ext}(a_i;b_i)$ for any exterior in $T$ (5.8). But then $C \backslash p \nsubseteq \bigcup_{B \in \mathcal{B}} B$.
+\end{proof}
+
+\textbf{Theorem 9 (Compact Sets Are Bounded)}
+\textsl{If $X \subseteq C$ is not bounded, then $X$ is not compact.}
+\begin{proof}
+Let $X \subseteq C$ be a set which is not bounded below and let $\mathcal{A}$ be the set of all regions. Consider a finite subset of $\mathcal{A}$, $\mathcal{B}$. Since $\emptyset$ is bounded below, $X \neq \emptyset$. So in the case where $\mathcal{B} = \emptyset$ we see that $\mathcal{B}$ is not an open cover for $X$. Then $\mathcal{B}=\{(a_1;b_1),(a_2;b_2), \dots ,(a_n;b_n)\}$. But since there are a finite number of lower boundary points $a_i$ for regions in $\mathcal{B}$, we can order them so that $x$ is a lower boundary point and $x \leq a_i$ for all regions in $\mathcal{B}$ (2.2). Then $x$ is less than every point in every region in $\mathcal{B}$. But since $X$ has no lower bound, for all $p \in C$ there exists $q \in X$ such that $q < p$. Therefore there exists a $q \in X$ such that $q < x$ and so $X \nsubseteq \bigcup_{B \in \mathcal{B}} B$. A similar proof holds if $X$ is a set which is not bounded above.
+\end{proof}
+
+\textbf{Theorem 10 (Compact Sets Are Closed)}
+\textsl{If $X \subseteq C$ is not closed, then $X$ is not compact.}
+\begin{proof}
+Let $X \subseteq C$ be a set which is not closed and $p \notin X$ be a limit point of $X$. Let $\mathcal{A} = \{\text{ext}(a;b) \mid p \in (a;b)\}$. Since $p \notin X$ we see that $\mathcal{A}$ covers $X$. Suppose that $\mathcal{B}$ is a finite subset of $\mathcal{A}$. We see that $X \neq \emptyset$ because $\emptyset$ is closed (3.13). So in the case where $\mathcal{B}=\emptyset$ we see that $\mathcal{B}$ does not cover $X$. Then $\mathcal{B} = \{\text{ext}(a_1;b_1), \text{ext}(a_2;b_2), \dots ,\text{ext}(a_n;b_n)\}$. But then the set of lower boundary points $a_i$ and the set of upper boundary points $b_i$ for exteriors in $\mathcal{B}$ are finite. Thus there exists a last point $x$ such that $x$ is a lower boundary point of some exterior in $\mathcal{B}$ and $x \geq a_i$ for all exteriors in $\mathcal{B}$. Likewise there exists a smallest upper boundary point $y$ for exteriors in $\mathcal{B}$. Note that $x$ and $y$ need not define the same exterior in $\mathcal{B}$. But then the region $(x;y)$ must contain $p$ because all lower boundary points are less than $p$ and all upper boundary points are greater than $p$. Since $p$ is a limit point of $X$, then $(x;y)$ also contains a point in $X$. But $(x;y)$ is defined so that $(x;y) \nsubseteq \bigcup_{B \in \mathcal{B}} B$. Therefore $X \nsubseteq \bigcup_{B \in \mathcal{B}} B$ and so $\mathcal{B}$ is not a finite subcover for $\mathcal{A}$ and $X$ is not compact.
+\end{proof}
+
+\textbf{Definition 11}
+\textsl{For $a<b$ let the closed interval $[a;b]$ be defined as
+\[
+[a;b] = (a;b) \cup \{a\} \cup \{b\}.
+\]}\newline
+
+\textbf{Exercise 12}
+\textsl{Closed intervals are closed}
+\begin{proof}
+Let $a,b,p \in C$ be points such that $a<b$ and $p \notin [a;b]$. Then $p<a$ or $p>b$. Let $p<a$. Since $C$ has no first point there exists a point $x \in C$ such that $x<p$ (A2.3). But then the region $(x;a)$ contains $x$ but no points in $[a;b]$. A similar argument holds for $b<p$ and so $p$ cannot be a limit point of $[a;b] (A2.3)$. But then any limit points of $[a;b]$ must be in $[a;b]$ and so $[a;b]$ is closed.
+\end{proof}
+
+\textbf{Definition 13 (Chain of Regions)}
+\textsl{Let $a<b$. A chain of regions going from $a$ to $b$ is defined as a finite sequence $R_1, R_2, \dots ,R_n$ of regions such that $a \in R_1$, $b \in R_n$ and for $1 \leq i \leq n-1$ we have $R_i \cap R_{i+1} \neq \emptyset$.}\newline
+
+\textbf{Exercise 14}
+\textsl{A chain of regions from $a$ to $b$ covers the the closed interval $[a;b]$.}
+\begin{proof}
+Let $R_1,R_2, \dots R_n$ be a chain of regions going from $a$ to $b$ such that $R_i=(p_i;q_i)$. Let $x \in [a;b]$. Then $x$ is greater than a finite number of upper boundary points $q_i$. Consider the set of indexes for these points. If the set is empty then $x \in R_1$. If the set is not empty then we can take the last point of the set $k$ (2.2). By definition $R_k \cap R_{k+1} \neq \emptyset$ and so $p_{k+1} < q_k$. But $q_k<x$ and $x<q_{k+1}$ and so $x \in (p_{k+1};q_{k+1})=R_{k+1}$. Therefore, if $x \in [a;b]$ then $x$ is in one of the regions $R_1,R_2, \dots ,R_n$. Thus $[a;b] \subseteq R_1 \cup R_2 \cup \dots \cup R_n$. Since all regions are open, the chain of regions covers $[a;b]$ (3.16).
+\end{proof}
+
+\textbf{Theorem 15}
+\textsl{Let $a<b$ and let $\mathcal{A}$ be a set of regions that covers $[a;b]$. Let $X = \{ x \in [a;b] \mid \text{there is a chain of regions } R_1, R_2, \dots ,R_n \in S \text{ going from } a \text{ to } x \}$. Then $\sup X = b$. Moreover $b \in X$.}
+\begin{proof}
+Since $X \subseteq [a;b]$ we see that $X$ is bounded above by $b$. Additionally, $X \neq \emptyset$ because there exists a region $R_1 \in \mathcal{A}$ which contains $a$ and so there is a finite chain of regions going from $a$ to all points in $R_1$ greater than or equal to $a$. Therefore $\sup X$ exists (6.11). Let $u = \sup X$. If $u > b$ then we have $b \geq x$ for all $x \in [a;b]$ and thus $b \geq x$ for all $x \in X$. Therefore $b$ is an upper bound of $X$ which is less than $u$. This is a contradiction and so $u \leq b$. So we have $a<u$ and $u \leq b$ so $u \in [a;b]$. Since $\mathcal{A}$ is an open cover of $[a;b]$ there exists a region $R_i \in \mathcal{A}$ such that $u \in R_i$. Suppose to the contrary that all the points in $R_i$ which are between $a$ and $u$ are not in $X$ and consider one of these points $p$. We see that there are no elements of $X$ between $p$ and $u$ and because $\sup X = u$, $p$ is an upper bound of $X$. But this is a contradiction because $p<u$. Therefore there exists a point $c \in X$ such that $c \in R_i$ and $a<c<u$ (5.8). Thus there exists a chain of regions from $\mathcal{A}$ which goes from $a$ to $c$ which ends in some region $S$. Since $c \in R_i$ and $c \in S$ we have $R_i \cap S \neq \emptyset$. Then there exists a finite chain of regions from $\mathcal{A}$ going from $a$ to $u$ and $u \in X$. Now assume to the contrary that $u<b$. Then there exists another point $u' \in R_i$ such that $u<u'<b$ (5.8). But then $u' \in X$ and $u<u'$. This is a contradiction since $u = \sup X$. Therefore $\sup X = b$ and $b \in X$.
+\end{proof}
+
+\textbf{Theorem 16 (Closed Intervals Are Compact With Respect To Regions)}
+\textsl{Let $a<b$. Then any set of regions that covers $[a;b]$ has a finite subcover.}
+\begin{proof}
+This follows from Theorem 15 and Exercise 14. Because $b \in X$ we see that there exists a finite chain of regions going from $a$ to $b$ (7.15). Since regions are open sets, this chain forms a finite subcover for $[a;b]$ (7.14).
+\end{proof}
+
+\textbf{Theorem 17}
+\textsl{Let $a<b$ be points in $C$ and let $\mathcal{A}$ be an open cover for $[a;b]$. Let
+\[
+S= \{(c;d) \mid c<d, \textup{ there exists } A \in \mathcal{A} \textup{ with } (c;d) \subseteq A\}.
+\]
+We have
+\[
+[a;b] \subseteq \bigcup_{(c;d) \in S} (c;d).
+\]}
+\begin{proof}
+We know that $\mathcal{A}$ is an open cover for $[a;b]$. Thus, for all $x \in [a;b]$ there exists $A \in \mathcal{A}$ such that $A$ is open and $x \in A$. But by the open condition there exists a region $(c;d) \subseteq A$ such that $x \in (c;d)$ (3.17). Then $x \in \bigcup_{(c;d) \in S} (c;d)$ because $x \in \bigcup_{A \in \mathcal{A}} A$ and $(c;d) \subseteq A$ for all $A \in \mathcal{A}$. Therefore $[a;b] \subseteq \bigcup_{(c;d) \in S} (c;d)$.
+\end{proof}
+
+\textbf{Corollary 18}
+\textsl{For $(c;d) \in S$ let $A_{(c;d)} \in \mathcal{A}$ such that $(c;d) \subseteq A_{(c;d)}$. We have
+\[
+[a;b] \subseteq \bigcup_{(c;d) \in S} A_{(c;d)}.
+\]}
+\begin{proof}
+From Theorem 17 we have $[a;b] \subseteq \bigcup_{(c;d) \in S} (c;d)$ (7.17). For all $(c;d) \in S$ we have $(c;d) \subseteq A_{(c;d)}$. Therefore $\bigcup_{(c;d) \in S} (c;d) \subseteq \bigcup_{(c;d) \in S} A_{(c;d)}$. And so $[a;b] \subseteq \bigcup_{(c;d) \in S} A_{(c;d)}$.
+\end{proof}
+
+\textbf{Theorem 19 (Closed Intervals Are Compact)}
+\textsl{For $a<b$ the closed interval $[a;b]$ is compact}
+\begin{proof}
+Let $\mathcal{A}$ be an open cover for $[a;b]$ for $a,b \in C$. Define
+\[
+S = \{(c;d) \mid c<d, \text{ there exists } A \in \mathcal{A} \text{ with } (c;d) \subseteq A\}.
+\]
+From Theorem 17 we know that $S$ is a cover for $[a;b]$ (7.17). Since $S$ is composed entirely of regions, by Theorem 16 there exists a finite subcover of $S$ for $[a;b]$. So there exists finitely many regions from $S$ which will form an open cover of $[a;b]$. Call this set $T$. Then for $(c;d) \in T$ let $B_{(c;d)} \in \mathcal{A}$ such that $(c;d) \subseteq B_{(c;d)}$. From Corollary 18 we know that the set of all $A_{(c;d)}$ for $(c;d) \in S$ is an open cover for $[a;b]$ (7.18). But $T \subseteq S$ and so the set of all $B_{(c;d)}$ is a subset of the set of all $A_{(c;d)}$. And because $(c;d) \subseteq B_{(c;d)}$ for all $(c;d) \in T$, and $T$ is an open cover for $[a;b]$ we have $[a;b] \subseteq \bigcup_{(c;d) \in T} B_{(c;d)} \subseteq \bigcup_{(c;d) \in S} A_{(c;d)}$. So the set of all $B_{(c;d)}$ is a finite open subcover for $[a;b]$ because $T$ is finite and $B_{(c;d)} \in \mathcal{A}$ for all $(c;d) \in T$.
+\end{proof}
+
+\textbf{Theorem 20}
+\textsl{Let $X \subseteq C$ be a closed set and let $\mathcal{A}$ be an open cover of $X$. Then $\mathcal{A} \cup \{C \backslash X\}$ is an open cover of $C$.}
+\begin{proof}
+We know that $X=C \backslash (C \backslash X)$ is closed and so $C \backslash X$ is open. Then let $p \in C$. Then $p \in X$ or $p \notin X$. If $p \in X$ then $p \in \bigcup_{A \in \mathcal{A}} A$. If $p \notin X$ then $p \in C \backslash X$. Therefore $p \in \bigcup_{A \in \mathcal{A}} \cup \left( C \backslash X \right)$. Thus $C \subseteq \bigcup_{A \in \mathcal{A}} A \cup \left(C \backslash X \right)$. Since all the sets in $\mathcal{A} \cup \{C \backslash X\}$ are open, $\mathcal{A} \cup \{C \backslash X\}$ is an open cover for $C$.
+\end{proof}
+
+\textbf{Theorem 21}
+\textsl{Let $X \subseteq C$ be a set and let $\mathcal{B}$ be an open cover of $X$ such that $C \backslash X \in \mathcal{B}$. Then $\mathcal{B} \backslash \{C \backslash X\}$ is an open cover of $X$.}
+\begin{proof}
+There are no points of $X$ which are in $C \backslash X$. Therefore, since $X \subseteq \bigcup_{B \in \mathcal{B}} B$, we also have $X \subseteq \bigcup_{B \in \mathcal{B}, B \neq (C \backslash X)} B$. And so $\mathcal{B} \backslash \{C \backslash X\}$ is an open cover for $X$.
+\end{proof}
+
+\textbf{Theorem 22 (Bounded Closed Sets Are Compact)}
+\textsl{Let $X \subseteq C$ be a bounded closed set. Then $X$ is compact.}
+\begin{proof}
+Let $\mathcal{A}$ be an open cover of $X$. Then from Theorem 20 we have $\mathcal{A} \cup \{C \backslash X\}$ is an open cover of $C$ (7.20). Since $X$ is bounded we see that $\inf X$ and $\sup X$ exist (6.11, 6.12). But then $[\inf X ; \sup X] \subseteq C$ and so $\mathcal{A} \cup \{C \backslash X\}$ is an open cover for $[\inf X ; \sup X]$. But from Theorem 19 we know that $[\inf X ; \sup X]$ is compact and so we let $\mathcal{B} \subseteq \mathcal{A} \cup \{C \backslash X\}$ be a finite subset which covers $[\inf X ; \sup X]$ (7.19). Then $X \subseteq [\inf X ; \sup X]$ by definition and so $\mathcal{B}$ is an open cover for $X$. But then we know that $\mathcal{B} \subseteq \mathcal{A} \cup \{C \backslash X\}$ and so $\mathcal{B} \backslash \{C \backslash X\} \subseteq \mathcal{A}$. From Theorem 21 we know that $\mathcal{B} \backslash \{C \backslash X\}$ is an open cover for $X$ because $\mathcal{B}$ is an open cover for $X$ (7.21). Since $\mathcal{B} \backslash \{C \backslash A\} \subseteq \mathcal{A}$ is finite we now have a finite open subset of $\mathcal{A}$ which covers $X$ so $X$ is compact.
+\end{proof}
+
+\end{flushleft}
+\end{document}

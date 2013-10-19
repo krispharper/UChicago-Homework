@@ -1,0 +1,314 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\input xy
+\xyoption{all}
+
+\newcommand{\End}{\textup{End}}
+\newcommand{\tr}{\textup{Tr}}
+\newcommand{\ind}{\textup{Ind}\;}
+\newcommand{\res}{\textup{Res}\;}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26700\\
+
+October 25, 2010
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{problem}
+Let $H = A_5 \subseteq G = S_5$. Show that $\ind U = U \oplus U'$, $\ind V = V \oplus V'$, and $\ind W = W \oplus W'$, whereas $\ind Y = \ind Z = \wedge^2 V$.
+\end{problem}
+\begin{proof}
+Using Frobenius reciprocity and examining the character tables we have
+\[
+(\chi_{\ind U}, \chi_U) = (\chi_U, \chi_{\res U}) = 1,
+\]
+\[
+(\chi_{\ind U}, \chi_{U'}) = (\chi_U, \chi_{\res U'}) = 1,
+\]
+\[
+(\chi_{\ind U}, \chi_V) = (\chi_U, \chi_{\res V}) = (\chi_U, \chi_V) = 0,
+\]
+\[
+(\chi_{\ind U}, \chi_{V'}) = (\chi_U, \chi_{\res V'}) = (\chi_U, \chi_V) = 0,
+\]
+\[
+(\chi_{\ind U}, \chi_{\wedge^2 V}) = (\chi_U, \chi_{\res \wedge^2 V}) = (\chi_U, \chi_{Y \oplus Z}) = 0,
+\]
+\[
+(\chi_{\ind U}, \chi_W) = (\chi_U, \chi_{\res W}) = (\chi_U, \chi_W) = 0,
+\]
+and
+\[
+(\chi_{\ind U}, \chi_{W'}) = (\chi_U, \chi_{\res W'}) = (\chi_U, \chi_W) = 0
+\]
+so $\ind U \cong U \oplus U'$. Also,
+\[
+(\chi_{\ind V}, \chi_U) = (\chi_V, \chi_{\res U}) = 0,
+\]
+\[
+(\chi_{\ind V}, \chi_{U'}) = (\chi_V, \chi_{\res U'}) = 0,
+\]
+\[
+(\chi_{\ind V}, \chi_V) = (\chi_V, \chi_{\res V}) = (\chi_V, \chi_V) = 1,
+\]
+\[
+(\chi_{\ind V}, \chi_{V'}) = (\chi_V, \chi_{\res V'}) = (\chi_V, \chi_V) = 1,
+\]
+\[
+(\chi_{\ind V}, \chi_{\wedge^2 V}) = (\chi_V, \chi_{\res \wedge^2 V}) = (\chi_V, \chi_{Y \oplus Z}) = 0,
+\]
+\[
+(\chi_{\ind V}, \chi_W) = (\chi_V, \chi_{\res W}) = (\chi_V, \chi_W) = 0,
+\]
+and
+\[
+(\chi_{\ind V}, \chi_{W'}) = (\chi_V, \chi_{\res W'}) = (\chi_V, \chi_W) = 0
+\]
+so $\ind V \cong V \oplus V'$. Also,
+\[
+(\chi_{\ind W}, \chi_U) = (\chi_W, \chi_{\res U}) = 0,
+\]
+\[
+(\chi_{\ind W}, \chi_{U'}) = (\chi_W, \chi_{\res U'}) = 0,
+\]
+\[
+(\chi_{\ind W}, \chi_V) = (\chi_W, \chi_{\res V}) = (\chi_W, \chi_V) = 0,
+\]
+\[
+(\chi_{\ind W}, \chi_{V'}) = (\chi_W, \chi_{\res V'}) = (\chi_W, \chi_V) = 0,
+\]
+\[
+(\chi_{\ind W}, \chi_{\wedge^2 V}) = (\chi_W, \chi_{\res \wedge^2 V}) = (\chi_W, \chi_{Y \oplus Z}) = 0,
+\]
+\[
+(\chi_{\ind W}, \chi_W) = (\chi_W, \chi_{\res W}) = (\chi_W, \chi_W) = 1,
+\]
+and
+\[
+(\chi_{\ind W}, \chi_{W'}) = (\chi_W, \chi_{\res W'}) = (\chi_W, \chi_W) = 1
+\]
+so $\ind W \cong V \oplus V'$. Also,
+\[
+(\chi_{\ind Y}, \chi_U) = (\chi_Y, \chi_{\res U}) = 0,
+\]
+\[
+(\chi_{\ind Y}, \chi_{U'}) = (\chi_Y, \chi_{\res U'}) = 0,
+\]
+\[
+(\chi_{\ind Y}, \chi_V) = (\chi_Y, \chi_{\res V}) = (\chi_Y, \chi_V) = 0,
+\]
+\[
+(\chi_{\ind Y}, \chi_{V'}) = (\chi_Y, \chi_{\res V'}) = (\chi_Y, \chi_V) = 0,
+\]
+\[
+(\chi_{\ind Y}, \chi_{\wedge^2 V}) = (\chi_Y, \chi_{\res \wedge^2 V}) = (\chi_Y, \chi_{Y \oplus Z}) = 1,
+\]
+\[
+(\chi_{\ind Y}, \chi_W) = (\chi_Y, \chi_{\res W}) = (\chi_Y, \chi_W) = 0,
+\]
+and
+\[
+(\chi_{\ind Y}, \chi_{W'}) = (\chi_Y, \chi_{\res W'}) = (\chi_Y, \chi_W) = 0
+\]
+so $\ind Y \cong \wedge^2 V$. Also,
+\[
+(\chi_{\ind Z}, \chi_U) = (\chi_Z, \chi_{\res U}) = 0,
+\]
+\[
+(\chi_{\ind Z}, \chi_{U'}) = (\chi_Z, \chi_{\res U'}) = 0,
+\]
+\[
+(\chi_{\ind Z}, \chi_V) = (\chi_Z, \chi_{\res V}) = (\chi_Z, \chi_V) = 0,
+\]
+\[
+(\chi_{\ind Z}, \chi_{V'}) = (\chi_Z, \chi_{\res V'}) = (\chi_Z, \chi_V) = 0,
+\]
+\[
+(\chi_{\ind Z}, \chi_{\wedge^2 V}) = (\chi_Z, \chi_{\res \wedge^2 V}) = (\chi_Z, \chi_{Z \oplus Z}) = 1,
+\]
+\[
+(\chi_{\ind Z}, \chi_W) = (\chi_Z, \chi_{\res W}) = (\chi_Z, \chi_W) = 0,
+\]
+and
+\[
+(\chi_{\ind Z}, \chi_{W'}) = (\chi_Z, \chi_{\res W'}) = (\chi_Z, \chi_W) = 0
+\]
+so $\ind Z \cong \wedge^2 V$.
+\end{proof}
+
+\begin{problem}
+If $\mathbb{C}G$ is identified with the space of functions on $G$, the function $\varphi$ corresponding to $\sum_{g \in G} \varphi(g) e_g$, show that the product in $\mathbb{C}G$ corresponds to the convolution $*$ of induced functions:
+\[
+(\varphi * \psi)(g)  = \sum_{h \in G} \varphi(h) \psi(h^{-1}g).
+\]
+\end{problem}
+\begin{proof}
+Note that $(\varphi * \psi)(g)$ corresponds to
+\begin{align*}
+\sum_{g \in G} (\varphi * \psi)(g)e_g
+&=\sum_{g \in G} \left ( \sum_{h \in G} \varphi(h) \psi(h^{-1}g) \right ) e_g\\
+&= \sum_{g \in G} \sum_{h \in G} \varphi(h) \psi(h^{-1}g) e_g\\
+&= \sum_{g \in G} \sum_{hk = g \in G} \varphi(h) \psi(k) e_g\\
+&= \left ( \sum_{h \in G} \varphi(h)e_h \right ) \left ( \sum_{k \in G} \psi(k)e_k \right )
+\end{align*}
+\end{proof}
+
+\begin{problem}
+If $\rho : G \to GL(V_{\rho})$ is a representation, and $\varphi$ is a function on $G$, define the \emph{Fourier transform} $\widehat{\varphi}$ in $\End(V_{\rho})$ by the formula
+\[
+\widehat{\varphi}(\rho) = \sum_{g \in G} \varphi(g) \cdot \rho(g).
+\]
+(a) Show that $\widehat{\varphi * \psi}(\rho) = \widehat{\varphi}(\rho) \cdot \widehat{\psi}(\rho)$.\\
+(b) Prove the \emph{Fourier inversion formula}
+\[
+\varphi(g) = \frac{1}{|G|} \sum \dim (V_{\rho}) \cdot \tr(\rho(g^{-1}) \cdot \widehat{\varphi}(\rho)),
+\]
+the sum over the irreducible representations $\rho$ of $G$. This formula is equivalent to formula (2.19) and (2.20).\\
+(c) Prove the \emph{Plancherel formula} for functions $\varphi$ and $\psi$ on $G$:
+\[
+\sum_{g \in G} \varphi(g^{-1}) \psi(g) = \frac{1}{|G|} \sum_{\rho} \dim (V_{\rho}) \cdot \tr (\widehat{\varphi}(\rho) \widehat{\psi} (\rho)).
+\]
+\end{problem}
+\begin{proof}
+(a) We have
+\begin{align*}
+\widehat{\varphi * \psi}(\rho)
+&= \sum_{g \in G} \widehat{\varphi * \psi}(g) \rho(g)\\
+&= \sum_{g \in G} \left ( \sum_{h \in G} \varphi(h) \psi(h^{-1}g) \right ) \rho(g)\\
+&= \sum_{g \in G} \sum_{hk = g \in G} \varphi(h) \psi(k) \rho(g)\\
+&= \sum_{g \in G} \sum_{hk = g \in G} \varphi(h) \psi(k) \rho(h) \rho(k)\\
+&= \left ( \sum_{h \in G} \varphi(h) \rho(h) \right ) \left ( \sum_{k \in G} \psi(k) \rho(k) \right )\\
+&= \widehat{\varphi}(\rho) \widehat{\psi}(\rho).
+\end{align*}
+
+(b) We have
+\begin{align*}
+\frac{1}{|G|} \sum_{i=1}^r \dim(V_i) \tr (\rho_i(g^{-1}) \widehat{\varphi}(\rho_i) )
+&= \frac{1}{|G|} \sum_{i=1}^r \dim(V_i) \tr \left (\rho_i(g^{-1}) \sum_{h \in G} \varphi(h) \rho_i(h) \right )\\
+&= \frac{1}{|G|} \sum_{i=1}^r \dim(V_i) \tr \left (\sum_{h \in G} \varphi(h) \rho_i(g^{-1}h) \right )\\
+&= \frac{1}{|G|} \sum_{i=1}^r \dim(V_i) \left ( \sum_{h \in G} \varphi(h) \tr (\rho_i(g^{-1}h)) \right )\\
+&= \frac{1}{|G|} \sum_{h \in G} \varphi(h) \left ( \sum_{i=1}^r \dim(V_i) \chi_i(g^{-1}h) \right ).
+\end{align*}
+Note that the inner sum is $0$ for $h \neq g$ and $\dim(V_i)$ for $h = g$ by column orthogonality of group characters. Putting in $h = g$ simplifies the equation to
+\[
+\frac{1}{|G|} \varphi(g) \sum_{i=1}^r (\dim(V_i))^2 = \frac{1}{G} \varphi(g) |G| = \varphi(g).
+\]
+
+(c) Let $\varphi : G \to \mathbb{C}$ be the identifier function for $g^{-1} \in G$ so that
+\[
+\varphi(h) =
+\begin{cases}
+0 & h \neq g^{-1}\\
+1 & h = g^{-1}.
+\end{cases}
+\]
+Then $\widehat{\varphi}(\rho) = \sum_{g \in G} \varphi(g) \rho(g) = \varphi(g^{-1}) \rho(g^{-1}) = \rho(g^{-1})$. Now using part (b) we have
+\[
+\frac{1}{|G|} \sum_{i=1}^r \dim(V_i) \tr(\widehat{\varphi}(\rho) \widehat{\psi}(\rho)) = \frac{1}{|G|} \sum_{i=1}^r \dim(V_i) \tr(\rho(g^{-1}) \widehat{\psi}(\rho)) = \psi(g) = \varphi(g^{-1})\psi(g) = \sum_{g \in G} \varphi(g^{-1}) \psi(g).
+\]
+Now since trace is additive and multiplicative, we can extend this formula linearly for all possible functions $\varphi$.
+\end{proof}
+
+\begin{problem}
+Let $A \leq S_n$ be an abelian subgroup that acts transitively on $\mathcal{N} = \{1, \dots , n\}$.\\
+(a) Show that for each $k \in \mathcal{N}$ the stabilizer of $k$ in $A$ is trivial. Deduce that $A$ has $n$ elements.\\
+(b) Show that the permutation representation $V$ of $A$ on $\mathcal{N}$ decomposes as
+\[
+V = V_1 \oplus \dots \oplus V_n
+\]
+where the $V_i$ are distinct irreducible representations of $A$.
+\end{problem}
+\begin{proof}
+(a) Let $\sigma \in A$ fix $k \in \mathcal{N}$. Then $\tau \sigma (k) = \tau (k)$ for all $\tau \in A$. But $A$ is abelian, so $\sigma \tau (k) = \tau (k)$ for all $\tau \in A$. Since $A$ acts transitively, there is some $\tau \in A$ such that $\tau(k) = k'$ for each $k' \in \mathcal{N}$. Then $\sigma(k') = k'$ for all $k' \in \mathcal{N}$, so $\sigma$ is the identity.
+
+Let $S_A(k)$ be the stabilizer of $k$ and $Ak$ be the orbit of $k$. By the orbit-stabilizer theorem we know $S_A(k) = |A|/|Ak|$ for each $k$. Since $A$ acts transitively we also know $|Ak| = |\mathcal{N}| = n$. Then we know
+\[
+\sum_{k \in \mathcal{N}} |S_A(k)| = \sum_{k \in \mathcal{N}} \frac{|A|}{Ak} = \sum_{k \in \mathcal{N}} \frac{|A|}{n} = |A|.
+\]
+Since $|S_A(k)| = 1$ for each $k$, this immediately gives $|A| = n$.
+
+(b) Since $V$ is a permutation representation $\chi_V(a)$ is determined by how many elements $a$ fixes. But since the stabilizer for any non-identity element is trivial, we know that
+\[
+\chi_V(a) =
+\begin{cases}
+0 & a \neq 1\\
+n & a = 1.
+\end{cases}
+\]
+Now note that since $A$ is abelian, $\chi_{V_i}(1) = 1$ for each irreducible representation $V_i$ of $A$. Then we have
+\[
+(\chi_V, \chi_{V_i}) = \frac{1}{|A|} \sum_{a \in A} \chi_V(a) \overline{\chi_{V_i}(a)} = \frac{1}{n} \chi_V(1) \overline{\chi_{V_i}(1)} = 1
+\]
+and this is the multiplicity of $V_i$ in the decomposition for $A$. Thus $V = V_1 \oplus \dots \oplus V_n$.
+\end{proof}
+
+\begin{problem}
+Verify the statement given in class that for an $H$-representation $W$ there is an isomorphism of $G$-representations:
+\[
+\ind_H^G W \cong \mathbb{C}G \otimes_{\mathbb{C}H} W.
+\]
+\end{problem}
+\begin{proof}
+Note that $W$ is a $\mathbb{C}H$ under the extension of the action of $H$ on $W$. Furthermore, we clearly have $\mathbb{C}H \subseteq \mathbb{C}G$ so we are in a position to use the universal property of extension of scalars. We have the diagram
+\[
+\xymatrix{
+W \ar[r]^-{\iota} \ar[dr]^{\varphi} & \mathbb{C}G \otimes_{\mathbb{C}H} W \ar[d]^{\Phi}\\
+& \ind W
+}
+\]
+where $\iota : w \mapsto 1 \otimes_{\mathbb{C}H} w$ and $\varphi : w \mapsto w$ is clearly a $\mathbb{C}H$-module homomorphism. By the universal property we know $\Phi$ is a unique $\mathbb{C}G$-module map, so it only remains to show it's an isomorphism. Recall that we've shown $\dim(\ind W) = |G : H| \dim(W)$ and the dimension of $\mathbb{C}G \otimes_{\mathbb{C}H} W$ is $(\dim(\mathbb{C}G)/\dim(\mathbb{C}H)) \dim(W) = |G : H| \dim(W)$. So it suffices to show $\Phi$ takes basis elements to basis elements.
+
+A basis for $\mathbb{C}G \otimes_{\mathbb{C}H} W$ is
+\[
+\{\sigma_i \otimes w_j \mid 1 \leq i \leq |G : H|, 1 \leq j \leq \dim(W)\}
+\]
+where each $\sigma_i \in G$ is a coset representative. A basis for $\ind W$ is
+\[
+\{w_j^{\sigma_i} \mid 1 \leq j \leq \dim(W), \sigma_i \in G/H\}.
+\]
+Now from the definition of $\varphi$ we know $\Phi : 1 \otimes w \mapsto w$. Furthermore, we know the action of $g$ on $\mathbb{C}G \otimes W$, namely $g(g' \otimes w) = gg' \otimes w$. Also the action of $g$ on $w_j^{\sigma_i}$ is $g(w_j^{\sigma_i}) = g(g_{\sigma_i}w_j) = g_{\tau}(hw_j)$ where $gg_{\sigma_i} = g_{\tau}h$. Since $\Phi$ is a $\mathbb{C}G$-module map, it respects the action of $G$ so we have
+\[
+\Phi(\sigma_i \otimes w_j) = \Phi(\sigma_i(1 \otimes w_j) = \sigma_i \Phi(1 \otimes w_j) = \sigma_i w_j = g_{\tau} h w_j = g g_{\sigma_i} w_j = w_j^{\sigma_i}
+\]
+where $g_{\tau} h$ is the way to write $\sigma_i$ as an element of a coset of $H$ and $gg_{\sigma_i}$ is the appropriate element to move $w_j$ back into $W^\sigma_i$. Thus $\Phi$ takes basis elements to basis elements so it must be an isomorphism.
+\end{proof}
+
+\begin{problem}
+Let $S_n$ act by permutations on the set $X = \{1, \dots , n\}$. Let $X_r$ be the set of all $r$-element subsets of $X$. Then the $S_n$ action on $X_r$ gives a permutation representation on a $|X_r|$-dimensional vector space. Let $\chi_r$ denote the character of this representation.\\
+(a) Suppose $r \leq s \leq n/2$. Prove that $S_n$ has $r+1$ orbits for its action on $X_r \times X_s$.\\
+(b) Deduce that $\langle \chi_r, \chi_s \rangle = r + 1$. It follows that the ``generalized character'' $\chi_r - \chi_s$ is irreducible (i.e. has norm $s-r$) for $1 \leq r \leq n/2$.
+\end{problem}
+\begin{proof}
+(a) Let $(A, B) \in X_r \times X_s$ so that $A$ is an $r$-element subset and $B$ is an $s$-element subset. Define $m = |A \backslash B|$ to be the number of elements of $A$ which are not in $B$. Note that for a fixed $m$, the possible choices for $A$ and $B$ determine an orbit. To see this, fix $m$ and let $\sigma \in S_n$. Note that the action of $\sigma$ on $B$ determines exactly $r-m$ elements of $A$ (since they are also in $B$). On the other hand, $\sigma A$ cannot have more than $r-m$ elements in common with $B$ because this would mean that two distinct elements were mapped to a single element. Thus the orbit of $(A, B)$ is precisely the set of $(A',B')$ such that $A$ has exactly $r-m$ elements in common with $B$. Now note that there are only $r+1$ choices for $m$ (namely, $0 \leq m \leq r$), so $S_n$ has $r+1$ orbits under this action.
+
+(b) Note that $(\chi_r, \chi_s) = \frac{1}{|S_n|} \sum_g \chi_r(g)\chi_s(g)$, where $\chi_r(g)$ is the number of $r$-element subsets that $g$ fixes and likewise for $\chi_s(g)$. Then $\chi_r(g)\chi_s(g)$ is the number of elements in $X_r \times X_s$ fixed by $g$. In other words $\chi_r(g)\chi_s(g)$ is the size of $(X_r \times X_s)^g$, the fixed set under the action of $g$. This now becomes a straightforward application of Burnside's Lemma. In particular, if we denote $(X_r \times X_s)/S_n$ as the set of orbits under the action of $S_n$, $S_n^x$ as the stabilizer of $x$ and $S_nx$ as the orbit of $x$, then we have
+\begin{align*}
+\sum_{g} \chi_r(g) \chi_s(g)
+&= |\{(g,x) \in S_n \times (X_r \times X_s) \mid gx = x\}|\\
+&= \sum_{x \in X_r \times X_s} |S_n^x|\\
+&= \sum_{x \in X_r \times X_s} \frac{|S_n|}{|S_nx|}\\
+&= |S_n| \sum_{x \in X_r \times X_s} \frac{1}{|S_nx|}\\
+&= |S_n| \sum_{A \in (X_r \times X_s)/S_n} \sum_{x \in A} \frac{1}{|A|}\\
+&= |S_n| \sum_{A \in (X_r \times X_s)/S_n} 1\\
+&= |S_n||(X_r \times X_s)/S_n|.
+\end{align*}
+Dividing by $|S_n|$ and noting that $|(X_r \times X_r)/S_n| = r+1$ by part (a) gives the desired formula.
+
+For the second statement we can use bilinearity and the above calculation to get
+\[
+(\chi_r - \chi_s, \chi_r - \chi_s) = (\chi_r, \chi_r) + (\chi_s, \chi_s) - 2(\chi_r, \chi_s) = (r+1) + (s+r) - 2(r-1) = s-r.
+\]
+\end{proof}
+
+\end{document}

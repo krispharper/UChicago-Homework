@@ -1,0 +1,215 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\renewcommand{\hom}{\textup{Hom}}
+\newcommand{\tr}{\textup{tr}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26700\\
+
+November 22, 2010
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{problem}
+Let $G$ and $H$ be any compact topological groups. Let $V$ be an irreducible (continuous) $G$-representation and let $W$ be an irreducible $H$-representation.\\
+(a) Prove that $V \otimes W$ is an irreducible representation of $G \times H$.\\
+(b) Prove that every irreducible representation of $G \times H$ is a tensor product of the above form.
+\end{problem}
+\begin{proof}
+(a) We have
+\begin{align*}
+\langle \chi_{V \otimes W}, \chi_{V \otimes W} \rangle
+&= \int_{G \times H} \chi_{V \otimes W}((g,h)) \overline{\chi_{V \otimes W}}((g,h)) d(g,h)\\
+&= \int_{G \times H} \chi_V(g) \chi_W(h) \overline{\chi_{V}}(g) \overline{\chi_{W}}(h) dg dh\\
+&= \int_G \chi_V(g) \overline{\chi_V}(g) dg \int_H \chi_W(h) \overline{\chi_W}(h) dh\\
+&= 1.
+\end{align*}
+
+(b) Let $U$ be a representation of $G \times H$. Consider the homomorphism of $H$-representations
+\[
+\varphi : \bigoplus_j \hom_H(W_j, U) \otimes W_j \to U
+\]
+defined as $\varphi(f \otimes w) = f(w)$. Note that this is the isotypic decomposition of $U$. Thus we know that $\varphi$ is an isomorphism by Shur's Lemma.
+
+We have an action of $G$ on $\hom_H(W_j, U)$ given by $(gf)(w) = gf(w)$ where $gf(w)$ is defined as $(g,1)f(w)$. Note that $(g,1)(1,h)f(w) = (g,h)f(w) = (1,h)(g,1) f(w)$ so $gf \in \hom_H(W_j, U)$. Thus $\hom_H(W_j, U)$ has some decomposition into irreducible $G$-representations as $\hom_H(W_j, U) \cong \bigoplus_i a_{ij} V_{ij}$ for each $j$. Since $\varphi$ is an isomorphism and tensor products and direct sums commute, we now have
+\[
+U \cong \bigoplus_{i,j} a_{ij} V_{ij} \otimes W_j.
+\]
+where $V_{ij}$ is an irreducible $G$-representation and $W_j$ is an irreducible $H$-representation.
+\end{proof}
+
+\begin{problem}
+Let $G$ be a topological group. A \emph{continuous family of representations of $G$} is a continuous map
+\[
+F: G \times [0,1] \to GL(n, \mathbb{C})
+\]
+with the property that, for each $t \in [0,1]$ the map $F_t : G \to GL(n, \mathbb{C})$ given by $g \to F(g,t)$ is a (continuous of course) representation.\\
+(a) For a continuous family of representations of a \emph{compact} topological group, the representations $F_0$ and $F_1$ are isomorphic.\\
+(b) Give an example to show that this does not necessarily hold if $G$ is not compact.
+\end{problem}
+\begin{proof}
+(a) Note that since trace is continuous, by composition we immediately get a homotopy of characters $\chi_t : G \to \mathbb{C}$ which is continuous in $t$. Now consider the function $\varphi : t \mapsto \langle \chi_0, \chi_t \rangle$. Note that this is an integer-valued continuos function since taking the inner product is continuous. But now note that $\varphi(t) = \varphi(0)$ for all $t$ because $\varphi$ is both continuous and integer-valued so it's impossible for $\varphi(t)$ to move to a different value than $\varphi(0)$. Thus $F_0$ is isomorphic to $F_t$ for each $t \in [0,1]$.
+
+(b) Consider the representation of $\mathbb{R}^*$ given by
+\[
+r \mapsto \left (\begin{array}{cc} r & 0\\ 0 & \frac{1}{r} \end{array} \right ).
+\]
+We can find a homotopy from the trivial representation to this one as
+\[
+(r,t) \mapsto \left ( \begin{array}{cc} r^t & 0\\ 0 & r^{-t} \end{array} \right ).
+\]
+This is continuous in $t$ since the exponential map is continuous, but $(r,0)$ and $(r,1)$ are not isomorphic because they have different traces.
+\end{proof}
+
+\begin{problem}
+Let $V$ be an irreducible representation of a compact topological group $G$. Prove that
+\[
+\chi_V(x) \chi_V(y) = \dim(V) \int \chi_V(gxg^{-1}y) dg.
+\]
+\end{problem}
+\begin{proof}
+Let $\rho : G \to GL(V)$ be a representation of $G$. Define
+\[
+A = \int_G \rho(gxg^{-1}) dg.
+\]
+Note that $A$ represents a $G$-action as
+\[
+Av = \int_G \rho(gxg^{-1})v dg.
+\]
+Then using left-invariance we have
+\begin{align*}
+A(hv)
+&= \int_G \rho(gxg^{-1})\rho(h)vdg\\
+&= \int_G \rho(h)\rho(h^{-1}) \rho(gxg^{-1}) \rho(h) v dg\\
+&= \rho(h) \int_G \rho(h) \rho(g) \rho(x) \rho(g^{-1}) \rho(h^{-1}) v dg\\
+&= \rho(h) \int_G \rho(gh) \rho(x) \rho((gh)^{-1}) v dg\\
+&= h(Av).
+\end{align*}
+Thus $A$ respects the $G$-action on $V$ so by Shur's Lemma we know $A = \lambda \textup{id}_V$. Also since $\rho(y)$ is independent of $g$, we have $\rho(y)A = A \rho(y)$.
+
+Note that since trace is linear it commutes with integration so we have
+\[
+\tr(A) = \tr \left ( \int_G \rho(gxg^{-1}) dg \right ) = \int_G \tr(\rho(g)\rho(x)\rho(g^{-1})) dg = \int_G \chi_{\rho}(x) dg = \chi_{\rho}(x) \int_G 1 dg = \chi_{\rho}(x).
+\]
+Then from the above we know $\chi_{\rho}(x) = \tr(A) = \tr(\lambda \textup{id}_V) = \lambda \dim(V)$ so $\lambda = (\dim V)^{-1} \chi_{\rho}(x)$. Now we have the following using the above and the left-invariance of the Haar measure
+\[
+\int_G \rho(gxg^{-1}y) dg = \left ( \int_G \rho(gxg^{-1}) dg \right ) \rho(y) = \lambda \textup{id}_V \rho(y) = (\dim V)^{-1} \chi_{\rho}(x) \rho(y).
+\]
+Now take the trace of both sides so we have
+\begin{align*}
+\int_G \chi(gxg^{-1}y) dg
+&= \int_G \tr(\rho(gxg^{-1}y)) dg\\
+&= \tr \left ( \int_G \rho(gxg^{-1}y) dg \right )\\
+&= \tr((\dim V)^{-1} \chi_{\rho}(x) \rho(y))\\
+&= (\dim V)^{-1} \chi{\rho}(x) \tr(\rho(y))\\
+&= (\dim V)^{-1} \chi_{\rho}(x) \chi_{\rho}(y).
+\end{align*}
+\end{proof}
+
+\begin{problem}
+Let $\{V_n\}$ be the irreducible representations of $SU(2)$, as discussed in class. The \emph{Clebsch-Gordan Formula} gives a direct sum decomposition of $V_k \otimes V_{\ell}$ as follows: Let $q = \min\{k,\ell\}$. Then
+\[
+V_k \otimes V_{\ell} = \bigoplus_{j=0}^q V_{k+\ell-2j}.
+\]
+(b) Decompose the following representations $V_3 \otimes V_4$, $V_1^{\otimes n}$ and $\wedge^2 V_3$.
+\end{problem}
+\begin{proof}
+(b) Using the formula
+\[
+V_3 \otimes V_4 = \bigoplus_{j=0}^3 V_{7 - 2j} = V_7 \oplus V_5 \oplus V_3 \oplus V_1.
+\]
+
+To decompse $V_1^{\otimes n}$ denote
+\[
+V_1^{\otimes n} = \bigoplus_{k=0}^{n} a_k V_k.
+\]
+We will show by induction that
+\[
+a_k =
+\begin{cases}
+\frac{(k+1)n!}{\left ( \frac{n-k}{2} \right )! \left ( \frac{n+k}{2} + 1 \right )!} & \text{if $n + k \equiv 0 \pmod{2}$}\\
+0 & \text{if $n+k \equiv 1 \pmod{2}$}.
+\end{cases}
+\]
+
+For $n = 1$ we have $a_0 = 0$ and
+\[
+a_1 = \frac{(1 + 1)(1!)}{\left ( \frac{1-1}{2} \right )! \left ( \frac{1+1}{2} + 1 \right )!} = \frac{2}{2} = 1
+\]
+as desired. Now assume the formula holds for $n$. Then using the Clebsch-Gordon Formula we have
+\[
+V_1^{\otimes (n+1)} = V_1 \otimes \left (\bigoplus_{k=0}^{n} a_k V_k \right ) = \bigoplus_{k=0}^n a_k (V_1 \otimes V_k) = \bigoplus_{k=0}^n a_k (V_{k+1} \oplus V_{k-1}) = \bigoplus_{k=0}^{n+1} (a_{k-2} + a_k) V_{k-1}
+\]
+where we define $a_k = 0$ if $k < 0$ and $V_{-1} = 0$. Now note that for $k \neq 1$ we have
+\begin{align*}
+a_{k-2} + a_k
+&= \frac{(k-1)n!}{\left ( \frac{n-k+2}{2} \right )! \left ( \frac{n+k-2}{2} + 1 \right )!} + \frac{(k+1)n!}{\left ( \frac{n-k}{2} \right )! \left ( \frac{n+k}{2} + 1 \right )!}\\
+&= \frac{\left ( \frac{n+k}{2} + 1 \right )(k-1)n! + \left ( \frac{n-k+2}{2} \right )(k+2)n!}{\left ( \frac{n-k+2}{2} \right )! \left ( \frac{n+k}{2} + 1 \right )!}\\
+&= \frac{\left ( \left ( \frac{(n+k)(k-1)}{2} + k - 1 \right ) + \left ( \frac{nk-k^2+k}{2} \right ) \right )n!}{\left ( \frac{(n+1)-k+1}{2} \right )! \left ( \frac{(n+1)+k-1}{2} + 1 \right )!}\\
+&= \frac{k(n+1)n!}{\left ( \frac{(n+1)-k+1}{2} \right )! \left ( \frac{(n+1)+k-1}{2} + 1 \right )!}\\
+&= \frac{k(n+1)!}{\left ( \frac{(n+1)-k+1}{2} \right )! \left ( \frac{(n+1)+k-1}{2} + 1 \right )!}
+\end{align*}
+which is the claimed $a_{k-1}$ for $V^{\otimes (n+1)}$. In the case $k = 1$ we have
+\[
+a_1 = \frac{2n!}{\left (\frac{n-1}{2} \right )! \left ( \frac{n+1}{2} + 1 \right )!} = \frac{ \left ( \frac{n+1}{2} \right ) 2 n!}{\left ( \frac{n+1}{2} \right )\left (\frac{n-1}{2} \right )! \left (\frac{n+1}{2} + 1 \right )!} = \frac{(n+1)!}{\left (\frac{n+1}{2} \right )! \left (\frac{n+1}{2} + 1 \right )!} = a_0
+\]
+which is the coefficient of $V_0$ for $V^{\otimes (n+1)}$.
+
+We also note that $a_k$ can be expressed as the difference of two binomial coefficients as
+\[
+a_k = \binom{n-1}{\frac{n+k}{2} - 1} - \binom{n-1}{\frac{n+k}{2} + 1}.
+\]
+
+Finally, to find $\wedge^2 V_3$ we note that this sits as a subspace inside $V_3 \otimes V_3$ which by the Clebsch-Gordon Formula is $V_0 \oplus V_2 \oplus V_4 \oplus V_6$. Since the dimension of $\wedge^2 V_3 = \binom{4}{2} = 6$, counting dimensions leaves the only possibility as $\wedge^2 V_3 = V_0 \oplus V_4$.
+\end{proof}
+
+\begin{problem}
+Consider the $9$-dimensional complex representation of $SU(2)$ on $3 \times 3$ complex matrices given by $A \in SU(2)$ acting on $M$ via $M \mapsto A_1MA_1^{-1}$ where $A_1$ is the $3 \times 3$ block matrix with $A$ in the upper left and $1$ in the lower right. Decompose this representation as a direct sum of irreducibles.
+\end{problem}
+\begin{proof}
+Let $M_i$ be the $3 \times 3$ matrix $[m_{jk}]$ where $m_{jk} = 1$ if $j+k = i$ and $0$ otherwise. Then note the $9$ $M_i$ matrices form a basis for the space of $3 \times 3$ complex matrices. Let $A \in SU(2)$ have the form
+\[
+A = \left ( \begin{array}{cc} a & b\\ -\overline{b} & \overline{a} \end{array} \right ).
+\]
+We have the following computations
+\begin{align*}
+A_1 M_1 A_1^{-1} &= \left ( \begin{array}{ccc} |a|^2 & -ab & 0\\ -\overline{ab} & |b|^2 & 0\\ 0 & 0 & 0 \end{array} \right )\\
+A_1 M_2 A_1^{-1} &= \left ( \begin{array}{ccc} a\overline{b} & a^2 & 0\\ -\overline{b}^2 & -a\overline{b} & 0\\ 0 & 0 & 0 \end{array} \right )\\
+A_1 M_3 A_1^{-1} &= \left ( \begin{array}{ccc} 0 & 0 & a\\ 0 & 0 & -\overline{b}\\ 0 & 0 & 0 \end{array} \right )\\
+A_1 M_4 A_1^{-1} &= \left ( \begin{array}{ccc} \overline{a}b & -b^2 & 0\\ \overline{a}^2 & -\overline{a}b & 0\\ 0 & 0 & 0 \end{array} \right )\\
+A_1 M_5 A_1^{-1} &= \left ( \begin{array}{ccc} |b|^2 & ab & 0\\ \overline{ab} & |a|^2 & 0\\ 0 & 0 & 0 \end{array} \right )\\
+A_1 M_6 A_1^{-1} &= \left ( \begin{array}{ccc} 0 & 0 & b\\ 0 & 0 & \overline{a}\\ 0 & 0 & 0 \end{array} \right )\\
+A_1 M_7 A_1^{-1} &= \left ( \begin{array}{ccc} 0 & 0 & 0\\ 0 & 0 & 0\\ \overline{a} & -b & 0 \end{array} \right )\\
+A_1 M_8 A_1^{-1} &= \left ( \begin{array}{ccc} 0 & 0 & 0\\ 0 & 0 & 0\\ \overline{b} & a & 0 \end{array} \right )\\
+A_1 M_9 A_1^{-1} &= \left ( \begin{array}{ccc} 0 & 0 & 0\\ 0 & 0 & 0\\ 0 & 0 & 1 \end{array} \right ).
+\end{align*}
+Now let $T$ be the $9 \times 9$ transformation matrix representing this action. Note that the entires of $A_1 M_i A_1^{-1}$, read from left to right, top to bottom, form the $i^{\textup{th}}$ column of $T$. This $T_{ii}$ is the $i^{\textup{th}}$ entry from $A_1 M_i A_1^{-1}$. Reading these off we see that
+\[
+\tr(T) = \sum_{i=1}^9 T_{ii} = |a|^2 + a^2 + a + \overline{a}^2 + |a|^2 + \overline{a} + \overline{a} + a + 1 = 2 (|a|^2 + a + \overline{a}) + a^2 + \overline{a}^2 + 1.
+\]
+Now note that the matrix representation of $A$ acting on $V_1$ is simply $A$ itself since $(x,y)A = (ax - \overline{b}y, bx + \overline{a}y)$. Thus
+\[
+\chi_{V_1}(A) = \tr(A) = a + \overline{a}.
+\]
+Using the Clebsch-Gordon Formula we know $V_1 \otimes V_1 = V_2 \oplus V_0$. Thus we must have
+\[
+\chi_{V_2}(A) = \chi_{V_1}(A)^2 - \chi_{V_0}(A) = (a + \overline{a})^2 - 1 = a^2 + 2|a|^2 + \overline{a}^2 - 1.
+\]
+Then note that
+\[
+\chi_{V_2} + 2 \chi_{V_1} + 2\chi_{V_0} = a^2 + 2|a|^2 + \overline{a}^2 - 1 + 2a + 2 \overline{a} + 2 = 2(|a|^2 + a + \overline{a}) + a^2 + \overline{a}^2 + 1 = \tr(T)
+\]
+so this representation decomposes as $V_2 \oplus 2V_1 \oplus 2V_0$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,146 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20800\\
+
+January 12, 2009
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+1) Suppose $U$ is an open set in a metric space $X$. Show that $\overline{U} \backslash U$ is nowhere dense in $X$.\\
+2) Suppose $F$ is a closed subset of a metric space $X$. Show that $F \backslash F^{\circ}$ is nowhere dense in $X$.\\
+3) Show that a countable union of sets of the first category is of of the first category.
+\end{**}
+\begin{proof}
+1) Suppose to the contrary that $(\overline{U} \backslash U)^{\circ} \neq \emptyset$. Then since this set is open there exists $x \in (\overline{U} \backslash U)^{\circ}$ and some open set $V \subseteq (\overline{U} \backslash U)^{\circ}$ such that $x \in V$. Note that since $U$ is open, we must have $(\overline{U} \backslash U)^{\circ} \cap U = \emptyset$. But then since $x \notin U$, $x$ is an accumulation point of $U$ and so $V \cap U \neq \emptyset$. But this is a contradiction. Therefore $(\overline{U} \backslash U)^{\circ} = \emptyset$ and is thus nowhere dense in $X$.\newline
+
+2) Suppose to the contrary that $(F \backslash F^{\circ})^{\circ} \neq \emptyset$. Suppose there exists some nonempty open subset $U \subseteq F \backslash F^{\circ}$. Then $U \cup F^{\circ} \subseteq F$ and $U \cup F^{\circ}$ is a larger open set than $F^{\circ}$ contained in $F$. This is a contradiction and so the largest open set contained in $F \backslash F^{\circ}$ must be $\emptyset$. Therefore $F \backslash F^{\circ}$ is nowhere dense.\newline
+
+3) Consider some countable union of sets
+\[
+S = \bigcup_{n=1}^{\infty} A_n
+\]
+where
+\[
+A_n = \bigcup_{m=1}^{\infty} B_n
+\]
+where $B_n$ is nowhere dense. But then we simply have a countable union of countable unions of sets, which is countable (this follows from the same proof to show $\mathbb{Q}$ is countable). Thus $S$ is still a countable union of nowhere dense sets.
+\end{proof}
+
+\begin{**}
+For any $\alpha$, with $0 < \alpha < 1$, show that $C_{\alpha}$ is a nowhere dense perfect set in $[0,1]$ with the usual metric.
+\end{**}
+\begin{proof}
+Consider some point $x \in C_{\alpha}$ and an interval $(x - \varepsilon, x + \varepsilon)$. Note that $x$ must be an endpoint of a closed interval that remains after deleting some open interval. Then consider the step in the process of making $C_{\alpha}$ in which a closed interval is formed which is entirely contained in $(x - \varepsilon, x + \varepsilon)$. This must occur at some point since the remaining closed intervals are continually getting smaller. Then after the next step, there remains another endpoint of a closed interval which is in the neighborhood around $x$. This shows that $x$ is an accumulation point of $C_{\alpha}$. Since every point of $C_{\alpha}$ is an accumulation point, $\overline{C_{\alpha}} = C_{\alpha}$. We must then show that $^c C_{\alpha}$ is dense in $[0,1]$. Consider some point in $x \in C_{\alpha}$ and a neighborhood around $x$. This neighborhood must contain points from $^c C_{\alpha}$ by the same argument as above. Thus $x$ is an accumulation point of $^c C_{\alpha}$. But then $C_{\alpha} \cup ^c C_{\alpha} = [0,1]$ must be the closure of $^c C_{\alpha}$ since it is the whole space. Therefore $C_{\alpha}$ is nowhere dense.
+\end{proof}
+
+\begin{**}
+1) Show that the irrational numbers are of the second category in $\mathbb{R}$ with the usual metric.\\
+2) Determine if each of the following sets is of the first or second category in $\mathbb{R}^n$ with the usual metric:\\
+i) $A = \{(x_1, x_2, \dots , x_n) \mid \text{$x_j \in \mathbb{Q}$ for $j = 1, 2, \dots , n$}\}$.\\
+ii) $A = \{(x_1, x_2, \dots , x_n) \mid \text{at least $k$ of the coordinates are rational}\}$ for a fixed $k$.\\
+iii) $A = \{(x_1, x_2, \dots , x_n) \mid \text{at least $1$ coordinate is irrational}\}$.
+\end{**}
+\begin{proof}
+1) Since $\mathbb{R}$ is complete, it must be of the second category. Also, a point in $\mathbb{R}$ is nowhere dense since there are no isolated points. Then since $\mathbb{Q}$ is countable, it is a countable union of nowhere dense sets, and thus of the first category. But then $\mathbb{R} \backslash \mathbb{Q}$ must be of the second category, otherwise $\mathbb{R}$ would be a union of two sets of the first category.\newline
+
+2) i) The same proof as in Part 1) is used to show that $\mathbb{Q}^n$ is of the first category in $\mathbb{R}^n$.\newline
+
+ii) If $k=n$ or $k=0$ then the problem is reduced to parts i) or iii) respectively. Suppose that $0 < k < n$. Pick $k$ rational numbers and consider the set, $S$, of points where the $k$ rational coordinates correspond to those rational numbers and the other coordinates can vary. To see that this set is closed, we take a point $x \notin S$ and draw a ball centered at $x$ with radius less than the smallest difference between coordinates of $x$ and the $k$ fixed rational coordinates. Then the ball has empty intersection with $A$ and so $x$ is not an accumulation point. Now consider some nonempty open set $B \subseteq S$ and let $y \in B$. Then there exists a ball $B_r (y) \subseteq B$. But then it is certainly possible to choose a point in $\mathbb{R}^n$ which is in $B_r (y)$ but not in $B$ by varying one of the rational coordinates of $y$ by a small enough amount. This is a contradiction and so $B$ must be empty. This shows that $S$ is nowhere dense. But since $\mathbb{Q}^k$ is countable, we must have a countable union of nowhere dense sets and so the set of the first category.\newline
+
+iii) Note that this is the complement of the set in part i). Since that set is of the first category, then this set cannot be, otherwise $\mathbb{R}^n$ would be of the first category, which is impossible since $\mathbb{R}^n$ is complete.
+\end{proof}
+
+\begin{lemma}
+Let $A \subseteq X$. If $^c A$ is of the first category, then $A$ is dense in $X$.
+\end{lemma}
+\begin{proof}
+Since $^c A$ is of the first category, then $^c A = \bigcup_{n=1}^{\infty} V_n \subseteq \bigcup_{n=1}^{\infty} \overline{V_n}$ where $V_n$ is nowhere dense. But then we must have $A \supseteq \bigcap_{n=1}^{\infty} {^c \overline{V_n}}$. Since $V_n$ is nowhere dense in $X$, each $^c \overline{V_n}$ is open and dense in $X$ and by the Baire Category Theorem, their intersection is dense. Therefore, $A$ is dense in $X$.
+\end{proof}
+
+\begin{**}
+Let $X$ be a complete metric space and $(F_n)$ a countable collection of closed sets in $X$ such that $X = \bigcup_{n=1}^{\infty} F_n$. Show that $U = \bigcup_{n=1}^{\infty} F_n^{\circ}$ is dense.
+\end{**}
+\begin{proof}
+Define $A_n = F_n \backslash F_n^{\circ}$. Problem 1 Part 2) shows that $A_n$ is nowhere dense. Then define $A = \bigcup_{n=1}^{\infty} A_n$. Note that $^c U = X \backslash U \subseteq A$. But then the previous lemma shows that $U$ is dense in $X$.
+\end{proof}
+
+\begin{**}
+Graph $x^3 + 3x^2 + 2x = y^2 + y$.
+\end{**}
+
+\vspace{5 cm}
+
+\begin{**}
+Consider $\mathcal{C} ([a,b], \mathbb{C})$ where
+\[
+||f|| = \left ( \int_a^b |f(x)|^p dx \right )^{\frac{1}{p}}
+\]
+with $1 \leq p < \infty$. Show that this is a normed linear space.
+\end{**}
+\begin{proof}
+Let $f \in \mathcal{C}([a,b], \mathbb{C})$. It is clear that $||f|| \geq 0$ since $|f(x)| \geq 0$ for all $x \in [a,b]$. Moreover, if $f = 0$ then $|f(x)| = 0$ for all $x \in [a,b]$ and then $||f||=0$. Suppose that $||f|| = 0$, but that $f \neq 0$. Then consider some $x \in [a,b]$ such that $|f(x)| > 0$. Since $f$ is continuous, there exists some neighborhood around $x$, $(x - \varepsilon, x + \varepsilon)$ such that $|f| > 0$ for all points in that neighborhood. But then
+\[
+\int_a^{x - \varepsilon} |f(x)|^p dx + \int_{x - \varepsilon}^{x + \varepsilon} |f(x)|^p dx + \int_{x + \varepsilon}^b |f(x)|^p dx = \int_a^b |f(x)^p dx.
+\]
+All terms are greater than or equal to $0$, but the middle term on the left is strictly greater than $0$ and the term on the right is equal to $0$, we have a contradiction. Therefore $f = 0$.\newline
+
+Consider some $\alpha \in \mathbb{R}$. Then
+\[
+||\alpha f|| = \left ( \int_a^b |\alpha f(x)|^p dx \right)^{\frac{1}{p}} = \left ( \int_a^b |\alpha|^p |f(x)|^p dx \right )^{\frac{1}{p}} = \left ( |\alpha|^p \int_a^b |f(x)|^p dx \right )^{\frac{1}{p}} = |\alpha| \left ( \int_a^b |f(x)|^p dx \right )^{\frac{1}{p}} = |\alpha| ||f||.
+\]\newline
+
+We have shown earlier that for $x,y \in \mathbb{R}$ with $a,b > 0$ and $1 \leq p,q \leq \infty$ with $1/p + 1/q = 1$ we have
+\[
+xy \leq \frac{x^p}{p} + \frac{y^q}{q}.
+\]
+Then note that
+\[
+\frac{||fg||_1}{||f||_p \cdot ||g||_q} = \int_a^b \frac{|f(x)|}{||f||_p} \frac{|g(x)|}{||g||_q} dx \leq \frac{1}{p} \int_a^b \left ( \frac{|f(x)|}{||f||_p} \right )^p dx + \frac{1}{q} \int_a^b \left ( \frac{|g(x)|}{||g||_q} \right )^q dx = \frac{1}{p} + \frac{1}{q} = 1.
+\]
+This proves the H\"{o}lder inequality for integrals. The proof of the triangle inequality follows in the same way as for vectors in $\mathbb{R}^n$. Since all three conditions are met, $\mathcal{C} ([a,b], \mathbb{C})$ is a normed linear space.
+\end{proof}
+
+\begin{**}
+Which of the following spaces are finite dimensional?\\
+1) $(\mathbb{R}^n, ||\cdot||_2)$\\
+2) $(\mathbb{C}^n, ||\cdot||_2)$\\
+3) $(F^n, ||\cdot||_p)$, $1 \leq p \leq \infty$.\\
+4) $\mathcal{BC}(X, F)$ with $||f|| = \sup_{x \in X} |f(x)|$.\\
+5) $\mathcal{C}([a,b], \mathbb{C})$ with $||f|| = \left ( \int_a^b |f(x)|^p dx \right)^{\frac{1}{p}}$, $1 \leq p \leq < \infty$.
+\end{**}
+\begin{proof}
+1) This is finite dimensional. The set $\{\mathbf{e}_j \mid 1 \leq j \leq n\}$, where $\mathbf{e}_j$ is the vector with a $1$ in the $j$th coordinate and $0$s elsewhere, acts as a basis.\newline
+
+2) The same basis as in Part 1) works to show this is finite dimensional.\newline
+
+3) The same basis as in Part 1) works to show this is finite dimensional.\newline
+
+4) If $X$ has finitely many points, then $\mathcal{BC}(X, F)$ is finite dimensional. The finite set of functions which map one point of $X$ to $1$ and the rest to $0$ are linearly independent and span the space. If $X$ is infinite then $\mathcal{BC} (X, F)$ is infinite dimensional.
+
+5) Consider the polynomials on $[a,b]$. A basis for this space is $\{1, x, x^2, \dots\}$. Note that since polynomials can be of arbitrary degree on this interval, an infinite basis must be needed. But since the polynomials are a subset of all continuous functions on $[a,b]$, it must be the case that $\mathcal{C} ([a,b], \mathbb{C})$ is infinite dimensional.
+\end{proof}
+
+\begin{**}
+A Banach space is either finite dimensional or uncountably dimensional.
+\end{**}
+\begin{proof}
+Let $V$ be a countably infinite dimensional Banach space over some field, $F$. Let $\{v_1, v_2, v_3, \dots\}$ be a basis for $V$. By the Baire Category Theorem, $V$ is of the second category because it is complete. Then note that the span $\langle \{v_1, v_2, v_3, \dots \rangle$, for some $n$, is nowhere dense in $V$. This is because this is a finite dimensional proper subspace of a normed space. But then since the basis spans $V$, we have $V = \bigcup_{n=1}^{\infty} \langle \{v_1, v_2, v_3, \dots\} \rangle$ which shows that $V$ is of the first category, which is a contradiction.
+\end{proof}
+
+\end{flushleft}
+\end{document}

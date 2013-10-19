@@ -1,0 +1,256 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 15: Series\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A series of real numbers is an expression $\sum_{n=1}^{\infty} a_n$, where $(a_n)$ is a real sequence.}\newline
+
+\textbf{Definition 2 (Convergent Series)}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be a series. The sequence of partial sums is defined as
+\[
+s_n = a_1 + a_2 + \dots + a_n = \sum_{i=1}^{n} a_i.
+\]
+We say that the series $\sum_{n=1}^{\infty} a_n$ converges to $s$ (or $\sum_{n=1}^{\infty} a_n = s$) if $\lim_{n \rightarrow \infty} s_n = s$. If such an $s$ exists, we say that $\sum_{n=1}^{\infty} a_n$ is convergent, otherwise it is divergent.}\newline
+
+\textbf{Exercise 3}
+\textsl{Reformulate convergence using the Cauchy property.}\newline
+
+We say a series $\sum_{n=1}^{\infty} a_n$ is convergent if for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n, m > N$ we have $|s_n - s_m| < \varepsilon$.\newline
+
+\textbf{Lemma 4}
+\textsl{If $\sum_{n=1}^{\infty} a_n$ is a convergent series, the the sequence $(a_n)$ converges to $0$.}
+\begin{proof}
+Let $\sum_{n=1}^{\infty} a_n = s$. Then the sequence of partial sums $(s_n)$ converges to $s$ and $(s_n)$ is a Cauchy sequence. Thus for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n,m > N$ we have $|s_n - s_m| < \varepsilon$. But note that $s_{n+1} - s_n= a_n$ so for $n > N+1$ we have $|a_n| < \varepsilon$ which means $\lim_{n \rightarrow \infty} a_n = 0$.
+\end{proof}
+
+\textbf{Lemma 5}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be convergent with a partial sum sequence $(s_n)$. Let $n_0 = 0$ and $n_1 < n_2 < \dots$ be a sequence of natural numbers. For $k \in \mathbb{N}$ let
+\[
+b_k = a_{n_{k-1}+1} + \dots + a_{n_k} = \sum_{i = n_{k-1} + 1}^{n_k} a_i.
+\]
+Then
+\[
+\sum_{k=1}^{\infty} b_k = \sum_{n=1}^{\infty} a_n.
+\]}
+\begin{proof}
+Let $s_{b_k} = \sum_{i=1}^{k} b_i$ and $s_{a_n} = \sum_{i=1}^{n} a_i$. Then note that
+\[
+s_{b_k} = \sum_{i=1}^{k} b_i = \sum_{i=1}^{n_1} a_i + \sum_{i = n_{1} + 1}^{n_2} a_i + \dots + \sum_{i = n_{k-1} + 1}^{n_k} a_i = s_{a_{n_k}}.
+\]
+We know $\sum_{n=1}^{\infty} a_n$ is convergent so $(s_{a_n})$ converges. Also $(s_{a_{n_k}})$ is a subsequence of $(s_{a_n})$ so it converges as well (13.12). But $(s_{b_k}) = (s_{a_{n_k}})$ so $\lim_{k \rightarrow \infty} s_{b_k} = \lim_{k \rightarrow \infty} s_{a_{n_k}}$ which implies
+\[
+\sum_{k=1}^{\infty} b_k = \sum_{n=1}^{\infty} a_n.
+\]
+\end{proof}
+
+\textbf{Theorem 6 (Geometric Series)}
+\textsl{For all $t < |1|$, we have
+\[
+\sum_{n=0}^{\infty} t^n = \frac{1}{1-t}.
+\]}
+\begin{proof}
+Consider a partial sum of $\sum_{n=0}^{\infty} t^n$,
+\[
+s_k = \sum_{n=0}^{k} t^n= 1+t+\dots+t^k = \frac{1-t^{k+1}}{1-t} = \frac{1}{1-t} - \frac{t^k}{1-t}.
+\]
+But since $t < |1|$ we have $\lim_{k \rightarrow \infty} t^k/(1-t) = 0$. So then $\lim_{k \rightarrow \infty} s_k = 1/(1-t) + 0$ which means
+\[
+\sum_{n=0}^{\infty} t^n = \frac{1}{1-t}.
+\]
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{The series $\sum_{n=1}^{\infty} 1/n$ is not convergent.}
+\begin{proof}
+Suppose that $\sum_{n=1}^{\infty} 1/n$ is convergent. Create a sequence $(b_k)$ as in Lemma 5 such that
+\[
+b_k = \sum_{i = n_{k-1} + 1}^{n_k} \frac{1}{n}
+\]
+where $n_k = 2^{k-1}$ for $k \in \mathbb{N}$ and $n_0 = 0$. Note that for $k \geq 2$, $b_k$ has $2^{k-1} - 2^{k-2} = 2^{k-2}$ terms, the smallest of which is $1/2^{k-1}$. Thus, for all $k \geq 2$, $b_k \geq 2^{k-2}/2^{k-1} = 1/2$. Also $b_1 = \sum_{n=1}^{1} 1/n = 1$. So for all $k \in \mathbb{N}$ we have $b_k \geq 1/2$. But then there are infinitely many $k \in \mathbb{N}$ such that $b_k \notin (-1/2 ; 1/2)$ so $\lim_{k \rightarrow \infty} b_k \neq 0$. Thus, $\sum_{k=1}^{\infty} b_k$ is not convergent (15.4). But we know that $\sum_{k=1}^{\infty} b_k = \sum_{n=1}^{\infty} a_n$ which is a contradiction (15.5). Thus $\sum_{n=1}^{\infty} 1/n$ is not convergent.
+\end{proof}
+
+\textbf{Theorem 8 (Alternating Sign Series)}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be a series with the following properties:
+1) $a_n$ is positive if $n$ is odd and negative if $n$ is even;
+2) $|a_{n+1}| < |a_n|$ for all $n$;
+3) $\lim_{n \rightarrow \infty} a_n = 0$.
+Then $\sum_{n=1}^{\infty} a_n$ is convergent.}
+\begin{proof}
+Let $\varepsilon > 0$. Then there exists $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_n| < \varepsilon$. Let $n \in \mathbb{N}$ such that $n > N$ and $n$ is even. Then $a_{n+1} > 0$. We have $s_{n+1} = s_{n} + a_{n+1} > s_{n}$. Also $a_{n+2} < 0$ and $|a_{n+2}| < |a_{n+1}|$ so $a_{n+1} + a_{n+2} > 0$. Then $s_{n+1} > s_{n+1} + a_{n+2} = s_{n+2} = s_{n} + a_{n+1} + a_{n+2} > s_{n}$. So for $n > N$ even we have $s_{n} \leq s_{n+2} \leq s_{n+1}$ and a similar proof shows that for $n > N$ odd we have $s_{n} \geq s_{n+2} \geq s_{n+1}$. Use strong induction on $n$ to show that for $k + N$ even $s_{N} \leq s_{k+N} \leq s_{N+1}$. We see that for $k=1$ we have $s_N \leq s_{N+1} \leq s_{N+1}$ which is true since $a_{N+1}$ is positive.
+We've also shown the case for $k=2$. Assume that for $n+N$ even we have $s_N \leq s_{N+n} \leq s_{N+1}$. Consider $s_{N+n+2}$. We know $s_{N+n} \leq s_{N+n+2} \leq s_{N+n+1}$ and $s_{N+n-1} \leq s_{N+n+1} \leq s_{N+n}$. Combining these three inequalities we have $s_N \leq s_{N+n+2} \leq s_{N+1}$. Thus for all even $N+n$ we have $s_N \leq s_{N+n} \leq s_{N+1}$. A similar proof holds to show that for odd $N+n$ we have $s_{N} \leq s_{N+n} \leq s_{N+1}$. Since this is true for any $N$ given $\varepsilon$, for any region $(s_{N};s_{N+1})$ there are finitely many $n$ with $s_n$ not in the region. Thus $\sum_{n=1}^{\infty} a_n$ is convergent.
+\end{proof}
+
+\textbf{Exercise 9}
+\textsl{The series
+\[
+\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}
+\]
+is convergent.}
+\begin{proof}
+Note that for $n$ odd we have $a_n = (-1)^{n+1}/n$ and since $n+1$ is even and $n > 0$ we have $a_n = 1/n > 0$. For $n$ even $n+1$ is odd so $a_n = (-1)^{n+1}/n = -1/n < 0$. Also $|a_{n+1}| = 1/(n+1) < 1/n = |a_n|$. Finally we know that $\lim_{n \rightarrow \infty} a_n = 0$ (13.4). Since this series fulfills the requirements of Theorem 8, it must be convergent.
+\end{proof}
+
+\textbf{Definition 10}
+\textsl{A series $\sum_{n=1}^{\infty} a_n$ is called absolutely convergent if the series $\sum_{n=1}^{\infty} |a_n|$ is convergent.}\newline
+
+\textbf{Lemma 11}
+\textsl{$\sum_{n=1}^{\infty} a_n$ is absolutely convergent if and only if there exists $C \in \mathbb{R}$ such that for all $N \in \mathbb{N}$, $\sum_{n=1}^{N} |a_n| \leq C$.}
+\begin{proof}
+Suppose that $\sum_{n=1}^{\infty} a_n$ is absolutely convergent. Let $s_k = \sum_{n=1}^{k} |a_n|$. Then $(s_n)$ is convergent and therefore bounded (13.15). Thus there exists $C \in \mathbb{R}$ such that for all $N$ we have $s_N = \sum_{n=1}^{N} |a_n| \leq C$.\newline
+
+Now suppose there exists $C \in \mathbb{R}$ such that $s_N \leq C$ for all $N$. Thus $(s_n)$ is bounded. Note that $s_n = s_{n-1} + |a_n|$ and since $|a_n| \geq 0$ for all $n$ we have $(s_n)$ is an increasing sequence. Since $(s_n)$ is bounded and increasing we know it is convergent (13.18). Thus $\sum_{n=1}^{\infty} |a_n|$ is convergent and so $\sum_{n=1}^{\infty} a_n$ is absolutely convergent.
+\end{proof}
+
+\textbf{Theorem 12 (Comparison Criterion)}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{\infty} b_n$ be two series. Suppose there is some $N$ such that for all $n \geq N$ we have $|a_n| \leq |b_n|$. Then if $\sum_{n=1}^{\infty} b_n$ is absolutely convergent so is $\sum_{n=1}^{\infty} a_n$.}
+\begin{proof}
+For all $M \geq N$ note that
+\[
+\sum_{n=N}^{M} |a_n| \leq \sum_{n=N}^{M} |b_n| \leq \sum_{n=1}^{M} |b_n| \leq C
+\]
+for some $C \in \mathbb{R}$ because every term in $(|b_n|)$ is greater than or equal to zero (15.11). Also note that
+\[
+\sum_{n=1}^{M} |a_n| \leq C + \sum_{n=1}^{N-1} |a_n| \leq C'
+\]
+for some $C' \in \mathbb{R}$ because every term of $(|a_n|)$ is greater than or equal to zero. Also note that for $M' < N \leq M$ we have
+\[
+\sum_{n=1}^{M'} |a_n| \leq \sum_{n=1}^{M} |a_n| \leq C'
+\]
+so that for all $M$ we have $\sum_{n=1}^{M} |a_n| \leq C'$. By Lemma 11 $\sum_{n=1}^{\infty} a_n$ is absolutely convergent (15.11).
+\end{proof}
+
+\textbf{Corollary 13 (Quotient Criterion)}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be a series. Suppose that there is an $N \in \mathbb{N}$ and $0<r<1$, such that $|a_{n+1}/a_n| \leq r$ for all $n \geq N$. Then $\sum_{n=1}^{\infty} a_n$ is absolutely convergent.}
+\begin{proof}
+Use induction on $n$ to show that $|a_{N+n}| \leq |a_N| r^n$. For the base case, $n=1$ we have $|a_{N+1}| \leq |a_N| r$ by assumption. Assume that for $n \in \mathbb{N}$ we have $|a_{N+n}| \leq |a_N| r^n$ so $|a_{N+n}| r \leq |a_N| r^{n+1}$. Then note that $|a_{N+n+1}| \leq |a_{N+n}| r \leq |a_N| r^{n+1}$ as desired. Thus for $n \geq N$ we have $|a_n| \leq |a_N| r^{n-N}$. Let $b_n = |a_N| r^{n-N}$. Then for $n>N$ we have $|a_n| \leq |a_N| r^{n-N} = |a_N r^{n-N}| = |b_n|$ since $r>0$. But also
+\[
+\sum_{n=1}^{\infty} |a_N r^{n-N} | = \sum_{n=0}^{\infty} |a_N| r^{n-N+1} = |a_N| r^{-N+1} \sum_{n=0}^{\infty} r^n
+\]
+and so $\sum_{n=1}^{\infty} b_n$ is absolutely convergent by Theorem 6, because $r>0$ and because $|a_N| r^{-N+1}$ is a constant value (15.6). Thus, by Theorem 12 we have $\sum_{n=1}^{\infty} a_n$ is absolutely convergent.
+\end{proof}
+
+\textbf{Definition 14}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be a series. A reordering of $\sum_{n=1}^{\infty} a_n$ is a series of the form $\sum_{n=1}^{\infty} b_n$, where $b_n=a_{f(n)}$ for some bijection $f \; : \; \mathbb{N} \rightarrow \mathbb{N}$.}\newline
+
+\textbf{Lemma 15}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be an absolutely convergent series, and let $\sum_{n=1}^{\infty} b_n$ be a reordering of it. Then for every $k \in \mathbb{N}$ there exists $L \in \mathbb{N}$ such that for all $l \geq L$,
+\[
+\left | \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{l} b_n \right | \leq \sum_{n=k+1}^{\infty} |a_n|.
+\]}
+\begin{proof}
+Let $g \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a function such that $g(x) = |x|$. We know that since $g$ is continuous, for a sequence $(a_n)$, if $\lim_{n \rightarrow \infty} a_n = a$, then $\lim_{n \rightarrow \infty} |a_n| = |a|$ (13.7). We have $\sum_{n=1}^{\infty} a_n$ is absolutely convergent so $|\sum_{n=1}^{\infty} a_n| = \lim_{n \rightarrow \infty} |s_n|$. Then use induction on $n$ to show that $|s_n| \leq \sum_{k=1}^{n} |a_k|$. For $n=1$ we have $|s_1| = |a_1| = \sum_{k=1}^{1} |a_1|$. Assume that for $n \in \mathbb{N}$, $\sum_{k=1}^{n} |a_k| \geq |s_n|$. Then
+\[
+\sum_{k=1}^{n+1} |a_k| = \sum_{k=1}^{n} |a_k| + |a_{n+1}| \geq |s_n| + |a_{n+1}| \geq |s_n + a_{n+1}| = |s_{n+1}|
+\]
+by the triangle inequality and our inductive hypothesis (9.36). Therefore we have
+\[
+\left | \sum_{n=1}^{\infty} a_n \right | \leq \sum_{n=1}^{\infty} |a_n|.
+\]
+Let $k \in \mathbb{N}$ and consider the sets $A = \{a_n \mid n \leq k\}$ and $S = \{f(n) \mid n \leq k\}$. Let $L = \sup S$. Consider $l \geq L$ and let $B = \{b_n \mid n \leq l\}$ and $T = \{n \mid b_n \in B\}$. Finally let $C = \{a_n \mid n \notin T\}$. Make a new sequence $c_n$ where $n$ is the $n$th element of $C$. Note that by definition, $\sum_{n=1}^{\infty} c_n = \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{l} b_n$. Then
+\[
+\left | \sum_{n=1}^{\infty} c_n \right | = \left | \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{l} b_n \right | \leq \sum_{n=1}^{\infty} |c_n| \leq \sum_{k+1}^{\infty} |a_n|.
+\]
+The last inequality holds because $(c_n)$ is the sequence $(a_n)$, but with at least $k$ terms missing.
+\end{proof}
+
+\textbf{Theorem 16 (Abel Resummation Theorem)}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be an absolutely convergent series, and let $\sum_{n=1}^{\infty} b_n$ be a reordering of it. Then $\sum_{n=1}^{\infty} b_n$ absolutely convergent and
+\[
+\sum_{n=1}^{\infty} b_n = \sum_{n=1}^{\infty} a_n.
+\]}
+\begin{proof}
+Let $k \in \mathbb{N}$ and consider the sets $A = \{a_n \mid n \leq k\}$ and $S = \{f(n) \mid n \leq k\}$ Let $L = \sup S$ and let $B = \{b_n \mid n \leq L\} \subseteq \{a_n \mid n \leq L\}$ since $L \geq k$. Then
+\[
+\sum_{n=1}^{L} |b_n| \leq \sum_{n=1}^{L} |a_n| \leq C
+\]
+for some $C \in \mathbb{R}$ (15.11). Note that $L$ is always some value greater than or equal to $k$ and so as $k$ increases, so does $L$. But also $(|b_n|)$ is an increasing sequence and so for any value $L' < L$ we have $\sum_{n=1}^{L'} |b_n| \leq \sum_{n=1}^L |b_n| \leq C$. Thus every partial sum of $\sum_{n=1}^{\infty} |b_n|$ is bounded and thus $\sum_{n=1}^{\infty} b_n$ is absolutely convergent (15.11). Now consider $\sum_{n=k+1}^{\infty} |a_n| = \sum_{n=1}^{\infty} |a_n| - \sum_{n=1}^{k} |a_n|$ (15.5). Take the limit as $k$ goes to infinity. We have
+\[
+\lim_{k \rightarrow \infty} \sum_{n=k+1}^{\infty} |a_n| = \lim_{k \rightarrow \infty} \left ( \sum_{n=1}^{\infty} |a_n| - \sum_{n=1}^{k} |a_n| \right ) = \sum_{n=1}^{\infty} |a_n| - \lim_{k \rightarrow \infty} s_k = 0.
+\]
+But then we have
+\[
+\lim_{l \rightarrow \infty} \left | \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{l} b_n \right | = \left | \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{\infty} b_n \right | \leq \lim_{n \rightarrow \infty} \sum_{n=k+1}^{\infty} |a_n| = 0 \text{ (15.15)}.
+\]
+Thus,
+\[
+\sum_{n=1}^{\infty} b_n = \sum_{n=1}^{\infty} a_n.
+\]
+\end{proof}
+
+\textbf{Theorem 17}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be a convergent, but not absolutely convergent series. Then for all $c \in \mathbb{R}$ there exists a reordering $\sum_{n=1}^{\infty} b_n$ of $\sum_{n=1}^{\infty} a_n$ such that
+\[
+\sum_{n=1}^{\infty} b_n = c.
+\]}
+\begin{proof}
+Let $A = \{a_n \mid n \in \mathbb{N}\}$. Then $A$ is nonempty and bounded, so $\sup A$ exists (6.11, 13.15). Suppose that for any positive term of $(a_n)$ there are infinitely many terms greater than or equal to it. Consider some term $a_k>0$ and the region $(-a_k ; a_k)$. Then there are infinitely many terms of $(a_n)$ which are not in $(-a_k ; a_k)$. But then $(a_n)$ does not converge to zero which means $\sum_{n=1}^{\infty} a_n$ is not convergent (13.4). This is a contradiction and so for all positive terms of $(a_n)$ there are finitely many terms greater than or equal to it. A similar proof holds to show that for a negative term of $(a_n)$, there are finitely many terms less than or equal to it.\newline
+
+We have $\sum_{n=1}^{\infty} a_n = a$ for some $a \in \mathbb{R}$. Assume that $a_n = 0$ for finitely many $n$. We can order the positive elements of $(a_n)$ in decreasing order and the negative elements of $(a_n)$ in increasing order because there are finitely many positive or negative terms of $(a_n)$ greater than or less than any given term respectively. Define $(x_k)$ where $x_k$ is the $k$th positive element of $(a_n)$ and $(y_k)$ where $y_k$ is the $k$th negative element of $(a_n)$. Then for all $k \in \mathbb{N}$ we have $y_k < 0 \leq x_k$. Suppose there are finitely many negative terms of $(a_n)$. Then there exists a largest element, $j$, of $\{n \mid a_n < 0\}$ so that
+\[
+\sum_{k=1}^{j} y_k = q \text{ and } \sum_{k=1}^{j} |y_k| = -q
+\]
+for some $q \in \mathbb{R}$ because $y_k < 0$ for all $k$. Then we have
+\[
+\sum_{n=1}^{\infty} a_n = \sum_{k=1}^{\infty} x_k + \sum_{k=1}^{j} y_k
+\]
+and so
+\[
+\sum_{k=1}^{\infty} x_n = \sum_{k=1}^{\infty} |x_k| = a-q.
+\]
+This follows from Lemma 5 (15.5). But then
+\[
+(a-q)+q = \sum_{k=1}^{\infty} |x_k| + \sum_{k=1}^{j} |y_k| = \sum_{n=1}^{\infty} |a_n|
+\]
+which means $\sum_{n=1}^{\infty} a_n$ is absolutely convergent which is a contradiction. Thus there are infinitely many terms of $(y_k)$ and a similar proof shows there are infinitely many terms of $(x_k)$.\newline
+
+Let $c \in \mathbb{R}$. Now suppose that for all $j \in \mathbb{N}$ we have $\sum_{k=1}^{j} x_k \leq c$. Since $x_k > 0$ for all $k$, we have the partial sums of $\sum_{k=1}^{\infty} x_k$ are bounded and increasing so it must converge to $x$ for some $x \in \mathbb{R}$ (13.18). Suppose that $\sum_{k=1}^{\infty} |y_k| = y$ for some $y \in \mathbb{R}$. Then $\sum_{n=1}^{\infty} |a_n| = \sum_{k=1}^{\infty} |x_k| + \sum_{k=1}^{\infty} |y_k| = x+y$ which is a contradiction (15.16). Thus $\sum_{k=1}^{\infty} y_k$ is not absolutely convergent so there exists $l \in \mathbb{N}$ such that $\sum_{k=1}^{l} |y_k| > c$ (15.11). But since $y_k < 0$ for all $k$ we have $-c < \sum_{k=1}^{l} y_k$.\newline
+
+Now consider the sequence $(a'_n)$ where $a'_n = a_n$ if $a_n < 0$ and $0$ if $a_n \geq 0$. Then a partial sum of
+\[
+\sum_{n=1}^{\infty} a'_n \text{ is } s_{a'_n} = \sum_{k=1}^{n} a_k - \sum_{k=1}^{n'} x_k
+\]
+supposing there are $n'$ positive terms in the first $n$ terms of $(a_n)$. Then if we consider $\lim_{n \rightarrow \infty} s_{a'_n}$ we simply have $a-x$ since $n'$ will go to $\infty$ as $n$ does. Hence
+\[
+\sum_{n=1}^{\infty} a'_n = \sum_{k=1}^{\infty} y_k + 0 = a-x.
+\]
+Thus $\sum_{k=1}^{\infty} y_k$ is convergent, but we just showed that the partial sums of this series are unbounded which is a contradiction (13.15). Thus, for $c \in \mathbb{R}$ there exists $j \in \mathbb{N}$ such that $\sum_{k=1}^{j} x_k > c$. A similar proof shows that for $c \in \mathbb{R}$ there exists $j \in \mathbb{N}$ such that $\sum_{k=1}^{j} y_k < c$\newline
+
+Define a reordering of $\sum_{n=1}^{\infty} a_n$, $\sum_{n=1}^{\infty} b_n$ where the first $n_1$ terms of $b_n$ are the least number of terms of $(x_k)$ such that $\sum_{k=1}^{n_1} x_k > c$. Then let the next $n_2$ terms be the least number of terms of $(y_k)$ such that $\sum_{k=1}^{n_1} x_k + \sum_{k=1}^{n_2} y_k < c$. Note that we can always do this because the partial sums of
+\[
+\sum_{k=1}^{\infty} x_k \text{ and } \sum_{k=1}^{\infty} y_k
+\]
+are unbounded. Then for odd $i \in \mathbb{N}$, $n_i$ is the least number of terms of $(x_k)$ such that
+\[
+\sum_{n=1}^{n_i} b_n = \sum_{k=1}^{n_i} x_k + \sum_{k=1}^{n_{i-1}} y_k > c
+\]
+and for even $i$, $n_i$ is the least number of terms of $(y_k)$ such that
+\[
+\sum_{n=1}^{n_i} b_n = \sum_{k=1}^{n_{i-1}} + \sum_{k=1}^{n_i} y_k < c.
+\]
+Let $s_k = \sum_{n=1}^{k} b_n$. Note that $s_k$ for $k$ between $n_i$ and $n_{i+1}$ for $i \in \mathbb{N}$ is between $s_{n_i}$ and $s_{n_{i+1}}$ because the terms of $b_n$ change sign at $n_i$. Consider some region $(p;q)$ such that $c \in (p;q)$. Since the least number of elements of $(y_k)$ are added to $s_{n_{i-1}}$ so that $s_{n_i} < c$, we have $|c - s_{n_i}|$ is always less than or equal to the absolute value of some element of $(y_k)$. Suppose that $p > s_{n_i}$ for an infinite number of odd $i$. Then $|c-p|$ is less than or equal to an infinite number of absolute values of terms of $(y_k)$. But then if we consider some $|y_k| > |c-p|$ there are an infinite number of $n$ such that $|y_n| > |y_k|$. This is a contradiction and so $p > s_{n_i}$ for finitely many odd $i$. But also for all $s_{n_i}$ with odd $i$ there are finitely many $s_k$ such that $i < k < i+1$ because the positive and negative partial sums are unbounded. Thus there are finitely many $n$ such that $s_n < p$. A similar proof shows that there are finitely many $n$ with $s_n > q$ so there are finitely many $n$ with $s_n \notin (p;q)$. Therefore $\lim_{n \rightarrow \infty} s_n = c$ and so
+\[
+\sum_{n=1}^{\infty} b_n = c.
+\]
+If there are infinitely many $n$ such that $a_n=0$ the change $b_n$ so that a zero term is added to each $n_i$th partial sum. This will not change the resulting series convergence.
+\end{proof}
+
+\textbf{Theorem 18}
+\textsl{Show that if $\sum_{n=1}^{\infty} a_n$ is absolutely convergent, then it is convergent.}
+\begin{proof}
+Let $\varepsilon > 0$. Note that since $\sum_{n=1}^{\infty} |a_n|$ is convergent, the sequence of partial sums is Cauchy (14.5). Thus there exists $N$ such that for all $n,m > N$ we have
+\[
+\left | \sum_{i=1}^n a_i - \sum_{i=1}^m a_i \right | = \left | \sum_{i=m}^n a_i \right | \leq \left | \sum_{i=m}^n |a_i| \right | = \left | \sum_{i=1}^n |a_i| - \sum_{i=1}^m |a_i| \right | < \varepsilon.
+\]
+Thus the partial sums of $\sum_{n=1}^{\infty} a_n$ are also cauchy which means $\sum_{n=1}^{\infty} a_n$ is convergent (14.5).
+\end{proof}
+
+\end{flushleft}
+\end{document}

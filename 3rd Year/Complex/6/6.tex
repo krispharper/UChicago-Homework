@@ -1,0 +1,218 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27000\\
+
+November 19, 2009
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{problem}
+Let $f$ be analytic on the unit disk $D$, and assume that $|f(z)| < 1$ on the disk. Prove that if there exist two distinct points $a$, $b$ in the disc which are fixed points, that is, $f(a) = a$ and $f(b) = b$, then $f(z) = z$.
+\end{problem}
+\begin{proof}
+Note that $|f(z)| < 1$ implies $f(D) \subseteq D$. Let $h = g_a \circ f \circ g_a$. Note that $h(0) = g_a(f(g_a(0))) = g_a(f(a)) = g_a(a) = 0$. There exists some $z_0 \in D$ such that $g(z_0) = b$ (as $g$ is an automorphism of the unit disk). Note that $h(z_0) = g_a(f(g_a(z_0))) = g_a(f(b)) = g_a(b) = g_a^{-1}(b) = z_0$. Furthermore, $z_0 \neq 0$ since $a \neq b$. So now using the Schwartz Lemma, we know that there exists $\alpha$ such that $h(z) = \alpha z$ and we must have $\alpha = 1$ since $h(z_0) = z_0$. Therefore $h(z) = z$ for all $z \in D$ which means $g_a \circ f (z) = g_a(z)$ and $f(z) = z$.
+\end{proof}
+
+\begin{problem}
+Let $\alpha$ be real, $0 \leq \alpha < 1$. Let $U_{\alpha}$ be the open set obtained from the unit disk by deleting the segment $[\alpha, 1]$, as shown on the figure.\\
+(a) Find an isomoprphism of $U_{\alpha}$ with the unit disk from which the segment $[0,1]$ has been deleted.\\
+(b) Find an isomorphism of $U_0$ with the upper half of the disk. Also find an isomorphism of $U_{\alpha}$ with this upper half disk.
+\end{problem}
+\begin{proof}
+(a) Choose the automorphism $e^{i \pi} \frac{\alpha - z}{1 - \overline{\alpha}z} = \frac{z-\alpha}{1-\alpha z}$ where $\overline{\alpha} = \alpha$ since $\alpha$ is real. It's clear that $f(\alpha) = 0$ and $f(1) = 1$. Furthermore, for $y \in (\alpha, 1)$, $f(y)$ is certainly a real number and $0 < f(y) < 1$ so $[\alpha, 1]$ gets mapped to $[0,1]$ under $f$. But since $f$ is an automorphism of the unit disk, we must have $f$ maps $U_{\alpha}$ onto $U_0$ isomorphically.
+
+(b) Use $g(z) = \sqrt{z}$. If $z = re^{i \theta}$ then $g(z) = e^{(1/2)(\log r + i \theta)} = \sqrt{r}e^{i \theta/2}$. Since $\sqrt{r} > 0$ and $0 < \theta/2 < \pi$ (remember $[0,1]$ is not in our set so $\theta$ can't be $0$ or $2 \pi$) we must have $g(z)$ is in the upper half disk. The function $g \circ f$ will take $U_{\alpha}$ to the upper half disk.
+\end{proof}
+
+\begin{problem}
+Show that $f_M$ gives a map of $H$ into $H$.
+\end{problem}
+\begin{proof}
+If $z = x + iy$ is in $H$ then $y > 0$ and it suffices to show that $\textup{Im} f_M(z) = \textup{Im} (az+b)/(cz+d) > 0$. We have
+\begin{align*}
+f_M(z)
+&= f_M(x+iy)\\
+&= \frac{ax+iay+b}{cx+icy+d}\\
+&= (ax+b+iay)\frac{cx+d-icy}{(cx+d)^2+c^2y^2}\\
+&= ((ax+b)+iay)\left ( \frac{cx+d}{(cx+d)^2+c^2y^2} - i \frac{cy}{(cx+d)^2+c^2y^2} \right ).
+\end{align*}
+Multiplying and taking the imaginary part we see
+\[
+\textup{Im}f_M(x+iy) = \frac{acxy-ady}{(cx+d)^2+c^2y^2} - \frac{acxy+bcy}{(cx+d)^2+c^2y^2} = \frac{ady-bcy}{(cx+d)^2+c^2y^2}.
+\]
+The denominator is clearly positive, and by assumption $ad-bc>0$. Since $x+iy \in H$, $y > 0$ as well and so $ady-bcy=y(ad-bc)> 0$ and we're done.
+\end{proof}
+
+\begin{problem}
+\label{trans}
+(a) Given an element $z=x+iy \in H$, show that there exists an element $M \in SL_2(\mathbb{R})$ such that $f_M(i) = z$.\\
+(b) Given $z_1, z_2 \in H$, show that there exists $M \in SL_2(\mathbb{R})$ such that $F_M(z_1) = z_2$. In light of $(b)$, one then says that $SL_2(\mathbb{R})$ \emph{acts transitively} on $H$.
+\end{problem}
+\begin{proof}
+(a) With $y > 0$, the matrix
+\[
+M_1 =
+\left (
+\begin{array}{cc}
+\sqrt{y} & 0\\
+0 & 1/\sqrt{y}
+\end{array}
+\right )
+\]
+takes $i$ to $iy$. Now the matrix
+\[
+M_2 =
+\left (
+\begin{array}{cc}
+1 & x\\
+0 & 1
+\end{array}
+\right )
+\]
+takes $iy$ to $x+iy$. Thus $f_{M_2} \circ f_{M_1} (i) = z$ and $M_1, M_2 \in SL_2(\mathbb{R})$.
+
+(b) Use modified matrices in (a) to first take $z_1$ to $i$. That is, apply $M_2$ with a $-x$, then $M_1$ with the elements inverted. Now use the same matrices in (a) to take $i$ to $z_2$.
+\end{proof}
+
+\begin{problem}
+\label{rot}
+Let $K$ denote the subset of elements $M \in SL_2(\mathbb{R})$ such that $f_M(i) = i$. Show that if $M \in K$, then there exists a real $\theta$ such that
+\[
+M =
+\left (
+\begin{array}{cc}
+\cos \theta & -\sin \theta\\
+\sin \theta & \cos \theta
+\end{array}
+\right ).
+\]
+\end{problem}
+\begin{proof}
+Let $M \in SL_2(\mathbb{R})$ such that
+\[
+M =
+\left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right )
+\]
+Suppose we have $(ai + b)/(ci + d) = i$. Then $ai + b = i(ci+d)$ ($c$ and $d$ can't both be $0$ because $ad-bc = 1$). So $b + ia = -c + id$ and $b = -c$, $a = d$. Putting these equalities into the determinant equation we have $a^2 + c^2 = 1$ so that the point $(a,c)$ is on the unit circle. Thus there exists some $\theta$ such that $a = \cos \theta$ and $c = \sin \theta$. Given that $a = d$ and $-b = c$ immediately gives the result.
+\end{proof}
+
+\begin{problem}
+Let $f : H \rightarrow D$ be the isomorphism of the text, that is
+\[
+f(z) = \frac{z - i}{z + i}.
+\]
+Note that $f$ is represented as a fractional linear map, $f = F_M$ where $M$ is the matrix
+\[
+M =
+\left (
+\begin{array}{cc}
+1 & -i\\
+1 & i
+\end{array}
+\right )
+\]
+Of course, this matrix does not have determinant $1$.\\
+Let $K$ be the set of Exercises 5. Let $\textup{Rot}(D)$ denote the set of rotations of the unit disk, i.e. $\textup{Rot}(D)$ consists of all automorphisms
+\[
+\text{$R_{\theta} : w \mapsto e^{i \theta}w$ for $w \in D$.}
+\]
+Show that $f K f^{-1} = \textup{Rot}(D)$, meaning that $\textup{Rot}(D)$ consists of all elements $f \circ f_M \circ f^{-1}$ with $M \in K$.
+\end{problem}
+\begin{proof}
+Let $M$ be the matrix in the problem statement, and let $M'$ be the matrix from Problem~\ref{rot}. Note that
+\[
+M^{-1} =
+\left (
+\begin{array}{cc}
+\frac{1}{2} & \frac{1}{2}\\
+\frac{i}{2} & -\frac{i}{2}
+\end{array}
+\right )
+\]
+and $f_{M}^{-1} = f_{M^{-1}}$. Furthermore, note that $f_M \circ f_{M'} \circ f_{M^{-1}} = f_{MM'M^{-1}}$. We have
+\begin{align*}
+MM'M^{-1}
+&=
+\left (
+\begin{array}{cc}
+1 & -i\\
+1 & i
+\end{array}
+\right )
+\left (
+\begin{array}{cc}
+\cos \theta & -\sin \theta\\
+\sin \theta & \cos \theta
+\end{array}
+\right )
+\left (
+\begin{array}{cc}
+\frac{1}{2} & \frac{1}{2}\\
+\frac{i}{2} & -\frac{i}{2}
+\end{array}
+\right )\\
+&=
+\left (
+\begin{array}{cc}
+\cos \theta - i \sin \theta & -i \cos \theta - \sin \theta\\
+\cos \theta + i \sin \theta & i \cos \theta - \sin \theta
+\end{array}
+\right )
+\left (
+\begin{array}{cc}
+\frac{1}{2} & \frac{1}{2}\\
+\frac{i}{2} & -\frac{i}{2}
+\end{array}
+\right )\\
+&=
+\left (
+\begin{array}{cc}
+\cos \theta - i \sin \theta & 0\\
+0 & \cos \theta + i\sin \theta
+\end{array}
+\right ).
+\end{align*}
+Thus $f_M \circ f_{M'} \circ f_{M}^{-1} = e^{-i \theta}z/e^{i \theta z} = e^{-2i\theta}z$. Thus $fKf^{-1} \subseteq \textup{Rot}(D)$. But if $R_{\theta} \in \textup{Rot}(D)$, then $R_{\theta} = R_{-\varphi/2}$ for some appropriate $\varphi$, and the argument above works backwards. Thus both inclusions hold and we're done.
+\end{proof}
+
+\begin{problem}
+Every automorphism of $H$ is of the form $f_M$ for some $M \in SL_2(\mathbb{R})$.
+\end{problem}
+\begin{proof}
+Let $g \in \textup{Aut}(H)$. From Problem~\ref{trans} we know that there exists $M \in SL_2(\mathbb{R})$ such that $f_M(g(i)) = i$. By Problem~\ref{rot} we know that $f_M \circ g \in K$. Let $f_M \circ g = f_{M'}$ for $M' \in K$. Then we have $g = f_{M^{-1}} \circ f_{M'} = f_{M^{-1}M'}$. Since $SL_2(\mathbb{R})$ is a group under matrix multiplication, $M^{-1}M' \in SL_2(\mathbb{R})$ and we're done.
+\end{proof}
+
+\begin{problem}
+Let $a$ be a real number. Let $U$ be the open set obtained from the complex plane by deleting the infinite segment $[a, \infty)$. Find explicitly an analytic isomorphism of $U$ with the unit disk. Give this isomorphism as a composition of simpler ones.
+\end{problem}
+\begin{proof}
+Translate the plane by $-a$ to get the plane with $[0, \infty)$ removed. Now take $\sqrt{z}$ to get the upper half plane. Use $(z-i)/(z+i)$ to get the unit disk. So the isomorphism will be $(\sqrt{z-a}-i)/(\sqrt{z-a}+i)$.
+\end{proof}
+
+\begin{problem}
+Let $w = u + iv = f(z) = z + \log z$ for $z$ in the upper half plane $H$. Prove that $f$ gives an isomorphism of $H$ with the open set $U$ obtained from the upper half plane by deleting the infinite half line of numbers
+\[
+\text{$u + i \pi$ with $u \leq -1$}.
+\]
+\end{problem}
+\begin{proof}
+Let $\gamma$ be the path defined by the line segment from $R$ to $\varepsilon$, then the semicircle from $\varepsilon$ to $-\varepsilon$, then the line segment from $-\varepsilon$ to $-R$. Then the semicircle from $-R$ to $R$. We must consider $f \circ \gamma$. For the first piece, $\theta = 0$ and so $f(z) = r + \log r$. This is a strictly increasing function which maps the real line to itself. Thus $f([\varepsilon, R]) = [\varepsilon + \log \varepsilon, R + \log R]$. For a point $z$ on the semicircle of radius $\varepsilon$, we have $f(z) = \varepsilon \cos \theta + \log \varepsilon + i(\theta + \varepsilon \sin \theta)$. Taking the limit as $\varepsilon$ approaches $0$ gives this image to be a line segment from $\varepsilon + \log \varepsilon$ to $-\varepsilon + \log \varepsilon + i \pi$. For $z$ on the segment from $-\varepsilon$ to $-R$, $f(z) = -r + \log r + i \pi$. Thus, the image of this segment under $f$ is the line segment from $-\varepsilon + \log \varepsilon + i \pi$ to $-1 + i \pi$ and then the segment from $-1 + i \pi$ to $-R + \log R + i \pi$. The final semicircle completes the path $f \circ \gamma$ which shows that $f \circ \gamma$ has an interior. Moreover, this interior (as $R$ goes to infinity and $\varepsilon$ goes to $0$) is simply $U$. Since $\gamma$ also has an interior and both of these interiors are connected, we have an isomorphism between them. Now let $\varepsilon$ tend to $0$ and $R$ tend to infinity to conclude the proof.
+\end{proof}
+
+\end{document}

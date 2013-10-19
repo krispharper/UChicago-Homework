@@ -1,0 +1,185 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\input xy
+\xyoption{all}
+
+\newcommand{\spec}{\textup{Spec}}
+\newcommand{\J}{\textup{J-rad}\,}
+\newcommand{\nil}{\textup{nil}\,}
+\newcommand{\Max}{\textup{Max}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26800\\
+
+February 1, 2011
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+We say that a commutative ring $A$ is a \emph{Jacobson ring} if every prime ideal of $A$ is an intersection of maximal ideals, i.e. $P \in \spec(A)$ implies
+\[
+P = \bigcap_{\substack{M \in \Max(A)\\ M \supseteq P}} M.
+\]
+
+\begin{problem}
+\label{equiv}
+Show that the following are equivalent for a commutative ring $A$.\\
+(a) $A$ is a Jacobson ring.\\
+(b) For all $P \in \spec(A)$, $\J A/P = 0$.\\
+(c) For any ideal $I \subsetneq A$, $\sqrt{I} = \bigcap_{M \in \Max(A), M \supseteq I} M$.\\
+(d) For all ideals $I \subseteq A$, $\nil A/I = \J A/I$.
+\end{problem}
+\begin{proof}
+Suppose $A$ is a Jacobson ring and let $P \in \spec(A)$. Then $\J A/P$ is the intersection of all maximal ideals in $A/P$. These are in one to one correspondence with the maximal ideals of $A$ which contain $P$. Thus, taking the intersection in the quotient is the same as taking the intersection of the preimages and then quotienting by $P$. But the intersection in $A$ is $P$ by assumption, thus the quotient by $P$ is $0$ so $\J A/P = 0$.
+
+Now suppose $\J A/P = 0$ for all $P \in \spec(A)$. Let $I$ be a proper ideal of $A$. Then we know $\sqrt{I}$ is the intersection of all prime ideals containing it. But each prime ideal is the intersection of all maximal ideals containing it. So we can replace the first intersection by an intersection over the smaller set $\Max(A)$. Thus $\sqrt{I} = \bigcap_{M \in \Max(A), M \supseteq P \supseteq I} M$.
+
+Note that the case $I = A$ is trivial since $\nil 0 = \J 0 = 0$. Suppose for any proper ideal we have $\sqrt{I}$ is the intersection of all maximal ideals containing I. Then note that $\sqrt{I}$ corresponds to the preimage of $\nil A/I$ under the natural projection. By assumption, this preimage is the intersection of all maximal ideals containing $I$. But then quotienting out by $I$ we get the intersection of all maximal ideals in $A/I$. This is precisely $\J A/I$.
+
+Finally assume for any ideal $I \subseteq A$, $\nil A/I = \J A/I$. Let $P \in \spec(A)$. Then $\nil A/P = \J A/P$. Taking the preimage under the natural projection, the left side evaluates to $\sqrt{P} = P$. The right side is the intersection of all maximal ideals in $A/P$, so the preimage is the intersection of all maximal ideals in $A$ containing $P$. Since $P$ was arbitrary, we see that $A$ is a Jacobson ring.
+\end{proof}
+
+\begin{problem}
+Show that $A$ is a Jacobson ring implies that $A/I$ is a Jacobson ring.
+\end{problem}
+\begin{proof}
+Let $I$ be an ideal of $A$ and let $P$ be a prime ideal of $A/I$. Then $P'$, the preimage of $P$ under the natural projection is a prime ideal of $A$. Since $A$ is a Jacobson ring, $P' = \bigcap_{M \in \Max(A), M \supseteq P} M$. Taking the quotient by $I$, we see that each of these maximal ideals corresponds to a maximal ideal in $A/I$ containing $P$. Furthermore, if we have any maximal $M \subseteq A/I$ with $P \subseteq M$, then the preimage $M'$ is a maximal ideal in $A$ which contains $P'$ and is thus included in the above intersection. Thus $P$ is the intersection of all maximal ideals containing it and since $P$ was arbitrary, $A/I$ is a Jacobson ring.
+\end{proof}
+
+\begin{problem}
+Let $A = K[x_1, \dots , x_n]$, $K$ a field or $A = \mathbb{Z}[x_1, \dots , x_n]$. Show that $A$ is a Jacobson ring.
+\end{problem}
+\begin{proof}
+Let $P$ be a prime ideal of $A$ and set $R = A/P$. By Problem~\ref{equiv} it's enough to show that $\J R = 0$. Let $f \in \J R$, $B = R[x]$ and $J = B(fx - 1)$. Now note that $B$ is a finitely generated $K$- or $\mathbb{Z}$-algebra and $R$ is a ring containing $K$ or $\mathbb{Z}$ (since $P$ cannot contain $1$). Furthermore, we have the inclusion $R \to B$. From a previous result, we know know that for an ideal $M \Max(B)$, the preimage under this map is maximal in $R$. Note that the preimage is just $M \cap R$.
+
+Let $M$ be a maximal ideal containing $J$. Then $M \cap R$ is maximal in $R$. Note that since $f \in \J$, we have $f \in M \cap R$, so $fx \in M$. Since $M$ contains $J$, $fx-1 \in M$ so $fx - (fx - 1) = 1$ is in $M$ and $M$ is not maximal. This no maximal ideal contains $J$ which means $J = B(fx - 1) = B$ (setwise). So there exists $b \in B$ with $b(fx-1) = 1$ and $(fx-1)$ is a unit. But the units in $R[x]$ are the units in $R$ so $fx-1$ is a constant which means $f = 0$. Thus $\J R = 0$ and $A$ is a Jacobson ring.
+\end{proof}
+
+\begin{problem}
+\label{closure}
+Let $A$ be any commutative ring and $T$ a subset of $\spec(A)$ show that the closure $\overline{T}$ of $T$ in $\spec A = V(J)$, where $J = \bigcap_{P \in T} P$.
+\end{problem}
+\begin{proof}
+For each $P \in T$, to find a closed set containing $P$ we take an ideal $J \subseteq P$ and then $P \in V(J)$. To find a closed set containing all $P \in T$ we take an ideal $J \subseteq \bigcap_{P \in T} P$ and then take $V(J)$. Set $J = \bigcap_{P \in T}$ so that
+\[
+\overline{T} = \bigcap_{I \subseteq J} V(I) = V(J).
+\]
+\end{proof}
+
+\begin{problem}
+Let $A$ be a Jacobson ring. The map $F \mapsto \overline{F}$ from the set of all closed sets of $\Max(A)$ to the set of all closed sets of $\spec(A)$ is an inclusion preserving bijection. Further $\overline{F_1 \cap F_2} = \overline{F_1} \cap \overline{F_2}$, for any closed sets $F_1$, $F_2$ of $\Max(A)$. (Here $\overline{F}$ denotes the closure of $F$ in $\spec(A)$.)
+\end{problem}
+\begin{proof}
+Pick $F \neq G$ closed sets of $\Max(A)$ and write $F = V(I)$, $G = V(J)$ for $I$, $J$ ideals of $A$. Then without loss of generality there exists some $M \in \Max(A)$ with $J \subseteq M$ and $I \nsubseteq M$. Then note that $F \subseteq \overline{F}$, $G \subseteq \overline{G}$ and we can write $\overline{F} = V(I')$ and $\overline{F} = V(J')$. Then $V(I) \subseteq V(I')$ and $V(J) \subseteq V(J')$ so $I' \subseteq I$ and $J' \subseteq J$. But since $I \nsubseteq M$, $I' \nsubseteq M$ so $M \notin V(I')$ thus $M \notin \overline{F}$. Therefore $\overline{F} \neq \overline{G}$ and so the map is injective.
+
+To show surjectivity we claim that $V(I) \mapsto V(I)$ where the first is a set in $\Max(A)$ and the second is a set in $\spec(A)$. Since $V(I)$ is closed in $\spec(A)$, write $V(I) = V(J)$ where $J = \bigcap_{P \supseteq I} P$ as in Problem~\ref{closure}. Note that $J = \sqrt{I}$ so $V(I) = V(\sqrt{I})$ in $\spec(A)$. Now take $V(I)$ in $\Max(A)$. By Problem~\ref{closure}, $\overline{V(I)} = V(J')$ where $J' = \bigcap_{M \in \Max(A), M \supseteq I} M$. By Problem~\ref{equiv} we know $J' = \sqrt{I}$ so $\overline{V(I)} = V(\sqrt{I}) = V(I)$ in $\spec(A)$.
+
+The fact that the map is inclusion preserving is a property of all topological spaces since if $F \subseteq G$ then $\overline{G}$ is a closed set which contains $F$, so $\overline{G} \supseteq \overline{F}$.
+
+To show the equality we use the map $V(I) \mapsto V(I)$ defined above. Note that if $F_1 = V(I)$ and $F_2 = V(J)$ then $F_1 \cap F_2 = V(I + J)$ so $\overline{F_1 \cap F_2} = V(I + J)$ in $\spec(A)$. But also $\overline{F_1} = V(I)$ and $\overline{F_2} = V(J)$ so $\overline{F_1} \cap \overline{F_2} = V(I + J)$.
+
+One inclusion holds in any space. To show $\overline{F_1 \cap F_1} \subseteq \overline{F_1} \cap \overline{F_2}$ we note that $F_1 \cap F_2 \subseteq F_1$ and $F_1 \cap F_2 \subseteq F_2$ so by inclusion preservation we have $\overline{F_1 \cap F_2} \subseteq \overline{F_1}$ and $\overline{F_1 \cap F_2} \subseteq \overline{F_2}$ so $\overline{F_1 \cap F_2} \subseteq \overline{F_1} \cap \overline{F_2}$.
+\end{proof}
+
+\begin{problem}
+Let $\varphi : A \to B$ be a ring homomorphism and $\varphi^* : \spec(B) \to \spec(A)$ be the map with $\varphi^*(P) = \varphi^{-1}(P)$. Show that $\varphi^*$ is a continuous map.
+\end{problem}
+\begin{proof}
+Let $V(I)$ be a closed set in $\spec(A)$. Then $(\varphi^*)^{-1}(V(I)) = \varphi(V(I))$. Since $V(\varphi(I))$ is a closed set in $\spec(B)$, it's enough to show that $V(\varphi(I)) = \varphi(V(I))$ where $V(\varphi(I))$ is the ideal generated by $\varphi(I)$.
+
+So let $P \in \varphi(V(I))$. Then $P = \varphi(Q)$ for some prime $Q \supseteq I$. Applying $\varphi^{-1}$ then we have $\varphi^{-1}(P) \supseteq Q \supseteq I$ so $P \supseteq \varphi(I)$ and $P \in V(\varphi(I)$. Conversely if $P \in V(\varphi(I))$ then $P \supseteq \varphi(I)$ and $\varphi^{-1}(P) \supseteq I$. Thus there exists some prime $Q \supseteq I$ with $\varphi(Q) = P$ so $P \in \varphi(V(I))$.
+\end{proof}
+
+\begin{problem}
+\label{zar}
+Let $K \subseteq L$ be fields and $S \subseteq L^n$ a subset. Let $J = \{ f \in A = K[x_1, \dots , x_n] \mid f(s) = 0, s \in S\}$. Show that the closure $\overline{S}$ of $S$ in the Zariski $K$-topology on $L^n$ is $V(J)$. Further $\mathfrak{I}(V(J)) = J$. Deduce that $S$ is irreducible if and only if $J$ is a prime ideal of $A$.
+\end{problem}
+\begin{proof}
+Since $V(J)$ is the vanishing set of polynomials which vanish on $S$, we have $S \subseteq V(J)$ and since $V(J)$ is closed, $\overline{S} \subseteq V(J)$. For the reverse inclusion, suppose we have some ideal $I \subseteq A$ with $\overline{S} \subseteq V(I) \subsetneq V(J)$. Then pick $a \in V(J) \backslash V(I)$ so that $f(a) = 0$ for all $f \in J$ and there exists some $g \in I$ such that $g(a) \neq 0$. Then $J \subsetneq I$. But $J$ contains every polynomial which vanishes on all of $S$, so $I$ contains some polynomial $h$ which doesn't vanish on all of $S$ and we can't have $S \subseteq V(I)$, a contradiction. Therefore $V(J)$ is the smallest closed set containing $S$ so $\overline{S} = V(J)$.
+
+Now pick an element $f \in J$. Then $f(a) = 0$ for all $a \in V(J)$. Thus $f \in \mathfrak{I}(V(J))$. Conversely if $f \in \mathfrak{I}(V(J))$ then $f(a) = 0$ for all $a \in \overline{S}$. In particular, $f(a) = 0$ for all $a \in S$ so $f \in J$. Thus $\mathfrak{I}(V(J)) = J$.
+
+We can restate the irreducibility definition as, $X$ is irreducible if any two nonempty open sets of $X$ intersect. Then note that any open subset which intersects $\overline{S}$ also intersects $S$. Thus if $\overline{S}$ is irreducible and we have any two open subsets of $S$, they must also intersect in $\overline{S}$ since $S \subseteq \overline{S}$ so $S$ is irreducible. On the other hand if $S$ is irreducible and we have two open subsets of $\overline{S}$ then the two sets must intersect in $S$ as well so $\overline{S}$ is irreducible.
+
+Now $J$ is prime if and only if $V(J) = \overline{S}$ is irreducible and $\overline{S}$ is irreducible if and only if $S$ is irreducible.
+\end{proof}
+
+\begin{problem}
+With $K \subseteq L$ as in Problem~\ref{zar}, assume further that $L$ is an infinite field. Let $f_1, \dots , f_r$ be $r$ polynomials in $A = K[x_1, \dots , x_n]$. Let $S = \{(f_1(a), \dots , f_r(a)) \mid a \in L^n\} \subseteq L^r$. Show that $S$ (and hence the closure of $S$ in $L^r$) is irreducible under the Zariski $K$-topology.
+\end{problem}
+\begin{proof}
+Let $B = K[y_1, \dots , y_r]$ and let $\varphi : B \to A$ be defined by $\varphi(y_i) = f_i$, $1 \leq i \leq r$. Let $J = \{f \in B \mid f(s) = 0, s \in S\}$. Pick $f \in J$ and note that $\varphi(f)(a) = f(f_1(a), \dots , f_r(a)) = 0$ since $(f_1(a), \dots , f_r(a)) \in S$ and $L$ is infinite. Thus $J \subseteq \ker \varphi$. Conversely if $f \in \ker \varphi$ then for each $a \in L^r$, $f(f_1(a), \dots , f_r(a)) = 0$ so $f \in J$. Thus $\ker \varphi = J$. Now note that $B/\ker \varphi$ injects into $A$, which is an integral domain, so $B/\ker \varphi$ is also an integral domain and $\ker \varphi = J$ must be a prime ideal. Now by Problem~\ref{zar} we know $S$ is irreducible since $J$ is prime.
+\end{proof}
+
+\begin{problem}
+\label{multunits}
+Let $A$ be a commutative ring and $S$ a multiplicative set of $A$. Show that
+\[
+(S^{-1}A)^* = \{a/s \mid \textup{$s \in S$ and $a \in A$ such that there exists $b \in A$ with $ab \in S$}\}.
+\]
+\end{problem}
+\begin{proof}
+Define $U$ to be the set on the right. Every element of $S^{-1}A$ can be expressed as $i_{S,A}(a)i_{S,A}(s)^{-1}$ for $a \in A$ and $s \in S$. Write $u = i_{S,A}(a) i_{S,A}(s)^{-1}$ and $u^{-1} = i_{S,A}(b) i_{S,A}(t)^{-1}$. Then
+\[
+1 = uu^{-1} = i_{S,A}(a) i_{S,A}(s)^{-1} i_{S,A}(b) i_{S,A}(t)^{-1} = i_{S,A}(ab) i_{S,A}(st)^{-1}.
+\]
+Then $ab/1 = st/1$ so there exists $x \in S$ such that $abx = stx$. In particular, $a(bx) \in S$ and $u = a/s \in U$.
+
+Now take $u \in U$ with $u = a/s$ and $b \in A$ such that $ab \in S$. Then $sb/ab$ is an element of $S^{-1}A$ and since $u = a/s = ab/sb$, we see that $u^{-1} = sb/ab$ since $(ab/sb)(sb/ab) = absb/absb = 1$. Then $u \in (S^{-1}A)^*$ and we're done.
+\end{proof}
+
+\begin{problem}
+(a) With $A$ and $S$ as in Problem~\ref{multunits}, let $f : A \to B$ be a ring homomorphism such that $f(S) \subseteq B^*$. Show that there exists a unique ring homomorphism $f' : S^{-1}A \to B$ such that the diagram
+\[
+\xymatrix{
+A \ar[rr]^{i_{S,A}} \ar[dr]_f && S^{-1}A \ar[ld]^{f'}\\
+& B &
+}
+\]
+commutes, i.e. $f' \circ i_{S,A} = f$.
+\end{problem}
+\begin{proof}
+To show existence let $f'(a/s) = f(a)f(s)^{-1}$. Since $f$ is a homomorphism, we have
+\[
+f'(a/s \cdot b/t) = f'(ab/st) = f(ab)f(st)^{-1} = f(a)f(b)f(s)^{-1}f(t)^{-1} = f'(a/s)f'(b/t)
+\]
+and
+\[
+f'(a/s + b/t) = (f(a)f(t) + f(b)f(s))f(s)^{-1}f(t)^{-1} = f(a)f(s)^{-1} + f(b)f(t)^{-1} = f'(a/s) + f'(b/t)
+\]
+so $f'$ is also a homomorphism. Then we just need to show $f'$ is well defined. Let $a/s = b/t$. Then there exists $x \in S$ such that $atx = bsx$. Applying $f$ we have $f(a)f(t)f(x) = f(b)f(s)f(x)$. Now $f(s)$, $f(t)$ and $f(x)$ are all units in $B$, so we can multiply both sides by $f(s)^{-1}f(t)^{-1}f(x)^{-1}$ to obtain $f'(a/s) = f(a)f(s)^{-1} = f(b)f(t)^{-1} = f(b/t)$.
+
+To show uniqueness, suppose $f'$ is such a map. Then for $a \in A$, $f'(a/1) = f' \circ i_{S,A}(a) = f(a)$. Now if $s \in S$ we have $f'(1/s) = f'((s/1)^{-1}) = f'(s/1)^{-1} = f(s)^{-1}$. Thus $f'(a/s) = f'(a/1 \cdot 1/s) = f'(a/1) f'(1/s) = f(a)f(s)^{-1}$ and $f'$ is completely determined by $f$.
+\end{proof}
+
+\begin{problem}
+Let $F$ be any $A$-module. For $a \in A$ let $m_a : F \to F$ denote the map $m_a(x) = ax$, $x \in F$. With $S$ a multiplicative set, suppose that $F$ is such that $m_s$, $s \in S$ are all bijections. Let $f : E \to F$ be an $A$-linear map, where $E$ is an $A$-module. Show that there exists a unique $A$-linear map $f' : S^{-1}E \to F$ such that $f' \circ i_{S,E} = f$.
+\end{problem}
+\begin{proof}
+For existence let $f'(x/s) = m_s^{-1} \circ f(x)$. Note that since $A$ is commutative for $a,b \in A$ we have $m_{ab}^{-1} = m_{ba}^{-1}$ and since $m_a$ is $A$-linear, $m_a^{-1}$ is also $A$-linear. Then
+\[
+f'(x/s + y/t) = m_{st}^{-1}(f(tx) + f(sy)) = m_{st}^{-1}(tf(x)) + m_{st}^{-1}(sf(y)) = m_s^{-1}f(x) + m_t^{-1}f(y) = f'(x/s) + f'(y/t)
+\]
+and
+\[
+f'(a(x/s)) = f'(ax/s) = m_s^{-1}(f(ax)) = m_s^{-1}(af(x)) = am_s^{-1}(f(x)) = af'(x/s)
+\]
+so $f'$ is an $A$-linear map. We now need to show $f'$ is well defined. Let $x/s = y/t$ be elements of $S^{-1}E$. Then there exists $u \in S$ such that $utx = usy$. Apply $m_{stu}^{-1} \circ f$ to each side to obtain $f'(x/s) = m_s^{-1}(f(x)) = m_t^{-1}(f(y)) = f'(y/s)$.
+
+To show uniqueness let $f'$ be such a map and note that $f'(x/1) = f' \circ i_{S,E}(x) = f(x)$. Then we have
+\[
+f'(x/s) = m_s^{-1}(sf'(x/s)) = m_s^{-1}(f'(sx/s)) = m_s^{-1}(f'(x/1)) = m_s^{-1} \circ f(x).
+\]
+Thus $f'$ depends only on $f$ and its argument so it must be unique.
+\end{proof}
+
+\end{document}

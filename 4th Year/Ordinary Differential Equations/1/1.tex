@@ -1,0 +1,286 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27300\\
+
+January 14, 2011
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{problem}
+$\dot{x} = 0.05x$, $x(0) = 100$. This is the result of ``continuous compounding'' as described in Example 1.1.5 above. Evaluate the solution numerically at $t = 1$, i.e., at the end of one year, and compare this with monthly compounding as given in equation (1.7).
+\end{problem}
+
+Since $dx/dt = .05x$, $dx/dt (1/x) = .05$. Integrating both sides gives
+\[
+.05t - .05t_0 = \int_{t_0}^t \frac{dx}{dt} \frac{1}{x} dt = \int_{t_0}^t \frac{d}{dt} \ln(x) dt = \ln(x(t)) - \ln(x(t_0)).
+\]
+Then $x(t)/x(t_0) = e^{.05(t-t_0)}$ and $x(t) = x(t_0) e^{.05(t-t_0)}$. Setting $t_0 = 0$ we have $x(t) = 100e^{.05t}$. At $t = 1$ this is $x(1) = 100e^{.05} \approx 105.13$. This is nearly the same as the monthly compounding in equation (1.7).
+
+\begin{problem}
+\label{specific}
+$\dot{x} = -tx +1$, $x(1) = 0$.
+\end{problem}
+
+We multiply both sides by $P(t) = \exp \left ( - \int_{t_0}^t (-s) ds \right ) = \exp \left (t^2/2 - t_0^2/2 \right )$. This gives
+\[
+P(t) = \frac{dx}{dt} P(t) + P(t) tx = \frac{d}{dt} (P(t) x).
+\]
+Now integrate from $t_0$ to $t$ and multiply each side by $1/P(t)$ to get
+\begin{align*}
+x(t)
+&= \exp \left ( \int_{t_0}^t -s ds \right ) \left ( x(t_0) + \int_{t_0}^t \exp \left ( - \int_{t_0}^s -u du \right ) ds \right )\\
+&= e^{-(t^2-t_0^2)/2} \left (x(t_0) + \int_{t_0}^t e^{(s^2-t_0^2)/2} ds \right ).
+\end{align*}
+Putting in $t_0 = 1$ we have
+\[
+x(t) = e^{(1-t^2)/2} \int_1^t e^{(s^2-1)/2} ds.
+\]
+
+\begin{problem}
+Suppose that $x_1(t)$ and $x_2(t)$ are both solutions of equation (1.16). Show that $x(t) = c_1x_1(t) + c_2x_2(t)$ is then also a solution, for arbitrary values of the constants $c_1$ and $c_2$.
+\end{problem}
+\begin{proof}
+Since $x_1(t)$ and $x_2(t)$ are both solutions of equation (1.16), we have
+\[
+\frac{dx_1}{dt} - k(t)x_1 = \frac{dx_2}{dt} - k(t)x_2 = 0.
+\]
+Then since the derivative is a linear operator,
+\begin{align*}
+\frac{dx}{dt} - k(t)x
+&= \frac{d}{dt} (c_1x_1(t) + c_2x_2(t)) - k(t)(c_1x_1(t) + c_2x_2(t))\\
+&= c_1 \frac{dx_1}{dt} + c_2 \frac{dx_2}{dt} - c_1k(t)x_1 - c_2k(t)x_2\\
+&= c_1 \left ( \frac{dx_1}{dt} - k(t)x_1 \right ) + c_2 \left ( \frac{dx_2}{dt} - k(t)x_2 \right )\\
+&= c_1 \cdot 0 + c_2 \cdot 0\\
+&= 0.
+\end{align*}
+Thus $x(t)$ also satisfies equation (1.16).
+\end{proof}
+
+\begin{problem}
+An \emph{equilibrium} solution is one that is constant, i.e. does not depend on the independent variable. Therefore if $\tilde{x}$ is such a solution, $\dot{\tilde{x}} = 0$ for all $t$. Find an equilibrium solution $\tilde{x}$ of the equation of Problem 7 above. Show that, if $x(t)$ is \emph{any} solution of this equation, $x(t) \rightarrow \tilde{x}$ as $t \rightarrow +\infty$.
+\end{problem}
+\begin{proof}
+As in Problem~\ref{specific} above, the general solution to Problem 7 is of the form
+\begin{align*}
+x(t)
+&= \exp \left ( \int_{t_0}^t -\alpha ds \right ) \left (x(t_0) + \int_{t_0}^t \exp \left ( - \int_{t_0}^s -\alpha du \right) \gamma ds \right )\\
+&= e^{\alpha(t_0 - t)} \left (x(t_0) + \gamma \int_{t_0}^t e^{\alpha(s-t_0)} ds \right )\\
+&= e^{\alpha(t_0 - t)} \left (x(t_0) + \frac{\gamma}{\alpha} \left (e^{\alpha(t-t_0)} - 1 \right ) \right )\\
+&= e^{-\alpha t} \left ( 1 + \frac{\gamma}{\alpha} \left (e^{\alpha t} - 1 \right ) \right )\\
+&= e^{-\alpha t} + \frac{\gamma}{\alpha} - e^{-\alpha t} \frac{\gamma}{\alpha}.
+\end{align*}
+A equilibrium solution is them $\tilde{x}(t) = \gamma/\alpha$ since then
+\[
+\frac{dx}{dt} + \alpha x - \gamma = 0 + \alpha \frac{\gamma}{\alpha} - \gamma = 0.
+\]
+Furthermore, for general solution for $x(t)$, we must have $x(t) \rightarrow \tilde{x}$ as $t \rightarrow + \infty$ since both terms $e^{-\alpha t} \rightarrow 0$ as $t \rightarrow + \infty$ and this only leaves the $\gamma/\alpha = \tilde{x}(t)$ term.
+\end{proof}
+
+\begin{problem}
+For the partial differential equation
+\[
+x \frac{\partial u}{\partial x} + y \frac{\partial u}{\partial y} = \alpha u,
+\]
+where $\alpha$ is a constant, introduce polar coordinates $x = r \cos \varphi$, $y = r \sin \varphi$. With $u(x,y) = v(r, \varphi)$, deduce that the equation takes the form
+\[
+r \frac{\partial v}{\partial r} = \alpha v.
+\]
+Give the general solution of this equation, noting that it involves not an arbitrary constant, but an arbitrary function.
+\end{problem}
+\begin{proof}
+Using the chain rule we have
+\[
+r \frac{\partial v}{\partial r} = r \left ( \frac{\partial v}{\partial x} \frac{\partial x}{\partial r} + \frac{\partial v}{\partial y} \frac{\partial y}{\partial r} \right ) = r\frac{\partial v}{\partial x} \cos \varphi + r\frac{\partial v}{\partial y} \sin \varphi = x \frac{\partial u}{\partial x} + y \frac{\partial u}{\partial y}.
+\]
+The general solution is given by $v(r, \varphi) = f(\varphi) r^{\alpha}$ where $f(\varphi)$ is an arbitrary function with no dependence on $r$.
+\end{proof}
+
+\begin{problem}
+Apply the result of the preceding problem to the case
+\[
+\begin{tabular}{ccc}
+$k \equiv 1$, & $a(t) = \sin t$, & $(T = 2 \pi)$
+\end{tabular}
+\]
+to find an initial value $x(0) = x_0$ such that $x(T) = x_0$, and verify that the solution is periodic in this case and only this case.
+\end{problem}
+\begin{proof}
+We have the equation $dx/dt = x + \sin(t)$ which has the general solution
+\begin{align*}
+x(t)
+&= x(t_0) e^{t-t_0} + e^{t-t_0} \int_{t_0}^t \sin (s) e^{t_0-s} ds\\
+&= x(t_0) e^{t-t_0} + \frac{1}{2} \left (e^{t-t_0} \sin(t_0) + \cos(t_0) \right ) - \frac{1}{2} (\sin(t) + \cos(t))\\
+&= e^{t-t_0} \left ( x(t_0) + \frac{1}{2} (\sin(t_0) + \cos(t_0)) \right ) - \frac{1}{2}(\sin(t) + \cos(t)).
+\end{align*}
+Putting in $t_0 = 0$ and $t_0 = T$ we get
+\[
+e^{t} \left ( x_0 + \frac{1}{2} \right ) - \frac{1}{2}(\sin(t) + \cos(t)) = e^{t-2 \pi} \left ( x_0 + \frac{1}{2} \right ) - \frac{1}{2}(\sin(t) + \cos(t))
+\]
+which simplifies to
+\[
+x_0 + \frac{1}{2} = e^{-2 \pi} \left ( x_0 + \frac{1}{2} \right ).
+\]
+The only possible solution to this equation is $x_0 = -1/2$. The particular solution is then
+\begin{align*}
+x(t)
+&= e^t \left (-\frac{1}{2} + \frac{1}{2} (\sin(0) + \cos(0)) \right ) - \frac{1}{2}(\sin(t) + \cos(t))\\
+&= - \frac{\sin(t) + \cos(t)}{2}.
+\end{align*}
+This solution is clearly periodic since $\sin(t)$ and $\cos(t)$ are periodic. Suppose $x(t)$ is periodic for some other initial value so that $x_0 = x(0) = x(P)$. Then we have
+\[
+\left (x_0 + \frac{1}{2} \right ) = e^{-P} \left (x_0 + \frac{1}{2}(\sin(P) + \cos(P)) \right ).
+\]
+Assuming $x_0 \neq -1/2$, solving for $x_0$ gives
+\[
+x_0 = \frac{\frac{1}{2} (\sin(P) + \cos(P) - 1)}{1 - e^{-P}}.
+\]
+Plugging this back in for $x(t)$ and simplifying gives $x(0) = x_0$ and
+\[
+x(P) = \frac{(\sin(P) + \cos(P))(e^P - e^{-P} + 1) - 1}{2(1-e^{-P})}.
+\]
+The only way this is equal to $x_0$ is if $P = 0$. Thus $x(t)$ is only periodic for the above value of $x_0$.
+\end{proof}
+
+\begin{problem}
+A variant of the simple model of population growth in Example 1.2.1 asserts that birth rates get higher with overcrowding, so that the equation (1.18), where $k$ is constant, should be replace by the equation $\dot{x} = k_0x^{1+\epsilon}$, i.e., $k$ should be replaced by $k_0x^{\epsilon}$ to allow for enhanced birthrates with increasing population. Here $k_0$ and $\epsilon$ are positive constants. Solve the initial-value problem for this equation explicitly and show that it predicts infinite population in finite time.
+\end{problem}
+\begin{proof}
+Simplifying we get
+\[
+k_0 = \frac{dx}{dt} \frac{1}{x^{1 + \epsilon}} = -\frac{1}{\epsilon} \frac{d}{dt} \left (\frac{1}{x^{\epsilon}} \right ).
+\]
+Integrating from $t_0$ to $t$ we have
+\[
+-k_0 \epsilon (t - t_0) = \frac{1}{(x(t))^{\epsilon}} - \frac{1}{(x(t_0))^{\epsilon}}.
+\]
+Solving for $x(t)$ gives
+\[
+(x(t))^{\epsilon} = \frac{(x(t_0))^{\epsilon}}{(x(t_0))^{\epsilon} k_0 \epsilon (t_0-t) + 1}.
+\]
+Note that this function has a vertical asymptote at $t = t_0 + 1/((x(t_0))^{\epsilon} k_0 \epsilon)$, so after this amount time, the population will reach infinity.
+\end{proof}
+
+\begin{problem}
+Let $\phi$ be an arbitrary function defined and continuously differentiable ($C^1$) on an interval $I$ of the $x$ axis, and suppose that it is not constant there. Show that, at least on some subinterval $I'$ of $I$, there is a continuous function $f$ such that the differental equation $y' = f(y)$ possesses the solution $y = \phi(x)$ on $I'$.
+\end{problem}
+\begin{proof}
+Since $\phi$ is nonconstant, there is some point $a \in I$ for which $\phi'(a) > 0$. (Here we're choosing greater than over less than without loss of generality). Then since $\phi'$ is continuous there exists an interval $I'$ such that $a \in I'$ and $\phi'(x) > 0$ for all $x \in I'$. Then $\phi$ is increasing on $I'$, so it has a well defined inverse function, $\phi^{-1}$ on this interval. Define $f = \phi' \circ \phi^{-1}$. Since $\phi$ and $\phi'$ are both continuous, we see that $f$ is continuous. Then on $I'$ we have $y' = \phi' = \phi' \circ \phi^{-1} \circ \phi = f \circ \phi = f(y)$.
+\end{proof}
+
+\begin{problem}
+Suppose that $p(x,y)$ and $q(x,y)$ are both integrating factors for the form $M(x,y,) dx + N(x,y) dy$. Show that $\alpha p + \beta q$ is also an integrating factor, for arbitrary constants $\alpha$ and $\beta$.
+\end{problem}
+\begin{proof}
+Since $p(x,y)$ and $q(x,y)$ are integrating factors, we know
+\[
+\frac{\partial (pM)}{\partial y} - \frac{\partial (pN)}{\partial x} = \frac{\partial (qM)}{\partial y} - \frac{\partial (qN)}{\partial x} = 0.
+\]
+Now, since the partial derivative is a linear operator,
+\begin{align*}
+\frac{\partial}{\partial y} ((\alpha p + \beta q)M) - \frac{\partial}{\partial x} ((\alpha p + \beta q)N)
+&= \alpha \frac{\partial (pM)}{\partial y} + \beta \frac{\partial (qM)}{\partial y} - \alpha \frac{\partial (pN)}{\partial x} - \beta \frac{\partial (qN)}{\partial x}\\
+&= \alpha \left ( \frac{\partial (pM)}{\partial y} - \frac{\partial (pN)}{\partial x} \right ) + \beta \left ( \frac{\partial (qM)}{\partial y} - \frac{\partial (qN)}{\partial x} \right )\\
+&= \alpha \cdot 0 + \beta \cdot 0\\
+&= 0.
+\end{align*}
+\end{proof}
+
+\begin{problem}
+Let $M(x,y) = yf(xy)$ and $N(x,y) = xg(xy)$, where $f(v)$ and $g(v)$ are functions of a single real variable $v$, defined and continuously differentiable for all real values of $v$. Under what conditions on $f$ and $g$ is the form $Mdx + Ndy$ exact for all values of $x$, $y$ in the plane? In that case, find the function $u(x,y)$ such that equation (1.33) holds, and use that information to infer the general solution to the equation $y' = -(M(x,y)/N(x,y))$.
+\end{problem}
+\begin{proof}
+We have
+\[
+\frac{\partial M}{\partial y} = xyf_y(xy) + f(xy)
+\]
+and
+\[
+\frac{\partial N}{\partial x} = xyg_x(xy) + g(xy).
+\]
+If the form is exact, then
+\[
+f(xy) + xyf_y(xy) = g(xy) + xyg_x(xy)
+\]
+or
+\[
+f(xy) - g(xy) = -xy(f_y(xy) - g_x(xy)).
+\]
+Assuming this condition on exactness, we know there exists a function $u(x,y)$ such that
+\[
+du = M(x,y)dx + N(x,y)dy = yf(xy)dx + xg(xy)dy.
+\]
+Then $\frac{\partial u}{\partial x} = y f(xy)$ so $u(x,y) = \int f(xy)dx + c_1(y)$ where $c_1$ depends only on $y$. Then
+\[
+\frac{\partial u}{\partial y} = xf(xy) + c_1'(y) = xg(xy)
+\]
+but since we don't know if $xg(xy)$ depends on $x$, we can't claim $c_1'(y) = 0$. Thus $u(x,y) = \int f(xy)dx + \int g(xy)dy + c_1(y) + c_2(x)$ where $c_1$ and $c_2$ depend only on $x$ and $y$. Since the equation was exact, we now have $\int f(xy)dx + \int g(xy)dy = c_1(y) + c_2(x) + c_3$, where $c_3$ is a constant and we've relabeled $c_1$ and $c_2$. This gives an implicit equation for $y$.
+\end{proof}
+
+\begin{problem}
+Use the technique of the preceding problem to reduce the Riccati initial-value problem
+\[
+\begin{tabular}{cc}
+$y' - y + 2x^{-3}y^2 = x^2$, & $y(1) = 0$
+\end{tabular}
+\]
+to a specific linear, inhomogeneous problem.
+\end{problem}
+
+Make the substitution $y = -x^2 + 1/u$. Then $y' = -2x - u'/u^2$ and $y^2 = x^4 + 1/u^2 - 2x^2/u$. The equation now reduces to
+\begin{align*}
+0
+&= -2x - \frac{u'}{u^2} + x^2 - \frac{1}{u} + 2x^{-3} \left ( x^4 + \frac{1}{u^2} - \frac{2x^2}{u} \right ) - x^2\\
+&= -2x - \frac{u'}{u^2} - \frac{1}{u} + 2x + \frac{2}{x^3u^2} - \frac{4}{xu}\\
+&= u' + u - \frac{2}{x^3} + \frac{4u}{x}
+\end{align*}
+and then
+\[
+\begin{tabular}{ccc}
+$\displaystyle{u' = -u \left ( 1 + \frac{4}{x} \right ) + \frac{2}{x^3}}$, & $\displaystyle{u = \frac{1}{y-x^2}}$, & $\displaystyle{y(1) = 0}$
+\end{tabular}
+\]
+is a linear, inhomogeneous problem.
+
+\begin{problem}
+Consider the linear, second-order, differential equation
+\[
+u'' + a(x)u' + b(x)u = 0,
+\]
+and put
+\[
+u = \exp \left \{ \int^x y(s) ds \right \}.
+\]
+Show that $y$ satisfies a Riccati equation.
+\end{problem}
+\begin{proof}
+Note that
+\[
+u' = y(x) \exp \left (\int^x y(x) ds \right ) = y(x) u
+\]
+and
+\[
+u'' = y'(x) \exp \left (\int^x y(x) ds \right ) + (y(x))^2 \exp \left (\int^x y(x) ds \right ) = y'(x) u + (y(x))^2 u.
+\]
+Then the equation reduces to
+\[
+0 = y'(x) u + (y(x))^2 u + a(x) y(x) u + b(x) u = y' + y^2 + a(x) y + b(x)
+\]
+or
+\[
+y' + a(x) y + y^2 = -b(x)
+\]
+which is the form of a Riccati equation.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26200\\
+
+March 11, 2010
+\end{flushright}
+
+\begin{center}
+Homework 9
+\end{center}
+
+\begin{problem}
+Let $f : X \to Y$ be a continuous open map. Show that if $X$ satisfies the first or second countability axiom, then $f(X)$ satisfies the same axiom.
+\end{problem}
+\begin{proof}
+Suppose first that $X$ is first countable and let $x \in X$ with countable basis $\mathcal{B}$. Let $V$ be a neighborhood of $f(x) \in f(X)$. Then since $f$ is continuous there exists a neighborhood $U$ of $x$ such that $f(U) \subseteq V$. Note that $U$ contains some $B \in \mathcal{B}$ since $X$ is first countable. But then $f(B) \subseteq f(U) \subseteq V$ and $f(B)$ is open since $f$ is an open map. Thus, the collection $\{f(B) \mid B \in \mathcal{B}\}$ serves as a countable basis for $f(x) \in X$ showing that $f(X)$ is also first countable.
+
+Now suppose that $X$ is second countable with countable basis $\mathcal{B}$. Let $U$ be open in $f(X)$ and note that $f^{-1}(U)$ is open in $X$ since $f$ is continuous. Then $f^{-1}(U) = \bigcup B_i$ is the countable union of basis elements $B_i \in \mathcal{B}$. Since $f$ is surjective onto its image, we have $U = f(f^{-1}(U)) = f \left ( \bigcup B_i \right ) = \bigcup f(B_i)$. Since $f$ is open the sets $f(B_i)$ are open and therefore form a countable basis for $f(X)$.
+\end{proof}
+
+\begin{problem}
+Show that if $X$ is Lindel\"{o}f and $Y$ is compact, then $X \times Y$ is Lindel\"{o}f.
+\end{problem}
+\begin{proof}
+Let $\mathcal{A}$ be an open covering of $X \times Y$. For $x \in X$, the set $x \times Y$ is compact, and therefore can be covered by finitely many $A_i \in \mathcal{A}$. Let $N = \bigcup A_i$ be an open set in $X \times Y$ and note that $x \times Y \subseteq N$. By the tube lemma, we know there exists an open set $W_x \subseteq X$ containing $x$ such that $W_x \times Y \subseteq N$. Note that $W_x \times Y$ is covered by finitely many $A_i \in \mathcal{A}$. Now the sets $W_x$ form an open cover of $X$ and since $X$ is Lindel\"{o}f, only countably many of them $W_1, W_2, \dots$ cover $X$. Since each $W_i \times Y$ can be covered by finitely many $A_i$, and the sets $W_i \times Y$ cover $X \times Y$, we see that $X \times Y$ is Lindel\"{o}f.
+\end{proof}
+
+\begin{problem}
+Show that if $X$ is normal, every pair of disjoint closed sets have neighborhoods whose closures are disjoint.
+\end{problem}
+\begin{proof}
+Let $A$ and $B$ be disjoint closed subsets of $X$. Since $X$ is normal, there exist disjoint open subsets $U$ and $V$ of $X$ such that $A \subseteq U$ and $B \subseteq V$. But then, again since $X$ is normal, there exist open sets $C$ and $D$ such that $A \subseteq C$, $B \subseteq D$, $\overline{C} \subseteq U$ and $\overline{D} \subseteq V$. Since $U$ and $V$ are disjoint, the sets $\overline{C}$ and $\overline{D}$ satisfy the statement.
+\end{proof}
+
+\begin{problem}
+\label{normalmap}
+Let $p : X \to Y$ be a closed continuous surjective map. Show that if $X$ is normal then so is $Y$.
+\end{problem}
+\begin{proof}
+First we show that if $U$ is an open set in $X$ containing $p^{-1}(y)$ for $y \in Y$, then there exists a neighborhood of $y$, $W$, such that $p^{-1}(W) \subseteq U$. Note that $X \backslash U$ is closed and so $p(X \backslash U)$ is also closed. Let $W = Y \backslash p(X \backslash U)$. Then we have $y \in W$ and $p^{-1}(W) \subseteq U$. Now suppose $B$ is a subspace in $Y$ such that $p^{-1}(B) \subseteq U$ for some open set $U$ of $X$. For each $b \in B$ there exists some neighborhood $W_b$ of $b$ such that $p^{-1}(W_b) \subseteq U$. Let $W = \bigcup_{b \in B} W_b$. Then $B \subseteq W$ and $p^{-1}(W) = p^{-1}(\bigcup_{b \in B} W_b) = \bigcup_{b \in B} p^{-1}(W_b) \subseteq U$.
+
+Since points in $X$ are closed and $p$ is closed and surjective, all points in $Y$ are closed. Let $A$ and $B$ be closed sets in $Y$ and note that since $p$ is continuous $p^{-1}(A)$ and $p^{-1}(B)$ are closed sets. Since $X$ is normal there exist open disjoint sets $U$ and $V$ containing $p^{-1}(A)$ and $p^{-1}(B)$ respectively. Use the above result to pick open neighborhoods $C$ and $D$ of $Y$ containing $A$ and $B$ respectively so that $p^{-1}(C) \subseteq U$ and $p^{-1}(D) \subseteq V$. Then $C$ and $D$ are disjoint since $U$ and $V$ are disjoint and $Y$ is normal.
+\end{proof}
+
+\begin{problem}
+Let $p : X \to Y$ be a closed continuous surjective map such that $p^{-1}(\{y\})$ is compact for each $y \in Y$. (Such a map is called a \emph{perfect map}.)\\
+(a) Show that if $X$ is Hausdorff then so is $Y$.\\
+(b) Show that if $X$ is regular then so is $Y$.\\
+(c) Show that if $X$ is locally compact then so is $Y$.\\
+(d) Show that if $X$ is second countable then so is $Y$.
+\end{problem}
+\begin{proof}
+(a) Let $a,b \in Y$. Then $p^{-1}(a)$ and $p^{-1}(b)$ are disjoint compact subspaces of $X$. We know that there exist disjoint open sets $U$ and $V$ containing $p^{-1}(a)$ and $p^{-1}(b)$ respectively since these sets are compact in a Hausdorff space. Using the result from Problem~\ref{normalmap} we can find neighborhoods $A$ and $B$ of $a$ and $b$ respectively such that $p^{-1}(A) \subseteq U$ and $p^{-1}(B) \subseteq V$. Thus, $A$ and $B$ must be disjoint showing that $Y$ is Hausdorff.
+
+(b) Let $a \in Y$ and $B$ be a closed subset of $Y$ not containing $a$. Then $p^{-1}(a)$ is a compact subspace of $X$ and $p^{-1}(B)$ is closed. Since $X$ is regular, for each $x \in p^{-1}(a)$ there exist disjoint open sets $U_x$ and $V_x$ such that $x \in U_x$ and $p^{-1}(B) \subseteq V_x$. The collection of the open sets $U_x$ clearly cover $p^{-1}(a)$ and so finitely many of them, $U_1, \dots , U_n$ also cover it since $p^{-1}(a)$ is compact. Taking $U = \bigcup_{i=1}^n U_i$ and $V = \bigcap_{i=1}^n V_i$ we have disjoint sets $U$ and $V$ such that $p^{-1}(a) \subseteq U$ and $p^{-1}(B) \subseteq V$. Now using the proof of Problem~\ref{normalmap} again we can find open sets $C$ and $D$ such that $a \in C$, $B \subseteq D$, $p^{-1}(C) \subseteq U$ and $p^{-1}(D) \subseteq V$. Thus $C$ and $D$ must be disjoint and $Y$ must be regular.
+
+(c) Let $a \in Y$ and so that $p^{-1}(a)$ is compact in $X$. Since $X$ is locally compact, for each $x \in p^{-1}(a)$ we can find a neighborhood $U_x$ of $x$ such that there exists a compact set $C_x$ containing $U_x$. These sets $C_x$ cover $p^{-1}(a)$ so finitely many of them $U_1, \dots , U_n$ also cover. Then $U = \bigcup_{i=1}^n U_i$ is an open set containing $p^{-1}(a)$. Note that $C = \bigcup_{i=1}^n C_x$ is still compact since it is a finite union of compact sets (namely, any open cover of $C$ is an open cover of $C_x$ for each $x$ and the corresponding finite subcovers will only constitute finitely many open sets). Thus $p^{-1}(y) \subseteq U \subseteq C$ where $U$ is open and $C$ is compact. Now using the proof of Problem~\ref{normalmap} there exists an open neighborhood $W$ of $y$ such that $p^{-1}(W) \subseteq U$. Since $p$ is continuous, $p(C)$ is compact in $Y$ and this must contain $W$. Therefore $y \in W$ and $W \subseteq p(C)$ which is compact. Thus $Y$ is locally compact.
+
+(d) Let $\mathcal{B}$ be a countable basis for $X$ with index $B_1, B_2, \dots$. For each finite subset $J \subseteq \mathbb{N}$ let $U_J$ be the union of all sets of the form $p^{-1}(W)$ where $W$ is open in $Y$ and $p^{-1}(W) \subseteq \bigcup_{j \in J} B_j$. This shows that the collection of $U_J$ is countable since it is a union of finite subsets of a countable set. Note that since $p$ is surjective $p(U_J)$ is a union of open sets in $Y$ and is thus open. Let $U$ be an open set in $Y$. Note that $p^{-1}(U) = \bigcup_{y \in U} p^{-1}(y)$ where each $p^{-1}(y)$ is compact. This means it can be covered by finitely many basis elements contained in $p^{-1}(U)$. That is, $p^{-1}(y) = \bigcup_{j \in J_y} B_j$. From the proof of Problem~\ref{normalmap} there is an open set $W \subseteq Y$ such that $p^{-1}(y) \subseteq p^{-1}(W) \subseteq \bigcup_{j \in J_y} B_j$. Then taking the union of all such sets $W$ we have $p^{-1}(y) \subseteq U_{J_y} \subseteq \bigcup_{j \in J_y} B_j \subseteq p^{-1}(U)$. This shows that $p^{-1}(U) = \bigcup_{y \in U} U_{J_y}$. But then $U = \bigcup_{y \in U} p(U_{J_y})$ is a union of sets from the collection of sets of the form $p(U_J)$. Since this collection is countable, it follows that $Y$ is second countable.
+\end{proof}
+
+\begin{problem}
+\label{completelynormal}
+A space $X$ is said to be \emph{completely normal} if every subspace of $X$ is normal. Show that $X$ is completely normal if and only if for every pair $A$, $B$ of separated sets in $X$ (that is, sets such that $\overline{A} \cap B = \emptyset$ and $A \cap \overline{B} = \emptyset$), there exist disjoint open sets containing them.
+\end{problem}
+\begin{proof}
+Suppose $X$ is completely normal and let $A$ and $B$ be a pair of separated sets in $X$. Note that $A$ and $B$ are completely contained in $Y = X \backslash (\overline{A} \cap \overline{B})$ because if a point $a \in A$ is in $\overline{A} \cap \overline{B}$ then $a \in A \cap \overline{B}$ but $A$ and $B$ are separated. Since $X$ is completely normal, $Y$ is a normal subspace of $Y$. Thus there exist disjoint open sets $U$ and $V$ of $Y$ containing $A$ and $B$ respectively. But also note that $\overline{A} \cap \overline{B}$ is necessarily closed, so $Y$ is open. Thus $U$ and $V$ are open in $X$ as well and contain $A$ and $B$.
+
+Conversely, suppose that for any two separated sets $A$ and $B$ there exist open sets $U$ and $V$ containing them. Let $Y$ be a subspace of $X$ and let $A$ and $B$ be two disjoint closed subsets of $Y$. Note that if $\overline{A}$ is the closure of $A$ in $X$, then $\overline{A} \cap Y$ is the closure of $A$ in $Y$. Thus $\overline{A} \cap Y$ and $\overline{B} \cap Y$ are disjoint. Now $\overline{A} \cap B = \overline{A} \cap (Y \cap B) = (\overline{A} \cap Y) \cap (B \cap Y) = \emptyset$ and similarly $A \cap \overline{B} = \emptyset$. Then there exist disjoint open sets $U$ and $V$ containing $A$ and $B$ respectively. If we assume that one-point sets are closed it follows that $Y$ is normal.
+\end{proof}
+
+\begin{problem}
+Which of the following spaces are completely normal? Justify your answers.\\
+(a) A subspace of a completely normal space.\\
+(b) The product of two completely normal spaces.\\
+(c) A well ordered set in the order topology.\\
+(d) A metrizable space.\\
+(e) A compact Hausdorff space.\\
+(f) A regular space with a countable basis.\\
+(g) The space $\mathbb{R}_{\ell}$.
+\end{problem}
+\begin{proof}
+(a) Let $X$ be a completely normal space, let $Y$ be a subspace of $X$ and let $A$ be a subspace of $Y$. Then we know the topology on $A$ as a subspace of $Y$ is the same as the topology on $A$ as a subspace of $X$. Thus, $A$ is normal and so $Y$ must be completely normal as well.
+
+(b) Using part (c), we know that $S_{\Omega}$ and $\overline{S_{\Omega}}$ are both completely normal. But their product isn't even normal.
+
+(c) Let $X$ be a well ordered set in the order topology and let $Y$ be any subspace of $X$. Note that $Y$ is necessarily well ordered in the order topology as well as any subset of $Y$ will be a subset of $X$ and have a least element. Since all well ordered sets in the order topology are normal, we have that $Y$ is normal and $X$ is completely normal.
+
+(d) All metrizable spaces are normal and any subspace of a metrizable space is metrizable, therefore normal. Thus all metrizable spaces are completely normal.
+
+(e) The product $\overline{S_{\Omega}} \times \overline{S_{\Omega}}$ is a product of two compact Hausdorff spaces so it's compact Hausdorff. But the subspace $\overline{S_{\Omega}} \times S_{\Omega}$ is not normal.
+
+(f) A regular space with a countable basis is normal. A subspace of a regular space is regular and a subspace of a second countable space is second countable. Therefore all subspaces of a regular second countable space are normal and such a space is completely normal.
+
+(g) We use Problem~\ref{completelynormal}. Let $A$ and $B$ be two separated sets in $X = \mathbb{R}_{\ell}$. For each $a \in X \backslash \overline{B}$ there exists some open set $[a,x_a) \subseteq X \backslash \overline{B}$ containing $a$ and for each $b \in X \backslash \overline{A}$ there exists some open set $[b,y_b) \subseteq X \backslash \overline{A}$. Let $U = \bigcup_{a \in A} [a, x_a)$ and $V = \bigcup_{b \in B} [b, y_b)$. Note that $U$ and $V$ are open and contain $A$ and $B$ respectively. Suppose they are not disjoint. Then some $[a,x_a)$ intersects some $[b,y_b)$ and $a \neq b$ since $A$ and $B$ are disjoint. If $a < b$ then $b < x_a$ and $b \in [a, x_a) \cap B$ which is a contradiction since $[a,x_a) \subseteq X \backslash \overline{B}$. If $b < a$ then we have a similar contradiction. Thus $U$ and $V$ must be disjoint and $X$ is completely normal by Problem~\ref{completelynormal}.
+\end{proof}
+
+\end{document}

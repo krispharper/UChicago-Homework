@@ -1,0 +1,153 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 17: More About Metric Spaces\newline
+
+\normalsize
+
+\textbf{Theorem 1}
+\textsl{Let $(X,d)$ be a metric space and let $(a_n)$ be a sequence in $X$. Then $\lim_{n \rightarrow \infty} a_n = a$ if and only if $\lim_{n \rightarrow \infty} d(a_n,a) = 0$.}
+\begin{proof}
+Let $\lim_{n \rightarrow \infty} a_n = a$. Then for every open set $A \subseteq X$ with $a \in A$ there are finitely many $n$ with $a_n \notin A$. But then for $r \in \mathbb{R}$, there are finitely many $n$ with $a_n \notin B(a,r)$. Then there are finitely many $n$ such that $d(a_n,a) < r$ which means there are finitely many $n$ such that $d(a_n,a) \notin (-r,r)$. Thus, $\lim_{n \rightarrow \infty} d(a_n,a) = 0$.\newline
+
+Conversely, let $\lim_{n \rightarrow \infty} d(a_n,a) = 0$. Then for all $r \in \mathbb{R}$ there are finitely many $n$ such that $d(a_n,a) \notin (-r,r)$ which means there are finitely many $n$ such that $d(a_n,a) > r$. But then there are finitely many $n$ such that $a_n \notin B(a,r)$. If we consider some open set $A \subseteq X$ such that $a \in A$, there there exists some ball $B(a,r) \subseteq A$. But since there are finitely many $n$ with $a_n \notin B(a,r)$, there are only finitely $n$ with $a_n \notin A$. Thus, $\lim_{n \rightarrow \infty} a_n = a$.
+\end{proof}
+
+\textbf{Definition 2}
+\textsl{Let $\mathbb{R}^n = \{(a_1, a_2, \dots ,a_n) \mid a_i \in \mathbb{R}\}$ denote the set of real n-tuples.}\newline
+
+\textbf{Definition 3}
+\textsl{For $\mathbf{a} = (a_1, a_2, \dots ,a_n) \in \mathbb{R}^n$ and $\mathbf{b} = (b_1,b_2, \dots b_n) \in \mathbb{R}^n$ let
+\[
+d_{0} (\mathbf{a},\mathbf{b}) = \max_{1 \leq i \leq n} |a_i - b_i|,
+\]
+\[
+d_{1} (\mathbf{a}, \mathbf{b}) = \sum_{i=1}^{n} |a_i - b_i|
+\]
+and
+\[
+d_{2} (\mathbf{a}, \mathbf{b}) = \sqrt{\sum_{i=1}^{n} (a_i-b_i)^2}.
+\]}\newline
+
+\textbf{Theorem 4}
+\textsl{The functions $d_0$, $d_1$ and $d_2$ are all metrics on $\mathbb{R}^n$.}
+\begin{proof}
+Let $\mathbf{a}, \mathbf{b}, \mathbf{c} \in \mathbb{R}^n$. It's clear that $d_0(\mathbf{a},\mathbf{b})$, $d_1(\mathbf{a},\mathbf{b})$ and $d_2(\mathbf{a},\mathbf{b})$ are all greater than or equal to $0$. Let $d_0(\mathbf{a},\mathbf{b}) = 0$. Then $\max_{1 \leq i \leq n} |a_i - b_i| = 0$ and so $a_i = b_i$. Since the maximum positive difference between two coordinates is $0$, all the distances must be $0$ as well. Now let $\mathbf{a} = \mathbf{b}$. Then $a_i = b_i$ for $1 \leq i \leq n$. Thus $\max_{1 \leq i \leq n} |a_i - b_i| = 0$ and $d_0(\mathbf{a},\mathbf{b}) = 0$.\newline
+
+Let $d_1(\mathbf{a},\mathbf{b}) = 0$. Then $\sum_{i=1}^{n} |a_i - b_i| = 0$. But since $|a_i - b_i| \geq 0$ for $1 \leq i \leq n$ we have $|a_i - b_i| = 0$ for $1 \leq i \leq n$. Thus $a_i = b_i$ and $\mathbf{a} = \mathbf{b}$. Now suppose that $\mathbf{a}=\mathbf{b}$. Then we have $a_i = b_i$ for $1 \leq i \leq n$ and so $|a_i - b_i| = 0$. But then $\sum_{i=1}^{n} |a_i - b_i| = 0$ and so $d_1(\mathbf{a},\mathbf{b}) = 0$.\newline
+
+Let $d_2(\mathbf{a},\mathbf{b}) = 0$. Then $\sqrt{\sum_{i=1}^{n} (a_i-b_i)^2} = 0$ which means $\sum_{i=1}^{n} (a_i-b_i)^2 = 0$. From here the proof follows similarly to that of $d_1(\mathbf{a},\mathbf{b})$.\newline
+
+Since $|a-b| = |b-a|$ and $(a-b)^2 = (b-a)^2$ for all $a,b \in \mathbb{R}$, we have $d_i(\mathbf{a},\mathbf{b}) = d_i(\mathbf{b},\mathbf{a})$ for $0 \leq i \leq 2$. Finally, note that using the triangle inequality we have $\max_{1 \leq i \leq n} |a_i-b_i| + \max_{1 \leq i \leq n} |b_i-c_i| \geq |a_i-b_i|+|b_i-c_i|$ for arbitrary $1 \leq i \leq n$ which is in turn greater than $\max_{1 \leq i \leq n} |a_i - c_i|$. Note also that by the triangle inequality we have $|a_i - b_i| + |b_i - c_i| \geq |a_i - c_i|$ for $1 \leq i \leq n$. But then if we sum this inequality $n$ times we have $\sum_{i=1}^n |a_i - b_i| + \sum_{i=1}^n |b_i - c_i| \geq \sum_{i=1}^n |a_i-c_i|$. Lastly note that
+\[
+\sqrt{\sum_{i=1}^n (a_i-b_i)^2} + \sqrt{\sum_{i=1}^n (b_i-c_i)^2} \geq \sqrt{\sum_{i=1}^n \left ( (a_i-b_i)^2 + (b_i-c_i)^2 \right ) } \geq \sqrt{\sum_{i=1}^n (a_i-c_i)^2}.
+\]
+Thus all three distance functions satisfy the triangle inequality. Therefore all three are metrics.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{For all $0 \leq i \leq 2$, $0 \leq j \leq 2$ and for all $\mathbf x \in \mathbb{R}^n$ and $r>0$ there exists $r'>0$ such that
+\[
+B_{d_i} (x, r') \subseteq B_{d_j} (x,r).
+\]}
+\begin{proof}
+Let $\mathbf x \in \mathbb{R}^n$ and let $r>0$. Consider $B_{d_0}(\mathbf x, r)$, let $r = r'$ and let $\mathbf y \in B_{d_1}(\mathbf x, r')$. Then $\sum_{i=1}^n |x_i - y_i| < r'$ and so $d_0(\mathbf x, \mathbf y) = \max_{1 \leq i \leq n} |x_i - y_i| < r' = r$. Thus $\mathbf y \in B_{d_0}(\mathbf x, r)$ and $B_{d_1}(\mathbf x, r') \subseteq B_{d_0}(\mathbf x, r)$. Now let $r=r'$ again and let $\mathbf y \in B_{d_2}(\mathbf x, r')$. Then
+\[
+\sqrt{\sum_{i=1}^n (x_i - y_i)^2} < r'
+\]
+so $\max_{1 \leq i \leq n} (x_i - y_i)^2 < \sum_{i=1}^n (x_i - y_i)^2 < r'^2$ and $d_0(\mathbf x, \mathbf y) = \max_{1 \leq i \leq n} |x_i - y_i| < r' = r$. Thus $\mathbf y \in B_{d_0}(\mathbf x, r)$ and $B_{d_2}(\mathbf x, r') \subseteq B_{d_0}(\mathbf x, r)$.\newline
+
+Next consider $B_{d_1}(\mathbf x, r)$, let $r' = r/n$ and let $\mathbf y \in B_{d_0}(\mathbf x, r')$. Then $\max_{1 \leq i \leq n} |x_i - y_i| < r/n$ which means $d_1(\mathbf x, \mathbf y) = \sum_{i=1}^n |x_i - y_i| < r$ and $\mathbf{y} \in B_{d_1}(\mathbf x, r)$. Thus $B_{d_0}(\mathbf x, r') \subseteq B_{d_1}(\mathbf x, r)$. Now let $r' = r/\sqrt{n}$ and let $\mathbf y \in B_{d_2}(\mathbf x, r')$. Then
+\[
+\sqrt{\sum_{i=1}^n (x_i - y_i)^2} < \frac{r}{\sqrt{n}}
+\]
+so $\sum_{i=1}^n (x_i - y_i)^2 < r^2/n$ and $(x_i - y_i)^2 < r^2/n^2$ for $1 \leq i \leq n$. Thus $|x_i - y_i| < r/n$ for $1 \leq i \leq n$ and so $d_1(\mathbf x, \mathbf y) = \sum_{i=1}^n |x_i - y_i| < r$. Thus $B_{d_2}(\mathbf x, r') \subseteq B_{d_1}(\mathbf x, r)$.\newline
+
+Finally, consider $B_{d_2}(\mathbf x, r)$, let $r' = r/\sqrt{n}$ and let $\mathbf y \in B_{d_0}(\mathbf x, r')$. Then $\max_{1 \leq i \leq n} |x_i - y_i| < r/\sqrt{n}$ which means $\max_{1 \leq i \leq n} (x_i - y_i)^2 < r^2/n$ and
+\[
+d_2(\mathbf x, \mathbf y) = \sqrt{\sum_{i=1}^n (x_i-y_i)^2} < r.
+\]
+Thus $\mathbf y \in B_{d_2}(\mathbf x, r)$ and $B_{d_0}(\mathbf x, r') \subseteq B_{d_2}(\mathbf x, r)$. Now let $r' = r/n\sqrt{n}$ and let $\mathbf y \in B_{d_1}(\mathbf x, r')$. Then $\sum_{i=1}^n |x_i - y_i| < r/n\sqrt{n}$ so $|x_i - y_i| < r/\sqrt{n}$ and $(x_i - y_i)^2 < r^2/n$ for $1 \leq i \leq n$. Then $\sum_{i=1}^n (x_i - y_i)^2 < r^2$ and
+\[
+d_2(\mathbf x, \mathbf y) = \sqrt{\sum_{i=1}^n (x_i-y_i)^2} < r.
+\]
+Thus $\mathbf y \in B_{d_2}(\mathbf x, r)$ and $B_{d_1} (\mathbf x, r') \subseteq B_{d_2}(\mathbf x, r)$.
+\end{proof}
+
+\textbf{Corollary 6}
+\textsl{The metrics $d_0$, $d_1$ and $d_2$ generate the same topology on $\mathbb{R}^n$, namely, a subset $A \subseteq \mathbb{R}^n$ is open in $(\mathbb{R}^n, d_i)$ if it is open in $(\mathbb{R}^n, d_j)$ ($0 \leq i \leq 2$, $0 \leq j \leq 2)$.}
+\begin{proof}
+Let $A \subseteq \mathbb{R}^n$ be an open set in $(\mathbb{R}^n, d_j)$. Then for all $a \in A$ there exists $r \in \mathbb{R}$ such that $B_{d_j}(a,r) \subseteq A$. But from Theorem 5 we know that there exists $r' \in \mathbb{R}$ such that $B_{d_i}(a,r') \subseteq B_{d_j}(a,r) \subseteq A$ (17.5). Thus $A$ is open for $(\mathbb{R}, d_i)$. This is true for arbitrary $0 \leq i \leq 2$, $0 \leq j \leq 2$.
+\end{proof}
+
+\textbf{Definition 7}
+\textsl{Let $(X,d)$ be a metric space. A sequence $(a_n)$ on $X$ has the Cauchy property if for all $\varepsilon > 0$ there exists $N$ such that for all $n,m > N$ we have $d(a_n,a_m) < \varepsilon$.}\newline
+
+\textbf{Definition 8}
+\textsl{A metric space $(X,d)$ is complete if every Cauchy sequence on $X$ is convergent.}\newline
+
+\textbf{Theorem 9}
+\textsl{$\mathbb{R}^n$ is complete.}
+\begin{proof}
+Let $(\mathbf{a}_n)$ be a Cauchy sequence on $\mathbb{R}^d$ and let $\varepsilon' > 0$. Then there exists $N$ such that for all $n,m > N$ we have
+\[
+d_2(\mathbf{a}_n,\mathbf{a}_m) = \sqrt{\sum_{i=1}^{d} (a_{ni}-a_{mi})^2} < \varepsilon'
+\]
+so $(a_{ni}-a_{mi})^2 \leq \sum_{i=1}^{d} (a_{ni}-a_{mi})^2 < \varepsilon'^2$ and $|a_{ni}-a_{mi}| < \varepsilon'$. Thus the $i$th coordinate of the terms of $(\mathbf{a}_n)$ forms a Cauchy sequence which converges to some $b_i$ (14.5). Then let $\mathbf{b}=(b_1,b_2, \dots ,b_d)$, let $\varepsilon > 0$ and consider $\varepsilon/\sqrt{d}$. For all $i \leq d$ there exists some $N_i$ such that for $n>N_i$ we have $|a_{ni}-b_{i}| < \varepsilon/\sqrt{d}$ by convergence (13.3). Let $N$ be the largest of all such $N_i$ so that for all $n>N$ we have $|a_{ni}-b_{i}| < \varepsilon/\sqrt{d}$. Then $(a_{ni}-b_{i})^2 < \varepsilon^2/d$ and $\sum_{i=1}^{d} (a_{ni}-b_{i})^2 < \varepsilon^2$. Then $d_2(\mathbf{a}_n,\mathbf{b}) < \varepsilon$ for all $n > N$ and $|d(\mathbf{a}_n, \mathbf{b})| < \varepsilon$ for all $n>N$. Thus $\lim_{n \rightarrow \infty} \mathbf{a}_n = \mathbf{b}$ because $\lim_{n \rightarrow \infty} d(\mathbf{a}_n, \mathbf{b}) = 0$ (13.3, 17.1).
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{Every compact metric space is complete.}
+\begin{proof}
+Let $(X,d)$ be a compact metric space and suppose that $(X,d)$ is not complete. Then there exists some Cauchy sequence $(a_n) \in X$ such that $(a_n)$ does not converge. Therefore for all $x \in X$ there exists some ball $B(x,\varepsilon)$ such that there are infinitely many $n$ with $a_n \notin B(x,\varepsilon)$. Let $\mathcal{A}$ be the set of all such balls and let $\mathcal{A}' = \{B(x,\varepsilon/2) \mid B(x, \varepsilon) \in \mathcal{A}\}$. Then $\mathcal{A}'$ is an open cover for $X$ and $X$ is compact so let $\mathcal{B}$ be a finite subcover for $\mathcal{A}'$. Let $B(x,\varepsilon/2) \in \mathcal{B}$. Note that there are infinitely many $n$ such that $a_n \notin B(x,\varepsilon)$ so there are infinitely many $n$ such that $a_n \notin B(x, \varepsilon/2)$. We have $(a_n)$ is Cauchy so there exists $N$ such that for all $n,m > N$ we have $d(a_n,a_m) < \varepsilon/2$. Suppose that there are infinitely many $n$ with $a_n \in B(x, \varepsilon/2)$. Since there are infinitely many $n$ with $a_n \in B(x, \varepsilon/2)$ and $a_n \notin B(x, \varepsilon/2)$, choose $n,m>N$ with $a_n \in B(x, \varepsilon/2)$ and $a_m \notin B(x, \varepsilon/2)$. But then $d(x,a_m) \leq d(x,a_n) + d(a_n,a_m) < \varepsilon$. Thus there are infinitely many $n$ with $a_n \notin B(x,\varepsilon)$ which is a contradiction. Therefore there are finitely many $n$ with $a_n \in B(x,\varepsilon/2)$. But this is true for all $B(x,\varepsilon/2) \in \mathcal{B}$ and there are finitely many elements of $\mathcal{B}$ which is an open cover for $X$. So we have finitely many $n$ with $a_n \in X$ which is a contradiction. Therefore $(X,d)$ is complete.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{Let $(\mathbf{a}_n)$ be a bounded sequence in $\mathbb{R}^d$. Show that $(\mathbf{a}_n)$ has a convergent subsequence.}
+\begin{proof}
+Consider the sequence $(a_{1n})$ where $a_{1n}$ is the $1$st coordinate in the $n$th term of $(\mathbf{a}_n)$. Since $(\mathbf{a}_n)$ is bounded, there exists $r$ such that for all $i,j$ we have
+\[
+a_{1i} - a_{1j} \leq (a_{1i} - a_{1j})^2 \leq d_2(\mathbf{a}_i, \mathbf{a}_j) < r
+\]
+and similarly
+\[
+a_{1j} - a_{1i} \leq (a_{1j} - a_{1i})^2 \leq d_2(\mathbf{a}_j, \mathbf{a}_i) < r
+\]
+Thus for all $i$ we have $-r + a_{1j} < a_{1i} < r + a_{1j}$ for some $j$. Then we have $(a_{1n})$ is a bounded sequence so there exists some convergent subsequence $(b_{1k})$.\newline
+
+Use induction on $n$. We have shown the base case for $n=1$. Now assume that a bounded sequence $(\mathbf{a}_n) \in \mathbb{R}^d$ has a convergent subsequence for $d \in \mathbb{N}$. Consider a bounded sequence $(\mathbf{a}_n) \in \mathbb{R}^{d+1}$. Using similar logic as for $(a_{1n})$ we know that the first $d$ coordinates of terms in $(\mathbf{a}_n)$ form a bounded sequence in $\mathbb{R}^d$. Then by our Inductive Hypothesis there exists a convergent subsequence. Let the corresponding terms in $(\mathbf{a}_n)$ be the sequence $(\mathbf{b}_k = \mathbf{a}_{n_k})$  Form a subsequence $(\mathbf{c}_k = \mathbf{a}_{n_k})$ of $(\mathbf{a}_n)$ where the $k$th term has the coordinates of $\mathbf{b}_k$ as the first $d$ coordinates and the $d+1$th coordinate of $\mathbf{a}_{n_k}$ as the $d+1$th coordinate. Now take the sequence in $\mathbb{R}$ where the $k$th term is the $d+1$th coordinate of $\mathbf{c}_k$. Then this sequence is bounded so there exists a convergent subsequence $(e_i = c_{k_i (d+1)})$.\newline
+
+Finally form a subsequence of $(\mathbf{a}_n)$ where the $i$th term is $c_{k_i}$. Now every coordinate in $(\mathbf{c}_{k_i})$ forms a convergent sequence in $\mathbb{R}$ so $(\mathbf{c}_{k_i})$ converges to some $\mathbf{f} \in \mathbb{R}^{d+1}$ using a similar proof as in Theorem 9.
+\end{proof}
+
+\textbf{Theorem 12}
+\textsl{Show that a set $A \subseteq \mathbb{R}^d$ is open if and only if for all $\mathbf{x} \in A$ there is a rational ball $O$ such that $\mathbf{x} \in O$ and $O \subseteq A$.}
+\begin{proof}
+Suppose that for all $\mathbf{x} \in A$ there is a rational ball $B(\mathbf{a}, r) \subseteq A$ such that $\mathbf{x} \in B(\mathbf{a}, r)$. Then consider the ball $B(\mathbf{x}, r-d(\mathbf{a}, \mathbf{x}))$. For $\mathbf{y} \in B(\mathbf{x}, r-d(\mathbf{a}, \mathbf{x}))$ we have $d(\mathbf{x}, \mathbf{y}) < r-d(\mathbf{a}, \mathbf{x})$ which means $d(\mathbf{a}, \mathbf{y}) \leq d(\mathbf{a}, \mathbf{x}) + d(\mathbf{x}, \mathbf{y}) < r$ and so $\mathbf{y} \in B(\mathbf{a}, r)$. Thus $B(\mathbf{x}, r-d(\mathbf{a}, \mathbf{x})) \subseteq B(\mathbf{a}, r) \subseteq A$. Then for all $\mathbf{x} \in A$ there exists a ball $B(\mathbf{x}, r') \subseteq A$ so $A$ is open.\newline
+
+Conversely let $A \subseteq \mathbb{R}^d$ be open. Let $\mathbf{x} \in A$. There exists a ball $B(\mathbf{x}, r) \subseteq A$ where $r$ may be rational or not. If $r \notin \mathbb{Q}$ then consider some $r' \in \mathbb{Q}$ such that $0 < r' < r$ and then $B(\mathbf{x}, r') \subseteq B(\mathbf{x}, r) \subseteq A$ (9.12). We have $B(\mathbf{x}, r'/2) \subseteq B(\mathbf{x}, r') \subseteq A$. Let $\mathbf{y} = (y_1, y_2, \dots ,y_d)$ where $y_i \in \mathbb{Q}$ and $0 < y_i < r'/(2\sqrt{d}) + x_i$ (9.12). Then $y_i-x_i < r'/(2\sqrt{d})$. Also $(x_i-y_i)^2 < r'^2/(4d)$ so $\sum_{i=1}^{d} (x_i-y_i)^2 < r'^2/4$ and $d(\mathbf{x}, \mathbf{y}) < r'/2$. Finally consider $\mathbf{z} \in B(\mathbf{y}, r'/2)$. Then $d(\mathbf{y}, \mathbf{z}) < r'/2$. But also $d(\mathbf{x}, \mathbf{y}) < r'/2$ so we have $d(\mathbf{x}, \mathbf{z}) \leq d(\mathbf{x}, \mathbf{y}) + d(\mathbf{y}, \mathbf{z}) < r'/2 + r'/2 = r'$. Thus $B(\mathbf{y}, r'/2) \subseteq B(\mathbf{x}, r') \subseteq A$. Also $d(\mathbf{y}, \mathbf{x}) < r'/2 < r'$ so $\mathbf{x} \in B(\mathbf{y}, r'/2)$. Note that $r'/2 \in \mathbb{Q}$ and $\mathbf{y} \in \mathbb{Q}^d$.
+\end{proof}
+
+\textbf{Theorem 13}
+\textsl{Let $C$ be a closed, bounded subset of $\mathbb{R}^d$ and let $\mathcal{A}$ be an open cover for $C$. Then $\mathcal{A}$ has a countable subcover.}
+\begin{proof}
+Let $\mathbf{x} \in C$. Then there exists $A \in \mathcal{A}$ such that $\mathbf{x} \in A$. We have $A$ is open, so there exists some rational ball $O \subseteq A$ such that $\mathbf{x} \in O$ (17.12). Let $\mathcal{B}$ be the set of all such rational balls for all $\mathbf{x} \in C$. Each of these balls has a center in $\mathbb{Q}^d$ which is countable, so there are countably many of them. Then let $\mathcal{C} \subseteq \mathcal{A}$ be the set of elements of $\mathcal{A}$ which are supersets to elements in $\mathcal{B}$. Since every element of $\mathcal{B}$ is a subset of some element of $\mathcal{A}$, there are countable many elements of $\mathcal{C}$. But $\mathcal{C}$ covers $C$.
+\end{proof}
+
+\textbf{Theorem 14}
+\textsl{Closed bounded subsets of $\mathbb{R}^d$ are compact.}
+\begin{proof}
+Assume $C$ is a closed bounded subset of $\mathbb{R}^d$ which is not compact. Let $\mathcal{A}$ be an open cover for $C$ which does not have a finite subcover. Let $\mathcal{B} = \{B_i \mid i \in \mathbb{N}\} \subseteq \mathcal{A}$ be a countably infinite subcover for $C$ (17.13). Since $\mathcal{B}$ is countable we can create a sequence $(\mathbf{a}_n) \in C$ such that $\mathbf{a}_1 \in B_1$ and for $n>1$
+\[
+\mathbf{a}_n \in C \backslash (B_1 \cup B_2 \cup \dots B_{n-1}).
+\]
+Then for all $j > i$, $\mathbf{a}_j \notin B_i$. Thus for all $B_i \in \mathcal{B}$, there are infinitely many $n$ with $\mathbf{a}_n \notin B_i$. Note that $(\mathbf{a}_n)$ is bounded since $C$ is bounded, so there exists a subsequence $(\mathbf{b}_n) \in C$ such that $\lim_{n \rightarrow \infty} \mathbf{b}_n = \mathbf{b}$. Note that $C$ is closed, so if $\mathbf{b} \notin C$ then there exists some ball $B(\mathbf{b}, r) \subseteq \mathbb{R}^d \backslash C$ because $\mathbb{R}^d \backslash C$ is open. But $(\mathbf{b}_n) \in C$ so there are infinitely many $n$ such that $\mathbf{b}_n \notin \mathbb{R}^d \backslash C$. Thus $\mathbf{b} \in C$. Then $\mathbf{b} \in B_i$ for some $B_i \in \mathcal{B}$. But there are infinitely many $n$ such that $\mathbf{a}_n \notin B_i$ and so $\lim_{n \rightarrow \infty} \mathbf{b}_n \notin B_i$. Thus, $(\mathbf{b}_n)$ does not converge which is a contradiction. Therefore $C$ is compact.
+\end{proof}
+
+\end{flushleft}
+\end{document}

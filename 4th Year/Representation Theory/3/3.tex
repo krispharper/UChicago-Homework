@@ -1,0 +1,523 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\sym}{\textup{Sym}}
+\newcommand{\aut}{\textup{Aut}}
+\newcommand{\res}{\textup{Res}\;}
+\newcommand{\ind}{\textup{Ind}\;}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26700\\
+
+October 18, 2010
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{problem}
+(i) Find the character of the representation $\sym^2 V$.\\
+(ii) Without using any knowledge of the character table of $S_5$, use this to show that $\sym^2 V$ is the direct sum of three irreducible representations.\\
+(iii) Using our knowledge of the first five rows of the character table, show that $\sym^2 V$ is the direct sum of the representations $U$, $V$ and a third irreducible representation $W$. Complete the character table for $S_5$.
+\end{problem}
+\begin{proof}
+(i) We know $\chi_{\sym^2 V}(g) = \frac{1}{2} (\chi_V(g)^2 + \chi_V(g^2))$. This immediately gives the values $(10, 4, 1, 0, 0, 2, 1)$ by taking the appropriate values from the character table for $S_5$.
+
+(ii) Let $\sym^2 V = a_1W_1 \oplus \dots \oplus a_rW_r$ be a decomposition into irreducibles. It's easy to see that
+\[
+(\chi_{\sym^2V}, \chi_{\sym^2V}) = \frac{1}{120}(100 + 160 + 20 + 60 + 20) = \frac{360}{120} = 3.
+\]
+Since the inner product on characters is bilinear and the $\chi_{W_i}$ are orthonormal we have
+\[
+3 = (\chi_{\sym^2V}, \chi_{\sym^2V}) = \left ( \sum_{i=1}^{r} a_i\chi_{W_i}, \sum_{i=1}^{r} a_i\chi_{W_i} \right ) = \sum_{i,j} a_ia_j(\chi_{W_i}, \chi_{W_j}) = \sum_{i=1}^r a_i^2(\chi_{W_i}, \chi_{W_i}).
+\]
+Thus $r = 3$ and $a_i = 1$ for each $i$.
+
+(iii) We know there are two more irreducible representations of $S_5$ since there are seven conjugacy classes in total. We also there are no more $1$-dimensional representations because these are trivial on a normal subgroup whose quotient is cyclic and $A_5$ is the only such subgroup. Therefore the dimensions of the remaining two representations are both $5$. Call these representations $W$ and $W'$. By column-orthogonality we must have $1 + 1 + 4 + 4 + \chi_W((1 \; 2))^2 + \chi_{W'}((1 \; 2))^2 = 120/10 = 12$. This forces (without loss of generality) $\chi_W((1 \; 2)) = 1$ and $\chi_{W'}((1 \; 2)) = -1$. Now just using the first two columns of the character table and noting that $\chi_{\sym^2V}(1) = 10$ and $\chi_{\sym^2V}((1 \; 2)) = 4$ along with the fact that $\chi_{\sym^2V}$ is a sum of three irreducible characters, we can conclude that $\sym^2 V = U \oplus V \oplus W$.
+
+We can now easily find $W$ on the remaining five conjugacy classes by subtraction since
+\[
+\chi_W = \chi_{\sym^2V} - \chi_U - \chi_V.
+\]
+Thus $\chi_W$ has values $(5, 1, -1, -1, 0, 1, 1)$. Using column-orthogonality we can quickly compute $\chi_{W'}$ as $(5, -1, -1, 1, 0, 1 , -1)$. This completes the character table for $S_5$.
+\end{proof}
+
+\begin{problem}
+Find the decomposition into irreducibles of the representations $\wedge^2 W$, $\sym^2 W$ and $V \otimes W$.
+\end{problem}
+\begin{proof}
+We know $\chi_{\wedge^2 W}$ has values $(10, -2, 1, 0, 0, -2, 1)$ using the formula $\chi_{\wedge^2 W}(g) = \frac{1}{2} (\chi_W (g)^2 - \chi_W (g^2))$. We have
+\[
+(\chi_{\wedge^2 W}, \chi_{\wedge^2 W}) = \frac{1}{120} (100 + 4 \cdot 10 + 20 + 4 \cdot 15 + 20) = 2
+\]
+so we know $\chi_{\wedge^2 W}$ is the sum of two irreducible characters. This limits the possibilities to $V \oplus \wedge^2 V$, $V' \oplus \wedge^2 V$ or $W \oplus W'$ based on $\chi_{\wedge^2 W}(1) = 10$. Of these three, only $\chi_{V'} + \chi_{\wedge^2 V}$ agrees with $\chi_{\wedge^2 W}$ on $(1 \; 2)$. Thus $\wedge^2 W \cong V' \oplus \wedge^2 V$.
+
+We know $\chi_{\sym^2 W}$ has values $(15, 3, 0, 1, 0, 3, 0)$ using the formula $\chi_{\sym^2 W}(g) = \frac{1}{2} (\chi_W(g)^2 + \chi_W(g^2))$. We have
+\[
+(\chi_{\sym^2 W}, \chi_{\sym^2 W}) = \frac{1}{120} (225 + 9 \cdot 10 + 30 + 9 \cdot 15) = 4
+\]
+so we know $\sym^2 W$ is the direct sum of either $4$ distinct irreducibles each with multiplicity $1$ or $1$ irreducible with multiplicity $2$. But the later case is impossible since $\chi_{\sym^2 W}(1) = 15$ is not even. Note that
+\[
+(\chi_{\sym^2 W}, \chi_U) = \frac{1}{120} (15 + 3 \cdot 10 + 30 + 3 \cdot 15) = 1
+\]
+\[
+(\chi_{\sym^2 W}, \chi_V) = \frac{1}{120} (4 \cdot 15 + 2 \cdot 3 \cdot 10) = 1
+\]
+\[
+(\chi_{\sym^2 W}, \chi_W) = \frac{1}{120} (5 \cdot 15 + 3 \cdot 10 - 30 + 3 \cdot 15) = 1
+\]
+and
+\[
+(\chi_{\sym^2 W}, \chi_{W'}) = \frac{1}{120} (5 \cdot 15 - 3 \cdot 10 + 30 + 3 \cdot 15) = 1.
+\]
+Since we know there are $4$ irreducibles in the decomposition, and these calculations give their multiplicities, we immediately have $\sym^2 W \cong U \oplus V \oplus W \oplus W'$.
+
+We know $\chi_{V \otimes W}$ has values $(20, 2, -1, 0, 0, 0, -1)$ and
+\[
+(\chi_{V \otimes W}, \chi_{V \otimes W}) = \frac{1}{120} (400 + 4 \cdot 10 + 20 + 20) = 4
+\]
+so $V \otimes W$ either decomposes into the direct product of $1$ irreducible with multiplicity $2$ or $4$ irreducibles with multiplicity $1$. Now note that
+\[
+(\chi_{V \otimes W}, \chi_V) = \frac{1}{120} (20 \cdot 4 + 2 \cdot 2 \cdot 10 - 20 + 20) = 1
+\]
+\[
+(\chi_{V \otimes W}, \chi_{\wedge^2 V}) = \frac{1}{120} (20 \cdot 6) = 1
+\]
+\[
+(\chi_{V \otimes W}, \chi_W) = \frac{1}{120} (20 \cdot 5 + 2 \cdot 10 + 20 - 20) = 1
+\]
+and
+\[
+(\chi_{V \otimes W}, \chi_{W'}) = \frac{1}{120} (20 \cdot 5 - 2 \cdot 10 + 20 + 20) = 1.
+\]
+As with $\sym^2 W$ we immediately have $V \otimes W \cong V \oplus \wedge^2 V \oplus W \oplus W'$.
+\end{proof}
+
+\begin{problem}
+Show that the conjugacy class in $S_d$ of permutations consisting of products of disjoint cycles of lengths $b_1, b_2, \dots$ will break up into the union of two conjugacy classes in $A_d$ if all the $b_k$ are odd and distinct; if any $b_k$ are even or repeated, it remains a single conjugacy class in $A_d$.
+\end{problem}
+\begin{proof}
+This can be restated as a conjugacy class $[\sigma]$ in $S_n$ breaks into two conjugacy classes in $A_n$ if and only if the cycle type of $\sigma$ consists of distinct odd integers. Otherwise, it remains a single conjugacy class in $A_n$. Let $C_{S_n}(\sigma)$ be the centralizer of $\sigma$ under the action of $S_n$ by conjugation. Note that this is the stabilizer of $\sigma$ in this case.
+
+We first wish to show that for $\sigma \in A_n$, the elements of $[\sigma] \subseteq S_n$ are conjugate in $A_n$ if and only if $\sigma$ commutes with an odd permutation. First note that every element of $[\sigma]$ is conjugate in $A_n$ if and only if $A_nC_{S_n}(\sigma) = S_n$. This in turn is true if and only if $C_{S_n}(\sigma) \nsubseteq A_n$ (since $A_n$ is index $2$). Finally, this is true if and only if $C_{S_n}(\sigma)$ contains an odd permutation which is precisely what it means for $\sigma$ to commute with an odd permutation.
+
+Now we show that $\sigma \in S_n$ does not commute with an odd permutation if and only if the cycle type of $\sigma$ is composed of distinct odd integers. Suppose first that $\sigma$ does not commute with an odd permutation. Then $\sigma$ must have only odd-length permutations in its cycle-type since it will commute with any even-length permutation in its cycle-type. Now suppose two of these odd-length permutations have the same length, say $(x_1 \dots x_n)$ and $(y_1 \dots y_n)$. Then it's easy to see that $(x_1 \dots x_n)(y_1 \dots y_n)$ commutes with $(x_1 \; y_1) \dots (x_n \; y_n)$. Thus $\sigma$ commutes with a product of an odd number of transpositions which is an odd permutation. Thus $\sigma$ must have all odd permutations of distinct length in it's cycle-type.
+
+Conversely, suppose that $\sigma$ has all odd-length permutations of distinct length in it's cycle type. Pick a nontrivial conjugate $\tau$ of $\sigma$. Since conjugation preserves cycle length and $\sigma$ has all distinct cycle lengths, $\tau$ must commute with each of these cycles. Let $\tau'$ be a cycle of $\tau$ and $\sigma'$ be a cycle of $\sigma$ such that $\tau'$ and $\sigma'$ are not disjoint. Then $\tau'$ and $\sigma'$ commute since $\tau$ and $\sigma$ commute, so that $\tau'$ is in the centralizer of $\sigma'$. Note thought that the centralizer of $\sigma'$ consists only of powers of $\sigma$ and cycles disjoint from $\sigma$. Thus $\tau'$ is a power of $\sigma'$. Since this is true of every cycle in $\tau$, we see that an arbitrary permutation which commutes with $\sigma$ is composed only of powers of odd-length cycles. Thus, they are even.
+
+Finally we show that a conjugacy $[\sigma] \subseteq S_n$ class can split into at most two conjugacy classes in $A_n$. Let $[\sigma]$ be a conjugacy class in $S_n$ with $\sigma \in A_n$. Note $S_n \cap C_{S_n}(\sigma) = C_{A_n}(\sigma)$. Let $|A_n : C_{A_n}(\sigma)| = r$ where $r$ is the size of $\sigma$'s orbit under conjugation by $A_n$ (this follows from the orbit-stabilizer theorem). From the second isomorphism theorem we have
+\[
+r = |A_n : C_{A_n}(\sigma)| = |A_n : A_n \cap C_{S_n}(\sigma)| = |A_nC_{S_n}(\sigma) : C_{S_n}(\sigma)|.
+\]
+Since $A_n$ is normal in $S_n$, the size of the orbits of $A_n$ acting on $S_n$ is fixed at $r$. Assuming there are $s$ orbits, we have $rs = |S_n|$ and
+\[
+rs = |S_n| = |S_n : A_nC_{S_n}(\sigma)||A_nC_{S_n}(\sigma) : C_{S_n}(\sigma)| = |S_n : A_nC_{S_n}(\sigma)|r.
+\]
+So the number of orbits (that is, the number of conjugacy classes $[\sigma]$ splits into) is at most $|S_n : A_nC_{S_n}(\sigma)|$. But since $|S_n : A_n| = 2$, this number is either $1$ or $2$.
+\end{proof}
+
+\begin{problem}
+Find the character table of the group $SL_2(\mathbb{Z}/3\mathbb{Z})$.
+\end{problem}
+\begin{proof}
+Let $G = SL_2(\mathbb{Z}/3\mathbb{Z})$. We'll begin by figuring out the conjugacy classes of $G$. For an element $x \in G$ let $C_G(x)$ be the centralizer of $x$ (also the stabilizer in this case) and let $[x]$ be the conjugacy class of $x$ (also the orbit in this case. Then we know $|G|/|C_G(x)| = |[x]|$. Clearly
+\[
+\begin{tabular}{ccc}
+$
+1 =
+\left (
+\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}
+\right )
+$
+&
+and
+&
+$
+-1 =
+\left (
+\begin{array}{cc}
+-1 & 0\\
+0 & -1
+\end{array}
+\right )
+$
+\end{tabular}
+\]
+commute with each element of $G$ and so are each in their own conjugacy class. Consider the element $A = \left ( \begin{array}{cc} 1 & 1\\ 0 & 1 \end{array} \right )$. Suppose we have an element of $G$ which commutes with $A$ so that
+\[
+A \left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+a + c & b + d\\
+c & d
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+a & a + b\\
+c & c + d
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right )
+A.
+\]
+This gives the equations $a = a + c$, $b + d = a + b$ and $d = c + d$. Combined with $ad - bc = 1$ we see that $a \neq 0$, $c = 0$ and $a = d$. This gives $2$ choices for $a$ and three choices for $b$ for a total of $6$ elements in $C_G(A)$. Thus $|[A]| = 4$. A very similar calculation shows that
+\[
+\left | \left [ \left (
+\begin{array}{cc}
+1 & -1\\
+0 & 1
+\end{array}
+\right ) \right ] \right |
+= 4
+\]
+as well. Now let $B = \left ( \begin{array}{cc} -1 & -1\\ 0 & -1 \end{array} \right )$. Suppose that we have a matrix which commutes with $B$ so that
+\[
+B \left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+-a + -c & -b + -d\\
+-c & -d
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+-a & -a + -b\\
+-c & -c + -d
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right )
+B.
+\]
+This gives the exact same equations as above and so $|[B]| = 4$ too. A similar calculation shows that
+\[
+\left | \left [ \left (
+\begin{array}{cc}
+-1 & 1\\
+0 & -1
+\end{array}
+\right ) \right ] \right |
+= 4
+\]
+as well. Now consider $C = \left ( \begin{array}{cc} 0 & 1\\ -1 & 0 \end{array} \right )$. Once again assume we have
+\[
+C \left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+c & d\\
+-a & -b
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+-b & a\\
+-d & c
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right )
+C.
+\]
+This gives the equations $a = d$ and $c = -b$. Combined with $ad - bc = 1$ we have $a^2 + b^2 = 1$. So exactly one of $a = 0$ or $b = 0$ and $a = d$ and $b = -c$. If $a = 0$ there are two choices for $b$ and if $b = 0$ there are two choices for $a$. This gives for elements which commute with $C$ so $|[C]| = 24/4 = 6$. Now we have seven conjugacy classes with orders that sum to $1 + 1 + 4 + 4 + 4 + 4 + 6 = 24$ so this must be all of them. Furthermore we see that the center of $G$ $Z(G) = \{ \pm 1 \}$.
+
+Now consider $H = G/Z(G)$. This is a group of oder $12$. Consider the two-dimensional vector space over $\mathbb{Z}/3\mathbb{Z}$. This has $8$ nonzero vectors and $2$ nonzero scalars so there are $4$ one-dimensional subspaces, namely $X = \{\langle (1,0) \rangle$, $\langle (0,1) \rangle$, $\langle (1,1) \rangle$ and $\langle (1,-1) \rangle \}$. Define an action on $X$ by multiplication on the left. Clearly $\overline{1}$ (that is, the coset $Z(G)$ in H) has trivial action on each subspace. Also note that for arbitrary elements of $H$ and $X$ we have
+\begin{align*}
+\left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right )
+\left ( \left (
+\begin{array}{cc}
+e & f\\
+g & h
+\end{array}
+\right ) \left (
+\begin{array}{c}
+x\\
+y
+\end{array}
+\right ) \right )
+&= \left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right ) \left (
+\begin{array}{c}
+ex + fy\\
+gx + hy
+\end{array}
+\right )\\
+&= \left (
+\begin{array}{c}
+aex + afy + bgx + bhy\\
+cex + cfy + dgx + dhy
+\end{array}
+\right )\\
+&= \left (
+\begin{array}{cc}
+ae + by & af + bh\\
+ce + dg & cf + dh
+\end{array}
+\right ) \left (
+\begin{array}{c}
+x\\
+y
+\end{array}
+\right )\\
+&= \left ( \left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right ) \left (
+\begin{array}{cc}
+e & f\\
+g & h
+\end{array}
+\right ) \right ) \left (
+\begin{array}{c}
+x\\
+y
+\end{array}
+\right )
+\end{align*}
+where any scalars will clearly pull out of the multiplication. So this is indeed a group action on $X$. Thus we have a map $H \to S_4$. Now once again take an arbitrary element of $H$ and $X$ and note
+\[
+\left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right ) \left (
+\begin{array}{c}
+x\\
+y
+\end{array}
+\right) = \left (
+\begin{array}{c}
+ax + by\\
+cx + dy
+\end{array}
+\right ).
+\]
+If we suppose this element fixes $(x,y)$ then we have $x = ax + by$ and $y = cx + dy$ or $x(1 - a) = by$ and $y(1 - d) = cx$. Clearly $a = d = \pm 1$ will satisfy these equations so $Z(G) = \overline{1}$ fixes $(x,y)$. If $d \neq 1$ then fix $x$ and pick $y \neq cx(1-d)^{-1}$. If $a \neq 1$ then fix $y$ and pick $x \neq by(1 - a)^{-1}$. If $a = d = 1$ and $b \neq c$ then exactly one of $b$ or $c$ must be $0$ since $ad - bc = 1$. Without loss of generality, let $b = 0$ so that $x(1-a) = 0$. Then $x$ can be any value and this equation still holds so choose $x \neq y(1-d)c^{-1}$. So in all nontrivial cases we can pick $x$ and $y$ such that $(x,y)$ is not a fixed element under this action. This shows the action is faithful and we have an injection $H \to S_4$. Since $|H| = 12$ we immediately get $H \cong A_4$.
+
+Since we know the character table for $A_4$ we can use it to fill in a significant portion of the character table for $G$. So far we have
+\[
+\begin{array}{r|rrrrrrr}
+& 1 & 1 & 4 & 4 & 4 & 4 & 6\\
+&&&&&&&\\\hline
+U & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+U' & 1 & 1 & \omega & \omega^2 & \omega & \omega^2 & 1\\
+U'' & 1 & 1 & \omega^2 & \omega & \omega^2 & \omega & 1\\
+V & 3 & 3 & 0 & 0 & 0 & 0 & -1\\
+W & &&&&&\\
+W' & &&&&&\\
+W'' & &&&&&
+\end{array}
+\]
+where $\omega = e^{2 \pi i/3}$. We also know $1 + 1 + 1 + 9 + a^2 + b^2 + c^2 = 24$ where $a$, $b$ and $c$ are the dimensions of $W$, $W'$ and $W''$ respectively. The only possibility is $a = b = c = 2$. Let $\chi_W$ take the values $(2, a_1, a_2, a_3, a_4, a_5, a_6)$. Let's also make the assumption that $W' = W \otimes U'$ and $W'' = W \otimes U''$.
+
+Now note that from column orthogonality we can immediately get $12 + 6a_1 = 0$ and $6a_6 = 0$ so $a_1 = -2$ and $a_6 = 0$. Furthermore, we have three irreducible characters, two of which must contain complex values. We then know that two must be conjugates of each other and the third must have real values.
+
+Without loss of generality, suppose $\chi_{W'} = \overline{\chi_{W''}}$ and $\chi_W$ is real. Then $(\chi_W, \chi_W) = 4 + 4 + 4(a_2^2 + a_3^2 + a_4^2 + a_5^2) = 24$ so $a_2^2 + a_3^2 + a_4^2 + a_5^2 = 4$. These values are all then $\pm 1$. Since $(\chi_U, \chi_W) = 0$ we must have exactly $2$ values positive and $2$ negative. Then from the symmetry of the table, we can arbitrarily choose $a_1 = a_2 = -1$ and $a_3 = a_4 = 1$. This completely determines the characters. We know $(\chi_W, \chi_W) = 1$ by construction and it's easy to see that $(\chi_{W'}, \chi_{W'}) = (\chi_{W''}, \chi_{W''}) = 1$ as well. Thus, all these characters are irreducible and the character table is
+\[
+\begin{array}{r|rrrrrrr}
+& 1 & 1 & 4 & 4 & 4 & 4 & 6\\
+&&&&&&&\\\hline
+U & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+U' & 1 & 1 & \omega & \omega^2 & \omega & \omega^2 & 1\\
+U'' & 1 & 1 & \omega^2 & \omega & \omega^2 & \omega & 1\\
+V & 3 & 3 & 0 & 0 & 0 & 0 & -1\\
+W & 2 & -2 & -1 & -1 & 1 & 1 & 0\\
+W' & 2 & -2 & -\omega & -\omega^2 & \omega & \omega^2 & 0\\
+W'' & 2 & -2 & -\omega^2 & -\omega & \omega^2 & \omega & 0
+\end{array}
+\]
+\end{proof}
+
+\begin{problem}
+Determine the isomorphism classes of the representations of $S_4$ induced by (i) the one-dimensional representation of the group generated by $(1 \; 2 \; 3 \; 4)$ in which $(1 \; 2 \; 3 \; 4) v = iv$, $i = \sqrt{-1}$; (ii) the one-dimensional representation of the group generated by $(1 \; 2 \; 3)$ in which $(1 \; 2 \; 3) v = e^{2 \pi i/3} v$.
+\end{problem}
+\begin{proof}
+(i) From the given action we can easily find the character table for $H = \langle (1 \; 2 \; 3 \; 4) \rangle$
+\[
+\begin{array}{r|rrrr}
+& 1 & 1 & 1 & 1\\
+H & 1 & (1 \; 2 \; 3 \; 4) & (1 \; 3)(2 \; 4) & (4 \; 3 \; 2 \; 1)\\\hline
+A & 1 & 1 & 1 & 1\\
+B & 1 & -1 & 1 & -1\\
+C & 1 & i & -1 & -i\\
+D & 1 & -i & -1 & i
+\end{array}
+\]
+The representation in question, then, is $C$ since it has trace $i$ on $(1 \; 2 \; 3 \; 4)$. By comparing this table with the character table for $S_4$ we find that $\res U \cong A$, $\res U' \cong B$, $\res V \cong B \oplus C \oplus D$, $\res V' \cong A \oplus C \oplus D$ and $\res W \cong A \oplus B$. Now using Frobenius reciprocity, we have
+\[
+(\chi_{\ind C}, \chi_U) = (\chi_C, \chi_{\res U}) = (\chi_C, \chi_A) = 0,
+\]
+\[
+(\chi_{\ind C}, \chi_{U'}) = (\chi_C, \chi_{\res U'}) = (\chi_C, \chi_B) = 0,
+\]
+\[
+(\chi_{\ind C}, \chi_V) = (\chi_C, \chi_{\res V}) = (\chi_C, \chi_{B \oplus C \oplus D}) = (\chi_C, \chi_B) + (\chi_C, \chi_C) + (\chi_C, \chi_D) = 1,
+\]
+\[
+(\chi_{\ind C}, \chi_{V'}) = (\chi_C, \chi_{\res V'}) = (\chi_C, \chi_{A \oplus C \oplus D}) = (\chi_C, \chi_A) + (\chi_C, \chi_C) + (\chi_C, \chi_D) = 1
+\]
+and
+\[
+(\chi_{\ind C}, \chi_W) = (\chi_C, \chi_{\res W}) = (\chi_C, \chi_{A \oplus B}) = (\chi_C, \chi_A) + (\chi_C, \chi_B) = 0.
+\]
+Thus $\ind C \cong V \oplus V'$.
+
+(ii) Once again, the character table for $H = \langle (1 \; 2 \; 3)$ is easy to compute
+\[
+\begin{array}{r|rrr}
+& 1 & 1 & 1\\
+H & 1 & (1 \; 2 \; 3) & (1 \; 3 \; 2)\\\hline
+A & 1 & 1 & 1\\
+B & 1 & \omega & \omega^2\\
+C & 1 & \omega^2 & \omega
+\end{array}
+\]
+where $\omega = e^{2 \pi i/3}$. The representation in question is then $B$. By inspection we have $\res U \cong A$, $\res U' \cong A$, $\res V \cong A \oplus B \oplus C$, $\res V' \cong A \oplus B \oplus C$ and $\res W \cong B \oplus C$. Now using Frobenius reciprocity we have
+\[
+(\chi_{\ind B}, \chi_U) = (\chi_B, \chi_{\res U}) = (\chi_B, \chi_A) = 0,
+\]
+\[
+(\chi_{\ind B}, \chi_{U'}) = (\chi_B, \chi_{\res U'}) = (\chi_B, \chi_A) = 0,
+\]
+\[
+(\chi_{\ind B}, \chi_V) = (\chi_B, \chi_{\res V}) = (\chi_B, \chi_{A \oplus B \oplus C}) = (\chi_B, \chi_A) + (\chi_B, \chi_B) + (\chi_B, \chi_C) = 1,
+\]
+\[
+(\chi_{\ind B}, \chi_{V'}) = (\chi_B, \chi_{\res V'}) = (\chi_B, \chi_{A \oplus B \oplus C}) = (\chi_B, \chi_A) + (\chi_B, \chi_B) + (\chi_B, \chi_C) = 1,
+\]
+and
+\[
+(\chi_{\ind B}, \chi_W) = (\chi_B, \chi_{\res W}) = (\chi_B, \chi_{B \oplus C}) = (\chi_B, \chi_B) + (\chi_B, \chi_C) = 1.
+\]
+Thus $\ind B \cong V \oplus V' \oplus W$.
+\end{proof}
+
+\begin{problem}
+How can you use the character table of a finite group $G$ to detect the existence of a nontrivial proper normal subgroup in $G$?
+\end{problem}
+\begin{proof}
+Let $N$ be a normal subgroup of $G$ and let $\rho_1, \dots , \rho_r$ be the representations of $G/N$. Let $H = \bigcap_{i=1}^r \ker (\rho_i \circ \pi)$ where $\pi : G \to G/N$ is the natural projection. We clearly have $N \subseteq H$. Note that for each $\rho_i$ we have the decomposition $\rho_i : G/N \longrightarrow G/K \stackrel{\sigma_i}{\longrightarrow} \aut(V)$ where each $\sigma_i$ is an irreducible representation of $G/K$. Then if $G \subsetneq K$ we have $|G/K| < |G/N| = \sum_{i=1}^r (\rho_i(1))^2$ which is a contradiction since $\rho_i$ and $\sigma_i$ take on the same values at $1$. Thus $K = N$.
+
+Now note that $g \in \ker \rho_i$ if and only if $\chi_{\rho}(g) = n$ where $n$ is the dimension of the representation. This is because $\chi_{\rho}(g)$ is the trace of $g$, which is equal to $n$ exactly when $g$ has $1$'s on the diagonal. Then since $g$ has finite order, $g$ must be the identity matrix.
+
+Therefore the kernel of some $\chi_{\rho_i}$ is the union of all conjugacy classes $[g]$ for which $\chi_{\rho_i}(g) = n$. Then a union of conjugacy classes in $G$ is a normal subgroup if and only if it is the intersection of kernels of irreducible representations. To make sure the subgroup is nontrivial and proper we simply exclude the trivial representation, which gives the union of all conjugacy classes, and any representations which only have value $n$ for the identity.
+\end{proof}
+
+\begin{problem}
+Suppose that $G$ is some group of order $168$ and that $G$ has $6$ conjugacy classes. Suppose that we know $3$ irreducible representations of $G$ with characters $\alpha$, $\beta$, $\gamma$, whose values are given by the following table (in the top horizontal row the number of elements in the conjugacy class is given, instead of a name for that conjugacy class):
+\[
+\begin{array}{rrrrrrr}
+& 1 & 21 & 42 & 56 & 24 & 24\\
+&&&&&&\\
+\alpha & 6 & 2 & 0 & 0 & -1 & -1\\
+\beta & 7 & -1 & -1 & 1 & 0 & 0\\
+\gamma & 8 & 0 & 0 & -1 & 1 & 1
+\end{array}
+\]
+Construct the character table of $G$.
+\end{problem}
+\begin{proof}
+We clearly have the trivial representation with character $\iota$ which takes $1$ on each conjugacy class. Now note that $168 - (1^2 + 6^2 + 7^2 + 8^2) = 18$ so there are two more representations (with characters $\delta$ and $\epsilon$, say) which have dimensions $3$ and $3$. Suppose $\delta$ takes on values $(3, a_1, a_2, a_3, a_4, a_5)$ and $\epsilon$ takes on values $(3, b_1, b_2, b_3, b_4, b_5)$. Then we know $1 + 6 \cdot 2 - 7 + 3 a_1 + 3 b_1 = 0$ and $1 + 2^2 + 1 + a_1\overline{a_1} + b_1\overline{b_1} = 168/21 = 8$. Thus $a_1 + b_1 = -2$ and $a_1\overline{a_1} + b_1 \overline{b_1} = 2$. The first equation gives $a_1 = -2 - b_1$ and putting this into the second gives
+\[
+2 = (-2 - b_1)(-2 - \overline{b_1}) + b_1 \overline{b_1} = 4 + 2b_1 + 2\overline{b_1} + 2b_1\overline{b_1}
+\]
+or $b_1 + \overline{b_1} + b_1\overline{b_1} = -1$. If we suppose $b_1 = x + iy$ then this becomes $2x + x^2 + y^2 = -1$ which has the unique solution $x = -1$, $y = 0$. Thus $b_1 = -1$ and $a_1 = -1$. The exact same method can be used to show $a_2 = b_2 = 1$ and $a_3 = b_3 = 0$. So far the character table is
+\[
+\begin{array}{rrrrrrr}
+& 1 & 21 & 42 & 56 & 24 & 24\\
+&&&&&&\\
+\iota & 1 & 1 & 1 & 1 & 1 & 1\\
+\alpha & 6 & 2 & 0 & 0 & -1 & -1\\
+\beta & 7 & -1 & -1 & 1 & 0 & 0\\
+\gamma & 8 & 0 & 0 & -1 & 1 & 1\\
+\delta & 3 & -1 & 1 & 0 & a_5 & a_6\\
+\epsilon & 3 & -1 & 1 & 0 & b_5 & b_6
+\end{array}
+\]
+Assume now that $\epsilon = \overline{\delta}$ so that $b_5 = \overline{a_5}$ and $b_6 = \overline{a_6}$. We know $1 - 6 + 8 + 3 a_5 + 3 b_5 = 0$ and $1 + 1 + 1 + a_5\overline{a_5} + b_5\overline{b_5} = 168/24 = 7$. The first equation gives $a_5 + \overline{a_5} = -1$ and the second gives $2 a_5\overline{a_5} = 4$. Putting $\overline{a_5} = -1 - a_5$ into the second equation gives
+\[
+4 = 2 a_5 (-1 - a_5) = -2 a_5 - 2a_5^2
+\]
+or $2a_5^2 + 2a_5 + 4 = 0$. Using the quadratic equation we get
+\[
+a_5 = \frac{-1 \pm i \sqrt{7}}{2}
+\]
+Thus $b_5 = \overline{a_5} = \frac{-1 \pm i \sqrt{7}}{2}$. Since $\delta$ and $\epsilon$ have the same values up to this point, we can arbitrarily choose $a_5 = \frac{-1 + i \sqrt{7}}{2}$ and $b_5 = \frac{-1 - i\sqrt{7}}{2}$. Using the same equations for $a_6$ and $b_6$ we see that $a_6 = \frac{-1 - i \sqrt{7}}{2}$ and $b_6 = \frac{-1 + i \sqrt{7}}{2}$. Here we've chosen the signs opposite $a_5$ and $b_5$ so that we get real numbers when doing column orthogonality conditions. Now, to make sure the initial guess was correct, we need to check to make sure $\delta$ and $\epsilon$ are indeed irreducible representations. Note
+\[
+(\delta, \delta) = \frac{1}{168} \left (9 + 21 + 42 + 24 \left (\frac{-1 + i \sqrt{7}}{2} \right ) \left (\frac{-1 - i \sqrt{7}}{2} \right ) + 24 \left (\frac{-1 - i \sqrt{7}}{2} \right ) \left (\frac{-1 + i \sqrt{7}}{2} \right ) \right ) = 1
+\]
+so $\delta$ is indeed irreducible. The same calculation holds for $\epsilon$ so the character table is
+\[
+\begin{array}{rrrrrrr}
+& 1 & 21 & 42 & 56 & 24 & 24\\
+&&&&&&\\
+\iota & 1 & 1 & 1 & 1 & 1 & 1\\
+\alpha & 6 & 2 & 0 & 0 & -1 & -1\\
+\beta & 7 & -1 & -1 & 1 & 0 & 0\\
+\gamma & 8 & 0 & 0 & -1 & 1 & 1\\
+\delta & 3 & -1 & 1 & 0 & \frac{-1 + i \sqrt{7}}{2} & \frac{-1 - i \sqrt{7}}{2}\\
+\epsilon & 3 & -1 & 1 & 0 & \frac{-1 - i \sqrt{7}}{2} & \frac{-1 + i \sqrt{7}}{2}
+\end{array}
+\]
+\end{proof}
+
+\end{document}

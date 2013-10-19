@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26200\\
+
+February 25, 2010
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{problem}
+Let $U \subseteq \mathbb{R}^n$. A path $\phi : I \to U$ is called \emph{piecewise-linear} if there exist $0 = x_0 < x_1 < \dots < x_n = 1$ such that on every interval $[x_i, x_{i+1}]$, $\phi$ has the form
+\[
+\phi(t) = \mathbf{a}_it + \mathbf{b}_i
+\]
+for some $\mathbf{a}_i, \mathbf{b}_i \in \mathbb{R}^n$. (Note that $\mathbf{a}_i$, $\mathbf{b_i}$ need not lie in $U$.)
+
+Let $U$ be a connected open subset of $\mathbb{R}^n$. Use the Local-to-Global Lemma to show that there is a piecewise-linear path in $U$ between any two points.
+\end{problem}
+\begin{proof}
+Define a relation on the points of $U$ where $\mathbf{x} \sim \mathbf{y}$ if and only if there is a piecewise-linear path between $\mathbf{x}$ and $\mathbf{y}$. This relation is reflexive since the constant path is piecewise-linear. The relation is symmetric since reversing the direction of any path from $\mathbf{x}$ to $\mathbf{y}$ is a path from $\mathbf{y}$ to $\mathbf{x}$. The relation is transitive because a path from $\psi$ from $\mathbf{x}$ to $\mathbf{y}$ can be composed with a path $\psi$ from $\mathbf{y}$ to $\mathbf{z}$. This composed path will still be piecewise-linear as the line segments in $\mathbb{R}^n$ remain the same and the intervals in $I$ become $[x_i/2, x_{i+1}/2]$ for $\phi$ and $[x_i/2 + 1/2, x_{i+1}/2 + 1/2]$ for $\psi$. Thus $\sim$ is an equivalence relation.
+
+Let $\mathbf{x} \in U$ and consider an $\varepsilon$-ball $B$ around $\mathbf{x}$ contained in $U$. But all the points $\mathbf{y} \in B$ have a piecewise-linear path connecting them to $\mathbf{x}$. Namely, $\phi(t) = (\mathbf{y} - \mathbf{x})t + \mathbf{x}$. Thus, every point of $U$ has a neighborhood of equivalent points. By the Local-to-Global Lemma there is a piecewise-linear path between any two points in $U$.
+\end{proof}
+
+\begin{problem}
+(a) Show that every connected proper open set of $\mathbb{R}$ is either an open interval or an open ray.\\
+(b) Let $U$ be an open subset of $\mathbb{R}^n$. Show that the components of $U$ are open.\\
+(c) Show that every proper open subset of $\mathbb{R}$ is a countable disjoint union of open intervals and (at most two) open rays.
+\end{problem}
+\begin{proof}
+(a) Let $A$ be a connected open subset of $\mathbb{R}$. Suppose that there exists $a,b \in A$ such that $a < b$ and $c \in (a,b)$ such that $c \notin A$. Then $\{(-\infty, c), (c, \infty)\}$ forms a separation of $A$. Thus $c \in A$ and every connected subset of $\mathbb{R}$ is convex. Note that if $A$ is not bounded above or below, but is a proper subset of $\mathbb{R}$ then there exists $c \notin A$ and $(-\infty, c)$ and $(c, \infty)$ form a separation of $A$. Thus $A$ must be bounded above or below.
+
+Suppose first that $A$ is bounded above and below by $u$ and $v$ respectively. Note that $v$ must be a limit point of $A$ because otherwise there would be some neighborhood $V$ of $v$ which didn't intersect $A$ except at $v$. This set and $\mathbb{R} \backslash V$ would form a separation of $A$. Likewise, $u$ must be a limit point of $A$. Then every open neighborhood of $v$ intersects $A$ and every open neighborhood of $u$ intersects $A$. In particular, points arbitrarily close to $u$ and $v$ are in $A$ and since $A$ is convex, every point between $u$ and $v$ must be in $A$ as well. Therefore $A = (u,v)$. If $A$ isn't bounded above or below, a similar argument holds to show that $A = (u, \infty)$ or $A = (-\infty, v)$ respectively.
+
+(b) Let $U$ be an open subset of $\mathbb{R}^n$ and let $C$ be a component of $U$. Let $\mathbf{x} \in C$ and consider all the paths which go from $\mathbf{x}$ to points less than $\varepsilon$ away from $\mathbf{x}$. Each of these paths form a connected set, so $\mathbf{x}$ is connected to each of these points. But the union of these points is simply the $\varepsilon$-ball around $\mathbf{x}$. This is then contained in $C$ so $C$ is open.
+
+(c) Let $U$ be an open proper subset of $\mathbb{R}$. Using part (b), the components of $U$ are open connected subsets and these are either intervals or open rays by part (a). Note that the components of $U$ are disjoint by definition and since each interval or open ray contains a rational number, there can be at most countably many components. Also, if three of the components of $U$ are rays, then one necessarily contains the other, so there can only be two rays. Therefore $U$ is a countable disjoint union of open intervals and at most two open rays.
+\end{proof}
+
+\begin{problem}
+Let $\{A_n\}$ be a sequence of connected subspaces of $X$, such that $A_n \cap A_{n+1} \neq \emptyset$ for all $n$. Show that $\bigcup A_n$ is connected.
+\end{problem}
+\begin{proof}
+For each $n \in \mathbb{N}$ there exists some point $p_n$ such that $p_n \in A_n \cap A_{n+1}$. We use induction on $n$ to show that $\bigcup_{i=1}^n A_n$ is connected for every $n$. For the $n=1$ case we're done since $A_1$ is connected by assumption. Suppose $\bigcup_{i=1}^n A_n$ is connected but $\{C,D\}$ is a separation of $\bigcup_{i=1}^{n+1} A_n$. Note that $p_n \in \bigcup_{i=1}^{n+1} A_n$ so without loss of generality suppose $p_n \in C$. Then since $\bigcup_{i=1}^n A_n$ is connected, this entire set must also be in $C$. But also $p_n \in A_{n+1}$ so $A_{n+1} \subseteq C$ as well. Then $D = \emptyset$ and $\{C,D\}$ isn't a separation. Therefore $\bigcup_{i=1}^n A_n$ is connected for all natural numbers $n$. Note that $\bigcup_n A_n$ is the union of each of these sets and each set in this union contains some point in $A_1$. Therefore $\bigcup_n A_n$ is connected as well.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a proper subset of $X$, and let $B$ be a proper subset of $Y$. If $X$ and $Y$ are connected, show that
+\[
+(X \times Y) \backslash (A \times B)
+\]
+is connected.
+\end{problem}
+\begin{proof}
+Let $Z = (X \times Y) \backslash (A \times B)$. Choose $a \in X \backslash A$ and $b \in Y \backslash B$ and form the sets $\{a\} \times Y$ and $X \times \{b\}$. Each of these sets is homeomorphic to a connected set so they're both connected. Let $T = (\{a\} \times Y) \cup (X \times \{b\})$ and note that $T$ is the union of two connected sets intersecting in $(a,b)$ so $T$ is connected. Now choose an arbitrary point $(x,y) \in Z$ and note either $x \notin A$ or $y \notin B$. If $x \notin A$ then note that $A_x = \{x\} \times Y$ is a subset of $Z$. Otherwise, if $y \notin B$ then note that $A_y = X \times \{y\}$ is a subset of $Z$. But each $A_x$ and $A_y$ is homeomorphic to $Y$ or $X$ and is thus connected. Each $A_x$ and $A_y$ intersects $T$ at $(x,b)$ or $(a,y)$. Therefore the collection $\{(A_x \cup T), (A_y \cup T) \mid (x,y) \in Z\}$ is a set of connected sets which all intersect at the point $(a,b)$. Their union must then be connected. But this union is $Z$.
+\end{proof}
+
+\begin{problem}
+(a) Show that no two of the spaces $(0,1)$, $(0,1]$, and $[0,1]$ are homeomorphic.\\
+(b) Suppose that there exist imbeddings $f : X \to Y$ and $g : Y \to X$. Show by means of an example that $X$ and $Y$ need not be homeomorphic.\\
+(c) Show $\mathbb{R}^n$ and $\mathbb{R}$ are not homeomorphic if $n > 1$.
+\end{problem}
+\begin{proof}
+(a) Note that removing any point $x$ from $(0,1)$ results in a disconnected space with separation $\{(-\infty, x) \cap (0,1), (x, \infty) \cap (0,1)\}$. But if we remove $1$ from $(0,1]$ or $[0,1]$ we get connected spaces since these are intervals in $\mathbb{R}$. Thus $(0,1)$ is not homeomorphic to $(0,1]$ or $[0,1]$. Furthermore, removing any two points from $(0,1]$ results in a disconnected space since at least one of them must be some $x \in (0,1)$ and $\{(-\infty, x) \cap (0,1], (x, \infty) \cap (0,1]\}$ is a separation of this space. But we can remove the points $0$ and $1$ from $[0,1]$ and still have a connected space, so $(0,1]$ cannot be homeomorphic to $[0,1]$. Thus, no two of these spaces are homeomorphic.
+
+(b) Let $f : (0,1) \to [0,1]$ be the identity and $g : [0,1] \to (0,1)$ be given by $g(x) = 1/4 + x/2$. We see that $f$ is clearly a homeomorphism onto it's image as is $g$ since it simply scales open intervals to make them smaller, but still open. But by part (a) we know $(0,1)$ and $[0,1]$ are not homeomorphic.
+
+(c) We know $\mathbb{R}^n \backslash \{0\}$ for $n > 1$ is a connected space. It follows that $\mathbb{R}^n$ without any single point $x$ is still connected. On the other hand, $\mathbb{R} \backslash \{0\}$ is disconnected. So $\mathbb{R}^n$ is connected after removing one point and $\mathbb{R}$ is not. Thus the two spaces can't be homeomorphic.
+\end{proof}
+
+\begin{problem}
+Let $f : S^1 \to \mathbb{R}$ be a continuous map. Show there exists a point $x$ of $S^1$ such that $f(x) = f(-x)$.
+\end{problem}
+\begin{proof}
+Note that $S^1$ is connected set since it's clearly path connected. Consider the function $g(x) = f(x) - f(-x)$ and let $a \in S^1$. Note that $g(x) = -g(-x)$. If $g(a) = 0$ then we're clearly done. Suppose that $g(a) > 0$. Then $g(-a) = -g(a) < 0$. On the other hand, if $g(a) < 0$ then $g(-a) = -g(a) > 0$. In both cases since $S^1$ is connected there must exist some $b \in S^1$ such that $g(b) = 0$. Thus $f(b) = f(-b)$ and we're done.
+\end{proof}
+
+\begin{problem}
+Assume that $\mathbb{R}$ is uncountable. Show that if $A$ is a countable subset of $\mathbb{R}^2$, then $\mathbb{R}^2 \backslash A$ is path connected.
+\end{problem}
+\begin{proof}
+Let $\mathbf{x}, \mathbf{y} \in \mathbb{R}^2$. There are two cases to consider. If $\mathbf{x}$ and $\mathbf{y}$ are not collinear with some point $\mathbf{a} \in A$, then we're done since the line connecting $\mathbf{x}$ and $\mathbf{y}$ serves as a path from $\mathbf{x}$ to $\mathbf{y}$. Otherwise, note that there are uncountably many lines in $\mathbb{R}^2$ intersecting $\mathbf{x}$ and only countably many points of $A$. Therefore, at least one of these lines passing through $\mathbf{x}$ is not collinear with any point of $A$. Call it $l$. Likewise, at least two distinct lines $m$ and $n$ passing through $\mathbf{y}$ contain no points of $A$. Note that only one of $m$ or $n$ is possibly parallel to $l$, so we can assume $m$ is not parallel to $l$. Thus $l$ and $m$ intersect in some point $\mathbf{z}$. Then the line from $\mathbf{x}$ to $\mathbf{z}$ composed with the line from $\mathbf{z}$ to $\mathbf{y}$ is a path in $\mathbb{R}^2$ from $\mathbf{x}$ to $\mathbf{y}$ which doesn't intersect $A$. Therefore it's a path in $\mathbb{R}^2 \backslash A$ and this set is path connected.
+\end{proof}
+
+\end{document}

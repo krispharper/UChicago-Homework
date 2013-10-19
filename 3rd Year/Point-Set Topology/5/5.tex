@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26200\\
+
+February 11, 2010
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{problem}
+Show that $X$ is Hausdorff if and only if the \emph{diagonal} $\Delta = \{x \times x \mid x \in X\}$ is closed in $X \times X$.
+\end{problem}
+\begin{proof}
+Suppose $X$ is Hausdorff and let $A = (X \times X) \backslash \Delta$. Pick a point $(x,y) \in A$. Since $X$ is Hausdorff, we can find disjoint open neighborhoods $U$ and $V$ of $x$ and $y$ respectively. Then $U \times V$ is an open set in $X \times X$ which contains $(x,y)$. Note that since $U \cap V = \emptyset$ we also have $(U \times V) \cap \Delta = \emptyset$. That is, there are no points in $U$ that are also in $V$ and vice-versa, so there are no points of the form $(z,z)$ in $U \times V$. This shows that $A$ is open and $\Delta$ is closed.
+
+Conversely, suppose that $\Delta$ is closed in $X \times X$. Then $A = (X \times X) \backslash \Delta$ is open. Pick two distinct points $x,y \in X$ and consider the element $(x,y) \in A$. Since $A$ is open there exists some basis element $U \times V \subseteq A$ such that $(x,y) \in U \times V$. But then $x \in U$ and $y \in V$ and since $(U \times V) \cap \Delta = \emptyset$, we have that $U$ and $V$ are disjoint. Thus $X$ is Hausdorff.
+\end{proof}
+
+\begin{problem}
+Consider the five topologies on $\mathbb{R}$ given in Exercise 7 of \S 13.\\
+(a) Determine the closure of the set $K = \{1/n \mid n \in \mathbb{Z}_+\}$ under each of these topologies.\\
+(b) Which of these topologies satisfy the Hausdorff axiom? The $T_1$ axiom?
+\end{problem}
+\begin{proof}
+(a) Consider $K$ in $\mathcal{T}_1$. Pick any $x \neq 0$ in $\mathbb{R} \backslash K$ and note that we can always find a neighborhood around $x$ disjoint from $x$. Namely, if $x < 0$, then $(x-1,0)$ works and if $x > 1$ then $(1,x+1)$ works. If $0 < x < 1$ then $1/(n+1) < x < 1/n$ for some $n \in \mathbb{Z}_++$ so $x \in (1/(n+1), 1/n)$ which is disjoint from $K$. Thus $x \notin \overline{K}$. Now if $x = 0$ then any open neighborhood of $x$ will necessarily contain some positive point and choosing $1/n$ less than this point ensures that $x \in \overline{K}$. Thus $\overline{K} = K \cup \{0\}$.
+
+Now consider $K$ in $\mathcal{T}_2$. A similar argument as above holds. Since intervals are open in $\mathcal{T}_2$, any $x \neq 0$ is still not in $\overline{K}$ for the same reasons. Now if $x = 0$ then the open set $(-1,1) \backslash K$ contains $0$ and is disjoint from $K$, so $0 \notin \overline{K}$ either. Thus $K = \overline{K}$.
+
+Suppose now $K$ is put in the $\mathcal{T}_3$ topology. Since $K$ is an infinite set, every open set must intersect it, as an open set can only not contain finitely many points. Thus, for any point $x \in \mathbb{R}$ we have $x \in \overline{K}$ since every open set containing $x$ intersects $K$. Therefore $\overline{K} = \mathbb{R}$.
+
+Now consider $K$ in $\mathcal{T}_4$. Suppose $x \in \mathbb{R} \backslash K$. If $x \neq 0$ and $x < 0$ then $(x-1,0]$ contains $x$ and doesn't intersect $K$. Likewise if $x > 1$ then $(1,x+1]$ will work. If $0 < x < 1$ then $1/(n+1) < x < 1/n$ for some $n$ so choose some point $y$ such that $x < y < 1/n$ so that $x \in (1/(n+1), y]$ and this set is disjoint from $K$. Finally, if $x = 0$ then any open set containing $x$ will contain an interval of the form $(a,b]$ where $x = 0 < b$. Thus there exists some $n$ such that $1/n \leq b$ and so $(a,b]$ intersects $K$. Therefore $x \in \overline{K}$ and $\overline{K} = K \cup \{0\}$.
+
+Finally, consider $K$ in $\mathcal{T}_5$. Suppose $x \in \mathbb{R} \backslash K$. If $x < 0$ then $(-\infty, 0)$ contains $x$ and is disjoint from $K$. If $x \geq 0$ then any basis element containing $x$ will necessarily contain some positive value which means this basis element contains everything less than this value. It thus intersects $K$ and so $x \in \overline{K}$. Therefore $\overline{K} = [0,\infty)$.
+
+(b) We know $\mathcal{T}_1$ is Hausdorff, as can be demonstrated by taking balls of radius half the distance between two points. It is also $T_1$ as can be seen by looking at the complement of the open set $\bigcup_{i=1}^{\infty} (x, x+i) \cup \bigcup_{i=1}^{\infty} (x-i, x) = \mathbb{R} \backslash \{x\}$.
+
+The same proof as for $\mathcal{T}_1$ shows that $\mathcal{T}_2$ is both Hausdorff and $T_1$.
+
+The $\mathcal{T}_3$ topology is not Hausdorff since any two open sets intersect. Incidentally, a single point $\{x\}$ is the complement of the open set $\mathbb{R} \backslash \{x\}$ so $\mathcal{T}_3$ is $T_1$.
+
+In $\mathcal{T}_4$, if $x \neq y$ then without loss of generality $x < y$ and the open sets $(x-1, (x+y)/2]$ and $((x+y)/2, y]$ are disjoint neighborhoods of $x$ and $y$. Note that open intervals $(a,b)$ are part of $\mathcal{T}_4$ so the same set used to show $\mathcal{T}_1$ is $T_1$ shows that $\mathcal{T}_4$ is $T_1$.
+
+Finally suppose that $x \neq y$ in the $\mathcal{T}_5$ topology. Without loss of generality suppose that $x < y$ and note that any basis element containing $y$ will necessarily contain $x$. Therefore $\mathcal{T}_5$ is not Hausdorff. Now consider some point $x \in \mathbb{R}$ and $y \neq x$. If $x < y$ then we've already seen that every open set containing $y$ will necessarily contain $x$ since it will contain a basis element containing $y$ and everything less than $y$. Thus $y \in \overline{\{x\}}$ and $\overline{\{x\}} = [x, -\infty)$. Therefore $\mathcal{T}_5$ is not $T_1$ either.
+\end{proof}
+
+\begin{problem}
+Let $A \subseteq X$; let $f : A \to Y$ be continuous; let $Y$ be Hausdorff. Show that if $f$ may be extended to a continuous function $g : \overline{A} \to Y$, then $g$ is uniquely determined by $f$.
+\end{problem}
+\begin{proof}
+Let $g$ and $g'$ be two continuous extensions of $f$ on $\overline{A}$. Suppose that for some $x \in \overline{A} \backslash A$ we have $g(x) \neq g'(x)$. Since $Y$ is Hausdorff, we can find two disjoint neighborhoods $U$ and $U'$ such that $g(x) \in U$ and $g'(x) \in U'$. Both $g$ and $g'$ are continuous so $g^{-1}(U)$ and $g'^{-1}(U)$ are open sets containing $x$ and so also is $g^{-1}(U) \cap g'^{-1}(U)$. But since $x \in \overline{A}$, this intersection contains some point $y \in A$. Since $g$ and $g'$ both agree with $f$ on $A$, we have $g(y) = g'(y)$. Now $g(y) \in U$ and $g'(y) \in U'$ so $U$ and $U'$ can't be disjoint, a contradiction. Therefore $g = g'$ so all continuous extensions of $f$ are uniquely determined by $f$.
+\end{proof}
+
+\begin{problem}
+Show that $(X_1 \times \dots \times X_{n-1}) \times X_n$ is homeomorphic with $X_1 \times \dots \times X_n$.
+\end{problem}
+\begin{proof}
+Let $f : (X_1 \times \dots \times X_{n-1}) \times X_n  \to X_1 \times \dots \times X_n$ be given by $f((a_1, \dots , a_{n-1}), a_n) = (a_1, \dots , a_n)$. Note that $f$ is essentially an identity function and it's clear that $f$ is a bijection. Namely, if two elements are distinct in the domain, then they are distinct in the image for the same reason and for a given point $(a_1, \dots , a_n)$ in the codomain, the point $((a_1, \dots , a_{n-1}), a_n)$ maps to it. Let $U$ be a basis element of $X_1 \times \dots \times X_n$ so that $U = U_1 \times \dots \times U_n$. Then $f^{-1}(U) = (U_1 \times \dots \times U_{n-1}) \times U_n$ which is a basis element of $(X_1 \times \dots \times X_{n-1}) \times X_n$. The fact that $f$ takes open sets to open sets follows similarly, so $f$ is a homeomorphism.
+\end{proof}
+
+\begin{problem}
+\label{homeo}
+Given sequences $(a_1, a_2, \dots )$ and $(b_1, b_2, \dots )$ of real numbers with $a_i > 0$ for all $i$, define $f : \mathbb{R}^{\omega} \to \mathbb{R}^{\omega}$ by the equation
+\[
+h((x_1, x_2, \dots )) = (a_1x_1 + b_1, a_2x_2 + b_2, \dots ).
+\]
+Show that if $\mathbb{R}^{\omega}$ is given the product topology, $h$ is a homeomorphism of $\mathbb{R}^{\omega}$ with itself. What happens if $\mathbb{R}^{\omega}$ is given the box topology?
+\end{problem}
+\begin{proof}
+Let $\mathbf{x} = (x_1, x_2, \dots )$ and $\mathbf{y} = (y_1, y_2, \dots )$ be two distinct sequences such that $x_i \neq y_i$ for some $i$. Then $a_ix_i + b_i \neq a_iy_i + b_i$ so $h(\mathbf{x}) \neq h(\mathbf{y})$ and $h$ is injective. Furthermore, the point $\mathbf{z} = ((x_1-b_1)/a_1, (x_2-b_2)/a_2, \dots )$ is mapped to $\mathbf{x}$ by $h$, so $h$ is surjective and a bijection.
+
+Now let $U = \prod U_i$ be a basis element of $\mathbb{R}^{\omega}$. Let $h^{-1}(U) = V = \prod V_i$ and suppose that $\mathbf{x} \in V$. Then $h(\mathbf{x}) \in U$ and for each $i$ there's some basis element of $\mathbb{R}$, $(p_i,q_i) \subseteq U_i$ containing $h(\mathbf{x})_i = a_ix_i + b_i$. That is, $p_i < a_ix_i + b_i < q_i$ which means $(p_i-b_i)/a_i < x_i < (q_i-b_i)/a_i$ and it follows that any point in this interval is in $V_i$. Thus $((p_i-b_i)/a_i, (q_i-b_i)/a_i) \subseteq V_i$ for each $i$ and $\mathbf{x}$ is contained in some basis element contained in $V$ so $V$ is open. We therefore have that $h$ is continuous.
+
+Suppose now that $W = h(U) = \prod W_i$ and $h(\mathbf{y}) \in W$. Since $h$ is injective, we know $\mathbf{y} \in U$ so for each $i$ there exists a basis element of $\mathbb{R}$, $(r_i, s_i) \subseteq U_i$ containing $y_i$. Then $r_i < y_i < s_i$ and $a_ir_i+b_i < a_iy_i + b_i < a_is_i + b_i$ and it follows that any element of $(r_i, s_i)$ is in this image interval. Thus $(a_ir_i+b_i, a_is_i+b_i) \subseteq W_i$ for each $i$ and $h(\mathbf{y})$ is contained in some open set contained in $W$. Therefore $W$ is open and $h$ is an open map. Since $h$ is also continuous, we see that $h$ must be a homeomorphism.
+
+If $\mathbb{R}^{\omega}$ is given the box topology, the same result follows since we in no way used the fact that $U$ had only finitely many components different from $\mathbb{R}$.
+\end{proof}
+
+\begin{problem}
+Consider the map $h : \mathbb{R}^{\omega} \to \mathbb{R}^{\omega}$ defined in Exercise 8 of \S 19; give $\mathbb{R}^{\omega}$ the uniform topology. Under what conditions on the numbers $a_i$ and $b_i$ is $h$ continuous? A homeomorphism?
+\end{problem}
+\begin{proof}
+Let $U$ be an open set in $\mathbb{R}^{\omega}$ with the uniform topology and let $\mathbf{x} \in h^{-1}(U)$. We wish to find some $\delta$ such that for each $\mathbf{x'}$ with $\overline{\rho}(\mathbf{x},\mathbf{x'}) < \delta$ or equivalently, that for each coordinate $i$ we have $\overline{d}(x_i,x_i') < \delta$, it happens that $\mathbf{x'} \in h^{-1}(U)$.
+
+Let $\mathbf{y} = h(\mathbf{x}) \in U$ so there exists some $\varepsilon$-ball around $\mathbf{y}$ such that $B = B_{\overline{\rho}}(\mathbf{y},\varepsilon) \subseteq U$. This means that for each $\mathbf{z} \in B$ and for each coordinate $i$, we have $\overline{d}(y_i, z_i) < \varepsilon$. We've already shown in Problem~\ref{homeo} that $h$ is bijective and $h^{-1}(\mathbf{y}) = ((y_1-b_1)/a_1, (y_2-b_2)/a_2, \dots ) = (x_1, x_2, \dots )$. Thus if $h(\mathbf{x'}) = \mathbf{y'}$ then $h^{-1}(\mathbf{y}) = \mathbf{x'} = ((y_1'-b_1)/a_1, (y_2'-b_2)/a_2, \dots )$. If $\mathbf{y'} \in U$ then $\overline{d}(y_i,y_i') = \overline{d}(y_i-b_i, y_i'-b_i) < \varepsilon$ for each $i$ and $\overline{d}(x_i,x_i') = \overline{d}((y_i-b_i)/a_i,(y_i'-b_i)/a_i) < \varepsilon/a_i$. So to find a small enough $\delta$, we need the sequence $(a_i)_{i \in \mathbb{N}}$ to be bounded above. Then choose $\delta$ to be $\varepsilon/a$ where $a = \sup\{a_i \mid i \in \mathbb{N}\}$. Now if $\overline{\rho}(\mathbf{x},\mathbf{x'}) < \delta$, then for each $i$ we have $\overline{d}((y_i-b_i)/a_i,(y_i'-b_i)/a_i) = \overline{d}(x_i,x_i') < \delta = \varepsilon/a$. Then $\overline{d}(y_i,y_i') = \overline{d}(y_i-b_i,y_i'-b_i) < \varepsilon a_i/a < \varepsilon$ since $a_i/a < 1$. Thus $\overline{\rho}(\mathbf{y},\mathbf{y'}) < \varepsilon$ and $\mathbf{x'} \in h^{-1}(U)$.
+
+For $h$ to be a homeomorphism we need $h$ to be an open mapping. Thus, suppose $\mathbf{x} \in U$ and draw an $\varepsilon$-ball $B$ around $\mathbf{x}$. Then for each $\mathbf{x'} \in B$ and each coordinate $i$ we have $\overline{d}(x_i,x_i') < \varepsilon$. Now note that if $h(\mathbf{x}) = \mathbf{y}$ and $h(\mathbf{x'}) = \mathbf{y'}$ then $\overline{d}(y_i,y_i') = \overline{d}(a_ix_i+b_i,a_ix_i'+b_i) = \overline{d}(a_ix_i, a_ix_i') < a_i \varepsilon$. So now we need $(a_i)_{i \in \mathbb{N}}$ to be bounded below by $a' \neq 0$. Then choose $\delta = \varepsilon a'$ so that if $\overline{\rho}(\mathbf{y},\mathbf{y'}) < \delta$ then for each $i$ we have $\overline{d}(a_ix_i,a_ix_i') = \overline{d}(a_ix_i+b_i,a_ix_i'+b_i) = \overline{d}(y_i,y_i') < \delta$ so $\overline{d}(x_i,x_i') < \delta/a_i = \varepsilon a'/a_i < \varepsilon$ since $a'/a_i < 1$. This means $\mathbf{x'} \in U$ so $h(U)$ is open. Therefore, for $h$ to be a homeomorphism we need the sequence $(a_i)_{i \in \mathbb{N}}$ to be bounded with a lower bound greater than $0$.
+\end{proof}
+
+\begin{problem}
+Let $X$ be the subset of $\mathbb{R}^{\omega}$ consisting of all sequences $\mathbf{x}$ such that $\sum x_i^2$ converges. Then the formula
+\[
+d(\mathbf{x},\mathbf{y}) = \left [ \sum_{i=1}^{\infty} (x_i-y_i)^2 \right ]^{1/2}
+\]
+defines a metric on $X$. On $X$ we have the three topologies it inherits from the box, uniform and product topologies on $\mathbb{R}^{\omega}$. We have also the topology given by the metric $d$, which we call the \emph{$\ell^2$-topology}.\\
+(a) Show that on $X$, we have the inclusions
+\[
+\text{box topology $\supseteq$ $\ell^2$-topology $\supseteq$ uniform topology.}
+\]
+(b) The set $\mathbb{R}^{\infty}$ of all sequences that are eventually zero is contained in $X$. Show that the four topologies that $\mathbb{R}^{\infty}$ inherits has a subspace of $X$ are all distinct.\\
+(c) The set
+\[
+H = \prod_{n \in \mathbb{Z}_+} [0,1/n]
+\]
+is contained in $X$; it is called the \emph{Hilbert cube}. Compare the four topologies that $H$ inherits as a subspace of $X$.
+\end{problem}
+\begin{proof}
+(a) Let $\mathbf{x} \in \mathbb{R}^{\omega}$ and let $B = B_{\overline{\rho}}(\mathbf{x}, \varepsilon) \subseteq X$ be an $\varepsilon$-ball containing $x$. We wish to find some $\delta > 0$ such that if $d(\mathbf{x}, \mathbf{y}) < \delta$ then $\overline{\rho}(\mathbf{x}, \mathbf{y}) < \varepsilon$, that is $\mathbf{y} \in B$. Choose $\delta = \varepsilon$ and let $\mathbf{y} \in C$ where $C = B_{\ell^2}(\mathbf{x}, \delta)$. Then
+\[
+d(\mathbf{x},\mathbf{y})^2 = \sum_{i=1}^{\infty} (x_i-y_i)^2 < \delta^2
+\]
+In particular, each term $(x_i - y_i)^2 < \delta^2$ and $|x_i-y_i| < \delta = \varepsilon$. Thus $\overline{\rho}(\mathbf{x},\mathbf{y}) < \varepsilon$ and $\mathbf{y} \in B$. Hence $C \subseteq B$ and contains $\mathbf{x}$ so the $\ell^2$ topology is finer than the uniform topology.
+
+Now let $B = B_{\ell^2}(\mathbf{x},\varepsilon)$ be an $\varepsilon$-ball around $\mathbf{x}$. Choose an arbitrary point $\mathbf{y} \in B$. For each $i$ pick $\delta_i < |x_i-y_i|$ and let $U = \prod_{i=1}^{\infty} (x_i-\delta_i, x_i+\delta_i)$. Now if $\mathbf{z} \in U$ then for each $i$ we have $|x_i-z_i| < \delta_i < |x_i-y_i|$. In particular,
+\[
+\left (\sum_{i=1}^{\infty} (x_i-z_i)^2 \right )^{\frac{1}{2}} < \left (\sum_{i=1}^{\infty} (x_i-y_i)^2 \right )^{\frac{1}{2}} < \varepsilon.
+\]
+Thus $\mathbf{z} \in B$ and $U \subseteq B$ and contains $\mathbf{x}$. Therefore the box topology is finer than the $\ell^2$ topology.
+
+(b) Let $\mathcal{T}_1$, $\mathcal{T}_2$, $\mathcal{T}_3$ and $\mathcal{T}_4$ be the topologies $\mathbb{R}^{\infty}$ inherits as a subspace of $X$ with the product, uniform, $\ell^2$ and box topologies respectively. Since $\mathbb{R}^{\infty} \subseteq X$, we know that these topologies are the same as the ones $\mathbb{R}^{\infty}$ inherits from $\mathbb{R}^{\omega}$. We will consider them as such. We know that on $\mathbb{R}^{\omega}$ the uniform topology is finer than the product topology. Thus, given a basis element $U \in \mathcal{T}_1$ with $U = \mathbb{R}^{\infty} \cap V$ for an open set $V \subseteq \mathbb{R}^{\omega}$ in the product topology, $V$ is also open in the uniform topology and we have $U \in \mathcal{T}_2$. Therefore $\mathcal{T}_1 \subseteq \mathcal{T}_2$. Using part (a) and a similar method as above, we also see that $\mathcal{T}_2 \subseteq \mathcal{T}_3 \subseteq \mathcal{T}_4$.
+
+Now consider the $0$ sequence and the set $U = \mathbb{R}^{\infty} \cap \prod_{i=1}^{\infty} (-i,i)$ as a basis element of $\mathcal{T}_4$. Note that for each $\varepsilon > 0$ we can find some $n$ such that $1/n < \varepsilon/2$. Then consider the sequence $\mathbf{x} = (0,0, \dots , 0, \varepsilon/2, 0, \dots )$ where $\varepsilon/2$ is in the $n^{\textup{th}}$ coordinate. Then $\mathbf{x} \notin U$, but it's in a $\varepsilon$-ball around $0$. Therefore for each $\varepsilon$ we can find a ball containing the $0$ sequence which isn't contained in $U$. Thus $\mathcal{T}_4 \nsubseteq \mathcal{T}_3$ which also implies $\mathcal{T}_4 \nsubseteq \mathcal{T}_2$ and $\mathcal{T}_4 \nsubseteq \mathcal{T}_1$.
+
+Next let $\varepsilon > 0$ and consider the $\varepsilon$-ball around the $0$ sequence in $\mathcal{T}_3$. Let $\delta > 0$ and consider the sequence $\mathbf{\delta} = (\delta, \delta, \dots , \delta , 0, 0, \dots )$ which has $\delta$ in the first $n$ places with $\sqrt{n} > \varepsilon/\delta$. Then the distance between the $0$ sequence and $\mathbf{\delta}$ in the $\ell^2$ metric is $\sqrt{n}\delta > \varepsilon$. Thus, for each $\delta$-ball in $\mathcal{T}_2$ we can find a point not in the $\varepsilon$-ball in $\mathcal{T}_3$. Therefore $\mathcal{T}_3 \nsubseteq \mathcal{T}_2$ and as above we also have $\mathcal{T}_3 \nsubseteq \mathcal{T}_1$.
+
+Finally, note that if we choose an arbitrary $\varepsilon$-ball in $\mathcal{T}_2$, we can find a basis element of $\mathcal{T}_1$ which isn't contained in it because all but finitely many coordinates of this basis element will be the entire space. Thus $\mathcal{T}_2 \nsubseteq \mathcal{T}_1$. We have now shown $\mathcal{T}_1 \subsetneq \mathcal{T}_2 \subsetneq \mathcal{T}_3 \subsetneq \mathcal{T}_4$.
+
+(c) Let $\mathcal{T}_i$ with $1 \leq i \leq 4$ be defined as they were in part (b) where $H$ takes the place of $\mathbb{R}^{\infty}$. Note that the inclusions $\mathcal{T}_1 \subseteq \mathcal{T}_2 \subseteq \mathcal{T}_3 \subseteq \mathcal{T}_4$ follow from a similar proof to the one in the first part of part (b).
+
+Consider the open set $U = \prod_{i=1}^{\infty} [0,1/(2i)]$ in $\mathcal{T}_4$. Let $\varepsilon > 0$ and let $n$ be the first positive integer such that $1/(2n) < \varepsilon/2$. Then the sequence $(0,0, \dots ,0,\varepsilon/2,0, \dots)$ where $\varepsilon/2$ is in the $n^{\textup{th}}$ coordinate is not contained in $U$. Note that this sequence is contained in $H$ since $1/(2n) < \varepsilon/2 < 1/n$. Thus this sequence is contained in an $\varepsilon$-ball in $\mathcal{T}_3$ containing the $0$ sequence which is not contained in $U$. Therefore $\mathcal{T}_4 \nsubseteq \mathcal{T}_3$. By the above inclusions we also have $\mathcal{T}_4 \nsubseteq \mathcal{T}_2$ and $\mathcal{T}_4 \nsubseteq \mathcal{T}_1$.
+
+Let $\varepsilon > 0$ and consider $B$ an $\varepsilon$-ball in $\mathcal{T}_3$ containing $\mathbf{x}$. Note that $\sum_{i=1}^{\infty} 1/i^2 = k$ for some finite number $k$. This means there exists a partial sum, $\sum_{i=1}^{j} 1/i^2$ such that this sum is less than $\varepsilon$ away from $k$. Moreover, the remaining sum $\sum_{i=j+1}^{\infty} 1/i^2 < \varepsilon$. So after some $j^{\textup{th}}$ coordinate, $B$ contains all values from the intervals $[0,1/i]$. Said another way, $B$ contains only finitely many coordinates which are not the entire space. Since the remaining coordinates are intersections of $\mathbb{R}^{\omega}$ with some interval, we see that $B \in \mathcal{T}_1$ and so we have $\mathcal{T}_3 \subseteq \mathcal{T}_1$. Note that this also implies $\mathcal{T}_3 \subseteq \mathcal{T}_2$ and $\mathcal{T}_2 \subseteq \mathcal{T}_1$. Therefore, we have $\mathcal{T}_1 = \mathcal{T}_2 = \mathcal{T}_3 \subsetneq \mathcal{T}_4$.
+\end{proof}
+
+\begin{problem}
+Show that $2^{\omega}$ and the Cantor middle thirds set (as a subspace of the reals) are homeomorphic.
+\end{problem}
+\begin{proof}
+Let $C$ be the Cantor middle thirds set. Consider the elements of $[0,1]$ in ternary notation. Note that $1/3 = 0.1 = 0.0222 \dots$ and $2/3 = 0.2 = 0.1222 \dots$ and every element of $(1/3,2/3)$ has the form $0.1d_1d_2d_3 \dots$. Thus, the remaining elements in $[0,1]$ after the first middle third is removed are of the form $0.0d_1d_2d_2 \dots$ or $0.2d_1d_2d_3 \dots$ where $1/3 = 0.0222 \dots$ and $2/3 = 0.2$. In particular, the first digit is not $1$. After removing the second set of middle thirds, the points remaining only have $0$ or $2$ for their second digit as well as their first digit. Continuing in this way, it follows that $C$ only contains points in $[0,1]$ which can be expressed without using $1$s in ternary notation. Moreover, it contains every number of this form, for if $x = 0.d_1d_2d_3 \dots$ where $d_i \neq 1$ then $d_i$ determines which third $x$ belongs to in the $i^{\textup{th}}$ iteration of the construction of $C$. Since $d_i \neq 1$ for all $i$, $x$ is never in the middle third at any point in the construction, and so $x \in C$.
+
+Now let $f : C \to 2^{\omega}$ be defined by taking an element of $C$ and replacing the digits which equal $2$ with $1$. Then $f$ takes elements of $C$ to infinite sequences of $0$s and $1$. By the above argument, $f$ is surjective since any element of $2^{\omega}$ can be seen as an element of $C$ by replacing $1$s with $2$s. Also, $f$ is injective since if $x \neq y$ in $C$ then they differ at some digit $d_i$ which means they get mapped to sequences in $2^{\omega}$ which different at the $i^{\textup{th}}$ coordinate. Thus, $f$ is a bijection.
+
+Let $U$ be basis element in $2^{\omega}$. Then $U$ consists of all extensions of some finite sequence $d_1d_2 \dots d_n$ where $d_i$ is $0$ or $1$. We have $f^{-1}(U)$ is the corresponding set of extensions of $d_1'd_2' \dots d_n'$ where $d_i' = 2$ if $d_i = 1$ and $d_i' = 0$ otherwise. Consider some $x = d_1'd_2' \dots d_n' \dots$ in $f^{-1}(U)$. Choose $\varepsilon < .00 \dots 01$ where there are $n$ $0$s. Suppose $y$ is a point which is less than $\varepsilon$ away from $x$. Then $|x-y| < .00 \dots 01$ so $x$ and $y$ must agree on their first $n$ digits. Thus $y \in f^{-1}(U)$ and this shows that $f^{-1}(U)$ is open. Thus, $f$ is continuous.
+
+Now let $U$ be an open set in $C$ and choose $f(x) \in f(U)$. Note that since $f$ is a bijection, all inverse images of a single point are a single point. Since $U$ is open, there exists some $\varepsilon > 0$ such that for all $y$ with $|x-y| < \varepsilon$ we have $y \in U$. This means that $x$ and $y$ must agree on some finite number of digits, namely, the number of leading $0$s in the ternary expansion of $\varepsilon$. Suppose this number of $0$s is $n$. Now consider the open set $V$ of $2^{\omega}$ consisting of all extensions of $d_1d_2 \dots d_n$ where $d_i$ is $0$ or $1$ depending on the $i^{\textup{th}}$ digit of $x$. Pick some $z \in V$ and note that $f(x)$ and $z$ by definition agree on the first $n$ terms so their inverses in $C$ must also agree on their first $n$ digits. This means $|f(x) - f^{-1}(z)| < \varepsilon$ so $f^{-1}(z) \in U$ and $z \in f(U)$. Therefore $V \subseteq f(U)$ and $f(U)$ is open. Thus $f$ is an open map and a homeomorphism.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20900\\
+
+April 27, 2009
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Find a Borel set in $\mathbb{R}^n$ which is neither open nor closed.
+\begin{proof}
+Note that the Borel sets contain every open set and every closed set, and are closed under countable intersection, by the properties of $\sigma$-algebras. Thus, if we take the set
+\[
+(0,1) \times (0,1) \times \dots \times (0,1) \cap [\frac{1}{2}, 1] \times [\frac{1}{2}, 1] \times \dots \times [\frac{1}{2}, 1]
+\]
+we have a half open rectangle which is neither open nor closed.
+\end{proof}
+\end{**}
+
+\begin{**}
+Suppose that $A \subseteq \mathbb{R}^n$ such that for all $\varepsilon > 0$, there exists a finite union of rectangles, $P$, such that $m(P \triangle A) < \varepsilon$. Then $A$ is Lebesgue measurable.
+\begin{proof}
+Let $E \subseteq \mathbb{R}^n$. Note that $P \triangle A = (A \cup P) \backslash (A \cap P)$. Clearly $P$ is measurable so we have $m^*(E \backslash P) + m^*(E \cap P) = m^*(E)$.  We have
+\begin{align*}
+(m^*(E \backslash A) + m^*(E \cap A)) - (m^*(E \backslash P) + m^*(E \cap P))
+&=(m^*(E \backslash A) - m^*(E \backslash P)) + (m^*(E \cap A) - m^*(E \cap P))\\
+&\leq m^*((E \backslash A) \backslash (E \backslash P)) + m^*((E \cap A) \backslash (E \cap P))\\
+&= m^*((E \cap P) \backslash (P \cap A)) + m^*((E \cap (A \backslash P)) \cup (E \cap (P \backslash A))\\
+&= m^*((E \cap P) \backslash (A \cap P)) + m^*((E \cap ((A \cup P) \backslash (A \cap P))).
+\end{align*}
+Note that the last two sets are subsets of $(A \cup P) \backslash (A \cap P) = P \triangle A$. Thus the last equality evaluates to less than $2 \varepsilon$. But $\varepsilon$ is arbitrary and so
+\[
+m^*(E \backslash A) + m^*(E \cap A) = (m^*(E \backslash P) + m^*(E \cap P)) = m^*(E).
+\]
+Thus $A$ is Lebesgue measurable.
+\end{proof}
+\end{**}
+
+\begin{**}
+Suppose $X$ and $Y$ are metric spaces such that $X$ has the Borel measure on it. If $f : X \rightarrow Y$ is continuous then $f$ is measurable.
+\begin{proof}
+Suppose that $f$ is continuous, then its preimage maps open sets to open sets. If $f$ is measurable its preimage maps every open set to a measurable set. Thus it suffices to show that open sets are measurable sets. But since $X$ has the Borel measure on it, every open set is measurable and so $f$ is measurable.
+\end{proof}
+\end{**}
+
+\begin{**}
+The Lebesgue measure is inner and outer regular.
+\begin{proof}
+Let $A$ be a Lebesgue measurable set. For each $\varepsilon > 0$ there exists a sequence of open rectangles $I_j$ such that $A \subseteq \bigcup_{j} I_j$ and $\sum_{j} Vol(I_j) < m(A) + \varepsilon$. Then if $O = \bigcup_j I_j$ we have
+\[
+m(A) \leq m(O) \leq \sum_{j} m(I_j) = \sum_{j} Vol(I_j) < m(A) + \varepsilon.
+\]
+Since this is true for every $\varepsilon > 0$ we have
+\[
+m(A) = \inf \{m(O) \mid O \subseteq \mathbb{R}^n, A \subseteq O\}
+\]
+where $O$ is open. Now let $B$ be a Lebesgue measurable set which is bounded. Then there exists a compact set $C$ such that $B \subseteq C$. Then for every $\varepsilon > 0$ there exists an open set $O$ such that $C \backslash B \subseteq O$ and $m(O) \leq m(C \backslash B) + \varepsilon$. Since $m(B) < \infty$, we have $m(O) < m(C) - m(B) + \varepsilon$. For the compact set $K = C \backslash O$ we have $K \subseteq B$ and $C \subseteq K \cup O$. Then
+\[
+m(C) \leq m(K \cup O) \leq m(K) + m(O) \leq m(K) + m(C) - m(B) + \varepsilon
+\]
+and so $m(B) - \varepsilon < m(K)$. Therefore
+\[
+m(B) = \sup \{m(K) \mid K \subseteq \mathbb{R}^n, K \subseteq B\}
+\]
+where $K$ is compact. The result follows for arbitrary Lebesgue measurable sets using the fact that the Lebesgue measure is continuos from below.
+\end{proof}
+\end{**}
+
+\begin{**}
+Show Lebesgue measure in $\mathbb{R}^n$ is invariant under rotations.
+\begin{proof}
+We prove the following. Let $T$ be an invertible $n \times n$ matrix and let $J = [0,1)^n$ be the half open unit $n$-cube. Let $a \in \mathbb{R}$ be a number such that $m(TJ) = am(J)$. Then if $A$ is measurable we have $TA$ is measurable and $m(TA) = am(A)$.\newline
+
+We know that $J$ is a countable union of compact sets and since $T$ maps compact sets to compact sets, we know $TJ$ is the union of countably many compact sets. Therefore $TJ$ is measurable which shows that $a$ must exist. We wish to show that $m(TU) = am(U)$ for some open set $U$ in $\mathbb{R}^n$. We know that we can write $G = \bigcup_{k=1}^{\infty} J_k$ where $J_k$ are pairwise disjoint dilations and translations of $J$. Let $J_k = z_k + t_kJ$. Then we have $m(J_k) = t_k^nm(J)$ and
+\[
+m(TJ_k) = t_k^n(TJ) = t_k^nam(J) = t_k^nat_k^{-n}m(J_k).
+\]
+Thus $m(TJ_k) = am(J_k)$ and $TG = \bigcup_{k=1}^{\infty} TJ_k$ which is a pairwise disjoint collection of measurable sets. Therefore
+\[
+m(TG) = \sum_{k=1}^{\infty} m(TJ_k) = \sum_{k=1}^{\infty} am(J_k) = am(G).
+\]
+We have shown through examples that $a = |\det (T)|$. A rotation matrix is one such that $\det (T) = \pm 1$. Therefore, Lebesgue measurable sets are invariant under rotations.
+\end{proof}
+\end{**}
+
+\end{flushleft}
+\end{document}

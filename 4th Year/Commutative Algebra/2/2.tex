@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\input xy
+\xyoption{all}
+
+\newcommand{\J}{\textup{J-rad}\,}
+\newcommand{\im}{\textup{im}\,}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26800\\
+
+January 18, 2011
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\noindent
+As before $A$ denotes a commutative ring.
+
+\begin{problem}
+Let $A_1$, $A_2$, $B$ be commutative rings and $f_i : A_i \to B$, $i = 1, 2$, be surjective ring homomorphisms. Let $A_1 \times_B A_2$ (called the fiber product of $A_1$ and $A_2$ over $B$) denote the subring of the direct product $A_1 \times A_2$:
+\[
+A_1 \times_B A_2 = \{(a_1, a_2) \mid f_1(a_1) = f_2(a_2)\}.
+\]
+Suppose $A_1$ and $A_2$ are Noetherian rings. Show that $A_1 \times_B A_2$ is also a Noetherian ring.
+\end{problem}
+\begin{proof}
+Let $\pi : A_1 \times_B A_2 \to A_1$ be the projection map $\pi : (a_1, a_2) \mapsto a_1$. Then $\ker \pi$ is the subset of $A_1 \times_B A_2$ consisting of pairs $(a_1,a_2)$ with $a_1 = 0$ and $a_2 \in A_2$. For each pair we must have $f_2(a_2) = f_1(a_1) = f_1(0) = 0$. Thus, this set is isomorphic to $\ker f_2$. Now consider the exact sequence
+\[
+\xymatrix{
+0 \ar[r] & \ker f_2 \ar[r]^{\iota} & A_2 \ar[r]^{f_2} & B \ar[r] & 0.
+}
+\]
+Since $A_2$ is Noetherian, we must have $\ker f_2$ is a Noetherian $A_2$-module, and thus $\ker \pi$ is a $A_1 \times_B A_2$-module. Now consider $\im \pi$. Since $f_2$ is surjective, this is just $A_1$, which is Noetherian by assumption.
+
+Now consider the exact sequence
+\[
+\xymatrix{
+0 \ar[r] & \ker \pi \ar[r]^-{\iota} & A_1 \times_B A_2 \ar[r]^-{\pi} & \im \pi \ar[r] & 0.
+}
+\]
+Since the outer two terms are Noetherian $A_1 \times_B A_2$-modules, the middle term must be as well.
+\end{proof}
+
+\begin{problem}
+Let $f : A \to B$ be a ring homomorphism and $E$ a finite $B$-module. Suppose $B$ is a finite $A$-module (via $f$). Show that $E$ is a finite $A$-module. Deduce that if $A$ is a Noetherian ring, then $B$ is a Noetherian ring and $E$ a Noetherian $B$-module. $E$ is also a Noetherian $A$-module.
+\end{problem}
+\begin{proof}
+Since $E$ is a finite $B$-module, we can write $E = Bx_1 + \dots + Bx_n$ with $x_i \in E$. Furthermore, since $B$ is a finite $A$-module, we can write $B = Ab_1 + \dots + Ab_m$ where $b_i \in B$ and $ab_i = f(a)b_i$ for each $a \in A$. Then
+\[
+E = (Ab_1 + \dots + Ab_m)x_1 + \dots + (Ab_1 + \dots + Ab_m)x_n = Ab_1x_1 + \dots + Ab_mx_1 + \dots + Ab_1x_n + \dots Ab_mx_n
+\]
+where $b_ix_j \in E$ and $ab_ix_j = (f(a)b_i)x_j$ for each $a \in A$.
+
+If $A$ is Noetherian, then since $B$ is a finite $A$-module, $B$ is a Noetherian $A$-module and thus a Noetherian $B$-module as well. Since $B$ is Noetherian, and $E$ is a finite $B$-module, $E$ is a Noetherian $B$-module as well. We now know $E$ is a finite $A$-module, so it's a Noetherian $A$-module as well.
+\end{proof}
+
+\begin{problem}
+Let $B$ be a commutative ring and $A$ a Noetherian subring of $B$. Suppose $B$ is a finite $A$-module. Let $R$ be a subring of $B$ with $A \subseteq R$. Show that $R$ is a Noetherian ring.
+\end{problem}
+\begin{proof}
+Since $B$ is a finite $A$-module we have $B = Ax_1 + \dots + Ax_n$, $x_i \in B$. In particular, $B$ contains all polynomials in the elements $x_i$ with coefficients in $A$. Thus $B = A[x_1, \dots , x_n]$. Furthermore, since $R$ contains every element of $A$ and is still a subring of $B$, we also have $B = Rx_1 + \dots + Rx_n$. Thus, we are in the situation $A \subseteq R \subseteq B$ are rings, $A$ is Noetherian, $B$ is a finite $A$-algebra and $B$ is a finite $R$ module. We can then conclude that $R$ is a finitely generated $A$-algebra and thus Noetherian.
+\end{proof}
+
+\begin{problem}
+\label{unitary}
+Let $A \subseteq B$ be commutative rings. Assume that $B$ is a finitely generated $A$-algebra, say $B = A[u_1, \dots , u_m]$, $u_i \in B$. Let $f_i \in A[x]$ be unitary polynomials, $1 \leq i \leq m$ such that $f_i(u_i) = 0$, $1 \leq i \leq m$. Show that $B$ is a finite $A$-module.
+\end{problem}
+\begin{proof}
+Let $g$ be an arbitrary polynomial in $A[x]$. Since each $f_i$ is unitary, there exist unique $q, r \in A[x]$ such that $g = qf_i + r$ where $\deg r < \deg f_i$. This is true for each $i$, so for any polynomial $g_i(u_i)$ in the variables $u_i$, we have $g_i(u_i) = q(u_i) f_i(u_i) + r(u_i) = q(u_i) \cdot 0 + r(u_i) = r(u_i)$. Since $\deg r < \deg f_i$, we know the highest possible exponent of $u_i$ in $g_i(u_i)$ is $\deg f_i - 1$. Now note that every element of $B$ can be written as a polynomial in the variables $u_i$. But each polynomial in these variables reduces to one with degree no higher than $\deg f_i - 1$. Therefore $B$ is generated as a finite $A$-module by the elements $u_1^{i_1}, \dots , u_m^{i_m}$ where $1 \leq i_j < \deg f_j$.
+\end{proof}
+
+\begin{problem}
+\label{unitary2}
+As in Problem~\ref{unitary}, let $A \subseteq B = A[u_1, \dots , u_m]$. Suppose that $A$ is a Noetherian ring and $C$ a subring of $B$ with $A \subseteq C \subseteq B$. Suppose there exist unitary polynomials $f_i \in A[x]$ with $f_i(u_i) \in C$, $1 \leq i \leq m$. Show that $C$ is a finitely generated $A$-algebra (i.e. there exist $t_1, \dots , t_r \in C$ such that $C = A[t_1, \dots t_r])$. In particular, $C$ is a Noetherian ring.
+\end{problem}
+\begin{proof}
+Let $R = A[f_1(u_1), \dots , f_m(u_m)]$ be a finitely generated $A$-algebra. Note that $f(u_i) \in C$ so $R \subseteq C$. Using a similar argument to Problem~\ref{unitary}, we see that $C$ is a finite $R$-module with the generators $u_i^{i_j}$ where $1 \leq i_j < \deg f_j$. Since $C$ is a finite $R$ module and $R$ is a finite $A$-algebra, it follows that $C$ is a finite $A$-algebra.
+\end{proof}
+
+\begin{problem}[Theorem of Emmy Noether]
+Let $A$ be a commutative ring and $K$ a subfield of $A$. Suppose $A = K[u_1, \dots , u_m]$ is a finitely generated $K$-algebra. Let $G$ be a finite group of $K$-automorphisms of the ring $A$ (i.e. $\sigma(a) = a$, for all $a \in K$). Let $A^G = \{x \in A \mid \sigma(x) = x \text{ for all } \sigma \in G\}$. ($A^G$ is called the \emph{ring of $G$-invariants}). Show that $A^G$ is a finitely generated $K$-algebra. In particular $A^G$ is a Noetherian ring.
+\end{problem}
+\begin{proof}
+For each $1 \leq i \leq m$ define $f_i(x) = \prod_{\sigma \in G} (x-\sigma(u_i))$. Now let $R$ be the finite $K$-algebra generated by all the coefficients of the polynomials $f_i$. Then for each $i$, $f_i \in R[x]$ and $f_i(u_i) = 0$ which is in $A^G$. Also $R \subseteq A^G$ because all the $f_i(x)$ are $G$-invariant. Using Problem~\ref{unitary2} we are able to conclude that $A^G$ is a finite $R$-algebra. But since $R$ is a finite $K$-algebra, we also have $A^G$ is a finite $K$-algebra.
+\end{proof}
+
+\begin{problem}
+Let $K$ be a field and $A = K[x]$. Let $R$ be a subring of $A$, with $K \subsetneq R$. Show that $R$ is a finitely generated $K$-algebra. In particular $R$ is Noetherian.
+\end{problem}
+\begin{proof}
+Pick any nonconstant monic polynomial $f \in R$ (which we can do since $K \subsetneq R$). Then $f \in K[x]$ and $f(x) \in R$. We can now apply Problem~\ref{unitary2} where $K$, $A$ and $R$ take the place of $A$, $B$ and $C$ respectively. Thus, $R$ is a finitely generated $K$-algebra and is Noetherian since $K$ is Noetherian.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a Noetherian ring. Let $G$ be a finite group of automorphisms of the ring $A$ of order $n$. Suppose $n \cdot 1 \in A^*$. Show that
+\[
+A^G = \{a \in A \mid \sigma(a) = a \text{ for all } \sigma \in G\}
+\]
+is a Noetherian ring.
+\end{problem}
+\begin{proof}
+Let $I_1 \subseteq I_2 \subseteq \cdots$ be an ascending chain of $A^G$ ideals. Then $AI_1 \subseteq AI_2 \subseteq \cdots$ is an ascending chain of $A$ ideals. Since $A$ is Noetherian, we know $AI_n = AI_{n+1}$ for some $n$. Take $x \in I_{n+1} \backslash I_n$. Then $x \in AI_n$ which is finitely generated so $x = \sum_{i=1}^m a_i y_i$, $a_i \in A$, $y_i \in I_n$. Since $x \in A^G$, we know $\sigma(x) = x$ for all $\sigma \in G$. Thus
+\[
+x = \frac{1}{n}\sum_{\sigma \in G} \sigma(x) = \frac{1}{n} \sum_{\sigma \in G} \sum_{i=1}^m \sigma(a_i y_i) = \sum_{i=1}^m \left ( \frac{1}{n} \sum_{\sigma \in G} \sigma(a_j) \right ) y_i.
+\]
+Since $\frac{1}{n} \sum_{\sigma \in G} \sigma(a) \in A^G$ for each $a \in A$ and $y_i \in I_n$ for each $i$, we see that $x \in A^GI_n$ so $x \in I_n$. Thus $I_{n+1} = I_n$.
+\end{proof}
+
+\begin{problem}
+Let $R = A[[x]]$. Then for any $f \in R$ $(1-fx) \in R^*$. Thus $x \in \J A$.
+\end{problem}
+\begin{proof}
+Let $f \in R$ and consider $g = \sum_{i=0}^{\infty} (fx)^i$. Then
+\[
+g (1 - fx) = g - gfx = \sum_{i=0}^{\infty} (fx)^i - \sum_{i=0}^{\infty} (fx)^{i+1} = 1.
+\]
+Thus $(1 - fx) \in R^*$ and $x \in \J A$.
+\end{proof}
+
+\begin{problem}
+Let $K$ be a field and $m$, $n$ positive integers such that $\gcd (m,n) = 1$. Let $C \subseteq K^2$ be a subset defined by
+\[
+C = \{(a^m, a^n) \mid a \in K\}.
+\]
+Show that $C$ is an affine algebraic set in $K^2$.
+\end{problem}
+\begin{proof}
+Clearly $C \subseteq V(\{x^n - y^m\})$. Now pick $(a,b) \in K^2$ with $a^n - b^m = 0$. Since $\gcd (m,n) = 1$ there exist $p,q \in \mathbb{Z}$ such that $mp + nq = 1$. Then $a^{nq} = b^{mq}$ and $a^{np} = b^{mp}$. Now $a^{1 - mp} = b^{mq}$ and $a^{np} = b^{1 - nq}$. Multiply the first equation by $a^{mp}$ and the second by $b^{nq}$ to obtain $a = a^{mp}b^{mq} = (a^pb^q)^m$ and $b = a^{np}b^{nq} = (a^pb^q)^n$. Thus $(a,b) = ((a^pb^q)^m, (a^pb^q)^n)$ is in $C$ so $V(\{x^n - y^m\}) \subseteq C$.
+\end{proof}
+
+\begin{problem}
+\label{infinite}
+Let $K$ be a field and $H_i \subseteq K$, $1 \leq i \leq n$ infinite subsets of $K$. Let $f \in K[x_1, \dots , x_n]$. Suppose $f(a) = 0$ for all $a \in H_1 \times \dots \times H_n \subseteq K^n$. Show that $f = 0$.
+\end{problem}
+\begin{proof}
+We induct on $n$. In the base case we have a polynomial $f(x) \in K[x]$ which is $0$ on an infinite set. It's well known that a nonconstant polynomial $f$ of one variable can have at most $\deg f$ zeros. Thus $f$ must be constantly $0$.
+
+Suppose the statement is true for $n-1$ and consider $f \in K[x_1, \dots , x_n]$ which is $0$ for all $a \in H_1 \times \dots \times H_n$. Suppose that $f$ is nonconstant, so there is some variable, say $x_n$, such that we can write $f = g_0 + g_1x_n + \dots + g_mx_n^m$ where $g_i \in K[x_1, \dots , x_{n-1}]$, $m > 0$ and $g_m \neq 0$. Now for $a \in H_1 \times \dots \times H_n$ we have $f(a) = g_0(a) + g_1(a) a + \dots + g_m(a) a^m = 0$. Since the $a^i$ terms are linearly independent we must have $g_0(a) = \dots = g_m(a) = 0$. But by the inductive hypothesis, this means each $g_i$ is constantly $0$. Thus $f$ is constantly $0$.
+\end{proof}
+
+\begin{problem}
+\label{infinite2}
+Let $K$ be an algebraically closed field and $A = K[x_1, \dots , x_n]$, $n \geq 2$. Let $f \in A$, $f \notin K$. Show that $V(f)$ is an infinite set.
+\end{problem}
+\begin{proof}
+Since $n \geq 2$ and $f$ is nonconstant, we can write $f = g_0 + g_1 x_n + \dots + g_m x_n^m$ where each $g_i \in K[x_1, \dots , x_{n-1}]$, $m > 0$ and $g_m \neq 0$. Suppose there are only finitely many points
+\[
+(a_{1,1}, \dots , a_{n-1,1}), \dots , (a_{1,k}, \dots , a_{n-1,k})
+\]
+for which $g_m$ is nonzero. Then let $H_i = K \backslash \{a_{i,1}, \dots , a_{i,k}\}$. Note that each $H_i$ is an infinite subset of $K$ and $g_m$ is zero on $H_1 \times \dots \times H_n$. By Problem~\ref{infinite} we know $g_m = 0$, but this is a contradiction. Thus there are infinitely many points $(a_1, \dots , a_{n-1}) \in K^{n-1}$ with $g_m(a_1, \dots , a_{n-1}) \neq 0$.
+
+Then, evaluating each $g_i$ at $(a_1, \dots , a_{n-1})$ makes $f$ a polynomial with coefficients in $K$. Since $K$ is algebraically closed, for each of these points there is some $a_n \in K$ such that $f(a_1, \dots , a_n) = 0$.
+\end{proof}
+
+\begin{problem}
+(a) Let $V$ be an affine algebraic set in $\mathbb{R}^n$. Show that there exists an $f \in \mathbb{R}[x_1, \dots , x_n]$ such that $V(f) = V$.\\
+(b) Let $K$ be an algebraically closed field and $A = K[x_1, \dots , x_n]$. Show that there does not exist any $f \in A$ such that $V(f) = V(\{x_1, \dots , x_n\}) = \{0\}$.
+\end{problem}
+\begin{proof}
+(a) Let $V = V(\{f_1, \dots , f_n\})$. Then consider $f = f_1^2 + \dots + f_n^2$. Since $f_i^2(x) \geq 0$, for all $x \in \mathbb{R}$, we must have $f(x) = 0$ if and only if $f_i(x) = 0$ for all $1 \leq i \leq n$. Thus $V(f) = V$.
+
+(b) The problem is not true for $n = 1$ since $V(\{x_1\}) = \{0\}$. If $n \geq 2$ then apply Problem~\ref{infinite2} to see that $V(f)$ is an infinite set and thus not $\{0\}$.
+\end{proof}
+
+\begin{problem}
+Let $I$ be an ideal in a commutative ring $A$. Show that $\sqrt{I}$ radical $I$ is the intersection of all prime ideals containing $I$.
+\end{problem}
+\begin{proof}
+First we show that the nilradical of a commutative ring $A$ is the intersection of all prime ideals $J = \bigcap_{P \subseteq A} P$. First, note that if $a \in A$ is nilpotent, then $a^n = 0$. Since $0 \in J$, we know $a^n \in P$ for each prime ideal $P$ and thus $a \in P$ for each $P$.
+
+Conversely, suppose $a$ is not nilpotent. Consider $\Sigma = \{I \subseteq A \mid a^k \notin I, k \in \mathbb{N}\}$. Note that $\Sigma$ can be partially ordered by inclusion and it's nonempty since it contains the $0$ ideal. For any totally ordered chain in $\Sigma$, we can take the union of those ideals to obtain an upper bound (it's clear that this ideal will not contain $a^k$ for any $k \geq 1$). Apply Zorn's Lemma and let $P$ be a maximal element for $\Sigma$. To show $P$ is prime, pick $xy \in P$ with $x,y \in A$ and suppose $x,y \notin P$. Then $P \subsetneq xA$ and $P \subsetneq yA$ so $a^k \in P + xA$ and $a^j \in P + yA$ for some $k, j \in \mathbb{N}$. Then $x^{j+k} \in P + xyA$, and so $P + xyA \notin \Sigma$, but $P + xyA = P$ since $xy \in P$, which is a contradiction. Thus $P$ is prime. Since $a \notin P$, we must have $a \notin J$. This shows the second inclusion, so the nilradical of any ring is the intersection of all prime ideals in that ring.
+
+Now let $I$ be an arbitrary ideal in a commutative ring $A$. Note that $\sqrt{I}$ is the preimage of the nilradical of $A/I$ under the natural projection. By the above, we know the nilradical of $A/I$ the intersection of all prime ideals of $A/I$. By the fourth isomorphism theorem, each prime ideal of $A/I$ is of the form $P/I$ where $P$ is a prime ideal of $A$ containing $I$. Then, the preimage of this intersection is just the intersection of all ideals $P \subseteq A$ which contain $I$, as desired.
+\end{proof}
+
+\end{document}

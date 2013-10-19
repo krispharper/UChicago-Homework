@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage,pstricks}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+CMSC 27500\\
+
+June 3, 2009
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{problem}
+Show that:
+
+1) Any edge-extension of a $3$-connected cubic graph is also $3$-connected and cubic.
+\begin{proof}
+Let $v$ and $v'$ be the new vertices on edges $xy$ and $x'y'$. Let $f$ be the new edge connecting $v$ and $v'$. Let $G'$ be the edge-extention of a graph $G$. It's clear that $G'$ is still cubic, since all vertices of $G$ retain their edges and $v$ is connected to $x$, $y$, and $v'$. Likewise $v'$ is connected to $x'$, $y'$ and $v$. Without loss of generality suppose $y \neq y'$. Consider $v$ and some other vertex of $G'$, $w$. There are three internally disjoint paths from each of $x$, $y$ and $y'$ to $w$. We can then pick three internally disjoint paths, $P$, $Q$ and $R$, which go from $y$ to $w$, $y'$ to $w$ and $x$ to $w$ respectively. The paths $Pyv$, $Qy'v'v$ and $Rxv$ are three internally disjoint paths from $w$ to $v$. The same holds for $v'$. In the case of $v$ and $v'$, we can take $f$ as one path. Then if $xy$ and $xy'$ are not adjacent, take one of the three internally disjoint paths between $x$ and $x'$ and $y$ and $y'$ for the other two paths. These will not intersect $v'$. If $xy$ and $x'y'$ are adjacent, take $vxv'$ or $vyv'$ as one or both of the other paths. This shows that $G'$ is $3$-connected.
+\end{proof}
+2) Every $3$-connected cubic graph can be obtained from $K_4$ by means of a sequence of edge-extensions.
+\begin{proof}
+Let $G$ be a $3$-connected cubic graph and consider some edge $e=xy$ of $G$. Note that since $G$ is cubic, $x$ and $y$ both have two other neighbors besides each other. Suppose we delete $e$ and merge the two remaining neighbors of $x$ into one edge. Do the same for $y$. These new edges both end in vertices with precisely $3$ neighbors as well, since $G$ is cubic. Perform the same operation on each of these edges. Since $G$ is $3$-connected, we will never end up with a disconnected graph after iterating this operation. Eventually $K_4$ can be reached since $3$-connectivity and $3$-regularity is preserved.
+\end{proof}
+3) An edge-extension of an essentially $4$-edge-connected cubic graph $G$ is also essentially $4$-edge connected provided that the two edges $e$ and $e'$ of $G$ involved in the extension are nonadjacent in $G$.
+\begin{proof}
+Label all vertices, edges and graphs as in Part 1). Let $\partial(X)$ be a non-trivial edge cut of $G'$. Note that if $X$ does not contain $x$, $x'$, $y$, $y'$, $v$ or $v'$ then $|\partial(X)| < 3$ since $G$ is essentially $4$-edge-connected. The same holds true if $X$ contains precisely one of $x$, $x'$, $y$ or $y'$ and $|\partial(X)| < 3$ if more than one of these vertices are in $X$ since more edges have been introduced in $G'$. Now suppose that $v \in X$. If $x \in X$ and $y, x', y' \notin X$ then $|\partial(X) < 3$ since both $vy$ and $vv'$ will be cut, so one more edge is introduced from the corresponding edge cut in $G$. A similar statement is true if $x, x' \in X$ and $y, y' \notin X$ or $x, y' \in X$ and $x', y \notin X$. If $x, y \in X$ and $x', y' \notin X$ then $vv'$ is cut which is one more edge than in the corresponding edge cut in $G$. The same is true if any two or three of $x$, $x'$, $y$ or $y'$ are in $X$. Finally if only $v \in X$ and $x,x',y,y' \notin X$, then since $d(v) = 3$, we still have $|\partial(X)| > 3$. All cases hold similarly for $v'$. In the case that $v,v' \in X$ we have $|\partial(X)| > 3$ since $xy$ and $x'y'$ are distinct and there are a total of four edges attached to $v$ and $v'$. In all cases $|\partial(X)| > 3$ which means that all $3$-edge cuts are trivial. Thus, $G'$ is essentially $4$-edge-connected.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $G$ be a $3$-connected graph with $n \geq 5$. Show that, for any edge $e$, either $G / e$ is $3$-connected or $G \backslash e$ can be obtained from a $3$-connected graph by subdividing at most two edges.
+\begin{proof}
+Let $e = xy$. Suppose that $G / e$ is not $3$-connected. Then there exists a vertex $z \in G$ such that $\{x, y, z\}$ is a $3$-vertex cut. Note that $d(x)$ and $d(y)$ are both greater than $3$ since $G$ is $3$-connected. In the case where $d(x) = 3$ or $d(y) = 3$, consider the graph $G \backslash e$ where $x$ and $y$ are absorbed into their neighbors. This graph remains $3$-connected since any paths passing through $x$ or $y$ in $G$ would have to pass through $y$ or $x$ and so no internally disjoint paths are broken. If $d(x) > 3$ or $d(y) > 3$ then do nothing so that internally disjoint paths from $G$ are not broken in the new graph. Clearly, subdividing appropriate edges results in $G \backslash e$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $G$ be a simple $3$-connected graph different from a wheel. Show that, for any edge $e$, either $G / e$ or $G \backslash e$ is also a $3$-connected simple graph.
+\begin{proof}
+Let $e = xy$. Suppose that $G \backslash e$ is not a $3$-connected simple graph. Then since $G$ is $3$-connected, the deletion of $e$ must break some path between two vertices $v$ and $u$. Note then that identifying $x$ and $y$ will preserve this path. Moreover, the two other internally disjoint paths from $v$ to $u$ could not have contained $x$ or $y$ and so this new path will be internally disjoint from them. Also, since $G$ is simple, $e$ is not a double edge so no loops will be created when $e$ is contracted. Since $G$ is different from a wheel, no double edges will be created when $e$ is contracted. Thus $G / e$ is simple and $3$ connected.
+Now suppose that $G / e$ is not a $3$-connected simple graph. Then since no connections are broken, two paths which were internally disjoint, now share a vertex, namely the contracted $e$. If we then look at $G \backslash e$, note that the two paths must remain internally disjoint. The absence of $e$ makes no difference since neither path contains $e$ in $G$ as they're internally disjoint. Additionally, since $G$ is simple, $e$ is not a loop or double edge and so $G \backslash e$ is also simple and moreover, $3$-connected.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+1) Let $\mathcal{G}$ be a family of graphs consisting of $K_5$, the wheels $W_n$, $n \geq 3$, and all graphs of the form $H \vee \overline{K}_n$, where $H$ is a spanning subgraph of $K_3$ and $\overline{K}_n$ is the complement of $K_n$, $n \geq 3$. Show that a $3$-connected simple graph $G$ does not contain two disjoint cycles if and only if $G \in \mathcal{G}$.
+\begin{proof}
+First suppose $G \in \mathcal{G}$. If $G = K_5$ or $G = W_n$ then it is easy to see $G$ is $3$ connected. If $G = H \vee \overline{K}_n$, then consider two vertices $x$ and $y$ in $G$. If $x$ and $y$ are both in $\overline{K}_n$ then there is a path from $x$ to $y$ using one edge connecting $x$ to a vertex in $H$ and another edge connecting this same vertex of $H$ to $y$. There are two more of these paths using the other two vertices of $H$ and they are all three internally disjoint. If $x$ and $y$ are both in $H$, a similar result holds since $n \geq 3$. If $x \in H$ and $y \in \overline{K}_n$, then the edge connecting $x$ to $y$, and two paths connecting $x$ to another vertex in $H$ and then $y$ make three internally disjoint paths. Thus $G$ is $3$ connected and simple. Now, if $G = K_5$ or if $G = W_n$ then it's easy to see that it does not contain two disjoint cycles. If $G = H \vee \overline{K}_n$ then the only cycle $G$ could contain is in $H$. Thus $G$ does not contain two disjoint cycles if $G \in \mathcal{G}$.
+Conversely, suppose that $G$ is a $3$-connected simple graph which does not contain two disjoint cycles. Suppose to the contrary that $G \notin \mathcal{G}$. Note that $G$ must have at least $5$ vertices otherwise to remain $3$-connected it would have to be $K_4$, which is a wheel. Since $G$ is different from a wheel we know from Problem 3 that either $G/e$ or $G \backslash e$ is still simple and $3$-connected. Either contract or delete edges from $G$ until $G$ has less than $5$ vertices. But if it's possible to reduce $G$ to a connected graph with $4$ vertices, then $G$ must have been of the form $H \vee \overline{K}_n$. This is a contradiction and so $G \in \mathcal{G}$.
+\end{proof}
+2) Deduce that any simple graph not containing two disjoint cycles has three vertices whose deletion results in an acyclic graph.
+\begin{proof}
+Let $G$ be a simple graph not containing two disjoint cycles. Then from Part 1) we know $G \in \mathcal{G}$. If $G = K_5$ then deleting any three vertices gives an acyclic graph. If $G = W_n$ then deleting the center vertex and two adjacent vertices results in a path. If $G = H \vee \overline{K}_n$, then deleting all vertices in $H$ gives a graph with no edges.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+1) Show that if $G$ is $2k$-edge-connected, then the graph $G'$ obtained from $G$ by pinching together any $k$ edges of $G$ is also $2k$-edge-connected.
+\begin{proof}
+Since $G$ is $2k$-edge-connected, there are $2k$ internally edge-disjoint paths from two arbitrary vertices $x$ and $y$. Take $k$ edges of $G$ and pinch them together at a vertex $v$ to form $G'$. If none of the $2k$ paths contains any of the $k$ vertices pinched, then we're done. Suppose that some path connecting $x$ and $y$ contained one of the $k$ edges. then this edge can be replaced by the two-edge path passing through $v$ which connects the two original ends of the edge. Since there were $k$ edges pinched, and $d(v) = 2k$, we still have $2k$ internally edge-disjoint paths from $x$ to $y$.
+\end{proof}
+2) Show that, given any $2k$-edge-connected graph $G$, there exists a sequence $(G_1, G_2, \dots , G_r)$ of graphs such that (i) $G_1 = K_1$, (ii) $G_r = G$ and (iii) for $1 \leq i \leq r-1$, $G_{i+1}$ is obtained from $G_i$ either by adding an edge or by pinching together $k$ of its edges.
+\begin{proof}
+Let $G$ be a $2k$-edge-connected graph. If we can delete an edge $e$ from $G$ without losing $2k$-connectivity, then delete $e$. Continue in this process calling the graphs successively $G_{r-1}$, $G_{r-2}$ and so on. If at some point no edge can be deleted without losing $2k$-connectivity, then every edge must be used in some path. Moreover, there exists some vertex $v$ such that $d(v) \geq 2k$ and $d(v)$ is even. We know that we can split off $v$ and the remaining graph will still be $2k$-connected. Iterate this process $k$ times to reverse the process of pinching $k$ edges together to $v$. Index this graph with the previous integer and continue in the same process. Eventually, edge deletion will result in $K_1$ which we label $G_1$.
+\end{proof}
+\end{problem}
+
+\end{document}

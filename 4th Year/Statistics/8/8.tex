@@ -1,0 +1,184 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage,graphicx}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\var}{\textup{Var}}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+STAT 24400\\
+
+November 30, 2010
+\end{flushright}
+
+\begin{center}
+Homework 8
+\end{center}
+
+\begin{problem}
+Which of the following hypotheses are simple, and which are composite?\\
+(a) $X$ follows a uniform distribution on $[0,1]$.\\
+(b) A die is unbiased.\\
+(c) $X$ follows a normal distribution with mean $0$ and variance $\sigma^2 > 10$.\\
+(d) $X$ follows a normal distribution with mean $\mu = 0$.
+\end{problem}
+
+(a) Simple because the distribution is completely determined.
+
+(b) Simple, assuming the die has six sides. Otherwise composite because we can't determine the distribution completely from the hypothesis.
+
+(c) Simple because the distribution is given by the hypothesis.
+
+(d) Composite because the distribution isn't determined by the hypothesis. The variance is unknown.
+
+\begin{problem}
+Suppose that $X \sim \textup{bin}(100,p)$. Consider the test that rejects $H_0 : p = .5$ in favor of $H_A : p \neq .5$ for $|X - 50| > 10$. Use the normal approximation to the binomial distribution to answer the following:\\
+(a) What is $\alpha$?\\
+(b) Graph the power as a function of $p$.
+\end{problem}
+
+(a) We know $\alpha$ is $P(\text{reject } H_0 \mid H_0)$ which is $P(|X - 50| > 10 \mid p = .5)$. The normal approximation to this distribution is $N(np, np(1-p)) = N(50,25)$ in this case. Then
+\begin{align*}
+\alpha
+&= P(|X - 50| > 10 \mid p = .5)\\
+&= P(X < 40) + P(X > 60)\\
+&= P \left ( \frac{X - 50}{5} > \frac{40-50}{5} \right ) + P \left ( \frac{X - 50}{5} > \frac{60-50}{5} \right )\\
+&= \Phi(-2) + (1 - \Phi(2))\\
+&\approx .0456.
+\end{align*}
+
+(b) We use the same normal approximation $N(np, np(1-p)) = N(100p, 100p(1-p))$ to get
+\begin{align*}
+1 - \beta
+&= P(X < 40) + P(X > 60)\\
+&= P \left ( \frac{X - 100p}{\sqrt{100p(1-p)}} < \frac{40 - 100p}{\sqrt{100p(1-p)}} \right ) + P \left ( \frac{X - 100p}{\sqrt{100p(1-p)}} < \frac{60 - 100p}{\sqrt{100p(1-p)}} \right )\\
+&= \Phi \left ( \frac{40 - 100p}{\sqrt{100p(1-p)}} \right ) + 1 - \Phi \left ( \frac{60 - 100p}{\sqrt{100p(1-p)}} \right ).
+\end{align*}
+The graph of this for $0 \leq p \leq 1$ is
+\begin{center}
+\includegraphics[width=300pt]{plot.pdf}
+\end{center}
+
+\begin{problem}
+Consider the coin tossing example of Section 9.1. Suppose that instead of tossing the coin $10$ times, the coin was tossed until a head came up and the total number of tosses, $X$, was recorded.\\
+(a) If the prior probabilities are equal, which outcomes favor $H_0$ and which favor $H_1$?\\
+(b) Suppose $P(H_0)/P(H_1) = 10$. What outcomes favor $H_0$?\\
+(c) What is the significance level of a test that rejects $H_0$ if $X \geq 8$?\\
+(d) What is the power of this test?
+\end{problem}
+
+(a) The posterior probabilities are
+\[
+P(H_0 \mid X) = \frac{(.5)P(X \mid H_0)}{(.5)P(X \mid H_0) + (.5)P(X \mid H_1)} = \frac{(1-.5)^{x-1}(.5)}{(1-.5)^{x-1}(.5) + (1-.7)^{x-1}(.7)}
+\]
+\[
+P(H_1 \mid X) = \frac{(.5)P(X \mid H_1)}{(.5)P(X \mid H_0) + (.5)P(X \mid H_1)} = \frac{(1-.7)^{x-1}(.7)}{(1-.5)^{x-1}(.5) + (1-.7)^{x-1}(.7)}.
+\]
+Then
+\[
+\frac{P(H_0 \mid X)}{P(H_1 \mid X)} = \frac{(.5)^x}{(.3)^{x-1}(.7)} > 1
+\]
+when
+\[
+x > \frac{\log (7) - \log (3)}{\log(5) - \log(3)} \approx 1.66.
+\]
+
+(b) Now we have
+\[
+\frac{P(H_0 \mid X)}{P(H_1 \mid X)} = 10 \frac{(.5)^x}{(.3)^{x-1}(.7)} > 1
+\]
+when
+\[
+x > \frac{\log(30) - \log(7)}{\log(5) - \log(3)} \approx -2.85
+\]
+so all realistic outcomes.
+
+(c) This is
+\[
+\alpha = P(\text{reject } H_0 \mid H_0) = P(X \geq 8 \mid H_0) = 1 - P(X < 7 \mid H_0) = 1 - \sum_{i=1}^6 (.5)^i = .015625
+\]
+
+(d) The power is
+\[
+1 - \beta = 1 - P(X < 7 \mid H_1) = 1 - \sum_{i=1}^6 (.3)^{i-1}(.7) = .000729.
+\]
+
+\begin{problem}
+Show that the test of Problem 7 is uniformly most powerful for testing $H_0 : \lambda = \lambda_0$ versus $H_A : \lambda > \lambda_0$.
+\end{problem}
+\begin{proof}
+In Exercise 7 the likelihood ratio will be of the form
+\[
+\frac{\lambda_0^{\sum_{i=1}^n X_i} e^{-n\lambda_0}}{\lambda_1^{\sum_{i=1}^n X_i} e^{-n\lambda_1}} = \lambda_0^{\sum_{i=1}^n X_i} \lambda_1^{-\sum_{i=1}^n X_i} e^{n(\lambda_1 - \lambda_0)} = \exp \left ( n(\log (\lambda_0) - \log (\lambda_1)) \overline{X} + n (\lambda_1 - \lambda_0) \right ).
+\]
+The likelihood ratio is then small if $\overline{X}$ is large since $\lambda_1 > \lambda_0$. So the most powerful test rejects for $\overline{X} > x_0$ for some $x_0$. The null distribution given $H_0$ in this case is Poisson with parameter $(1/n) n\lambda_0 = \lambda_0$. Thus we can choose $x_0$, specified for a significance $\alpha$, using this distribution. But note that this is independent of $\lambda_1$ so it must hold true for all $\lambda_1 > \lambda_0$. Therefore this test is uniformly most powerful.
+\end{proof}
+
+\begin{problem}
+Let $X_1, \dots , X_n$ be a random sample from an exponential distribution with the density function $f(x \mid \theta) = \theta \exp[-\theta x]$. Derive a likelihood ratio test of $H_0 : \theta = \theta_0$ versus $H_A : \theta \neq \theta_0$, and show that the rejection region is of the form $\{\overline{X} \exp[-\theta_0 \overline{X}] \leq c\}$.
+\end{problem}
+\begin{proof}
+First we find the mle for this distribution. The log likelihood is
+\[
+l(\theta) = n \log(\theta) - \theta \sum_{i=1}^n X_i
+\]
+so
+\[
+l'(\theta) = \frac{n}{\theta} - \sum_{i=1}^n X_i
+\]
+and
+\[
+\hat{\theta} = 1/\overline{X}.
+\]
+
+Now we form the likelihood ratio as
+\[
+\frac{\theta_0^n \exp \left ( -\theta_0 \sum_{i=1}^n X_i \right )}{\hat{\theta}^n \exp \left ( -\hat{\theta} \sum_{i=1}^n X_i \right )} = \left ( \frac{\theta_0}{\hat{\theta}} \right )^n \exp \left ( -n(\theta_0 - \hat{\theta}) \overline{X} \right ) = (\theta_0 \overline{X} \exp (-\theta_0\overline{X} + 1))^n.
+\]
+This gives a rejection region of the form
+\begin{align*}
+(\theta_0 \overline{X} \exp (-\theta_0\overline{X} + 1))^n &\leq c\\
+\theta_0e^{-1}\overline{X} \exp (-\theta_0\overline{X}) & \leq c^{1/n}\\
+\overline{X} \exp (-\theta_0\overline{X}) &\leq \theta_0^{-1}ec^{1/n}.
+\end{align*}
+Now note that $\theta_0$ is simply a constant and $n$ is fixed, so we can redefine $c$ to be the constant on the right and the desired result follows.
+\end{proof}
+
+\begin{problem}
+Let $X_1, X_2, \dots , X_n$ be i.i.d. random variables from a double exponential distribution with density $f(x) = \frac{1}{2} \lambda \exp (-\lambda|x|)$. Derive a likelihood ratio test of the hypothesis $H_0 : \lambda = \lambda_0$ versus $H_1 : \lambda = \lambda_1$, where $\lambda_0$ and $\lambda_1 > \lambda_0$ are specified numbers. Is the test uniformly most powerful against the alternative $H_1 : \lambda > \lambda_0$?
+\end{problem}
+
+The likelihood ratio will be of the form
+\begin{align*}
+\frac{\lambda_0^n \exp \left (-\lambda_0 \sum_{i=1}^n |X_i| \right )}{\lambda_1^n \exp \left (-\lambda_1 \sum_{i=1}^n |X_i| \right )}
+&= \left ( \frac{\lambda_0}{\lambda_1} \right )^n \exp \left (-(\lambda_0 - \lambda_1)\sum_{i=1}^n |X_i| \right)\\
+&= \exp \left (n(\log(\lambda_0) - \log(\lambda_1)) - (\lambda_0 - \lambda_1) \sum_{i=1}^n |X_i| \right ).
+\end{align*}
+Since $\lambda_1 > \lambda_0$, this ratio is small when $\sum_{i=1}^n |X_i|$ is small. Note that $n |\overline{X}| = \left | \sum_{i=1}^n X_i \right | \leq \sum_{i=1}^n |X_i|$ so when the right hand side is small, so is the left. Now note that the null hypothesis has a double exponential distribution with parameter $\lambda_0$. Thus $n|\overline{X}|$ is a known distribution with a parameter depending only on $\lambda_0$. It's independence of $\lambda_1$ shows that it's uniformly most powerful.
+
+\begin{problem}
+Consider two probability density functions on $[0,1]$: $f_0(x) = 1$, and $f_1(x) = 2x$. Among all tests of the null hypothesis $H_0 : X \sim f_0(x)$ versus the alternative $X \sim f_1(x)$, with significance level $\alpha = 0.10$, how large can the power possibly be?
+\end{problem}
+
+By the Lemma, we know the likelihood ratio test will give the maximum power for a given significance level $\alpha$. The likelihood ratio is of the form
+\[
+\frac{f_0(x)}{f_1(x)} = \frac{1}{2x} > c
+\]
+where $c \in (0,1)$. We are interested in
+\[
+\alpha = .1 = P(\text{reject } H_0 \mid H_0) = P \left ( \frac{1}{2x} \leq c \mid H_0 \right ) = P \left ( \frac{1}{2c} \leq X \mid H_0 \right) = 1 - P \left ( X \leq \frac{1}{2c} \mid X_0 \right ).
+\]
+So $1 - 1/2c = 1/10$ and $c = 5/9$. Then
+\[
+1 - \beta = 1 - P(\text{accept } H_0 \mid H_1) = 1 - P \left ( \frac{1}{2x} > c \mid H_1 \right ) = 1 - P \left ( \frac{1}{2c} > X \mid H_1 \right ) = P \left ( X \leq \frac{1}{2c} \mid H_1 \right ).
+\]
+The cdf for $f_1(x)$ is $F_X(x) = x^2$ so
+\[
+1 - \beta = \left ( \frac{1}{2c} \right )^2 = \frac{1}{4c^2} = .81.
+\]
+
+\end{document}

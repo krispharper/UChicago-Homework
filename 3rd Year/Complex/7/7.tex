@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27000\\
+
+November 24, 2009
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{problem}
+Let $F$ and $G$ be two fractional liner maps, and assume that $F(x) = G(z)$ for all complex numbers $z$ (or even for three distinct complex numbers $z$). Show that if
+\[
+\begin{tabular}{ccc}
+$F(z) = \frac{az+b}{cz+d}$ & and & G(z) = $\frac{a'z+b'}{c'z+d'}$
+\end{tabular}
+\]
+then there exists a complex number $\lambda$ such that
+\[
+\begin{tabular}{cccc}
+$a' = \lambda a$, & $b' = \lambda b$, & $c' = \lambda c$, & $d' = \lambda d$.
+\end{tabular}
+\]
+Thus the matrices representing $F$ and $G$ differ by a scalar.
+\end{problem}
+\begin{proof}
+Rename $F = F_M$ and $G = F_{M'}$ where
+\[
+\begin{tabular}{ccc}
+$M=
+\left (
+\begin{array}{cc}
+a & b\\
+c & d
+\end{array}
+\right )
+$
+&
+and
+&
+$
+M'=
+\left (
+\begin{array}{cc}
+a' & b'\\
+c' & d'
+\end{array}
+\right ).
+$
+\end{tabular}
+\]
+Now assume that $F_M = F_{M'}$ for three points in $\mathbb{C}$. This is equivalent to assuming $F_{M'} F_M^{-1}$ is the identity for three points. But we know $F_M^{-1} = F_{M^{-1}}$ and also $F_{M'} F_{M^{-1}} = F_{M' M^{-1}}$. Thus $F_{M' M^{-1}}$ has three fixed points and must be the identity. Therefore $M'M^{-1} = \lambda I$ for some $\lambda \in \mathbb{C}$.
+\end{proof}
+
+\begin{problem}
+Let $F = (z-i)/(z+i)$. What is the image under $F$ of the following sets of points:\\
+(a) The upper half line $it$, with $t \geq 0$.\\
+(b) The circle of center $1$ and radius $1$.\\
+(c) The horizontal line $i + t$, with $t \in \mathbb{R}$.\\
+(d) The half circle $|z| = 2$ with $\textup{Im} z \geq 0$.\\
+(e) The vertical line $\textup{Re} z = 1$ and $\textup{Im} z \geq 0$.
+\end{problem}
+\begin{proof}
+(a) $F(it) = (t-1)/(t+i)$. For $t \geq 0$ this is simply $[-1, 1)$.
+
+(b) Write $F$ as $F(z) = 1 + (-2i)/(z+i)$. A circle centered at $1+i$ is $(x-1)^2 + (y-1)^2 = 1$ which is to say $2x + 2y - 1 = x^2 + y^2$. Then the image under inversion of this circle is $-(x'^2 + y'^2) + 2x' - 2y' = 1$ which is the circle centered at $1 - i$ with radius $1$. Translating by $1$ and multiplying by $2i$ we find that the image of $x^2 + y^2 = 1$ is the circle centered at $-2i - 1$ with radius $2$.
+
+(c) As in (b), we see that the image of $i + t$ under $1/(i + z)$ is the circle of radius $1/4$ centered at $-i/4$. Multiplying by $2i$ and translating by $1$ we find that the image under $F$ is the circle centered at $1 - 2i(-i/4) = 1/2$ with radius $1/2$.
+
+(d) The image of $x^2 + y^2 = 4$ as in (b) is the circle centered at $1 + i/3$ with radius $2/3$. Now let $C$ be the arc of this circle from $(-2-i)/5$ to $(2-i)/5$ This is the image of positive imaginary component. After translating and multiplying we find that the image under $F$ is $1 - 2iC$.
+
+(e) As in (b) we see that the image of the line $\textup{Re} z = 1$ under $1/(z+i)$ is the circle centered at $1/2$ with radius $1/2$. Taking $\textup{Im} z \geq 0$ we get the quarter of this circle from $1/2 + i/2$ to $0$ without including $0$. Let this quarter circle be $C$. Then translating and multiplying we find the image under $F$ is $1 - 2iC$.
+\end{proof}
+
+\begin{problem}
+Let $z_1$, $z_2$, $z_3$, $z_4$ be distinct complex numbers. Define their \emph{cross ratio} to be
+\[
+[z_1, z_2, z_3, z_4] = \frac{(z_1-z_3)(z_2-z_4)}{(z_2-z_3)(z_1-z_4)}.
+\]
+(a) Let $F$ be a fractional linear map. Let $z_i' = F(z_i)$ for $i = 1, \dots , 4$. Show that the cross ratio of $z_1'$, $z_2'$, $z_3'$, $z_4'$ is the same as the cross ratio of $z_1$, $z_2$, $z_3$, $z_4$.\\
+(b) Prove that the four numbers lie on the same straight line or on the same circle if and only if their cross ratio is a real number.\\
+(c) Let $z_1$, $z_2$, $z_3$, $z_4$ be distinct complex numbers. Assume that they lie on the same circle, in that order. Prove that
+\[
+|z_1 - z_3||z_2 - z_4| = |z_1 - z_2||z_3 - z_4| + |z_2 - z_3||z_4 - z_1|.
+\]
+\end{problem}
+\begin{proof}
+Note that $F$ can be decomposed into translations, multiplications and inversions. Therefore, it's sufficient to show that the cross ratio is invariant under these operations. Invariance under translations is trivial since the translation term will cancel in each of the differences in the numerator and denominator. A similar statement holds for multiplications since the multiplicative term can be distributed out of every term and then canceled. Now observe
+\begin{align*}
+\left [ \frac{1}{z_1}, \frac{1}{z_2}, \frac{1}{z_3}, \frac{1}{z_4} \right ]
+&= \frac{\left ( \frac{1}{z_1} - \frac{1}{z_2} \right ) \left ( \frac{1}{z_2} - \frac{1}{z_4} \right )}{ \left ( \frac{1}{z_2} - \frac{1}{z_3} \right ) \left ( \frac{1}{z_1} - \frac{1}{z_4} \right )}\\
+&= \frac{\left ( \frac{z_3 - z_1}{z_1} z_3 \right ) \left ( \frac{z_4-z_2}{z_2} z_4 \right )}{\left ( \frac{z_3 - z_2}{z_2}z_3 \right ) \left ( \frac{z_4-z_1}{z_1} z_4 \right )}\\
+&= \frac{(z_3-z_1)(z_4-z_2)}{(z_3-z_2)(z_4-z_1)}\\
+& = [z_1, z_2, z_3, z_4].
+\end{align*}
+Since the cross ratio is invariant under these three operations and $F$ is composed of only these operations, if must be invariant under $F$.
+
+(b) Suppose that the four numbers $z_1$, $z_2$, $z_3$, $z_4$ lie on the same line or circle. For three distinct real numbers $0$, $1$ and $2$ there exists a unique fractional linear map which sends $z_1$ to $0$, $z_2$ to $1$ and $z_3$ to $2$. Since the image of a circle or a line is a circle or a line, it must be the case that $z_4$ is also real. Therefore using (a) the cross ratio of $4$ real numbers is real.
+
+Conversely, suppose that the cross ratio of $z_1$, $z_2$, $z_3$ and $z_4$ is real. Let $F$ be the fractional linear map which sends $z_1$ to $0$, $z_2$ to $1$ and $z_3$ to $2$. Let $z_4' = F(z_4)$. Part (a) forces $z_4'$ to be real as well. But we know $F^{-1}$ is a fractional linear map. Since the images of $z_1$, $z_2$, $z_3$ and $z_4$ are all on the same line and $F^{-1}$ sends lines to circles and lines, it follows that $z_1$, $z_2$, $z_3$ and $z_4$ are all on the same circle or line.
+
+(c) Let $F$ be a fractional linear map which sends $z_1$ to $1$, $z_2$ to $2$ and $z_3$ to $3$. Using part (b) it follows that $F(z_4) < 1$ or $F(z_4) > 3$. In both cases we get $[1, 2, 3, z_4'] > 0$ and $[1, 3, 2, z_4'] < 0$. Using (a) this means $[z_1, z_2, z_3, z_4] > 0$ and $[z_1, z_3, z_2, z_4] < 0$. We can see that $(z_1 - z_3)(z_2 - z_4) = (z_1 - z_2)(z_3 - z_4) - (z_2 - z_3)(z_4 - z_1)$ and so $-[z_1, z_2, z_3, z_4] = [z_1, z_3, z_2, z_4] - 1$. Using the above fact we have $|[z_1, z_2, z_3, z_4]| = |[z_1, z_3, z_2, z_4]| + 1$. Expanding these terms gives the result.
+\end{proof}
+
+\begin{problem}
+Let $U$ be a simply connected open set. Let $z_1$, $z_2$ be two points of $U$. Prove that there exists a holomorphic automorphism $f$ of $U$ such that $f(z_1) = z_2$.
+\end{problem}
+\begin{proof}
+In the case that $U = \mathbb{C}$ the function $f(z) = z + z_2 - z_1$ is a solution. Assume that $U \neq \mathbb{C}$. Then we know there exists $f : U \to D$ which is a holomorphic isomorphism. We also know there exists a function $g \in \text{Aut}(D)$ which takes $f(z_1)$ to $f(z_2)$. Thus $f^{-1} \circ g \circ f$ will take $z_1$ to $z_2$ and is a holomorphic isomorphism.
+\end{proof}
+
+\begin{problem}
+Let $f(z) = 2z(1-z^2)$. Show that $f$ gives an isomorphism of the shaded region with half a disk. Describe the effect of $f$ on the boundary. What is the effect of $f$ on the reflection of the region across the $y$-axis?
+\end{problem}
+\begin{proof}
+Let $U$ be the shaded region and let $D^+$ be the left half of a disk $D$. Note that there is an arc of $D^+$ which is included in $\partial U$. Then note that $u(\theta) = 1 + \sqrt{2} e^{i \theta}$ with $3 \pi/4 \leq \theta \leq 5 \pi/4$ is a parameterization of this arc. Now consider
+\[
+f(u(\theta)) = \frac{2(1 + \sqrt{2}e^{i \theta})}{(1 + 1 + \sqrt{2}e^{i \theta})(1 - 1 - \sqrt{2}e^{i \theta})} = -\frac{\sqrt{2}e^{-i \theta} + 2}{2 + \sqrt{2}e^{i \theta}}.
+\]
+Furthermore, note that this implies $|f(u(\theta))| = 1$ as the numerator and denominator are complex conjugates of each other. Therefore the image of this arc under $f$ is contained in the unit circle. It can also be seen that the argument of $f(u(\theta))$ is between $\pi/2$ and $3\pi /2$. Now consider the vertical segment $iy$ with $-1 \leq y \leq 1$. We see
+\[
+f(iy) = \frac{2it}{1 - (iy)^2} = i \frac{2y}{1+y^2}.
+\]
+Since $2y/(1+y^2)$ is a bijection from $[-1,1]$ to $[-1,1]$, we see that $f$ takes this segment to $i[-1,1]$. Therefore $f(\partial U) = \partial D^+$. At this point, since both of these paths are closed and have interiors, we can conclude that $f : U \to D^+$ is an isomorphism. Noting that $f(-z) = -f(z)$ we conclude that the image of the reflection of the shaded area is the the reflection of $f(U)$ across the same axis.
+\end{proof}
+
+\begin{problem}
+Prove the uniqueness statement in the following context. Let $U$ be an open set contained in a strip $a \leq x \leq b$, where $a$, $b$ are fixed numbers, and as usual $z = x+iy$. Let $u$ be a continuous function on $\overline{U}$, harmonic on $U$. Assume that $u$ is $0$ on the boundary of $U$, and
+\[
+\lim u(x,y) = 0
+\]
+as $y \rightarrow \infty$ or $y \rightarrow - \infty$, uniformly in $x$. In other words, given $\epsilon$ there exists $C > 0$ such that if $y > C$ or $y < -C$ and $(x,y) \in U$ then $|u(x,y)| < \epsilon$. Then $u = 0$ on $U$.
+\end{problem}
+\begin{proof}
+In the case $U$ is bounded we're done by letting $v = 0$. Assume that $U$ is unbounded. Suppose that $u$ is not identically $0$. Then we know that since $u(x,y)$ goes to $0$ as $|y|$ goes to infinity uniformly in $x$, $u$ has a maximum in $U$. Let this maximum be $(x_0, y_0)$. For $\epsilon > 0$ define $\varphi_{\epsilon} (x,y) = u(x,y) + \epsilon x^2$. Now since $|x|$ is bounded in $U$, we know $\varphi_{\epsilon}$ has a maximum in $U$ as well. In the case $(x,y) \in \partial U$, $\varphi_{\epsilon}(x,y) = \epsilon x^2$ and since $|x|$ is bounded we can pick $\epsilon$ so that $\varphi_{\epsilon}(x,y) < u(x_0, y_0)$ on $\partial U$. But this means $\varphi_{\epsilon}$ doesn't attain its maximum on $\partial U$ since $\varphi_{\epsilon} = \epsilon x^2 < u(x_0, y_0) + \epsilon x_0^2 = \varphi_{\epsilon} (x_0, y_0)$. Thus $\varphi_{\epsilon}$ has a maximum in the interior of $U$ at $(x_1, y_1)$. Therefore $(\partial/\partial x)^2 \varphi_{\epsilon} (x_1, y_1) \leq 0$ and $(\partial/\partial y)^2 \varphi_{\epsilon} (x_1, y_1) \leq 0$. Since $u$ is harmonic, $\Delta u = 0$ thus $\Delta \varphi_{\epsilon}(x_1, y_1) = 2 \epsilon > 0$. This is a contradiction and so $u = 0$ on $U$.
+\end{proof}
+
+\begin{problem}
+Let $U$ be the open set discussed at the end of the section, obtained by deleting the vertical segment of points $(0,y)$ with $0 \leq y \leq 1$ from the upper half plane. Find an analytic isomorphism
+\[
+f : U \to H.
+\]
+\end{problem}
+\begin{proof}
+First rotate $U$ by $-90$ degrees so that $V = -iU$ is the right half plane with the segment $[0,1]$ deleted. Now note that $z \mapsto z^2$ gives the entire complex plane except $(-\infty, 1]$. Thus $z \mapsto z^2 - 1$ is $\mathbb{Z}$ without the negative real line. Finally, since this image is simply connected, we can define $\sqrt{z}$ so that $\sqrt{z} = \sqrt{r}e^{i \theta/2}$ is an image of the right half plane. Rotating back by $i$ we finally have $z \mapsto i\sqrt{(-iz)^2-1}$ is an isomorphism of $U$ and $H$.
+\end{proof}
+
+\begin{problem}
+Find a harmonic function on the upper half plane with value $1$ on the positive real axis and value $-1$ on the negative real axis.
+\end{problem}
+\begin{proof}
+Let $f(z) = 1 - 2/\pi \textup{arg}z$. It's easy to see that $f$ is harmonic and that it has the desired values.
+\end{proof}
+
+\begin{problem}
+Find a harmonic function on the unit disk which has the boundary value $0$ on the lower semicircle and boundary value $1$ on the upper semicircle.
+\end{problem}
+\begin{proof}
+Let $f(z) = -i(z+1)/(z-1)$. We know that this is an isomorphism of the unit disk the the upper half plane. In the case that $z = x+iy$ we have
+\[
+f(z) = \frac{-2y}{x^2 - 2x + 1 + y^2} + i \frac{1 - x^2 + y^2}{x^2 - 2x + 1 y^2}.
+\]
+Now if $z$ is on the unit circle we have $x^2 + y^2 = 1$ so that $f(z) = -y/(1-x)$. Thus, we are reduced to a similar case to the previous problem. Choosing $g(z) = 1/\pi \textup{arg}f(z)$ will complete the function.
+\end{proof}
+
+\begin{problem}
+Find a harmonic function $\varphi$ on the indicated regions, with the indicated boundary values.
+\end{problem}
+\begin{proof}
+Use a translation, a dilation, $\sin z$ and another translation to get the upper half plane with $\varphi = 0$ on the positive reals and $\varphi = 1$ on the negative reals. Thus, as in the previous problem use the final function $g(z) = 1/\pi \textup{arg}z$.
+\end{proof}
+
+\end{document}

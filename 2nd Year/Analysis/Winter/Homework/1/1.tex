@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20800\\
+
+January 5, 2009
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{flushleft}
+
+\begin{problem}
+Show that a contraction mapping is continuous.
+\end{problem}
+\begin{proof}
+Let $X$ be a metric space and suppose that $f : X \rightarrow X$ is a contraction mapping such that $d(f(x), f(y)) \leq k d(x, y)$ for all $x,y \in X$. Then let $\varepsilon > 0$ and choose $\delta = \varepsilon / k$. Then if $d(x, y) < \delta$ we have $d(f(x), f(y)) < k d(x, y) < k \delta < \varepsilon$. Therefore $f$ is continuous.
+\end{proof}
+
+\begin{problem}
+Let $f$ be a polynomial function from $\mathbb{R}$ to $\mathbb{R}$. Give conditions on $f$ such that $f$ is a contraction mapping.
+\end{problem}
+\begin{proof}
+The function $f$ must have degree at most $1$. To see this, suppose that $f$ is a contraction mapping with constant $k$ and that $\deg(f(x)) = n$ such that $n \geq 2$. But since $\deg(f(x)) \geq 2$, for large enough $x$, $|f(x) - f(x+1)|$ will get arbitrarily large. Simply choose $x$ large enough such that $1/k |f(x) - f(x+1)| > 1$. This is a contradiction. Conversely, if $\deg (f(x)) < 1$ then $f$ is constant and so $d(f(x), f(y)) = 0$ for all $x,y \in \mathbb{R}$. Similarly if $\deg (f(x)) = 1$, then $f(x) = kx + b$ for constants $k, b \in \mathbb{R}$. Then $|f(x) - f(y)| = k |x - y|$. In both cases, $f$ is a contraction mapping.
+\end{proof}
+
+\begin{problem}
+1) Let $f : [0,1] \rightarrow [0,1]$ be a continuous function. Show that $f$ has a fixed point.\\
+2) Find a continuous function $f : \mathbb{R} \rightarrow \mathbb{R}$ that does not have a fixed point.
+\end{problem}
+\begin{proof}
+1) Consider such a function $f$. Note that on $\mathbb{R}^2$, the function $f$ cannot lie entirely below the line $g(x) = x$. If this were the case, then not all of the values in $[0,1]$ would be taken on by $f$. Similarly, $f$ must take on values above the line $g(x) = x$. Using a rotation of the plane, we can apply the Intermediate Value Theorem so that there must exist a point, $x_0$, on the line $g(x) = x$ so that $f(x_0) = x_0$.\newline
+
+2) The function $f(x) = x+1$ has this property. For all $x \in \mathbb{R}$, $x + 1 \neq x$. Furthermore, $f$ is clearly continuous.
+\end{proof}
+
+\begin{problem}
+Define $f$ and $x_0$ as in the proof for the Contraction Mapping Theorem. Show that $x_0$ is the unique fixed point of $f$.
+\end{problem}
+\begin{proof}
+Consider some fixed point, $y \in X$ such that $f(y) = y$. Then note that
+\begin{align*}
+d(x_n, y)
+&= d(f^n(x_1), f(y))\\
+&\leq \alpha d(f^{n-1}(x_1), y)\\
+&\leq \alpha d(f^{n-1}(x_1), f(y))\\
+&\leq \alpha^2 d(f^{n-2}(x_1), y).
+\end{align*}
+Continuing inductively, we see that $d(x_n, y) \leq \alpha^n (x_1, y)$. But then $\lim_{n \rightarrow \infty} x_n = y = x_0$.
+\end{proof}
+
+\begin{problem}
+1) Let $B = B_1(0)$ be the unit ball in the usual metric on $\mathbb{R}^n$, and let $f$ be a map from $B$ to $B$. Suppose there exists a constant $C$ such that $|f(x) - f(y)| \leq C |x-y|$ for all $x,y \in B$. Show that if $0 < C < 1$, then $f$ is a contraction mapping. Show that, if $C \geq 1$, then $f$ need not be a contraction mapping.\\
+2) Let $T : \ell_n^p (\mathbb{R}) \rightarrow \ell_n^q (\mathbb{R})$, with $1 \leq p, q \leq \infty$, be a linear transformation. When is $T$ a contraction mapping?
+\end{problem}
+\begin{proof}
+1) We have $d(f(x), f(y)) < |f(x) - f(y)| < C |x - y| < C d(x, y)$. If $0 < C < 1$ then this is clearly a contraction mapping. If $C \geq 1$ then $f$ is not a contraction mapping.\newline
+
+2) A linear transformation $T : \ell_n^p (\mathbb{R}) \rightarrow \ell_n^q (\mathbb{R})$ is continuous if and only if there exists $c \in \mathbb{R}$ such that $||T(x)||_q \leq c ||x||_p$ for all $x \in \ell_n^p (\mathbb{R})$. Then a continuous linear transformation $T$ is a contraction mapping whenever $0 < c < 1$.
+\end{proof}
+
+\begin{problem}
+Consider $\mathcal{C} ([0,1], \mathbb{R})$ with the $\sup$ metric and let $k (x,y) : [0,1] \times [0,1] \rightarrow \mathbb{R}$ be a continuous function satisfying
+\[
+\sup_{0 \leq x \leq 1} \int_0^1 |k(x,y)| dy < 1.
+\]
+Given a function $g(x) \in \mathcal{C} ([0,1], \mathbb{R})$ show that there is a unique solution $f(x) \in \mathcal{C} ([0,1], \mathbb{R})$ to the equation
+\[
+f(x) - \int_0^1 k(x,y) f(y) dy = g(x).
+\]
+\end{problem}
+\begin{proof}
+Using the Contraction Mapping Theorem we know that if there is a function $g(x) \in \mathcal{C} ([0,1], \mathbb{R})$, then there exists a unique fixed point which can be used to create a unique function satisfying the equality.
+\end{proof}
+
+\begin{problem}
+1) Show that polynomial functions in $\mathcal{C} ([0,1], \mathbb{R})$ separates points.\\
+2) Does the class of functions $\{\sin (2 \pi n x) \mid n \in \mathbb{N} \}$ in $\mathcal{C} ([0,1], \mathbb{R})$ separate points?
+\end{problem}
+\begin{proof}
+1) Consider two points $x_1, x_2 \in [0, 1]$. Then there exists $x_3$ such that $x_1 < x_3 < x_2$. Then since all linear functions are polynomials, the function $f(x) = x - x_3$ is a polynomial in $\mathcal{C} ([0,1], \mathbb{R})$. But then $f(x_1) < 0 < f(x_2)$.\newline
+
+2) No. Consider the points $0, 1/2 \in [0, 1]$. Then
+\[
+\sin (2 \pi n \cdot 0) = \sin(0) = 0 = \sin (n \pi) = \sin (2 n \pi \cdot 1/2).
+\]
+\end{proof}
+
+\begin{problem}
+1) Show that $R [x_1, x_2, \dots , x_n]$ is a commutative ring with $1$ for $R = \mathbb{Z}$, $\mathbb{Q}$ or $\mathbb{R}$. Find the units in each of these rings.\\
+2) Find the possible images of a polynomial in $\mathbb{R} [x_1, x_2, \dots , x_n]$.
+\end{problem}
+\begin{proof}
+1) Let $R$ be $\mathbb{Z}$, $\mathbb{Q}$ or $\mathbb{R}$. Let
+\[
+p(x) = \sum_{i = 1}^k \prod_{j = 1}^n x_j^{i_j}
+\]
+and
+\[
+q(x) = \sum_{i = 1}^l \prod_{j = 1}^n x_j^{i_j}
+\]
+be two real polynomial functions. Then note that
+\[
+p(x) + q(x) = \sum_{i = 1}^k \prod_{j = 1}^n x_j^{i_j} + \sum_{i = 1}^l \prod_{j = 1}^n x_j^{i_j}
+\]
+which still has the form of a finite linear combination of expressions of the form $x_1^{m_1} x_2^{m_2} \dots x_n^{m_n}$. Thus, $R[x_1, x_2, \dots , x_n]$ is closed under addition. A similar proof holds to show it's closed under multiplication. Since the coefficients for each linear combination are in $\mathbb{Z}$, $\mathbb{Q}$ or $\mathbb{R}$, it follows that associativity and commutativity of addition and multiplication as well as distributivity follow as they do in $\mathbb{Z}$, $\mathbb{Q}$ or $\mathbb{R}$. The $0$ polynomial, where all coefficients are $0$, serves as the additive identity. Then taking the additive inverses of each coefficient serves as an additive inverse for a given real polynomial function. The $1$ polynomial serves as the multiplicative identity. Since there are no zero-divisors in $\mathbb{Z}$, $\mathbb{Q}$ or $\mathbb{R}$, there are no invertible elements in $R = \mathbb{Z}$ and only constants, that is, elements of $R$, are invertible if $R = \mathbb{Q}$ or $R = \mathbb{R}$.\newline
+
+2) The image of a polynomial in $\mathbb{R}[x_1, x_2, \dots , x_n]$ will either be $\mathbb{R}$, if $n$ is odd, or all real numbers greater than or equal to or less than or equal to some constant, if $n$ is even.
+\end{proof}
+
+\begin{problem}
+Let $V$ be a lattice on a metric space $X$. If $f, g$ are in $V$, set $f \wedge g = \min (f,g)$ and $f \vee g = \max (f,g)$. Show that $f \wedge g, f \vee g \in V$.
+\end{problem}
+\begin{proof}
+Certainly, $f \wedge g$ is a real valued function on $X$. Let $\varepsilon > 0$ and let $x \in X$. Then there exists $\delta$ such that for all $y \in X$, if $d(x, y) < \delta$ we have $|f(x) - f(y)| < \varepsilon/2$ and $|g(x) - g(y)| < \varepsilon/2$. But then $|f \wedge g (x) - f \wedge g (y)| < |f(x) - f(y)| + |g(x) - g(y)| < \varepsilon$. Note that this requires using $|f|$ is continuous as well. A similar proof holds for $f \vee g$.
+\end{proof}
+
+\begin{problem}
+Let $X, Y$ be compact metric spaces. Show that the set $A = \{(x,y) \rightarrow f(x) g(y) \mid f \in \mathcal{C} (X, \mathbb{R}) \text{ and } g \in \mathcal{C} (Y, \mathbb{R}) \}$ is uniformly dense in $\mathcal{C} (X \times Y, \mathbb{R})$.
+\end{problem}
+\begin{proof}
+Note that the product space $X \times Y$ is compact since both $X$ and $Y$ are compact. Since $f$ and $g$ are both continuous, an element of $A$ is continuous. We need only to show that $A$ separates points. Consider two points $(x_1, y_1), (x_2, y_2) \in X \times Y$. Suppose, for the moment, that $x_1y_1 \neq x_2y_2$. Then take the functions $f(x) = x$ and $g (y) = y$ where $f \in \mathcal{C} (X, \mathbb{R})$ and $g \in \mathcal{C} (Y, \mathbb{R})$. Then consider the function $h (x,y) = f(x) g(y)$ so that $h(x_1, y_1) = x_1y_1 \neq x_2y_2 = h(x_2, y_2)$. In the case that $x_1y_1 = x_2y_2$, taking the square of $f$ or $g$ in place of either function will suffice. By the Stone-Weierstrass Theorem $A$ is uniformly dense in $\mathcal{C} (X \times Y, \mathbb{R})$.
+\end{proof}
+
+\begin{problem}
+1) Let $X$ be a compact metric space. Let $A$ be an algebra of continuous complex valued functions on $X$ with the property that, if $f \in A$ then $\overline{f} \in A$. Assume $A$ separates points and there is no point $x \in X$ such that $f(x) = 0$ for all $f \in A$. Show that the uniform closure of $A$ is $\mathcal{C} (X, \mathbb{C})$.\\
+2) Show that the set of trigonometric polynomials is uniformly dense in $\mathcal{C} (\mathbb{T}, \mathbb{C})$.
+\end{problem}
+\begin{proof}
+1) Suppose for any $x, y \in X$ with $x \neq y$ and $a,b \in \mathbb{C}$, there is a function $f_{xy} \in A$ such that $f_{xy}(x) = a$ and $f_{xy}(y) = b$. Then, for every $f \in \mathcal{C} (X, \mathbb{R})$, there is a sequence $(f_n) \in A$ such that $(f_n)$ converges uniformly to $f$. This fact, combined with the fact that $\overline{f} \in A$ whenever $f$ is, proves the theorem.\newline
+
+2) Note that trigonometric polynomials are all continuous. Furthermore, if $f(e^{i \theta}) \in \mathbb{T}$ then clearly $\overline{f}(e^{i \theta}) \in \mathbb{T}$ because
+\[
+f(e^{i \theta}) = \sum_{j = -n}^{n} a_n e^{ij \theta} = \sum_{j = -n}^{n} a_n e^{-ij \theta} = f(e^{i \theta}).
+\]
+Additionally, given $x_1, x_2 \in \mathbb{T}$ we can find a polynomial which maps them to different points, simply by choosing adequate coefficients. Since all points in $\mathbb{T}$ are nonzero, there is no point in $\mathbb{T}$ for which every polynomial maps to $0$. Then by the Stone-Weierstrass Theorem, the set of trigonometric polynomials is uniformly dense in $\mathbb{C} (\mathbb{T}, \mathbb{C})$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

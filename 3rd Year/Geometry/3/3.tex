@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 24100\\
+
+April 23, 2010
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{problem}
+Let $V$ be a $3$-dimensional vector space over a field $k$. Show that the projective plane $\mathbb{P}(V)$ satisfies our axioms (1) and (3) but not the parallel postulate (2); instead, show (2'): any two lines intersect in a unique point.
+\end{problem}
+\begin{proof}
+Let $L_1 = \langle v_1 \rangle$ and $L_2 = \langle v_2 \rangle$ be distinct. Then these two $1$-dimensional subspaces of $V$ are two points in $\mathbb{P}(V)$. Since $L_1$ and $L_2$ are distinct, $v_1$ and $v_2$ are independent so the space $\langle v_1, v_2 \rangle = \langle v_1 \rangle + \langle v_2 \rangle$ is a $2$-dimensional subspace of $V$ containing $L_1$ and $L_2$. Suppose $L_1$ and $L_2$ are contained in some other $2$-dimensional subspace different from $L_1 + L_2$. Then there is some vector $w \in L_1 + L_2$ which is not in this subspace. Writing $w = \alpha v_1 + \beta v_2$ we see that this subspace cannot possibly contain $L_1$ and $L_2$. Thus $L_1$ and $L_2$ form a unique line in $\mathbb{P}(V)$ so axiom (1) is satisfied.
+
+Since $V$ is $3$-dimensional we can take $b_1$, $b_2$ and $b_3$ to be a basis for $V$. Then these three vectors are independent and $L_1 = \langle b_1 \rangle$, $L_2 = \langle b_2 \rangle$ and $L_3 = \langle b_3 \rangle$ are three distinct points of $\mathbb{P}(V)$. We know that $L_3 \nsubseteq L_1 + L_2$ because $b_1$, $b_2$ and $b_3$ are a basis so no proper subset of them can span $V$. Thus we cannot express points in $L_3$ as a linear combination of points in $L_1$ and $L_2$. Thus there exist three distinct points forming three distinct lines so axiom (3) is satisfied.
+
+Take any two distinct lines $P_1 = \langle v_1, v_2 \rangle$ and $P_2 = \langle w_1, w_2 \rangle$. These are two distinct $2$-dimensional subspaces of $V$ so their intersection has dimension at most $1$. Note that $v_1$ and $v_2$ are independent and so are $w_1$ and $w_2$, but we can't have four linearly independent vectors in a $3$-dimensional vector space. Without loss of generality then we can write $v_1 = \alpha w_1 + \beta w_2$. But then $\langle \alpha w_1 + \beta w_2 \rangle \subseteq P_1 \cap P_2$ so $P_1$ and $P_2$ intersect in a single point. Thus axiom (4) is satisfied.
+
+Now note that if $P$ is a line in $\mathbb{P}(V)$ and $L$ is some point off of $P$ then any line containing $L$ will be distinct from $P$ and intersect $P$ in a unique point, hence cannot be parallel to $P$. Thus axiom (2) is not satisfied.
+\end{proof}
+
+\begin{problem}
+Show that the only field automorphism of $\mathbb{R}$ is the identity.
+\end{problem}
+\begin{proof}
+Let $f : \mathbb{R} \to \mathbb{R}$ be an automorphism. Note that for $r \in \mathbb{R}$, $f(r) = f(0 + r) = f(0) + f(r)$ so $f(0) = 0$. Likewise, $f(r) = f(1 \cdot r) = f(1) f(r)$ so $f(1) = 1$. It immediately follows that $f(\mathbb{Z}) = \mathbb{Z}$ since any integer $n = 1 + \dots + 1 = f(1) + \dots + f(1) = f(1 + \dots + 1) = f(n)$ where there are $n$ terms in the sum. Now let $p \in \mathbb{Q}$ such that $p = a/b$. Note that $f(p) = f(a/b) = f(a)f(1/b) = a(1/f(b)) = a(1/b) = a/b = p$. Thus $f(\mathbb{Q}) = \mathbb{Q}$. 
+
+Let $a \leq b$ in $\mathbb{R}$ so that $b-a \geq 0$. But then we know $(b-a) = c^2$ for some nonnegative real number $c$. Thus $f(b-a) = f(c^2) = f(c)^2 \geq 0$. Thus $f$ must preserve order on $\mathbb{R}$. Now let $r \in \mathbb{R}$ and suppose $r < f(r)$. Choose $p \in \mathbb{Q}$ so that $r < p < f(r)$. But then $f(r) < f(p) = p$ contrary to our assumption. A similar proof holds if $f(r) < r$. Thus $r = f(r)$ and $f$ is the identity.
+\end{proof}
+
+\begin{problem}
+In our classifications of the collineations of $\mathbb{P}(V)$ when $V$ has dimension at least $3$, we defined a map $\theta : k \to k$ by the requirement that
+\[
+\sigma(\langle e_1 + x_2e_2 \rangle ) = (\langle f_1 + \theta(x_2)f_2 \rangle ).
+\]
+We could have defined $\theta_i$ for any $i > 2$ in the same way, but replacing $e_2$ and $f_2$ by $e_i$ and $f_i$. Show that $\theta_i = \theta$.
+\end{problem}
+\begin{proof}
+Consider the line $\langle xe_2 - xe_i \rangle$. This lies in $\langle e_2 \rangle + \langle e_i \rangle$ and also in $\langle e_1 + xe_2 \rangle + \langle e_1 + xe_i \rangle$. Under $\sigma$ then it is spanned by some vector of $\langle f_2 \rangle + \langle f_i \rangle$ and also by some vector of $\langle f_1 + \theta(x) f_2 \rangle + \langle f_1 + \theta_i(x) f_i \rangle$. Thus the image line must be $\langle \theta(x) f_2 - \theta_i(x) f_i \rangle$. On the other hand $\langle xe_2 - xe_i \rangle = \langle e_2 - e_i \rangle$ and the image of this line must be $\langle \theta(1) f_2 - \theta_i(1) f_i \rangle = \langle f_2 - f_i \rangle$. Thus we have $\langle \theta(x) f_2 - \theta_i(x) f_i \rangle = \langle f_2 - f_i \rangle$ so $\theta(x) = \theta_i(x)$.
+\end{proof}
+
+\begin{problem}
+Show that
+\[
+\sigma(\langle e_1 + x_2e_2 + \dots + x_ne_n \rangle ) = (\langle f_1 + \theta(x_2)f_2 + \dots + \theta(x_n)f_n \rangle )
+\]
+and
+\[
+\sigma(\langle x_2e_2 + \dots + x_ne_n \rangle ) = (\langle \theta(x_2)f_2 + \dots + \theta(x_n)f_n \rangle ).
+\]
+\end{problem}
+\begin{proof}
+We proceed by induction with the case $n = 2$ being done already. Suppose $\sigma(\langle e_1 + x_2e_2 + \dots + x_{n-1} e_{n-1} \rangle ) = \langle f_1 + \theta(x_2) f_2 + \dots + \theta(x_{n-1}) f_{n-1} \rangle$. The line $\langle e_1 + x_2e_2 + \dots + x_ne_n \rangle$ lies in $\langle e_1 + x_2e_2 + \dots + x_{n-1}e_{n-1} \rangle + \langle e_n \rangle$. Since it's distinct from $\langle e_n \rangle$ it's image is the span of some vector of the form $f_1 + \theta(x_2) f_2 + \dots + \theta(x_{n-1}) f_{n-1} + y f_n$. But note that this line is also in $\langle e_1 + x_ne_n \rangle + \langle e_2 \rangle + \dots + \langle e_{n-1} \rangle$ so it has image in $\langle f_1 + \theta(x_n) f_n \rangle + \langle f_2 \rangle + \dots + \langle f_{n-1} \rangle$. Since the image includes $f_1$ we must have $y = \theta(x_n)$ so that
+\[
+\sigma(\langle e_1 + x_2e_2 + \dots + x_ne_n \rangle ) = (\langle f_1 + \theta(x_2)f_2 + \dots + \theta(x_n)f_n \rangle ).
+\]
+
+The image of $\langle x_2e_2 + \dots + x_ne_n \rangle$ lies in $\langle f_2 \rangle + \dots + \langle f_n \rangle$. But note this line also lies in $\langle e_1 + x_2e_2 + \dots + x_ne_n \rangle + \langle e_1 \rangle$ so its image is also in $\langle f_1 + \theta(x_2) f_2 + \dots + \theta(x_n) f_n \rangle + \langle f_1 \rangle$. It then follows that $\sigma(\langle x_2e_2 + \dots + x_ne_n \rangle ) = (\langle \theta(x_2)f_2 + \dots + \theta(x_n)f_n \rangle )$.
+\end{proof}
+
+\end{document}

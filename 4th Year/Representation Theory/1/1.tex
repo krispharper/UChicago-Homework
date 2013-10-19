@@ -1,0 +1,238 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\renewcommand{\th}{^{\textup{th}}}
+\renewcommand{\char}{\textup{char}}
+\renewcommand{\hom}{\textup{Hom}}
+\newcommand{\sym}{\textup{Sym}}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26700\\
+
+October 4, 2010
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{problem}
+Let $V = \mathbb{C}^4$. Suppose that $\sigma : V \to V$ is the function defined by
+\[
+\sigma(z_1, z_2, z_3, z_4) = (z_3, z_4, z_1, z_2).
+\]
+Show that $\sigma$ is a $\mathbb{C}$-linear transformation. Choose a basis for $V$ and determine the matrix of $\sigma$ relative to it. Determine the characteristic and minimal polynomials of $\sigma$ and conclude that there is a basis for $V$ consisting of eigenvectors of $\sigma$.
+\end{problem}
+\begin{proof}
+Let $z \in \mathbb{C}$ and let $(u_1, u_2, u_3, u_4), (v_1, v_2, v_3, v_4) \in V$. Then
+\[
+\sigma(z(u_1, u_2, u_3, u_4)) = \sigma(zu_1, zu_2, zu_3, zu_4) = (zu_3, zu_4, zu_1, zu_2) = z(u_3, u_4, u_1, u_2) = z \sigma(u_1, u_2, u_3, u_4)
+\]
+and
+\begin{align*}
+\sigma((u_1, u_2, u_3, u_4) + (v_1, v_2, v_3, v_4))
+&= \sigma(u_1 + v_1, u_2 + v_2, u_3 + v_3, u_4 + v_4)\\
+&= (u_3 + v_3, u_4 + v_4, u_1 + v_1, u_2 + v_2)\\
+&= (u_3, u_4, u_1, u_2) + (v_3, v_4, v_1, v_2)\\
+&= \sigma(u_1, u_2, u_3, u_4) + \sigma(v_1, v_2, v_3, v_4).
+\end{align*}
+This shows that $\sigma$ is $\mathbb{C}$-linear.
+
+We pick the standard basis for $V$, $\{e_1, e_2, e_3, e_4\}$ where $e_i$ has a $1$ in the $i\th$ place and $0$s elsewhere. Then $\sigma(e_1) = (0,0,1,0)$, $\sigma(e_2) = (0,0,0,1)$, $\sigma(e_3) = (1,0,0,0)$ and $\sigma(e_4) = (0,1,0,0)$. We know $\sigma = (a_{ij})$ where $\sigma(e_j) = \sum_{i=1}^{4} a_{ij}e_i$. Using this definition with the previous calculations gives
+\[
+\sigma =
+\left (
+\begin{array}{cccc}
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0
+\end{array}
+\right ).
+\]
+The characteristic polynomial of $\sigma$ is given by
+\[
+\det(\lambda I - \sigma) = \det
+\left (
+\begin{array}{cccc}
+\lambda & 0 & -1 & 0\\
+0 & \lambda & 0 & -1\\
+-1 & 0 & \lambda & 0\\
+0 & -1 & 0 & \lambda
+\end{array}
+\right )
+= \lambda^4 - 2\lambda^2 + 1 = (\lambda - 1)^2 (\lambda + 1)^2.
+\]
+From this, we can easily find the minimal polynomial for $\sigma$ as the irreducible polynomial of least degree which divides the characteristic polynomial, namely $(\lambda - 1)(\lambda + 1)$.
+
+We now know that the eigenvalues for $\sigma$ are $\pm 1$. To find the eigenvectors we solve the equations $\sigma(v) = \pm v$. Taking the positive value first, $(v_3, v_4, v_1, v_2) = (v_1, v_2, v_3, v_4)$ so $v_3 = v_1$ and $v_4 = v_2$. This gives the two vectors $(1, 0, 1, 0)$ and $(0, 1, 0, 1)$ which span the eigenspace corresponding to $1$. A similar calculation shows that $(1, 0, -1, 0)$ and $(0, 1, 0, -1)$ span the second eigenspace. Since the sum of the dimensions of the eigenspaces is equal to $\dim (V)$, we know there exists a basis of $V$ consisting of these eigenvectors.
+\end{proof}
+
+\begin{problem}
+For the matrix
+\[
+A = 
+\left (
+\begin{array}{ccc}
+18 & 5 & 15\\
+-6 & 5 & -9\\
+-2 & -1 & 5
+\end{array}
+\right )
+\]
+show that the characteristic polynomial is $\char_A(x) = (x-12)(x-8)$. Find a basis for $\mathbb{C}^3$ consisting of $A$. Find the minimal polynomial for $A$.
+\end{problem}
+\begin{proof}
+The characteristic polynomial of $A$ is given by
+\[
+\det (\lambda I - A) = \det
+\left (
+\begin{array}{ccc}
+\lambda-18 & -5 & -15\\
+6 & \lambda-5 & 9\\
+2 & 1 & \lambda-5
+\end{array}
+\right )
+= \lambda^3 - 28 \lambda^2 + 256 \lambda - 768 = (\lambda-12)(\lambda-8)^2.
+\]
+This immediately gives that the minimal polynomial for $A$ is $(\lambda - 12)(\lambda - 8)$.
+
+We now have the two distinct eigenvalues $12$ and $8$. For the former, we compute
+\[
+\left (
+\begin{array}{ccc}
+18 & 5 & 15\\
+-6 & 5 & -9\\
+-2 & -1 & 5
+\end{array}
+\right )
+\left (
+\begin{array}{c}
+x\\
+y\\
+z
+\end{array}
+\right )
+=
+\left (
+\begin{array}{c}
+18x + 5y + 15z\\
+-6x + 5y -9z\\
+-2x - y + 5z
+\end{array}
+\right ).
+\]
+So we're left with the equations $18x + 5y + 15z = 12x$, $-6x + 5y - 9z = 12y$ and $-2x - y + 5z = 12z$. Solving, we get $y = -3x/5$ and $z = -x/5$. This gives the eigenvector $(5, -3, -1)$. For the eigenvalue $8$, we have similar equations which reduce to $2x + y + 3z = 0$. This gives the two eigenvectors $(-3, 0, 2)$ and $(-1, 2, 0)$. Thus our basis is $\{(5, -3, -1), (-3, 0, 2), (-1, 2, 0)\}$.
+\end{proof}
+
+\begin{problem}
+\label{tensor}
+Let $V$ be an $S_n$-representation. Write out a proof that the obvious action of $S_n$ on $V \otimes V$ is indeed a $G$-representation.
+\end{problem}
+\begin{proof}
+Let $\rho : S_n \to GL(V)$ be the representation in question. Then we also have a function $ \sigma : S_n \to GL(V \otimes V)$ defined as $\sigma(g)(v \otimes w) = \rho(g)(v) \otimes \rho(g)(w)$. If $\sigma$ is to be a representation we need to show it's a homomorphism. Let $g, h \in S_n$. Then
+\[
+\sigma(gh)(v \otimes w) = \rho(gh)(v) \otimes \rho(gh)(w) = \rho(g)\rho(h)(v) \otimes \rho(g)\rho(h)(w) = \sigma(g)(\rho(h)(v) \otimes \rho(h)(w)) = \sigma(g)\sigma(h)(v \otimes w).
+\]
+Thus $\sigma : S_n \to V \otimes V$ is a homomorphism and thus a representation of $S_n$.
+\end{proof}
+
+\begin{problem}
+(a) Let $V$ and $W$ be finite-dimensional vector spaces. Prove that there is an isomorphism of vector spaces $W \otimes V^* \to \hom(V,W)$.\\
+(b) Now suppose that $V$ and $W$ are $G$-representations of some group $G$. Prove that the isomorphism above is an isomorphism of $G$-representations.
+\end{problem}
+\begin{proof}
+(a) We have a homomorphism $W \times V^* \to \hom(V,W)$ given by $(w,T) \mapsto (v \mapsto T(v)w)$. This map is bilinear because the linearity of $T$. By the universal property, this gives a unique homomorphism $\varphi : W \otimes V^* \to \hom(V,W)$ given by $\varphi : w \otimes T \mapsto (v \mapsto T(v)w)$. Suppose $\varphi(w \otimes T) = 0$, i.e., $\varphi(w \otimes T)$ is the map which takes $v$ to $0$ for all vectors $v \in V$. This will certainly happen if $w = 0$, so suppose otherwise. Then $T(v)w = 0$ for nonzero $w$ and all $v$, thus, $T$ is the $0$ map. Therefore our original element is either $0 \otimes T = 0$ or $w \otimes 0 = 0$, showing that $\varphi$ is injective. Since $\dim (W \otimes V^*) = \dim (\hom(V,W))$ we see that $\varphi$ must be an isomorphism.
+
+(b) Suppose that $\rho : G \to GL(V)$ and $\sigma : G \to GL(W)$ are the representations in question. Then $\rho^* : g \mapsto ^t \rho(g^{-1})$ is a representation of $V^*$. From Problem~\ref{tensor} we now know $\tau : G \to GL(W \otimes V^*)$ given by $\tau(g)(w \otimes T) = \sigma(g)(w) \otimes \rho^*(g)(T)$ is a representation. We wish to show given $g \in G$ and $w \otimes T \in W \otimes V^*$, we have $\varphi(\tau(g)(w \otimes T)) = g(\varphi(w \otimes T))$. Note
+\begin{align*}
+\varphi(\tau(g)(w \otimes T))
+&= \varphi(\sigma(g)w \otimes \rho^*(g)(T))\\
+&= v \mapsto \rho^*(g)(T)(v)\sigma(g)(w)\\
+&= v \mapsto {^t\rho}(g^{-1})(T)(v)(\sigma(g)(w))\\
+&= v \mapsto \sigma(g)(T(\rho(g^{-1})(v))w)\\
+&= g(v \mapsto T(v)w)\\
+&= g(\varphi(w \otimes T)).
+\end{align*}
+\end{proof}
+
+\begin{problem}
+Verify that with this definition of $\rho^*$, the above relation is satisfied.
+\end{problem}
+\begin{proof}
+Note that given a map between vector spaces such as $\rho(g)$ we can form its transpose $\rho*(g)(\varphi)$ as $\varphi \circ \rho$ for each $\varphi$ in the dual space. In matrix notation, this is literally the transpose of the matrix representation of $\rho$. We then have
+\begin{align*}
+\langle \rho^*(g)(v^*), \rho(g)(v) \rangle
+&= (\rho^*(g)(v^*))(\rho(g)(v))\\
+&= (^t\rho(g^{-1})(v^*))(\rho(g)(v))\\
+&= v^*(\rho(g^{-1}))(\rho(g)(v))\\
+&= v^*(v)\\
+&= \langle v^*, v \rangle.
+\end{align*}
+\end{proof}
+
+\begin{problem}
+Verify that in general the vector space of $G$-linear maps between two representations $V$ and $W$ of $G$ is just the subspace of $\hom(V,W)^G$ of elements of $\hom(V,W)$ fixed under the action of $G$. This subspace is often denoted $\hom_G(V,W)$.
+\end{problem}
+\begin{proof}
+Let $\varphi$ be a $G$-linear map from $V$ to $W$. Then for $v \in V$ and $g \in G$ we have
+\[
+\varphi(v) = gg^{-1}\varphi(v) = g \varphi(g^{-1}v) = (g\varphi)(v).
+\]
+Thus $\varphi$ is fixed under the action of $G$. Now suppose $\varphi \in \hom(V,W)^G$. Then for $g \in G$ and $v \in V$ we have
+\[
+\varphi(v) = (g^{-1}\varphi)(v) = g^{-1} \varphi(g v).
+\]
+Acting with $g$ on both sides shows $\varphi$ is $G$-linear.
+\end{proof}
+
+\begin{problem}
+Use this approach to find the decomposition of the representations $\sym^2 V$ and $\sym^3 V$.
+\end{problem}
+\begin{proof}
+Let $\alpha = (\omega, 1, \omega^2)$ and $\beta = (1, \omega, \omega^2)$ where $\omega = e^{2 \pi i/3}$. Note that $\alpha$ and $\beta$ form a basis for $V$. Then a basis for $\sym^2 V$ is $\{\alpha^2, \beta^2, \alpha \beta\}$. Let $\tau = (1 \; 2 \; 3)$ and $\sigma = (1 \; 2)$ so that $S_3 = \langle \tau, \sigma \rangle$. Note that $\tau \alpha = \omega \alpha$ and $\tau \beta = \omega^2 \beta$. Thus $\tau \alpha^2 = \omega^2 \alpha^2$, $\tau \beta^2 = \omega \beta^2$ and $\tau \alpha \beta = \alpha \beta$ and these basis elements are eigenvectors for $\tau$ with eigenvalues $\omega^2$, $\omega$ and $1$ respectively. Note also that $\sigma \alpha^2 = \beta^2$, $\sigma \beta^2 = \alpha^2$ and $\sigma \alpha \beta = \alpha \beta$. Thus $\alpha \beta$ spans a subrepresentation isomorphic to the trivial representation, and $\alpha^2$ and $\beta^2$ form a $2$-dimensional invariant subspace which then must be isomorphic to $V$. Therefore $\sym^2 V \cong U \oplus V$ where $U$ is the trivial representation.
+
+Now consider $\sym^3 V$. This has basis $\{\alpha^3, \beta^3, \alpha^2 \beta, \alpha \beta^2 \}$. Note that $\tau \alpha^3 = \alpha^3$, $\tau \beta^3 = \beta^3$, $\tau \alpha^2 \beta = \omega \alpha^2 \beta$ and $\tau \alpha \beta^2 = \omega^2 \alpha \beta^2$. These vectors are thus eigenvectors of $\tau$ with eigenvalues $1$, $1$, $\omega$ and $\omega^2$ respectively. Note also that $\sigma \alpha^3 = \beta^3$, $\sigma \beta^3 = \alpha^3$, $\sigma \alpha^2 \beta = \alpha \beta^2$ and $\sigma \alpha \beta^2 = \alpha^2 \beta$. Thus the two sets of vectors $\{\alpha^3, \beta^3\}$ and $\{\alpha^2 \beta, \alpha \beta^2\}$ each span a two dimensional subspace which is $S_3$-invariant. This subspace must be isomorphic to $V$, so we have $\sym^3 V \cong V \oplus V$.
+\end{proof}
+
+\begin{problem}
+Consider the representation of $S_n$ on $\mathbb{R}^n$ given by permuting coordinates. Prove that the subspace $W := \{(x_1, \dots , x_n) \mid x_1 + \dots + x_n = 0\}$ is $S_n$-invariant, thus giving an $(n-1)$-dimensional representation of $S_n$ on $W$. Prove that this representation is irreducible.
+\end{problem}
+\begin{proof}
+Let $\mathbf{x} = (x_1, \dots , x_n)$ be an element of $W$ and $\sigma \in S_n$. Then $\sigma(\mathbf{x}) = (x_{\sigma(1)}, \dots , x_{\sigma(n)})$. But note that $x_1 + \dots + x_n = 0 = x_{\sigma(1)} + \dots + x_{\sigma(n)}$, since we've just permuted the terms in the sum. Therefore $\sigma(\mathbf{x}) \in W$ and $W$ is $S_n$-invariant.
+
+Suppose now that $W$ has some nontrivial subrepresentation $U$. Note that each nonzero vector in $U$ must have a positive and a negative coordinate, since the sum of all the coordinates is $0$. Let $\mathbf{x} = (x_1, \dots x_n)$ be such a vector. Since $U$ is $G$-invariant we can permute the coordinates of $\mathbf{x}$ and be assured the resulting vector is still in $U$. Choose an element of $G$ which permutes the $x_i$ so that the first and second coordinates of $\mathbf{x}$ are positive and negative respectively.
+
+Call this new vector $\mathbf{a}$ and let $\mathbf{b}$ be the resulting vector after transposing the first two coordinates of $\mathbf{a}$. Since $\mathbf{a}$ and $\mathbf{b}$ are both in $U$, so is their difference $\mathbf{c} = \mathbf{a} - \mathbf{b}$. Note that $\mathbf{c} = (c_1, -c_1, 0, \dots , 0) = c_1(1, -1, 0 , \dots , 0)$. Let $\mathbf{e_1} = (1, -1, 0, \dots , 0)$. Then we can permute the coordinates of $\mathbf{e_1}$ to get the $(n-1)$ vectors $\mathbf{e_i} = (1, 0, \dots , 0, -1, 0, \dots , 0)$ which have a $-1$ in the $(i+1)^{\textup{st}}$ coordinate. But it's clear that these $\mathbf{e_i}$ are linearly independent so they form a basis for the $(n-1)$-dimensional space $W$. Hence any nontrivial subspace of $W$ is equal to $W$ and $W$ is thus irreducible.
+\end{proof}
+
+\begin{problem}
+Every irreducible complex representation of a finite abelian group is one-dimensional. Give an example to show that this is false for real representations.
+\end{problem}
+\begin{proof}
+Consider the map $\mathbb{Z}/4\mathbb{Z} \to GL(2, \mathbb{R})$ which takes a generator $g$ to the matrix
+\[
+\left (
+\begin{array}{cc}
+0 & 1\\
+-1 & 0
+\end{array}
+\right ).
+\]
+It's easily verified that this matrix has order $4$ and so this is indeed a representation. Suppose a one dimensional subspace is fixed by the action of $g$. Then for some vector $(x,y)$ we would have $(x,y) = g(x,y) = \lambda (y,-x)$ for some nonzero $\lambda$. Then $x = \lambda y$, $y = -\lambda x$ and $x = -\lambda^2 x$. Since $\lambda \neq 0$, we must have $x = y = 0$. Hence, no one dimensional subspace of $\mathbb{R}$ is fixed under $G$ and this representation is irreducible.
+
+Alternatively, we could note that this matrix rotates the plane and so clearly only the zero vector is fixed under this action.
+\end{proof}
+
+\begin{problem}
+(a) Prove that $S_n$ has no irreducible (say real) representations of dimension $m$ where $2 \leq m \leq n-2$.\\
+(b) Classify all $1$-dimensional and $(n-1)$-dimensional representations of $S_n$.
+\end{problem}
+
+\end{document}

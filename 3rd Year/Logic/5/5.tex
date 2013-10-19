@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27700\\
+
+November 4, 2009
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{problem}
+Prove the compactness theorem using ultraproducts. That is, prove that a set $T$ of $\mathcal{L}$-sentences is satisfiable iff every finite subset is satisfiable.
+\end{problem}
+\begin{proof}
+Suppose that $T$ is satisfiable. Then there exists a model $M$ such that $M \models T$. But then if $T_0 \subseteq T$ is a finite subset, we must have $M \models T_0$ as well. For the converse, assume that every finite subset of a set of $\mathcal{L}$-sentences is satisfiable. Let $T'$ be the set consisting of elements of finite conjunctions of elements of $T$. Note that if $M \models T$ for some model $M$ then clearly $M \models T'$. The converse is also true since we've only taken finite conjunctions. Furthermore, if we consider some finite set of $T'$, then we can find a finite set of $T$ (namely, the set consisting of all the elements in every conjunction in the first set) which is satisfiable. This shows that we can replace $T$ with $T'$.
+
+For each finite subset $T_0 \subseteq T$ let $M_{T_0} \models T_0$ be a model. Let $X$ be the collection of these finite subsets $T_0 \subseteq T$. Now for $\varphi \in T$ let $X_{\varphi} = \{T_0 \in X \mid M_{T_0} \models \varphi\}$. Note that for $\varphi, \psi \in T$ we have $X_{\varphi} \cap X_{\psi} = \{T_0 \in X \mid M_{T_0} \models \varphi, M_{T_0} \models \psi\} = \{T_0 \in X \mid M_{T_0} \models \varphi \wedge \psi\}$. Since we've made $T$ closed under finite conjunction, this subset is $X_{\varphi \wedge \psi}$ for $\varphi \wedge \psi \in T$. If we consider some arbitrary number of intersections, e.g. $\bigcap_{n} X_{\varphi_n}$ we see that this is closed for the exact same reasons. In other words, the set $\{X_{\varphi} \mid \varphi \in T\}$ is closed under finite intersections. Thus we can create an ultrafilter $\mathcal{D}$ in which every $X_{\varphi}$ is large for $\varphi \in T$. Let
+\[
+N = \prod_{T_0 \in X} M_{T_0}/\mathcal{D}.
+\]
+But now if $\varphi \in T$, then $X_{\varphi} \in \mathcal{D}$ and so using \L os' Theorem we know that $N \models \varphi$.
+\end{proof}
+
+\begin{problem}
+Show that the (ternary) addition relation is not definable in $\langle \mathbb{N}, \times \rangle$.
+\end{problem}
+\begin{proof}
+Let $g : \mathbb{N} \to \mathbb{N}$ such that $g(2) = 3$, $g(3) = 2$ and $g(x) = x$ otherwise. Then $g$ is clearly a bijection since it simply switches two elements of $\mathbb{N}$ (permutations are bijections). Now suppose that $x \times y = z$. We need to show that $g(x) \times g(y) = g(z)$. Note that $x$, $y$ and $z$ all have unique prime factorizations (that is, they are unique to each element, not necessarily among $x$, $y$ and $z$). So now we have $(p_1^{a_1} \dots p_n^{a_n})(p_1^{b_1} \dots p_n^{b_n}) = p_1^{a_1 + b_1} \dots p_n^{a_n+b_n}$. Note that the number of primes in the factorizations of $x$ and $y$ may be different, but we will simply write $p_i^0$ at the end of one until they are the same length. But then
+\begin{align*}
+g(x) \times g(y)
+&= g(p_1^{a_1} \dots p_n^{a_n}) \times g(p_1^{b_1} \dots p_n^{b_n})\\
+&= g(2^{a_1})g(3^{a_2})p_3^{a_3} \dots p_n^{a_n} \times g(2^{b_1})g(3^{b_2})p_3^{b_n} \dots p_n^{b_n}\\
+&= 3^{a_1}2^{a_2}p_3^{a_3} \dots p_n^{a_n} \times 3^{b_1}2^{b_2}p_3^{b_3} \dots p_n^{b_n}\\
+&= 2^{a_2+b_2}3^{a_1+b_1}p_3^{a_3 + b_3} \dots p_n^{a_n + b_n}\\
+&= g(p_1^{a_1+b_1}p_2^{a_2 + b_2} \dots p_n^{a_n+b_n})\\
+&= g(z).
+\end{align*}
+Therefore $g$ is an automorphism of $\langle \mathbb{N}, \times \rangle$. But then if $+$ is a ternary relation we have $1 + 2 = 3$ and so $g(1) + g(2) = g(3)$. This gives $1 + 3 = 2$ which is a contradiction. Therefore $+$ is not definable in $\langle \mathbb{N}, \times \rangle$.
+\end{proof}
+
+\begin{problem}
+If $\varphi$ is universal and $M \subseteq N$, if $N \models \varphi$, then $M \models \varphi$. So universal sentences are preserved under submodels. Give an example to show that universal sentences are not preserved under extension.
+\end{problem}
+\begin{proof}
+Let $\varphi = \varphi(a_1, \dots a_k)$ be universal. Then $\varphi = \forall x_1 \dots \forall x_n \psi$ where $\psi$ is without quantifiers. We induct on $n$. For $n=1$ we have $N \models \varphi$ if and only if for every $b \in |N|$, $N \models \psi[a_1, \dots a_{i-1}, b, a_{i+1}, \dots , a_k]$. But since $|M| \subset |N|$, we must also have $M \models \varphi$. Suppose the statement is true for some $n$, and consider the $n+1$ case. Then we have $N \models \varphi$ if and only if for all $b \in |N|$, $N \models \forall x_1 \dots \forall x_n \psi[a_1, \dots a_{i-1}, b, a_{i+1}, \dots , a_k]$. But we know this is true by our inductive hypothesis and thus $N \models \varphi$. But then $M \models \varphi$ as well since again $|M| \subseteq |N|$.
+
+As an example, let $M = \langle \mathbb{N}, < , 0\rangle$ and let $\varphi = \forall x ((0 < x) \vee (x = 0))$. Then $\varphi$ is universal, but if we then extend $M$ to $N = \langle \mathbb{Z}, < , 0 \rangle$, we see that the sentence is false.
+\end{proof}
+
+\begin{problem}
+Suppose that $\mathcal{L}$ is countable.\\
+(a) Show that there are at most $2^{\aleph_0}$ (i.e. cardinality of the continuum) nonisomorphic countable $\mathcal{L}$-structures.\\
+(b) We will prove that if $\mathcal{L}$ is countable, then every consistent set of $\mathcal{L}$-sentences has a countable model. Assuming this, show that there are at most $2^{\aleph_0}$ elementary equivalence classes of $\mathcal{L}$-structures (of any possible cardinality).
+\end{problem}
+\begin{proof}
+(a) Consider all the countable $\mathcal{L}$-structures. We can assume that each of these is infinite since there are only countably many finite $\mathcal{L}$-structures. Note that any two of these countably infinite $\mathcal{L}$-structures have a bijection between them since their the same cardinality. For any two to be nonisomorphic, we need either a constant to be mapped incorrectly, a relation to not be true under the image or a function of the image values to output the wrong value. If $\mathcal{L}$ has countably many constants, then there are countably many choices to map countably many constants to which will result in two nonisomorphic models. Similar statements can be said for the relations and functions, except in those cases there are $k$ times countably many choices for a $k$-ary relation. The same is true for a $k$-ary function. Any of these possible assignments results in two nonisomorphic models, but there are at most $2^{\aleph_0}$ of these for each category, resulting in no more than $2^{\aleph_0}$ possible nonisomorphic countable $\mathcal{L}$-structures.
+
+(b) Let $M$ be an $\mathcal{L}$-structure and suppose that $M \equiv N$ for some $N$ $\mathcal{L}$-structure. Then $\text{Th}(M) = \text{Th}(N)$. But these are sets of sentences in $\mathcal{L}$ and in particular, they're clearly consistent sets of sentences. Therefore there exists $M'$, a countable model of $\text{Th}(M)$ and define $N'$ analogously. Then we have $\text{Th}(M') = \text{Th}(M) = \text{Th}(N) = \text{Th}(N')$ and thus $M' \equiv N'$. Since $M'$ and $N'$ are countable, and $\mathcal{L}$ is countable, it follows that there are only $2^{\aleph_0}$ possible equivalence classes of $\mathcal{L}$-structures.
+\end{proof}
+
+\begin{problem}
+Recall that an element $a \in |M|$ is \emph{definable} if $\{a\}$ is a definable set.\\
+(a) For $n < \omega$ with $n = 0$ or $n > 1$, give an example of a finite language $\mathcal{L}$ and an $\mathcal{L}$-structure $M_n$ such that $M_n$ contains exactly $n$ undefinable elements.\\
+(b) (Extra Credit) Give and example for the case $n=1$.
+\end{problem}
+\begin{proof}
+(a) Let $\mathcal{L} = \{R(x,y), a_0, \dots, a_{n+1}\}$ for constants $a_0, \dots , a_{n+1}$. Then let $M_n = \langle \in, 0, \dots , n, \{0\} \rangle$. Note that we define $\in$ to be false when it doesn't make sense (e.g. $1 \in 2$ is false). Then $\in$ only takes on meaning when we consider $0 \in \{0\}$. Note then $0$ is definable as $\exists x (x \in \{0\})$. Also $\{0\}$ is definable as $\exists x (0 \in x)$. But since $i \notin j$ for all $j \in |M_n|$ with $1 \leq i \leq n$, we can interchange any two of these elements and retain the same structure. Therefore there are $n$ undefinable elements. When $n=0$ this still works since then $M_0 = \langle \in, 0, 1, \{0\} \rangle$ and $0$ and $\{0\}$ are defined as before while $1$ is $\exists x (\neg(x \in \{0\}) \wedge \neg(0 \in x))$.
+
+(b) This can be accomplished by letting $\mathcal{L}$ be countably infinite.
+\end{proof}
+
+\end{document}

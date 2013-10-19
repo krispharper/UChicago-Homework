@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newcommand{\Div}{\textup{div}\;}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27300\\
+
+March 9, 2011
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{problem}
+Find the periodic solutions of the system
+\[
+\begin{tabular}{cc}
+$\dot{x}_1 = -x_2 + x_1f(r)$, & $\dot{x}_2 = x_1 + x_2f(r)$
+\end{tabular}
+\]
+where $r^2 = x_1^2 + x_2^2$ and $f(r) = -r(1-r^2)(4-r^2)$.
+\end{problem}
+
+We can switch to polar coordinates labeling $x_1 = x$ and $x_2 = y$. Then we're need to find $\dot{r}$ and $\dot{\theta}$ where $r = x^2 + y^2$ and $\tan(\theta) = x/y$. Differentiating the equation for $r$, we have $r \dot{r} = x \dot{x} + y \dot{y}$. Putting in the given equations for $\dot{x} = \dot{x_1}$ and $\dot{y} = \dot{x_2}$, we have $\dot{r} = f(r) = -r(1-r^2)(4-r^2)$. Similarly, differentiating the equation for $\theta$ gives $\sec^2(\theta) \dot{\theta} = (x^2 + y^2)/x^2 = 1 + \tan^2(\theta)$. Multiplying by $\sec^2(\theta)$ gives $\dot{\theta} = \cos^2(\theta) + \sin^2(\theta) = 1$.
+
+Since $\dot{\theta}$ is never $0$, the only fixed point of this system can be at $0$, and it's easy to see that $x_1 = x_2 = 0$ gives a fixed point. The periodic orbits will then be points where $\dot{r} = f(r) = 0$. Looking at $f(r)$, we have $r = 2$ and $r = 1$ give $f(r) = 0$, so the periodic orbits of the system are the circles centered at the origin with radii $1$ and $2$.
+
+\begin{problem}
+Consider the \emph{nonautonomous}, periodic system
+\[
+\begin{tabular}{cc}
+$\dot{x} = f(x,t)$, & $f(x,t+T) = f(x,t)$.
+\end{tabular}
+\]
+Let $x(t)$ be a solution such that, at some time $t_1$, $x(t_1) = x(t_1 + T)$. Show that this solution is periodic with period $T$.
+\end{problem}
+\begin{proof}
+Define $\widetilde{x}(t) = x(t + T)$. Then $\dot{\widetilde{x}} = \dot{x} = f(x,t)$ from the chain rule. Further $\widetilde{x}(t_1) = x(t_1 + T) = x(t_1)$. So $\widetilde{x}(t)$ is a solution that satisfies the initial condition at $t_1$. By uniqueness, $x(t) = \widetilde{x}(t) = x(t + T)$. So $x(t)$ is periodic.
+\end{proof}
+
+\begin{problem}
+Consider the planar autonomous system
+\[
+\begin{tabular}{cc}
+$\displaystyle{\frac{dx}{dt} = f(x)}$, & $\displaystyle{x \in \Omega}$, $\displaystyle{\Omega \subseteq \mathbb{R}^2}$
+\end{tabular}
+\]
+and suppose
+\[
+\Div f = \frac{\partial f_1}{\partial x_1} + \frac{\partial f_2}{\partial x_2}
+\]
+has one sign in $\Omega$. Show that this system can have no periodic orbits other than equilibrium points.
+\end{problem}
+\begin{proof}
+Suppose $x(t)$ is a periodic solution. If $x(t)$ is not an equilibrium point, then $x(t)$ traces out a simple closed curve, $C$ in the plane. Note that $f$ is defined as the component-wise derivative of $x$, so $f$ will always point tangential to $x(t)$. If $\hat{\mathbf{n}}$ is the normal vector to $x(t)$ at any time $t$, then $f \cdot \hat{\mathbf{n}} = 0$ since these two vectors are perpendicular. This means that
+\[
+\oint_C f \cdot \hat{\mathbf{n}} ds = 0.
+\]
+But note that by the divergence theorem
+\[
+\oint_C f \cdot \hat{\mathbf{n}} ds = \iint_D (\Div f) dA
+\]
+where $D$ is the area enclosed by $C$. But this integral cannot be nonzero if $\Div f$ has only one sign on $D$. Thus $x(t)$ cannot be a periodic solution.
+\end{proof}
+
+\begin{problem}
+Consider the gradient system
+\[
+\begin{tabular}{cc}
+$\displaystyle{\frac{dx}{dt} = \nabla \phi}$, & $\displaystyle{x \in \Omega}$, $\displaystyle{\Omega \subseteq \mathbb{R}^n}$,
+\end{tabular}
+\]
+where $\phi(x)$ is a smooth, single-valued function. Draw the same conclusion as in the preceding problem.
+\end{problem}
+\begin{proof}
+Suppose $x(t)$ is a periodic solution. If $x(t)$ is not an equilibrium point then $x(t)$ traces out a simple closed curve $C$ in the plane. Let $\mathbf{v} = \nabla \phi$. By definition, $\mathbf{v}$ is a conservative vector field, so we must have
+\[
+\oint_C \mathbf{v} \cdot \hat{\mathbf{n}} ds = 0.
+\]
+From the divergence theorem we know that
+\[
+\oint_C \mathbf{v} \cdot \hat{\mathbf{n}} ds = \iint_D (\nabla \cdot \mathbf{v}) dA = 0.
+\]
+But note that $C$ could be any curve here, so we must have $\nabla \cdot \mathbf{v} = \nabla^2 \phi = 0$. Thus $\phi$ is a harmonic function, which means that on any compact set, $\phi$ takes its maximum and minimum on the boundary. Consider the compact set $D$ given by the $C$ unioned with its interior. Note that $\nabla \phi$ is defined as the component-wise derivative of $x(t)$, so $\nabla \phi$ always points tangentially to $C = \partial D$. But this means that $\phi$ must be constantly $0$ on $C$ and therefore constantly $0$ on $D$. Thus $x(t)$ is an equilibrium point, a contradiction.
+\end{proof}
+
+\begin{problem}
+Consider the system
+\[
+\begin{tabular}{cc}
+$\dot{x} = xf(x,y)$, & $\dot{y} = yg(x,y)$
+\end{tabular}
+\]
+where $f$, $g$ are arbitrary, smooth functions defined in $\mathbb{R}^2$. Show that the lines $x = 0$ and $y = 0$ are invariant curves for this system. Infer that each of the four quadrants of the $xy$-plane is an invariant region for this system.
+\end{problem}
+\begin{proof}
+Let $p_0 = (x_0, 0)$ be some point on the line $y = 0$. Then note that $\dot{y} = 0$ at $p_0$. Therefore, the orbit $\gamma(p_0)$ for times $t > 0$ is entirely governed by $\dot{x}$. Since the derivative of the $y$-coordinate is $0$ at $p_0$, the only path the orbit can take is in the $x$-direction. But then $\gamma(p_0)$ must stay on the line $y = 0$; any deviation would imply a nonzero $y$-derivative. The same can be said for times $t < 0$, so $\gamma(p_0)$ is entirely contained on the curve $y = 0$. A similar argument holds for the line $x = 0$ since $\dot{x} = 0$ there.
+
+Now suppose we have an orbit containing a point $p$ in one of the four quadrants. If this orbit is to leave this quadrant, then it must pass through some point on the lines $x = 0$ or $y = 0$. But we've already seen that these are invariant, so $p$ must have not been in one of the quadrants to start with, a contradiction. Thus $\gamma(p)$ is entirely contained in the quadrant containing $p$ and so each quadrant is an invariant set.
+\end{proof}
+
+\begin{problem}
+Show that the nonwandering set is closed and positively invariant.
+\end{problem}
+\begin{proof}
+Let $W$ be the nonwandering set and take a convergent sequence $(p_n)$ in $W$ with limit $p$. Let $U$ be a neighborhood of $p$ and let $T > 0$. Since $p$ is the limit of $(p_n)$, infinitely many points of $(p_n)$ lie within $U$. Take $p_k \in U$ and note that since $p_k$ is nonwandering, $\phi(t,x) \in U$ for some $x \in U$ and $t \geq T$. Therefore $p$ is nonwandering. Thus every convergent sequence has a limit in $W$, so $W$ must be closed.
+
+Now take an orbit $\gamma(p)$ for some point $p \in W$. Take some time $t_0 > 0$ and let $q = \phi(t_0,p)$ be another point point $\gamma(p)$. Let $U$ be a neighborhood of $q$ and take $T > 0$. Take a neighborhood $V$ and find some point $\phi(t_1,x) \in V$ for some $t_1 \geq T$. Now consider the point $\phi(t_1 + t_0,x)$. Because $\phi$ is continuous, this point must be close to $q$. In particular, if $U$ is contained inside a ball of radius $\varepsilon$, then we can enclose $V$ in a ball of radius $\delta$ such that $||p - \phi(t_1, x)|| < \delta$ implies that $||q - \phi(t_1 + t_0,x)|| < \varepsilon$. Thus $\phi(t_1 + t_0, x) \in U$ and $q$ must be in $W$ as well.
+\end{proof}
+
+\end{document}

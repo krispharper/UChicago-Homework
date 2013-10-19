@@ -1,0 +1,262 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27300\\
+
+March 4, 2011
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{problem}
+For the initial-value problem $y' = \lambda y$, $y(0) = 1$, formulate the equivalent integral equation and find the first three approximations $y_1$, $y_2$, $y_3$ in the successive-approximations approach to a solution.
+\end{problem}
+
+The equivalent integral equation is
+\[
+y(x) = 1 + \int_0^x \lambda y(s) ds.
+\]
+The first three approximations are $y_0(x) = y_0 = 1$,
+\[
+y_1(x) = y_0 + \int_{x_0}^x \lambda y_0(s) ds = 1 + \int_0^x \lambda ds = 1 + \lambda x,
+\]
+\[
+y_2(x) = y_0 + \int_{x_0}^x \lambda y_1(s) ds = 1 + \int_0^x \lambda (1 + \lambda s) ds = 1 + \lambda x + \frac{(\lambda x)^2}{2}
+\]
+and
+\[
+y_3(x) = y_0 + \int_{x_0}^x \lambda y_2(s) ds = 1 + \int_x^x \lambda \left ( 1 + \lambda s + \frac{(\lambda s)^2}{2} \right ) ds = 1 + \frac{\lambda  x^2}{2} + \frac{\lambda ^2 x^3}{6}.
+\]
+
+\begin{problem}
+Solve the integral equation $u(x) = 1 + \int_0^x s^2 u(s) ds$.
+\end{problem}
+
+The standard version of this equation is $u'(x) = x^2 u(x)$, $u(0) = 1$. We can use the normal method of solving this to find a solution $u(x) = \exp \left ( \int^x s^2 ds \right ) = c \exp (x^3/3)$. Putting in the initial value gives $c = 1$, so the solution is $u(x) = \exp (x^3/3)$.
+
+\begin{problem}
+Suppose that $f(x,y)$ is continuous on a closed, bounded set $S$, and that the sequence of functions $\{y_n(x)\}$ converges uniformly on an interval $I$ to a function $y(x)$. Suppose that $(x,y_n(x)) \in S$ for $x \in I$. Show that the sequence $F_n(x) = f(x,y_n(x))$ converges uniformly to $f(x,y(x))$.
+\end{problem}
+\begin{proof}
+Let $\varepsilon > 0$. Since $f$ is continuous, there exists some $\delta > 0$ such that if $|y_n(x) - y(x)| < \delta$, $|f(x, y_n(x)) - f(x, y)| < \varepsilon$. Since $S$ is a closed and bounded set in $\mathbb{R}^2$, it's compact and $f$ is uniformly continuous here. Thus, this $\delta$ does not depend on $n$ or $x$. Now since $\{y_n(x)\}$ converges uniformly, there exists $N > 0$ such that for all $n > N$ and all $x \in I$, we have $|y_n(x) - y(x)| < \delta$. Then for all $n > N$ we also have $|f(x, y_n(x)) - f(x, y(x))| < \varepsilon$. But this means precisely that $F_n(x) = f(x, y_n(x))$ uniformly converges to $f(x, y(x))$.
+\end{proof}
+
+\begin{problem}
+Consider the linear system ($n = 2$)
+\[
+\begin{tabular}{cc}
+$u' = a(x) u + b(x) v$, & $v' = c(x) u + d(x) v$
+\end{tabular}
+\]
+where $a$, $b$, $c$, $d$ are defined on an interval $I$ of the $x$-axis. Eliminate $v$ to obtain a second-order, linear equation for $u$. You may take for granted any amount of differentiability that you need. Are any other conditions on the coefficients needed?
+\end{problem}
+
+If we differentiate the first equation we get $u'' = a'(x) u + a(x) u' + b'(x) v + b(x) v'$. Using this and the original equations, we can eliminate $v$ as
+\begin{align*}
+u''
+&= a'(x) u + a(x) u' + b'(x) v + b(x) v'\\
+&= a'(x) u + a(x) u' + b'(x) v + b(x)c(x) u + b(x)d(x) v\\
+&= a'(x) u + a(x) u' + \frac{b'(x) u' - a(x) b'(x) u}{b(x)} + b(x)c(x) u + d(x)u' - a(x)d(x) u.
+\end{align*}
+Here we've assumed that $b(x) \neq 0$ on $I$.
+
+\begin{problem}
+Consider the initial-value problem
+\[
+\begin{tabular}{cc}
+$\displaystyle{\dot{w} = \frac{d}{dt} \left ( \begin{array}{ccc} w_1\\ w_2\\ w_3 \end{array} \right ) = \left ( \begin{array}{ccc} w_2w_3\\ -w_3w_1\\ -\mu w_1w_2 \end{array} \right )}$, & $\displaystyle{w(0) = w_0}$.
+\end{tabular}
+\]
+For $\mu > 0$ and arbitrary initial-value vector $w_0$, show that solutions exist on $(-\infty, +\infty)$.
+\end{problem}
+\begin{proof}
+Write the system as $W' = F(t,W)$, where $F : (w_1, w_2, w_3) \mapsto (w_2w_3, -w_1w_3, -\mu w_1w_2)$. We are guaranteed that solutions exist on some interval if $F$ is continuous and Lipschitz on some domain. But $F$ is just multiplication of continuous functions. It's partial derivatives are also continuous on a convex set, so it's a Lipschitz function. So there's some interval $(a,b)$ of existence for solutions. But note that this interval can be extended to $(-\infty, +\infty)$ because the two other possible end point behaviors ($F \rightarrow \infty$ and $F \rightarrow \partial D$ as $t \rightarrow b$) do not occur. The same can be said for $a$.
+\end{proof}
+
+\begin{problem}
+For the initial-value problem (6.15) the solution map should be written $U(x,x_0,U_0)$ to allow for variations in the initial point $x_0$ as well as variations in $U_0$. Consider the \emph{autonomous} system $U' = F(U)$ for which the right-hand side does not depend explicitly on the independent variable $x$. If $F$ is defined on a domain $\Omega \subseteq \mathbb{R}^n$, then the domain $D \subseteq \mathbb{R}^{n+1}$ on which the vector field is defined is $D = \Omega \times \mathbb{R}$, i.e., it is defined for all $x \in \mathbb{R}$.
+
+Denote the solution of the autonomous system with the special initial data $(x_0, U_0) = (0, U_0)$ by $U = \phi(x, U_0)$. Show that, for general initial data $(x_0, U_0)$,
+\[
+U(x,x_0,U_0) = \phi(x-x_0, U_0).
+\]
+\end{problem}
+\begin{proof}
+The solution map $\phi(x - x_0, U_0)$ is just the solution map $U(x-x_0, 0, U_0)$. But this is just the solution map $U(x, x_0, U_0)$ shifted by $x_0$. That is, they both satisfy the same initial data $(x_0, U_0)$ since $x - x_0$ is simply a shift of the variable $x$ by $x_0$. Since they satisfy the same initial data, they must be the same by the uniqueness of existing solutions.
+\end{proof}
+
+\begin{problem}
+Consider the initial value problem on $[-1,1]$:
+\[
+\begin{tabular}{ccc}
+$u'' + p(x)u' + q(x)u = 0$, & $u(0) = u_0$, & $u'(0) = u_0'$.
+\end{tabular}
+\]
+Choose a basis $u_1$, $u_2$ such that $u_1(0) = 1$, $u_1'(0) = 0$ and $u_2(0) = 0$, $u_2'(0) = 1$. Write the solution $u(x,u_0,u_0')$. Is it continuous function of the initial data? Does it possess partial derivatives with respect to the initial data?
+\end{problem}
+
+Let $v_1 = u$ and $v_2 = u'$. Then $U = (v_1, v_2)$ and $U' = (v_1', v_2') = (u', -p(x)u' + q(x)u) = F(x,U)$ with $U_0 = (u_0, u_0')$ and $x_0 = 0$. If $F$ satisfies a Lipschitz condition on $[-1,1]$ then $u(x, U_0) = u(x, u_0, u_0')$ is continuous in $U_0$. Further, if $F$ and $F_U$ are continuous then there exists a $\delta > 0$ such that for all $(0, U_0) = (0, u_0, u_0')$ in the set
+\[
+V_{\delta} = \{ (0, U_0) \mid -1 < t_0 < 1, ||U_0 - F(x_0, U)|| < \delta \}
+\]
+the solution $u(x, 0, U_0) = u(x, 0, u_0, u_0')$ exists on $[-1,1]$ and is $C^1$ on $[-1,1] \times V_{\delta}$. In this case, it will posses partial derivatives with respect to the initial data. Whether or not $F$ is Lipschitz or $F$ and $F_U$ are continuous depends on $p(x)$ and $q(x)$.
+
+\begin{problem}
+Consider the initial-value problem on $[1,2]$ with parameter $\beta$:
+\[
+\begin{tabular}{ccc}
+$x^2 u'' + x u' - \beta^2 u = 0$, & $u(1) = 1$, & $u'(1) = 0$.
+\end{tabular}
+\]
+Find the solution $u(x,\beta)$. Is it a continuous function of $\beta$? Can it be differentiated with respect to $\beta$?
+\end{problem}
+
+Consider the solutions $u_1(x) = c_1(x^{\beta} + x^-{\beta})$ and $u_2(x) = c_2 i (x^{\beta} - x^{-{\beta}})$. These functions are linearly independent since one is purely real and one is purely imaginary. It's also easy to check that they satisfy the above equation. Putting in the initial conditions gives $c_2 = 0$ and $c_1 = 1/2$. Thus, $u(x, \beta) = (x^{\beta} + x^{-\beta})/2$. This is definitely continuous in $\beta$ since the exponential function is continuous. It's also differentiable in with respect to $\beta$ for the same reason. It has derivative $\partial/\partial \beta u(x, \beta) = x^{-\beta} (x^{2 \beta} - 1) \log(x)/2$.
+
+\begin{problem}
+Consider the initial-value problem for $n = 2$
+\[
+\begin{tabular}{cc}
+$\displaystyle{\frac{dx}{dt} = A(\delta, \mu)x}$, & $\displaystyle{x(0) = \left ( \begin{array}{c} 0\\ 1 \end{array} \right )}$,
+\end{tabular}
+\]
+where
+\[
+A(\delta, \mu) =
+\left (
+\begin{array}{cc}
+-\delta & 1\\
+0 & -\mu
+\end{array}
+\right )
+\]
+and $\delta$ and $\mu$ are positive parameters.\\
+(a) Solve this problem explicitly when $\mu = \delta$.\\
+(b) Solve it when $\mu \neq \delta$.\\
+(c) Show explicitly that, for any fixed $t > 0$, if we take the limit as $\mu \rightarrow \delta$, the two solutions become the same.
+\end{problem}
+
+(a) This equation reduces to the following system
+\[
+\left (
+\begin{array}{c}
+x_1'(t)\\
+x_2'(t)
+\end{array}
+\right )
+= \frac{dx}{dt} = A(\delta , \mu) x =
+\left (
+\begin{array}{cc}
+- \delta & 1\\
+0 & - \mu
+\end{array}
+\right ) \left (
+\begin{array}{c}
+x_1(t)\\
+x_2(t)
+\end{array}
+\right ) = \left (
+\begin{array}{c}
+- \delta x_1(t) + x_2(t)\\
+- \mu x_2(t)
+\end{array}
+\right )
+\]
+which gives the two equation $x_1'(t) = -\delta x_1(t) + x_2(t)$ and $x_2'(t) = - \mu x_2(t)$. Solving the second we have $x_2(t) = ce^{-\mu t}$. With the initial condition $x_2(0) = 1$, we have $c = 1$. Putting this into the first equation, we have $x_1'(t) = -\delta x_1(t) + e^{-\mu t}$. If $\mu = \delta$, then a particular solution is $x_1(t) = te^{-\delta t}$. Combining this with the general homogeneous solution $x_1(t) = ce^{-\delta t}$ and using the initial condition $x_1(0) = 0$, gives $c = 0$ and $x_1(t) = te^{-\delta t}$. So the solution is
+\[
+x(t) = \left (
+\begin{array}{c}
+x_1(t)\\
+x_2(t)
+\end{array}
+\right ) = \left (
+\begin{array}{c}
+te^{- \delta t}\\
+e^{-\mu t}
+\end{array}
+\right ).
+\]
+
+(b) Using the work in part (a), we still have $x_2(t) = e^{-\mu t}$, and we need to solve $x_1'(t) = -\delta x_1(t) + e^{-\mu t}$. If $\mu \neq \delta$ then a particular solution is $x_1(t) = e^{-\mu t}/(\delta - \mu)$. Combining this with the general homogeneous solution $x_1(t) = ce^{-\delta t}$ and using $x_1(0) = 0$ gives $c = 1/(\mu - \delta)$ and $x_1(t) = e^{-\delta t}/(\mu - \delta) + e^{-\mu t}/(\delta - \mu)$. Thus, the solution is
+\[
+x(t) = \left (
+\begin{array}{c}
+x_1(t)\\
+x_2(t)
+\end{array}
+\right ) = \left (
+\begin{array}{c}
+\frac{e^{-\delta t}}{\mu - \delta} + \frac{e^{-\mu t}}{\delta - \mu}\\
+e^{-\mu t}
+\end{array}
+\right ).
+\]
+
+(c) Since $x_2(t)$ is the same in each solution, we only need to worry about the limit for $x_1(t)$. We wish to show that for fixed $t > 0$ we have
+\[
+\lim_{\mu \rightarrow \delta} \frac{e^{-\delta t}}{\mu - \delta} + \frac{e^{-\mu t}}{\delta - \mu} = te^{-\delta t}.
+\]
+We can combine the fractions in the limit as $(e^{-\delta t} - e^{-\mu t})/(\mu - \delta)$. As $\mu$ approaches $\delta$, this ratio appraoches the indeterminate form $0/0$, so we may apply l'H\^{o}pitals rule. Then
+\[
+\frac{\partial}{\partial \mu} e^{-\delta t} - e^{-\mu t} = 0 - (-te^{-\mu t}) = te^{-\mu t}
+\]
+and $\partial/\partial \mu (\mu - \delta) = 1$. Then the ratio of derivatives clearly has limit $\lim_{\mu \rightarrow \delta} te^{-\mu t}/1 = te^{-\delta t}$ as desired.
+
+\begin{problem}
+In equation (6.22) of Problem 13 of Problem Set 6.2.1, take
+\[
+w_0 =
+\left (
+\begin{array}{c}
+0\\
+0\\
+1
+\end{array}
+\right ).
+\]
+Solve the equations explicitly for $\mu = 0$. Now consider the variational problem for $v = \partial w/\partial \mu$ and solve this also for $\mu = 0$, with arbitrary initial data for $v$.
+\end{problem}
+
+The system in equation (6.22) give the three equations $w_1' = w_2w_3$, $w_2' = -w_1w_3$ and $w_3' = -\mu w_1w_2$. If $\mu = 0$, then $w_3' = 0$, so $w_3(t) = c$ for some constant. Putting in $w_3(0) = 1$ as an initial condition gives $w_3(t) = 1$. Then $w_1' = w_2$ and $w_2' = -w_1$. If we differentiate the first equation we have $w_1'' = w_2' = -w_1$. The general solution to this equation is $w_1(t) = c_1 \sin(t) + c_2 \cos(t)$. Then $0 = w_1(0) = c_1 \sin(0) + c_2 \cos(0) = c_2$. Further, $0 = w_2(0) = w_1'(0) = c_1 \cos(0) - c_2 \sin(0) = c_1$. So $w_1(t) = 0$. This also gives $w_2(t) = w_1'(t) = 0$. So the solution is
+\[
+w(t) = \left (
+\begin{array}{c}
+0\\
+0\\
+1
+\end{array}
+\right ).
+\]
+
+Write the system as $W' = F(t,W,\mu)$ and let $W(t,w_0)$ be a solution map to the problem. This satisfies $W_t(t,w_0) = F(t,W(t,w_0),\mu)$, $W(t_0, w_0) = w_0$. We can differentiate both sides of this equation with respect to $\mu$ to obtain the equation $W_{t\mu}(t,w_0) = F_{\mu}(t,W(t,w_0),\mu) W_{\mu}(t,w_0)$, $W_{\mu}(t_0,w_0) = 0$. This leaves us with the variational equation $v' = a(x)v$ where $v = W_{\mu}(t,w_0) = \partial w/\partial \mu$ and $a(x) = F_{\mu}(t,W(t,w_0),\mu)$. We can easily solve this since
+\[
+F(t,W,\mu) = \left (
+\begin{array}{c}
+w_2(t)w_3(t)\\
+-w_1(t)w_3(t)\\
+-\mu w_1(t)w_2(t)
+\end{array}
+\right )
+\]
+so we then have
+\[
+F_{\mu}(t,W,\mu) = \left (
+\begin{array}{c}
+0\\
+0\\
+-w_1(t)w_2(t)
+\end{array}
+\right ).
+\]
+Suppose $W_{\mu}(t,w_0) = v = (v_1(t,\mu), v_2(t,\mu), v_3(t,\mu))$. Then we have the three equations $\partial/\partial t v_1(t,\mu) = 0$, $\partial/\partial t v_2(t,\mu) = 0$ and $\partial/\partial t v_3(t,\mu) = -v_1(t,\mu)v_2(t,\mu)v_3(t,\mu)$. Solving the first two gives $v_1(t,\mu) = v_{0_1}$ and $v_2(t,\mu) = v_{0_2}$. Putting these into the third and soving gives $v_3(t,\mu) = v_{0_3} e^{-v_{0_1} v_{0_2} x}$.
+
+\end{document}

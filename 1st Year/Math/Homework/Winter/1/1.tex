@@ -1,0 +1,329 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16200
+
+Mikl\'{o}s Ab\'{e}rt
+
+January 15, 2008
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Definition 1 (Cuts)}
+\textsl{A subset $A \subseteq \mathbb{Q}$ is a cut, if\\
+1) $A \neq \emptyset$ and $A \neq \mathbb{Q}$;\\
+2) $A$ is open;\\
+3) if $x \in A$ then for all $y<x$ we have $y \in A$.}
+\newline
+
+\textbf{Theorem 2}
+\textsl{Show that 2) can be substituted with any of the following:\\
+2') Every upper bound of $A$ lies outside $A$;\\
+2'') For all $x \in A$ there exists $y \in A$ such that $x < y$.}
+\begin{proof}
+We need to show that given 1) and 3), we have firstly 2) if and only if 2') and secondly 2) if and only if 2''). So first assume 1), 2) and 3) for a subset $A \subseteq \mathbb{Q}$. Let $u$ be an upper bound of $A$ such that $u \in A$. Then since $A$ is open, there exists a region $(a;b) \subseteq A$ such that $u \in (a;b)$. But then since regions are nonempty, there exists a point $x \in (u;b)$ and since $(a;b) \subseteq A$ we have $x \in A$ and $u<x$. This is a contradiction and so all upper bounds of $A$ must lie outside of $A$. Now assume 1), 2') and 3) are true. Then $A$ has no last point because if it did then it would be an upper bound of $A$ in $A$. Thus for all $x \in A$ there exists a $b \in A$ such that $x<b$. But then by 3) there exists an $a \in A$ such that $a<x$ and so the region $(a;b) \subseteq A$ contains $x$. Thus $A$ is open and so we have 2) if and only if 2').\newline
+
+Next assume 1), 2) and 3) for $A \subseteq \mathbb{Q}$. Let $x \in A$. Since $A$ is open there exists a region $(a;b) \subseteq A$ such that $x \in (a;b)$. Then since regions are nonempty there exists a $y \in (x;b)$ and since $y \in A$ we have 2''). Now assume 1), 2'') and 3). Let $x \in A$. By 2'') let $b \in A$ such that $x<b$. Then by 3) let $a \in A$ such that $a<x$. Then $x \in (a;b)$ and $(a;b) \subseteq A$. Thus we have 2) if and only if 2'').
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{For all $q \in \mathbb{Q}$ the rational cut $L(q) = \{x \in \mathbb{Q} \mid x < q\}$ is a cut.}
+\begin{proof}
+Consider $L(q)$ for some $q \in \mathbb{Q}$. Since $\mathbb{Q}$ has no first point there exists $x \in \mathbb{Q}$ such that $x<q$ and so $x \in L(q)$ and $L(q) \neq \emptyset$. Likewise since $\mathbb{Q}$ has no last point there exists a point $y \in \mathbb{Q}$ such that $q<y$ and so $L(q) \neq \mathbb{Q}$. Let $x \in L(q)$ and since $\mathbb{Q}$ has no first point let $y \in \mathbb{Q}$ such that $y<x$. Then we have $x \in (y;q)$ and since $(y;q)$ only contains points less than $q$, $L(q)$ is open. Similarly since $y < x$ we have $y<q$ and so $y \in L(q)$. Thus if $y<x$ then $y \in L(q)$. Since all three conditions have been met $L(q)$ is open.
+\end{proof}
+
+\textbf{Theorem 4}
+\textsl{For $p,q \in \mathbb{Q}$, if $p \neq q$ we have $L(p) \neq L(q)$.}
+\begin{proof}
+Without loss of generality assume that $p<q$. Then we have $p \in L(q)$ but $q \notin L(p)$.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{The set $S=\{x \in \mathbb{Q} \mid x^2 < 2\} \cup \{x \in \mathbb{Q} \mid x < 0\}$ is a cut but it is not rational.}
+\begin{proof}
+Since $0,2 \in \mathbb{Q}$ we have $0^2<2$ and so $S \neq \emptyset$ and $2<2^2$ and so $S \neq \mathbb{Q}$. Rewrite $S$ as $\{x \in \mathbb{Q} \mid x<11/10\} \cup \{x \in \mathbb{Q} \mid x^2<2, x>1\}$. We see in the set $\{x \in \mathbb{Q} \mid x<11/10\}$ we can always choose a $y$ in the set for every $x$ in the set such that $x<y$ because there is always something between $x$ and $11/10$. Now let $x \in \{x \in \mathbb{Q} \mid x^2<2, x>1\}$. Then $x=\frac{p}{q}$ and so $\frac{p^2}{q^2}<2$. But then $\frac{(p+1)^2}{(q+1)^2}<2$ and so $\frac{p+1}{q+1} \in \{x \in \mathbb{Q} \mid x^2<2, x>1\}$. So we've found an element greater than $x$ which is in the set and so condition 2'') is fulfilled. Finally let $x \in S$ and let $y<x$. If $y<0$ then $y \in S$. If $y \geq 0$ then $y^2<x^2$ and so $y^2<2$ which means $y \in S$. Since all three conditions are met, $S$ is a cut. It's not rational however because $\sqrt{2}$ is not rational and so $S$ cant be written as $L(q)$ for some $q \in \mathbb{Q}$.
+\end{proof}
+
+\textbf{Definition 6 (Real Numbers)}
+\textsl{Let $\mathbb{R} = \{A \subseteq \mathbb{Q} \mid A \text{ is a cut}\}$.}
+\newline
+
+\textbf{Definition 7 (Ordering on the Reals)}
+\textsl{Let $A, B \in \mathbb{R}$. We say that $A < B$ if $A$ is a proper subset of $B$.}
+\newline
+
+\textbf{Theorem 8}
+\textsl{The relation $<$ is an ordering on $\mathbb{R}$.}
+\begin{proof}
+Let $A, B \in \mathbb{R}$ such that $A \neq B$. Since $A \neq B$ without loss of generality assume that there exists an element $x \in A$ such that $x \notin B$. Then let $y \in B$. We see that $y<x$ because otherwise $x$ would be in $B$ since $B$ is a cut. But then since $y<x$ and $x \in A$, we have $y \in A$ and so $B \subset A$.\newline
+
+Let $A, B \in \mathbb{R}$ such that $A<B$. Then $A$ is a proper subset of $B$ and so by definition $A \neq B$.\newline
+
+Let $A, B, C \in \mathbb{R}$ such that $A < B$ and $B < C$. Then for all $x \in A$, we have $x \in B$ and for all $y \in B$ we have $y \in C$. Then for all $x \in A$ we have $x \in C$. Additionally, there exists some element of $B$ which is not in $A$ and so there exists some element of $C$ which is not in $A$. Therefore $A \neq C$ and $A \subset C$. We have shown all three conditions and so $<$ is an ordering on $\mathbb{R}$.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{$\mathbb{R}$ does not have a first or last point.}
+\begin{proof}
+Let $A \in \mathbb{R}$ such that $A = L(q)$ for some $q \in \mathbb{Q}$. We know $\mathbb{Q}$ has no first point and so there exists a $p \in \mathbb{Q}$ such that $p<q$. But then $L(p) < L(q)$ and so there exists a point in $\mathbb{R}$ which is less than $A$. There is a similar argument for a point greater than $A$ using the fact that $\mathbb{Q}$ has no last point.
+\end{proof}
+
+\textbf{Lemma 10}
+\textsl{A subset $X \subseteq \mathbb{R}$ is bounded above if and only if there exists $q \in \mathbb{Q}$ such that for all $x \in X$, $q$ is an upper bound for $x$ (as a subset of $\mathbb{Q}$)}
+\begin{proof}
+Suppose there exists a $q \in \mathbb{Q}$ such that for all $x \in X$, $q$ is an upper bound for $x$. Then let $y$ be an element from some $x \in X$. We have $q$ is an upper bound for $x$ and so $y<q$. Then $y \in L(q)$ and so $x \subseteq L(q)$. But then $x < L(q)$ for all $x \in X$ and so we have $L(q)$ is an upper bound for $X$.\newline
+
+Now suppose that $X \subseteq \mathbb{R}$ is bounded above. Then there exists some $u \in \mathbb{R}$ such that $x \leq u$ for all $x \in X$. Take the union of all elements in $X$. Each of these elements is a proper subset of $u$ and so their union is also a proper subset of $u$. Then there exists some $q \in u$ such that $q$ is not in this union. But then $q$ is not in any element of $X$ and so it is greater than every element in every set in $X$. Thus $q$ is an upper bound for every element of $X$.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{Let $X \subseteq \mathbb{R}$ be a bounded nonempty subset. Then $X$ has a least upper bound.}
+\begin{proof}
+Let $X \subseteq \mathbb{R}$ be a bounded nonempty subset. Consider the union of all the elements of $X$ and call this set $S$. $S$ is a union of cuts and so it is nonempty and it cannot be $\mathbb{Q}$ by Theorem 10. Since cuts are open and the union of open sets is open, we see that $S$ is open. Finally, let $x \in S$ and let $y<x$. Then $x$ is in some element of $X$ and that element is a cut. Therefore $y$ is in that cut and so $y$ must be in $S$ as well. Thus, $S$ is a cut and $S \in \mathbb{R}$. Since $S$ is made from cuts in $X$, for all $x \in X$ we have $x \leq S$. Thus $S$ is an upper bound for $X$. Assume there exists an upper bound for $X$, $u \in \mathbb{R}$ such that $u<S$. Then $u \subset S$ and so there exists $q \in \mathbb{Q}$ such that $q \in S$, but $q \notin u$. But if $q \in S$ then $q \in x$ for some $x \in X$. Since $q \notin u$, we have $x \nsubseteq u$ and this is a contradiction because $u$ is an upper bound for $X$. Thus $M$ is the least upper bound for $X$.
+\end{proof}
+
+\textbf{Theorem 12}
+\textsl{For every $a, b \in \mathbb{R}$ with $a<b$ there exists $q \in \mathbb{Q}$ such that $a<q<b$.}
+\begin{proof}
+Let $a,b \in \mathbb{R}$ such that $a<b$. Then $a \subset b$ but $a \neq b$ and so there exists some $q \in \mathbb{Q}$ such that $q \in b$, but $q \notin a$. But then $a \subseteq L(q)$ and since $q \in b$, $L(q) \subset b$ and $L(q) \neq b$. In the case where $a=L(q)$ we can choose another point in $b$ which is not in $a$ because between any two rationals there exists another.
+\end{proof}
+
+\textbf{Corollary 13 (The Reals are a Model of the Continuum)}
+\textsl{$(\mathbb{R},<)$ is a model of $C$.}
+\begin{proof}
+We have shown that $\mathbb{R}$ fulfills Axioms 1, 2 and 3 and Theorems 11 and 12 along with Sheet 8 tell us that $\mathbb{R}$ is satisfied as well.
+\end{proof}
+
+\textbf{Theorem 14 (Archimedean Property)}
+\textsl{For every $r \in \mathbb{R}$ there exists $n \in \mathbb{Z}$ such that $r<n$.}
+\begin{proof}
+The set $\{r\}$ is bounded above and by Lemma 10 there exists some $q \in \mathbb{Q}$ such that $q$ is an upper bound for $r$. By the Archimedean Property for the rationals, there exists some integer $n$ such that $q<n$. But then $n$ is an upper bound for $r$ and so $r < L(n)$.
+\end{proof}
+
+\textbf{Definition 15 (Sums of Sets)}
+\textsl{For two subsets $A, B \subseteq \mathbb{Q}$ let
+\[
+A+B = \{a+b \mid a \in A , b \in B\}
+\]
+be the sum of $A$ and $B$.}
+\newline
+
+\textbf{Theorem 16}
+\textsl{If $A \subseteq \mathbb{Q}$ is open, then $A + \{b\}$ is open for all $b \in \mathbb{Q}$.}
+\begin{proof}
+Let $A \subseteq \mathbb{Q}$ be an open subset and let $a \in A$. Since $A$ is open we have a region $(p;q) \subseteq A$ such that $a \in (p;q)$. Then consider $A+\{b\}$ for some $b \in \mathbb{Q}$. Then $a+b \in (A + \{b\})$ and $a+b \in (p+b;q+b)$. Thus, for all $x \in (A + \{b\})$ there exists some region which is a subset of $A + \{b\}$ such that the region contains $x$.
+\end{proof}
+
+\textbf{Theorem 17}
+\textsl{If $A \subseteq \mathbb{Q}$ is open, then $A+B$ is open for all $B \subseteq \mathbb{Q}$.}
+\begin{proof}
+From Theorem 16 we have $A + \{b\}$ is open for all $b \in B$. Since the union of any number of open sets is open, we have $S=\bigcup_{b \in B} A + \{b\}$ is open. Let $x \in S$. Then $x=a+b$ for some $a \in A$ and some $b \in B$. Then $x \in A+B$. Similarly let $x \in A+B$. Then $x=a+b$ for some $a \in A$ and some $b \in B$ and so $x \in S$. Thus $S$ is equal to $A + B$ and so $A + B$ is open.
+\end{proof}
+
+\textbf{Theorem 18 (Reals are Closed Under Addition)}
+\textsl{For $A, B \in \mathbb{R}$ we have $A + B \in \mathbb{R}$.}
+\begin{proof}
+$A$ and $B$ are cuts. We know $A$ and $B$ are not empty and so $A+B \neq \emptyset$. Likewise there exists some $p,q \in \mathbb{Q}$ such that $p \notin A$ and $q \notin B$. We know $p$ is greater than every element in $A$ because if it were less than some element it would be in $A$. A similar argument tells us that $q$ is greater than every element in $B$. Then $p+q \notin A+B$. If we use condition 2'') from Theorem 2 we know that for every $a \in A$ there exists an $a' \in A$ such that $a<a'$. A similar pair $b<b'$ are in $B$. Then $a+b<a'+b'$ and so for every element $a+b \in A+B$ there exists some other greater element in $A+B$. Finally choose an element $x \in A+B$ and consider a $y$ such that $y<x$. Then $x = a+b$ for some $a \in A$ and some $b \in B$ and so $y<a+b$ and $y-b<a$. But since $A$ is a cut, $y-b \in A$. Since $b \in B$ we have an element from $A$ and an element from $B$ whose sum is $y$ and so $y \in A+B$. Since all three conditions are met, $A+B \in \mathbb{R}$.
+\end{proof}
+
+\textbf{Theorem 19 (Associativity of Addition)}
+\textsl{For all $p,q,r \in \mathbb{R}$ we have $(p+q)+r=p+(q+r)$.}
+\begin{proof}
+We have
+\begin{align*}
+(p+q)+r&=\{a+b \mid a \in p, b \in q\} + r \\
+	  &=\{a+b \mid a \in \{a+b \mid a \in p, b \in q\}, b \in r\} \\
+	  &=\{a+b+c \mid a \in p, b \in q, c \in r\} \\
+	  &=\{a+b \mid a \in p, b \in \{a+b \mid a \in q, b \in r\}\} \\
+	  &=p + \{a+b \mid a \in q, b \in r\} \\
+	  &=p + (q+r)
+\end{align*}
+\end{proof}
+
+\textbf{Theorem 20 (Commutativity of Addition)}
+\textsl{For all $p,q \in \mathbb{R}$ we have $p+q = q+p$.}
+\begin{proof}
+We have
+\begin{align*}
+p+q &=\{a+b \mid a \in p, b \in q\} \\
+     &=\{b+a \mid b \in q, a \in p\} \\
+     &=q+p
+\end{align*}
+\end{proof}
+
+\textbf{Theorem 21 (Additive Identity)}
+\textsl{There exists $n \in \mathbb{R}$ such that for all $p \in \mathbb{R}$ we have $n+p=p$. Show that $n$ is unique.}
+\begin{proof}
+Let $n=L(0)$ and let $p \in \mathbb{R}$. Then we have $n+p=\{a+b \mid a \in n, b \in p\}$. If we let $x \in n+p$ then we have $x = a+b$ for some $a < 0$ and some $b \in p$. Then $a+b<b$ and since $p$ is a cut, $x \in p$. Additionally, let $x \in p$. Then there exists some $y \in p$ such that $y > x$ and $x-y < 0$. Then $x-y \in n$ and $y \in p$ and so $x \in n+p$. Since both sets are subsets of each other, $n+p=p$.\newline
+
+Suppose there are two values of $n$, $n_1$ and $n_2$ such that for all $p \in \mathbb{R}$ we have $n_1+p=p$ and $n_2+p=p$. Then we have $n_1=n_2+n_1=n_1+n_2=n_2$ by Theorem 20. Thus, $n$ is unique.
+\end{proof}
+
+\textbf{Theorem 22 (Additive Inverse)}
+\textsl{For all $p \in \mathbb{R}$ there exists $q \in \mathbb{R}$ such that $p+q=0$. Show that $q$ is unique.}
+\begin{proof}
+Let $q=\{0-a \mid a \notin p\}$ for $p \in \mathbb{R}$. Let $x \in p+q$. Then $x=a+b$ for some $a \in p$ and some $b \in q$. By definition $b=0-y$ for some $y \notin p$. Then $y$ is greater than every element of $p$ and so $x=a+b=a-y<0$ since $a<y$. Thus $x \in 0$. Similarly, let $x \in 0$. Then $x<0$ and so $x=a-y$ for some $a<y$. Let $0-y=b$ so we have $x=a+b$ for $a \in p$ and $b \in q$. Thus $p+q=0$.\newline
+
+Suppose that for all $p \in \mathbb{R}$ there exist $q_1$ and $q_2$ such that $p+q_1=0$ and $p+q_2=0$. Then we have $p+q_1=p+q_2$. Adding $\{0-a \mid a \notin p\}$ to both sides will give us $q_1=q_2$. Thus $q$ is unique for all $p \in \mathbb{R}$.
+\end{proof}
+
+\textbf{Theorem 23}
+\textsl{For all $p,q \in \mathbb{Q}$ we have $L(p+q)=L(p)+L(q)$. Furthermore, $L(0)=0$.}
+\begin{proof}
+Let $x \in L(p)+L(q)$. Then $x=a+b$ for some $a < p$ and some $b < q$. Then $a+b < p+q$ and so $x<p+q$. But then $x \in L(p+q)$. Likewise assume that $x \in L(p+q)$. Then $x<p+q$ and there exists some $y \in \mathbb{Q}$ such that $x<y<p+q$. Then let $z = p+q-y>0$ and so we have $x<p+q-z$. Then $x-p+z<q$ and $p-z<p$. But then $x-p+z \in L(q)$ and $p-z \in L(p)$ and so we have $x \in L(p) + L(q)$. Therefore $L(p+q) = L(p) + L(q)$. We defined $0=L(0)$ in Theorem 21.
+\end{proof}
+
+\textbf{Definition 24 (Product of Sets)}
+\textsl{For two subsets $A, B \mathbb{Q}$ let $A * B = \{ab \mid a \in A, b \in B\}$ be the product of $A$ and $B$.}
+\newline
+
+\textbf{Definition 25 (Absolute Value)}
+\textsl{For $a \in \mathbb{R}$ let
+\[
+|a|=
+\begin{cases}
+a & \text{if } a \leq 0 \\
+-a & \text{if } a >0.
+\end{cases}
+\]
+Let $P=\{q \in \mathbb{Q} \mid q > 0\}$ and let $N=\{q \in \mathbb{Q} \mid q \leq 0\}$.}
+\newline
+
+\textbf{Definition 26 (Product of Positive Reals)}
+\textsl{For $A, B \in \mathbb{R}$ with $A,B > 0$ let
+\[
+A \cdot B = N \cup ((A \cap P) * (B \cap P)).
+\]}
+
+\textbf{Definition 27 (Product of Reals)}
+\textsl{For $A, B \in \mathbb{R}$ let
+\[
+A \cdot B=
+\begin{cases}
+0 & \text{if } A=0 \text{ or } B=0 \\
+|A| \cdot |B| & \text{if } (A>0 \text{ and } B>0) \text{ or } (A<0 \text{ and } B<0) \\
+-(|A| \cdot |B|) & \text{if } (A>0 \text{ and } B<0) \text{ or } (A<0 \text{ and } B>0).
+\end{cases}
+\]}
+\newline
+
+\textbf{Theorem 28 (Associativity of Multiplication)}
+\textsl{For all $p,q,r \in \mathbb{R}$ we have $(p \cdot q) \cdot r = p \cdot (q \cdot r)$.}
+\begin{proof}
+If any of $p,q,r$ are equal to $0$ then the result is trivial. Assume first that $p,q,r$ are all greater than $0$. This case is the same as having two values be less than zero since those values will eventually multiply to a value greater than zero. We have
+\begin{align*}
+(p \cdot q) \cdot r &=(N \cup ((p \cap P) * (q \cap P))) \cdot r \\
+				&=N \cup ((N \cup ((p \cap P) * (q \cap P)) \cap P) * (r \cap P)) \\
+				&=N \cup ((p \cap P) * (q \cap P) * (r \cap P)) \\
+				&=N \cup ((p \cap P) * (N \cup (((p \cap P) * (q \cap P)) \cap P))) \\
+				&=p \cdot (N \cup ((q \cap P) * (r \cap P))) \\
+				&=p \cdot (q \cdot r).
+\end{align*}
+Let all three values be negative. This is the same as having two values greater than zero. We have
+\begin{align*}
+(p \cdot q) \cdot r &=((N \cup ((p \cap P) * (q \cap P))) \cdot r \\
+				&=-(N \cup ((N \cup ((p \cap P) * (q \cap P)) \cap P) * (r \cap P))) \\
+				&=-(N \cup ((p \cap P) * (q \cap P) * (r \cap P))) \\
+				&=-(N \cup ((p \cap P) * (N \cup (((p \cap P) * (q \cap P)) \cap P)))) \\
+				&=p \cdot (N \cup ((q \cap P) * (r \cap P))) \\
+				&=p \cdot (q \cdot r).
+\end{align*}
+\end{proof}
+
+\textbf{Theorem 29 (Commutativity of Multiplication)}
+\textsl{For all $p,q \in \mathbb{R}$ we have $p \cdot q = q \cdot p$.}
+\begin{proof}
+If either $p$ or $q$ is $0$ then the result is trivial. Suppose that $p$ and $q$ are either both greater or less than $0$. We have
+\begin{align*}
+p \cdot q &= N \cup ((p \cap P) * (q \cap P)) \\
+		&= N \cup (\{ab \mid a \in (p \cap P), b \in (q \cap P)\}) \\
+		&= N \cup (\{ba \mid b \in (q \cap P), a \in (p \cap P)\} \\
+		&= N \cup ((q \cap P) * (p \cap P)) \\
+		&= q \cdot p.
+\end{align*}
+Let one of $p$ or $q$ be less than $0$. Then we have
+\begin{align*}
+p \cdot q &= -(N \cup ((p \cap P) * (q \cap P))) \\
+		&= -(N \cup (\{ab \mid a \in (p \cap P), b \in (q \cap P)\})) \\
+		&= -(N \cup (\{ba \mid b \in (q \cap P), a \in (p \cap P)\})) \\
+		&= -(N \cup ((q \cap P) * (p \cap P))) \\
+		&= q \cdot p.
+\end{align*}
+\end{proof}
+
+\textbf{Theorem 30 (Multiplicative Identity)}
+\textsl{There exists $e \in \mathbb{R}$ such that for all $p \in \mathbb{R}$ we have $e \cdot p = p$.}
+\begin{proof}
+Let $e=L(1)$. Then let $x \in e \cdot p$. Suppose first that $p>0$. Then $x \in N \cup ((e \cap P) * (p \cap P))$. So $x \in N$ or $x = ab$ for some $a \in e \cap P$ and some $b \in p \cap P$. If $x \in N$ then we're done since $N \subseteq p$ as $p>0$. If $x=ab$ then we see that $0<a<1$ and so $ab<b$. Thus $x<b$ and by the definition of a cut, $x \in (p \cap P) \subseteq p$. In either case, $x \in p$. A similar argument holds if $p<0$. Now let $x \in p$ and let $p>0$. Then $x \in N$ or $x \in p \cap P$. But then $x \in N \cup ((e \cap P) * (p \cap P))$ and so $x \in e \cdot p$. A similar argument holds if $p<0$.\newline
+
+Now suppose that there exist $e_1$ and $e_2$ such that for all $p \in \mathbb{R}$ we have $e_1 \cdot p=p$ and $e_2 \cdot p=p$. Then we have $e_1=e_2 \cdot e_1=e_1 \cdot e_2=e_2$ by Theorem 29. Since $e_1=e_2$ we see that the multiplicative identity is unique.
+\end{proof}
+
+\textbf{Theorem 31 (Multiplicative Inverse)}
+\textsl{For all $p \in \mathbb{R}$ with $p \neq 0$ there exists $q \in \mathbb{R}$ such that $p \cdot q = 1$.}
+\begin{proof}
+Let $q = \{x \in \mathbb{Q} \mid x<\frac{1}{p}\}$. Let $x \in p \cdot q$. Then $x \in \{ab \mid a \in p, b \in q\}$. Then $x=ab$ for some $a \in p$ and some $b \in q$. But then $x$ cannot be larger than $1$ because $p = \{x \in \mathbb{Q} \mid x<p\}$ and $q = \{x \in \mathbb{Q} \mid x<\frac{1}{p}\}$. So then $x<1$ and $x \in 1$. Then if $x \in 1$ we know that $xp<p$ and $x \frac{1}{p}<\frac{1}{p}$ so there exist elements in $p$ and $q$ such that their product is in $p \cdot q$. Therefore $p \cdot q = 1$.\newline
+
+Now suppose for all $p \in \mathbb{Q}$ there exists $q_1$ and $q_2$ such that $p \cdot q_1 = 1$ and $p \cdot q_2= 1$. Then we have $p \cdot q_1=p \cdot q_2$. Multiplying both sides by $\{x \in \mathbb{Q} \mid x<\frac{1}{p}\}$ will give us $q_1=q_2$ and so $q$ is unique for each $p \in \mathbb{R}$.
+\end{proof}
+
+\textbf{Theorem 32 (Distributivity)}
+\textsl{For all $p,q,r \in \mathbb{R}$ we have $p \cdot (q+r) = p \cdot q + p \cdot r$.}
+\begin{proof}
+If $p=0$ then the result is trivial. Suppose that $p>0$ and that $(q+r)>0$. Then we have
+\begin{align*}
+p \cdot (q+r) &= p \cdot \{a+b \mid a \in q, b \in r\} \\
+		    &= N \cup ((p \cap P) * (\{a+b \mid a \in q, b \in r\} \cap P)) \\
+		    &= N \cup \{ab \mid a \in (p \cap P), b \in \{a+b \mid a \in q, b \in r\} \cap P\} \\
+		    &= N \cup \{a(b+c) \mid a \in (p \cap P), b \in q, c \in r, (b+c)>0\} \\
+		    &= N \cup \{ab+ac \mid a \in (p \cap P), b \in q, c \in r, (b+c)>0\} \\
+		    &= \{ab \mid a \in (p \cap P), b \in q\} \cup \{ab \mid a \in (p \cap P), b \in r\} \\
+		    &= p \cdot q + p \cdot r.
+\end{align*}
+If $p<0$ and $(q+r)>0$ or $p>0$ and $(q+r)<0$ then we have
+\begin{align*}
+p \cdot (q+r) &= p \cdot \{a+b \mid a \in q, b \in r\} \\
+		    &= -(N \cup ((p \cap P) * (\{a+b \mid a \in q, b \in r\} \cap P))) \\
+		    &= -(N \cup \{ab \mid a \in (p \cap P), b \in \{a+b \mid a \in q, b \in r\} \cap P\}) \\
+		    &= -(N \cup \{a(b+c) \mid a \in (p \cap P), b \in q, c \in r, (b+c)>0\}) \\
+		    &= -(N \cup \{ab+ac \mid a \in (p \cap P), b \in q, c \in r, (b+c)>0\}) \\
+		    &= \{ab \mid a \in (p \cap P), b \in q\} \cup \{ab \mid a \in (p \cap P), b \in r\} \\
+		    &= p \cdot q + p \cdot r.
+\end{align*}
+\end{proof}
+
+\textbf{Theorem 33}
+\textsl{For all $p,q \in \mathbb{Q}$ we have $L(pq)=L(p) \cdot L(q)$. Furthermore, L(1)=1.}
+\begin{proof}
+Let $x \in L(p) \cdot L(q)$ and first suppose that both sets are greater or less than $0$. Then $x \in (N \cup \{ab \mid 0<a<p, 0<b<q\})$. So either $x \in N$ or $x = ab$ for some $a \in (L(p) \cap P)$ and some $b \in (L(q) \cap P)$. If $x \in N$ then we're done because $N \subseteq L(pq)$. If $x=ab$ then $0<a<p$ and $0<b<q$ and so $0<ab<pq$ and $x \in L(pq)$. A similar argument holds if one of $L(p)$ or $L(q)$ is less than $0$. Now let $x \in L(pq)$ and assume that $p$ and $q$ are both positive or both negative. Then $x<pq$ and either $x \in N$ or $0<x<pq$. If $x \in N$ then we're done. If $0<x<pq$ then $x=ab$ for some $a \in (p \cap P)$ and some $b \in (q \cap P)$. Thus $x \in L(p) \cdot L(q)$. We showed that $L(1) = 1$ in Theorem 30.
+\end{proof}
+
+\textbf{Theorem 34}
+\textsl{For all $a,b,c \in \mathbb{R}$ if $a<b$ then $a+c<b+c$.}
+\begin{proof}
+Let $a,b,c \in \mathbb{R}$ such that $a<b$. Let $x \in a$. Then $x \in b$ since $a \subset b$. But then $x+y \in a+c$ for some $y \in c$ and so $x+y \in b+c$. Thus $a+c \subseteq b+c$. Likewise, there exists some element $q \in b$ such that $q \notin a$. But then $q+y \notin a+c$ for some $y \in c$ and $q+y \in b+c$. Therefore $a+c \neq b+c$ and so $a+c < b+c$.
+\end{proof}
+
+\textbf{Theorem 35}
+\textsl{For all $a,b \in \mathbb{R}$, if $a > 0$ and $b > 0$ then $ab > 0$.}
+\begin{proof}
+By definition we have $ab=N \cup ((a \cap P) * (b \cap P))=N \cup \{ab \mid (a \cap P) * (b \cap P)\}$. For all $x \in \{ab \mid (a \cap P) * (b \cap P)\}$, $x>0$ and so $N \cup ((a \cap P) * (b \cap P))$ is greater than $0$.
+\end{proof}
+
+\textbf{Theorem 36 (Triangle Inequality)}
+\textsl{For all $a,b \in \mathbb{R}$ we have $|a+b| \leq |a| + |b|$.}
+\begin{proof}
+There are four possibilities. First let $a>0$ and $b>0$. Then $a+b>0$ and so we have $|a+b| = a+b \leq a+b = |a| + |b|$. Secondly without loss of generality suppose that $a<0$ and $b>0$ such that $a+b<0$. Then let $x \in |a+b|$. Then $x \in -\{p+q \mid p \in a, q \in b\}$ and so $x \in -a + b=|a| + |b|$. Thus $|a+b| \subseteq |a| + |b|$. But also there exists some $y \in |a|+|b|$ such that $y \notin |a+b|$ and so $|a+b| < |a| + |b|$. Next let $a<0$ and $b>0$ such that $a+b>0$. Then let $x \in |a+b|$ so that $x \in \{p+q \mid p \in a, q \in b\}$. Then $x \in a+b$ and so $x \in -a + b=|a|+|b|$. Likewise there exists a point $y \in |a|+|b|$ such that $y \notin |a+b|$. Thus $|a+b| < |a|+|b|$. Finally let $a<0$ and $b<0$ so that $a+b<0$. Then $|a+b|=-(a+b)=(-a)+(-b)=|a|+|b|$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

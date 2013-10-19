@@ -1,0 +1,237 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+May 27, 2008
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 1}
+\textsl{Write up the matrices for the following:\\
+1) Rotation by degree $a$;\\
+2) Reflection about the line spanned by $(a,b)$;\\
+3) Reflection about $0$.}
+\begin{proof}
+1) Let
+\[
+A=
+\left [
+\begin{array}{cc}
+\cos a & -\sin a \\
+\sin a & \cos a\\
+\end{array}
+\right ].
+\]
+This uses the fact that on the plane, the $\cos$ of an angle corresponds to the distance on the horizontal axis from the origin and the $\sin$ of an angle corresponds to the distance on the vertical axis from the origin.
+
+2)
+Make the angle measured from the horizontal axis to the line spanned by $(a,b)$ by
+\[
+\arctan \left ( \frac{b}{a} \right ) = \alpha.
+\]
+Then $f(b_2) = \cos 2 \alpha b_2 + \sin 2 \alpha b_1$ and $f(b_1) = \cos ( 2 (\pi/2 - \alpha) ) b_2 - \sin (2 (\pi/2 - \alpha)) b_1$.
+
+3)
+This is just a rotation by an angle $\pi$ so we have
+\[
+A=
+\left [
+\begin{array}{cc}
+-1 & 0\\
+0 & -1\\
+\end{array}
+\right ].
+\]
+\end{proof}
+
+\textbf{Exercise 2}
+\textsl{Find a $2$ by $2$ matrix $A$ such that $f_A$ is bijective, but is not a linear transformation.}
+\begin{proof}
+Let
+\[
+A=
+\left [
+\begin{array}{cc}
+2 & 0 \\
+0 & 2 \\
+\end{array}
+\right ].
+\]
+Then we have $b_1 = (0,1)$ and $b_2 = (1,0)$ so $f(b_1) = 2b_1 + 0b_2 = (0,2)$ and $f(b_2) = 0b_1 + 2b_2 = (2,0)$. Then if $v = a_1b_1 + a_2b_2$ then $f_A(v) = 2a_1b_1 + 2a_2b_2 = 2(a_1b_1 + a_2b_2) = 2v$. Let $v_1, v_2 \in V$ such that $f_A(v_1) = f_A(v_2)$. Then $2v_1 = f_A(v_1) = f_A(v_2) = 2v_2$ and multiplying by $2^{-1}$ we have $v_1 = v_2$. Thus $f_A$ is injective. Now let $v \in V$ and consider $1/2 v$. Then $f_A(1/2 v) = 2/2 v = v$. Thus $f_A$ is surjective and therefore bijective. But $f_A$ is not Euclidean because it doesn't preserve lengths.
+\end{proof}
+
+\textbf{Exercise 3}
+\textsl{Let $W$ be a $1$ dimensional vector space over $K$. Let $f \; : \; W \rightarrow W$ be a linear transformation. Then there exists $a \in K$ such that $f(v) = av$ for all $v \in W$.}
+\begin{proof}
+Let $v \in W$ such that $v \neq 0$. Then since $v$ is linearly independent we know it is a basis for $W$. Since $f$ is a linear map from $W$ to $W$ we have $f(v) = w$ for $w \in W$ and since $v$ is a basis for $W$ we know $w = av$ for some $a \in K$. Thus $f(v) = av$. Note that since $f$ is a linear transformation, $\ker f = \{0\}$ and since $v \neq 0$ we have $a \neq 0$. Now consider some other element of $W$, $v' \neq 0$. We know $f(v') = a'v$ for some $a' \in K$ because $v$ is a basis. Then $av = a'v$ so $v(a-a') = 0$ and since $v \neq 0$ we must have $a = a'$.
+\end{proof}
+
+\textbf{Exercise 6}
+\textsl{Find a real matrix that has no eigenvalues.}
+\begin{proof}
+Let
+\[
+A=
+\left [
+\begin{array}{cc}
+0 & -1 \\
+1 & 0 \\
+\end{array}
+\right ].
+\]
+Note that this matrix changes the direction of every vector put into it by a $90^{\circ}$ rotation. Thus for all vectors $v$ we have $\langle v \rangle$ is not an invariant subspace under $f_A$.
+\end{proof}
+
+\textbf{Exercise 7}
+\textsl{Let
+\[
+A=
+\left [
+\begin{array}{cc}
+a & b\\
+c & d\\
+\end{array}
+\right ]
+\]
+be an arbitrary complex matrix.\\
+1) When is $0$ an eigenvalue of $A$?
+2) Find the eigenvalues of $A$.}
+\begin{proof}
+1) If $a=b=c=d=0$ then $f(v) = 0v$ for all $v$ and so $0$ is an eigenvalue of $A$.
+\end{proof}
+
+\textbf{Exercise 9}
+\textsl{We have
+\[
+M_{g \circ f} = M_f M_g.
+\]}
+
+\textbf{Exercise 10}
+\textsl{Let
+\[
+A=
+\left [
+\begin{array}{cc}
+a & b\\
+c & d\\
+\end{array}
+\right ]
+\]
+and assume that $0$ is not an eigenvalue of $A$. Find the inverse of $A$.}
+\begin{proof}
+We want
+\[
+A^{-1} =
+\left [
+\begin{array}{cc}
+w & x\\
+y & z\\
+\end{array}
+\right ]
+\]
+such that
+\[
+AA^{-1} =
+\left [
+\begin{array}{cc}
+1 & 0\\
+0 & 1\\
+\end{array}
+\right ].
+\]
+Then we have
+\[
+\left [
+\begin{array}{cc}
+aw+by & ax+bz\\
+cw+dy & cx+dz\\
+\end{array}
+\right ]
+=
+\left [
+\begin{array}{cc}
+1 & 0\\
+0 & 1\\
+\end{array}
+\right ].
+\]
+Which means we're left with the equations
+\[
+aw+by = 1
+\]
+\[
+ax+bz = 0
+\]
+\[
+cw+dy = 0
+\]
+\[
+cx+dz = 1.
+\]
+Solving these we have
+\[
+w = \frac{d}{ad-bc} \text{ } x = \frac{b}{bc-ad} \text{ } y = \frac{c}{bc-ad} \text{ } z = \frac{a}{ad-bc}.
+\]
+and so
+\[
+A^{-1} =
+\left [
+\begin{array}{cc}
+\frac{d}{ad-bc} & \frac{b}{bc-ad}\\
+\frac{c}{bc-ad} & \frac{a}{ad-bc}\\
+\end{array}
+\right ].
+\]
+\end{proof}
+
+\textbf{Exercise 11}
+\textsl{Let
+\[
+A=
+\left [
+\begin{array}{cc}
+0 & 1\\
+1 & 1\\
+\end{array}
+\right ]
+\]
+and let $v = (a,b)$. What is $vA$? What is $(1,1)A^n$?}
+\begin{proof}
+We have
+\[
+vA=
+\left [
+\begin{array}{cc}
+a & b\\
+\end{array}
+\right ]
+\left [
+\begin{array}{cc}
+0 & 1\\
+1 & 1\\
+\end{array}
+\right ]
+=
+\left [
+\begin{array}{cc}
+a & a+b\\
+\end{array}
+\right ].
+\]
+Since this is true for $v = (1,1)$, for $(1,1)A^n$ we obtain the Fibonacci sequence in vectors. That is, $(1,1) A^n$ = $(f_{n+1}, f_{n+2})$ where $f_n$ is the $n$th number in the Fibonacci sequence.
+\end{proof}
+
+\end{flushleft}
+\end{document}

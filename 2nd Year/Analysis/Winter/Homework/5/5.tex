@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20800\\
+
+February 2, 2009
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Is $C_c(X, F)$ a closed subspace of $\mathcal{BC} (X, F)$?
+\end{**}
+
+No.
+\begin{proof}
+Let $X = \mathbb{N}$ with the discrete topology. Then every function in $\mathcal{BC} (X, F)$ is continuous. Consider the sequence of functions $(f_n)$ where $f_n = (1, 1/2, 1/3, \dots , 1/n, 0, 0, \dots)$. That is $f_n$ has the reciprocals of the indices for the first $n$ terms and then $0$s following. Then $(f_n)$ is clearly Cauchy and converges to the harmonic sequence. But each $f_n$ is certainly compactly supported, since the set $\{1, 1/2, 1/3, \dots , 1/n\}$ is compact in $X$. Yet $X$ is not compact in itself, take the set of balls of radius $1/2$ around each point to see this. Therefore $(f_n)$ doesn't converge, and $C_c (X, F)$ is not complete. This shows that it is not a closed subset of $\mathcal{BC} (X, F)$.
+\end{proof}
+
+\begin{**}
+For $1 < p < \infty$ and $q$ such that $1/p + 1/q = 1$, show that $(\ell^p (F))^* = \ell^q (F)$. Also show $(\ell_n^p (F))^* = \ell_n^q (F)$.
+\end{**}
+\begin{proof}
+Let $f \in (\ell^p(F))^*$ and define the sequence $(f(e_j))$ where $(e_j)$ is the sequence in $\ell^p (F)$ with a $1$ in the $j$th spot and $0$s elsewhere. Then this sequence is an element of $\ell^q (F)$. Conversely, let $a = (a_n) \in \ell^q (F)$ and define $f(b) = \sum_{n=1}^{\infty} a_n b_n$ for all $b = (b_n)$ in $\ell^p$. We can use H\"{o}lder's Inequality to show that this result holds and that $f$ is indeed a linear functional on $\ell^p (F)$.
+\end{proof}
+
+\begin{**}
+Find an element of $(\ell^{\infty} (\mathbb{R}))^*$ that is not in $\ell^1 (\mathbb{R})$.
+\end{**}
+\begin{proof}
+We will show that if a normed linear space $V$ is not separable, then the dual of $V$ is not separable. We use the contrapositive and assume that $V^*$ is separable. Then The unit sphere in $V^*$ is separable so there exists a countable dense subset $\{f_n\}$ of the unit sphere each with norm $||f_n|| = \sup_{||x|| = 1} f_n(x) = 1$. Then using the definition of supremum there must exist a point $x_n \in V$ for each $f_n$ with $||x_n|| = 1$ such that $|f_n(x_n)| \geq 1/2$. Let $W$ be the closure of the space spanned by $\{x_n\}$. Then $W$ is separable because the space of linear combinations of $\{x_n\}$ using rational coefficients is a countable dense subset of $W$. Suppose that $W \neq V$. Since $W$ is closed we can find a functional $f$ on $W$ with $||f|| = 1$ such that $f(w) = 0$ for all $w \in W$. Since $x_n \in W$ we have $f(x_n) = 0$. Then for all $n$ we have
+\[
+\frac{1}{2} \leq |f_n(x_n)| = |f_n(x_n) - f(x_n)| = |(f_n - f) (x_n)| \leq ||f_n - f||||x||
+\]
+and $||x_n|| = 1$. Then $||f_n - f|| \geq 1/2$ which contradicts the fact that $\{f_n\}$ is dense in the unit sphere since $||f|| = 1$. Thus $W = V$ and so $V$ is separable. Note that $\ell^1 (\mathbb{R})$ is separable, but $\ell^{\infty} (\mathbb{R})$ is not separable. Thus $(\ell^{\infty} (\mathbb{R})^*$ is not separable and so it must contain an element which is not in $\ell^1 (\mathbb{R})$.
+\end{proof}
+
+\begin{**}
+Show that following are equivalent for Banach spaces $V$ and $W$:\\
+1) If $T \in \mathcal{BL} (V, W)$ is surjective, then $T$ is open.\\
+2) If $T \in \mathcal{BL} (V, W)$ is a bijection, then $T^{-1} \in \mathcal{BL} (V, W)$.\\
+3) Suppose $T : V \rightarrow W$ is linear. If the graph of $T$ is closed in $V \times W$, then $T$ is bounded.\\
+4) Suppose $T : V \rightarrow W$ is linear. If $T$ is bounded then the graph of $T$ is closed in $V \times W$.
+\end{**}
+\begin{proof}
+Suppose 1) is true. Let $T \in \mathcal{BL} (V, W)$ be a bijection. Then $T$ is an open map, which means $T^{-1}$ is continuous, and therefore bounded.\newline
+
+Suppose 2) is true. Suppose $A$ as defined earlier is closed. Let $p_1 : V \times W \rightarrow V$ and $p_2 : V \times W \rightarrow W$ be the projections from $V \times W$ to $V$ and $W$ respectively. It is clear that these functions are continuous. Define $T' : V \rightarrow A$ as $T'x = (x, Tx)$. Note that $A \subseteq V \times W$ and so let $p_1'$, be the function $p_1$ restricted to $A$. Then $p_1'$ is a bijection since $T$ is linear. But then $p_1'^{-1}$ is continuous by 2) and moreover, $p_1'^{-1}$ is simply $T'$. Then $T = p_2 \circ T'$ is continuous since it is the composition of two continuous functions. Therefore $T \in \mathcal{BL} (V, W)$.\newline
+
+Suppose 3) is true. Let $T \in \mathcal{BL} (V, W)$. Then $T$ is continuous. Let $A = \{(x, Tx) \mid x \in V\}$ be the graph of $T$ in $V \times W$. Consider a sequence in $A$, $(x_n, Tx_n)$, which converges to some $(x, y) \in V \times W$. Since $T$ is continuous we must have $\lim_{n \rightarrow \infty} Tx_n = Tx = y$. Then $(x, y) \in A$ so $A$ is closed.\newline
+
+Suppose 4) is true. Let $T \in \mathcal{BL} (V, W)$ be surjective and let $U \subseteq V$ be an open set. Suppose that $T(U)$ is not open in $W$. Then there exists $x \in U$ such that for all $r > 0$, $B_r(Tx) \nsubseteq T(U)$. Thus for every $r > 0$ we can choose a point in $B_r(Tx)$ which is not in $T(U)$. Since $T$ is surjective, we can call these points $Tx_n$ where $x_n \in V$. By continually choosing $r$ small enough, we can create a sequence $(Tx_n)$ which converges to $Tx$ in $W$. Since the graph of $T$ is closed, the sequence $(x_n)$ converges to $x$ in $V$. But since $U$ is open, there are infinitely many points of $(x_n)$ in $U$, but none of the points of $(Tx_n)$ are in $T(U)$. This is a contradiction and so $T(U)$ must be open.
+\end{proof}
+
+\begin{**}
+Let $V$ be a nonzero vector space over $F$. Find three linear functionals on $V$.
+\end{**}
+\begin{proof}
+1) Take the $0$ function which maps every element of $V$ to $0$.\newline
+
+2) Let $B$ be a basis for $V$ with $v_1 \in B$. Define $f(v_1) = c$ for some $c \neq 0$ in $F$. Then define $f(\alpha v_1) = \alpha c$ for $\alpha \in F$. Now for all $v_i$ with $i \neq 1$, define $f(v_i) = 0$. Then for $v, w \in V$ we have $v = \sum_{i} \alpha_i v_i$ and $w = \sum_{i} \beta_i v_i$ where arbitrarily many of the $v_i$ terms are $0$ in each sum and $\alpha_i, \beta_i \in F$. But then
+\begin{align*}
+f(v + w)
+&= f \left (\sum_{i} (\alpha_i v_i + \beta_i v_i) \right ) \\
+&= f \left (\sum_{i} (\alpha_i + \beta_i) v_i \right )\\
+&= f((\alpha_1 + \beta_1)v_1)\\
+&= (\alpha_1 + \beta_1)c\\
+&= \alpha_1 c + \beta_1 c\\
+&= f(\alpha_1 v_1) + f(\beta_1 v_1)\\
+&= f \left (\sum_{i} \alpha_i v_i \right ) + f \left (\sum_{i} \beta_i v_i \right )\\
+&= f(v) + f(w).
+\end{align*}
+Also
+\[
+f(\alpha v) = f \left (\sum_{i} \alpha (\alpha_i v_i) \right ) = f \left (\alpha \sum_{i} \alpha_i v_i \right ) = f (\alpha (\alpha_1 v_1)) = \alpha \alpha_1 c = \alpha f(\alpha_1 v_1) = \alpha f \left (\sum_{i} (\alpha_i v_i) \right ) = \alpha f(v).
+\]
+Thus $f$ is a linear functional on $V$.\newline
+
+3) Consider the case in 2) and assign a constant value in $F$ to as many terms of the basis as needed. Then map all the other basis elements to $0$, as before. This is still a linear functional for the same reasons as in 2).
+\end{proof}
+
+\begin{**}
+Show that a subspace of a finite dimensional vector space is finite dimensional.
+\end{**}
+\begin{proof}
+Let $V$ be an $n$-dimensional vector space and let $W$ be a subspace. Let $\{v_1, v_2, \dots , v_m\}$ be a linearly independent set in $W \subseteq V$. Note that since $\dim V = n$ the maximal linearly independent set has $n$ vectors, thus $m \leq n$. But then since $W$ is a vector space it has some basis $\{B\}$ which has at most $n$ linearly independent vectors. Therefore $W$ is finite dimensional.
+\end{proof}
+
+\begin{**}
+Let $V$ be a vector space over $\mathbb{R}$ and let $W$ be a subspace of $V$. Show that a linear functional $f : W \mathbb{R}$ can be extended to a linear functional $F : V \rightarrow \mathbb{R}$.
+\end{**}
+\begin{proof}
+Let $\mathcal{A}$ be the set of all linear extensions of $f$ to subspaces of $V$. Note that $\mathcal{A} \neq \emptyset$ since $f \in \mathcal{A}$. We can partially order $\mathcal{A}$ by defining $g \leq h$ if and only if $h$ is a linear extension of $g$. If $T$ is a totally ordered subset of $\mathcal{A}$ then $\bigcup_{g \in T} g$ is a an upper bound for $T$. Thus Zorn's Lemma applies and so let $F$ be the maximal element of $\mathcal{A}$. The proof will be finished if we can show the domain of $F$ is $V$. Suppose there exists $x$ in $V$ which is not in the domain of $F$. Let $V'$ be the subspace spanned by the domain of $F$ and $x$. Then for $y \in V'$ there is a unique representation of $y$ as $y = m + r x$ where $m$ is in the domain of $F$ and $r \in \mathbb{R}$. If $s \in \mathbb{R}$ then we can define $F' (y) = F'(m + r x) = F(m) + r s$ a linear functional on $V'$. But this is clearly an extension of $F$ which contradicts the maximality of $F$. Therefore the domain of $F$ is $V$ and so $F$ is a linear functional on $V$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

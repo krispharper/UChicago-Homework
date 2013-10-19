@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27000\\
+
+October 8, 2009
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{problem}
+Let $z, w$ be complex numbers such that $\overline{z}w \neq 1$. Prove that
+\[
+\left | \frac{z - w}{1 - \overline{z}w} \right | < 1 \text{ if $|z| < 1$ and $|w| < 1$},
+\]
+\[
+\left | \frac{z - w}{1 - \overline{z}w} \right | = 1 \text{ if $|z| = 1$ or $|w| = 1$}.
+\]
+\end{problem}
+\begin{proof}
+Let $z = r_1 e^{i \theta_1}$ and $w = r_2 e^{i \theta_2}$. Then
+\begin{align*}
+|z-w|
+&= |r_1(\cos(\theta_1) + i \sin(\theta_1)) - r_2(\cos(\theta_2) + i \sin(\theta_2))| \\
+&= |(r_1 \cos(\theta_1) - r_2 \cos(\theta_2)) + i(r_1 \sin(\theta_1) - r_2 \sin(\theta_2))| \\
+&= (r_1^2 \cos^2(\theta_1) + r_2^2 \cos^2(\theta_2) - 2r_1r_2\cos(\theta_1)\cos(\theta_2)) + (r_1^2 \sin^2(\theta_1) + r_2^2 \sin^2(\theta_2) - 2r_1r_2\sin(\theta_1)\sin(\theta_2)) \\
+&= 1 - 2r_1r_2 \cos(\theta_1 - \theta_2)
+\end{align*}
+and
+\begin{align*}
+|1 - \overline{z}w|
+&= |1 - r_1r_2 \cos(\theta_2 - \theta_1) + i r_1r_2 \sin(\theta_2 - \theta_1) \\
+&= 1 + r_1^2r_2^2 \cos^2(\theta_2 - \theta_1) - 2r_1r_2 \cos(\theta_2 - \theta_1) + r_1^2r_2^2 \sin^2(\theta_2 - \theta_1) \\
+&= 2 - 2r_1r_2\cos(\theta_2 - \theta_1).
+\end{align*}
+Then
+\[
+\left | \frac{z-w}{1 - \overline{z}w} \right | = \frac{1 - 2r_1r_2 \cos(\theta_1 - \theta_2)}{2 - 2r_1r_2\cos(\theta_2 - \theta_1)}.
+\]
+Thus if we replace $\theta_1$ by $0$ and $\theta_2$ by $\theta_2 - \theta_1$, the norm doesn't change. Therefore we may assume that $z$ has $\theta_1 = 0$, i.e. $z$ is real.
+
+Now, since $|z| < 1$ and $|w| < 1$ we have
+\begin{align*}
+z^2 - 1 &< |w|^2(z^2 -1) \\
+z^2 + |w|^2 &< 1 + z^2|w|^2 \\
+z^2 + |w|^2 - zw - z\overline{w} &< 1 + z^2 |w|^2 - zw - z\overline{w} \\
+(z-w)(z-\overline{w}) &< (1 - zw)(1 - z\overline{w}) \\
+|z-w| &< |1 - zw| \\
+\left | \frac{z-w}{1-\overline{z}w} \right | &< 1.
+\end{align*}
+On the other hand, if $|z| = 1$ or $|w| = 1$ then we can start from the second inequality $z^2 + |w|^2 = 1 + z^2|w|^2$ and proceed replacing $<$ with $=$. We arrive at the desired result.
+\end{proof}
+
+\begin{problem}
+Let $f(z) = e^{2 \pi i z}$. Describe the image under $f$ of the set consisting of those points $x+iy$ with $-\frac{1}{2} \leq x \leq \frac{1}{2}$ and $y \geq B \geq 0$.
+\end{problem}
+\begin{proof}
+We have
+\[
+f(x + iy) = e^{2 \pi i (x+iy)} = e^{2 \pi i x - 2 \pi y} = e^{-2 \pi y} e^{2 \pi i x}.
+\]
+Note that the real part of $f$ gets mapped to $e^{-2 \pi y}$ and the complex part gets mapped to $e^{2 \pi x}$. Thus the real part is in the set $(0, e^{2 \pi B}]$ with angle $[- \pi, \pi]$. The image is thus the disk centered at $0$ with radius $e^{2 \pi B}$, but without the point $0$. We can write this as
+\[
+\text{Im } f = \{re^{i \theta} \mid 0 < r \leq e^{2 \pi B}, -\pi \leq \theta \leq \pi\}.
+\]
+\end{proof}
+
+\begin{problem}
+Consider the function $f(z) = \frac{z + z^{-1}}{2}$. What is the image of the set $|z| > 1$? The set $|z| < 1$? The set $|z| = 1$? Show that the image of any circle centered at the origin with radius $r \neq 1$ is an ellipse with focal points $1$ and $-1$.
+\end{problem}
+\begin{proof}
+We have
+\[
+f(z) = f(x+iy) = \frac{(x+iy) + \frac{(x-iy)}{(x^2+y^2)}}{2} = \frac{x(x^2+y^2+1)}{2(x^2+y^2)} + i \frac{y(x^2+y^2-1)}{2(x^2+y^2)}.
+\]
+If $|z|$ is close to $1$ then the coefficient of the real part evaluates close to $1$. As $|z|$ increases the coefficient gets closer to $1/2$. On the other hand, the coefficient is unbounded as $|z|$ approaches $0$.
+
+Likewise, if $|z|$ is close to $1$ then the coefficient for the imaginary part evaluates close to $0$. As $|z|$ increases the coefficient gets closer to $1/2$. As $|z|$ approaches $0$, the coefficient is unbounded in the negative direction.
+
+In the case that $|z| = 1$ we see that the real part evaluates to just $x$ while the imaginary part drops out entirely. Therefore
+\[
+\text{Img}(f(x+iy)) =
+\begin{cases}
+\left \{ax + iby \mid \frac{1}{2} < a < 1, 0 < b < \frac{1}{2} \right \} & |z| > 1 \\
+\left \{ax + iby \mid 1 < a, b < 0 \right \} & |z| < 1 \\
+\{x \} & |z| = 1
+\end{cases}
+\]
+This is the same as
+\[
+\text{Img}(f(x+iy)) =
+\begin{cases}
+\left \{x + iy \mid \frac{1}{2} < x \text{ or } x < -\frac{1}{2} \right \} & |z| > 1 \\
+\mathbb{C} \backslash \{0\} & |z| < 1 \\
+\mathbb{R} & |z| = 1
+\end{cases}
+\]
+We can rewrite $f(z) = f(x+iy) = \frac{1}{2|z|^2} (x(|z|^2 + 1) + iy(|z|^2 - 1))$. If we keep $|z| \neq 1$ constant, i.e., the points of a circle in $\mathbb{C}$, then this is the equation of an ellipse in $\mathbb{C}$ where the foci are at $1$ and $-1$.
+\end{proof}
+
+\begin{problem}
+What does the map $f(z) = \overline{z}$ do to angles at points $z \in \mathbb{C}$? How about $h(z) = (g \circ f)(z)$ if $g$ is complex-differentiable at $\overline{z}$ with $g'(\overline{z}) \neq 0$?
+\end{problem}
+\begin{proof}
+The map $f$ has the effect of reflecting over the imaginary axis in the complex plane. Thus all angle measures remain the same, but the orientation is reversed. If we compose $g$ with $f$, we effectively reverse the orientation of an angle, and then apply $g$ to it. But $g$ is holomorphic and holomorphic functions preserve angles. Thus, the angle measure under $g \circ f$ is preserved, but the orientation is reversed.
+\end{proof}
+
+\begin{problem}
+Find a holomorphic function $f$ on $\mathbb{C}$ such that $\textup{Re}f(x+iy) = xy$ and $f(0) = i$.
+\end{problem}
+\begin{proof}
+Let $f(x+iy) = u(x,y) + iv(x,y)$. We have the restriction that $u(x,y) = xy$. From the Cauchy-Riemann equations we have
+\[
+\partial u / \partial x = y = \partial v / \partial y
+\]
+and
+\[
+\partial u / \partial y = x = -\partial v / \partial x.
+\]
+Integrating we get $v(x,y) = \frac{y^2 - x^2}{2} + C$. Using the initial value condition we get $v(x,y) = \frac{y^2 - x^2}{2} + 1$. Therefore
+\[
+f(x + iy) = u(x,y) + i v(x,y) = xy + i \left ( \frac{y^2-x^2}{2} + 1 \right ).
+\]
+We know that $f$ is holomorphic because $u$ and $v$ are continuously differentiable and satisfy the Cauchy-Riemann equations.
+\end{proof}
+
+\begin{problem}
+Let $f(z) = \frac{az + b}{cz + d}$ with $a,b,c,d \in \mathbb{C}$ be such that $f(0) = z_1$, $f(1) = z_2$, $f(\infty) = z_3$. Find all such $a$, $b$, $c$, $d$, given $z_1, z_2, z_3 \in \mathbb{C}$. When is there no such quadruple?
+\end{problem}
+\begin{proof}
+We have $f(0) = \frac{b}{d} = z_1$ so $b = d z_1$. Also $f(1) = \frac{a+b}{c+d} = z_2$ so $(a+b) = (c+d)z_2$. Finally $f(\infty) = \frac{a}{c} = z_3$ so $a = c z_3$. Substituting the first and third equations into the third we see that $(c z_3 + d z_1) = (c z_2 + d z_2)$. Solving for $d$ we have
+\[
+d = \frac{c(z_3 - z_2)}{(z_2 - z_1)}.
+\]
+Thus the set of all quadruples $(a,b,c,d)$ is
+\[
+\left \{ (a,b,c,d) = (c z_3, d z_1, c, d) \mid d = \frac{c(z_3 - z_2)}{(z_2 - z_1)} \right \}.
+\]
+Note that we can't have $z_2 = z_1$ or $z_2 = z_3$, otherwise we loose the constraint on $c$ and $d$. If we allow $z_i \in \mathbb{C}^*$ then we allow $d = 0$, $c = 0$ or $c = -d$.
+\end{proof}
+
+\begin{problem}
+Assume the function $f$ is defined on the set $|z| > M$ for some $M$ and that $c = \lim_{|z| \rightarrow \infty} f(z)$ exists. If $c \in \mathbb{C}$, then $f$ is $C^*$-differentiable at $\infty$ if and only if $f(1/z)$ is complex-differentiable at $0$. If $c = \infty$, then $f$ is $C^*$-differentiable at $\infty$ if and only if $1/f(1/z)$ is complex-differentiable at $0$. Show that the functions $f(z) = e^{1/z}$ and $g(z) = z^2 + 1$ are $C^*$-differentiable at $\infty$.
+\end{problem}
+\begin{proof}
+We have
+\[
+\lim_{|z| \rightarrow \infty} f(z) = \lim_{|z| \rightarrow \infty} e^{1/z} = 1.
+\]
+Thus, $f$ is $C^*$-differentiable at $\infty$ if $f(1/z) = e^{1/(1/z)} = e^z$ is complex-differentiable at $0$. But we know that $e^z$ is a complex-differentiable function so $f$ is $C^*$-differentiable at $\infty$.
+
+Now consider
+\[
+\lim_{|z| \rightarrow \infty} g(z) = \lim_{|z| \rightarrow \infty} z^2 + 1 = \infty.
+\]
+Thus, $g$ is $C^*$-differentiable at $\infty$ if $1/f(1/z) = 1/(1/z^2 + 1) = z^2/(z^2+1)$ is complex-differentiable at $0$. But note that this is the quotient of two functions which are differentiable at $0$, and the denominator is not equal to $0$ at $0$. Thus the derivative of the quotient exists at $0$. Therefore $g$ is $C^*$-differentiable at $\infty$.
+\end{proof}
+
+\end{document}

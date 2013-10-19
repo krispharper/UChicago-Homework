@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+May 6, 2008
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 11}
+\textsl{Show that $(1+i)/(2+3i) = (4-i)/13$.}
+\begin{proof}
+We have
+\[
+\frac{1+i}{2+3i} = \frac{(1+i)(2-3i)}{(2+3i)(2-3i)} = \frac{1-i+3}{13} = \frac{4-i}{13}.
+\]
+\end{proof}
+
+\textbf{Exercise 22}
+\textsl{Where is the mistake in the following?
+\[
+1 = \sqrt{1} = \sqrt{-1 \cdot -1}  = \sqrt{-1} \cdot \sqrt{-1} = i \cdot i = -1.
+\]}
+
+The square root function is only defined for non-negative real numbers. It makes no sense to say $\sqrt{-1 \cdot -1} = \sqrt{-1} \cdot \sqrt{-1}$ because $\sqrt{-1}$ is meaningless.\newline
+
+\textbf{Exercise 23}
+\textsl{Let $u,w$ be complex numbers. Find the complex numbers $z$ such that $u,w,z$ form a equilateral triangle. Express the centers of these triangles.}
+\begin{proof}
+Given the three points $u,w,z$, the centroid of the triangle formed by them should be
+\[
+x = \frac{u+w+z}{3}.
+\]
+Given this and the two points $u$ and $w$ we want the condition each of $u$ $w$ and $z$ are a distance $L$ from the center, $x$, and are separated by an angle of $2 \pi /3$. Thus
+\[
+u-x = L \left ( \cos \left ( \alpha \right ) + i \sin \left ( \alpha \right ) \right ),
+\]
+\[
+z-x = L \left ( \cos \left ( \alpha - \frac{2 \pi}{3} \right ) + i \sin \left ( \alpha - \frac{2 \pi}{3} \right ) \right )
+\]
+and
+\[
+w-x = L \left ( \cos \left ( \alpha + \frac{2 \pi}{3} \right ) + i \sin \left ( \alpha + \frac{2 \pi}{3} \right ) \right )
+\]
+for some angle $\alpha$. This implies that $(u-x)(w-x) = (z-x)^2$ which after substituting for $x$ and expanding gives us
+\[
+u^2 + w^2 + z^2 = uw + uz + wz.
+\]
+Using the quadratic formula to solve for $z$ we end up with
+\[
+z = \frac{u + w \pm i \sqrt{3}(u-w)}{2}.
+\]
+The center of the triangle is then at
+\[
+\frac{u+w}{2} \pm \frac{i \sqrt{3} (u-w)}{6}.
+\]
+\end{proof}
+
+\textbf{Exercise 24}
+\textsl{Take an arbitrary and draw an equilateral triangle on all sides looking outward. Prove that the centers of these triangles forms an equilateral triangle.}
+\begin{proof}
+Let $a$, $b$ and $c$ be vertices of an equilateral triangle and $x$, $y$ and $z$ be the centers of the outer equilateral triangles formed. Then
+\[
+x = \frac{a+b}{2} \pm \frac{i \sqrt{3} (a-b)}{6},
+\]
+\[
+y = \frac{b+c}{2} \pm \frac{i \sqrt{3} (b-c)}{6}
+\]
+and
+\[
+z = \frac{c+a}{2} \pm \frac{i \sqrt{3} (c-a)}{6}.
+\]
+Then we can verify that
+\[
+x^2 + y^2 + z^2 = xy + yz + xz
+\]
+which is the condition we had earlier for an equilateral triangle.
+\end{proof}
+
+\textbf{Exercise 25}
+\textsl{Compute $(1+i)^{2006}$.}\newline
+
+Let $z = 1+i$. Note that $|z| = \sqrt{z \overline{z}} = \sqrt{2}$. Then let $\alpha = \pi/4$ so that
+\[
+z = \sqrt{2} \left ( \frac{1}{\sqrt{2}} + \frac{i}{\sqrt{2}} \right ) = |z| (\cos \alpha + i \sin \alpha).
+\]
+Then
+\[
+z^{2006} = \sqrt{2}^{2006} \left ( \cos \left ( \frac{1003 \pi}{2} \right ) + i \sin \left ( \frac{1003 \pi}{2} \right ) \right ) = -i 2^{1003}\]
+
+\textbf{Exercise 26}
+\textsl{What is the sum of the $n$th roots of unity?}
+\begin{proof}
+Note that the $k$th root of unity is given by
+\[
+\varepsilon_{n,k} = \cos \left ( k \frac{2 \pi}{n} \right ) + i \sin \left ( k \frac{2 \pi}{n} \right ).
+\]
+Let $n > 1$ and let $k = 1$. Then
+\[
+\varepsilon_{n,1} = \cos \left (\frac{2 \pi}{n} \right ) + i \sin \left (\frac{2 \pi}{n} \right ) \neq 1
+\]
+and the arguments of $\varepsilon_{n,k}$ are $(2 \pi)/n$. But then
+\begin{align*}
+\varepsilon_{n,1}^k &= |\varepsilon_{n,1}| \left ( \cos \left ( k \frac{2 \pi}{n} \right ) + i \sin \left ( k \frac{2 \pi}{n} \right ) \right ) \\
+			    &= \cos \left ( k \frac{2 \pi}{n} \right ) + i \sin \left ( k \frac{2 \pi}{n} \right ) \\
+			    &= \varepsilon_{n,k}
+\end{align*}
+by Corollary 17 (25.17). Thus if we have one nontrivial root of unity we can find the rest by taking powers of the first for powers $0 \leq k \leq n-1$. But then
+\[
+\sum_{k=0}^{n-1} \varepsilon_{n,k} = \sum_{k=0}^{n-1} \varepsilon_{n,1}^k = \frac{1-\varepsilon_{n,1}^n}{1-\varepsilon_{n,1}} = 0
+\]
+because $\varepsilon_{n,1} = 1$.
+\end{proof}
+
+\textbf{Exercise 27}
+\textsl{What is the product of the $n$th roots of unity?}
+\begin{proof}
+Similarly
+\[
+\prod_{k=0}^{n-1} \varepsilon_{n,k} = \prod_{k=0}^{n-1} \varepsilon_{n,1}^k = \varepsilon_{n,1}^{\frac{n(n-1)}{2}} = \left ( \varepsilon_{n,1}^n \right )^{\frac{n-1}{2}} = 1.
+\]
+\end{proof}
+
+\textbf{Exercise 28}
+\textsl{What is the sum of the squares of the $n$th roots of unity?}
+\begin{proof}
+We have
+\[
+\sum_{k=0}^{n-1} \varepsilon_{n,k}^2 = \sum_{k=0}^{n-1} \varepsilon_{n,1}^{2k} = \varepsilon_{n,1}^0 + \varepsilon_{n,1}^2 + \dots + \varepsilon_{n,1}^{2n-2}.
+\]
+If we multiply both sides of this equation by $1-\varepsilon_{n,1}^2$ we have
+\[
+\sum_{k=0}^{n-1} \varepsilon_{n,1}^{2k} = \frac{1-\varepsilon_{n,1}^{2n}}{1-\varepsilon_{n,1}^2} = \frac{1 - \left ( \varepsilon_{n,1}^n \right )^2}{1 - \varepsilon_{n,1}} = 0.
+\]
+\end{proof}
+
+\end{flushleft}
+\end{document}

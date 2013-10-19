@@ -1,0 +1,199 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 15, 2008
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Problem 13.4}
+\textsl{Let $P$ be a partition $P=\{t_0, \dots , t_n\}$ such that the ratio $r=t_i/t_{i-1}$ is equal for $1 \leq i \leq n$. Then we have
+\[
+t_i = a \left ( c \right )^{\frac{i}{n}}.
+\]
+for $c=b/a$.}
+\begin{proof}
+Note that
+\[
+\frac{b}{a} = \frac{t_n}{t_0} = \frac{t_n}{t_{n-1}} \cdot \frac{t_{n-1}}{t_{n-2}} \cdot \dots \cdot \frac{t_1}{t_0} = r^n
+\]
+so $r=(b/a)^{1/n}=c^{1/n}$. In a similar fashion,
+\[
+\frac{t_i}{a}=r^i
+\]
+so
+\[
+t_i = a r^i = a \left ( c \right )^{\frac{i}{n}}.
+\]
+\end{proof}
+
+\textsl{If $f(x) = x^p$ then show
+\[
+U(f,P) = (b^{p+1} - a^{p+1}) c^{p/n} \cdot \frac{1}{1+c^{1/n} + \dots + c^{p/n}}
+\]
+and find a similar statement about $L(f,P)$.}
+\begin{proof}
+We have
+\begin{align*}
+U(f,P) &= \sum_{i=1}^n m_i(t_i-t_{i-1}) \\
+	  &= \sum_{i=1}^n \left ( ac^{i/n} \right )^p \left ( ac^{i/n} - ac^{(i-1)/n} \right ) \\
+	  &= a^{p+1}(1-c^{-1/n}) \sum_{i=1}^n \left (c^{(p+1)/n} \right )^i \\
+	  &= a^{p+1}(1-c^{-1/n}) c^{(p+1)/n} \sum_{i=0}^{n-1} \left (c^{(p+1)/n} \right )^i \\
+	  &= a^{p+1}(1-c^{-1/n}) c^{(p+1)/n} \frac{1 - c^{p+1}}{1 - c^{(p+1)/n}} \\
+	  &= a^{p+1}(1-c^{(p+1)}) c^{(p+1)/n} \frac{1 - c^{-1/n}}{1 - c^{(p+1)/n}} \\
+	  &= (a^{p+1}-b^{(p+1)}) c^{(p+1)/n} \frac{1 - c^{-1/n}}{1 - c^{(p+1)/n}} \\
+	  &= (a^{p+1}-b^{(p+1)}) c^{p/n} \frac{c^{1/n} -1}{1 - c^{(p+1)/n}} \\
+	  &= (b^{p+1}-a^{p+1})c^{p/n} \frac{1}{1+c^{1/n}+ \dots + c^{p/n}}.\\
+\end{align*}
+A similar proofs shows that
+\[
+L(f,P)=(b^{p+1}-a^{p+1}) \frac{1}{1+c^{1/n}+ \dots + c^{p/n}}.
+\]
+\end{proof}
+
+\textsl{Show that
+\[
+\int_a^b x^p dx = \frac{b^{p+1} - a^{p+1}}{p+1}.
+\]}
+\begin{proof}
+We take
+\[
+\lim_{n \rightarrow \infty} (b^{p+1}-a^{p+1})c^{p/n} \frac{1}{1+c^{1/n}+ \dots + c^{p/n}} = \frac{b^{p+1} - a^{p+1}}{p+1}
+\]
+because $\lim_{n \rightarrow \infty} c^{i/n} = 1$.
+\end{proof}
+
+\textbf{Problem 13.11}
+\textsl{Which functions have the property that every lower sum equals every upper sum?}
+\begin{proof}
+We have
+\[
+\sum_{i=1}^n m_i(t_i-t_{i-1}) = \sum_{i=1}^n M_i(t_i-t_{i-1})
+\]
+and so $m_i=M_i$ for all $1 \leq i \leq n$ regardless of our partition. But then $f$ must be constant on $[a;b]$.
+\end{proof}
+
+\textsl{Which functions have the property that some upper some equals some other lower sum?}
+\begin{proof}
+Let $P_1$ and $P_2$ be partitions on $[a;b]$. Then if $L(f,P_1) = U(f,P_2)$ and $P$ contains both $P_1$ and $P_2$ then we have $L(f,P_1) \leq L(f,P) \leq U(f,P) \leq U(f,P_2) = L(f,P_1)$ so $L(f,P) = U(f,P)$ which means $f$ is constant again.
+\end{proof}
+
+\textsl{Which continuous functions have the property that all lowers sums are equal?}
+\begin{proof}
+Only constant functions again. If not, then we can choose a minimum value, $m$, on $[a;b]$ and take a partition such that $f$ is greater than $m$ on some interval. Then the lower sum will be greater than $m(b-a)$ but if we just use one interval then $L(f,[a;b]) = m(b-a)$.
+\end{proof}
+
+\textsl{Which integrable functions have the property that all lower sums are equal?}
+\begin{proof}
+Problem 13.30 shows that $f$ is continuous at infinitely many points on $[a;b]$ which means that we can use the above proof to show that $f$ must be constant everywhere.
+\end{proof}
+
+\textbf{Problem 13.15}
+\textsl{Show
+\[
+\int_1^a \frac{1}{t}dt + \int_1^b \frac{1}{t} dt = \int_1^{ab} \frac{1}{t} dt.
+\]}
+\begin{proof}
+Let $P = \{t_0, \dots ,t_n\}$ be a partition of $[1,a]$. We have $b \inf \{1/t \mid t_{i-1} \leq x \leq t_i\} = \inf \{1/t \mid bt_{i-1} \leq x \leq bt_i\}$. Let $P'$ and $m_i'$ correspond to the second inf. Then
+\[
+L(f,P') = \sum_{i=1}^n m_i'(bt_i-bt_{i-1}) = \sum_{i=1}^n bm_i'(t_i-t_{i-1}) = \sum_{i=1}^n m_i(t_i-t_{i-1}) = L(f,P).
+\]
+Thus the interval $[1;a]$ has been mapped to the interval $[b;ab]$ but since $f(t) = 1/t$ we still have
+\[
+\int_1^a \frac{1}{t} dt = \int_b^{ab} \frac{1}{t} dt.
+\]
+But then
+\[\int_1^a \frac{1}{t}dt + \int_1^b \frac{1}{t} dt = \int_1^b \frac{1}{t}dt + \int_b^{ab} \frac{1}{t} dt = \int_1^{ab} \frac{1}{t} dt.
+\]
+\end{proof}
+
+\textbf{Problem 13.27}
+\textsl{Let $f$ be integrable on $[a;b]$. Then for all $\varepsilon > 0$ there exists continuous functions $g \leq f \leq h$ with
+\[
+\int_a^b h - \int_a^b g < \varepsilon.
+\]}
+\begin{proof}
+Let $P = \{t_0, \dots ,t_n\}$ be a partition of $[a;b]$ and let $\varepsilon > 0$. First create step functions on $[a;b]$ where the value of each function on the $i$th interval equals $m_i$ or $M_i$ respectively. Then the integral for each step function is just the lower and upper sum for $f$, the difference of which we know is less than $\varepsilon$. Now connect the step functions by making a line from $f(t_{i-1})$ to $m_i$ at some value in $[t_{i-1};t_i]$ so that a triangle is formed. Do this for the upper step function as well. The area of one of these triangles is $1/2(m_i-m_{i-1})(b_i)$ where $b_i$ is the necessary value on $[t_{i-1};t_i]$. But since there are a finite number of intervals we can take $b_i$ small enough such that
+\[
+frac{1}{2} \sum_{i=1}^n (M_i-M_{i-1})B_i - frac{1}{2} \sum_{i=1}^n (m_i-m_{i-1})b_i < \varepsilon - U(f,P) + L(f,P).
+\]
+\end{proof}
+
+\textbf{Problem 13.30}
+\textsl{Let $P = \{t_0, \dots ,t_n\}$ be a partition of $[a;b]$ with $U(f,P) - L(f,P) < b-a$. Show that for some $i$ we have $M_i-m_i < 1$.}
+\begin{proof}
+Note that
+\[
+1 > \frac{U(f,P) - L(f,P)}{b-a} = \frac{\sum_{i=1}^n M_i (t_i - t_{i-1}) - \sum_{i=1}^n m_i (t_i - t_{i-1})}{b-a} = \frac{(b-a) \left ( \sum_{i=1}^n M_i - \sum_{i=1}^n m_i \right )}{b-a} = \sum_{i=1}^n M_i - \sum_{i=1}^n m_i
+\]
+and so there must exists $i$ such that $M_i - m_i < 1$.
+\end{proof}
+
+\textsl{Show that there are numbers $a_1$ and $b_1$ such that $a<a_1<b_1<b$ and $\sup \{f(x) \mid a_1 \leq x \leq b_1\} - \inf \{f(x) \mid a_1 \leq x \leq b_1\} < 1$.}
+\begin{proof}
+From before we know there exists $i$ such that $M_i - m_i < 1$. But then if we let $[a_1;b_1] = [t_{i-1};t_i]$ we're done so long as $i \neq 1$ and $i \neq n$. In the case where $i = 1$ we have $a_1 \in [a;b_1]$ and we already know that since $[a;a_1] \subseteq [a;b_1]$ we have $\sup \{f(x) \mid a_1 \leq x \leq b_1\} \leq \sup \{f(x) \mid a \leq x \leq b_1\}$ and a similar statement holds for inf and in the case where $i=n$.
+\end{proof}
+
+\textsl{Show that there are numbers $a_2$ and $b_2$ with $a_1 < a_2 < b_2 < b_1$ and $\sup \{f(x) \mid a_2 \leq x \leq b_2 \} - \inf \{f(x) \mid a_2 \leq x \leq b_2\} < 1/2$.}
+\begin{proof}
+Choose a partition $P$ of $[a_1;b_1]$ such that $U(f;P)-L(f,P) < (b_1-a_1)/2$. Then $M_i-m_i < 1/2$ for some $i$. Choose $[a_2;b_2] = [t_{i-1};t_i]$ unless $i=1$ or $i=n$ in which case we use a similar method as above.
+\end{proof}
+
+\textsl{Find a sequence of intervals $I_n = [a_n;b_n]$ such that $\sup \{f(x) \mid x \in I_n\} - \inf \{f(x) \mid x \in I_n\} < 1/n$.}
+\begin{proof}
+Let $x \in I_n$ for all $n$. We know $x$ exists from the Nested Interval Theorem. Then $x \neq a_n$ and $x \neq b_n$ for all $n$ because $x \in [a_{n+1};b_{n+1}]$ and $a_n < a_{n+1} < b_{n+1} < b_n$. For $\varepsilon > 0$ there exists some $n$ such that $1/n < \varepsilon$ and so there exists $n$ such that
+\[
+\sup \{f(x) \mid x \in I_n\} - \inf \{f(x) \mid x \in I_n\} < \varepsilon/2.
+\]
+Thus if $\delta = \min (x-a_n, x-b_n)$ then for all $y \in [a;b]$ with $|x-y| < \delta$ we have $|f(x)-f(y)| < \varepsilon$.
+\end{proof}
+
+\textsl{Show that $f$ is continuous at infinitely many points in $[a;b]$.}
+\begin{proof}
+We have $f$ is continuous at some point for every interval contained in $[a;b]$ since $f$ is integrable on each interval. There are infinitely many of these.
+\end{proof}
+
+\textbf{Problem 13.39}
+\textsl{Let $f$ and $g$ be integrable on $[a;b]$. Show
+\[
+\left ( \int_a^b fg \right )^2 \leq \left ( \int_a^b f^2 \right ) \left ( \int_a^b g^2 \right ).
+\]}
+\begin{proof}
+Note that for all $c \in \mathbb{R}$ we have
+\[
+0 \leq \int_a^b (f - cg)^2 = c^2 \int_a^b g^2 - 2c \int_a^b fg + \int_a^b f^2
+\]
+and from the quadratic formula we have
+\[
+4 \left ( \int_a^b f^2 \right ) \left ( \int_a^b g^2 \right ) \geq 4 \left ( \int_a^b fg \right )^2.
+\]
+\end{proof}
+
+\textbf{Problem 14.7}
+\textsl{Find all continuous functions $f$ such that
+\[
+\int_0^x f = (f(x))^2 + C
+\]
+for some constant $C$.}
+\begin{proof}
+If we differentiate $f^2$ we have $f(x) = 2f(x)f'(x)$ which means that for all $x \neq 0$ we have $f'(x) = 0$ for the equality to hold. Then $f$ is constant on intervals where $f$ is nonzero and since $f$ is continuous it must be constant everywhere. Thus for all $x$ we have
+\[
+\int_0^x c = c^2 + C
+\]
+so $cx = c^2 + C$ which can only be true if $c=0$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

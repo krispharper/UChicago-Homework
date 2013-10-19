@@ -1,0 +1,156 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newcommand{\ass}{\textup{Ass}}
+\newcommand{\ann}{\textup{ann}}
+\newcommand{\spec}{\textup{Spec}}
+\newcommand{\Ht}{\textup{ht}\;}
+\newcommand{\Max}{\textup{Max}}
+\newcommand{\codim}{\textup{codim}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26800\\
+
+February 22, 2011
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{problem}
+(a) Let $A$ be a Noetherian ring and $E$ an $A$-module. Show that the map $\eta : E \to \prod_{P \in \ass(E)} E_P$, $\eta(x) = (i_p(x))_{P \in \ass(E)}$ ($i_P(x) = x/1$ in $E_P$) is injective.\\
+(b) Let $A$ be a Noetherian ring and $I$, $J$ ideals in $A$. Suppose $I_P \subseteq J_P$, for all $P \in \ass(A/J)$. Show that $I \subseteq J$.
+\end{problem}
+\begin{proof}
+(a) Let $Q \in \ass(\ker \eta)$ with $Q = \ann(x)$ so $x \in \ker \eta$. Then $x/1 = 0/s$ in $E_P$ for each $P \in \ass(E)$. So for each $P \in \ass(E)$, there exists $t \notin P$ such that $stx = 0$. But since $x \in E$, $Q \in \ass(E)$ as well which means there exists $s,t \notin Q$ with $stx = 0$, a contradiction since $Q = \ann(x)$. Therefore $\ass(\ker \eta) = \emptyset$, but this is impossible if $\ker \eta \neq 0$, since $A$ is Noetherian. Thus $\ker \eta = 0$ and $\eta$ is injective.
+
+(b) By part (a) we have an injective map $\eta : A/J \to \prod_{P \in \ass(A/J)} (A/J)_P$. Note also that
+\[
+\prod_{P \in \ass(A/J)} (A/J)_P \cong \prod_{P \in \ass(A/J)} A_P/J_P
+\]
+since $(A/J)_P \cong A_P/J_P$ using the exact sequence $0 \to J \to A \to A/J \to 0$. Now pick $x \in I$ and let $\overline{x} = x + J$ in $A/J$. Then $\eta(\overline{x}) = (\overline{x}/1)_{P \in \ass(A/J)} = (x/1 + J_P)_{P \in \ass(A/J)}$ in the second product above. But note that since $x \in I$, $x/1 \in I_P$ for all $P \in \ass(A/J)$. By assumption then, $x/1 \in J_P$ for all $P \in \ass(A/J)$. But this is $0$ in each $A_P/J_P$, so $\eta(\overline{x}) = 0$. Since $\eta$ is injective, we know $\overline{x} = 0$, which means $x \in J$. Thus $I \subseteq J$.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a Noetherian local ring with maximal ideal $M$. Let $P \in \spec(A)$ with $0 \neq P \neq M$. Compute $\ass(A/PM)$.
+\end{problem}
+\begin{proof}
+Note that $A$ is a local ring, so $M$ is the only maximal ideal. Since all ideals are contained in some maximal ideal, then we have $P \subseteq M$. Thus $P + M = M$ is a maximal ideal of $A$. Furthermore, $P \cap M = P$. Suppose that $PM = P \cap M = P$. Then since $A$ is Noetherian, $P$ is finitely generated and since $M$ is inside the Jacobson radical of $A$, we know $P = 0$, a contradiction. Thus $PM \neq P \cap M$. Since we also have $P \neq M$ we can use a previous problem to conclude that $\ass(A/PM) = \{P, M, P+M\} = \{P, M\}$.
+\end{proof}
+
+\begin{problem}
+Let $f : A \to B$ be a ring homomorphism and $E$ a $B$-module. Let $\ass_B(E)$ denote the set of all associated prime ideals of $E$ considered as a $B$ module and $\ass_A(E) \subseteq \spec(A)$ denote the set of all associated prime ideals of $E$ considered as an $A$-module via $f$. Let $f^* : \spec(B) \to \spec(A)$, $f^*(A) = f^{-1}(Q)$.\\
+(a) Show that $f^*(\ass_B(E)) \subseteq \ass_A(E)$.\\
+(b) Suppose further that $B$ is a Noetherian ring. Show that $f^*(\ass_B(E)) = \ass_A(E)$.
+\end{problem}
+\begin{proof}
+(a) Let $P \in \ass_B(E)$ so that $P = \ann(x)$, $x \in E$. Then $P = \{a \in B \mid ax = 0\}$. Now consider
+\[
+f^*(P) = f^{-1}(P) = \{a \in A \mid f(a) \in \ann(x)\} = \{a \in A \mid f(a)x = 0\} = \ann(x).
+\]
+So $f^*(P)$ is the annihilator of $x$ in $A$ since the action of $a \in A$ on $x \in E$ is $f(a)x$. Thus $P \in \ass_A(E)$.
+
+(b) Let $P \in \ass_A(E)$. Now we pass to the localization at $P$, so we wish to show $P \in f^*(\ass_{B_P}(E_P))$ where $B_P = S^{-1}B$ and $E_P = S^{-1}E$ with $S = f(A \backslash P)$. Note now that $A_P$ is a local ring with maximal ideal $P$. Since $B$ is Noetherian there is a correspondence between primes in $\ass_B(E)$ and $\ass_{B_P}(E_P)$. So we may assume $A$ is a local ring with maximal ideal $P$ and replace $B$ with $B_P$ and $E$ with $E_P$. Since $P \in \ass_A(E)$, we know $P = \ann(x)$, $x \in E$. Now consider $Bx$. This is a Noetherian $B$-module since $B$ is Noetherian. Thus $\ass_B(Bx)$ is nonempty so take $Q \in \ass_B(Bx)$. Then consider $f^{-1}(Q) = \{a \in A \mid f(a)y = 0, y = bx, b \in B\}$ where $Q = \ann(y)$. Then $f^{-1}(Q) = \{a \in A \mid f(a)bx = 0\} \supseteq \ann(x) = P$. But $P$ is maximal, so we must have $f^{-1}(Q) = P$ and $P \in f^*(\ass_{B}(E))$.
+\end{proof}
+
+\begin{problem}
+Let $X$ be a topological space with $X = \bigcup_{i=1}^r X_i$, $X_i$ closed subsets of $X$. Show that $\dim(X) = \max(\dim(X_1), \dots , \dim(X_r))$. Deduce that $\dim(A/(I_1 \cap \cdots \cap I_r)) = \max(\dim(A/I_1), \dots , \dim(A/I_r))$.
+\end{problem}
+\begin{proof}
+We have $\dim(X_i) + \codim(X_i) \leq \dim(X)$, so we must have $\dim(X) \geq \max(\dim(X_1), \dots \dim(X_r))$. Conversely, suppose $\dim(X) = n$ and take $F_n$ to be the largest closed irreducible set in the longest chain. Then note that $F_n$ must be contained in some $X_i$, since if it's contained in $X_i$ and $X_j$, then $X_i \cap F_n$ and $X_j \cap F_n$ are two proper closed sets which union to $F_n$, a contradiction. Thus any chain of closed irreducible sets in $X$ must be contained in some $X_i$, so $\dim(X) \leq \max(\dim(X_1), \dots , \dim(X_r))$.
+
+Note that $\spec(A/I_i) = V(I_i)$ so
+\[
+\spec(A/I_1 \cap \cdots \cap I_r) = V(I_1 \cap \cdots \cap I_r) = \bigcup_{i=1}^r V(I_i) = \bigcup_{i=1}^r \spec(A/I_i).
+\]
+Since $\dim(A/I_1 \cap \cdots \cap I_r) = \dim(\spec(A/I_1 \cap \cdots \cap I_r))$, we can apply the above result where $X = \spec(A/I_1 \cap \cdots \cap I_r)$ and $X_i = \spec(A/I_i)$.
+\end{proof}
+
+\begin{problem}
+(a) Let $A$ be a commutative ring and $I$, $J$, ideals of $A$ such that $\sqrt{I} = \sqrt{J}$ show that $\Ht I = \Ht J$ and $\dim(A/I) = \dim(A/J)$.\\
+(b) Deduce from (a) that $\dim(A/(I_1 \cdots I_r)) = \dim(A/I_1 \cap \cdots \cap I_r)$, where $I_i$, $1 \leq i \leq r$ are ideals of $A$.
+\end{problem}
+\begin{proof}
+(a) Note that $V(I) = V(\sqrt{I}) = V(\sqrt{J}) = V(J)$. Since $\Ht I = \inf \{\Ht P \mid P \in V(I)\}$, we know this is the same as $\Ht J = \inf \{\Ht P \mid P \in V(J)\}$. Further, $\dim(A/I) = \dim(V(I)) = \dim(V(J)) = \dim(A/J)$.
+
+(b) We simply note that $\sqrt{I_1 \cap \cdots \cap I_r} = \sqrt{I_1 \cdots I_r}$ since if a prime ideal contains $I_1 \cdots I_r$ then $P$ contains $I_1 \cap \cdots \cap I_r$. To see this, take a product $a_1 \cdots a_r \in I_1 \cdots I_r$ and note that if $P$ contains this element, it must contain at least one of the $a_i$, so it must contain the intersection of all the $I_i$.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a commutative ring and $I$ an ideal of $A$. Let $S \subseteq A$ a multiplicative set such that $I \cap S = \emptyset$. Show that\\
+i) $\dim(S^{-1}A) \leq \dim(A)$.\\
+ii) $\Ht I \leq \Ht S^{-1}I$.\\
+iii) $\Ht P = \Ht S^{-1}P$ if $P \in \spec(A)$ and $P \cap S = \emptyset$.\\
+Give an example of $A$, $S$ and $I$ with $I \cap S = \emptyset$ and $\Ht I < \Ht S^{-1}I$.
+\end{problem}
+\begin{proof}
+i) Note that $\spec(S^{-1}A) = \{S^{-1}P \mid P \in \spec(A), P \cap S = \emptyset\}$. Thus we have a map $\spec(S^{-1}A) \to \spec(A)$ which takes $S^{-1}P$ to $P$. This map is a homeomorphism onto its image so $\spec(S^{-1}A)$ is homeomorphic to a subspace of $\spec(A)$. Thus $\dim(S{-1}A) \leq \dim(A)$.
+
+ii) We have $\Ht I = \inf \{\Ht P \mid P \in \spec A, P \supseteq I\}$ and $\Ht S^{-1}I = \inf \{\Ht S^{-1}P \mid S^{-1}P \in \spec(S^{-1}A), P \supseteq S^{-1}I\}$. Note that $\{S^{-1} \in \spec(S^{-1}A) \mid S^{-1}P \supseteq S^{-1}I\} = \{P \in \spec(A) \mid P \cap S = \emptyset, P \supseteq I\} \subseteq \{P \in \spec(A) \mid P \supseteq I\}$, so the first infimum is less than the second. To make this claim, we need to know that $S^{-1}P \supseteq S^{-1}I$, then $P \supseteq I$. So take $a \in I$ so that $a/1 \in S^{-1}P$. Then $a/1 = b/s$ for $b \in P$ and $s \notin P$. So there exists $t \notin P$ such that $sta = tb$. Since $tb \in P$, we know either $st \in P$ or $a \in P$, but $st \notin P$ so we have $a \in P$ and $P \supseteq I$.
+
+iii) From part ii) we have $\Ht P \leq \Ht S^{-1}P$. To show the reverse, we simply note that any chain of prime ideals $S^{-1}P_0 \subseteq S^{-1}P_1 \subseteq \cdots \subseteq S^{-1}P$ corresponds to a chain $P_0 \subseteq P_1 \subseteq \cdots \subseteq P$ in $\spec(A)$. Thus the longest such chain in $\spec(S^{-1}A)$ is shorter than the longest chain in $\spec(A)$.
+
+Consider the ring $\mathbb{C}[x,y,z]$ and the ideal $I = (x)(y,z)$. Note that $\Ht I = 1$ since $(x) \supseteq I$ and $(x) \supseteq 0$ is a chain of primes in $\spec(\mathbb{C}[x,y,z])$. Now localize at $S = \mathbb{C}[x,y,z] \backslash (x-1, y, z)$. Then we have a chain of primes $(y,z) \supseteq (z) \supseteq 0$ in $\mathbb{C}[x,y,z]$. But these ideals all avoid $S$ so $S^{-1}(y,z) \supseteq S^{-1}(z) \supseteq S^{-1}0$ is a chain of length $2$ in $S^{-1}\mathbb{C}[x,y,z]$.
+\end{proof}
+
+\begin{problem}
+A commutative ring $A$ is called a \emph{semi-local ring} if $\Max(A)$ is a finite set.\\
+(a) Let $A$ be a semi-local ring and $E$ an $A$-module such that $E_M$ is Noetherian (respectively Artinian) for all $M \in \Max(A)$. Show that $E$ is a Noetherian $A$-module (Artinian $A$-module).\\
+(b) Let $A$ be a commutative ring such that for all $a \in A$, $a \neq 0$, the ring $A/Aa$ is a Noetherian $A$-module. Show that $A$ is a Noetherian ring.\\
+(c) Let $A$ be a commutative ring such that
+\begin{itemize}
+\item[i)] $A_M$ is a Noetherian ring for all $M \in \Max(A)$,
+\item[ii)] $a \in A$, $a \neq 0$, $a \notin A^*$ implies $a$ is contained in only finitely many maximal ideals.
+\end{itemize}
+Show that $A$ is a Noetherian ring.
+\end{problem}
+\begin{proof}
+(a) Take an infinite ascending sequence of submodules $E_1 \subseteq E_2 \supseteq \cdots \subseteq E$. We can localize this sequence at each $M \in \Max(A)$ to get a sequence $(E_1)_M \subseteq (E_2)_M \subseteq \cdots \subseteq E_M$. Each $E_M$ is Noetherian, so we can find some $n_i$ such that $(E_{n_i})_{M_i} = (E_{n_i + 1})_{M_i}$ for all $M_i \in \Max(A)$. Let $N = \max\{n_i \mid M_i \in \Max(A)\}$. Then we have $(E_n/E_{n+1})_M = (E_n)_M/(E_{n+1})_M = (E_n)_M/(E_n)_M = 0$ for all $M \in \Max(A)$ and all $n \geq N$. Thus $E_n = E_{n+1}$ for all $n \geq N$ and $E$ is Noetherian. The proof for the Artinian case follows by considering a descending chain in place of an ascending chain.
+
+(b) Take an ascending chain of ideals $I_1 \subseteq I_2 \subseteq I_3 \subseteq \cdots A$. Pick $a \in I_1$ with $a \neq 0$ (if $I_1 = 0$, throw it out and pick $a \in I_2$). Then we can quotient the chain by $Aa$ to get $I_1/Aa \subseteq I_2/Aa \subseteq I_3/Aa \subseteq \cdots A/Aa$. This ring is Noetherian by assumption, so we have $I_n/Aa = I_{n+1}/Aa$ for some $n$. But there is a one to one correspondence of ideals in $A/Aa$ and $A$, so each of these ideals corresponds to $I_n$ and $I_{n+1}$ in the preimage. Thus $I_n = I_{n+1}$ and $A$ is Noetherian.
+
+(c) If $a \in A^*$ then $Aa = A$ so $A/Aa = 0$, which is Noetherian. Now suppose $a \neq 0$ and $a \notin A^*$. Then $A/Aa$ is a semi-local ring since the maximal ideals are just those maximal ideals of $A$ which contain $a$. Note that $A_M$ is Noetherian for each of these maximal ideals, by assumption. Then $A_M/(Aa)_M = (A/Aa)_M$ is Noetherian for each of these finitely many maximal ideals. By part (a) we know $A/Aa$ is a Noetherian $A/Aa$-module. Since $Aa$ is finitely generated, we know $A/Aa$ is a Noetherian $A$-module since any submodule can be generated by the generators in $A/Aa$ plus $a$. Then by part (b) we know $A$ is a Noetherian ring.
+\end{proof}
+
+\begin{problem}
+Let $K$ be a field and
+\[
+B = K[x_{11}, x_{21}, x_{22}, \dots , x_{n1}, x_{n2}, \dots , x_{nn}, \dots ]
+\]
+be a polynomial ring in an infinite number of variables indexed as above. Let $P_n = \sum_{i=1}^n Bx_{ni}$, $n = 1, 2, \dots $, $P_n \in \spec(B)$. Let $B_n = K[x_{11}, x_{21}, x_{22}, \dots , x_{n1}, \dots , x_{nn}]$. Thus $B_n \subsetneq B_{n+1}$ and $B = \bigcup_{n=1}^{\infty} B_n$. Note that $P_n \cap B_r = 0$ if $n > r$.\\
+(a) Let $I \subseteq B$ be an ideal such that $I \subseteq \bigcup_{n=1}^{\infty} P_n$. Show that there exists an $i \geq 1$, such that $I \subseteq P_i$.\\
+(b) Let $S = B \backslash \bigcup_{i=1}^{\infty} P_i$. Then $S$ is a multiplicative set. Let $A = S^{-1}B$.
+\begin{itemize}
+\item[i)] Show that $\Max(A) = \{S^{-1}P_i \mid i = 1, 2, \dots \}$.
+\item[ii)] Show that $(S^{-1}B)_{S^{-1}P_i} = B_{P_i}$ is a Noetherian ring.
+\item[iii)] Show that $\Ht S^{-1}P_i = \dim(AP_i) = i$.
+\item[iv)] Show that $A$ is a Noetherian ring of infinite dimension.
+\end{itemize}
+\end{problem}
+\begin{proof}
+(a) Pick an $r > 0$ with $B_r \cap I \neq 0$ and take $a \in B_r \cap I$. Then $a \in P_{n_1} \cup \cdots \cup P_{n_k}$ for some $k > 0$. Further, we know that $P_n \cap B_r = 0$ for all $n > r$, so we have $a \notin P_n$ for $n > r$. Now take $b \in I$ and suppose $b \in P_{m_1}$ for some $m > r$. Then we consider $a - b$. Since $a \notin P_{m_1}$, but $b \in P_{m_1}$, we must have $a-b \notin P_{m_1}$. Then consider $P_{m_2}$ containing $b$. By the same logic, we have $a-b-b \notin P_{m_1}$ and $a-b-b \notin P_{m_2}$. We can continue in this way for each $P_{m_k}$ which contains $b$. So some chain $a - b - \cdots - b$ must be in a prime which contains $a$. But then $b \in P_{n_i}$ for some $1 \leq i \leq k$. Thus $b \in \bigcup_{i=1}^r P_i$ and $I \subseteq \bigcup_{i=1}^r P_i$. Now just apply the prime avoidance lemma to see that $I \subseteq P_i$ for some $1 \leq i \leq r$.
+
+(b) i) Let $S^{-1}I$ be a proper ideal in $A$. Then note that $I \subseteq \bigcup_{n=1}^{\infty} P_n$ in $B$ (since $S^{-1}I$ contains nothing in $S$). By part (a) we know $I \subseteq P_n$ for some $n$. But then $S^{-1}I \subseteq S^{-1}P_n$. Therefore any proper ideal in $A$ is contained some $S^{-1}P_i$ which means $\Max(A) \subseteq \{S^{-1}P \mid i = 1, 2, \dots \}$ since all the maximal ideals are proper and thus equal to some $S^{-1}P_i$. Now take $S^{-1}P_i$ and suppose we have $S^{-1}I \supseteq S^{-1}P_i$ for some $I \in \spec(B)$. This gives that $I \supseteq P_i$, but by the above, if $I$ is proper, then $I \subseteq P_j$ for some $j$. Since $P_i$ and $P_j$ are disjoint if $i \neq j$, we must have $P_i = I$. Thus $S^{-1}P_i = S^{-1}I$ and $S^{-1}P_i \in \Max(A)$.
+
+ii) Let $L_i = K[x_{11}, \dots , x_{i-1,1}, \dots , x_{i-1,i-1}, x_{i+1,1}, \dots , x_{i+1, i+1}, \dots ]$. Then $L_i[x_{i1}, \dots , x_{ii}]$ is a Noetherian ring. But $B_{P_i}$ is a localization of $L_i[x_{i1}, \dots , x_{ii}]$ since we've inverted all the $x_{ij}$, $1 \leq j \leq i$. Since a localization of a Noetherian ring is Noetherian, we have $B_{P_i}$ is Notherian.
+
+iii) We can make a chain in $S^{-1}P_i$ as $(0) \subseteq (x_{i1}/1) \subseteq \cdots \subseteq (x_{ii}/1)$. So $\Ht S^{-1}P \geq i$. By Krull's generalized PID theorem, we know $\Ht S^{-1}P \leq i$ since $S^{-1}P$ has $i$ generators. It follows that $\dim(B_{P_i}) = i$ as well.
+
+iv) By part i) we know $S^{-1}P_i$ is a maximal ideal for $i > 0$. By part ii) we know $B_{S^{-1}P_i}$ is a Noetherian ring. Then using the previous problem, we know $A$ is Noetherian ring. But its dimension must be infinite since we have an infinite number of primes, each with a height larger than the previous, so the supremum is not finite.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a ring and $a \in A$, $a$ not in any minimal prime ideal of $A$. Show that $\dim(A/Aa) \leq \dim(A) - 1$.
+\end{problem}
+\begin{proof}
+Since $a$ is not in any minimal prime ideal, we know $\Ht Aa \geq 1$ since $Aa$ is contained in some prime ideal $P$ and this contains some minimal prime ideal $Q$. Note that the codimension of $Aa$ is $\dim(V(Aa)) = \dim(A/Aa)$. But we know that $\dim(Aa) + \codim(Aa) \leq \dim(A)$. Making the substitutions above and subtracting gives the inequality.
+\end{proof}
+
+\end{document}

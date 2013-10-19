@@ -1,0 +1,338 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20800\\
+
+March 9, 2009
+\end{flushright}
+
+\begin{center}
+Homework 10
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+For $z \in \mathbb{C}$ we have
+\[
+e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!}.
+\]
+\end{**}
+\begin{proof}
+Let $f(z) = \sum_{n=0}^{\infty} \frac{z^n}{n!}$. This series converges for all $z$ by the ratio test. We know that $f'(z)$ can be found by differentiating the series term by term. Then
+\[
+f'(z) = 0 + \sum_{n=1}^{\infty} \frac{z^{n-1}}{(n-1)!} = \sum_{n=0}^{\infty} \frac{z^n}{n!}.
+\]
+Thus $f'(z) = f(z)$. Moreover, $f(0) = 1$. This means that $f$ must be the unique function $e^z$.
+\end{proof}
+
+\begin{**}
+For $x \in \mathbb{R}$ we have
+\[
+e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}.
+\]
+\end{**}
+\begin{proof}
+This follows from ** Problem 1 since $\mathbb{R} \subseteq \mathbb{C}$.
+\end{proof}
+
+\begin{**}
+Let $U \subseteq \mathbb{R}^{n+p}$ be open and let $F : U \rightarrow \mathbb{R}^p$ be $C^1$. Suppose there exists $(x_0, y_0) \in U$ such that $F(x_0, y_0) = 0$ and $\det D_yF(x_0, y_0) \neq 0$. Also suppose there exists an open neighborhood of $(x_0, y_0)$, $D \times E$ and a function $f : D \rightarrow E$ such that $F(x, f(x)) = 0$ for all $x \in D$. Then if $F \in C^r$ then $f \in C^r$ for all $r \geq 1$.
+\end{**}
+\begin{proof}
+Use induction on $r$. We already have the base case for $r = 1$. Suppose now that $F \in C^r$ for $r \in \mathbb{N}$. Consider the difference
+\begin{align*}
+|f^{(r)}(x + h) - f^{(r)}(x)|
+&= |\phi^{(r)}(x + h, f^{(r)}(x+h)) - \phi^{(r)}(x, f^{(r)}(x))|\\
+&\leq |\phi^{(r)}(x + h, f^{(r)}(x+h)) - \phi^{(r)}(x+h, f^{(r)}(x))| + |\phi^{(r)}(x + h, f^{(r)}(x+h)) - \phi^{(r)}(x, f^{(r)}(x))|\\
+&\leq \frac{1}{2} |f^{(r)}(x+h) - f(x)| + \beta_r |h|
+\end{align*}
+where
+\[
+\beta_r = \sum_{j=1}^p \sum_{i=1}^n \sup_{D \times E} \left | \frac{\partial \phi^{(r)}_i}{\partial x_j} (x,y) \right |.
+\]
+Thus $|f^{(r)}(x+h) - f^{(r)}(x)| \leq 2 \beta |h|$ and so $f^{(r)}$ is continuous. Now we consider
+\[
+|F^{(r)} (x + h, y + k) - F^{(r)}(x,y) - D_x F^{(r)}(x,y)h - D_y F^{(r)}(x,y)k| < \varepsilon |(h,k)|
+\]
+for small $|(h,k)|$. Letting $k = f^{(r)} (x+h) - f^{(r)}(x)$ and $y = f^{(r)}(x)$ we have the given result.
+\end{proof}
+
+\begin{problem}
+Define $f : \mathbb{R} \rightarrow \mathbb{R}$ by
+\[
+f(x) =
+\begin{cases}
+e^{-x^{-2}} & x \neq 0\\
+0 & x = 0.
+\end{cases}
+\]
+Show that $f$ is a $C^{\infty}$ function and that $f^{(i)} (0) = 0$ for all $i$.
+\end{problem}
+\begin{proof}
+Note that
+\[
+\lim_{x \rightarrow 0} e^{-\frac{1}{x^2}} = 0
+\]
+and so this function is continuous and thus differentiable at $x = 0$. For $x \neq 0$, using the chain rule we have
+\[
+Df(x) = \frac{a_1 e^{-\frac{1}{x^2}}}{x^3}
+\]
+where $a_1$ is some integer constant. Now suppose that the $k$th derivative for $x \neq 0$ is
+\[
+D^kf(x) = \frac{a_1 e^{-\frac{1}{x^2}}}{x^{(k+2)}} + \frac{a_2 e^{-\frac{1}{x^2}}}{x^{(k+4)}} + \dots + \frac{a_k e^{-\frac{1}{x^2}}}{x^{(k+2k)}}
+\]
+where $a_1, \dots , a_k$ are integer constants. Using the chain rule and the product rule, we can differentiate again to obtain
+\[
+D^{k+1}f(x) = \frac{a_1 e^{-\frac{1}{x^2}}}{x^{(k+3)}} + \frac{a_2 e^{-\frac{1}{x^2}}}{x^{(k+5)}} + \dots + \frac{a_k e^{-\frac{1}{x^2}}}{x^{(k+1+2(k))}} + \frac{a_{k+1} e^{-\frac{1}{x^2}}}{x^{(k+1+2(k+1))}}
+\]
+for all $x \neq 0$ where $a_1, \dots , a_k$ are different integer constants. Thus, by induction, the is the $k$th nonzero derivative. To show that each derivative is continuous at $0$, note that the first derivative for $x \neq 0$ is
+\[
+Df(x) = \frac{a_1 e^{-\frac{1}{x^2}}}{x^3}.
+\]
+Taking $\lim_{x \rightarrow 0} Df(x)$ we see that l'Hopital's Rule applies, and we end up with $\lim_{x \rightarrow 0} Df(x) = 0$. We can assume inductively that the $k$th derivative is continuous at $0$, and then use that fact and l'Hopital's Rule to show the $k+1$st derivative is continuous at $0$. Thus $D^kf(0)$ exists for all $k$ and $D^kf(0) = 0$ for all $k$.
+\end{proof}
+
+\begin{problem}
+Let
+\[
+f(x) =
+\begin{cases}
+e^{-(x-1)^{-2}} \cdot e^{-(x+1)^{-2}} & x \in (-1,1)\\
+0 & x \notin (-1,1).
+\end{cases}
+\]
+1) Show that $f : \mathbb{R} \rightarrow \mathbb{R}$ is $C^{\infty}$ function which is positive on $(-1,1)$ and $0$ elsewhere.\\
+2) Show that there exists a $C^{\infty}$ function $g : \mathbb{R} \rightarrow [0,1]$ such that $g(x) = 0$ for $x \leq 0$ and $g(x) = 1$ for $x \geq \varepsilon$.\\
+3) If $a \in \mathbb{R}^n$ define $g : \mathbb{R}^n \rightarrow \mathbb{R}$ by
+\[
+g(x) = f(\frac{(x_1 - a_1)}{\varepsilon}) \dots f(\frac{(x_n - a_n)}{\varepsilon}).
+\]
+Show that $g$ is a $C^{\infty}$ function which is positive on
+\[
+(a_1 - \varepsilon, a_1 + \varepsilon) \times \dots \times (a_n - \varepsilon, a_n + \varepsilon)
+\]
+and $0$ elsewhere.\\
+4) If $A \subseteq \mathbb{R}^n$ is open and $C \subseteq A$ is compact, show that there is a nonnegative $C^{\infty}$ function $f : A \rightarrow \mathbb{R}$ such that $f(x) > 0$ for $x \in C$ and $f=0$ outside of some closed set contained in $A$.\\
+5) Show that we can choose an $f$ so that $f : A \rightarrow [0,1]$ and $f(x) = 1$ for $x \in C$.
+\end{problem}
+\begin{proof}
+1) For all points other than $1$ and $-1$ the result is clear. At $x = 1$ and $x = -1$ we can take the left and right hand derivatives, and use Problem 1. This shows that the derivative exists there.\newline
+
+2) For $0 < \varepsilon < 1$ let
+\[
+g(x) =
+\begin{cases}
+0 & x < 0\\
+\frac{\int_0^x f}{\int_0^{\varepsilon}} & 0 \leq  x \leq \varepsilon\\
+1 & x > \varepsilon.
+\end{cases}
+\]
+Clearly $g(x) = 0$ for $x \leq 0$ and $g(x) = 1$ for $x \geq \varepsilon$.\newline
+
+3) This follows almost immediately from Part 1). As in part one, all points easily satisfy the statement except for $(a_1 \pm \varepsilon, a_2 \pm \varepsilon, \dots , a_n \pm \varepsilon)$. At these points the left or right hand derivative and Problem 1 give the desired result.\newline
+
+4) Let $d$ be the distance between $C$ and $^c A$. Let $\varepsilon = d/(2 \sqrt{n})$. For all $x \in C$ let $R_x$ be the open rectangle around $x$ with side length $2 \varepsilon$. Now let $f_x$ be the function defined in Part 3). These rectangles form an open cover, so since $C$ is compact a finite number of them, say $R_{x_1}, \dots , R_{x_k}$ cover $C$. Let $f = \sum_{i=1}^k f_{x_i}$. Since these rectangles cover $C$, by Part 3) we know that $f$ is positive on $C$. By the way we chose $\varepsilon$ we know that the closure of all the rectangles is contained in $C$, and $f$ is defined to be $0$ outside of this union.\newline
+
+5) Since $C$ is compact we know that $f(C)$ attains a minimum value, $\varepsilon > 0$. Thus $f(x) \geq \varepsilon$ for $x \in C$. Now consider $g \circ f$ where $g$ is the function defined in Part 2). Then $g \circ f (x) = 1$ for all $x \in C$.
+\end{proof}
+
+\begin{problem}
+Define $g, h : \{x \in \mathbb{R}^2 \mid |x| \leq 1\} \rightarrow \mathbb{R}^3$ by
+\[
+g(x,y) = (x, y, \sqrt{1 - x^2 - y^2}),
+h(x,y) = (x, y, -\sqrt{1 - x^2 - y^2}).
+\]
+Show that the maximum of $f$ on $\{x \in \mathbb{R}^3 \mid |x| = 1\}$ is either the maximum of $f \circ g$ or the maximum of $f \circ h$ on $\{x \in \mathbb{R}^2 \mid |x| \leq 1\}$.
+\end{problem}
+\begin{proof}
+Let $A = \{x \in \mathbb{R}^2 \mid |x| \leq 1\}$ and $B = \{x \in \mathbb{R}^3 \mid |x| = 1\}$. Consider $P = (x,y,z) \in B$ and note that $x^2 + y^2 + z^2 = 1$. Then $z^2 = 1 - x^2 - y^2$. This shows that $B = g(A) \cup h(A)$. Thus, the maximum of $f$ on $B$ is either the maximum of $f$ on $g(A)$ or the maximum of $f$ on $h(A)$. Therefore the maximum of $f$ on $B$ is the maximum of $f \circ g$ on $A$ or $f \circ h$ on $A$.
+\end{proof}
+
+\begin{problem}
+Find the partial derivatives for the following:\\
+1) $F(x,y) = f(g(x)k(y), g(x) + h(y))$\\
+2) $F(x,y,z) = f(g(x+y), h(y+z))$\\
+3) $F(x,y,z) = f(x^y, y^z, z^x)$\\
+4) $F(x,y) = f(x, g(x), h(x,y))$.
+\end{problem}
+\begin{proof}
+1) We have
+\[
+D_1 F(x,y) = (D_1 f(g(x)k(y), g(x) + h(y)))(k(y) g'(x)) + (D_2 f(g(x)k(y), g(x) + h(y)))g'(x)
+\]
+\[
+D_2 F(x,y) = (D_1 f(g(x)k(y), g(x) + h(y)))(g(x)k'(y)) + (D_2 f(g(x)k(y), g(x) + h(y)))h'(y).
+\]\newline
+
+2) We have
+\[
+D_1 F(x,y,z) = (D_1 f(g(x+y), h(y+z)))g'(x+y)
+\]
+\[
+D_2 F(x,y,z) = (D_1 f(g(x+y), h(y+z)))g'(x+y) + (D_2 f(g(x_y), h(y+z)))h'(y+z)
+\]
+\[
+D_3 F(x,y,z) = (D_2 f(g(x+y), h(y+z)))h'(y+z).
+\]\newline
+
+3) We have
+\[
+D_1 F(x,y,z) = (D_1 f(x^y, y^z, z^x))(yx^{y-1}) + (D_3 f(x^y, y^z, z^x))(\ln z z^x)
+\]
+\[
+D_2 F(x,y,z) = (D_1 f(x^y, y^z, z^x))(\ln x x^y) + (D_2 f(x^y, y^z, z^x))(zy^{z-1})
+\]
+\[
+D_3 F(x,y,z) = (D_2 f(x^y, y^z, z^x))(\ln y y^z) + (D_3 f(x^y, y^z, z^x))(x z^{x-1}).
+\]\newline
+
+4) We have
+\[
+D_1 F(x,y) = (D_1 f(x, g(x), h(x,y))) + (D_2 f(x, g(x), h(x,y)))g'(x) + (D_3 f(x, g(x), h(x,y)))(D_1 h(x,y))
+\]
+\[
+D_2 F(x,y) = (D_3 f(x, g(x), h(x,y)))(D_2 h(x,y)).
+\]
+\end{proof}
+
+\begin{problem}
+1) Show that $D_{e_i} f(a) = D_i f(a)$.\\
+2) Show that $D_{tx} f(a) = t D_x f(a)$.\\
+3) If $f$ is differentiable at $a$ then show that $D_x f(a) = Df(a)(x)$ and therefore $D_{x+y} f(a) = D_xf(a) + D_yf(a)$.
+\end{problem}
+\begin{proof}
+1) We have
+\begin{align*}
+D_i f(a)
+&= \lim_{h \rightarrow 0} \frac{f(a_1, \dots, a_i + h, \dots , a_n) - f(a_1, \dots , a_n)}{h}\\
+&= \lim_{h \rightarrow 0} \frac{f((a_1, \dots, a_i, \dots , a_n) + (0, \dots , h_j, \dots , 0)) - f(a_1, \dots , a_n)}{h}\\
+&= \lim_{h \rightarrow 0} \frac{f(a + he_i) - f(a)}{h}\\
+&= D_{e_i} f(a).
+\end{align*}\newline
+
+2) We have
+\[
+D_{tx} f(a) = \lim_{s \rightarrow 0} \frac{f(a + stx) - f(a)}{s} = \lim_{st \rightarrow 0} t\frac{f(a + stx) - f(a)}{st} = t D_x f(a).
+\]\newline
+
+3) We have
+\[
+0 = \lim_{tx \rightarrow 0} \frac{|f(a+tx) - f(a) - Df(a)(tx)|}{|tx|} = \lim_{tx \rightarrow 0} \left | \frac{f(a + tx) - f(a)}{t} - Df(a)(x) \right |/|x|
+\]
+which gives the desired result for $x \neq 0$. The case when $x = 0$ is trivial. The fact that $D_{x+y} f(a) = D_xf(a) + D_yf(a)$ follows from the additivity of $Df(a)$.
+\end{proof}
+
+\begin{problem}
+Let $g$ be a continuous real-valued function on the unit circle $\{x \in \mathbb{R}^2 \mid |x| = 1\}$ such that $g(0,1) = g(1,0) = 0$ and $g(-x) = -g(x)$. Define $f : \mathbb{R}^2 \rightarrow \mathbb{R}$ by
+\[
+f(x) =
+\begin{cases}
+|x| g \left ( \frac{x}{|x|} \right ) & x \neq 0\\
+0 & x = 0.
+\end{cases}
+\]
+Show that $D_x f(0,0)$ exists for all $x$, but if $g \neq 0$, then $D_{x+y} (0,0) = D_x (0,0) + D_y (0,0)$ is not true for all $x$ and $y$.
+\end{problem}
+\begin{proof}
+Define $h(t) = f(tx)$. Then either $h(t) = t |x| g(x/|x|)$ or $h(t) = 0$. In either case, $h$ is linear and thus differentiable. Thus $D_x f(0,0)$ exists for all $x$. Suppose that $g(a,b) \neq 0$. Then we have $D_{a+b} f(0,0) = g(a,b) \neq 0$. But $D_a f(0,0) + D_b f(0,0) = 0 + 0 = 0$.
+\end{proof}
+
+\begin{problem}
+Let $A = \{(x,y) \in \mathbb{R}^2 \mid x > 0 \text{ and } 0 < y < x^2\}$. Define $f : \mathbb{R}^2 \rightarrow \mathbb{R}$ by
+\[
+f(x) =
+\begin{cases}
+0 & x \notin A\\
+1 & x \in A.
+\end{cases}
+\]
+Show that $D_x f(0,0)$ exists for all $x$ although $f$ is not continuous at $(0,0)$.
+\end{problem}
+\begin{proof}
+We have the result every straight line $y=ax$ through $(0,0)$ contains an interval around $(0,0)$ which is in $\mathbb{R}^2 \backslash A$. To see this, note that if $a \leq 0$, the line is disjoint from $A$. If $a > 0$ the line intersects the graph at $(a, a^2)$ and $(0,0)$. Letting $g(x) = ax - x^2$ we see that $y=ax$ cannot intersect $A$ anywhere left of $x = a$. Now let $g_h(t) = f(th)$ for all $h \in \mathbb{R}^2$. Each of these is identically $0$ in some neighborhood of the origin, which shows it's continuous there. Therefore $D_x f(0,0)$ exists for all $x$. Moreover, we have that $f$ is not continuous at $(0,0)$ since any rectangle around the origin will contain a point $x \in A$ such that $|f(x) - f((0,0))| = 1$.
+\end{proof}
+
+\begin{problem}
+1) Let $f : \mathbb{R} \rightarrow \mathbb{R}$ be defined by
+\[
+f(x) =
+\begin{cases}
+x^2 \sin \frac{1}{x} & x \neq 0\\
+0 & x = 0.
+\end{cases}
+\]
+Show that $f$ is differentiable at $0$ but $f'$ is not continuous at $0$.\\
+2) Let $f : \mathbb{R}^2 \rightarrow \mathbb{R}$ be defined by
+\[
+f(x,y) =
+\begin{cases}
+(x^2 + y^2) \sin \frac{1}{\sqrt{x^2 + y^2}} & (x,y) \neq (0,0)\\
+0 & (x,y) = (0,0).
+\end{cases}
+\]
+Show that $f$ is differentiable at $(0,0)$ but $D_i f$ is not continuous at $(0,0)$.
+\end{problem}
+\begin{proof}
+1) It's clear that $f$ is differentiable at $x \neq 0$. At $x = 0$ we have
+\[
+Df(0) = \lim_{h \rightarrow 0} \frac{h^2 \sin \frac{1}{h}}{h} = \lim_{h \rightarrow 0} h \sin \frac{1}{h} = 0
+\]
+since $|h \sin 1/h| \leq |h|$. For $x \neq 0$ we have $f'(x) = 2x\sin(1/x) - \sin(1/x)$. The first term goes to $0$ as $x$ goes to $0$. The second term takes on every value between $-1$ and $1$ in each neighborhood of $0$. Thus $\lim_{x \rightarrow 0} f'(0)$ doesn't exist.\newline
+
+2) The fact that $f$ is differentiable at $0$ follows exactly as in Part 1). Taking $f(x,0) = f(0,y) = x^2 \sin (1/|x|)$ we see that this is $g(|x|)$ where $g$ is the function in Part 1). It's clear then that $D_1f(x,0)$ and $D_2f(0,y)$ are defined, as they are in Part 1). Moreover, the partial derivatives are equivalent within a sign of $g'$ and so are not continuous at $0$ as in Part 1).
+\end{proof}
+
+\begin{problem}
+If $f : \mathbb{R}^n \rightarrow \mathbb{R}^m$, then $Df(a)$ exists if all $D_jf_i(x)$ exist in an open set containing $a$ and if each function $D_jf_i$ is continuous at $a$ except for $D_1f_i$.
+\end{problem}
+\begin{proof}
+The proof follows exactly as in the proof of Theorem 2-9, for all $i > 1$. In the case for $i=1$, we already know $Df(a)$ exists so we have
+\[
+\lim_{h \rightarrow 0} \frac{|f(a_1 + h_1, a_2, \dots , a_n)  - f(a_1, a_2, \dots , a_n) - D_if(a)h_1|}{|h|} = 0.
+\]
+This completes the proof.
+\end{proof}
+
+\begin{problem}
+A function $f : \mathbb{R}^n \rightarrow \mathbb{R}$ is homogeneous of degree $m$ if $f(tx) = t^m f(x)$ for all $x$. If $f$ is also differentiable show that
+\[
+\sum_{i=1}^n x_i D_if(x) = mf(x).
+\]
+\end{problem}
+\begin{proof}
+Let $g(t) = f(tx)$. We know then that
+\[
+g'(t) = \sum_{i=1}^n x_i D_i f(tx).
+\]
+More over, $g(t) = f(tx) = t^m f(x)$. Thus $g'(t) = m t^{m-1} f(x)$. Letting $t=1$ gives the result.
+\end{proof}
+
+\begin{problem}
+If $f : \mathbb{R}^n \rightarrow \mathbb{R}$ is differentiable and $f(0) = 0$, prove there exist $g_i : \mathbb{R}^n \rightarrow \mathbb{R}$ such that
+\[
+f(x) = \sum_{i=1}^{n} x^i g_i(x).
+\]
+\end{problem}
+\begin{proof}
+Let $h_x(t) = f(tx)$. Then
+\[
+\int_0^1 h_x'(t) dt = h_x(1) - h_x(0) = f(x) - f(0) = f(x).
+\]
+Similarly, using the method in Problem 10 we have
+\[
+\int_0^1 h'(t) dt = \int_0^1 \left ( \sum_{i=1}^n x_i D_if(tx) \right ) dt = \sum_{i=1}^n x_i \int_0^1 D_i f(tx) dt.
+\]
+Letting $g_i = \int_0^1 D_i f(tx) dt$ gives the result.
+\end{proof}
+
+\end{flushleft}
+\end{document}

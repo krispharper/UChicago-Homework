@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27700\\
+
+November 9, 2009
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{problem}
+(a) Prove part (a) of Enderton's Homomorphism Theorem, page $96$.\\
+(b) Give an example of two $\mathcal{L}$-structures $M$, $N$, a homomorphism $f : M \to N$ and a formula $\varphi(x_1, \dots , x_k)$ such that for some $a_1, \dots , a_k \in |M|$, $M \models \varphi(a_1, \dots , a_k)$ but $N \models \neg \varphi(a_1 \dots , a_k)$.
+\end{problem}
+\begin{proof}
+(a) Let $h : M \to N$ be a homomorphism and let $s$ map the set of variables into $|M|$. If $t$ is a constant symbol, then $h(\overline{s}(t)) = h(t^M) = t^N = \overline{h \circ s}(t)$. Suppose that the statement is true for a term built by applying $n$ or fewer function symbols and let $t$ be a term built by applying $n+1$ function symbols. Then $t = f(t_1, \dots , t_k)$ and
+\begin{align*}
+h(\overline{s}(t))
+&= h(\overline{s}(f^M(t_1, \dots , t_k)))\\
+&= h(f^M(\overline{s}(t_1), \dots , \overline{s}(t_k)))\\
+&= f^N(h(\overline{s}(t_1)), \dots , h(\overline{s}((t_k)))\\
+&= f^N(\overline{h \circ s}(t_1), \dots , \overline{h \circ s}(t_k))\\
+&= \overline{h \circ s}(t).
+\end{align*}
+
+(b) Let $M = (\mathbb{N}, <)$ and $N = (\mathbb{Q}, <)$. Let $h : M \to N$ be the identity map. Let $\varphi = \exists x \forall y ((x < y) \vee (x = y))$. Then $M \models \varphi$ witnessed by $x = 0$ but $N \models \neg \varphi$ since there is no least element of $\mathbb{Q}$.
+\end{proof}
+
+\begin{problem}
+Let $M$, $N$ be $\mathcal{L}$ structures. Say that $M$ is an elementary submodel of $N$ (written $M \preceq N$) if $|M| \subseteq |N|$ and 1(b) is not an issue, i.e. for every $k < \omega$, \emph{every} $\mathcal{L}$-formula $\varphi$ in $k$ free variables, and $a_1, \dots , a_k \in |M|$, $M \models \varphi(a_1, \dots , a_k)$ iff $N \models \varphi(a_1, \dots a_k)$.\\
+(a) Show that $M \preceq N$ iff for every $\mathcal{L}$-formula $\varphi(x, y_1, \dots , y_k)$ and every $a_1, \dots , a_k \in |M|$, if $N \models \exists x \varphi (x, a_1, \dots , a_k)$ then $N \models \varphi(c, a_1, \dots a_k)$ for some $c \in |M|$.\\
+(b) Let $\langle M_i \mid i < \omega \rangle$ be an elementary chain, i.e. $i < j \implies M_i \preceq M_j$. Let $M = \bigcup_{i < \omega} M_i$. Show that for each $i < \omega$, $M_i \preceq M$.\\
+(c) Give an example to show that ($M \subseteq N$ and $M \equiv N)$ doesn't imply $M \preceq N$.
+\end{problem}
+\begin{proof}
+(a) Suppose that $M \preceq N$. Then $N \models \exists x \varphi(x, a_1, \dots , a_k)$ if and only if $M \models \exists x \varphi(x, a_1, \dots , a_k)$. But if that's true then there must be some $c \in |M|$ which witnesses it, so that $M \models \varphi(c, a_1, \dots, a_k)$. But then $N \models \varphi(c, a_1, \dots , a_k)$. Now suppose the hypothesis for the converse. If $\varphi$ is a formula in $k$ free variables and $M \models \varphi$, then certainly $N \models \varphi$ since $M$ is a submodel of $N$. Now if $N \models \varphi$ then $N \models \exists x \varphi(x, a_1, \dots , a_k)$ since we can always add a tautology using $x$ to $\varphi$. But then by hypothesis, $N \models \varphi(c, a_1, \dots , a_k)$ for some $c \in |M|$ and therefore $M \models \varphi(c, a_1, \dots , a_k)$ which means $M \models \varphi (a_1, \dots , a_k)$.
+
+(b) Clearly $|M_i| \subseteq |M|$. If $\varphi$ is a formula in $k$ free variables and $M_i \models \varphi(a_1, \dots , a_k)$ but $M \models \neg \varphi(a_1, \dots , a_k)$, then there must exist $j$ such that $M_j \models \neg \varphi(a_1, \dots , a_k)$. But then $M_i \npreceq M_j$ which is a contradiction. Conversely, suppose that $M \models \varphi(a_1, \dots , a_k)$ for $a_1, \dots , a_k \in M_i$. Then it must be the case that $M_i \models \varphi(a_1, \dots , a_k)$ since $M_i$ is a submodel of $M$.
+
+(c) Let $M = (\mathbb{Q}, 1, +, \cdot)$ and $N = (\mathbb{R}, 1 +, \cdot)$. Then let $\varphi = \neg (x \cdot x) = (1 + 1)$.
+\end{proof}
+
+\begin{problem}
+Suppose $\Gamma$ is a set of $\mathcal{L}$-sentences, $c$ is a constant symbol which does not occur in $\mathcal{L}$, and $\varphi = \varphi(x)$ is an $\mathcal{L}$-formula in one free variable. Then
+\[
+\Gamma \cup \{\exists x \varphi(x) \rightarrow \varphi(c)\}
+\]
+is consistent.
+\end{problem}
+\begin{proof}
+Suppose $\Gamma' = \Gamma \cup \{\exists x \varphi(x) \rightarrow \varphi(c)\}$ is not consistent. Then we can derive any formula from $\Gamma'$. In particular $\Gamma' \vdash \varphi(c)$. From the generalization of constants, we know also that $\Gamma' \vdash \forall x \varphi(x)$. But then we have $\Gamma' \vdash \forall x \varphi(x) \rightarrow \varphi(c)$. This is a contradiction.
+\end{proof}
+
+\begin{problem}
+A binary relation $\leq$ on a set $P$ is a \emph{partial ordering} if it is irreflexive and transitive. If $Y \subseteq P$ is any subset, $c \in P$ is an \emph{upper bound} for $Y$ if $y \leq c$ for every $y \in Y$. Zorn's lemma states that if $(P, < )$ is a nonempty partially ordered set such that every chain in $P$ has an upper bound, then $P$ has a maximal element. A filter $\mathcal{F}$ is \emph{principle} if there is $X \in \mathcal{F}$ such that for all $Z \in F$, $X \subseteq Z$.\\
+Show using Zorn's lemma that every filter on an infinite set $I$ which does not contain any finite subsets of $I$ can be extended to a nonprincipal ultrafilter.
+\end{problem}
+\begin{proof}
+Partially order the filters on $I$ by containment. For a filter $\mathcal{F}$, let $\overline{\mathcal{F}}$ be the set of filters bigger than or equal to $\mathcal{F}$. Let $C$ be a chain of filters in $\overline{\mathcal{F}}$ and let $U_C = \bigcup_{\mathcal{G} \in C} \mathcal{G}$. We know that $\mathcal{F} \subseteq U$, so $U \neq \emptyset$, If $G \in U$, then $G$ is in some filter in $C$, which means that every superset of $G$ is in $U$. If $A, B \in U$, then $A \in \mathcal{A}$ and $B \in \mathcal{B}$ for filters $\mathcal{A}$ and $\mathcal{B}$. We can assume without loss of generality that $\mathcal{A} < \mathcal{B}$ so that $A \in \mathcal{B}$. But then $A \cap B \in \mathcal{B}$ and thus $A \cap B \in U$. Now $U$ is an upper bound for $C$ and so by Zorn's lemma $\mathcal{F}$ is in some maximal filter $\mathcal{M}$ of $I$. Since $\mathcal{F}$ doesn't contain any finite sets, we see that $\mathcal{M}$ cannot be principal. Since $\mathcal{M}$ is maximal, it must be an ultrafilter for $I$.
+\end{proof}
+
+\begin{problem}
+Say that a class $R$ of $\mathcal{L}$-structures is an \emph{elementary class} if there is a first-order set of sentences $T$ such that $M \in R$ iff $M \models T$.\\
+(a) Show that $R$ is an elementary class iff it is closed under elementary equivalence and ultraproducts. (This means that any ultraproduct of elements of $R$ is again in $R$, and if $M \equiv N$ with $N \in R$ then $M \in R$.)\\
+(b) Using (a), give an example of a nonempty $R$ which is not an elementary class.
+\end{problem}
+\begin{proof}
+Let $R$ be an elementary class. It's clear that $R$ is closed under elementary equivalence since if $M \models T$ and $M \equiv N$ then $N \models T$ as well. We also know that if $M_i$ are elements of $R$ and $M_i \models \varphi$, then $N = \prod_{i \in I} M_i/\mathcal{D}$ for some ultrafilter $\mathcal{D}$ is also a model such that $N \models \varphi$. Thus $R$ is closed under ultraproducts as well.
+
+Now let $R$ be a set of $\mathcal{L}$-structures which is closed under ultraproducts and elementary equivalence. Let $T$ be the set of $\mathcal{L}$-sentences such that if $\varphi \in T$ then $M \models \varphi$. Thus $M \models T$ for all $M \in R$. Now let $M$ be a model of $T$ and let $S$ be the set of $\mathcal{L}$-sentences $\varphi$ for which $M \models \varphi$. Let $S'$ be the set of all finite subsets of $S$. We know for each $s \in S'$ with $s = \{\varphi_1, \dots , \varphi_n\}$, there exists a model $M_s \in R$ such that $M_s \models s$ because otherwise, $\neg (\varphi_1 \wedge \dots \wedge \varphi_n) \in T$, but would be false in $M$. But now we know there exists an ultraproduct $N = \prod_{i \in S'} M_i$ for which $N \models S$. Since $R$ is closed under ultraproducts, $N \in R$. But since every model of $R$ is elementary equivalent to $M$, we have $M \equiv N$. Thus $M \in R$ and $R$ is the class of all models of $T$.
+\end{proof}
+
+\end{document}

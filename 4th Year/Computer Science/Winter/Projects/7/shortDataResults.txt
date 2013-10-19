@@ -1,0 +1,5 @@
+1	ATT
+1	TAT
+1	TCT
+1	TTC
+1	TTT

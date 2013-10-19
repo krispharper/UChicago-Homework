@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\input xy
+\xyoption{all}
+
+\newcommand{\im}{\textup{im}\,}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26300\\
+
+May 18, 2010
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{problem}
+(a) Compute the homology groups $H_n(X,A)$ when $X$ is $S^2$ or $S^1 \times S^1$ and $A$ is a finite set of points in $X$.\\
+(b) Compute the groups $H_n(X,A)$ and $H_n(X,B)$ where $X$ is a closed orientable surface of genus two and $A$ and $B$ are the circles shown.
+\end{problem}
+\begin{proof}
+(a) We know $H_2(S^2) \approx \mathbb{Z}$ and $H_n(S^2) = 0$ if $n \neq 2$ and $n > 0$. Additionally, for $n > 0$ the homology of a point is trivial and the homology of a space with multiple path components is the direct sum of the homology of each path component. Thus $H_n(A) = 0$ for $n > 0$. Now from the long exact sequence of the pair and the fact that ever third term is $0$ when $n \neq 2$, we have $H_n(X,A) \approx H_{n-1}(A) = 0$ for $n > 3$. For $n = 3$ we have $0 = H_3(S^2) \to H_3(S^2,A) \to H_2(A) = 0$ so $H_3(S^2,A) = 0$. For $n = 2$ we have $0 = H_2(A) \to H_2(S^2) \approx \mathbb{Z} \to H_2(S^2,A) \to H_1(A) = 0$. So by exactness $\mathbb{Z}$ injects into $H_2(S^2,A)$ and its image is all of $H_2(S^2,A)$ so $H_2(S^2,A) \approx \mathbb{Z}$. When $n = 1$ we have the sequence
+\[
+0 = H_1(A) \to H_1(S^2) = 0 \to H_1(S^2, A) \to H_0(A) \approx \mathbb{Z}^r \to H_0(S^2) \approx \mathbb{Z} \to H_0(S^2,A) \approx \mathbb{Z} \to 0.
+\]
+Thus by exactness and since the last maps are surjective we get $H_1(S^2,A) \approx \mathbb{Z}^{r-1}$. We thus have $H_n(S^2,A) = 0$ for $n \geq 3$, $H_n(S^2,A) \approx \mathbb{Z}$ for $n = 2$, $H_n(S^2,A) \approx \mathbb{Z}^{r-1}$ for $n = 1$ and $H_n(S^2,A) \approx \mathbb{Z}$ for $n = 0$ where $r = |A|$.
+
+The groups $H_n(S^1 \times S^1, A)$ are computed similarly. In this case $H_n(S^1 \times S^1) \approx \mathbb{Z}$ for $n = 0$ or $n = 2$, $H_n(S^1 \times S^1) \approx \mathbb{Z} \oplus \mathbb{Z}$ if $n = 1$ and $H_n(S^1 \times S^1) = 0$ otherwise. The exact argument as above gives $H_3(S^1 \times S^1, A) = 0$ and $H_2(S^1 \times S^1, A) \approx \mathbb{Z}$. Now we also have the sequence
+\[
+0 = H_1(A) \to H_1(S^1 \times S^1) \approx \mathbb{Z} \oplus \mathbb{Z} \to H_1(S^1 \times S^1, A) \to H_0(A) \approx \mathbb{Z}^r \to 0.
+\]
+Note that in this case, we can take generators $a_i \in \mathbb{Z}^r$ and through surjectivity, find preimages $b_i \in H_1(S^1 \times S^1, A)$. Given that the composition of this preimage map and the map $H_1(S^1 \times S^1,A) \to \mathbb{Z}^r$ is the identity, we must have that $H_1(S^1 \times S^1, A) \approx \mathbb{Z}^{r+2}$. Furthermore we also have the sequence
+\[
+\mathbb{Z} \oplus \mathbb{Z} \approx H_1(S^1 \times S^1) \to H_1(S^1 \times S^1, A) \approx \mathbb{Z}^{r+2} \to H_0(A) \approx \mathbb{Z}^r \to H_0(S^1 \times S^1) \approx \mathbb{Z} \to H_0(S^1 \times S^1, A) \to 0.
+\]
+and by exactness of this sequence we know $H_0(S^1 \times S^1, A) \approx \mathbb{Z}$. Thus $H_n(S^1 \times S^1,A)$ is $\mathbb{Z}$ if $n = 0$ or $n = 2$, is $\mathbb{Z}^{r+2}$ if $n = 1$ and trivial if $n > 2$.
+
+(b) Since $A$ is a closed set and is a deformation retract of an open band around it, we know $(X,A)$ is a good pair. Thus $H_n(X,A) \approx \widetilde{H}_n(X/A)$. Note that $X/A \approx (S^1 \times S^1) \vee (S^1 \times S^1)$ and thus
+\[
+H_n(X,A) \approx \widetilde{H}_n(X/A) \approx \widetilde{H}_n(S^1 \times S^1) \oplus \widetilde{H}_n(S^1 \times S^1) \approx
+\begin{cases}
+\mathbb{Z} \oplus \mathbb{Z} & n = 0, n = 2\\
+\mathbb{Z} \oplus \mathbb{Z} \oplus \mathbb{Z} \oplus \mathbb{Z} & n = 1\\
+0 & \text{otherwise}.
+\end{cases}
+\]
+Now note that $H_n(X,B) \approx \widetilde{H}_n(X/B)$ since $(X,B)$ is a good pair. But note that $X/B$ is simply $S^1 \times S^1$ with one point identified. We can then take this point to be the set $A$ so that $H_n(X/B) \approx H_n(X/A) \approx H_n(S^1 \times S^1, A)$ which we've computed in part (a).
+\end{proof}
+
+\begin{problem}
+\label{sus}
+Show that $\widetilde{H}_n(X) \approx \widetilde{H}_{n+1}(SX)$ for all $n$, where $SX$ is the suspension of $X$. More generally, thinking of $SX$ as the union of two cones $CX$ with their bases identified, compute the reduced homology groups of the union of $n$ cones $CX$ with their bases identified.
+\end{problem}
+\begin{proof}
+Use the pair $(CX,X)$ and note that $CX/X = SX$. Then we have the exact sequence
+\[
+\widetilde{H}_{n+1}(CX) \to \widetilde{H}_{n+1}(CX,X) \approx \widetilde{H}_{n+1}(SX) \to \widetilde{H}_n{X} \to \widetilde{H}_n(CX).
+\]
+But note that $CX$ is contractible so it has trivial reduced homology group which means we get the exact sequence
+\[
+0 \to \widetilde{H}_{n+1}(SX) \to \widetilde{H}_n(X) \to 0
+\]
+giving the desired isomorphism. Let $Y$ be the disjoint union of the $n$ cones $CX$ and note that the homology group of $Y$ is the direct sum of the homology groups of each cone. In particular, since $CX$ has trivial reduced homology group, $Y$ has trivial homology group. Furthermore, $Y/X$ is the space of $n$ cones with their bases identified since $X$ forms the base of each cone. Let $Z$ be this space. Then we have a similar exact sequence
+\[
+\widetilde{H}_{n+1}(Y) \to \widetilde{H}_{n+1}(Y,X) \approx \widetilde{H}_{n+1}(Z) \to \widetilde{H}_n{X} \to \widetilde{H}_n(Y).
+\]
+And once again since $H_n(Y) = 0$ we have an isomorphism $\widetilde{H}_{n+1}(Z) \approx \widetilde{H}_n(X)$.
+\end{proof}
+
+\begin{problem}
+Making the preceding problem more concrete, construct explicit chain maps $s : C_n(X) \to C_{n+1}(SX)$ inducing isomorphisms $\widetilde{H}_n(X) \to \widetilde{H}_{n+1}(SX)$.
+\end{problem}
+\begin{proof}
+Let $\sigma \in C_n(X)$ so we know $\sigma : \Delta^n \to X$. This gives a map $\sigma' : \Delta^{n+1} \to CX$ where we send each boundary face of $\Delta^{n+1}$ to $X \hookrightarrow CX$. That is, $\sigma' \mid_{\partial \Delta^{n+1}} = \sigma$. Thus we have a map $s : C_n(X) \to C_{n+1}(CX)$ where $s : \sigma \mapsto \sigma'$. If take another map $t$ identical to $s$ then $f = s + t$ is a map $C_n(X) \to C_{n+1}(SX)$ since $s$ and $t$ coincide on $\partial \Delta^{n+1}$. Note that $\partial f (\sigma) = \partial s(\sigma) + \partial t(\sigma) = s \partial (\sigma) + t \partial (\sigma) = f \partial (\sigma)$ because $s$ and $t$ are the identity on the boundary. Thus $f$ is a chain map and so we get a homomorphism $f_* : \widetilde{H}_n(X) \to \widetilde{H}_{n+1}(SX)$. Note that from Problem~\ref{sus} we already have a map $g : \widetilde{H}_{n+1}(SX) \to \widetilde{H}_n(X)$ where $g$ is a bijection. Then we have $f_*g$ is a bijection as well since $f_*$ is injective.
+\end{proof}
+
+\begin{problem}
+\label{cw}
+Prove by induction on the dimension the following facts about the homology of a finite-dimensional $CW$ complex $X$, using the observation that $X^n/X^{n-1}$ is a wedge sum of $n$-spheres:\\
+(a) If $X$ has dimension $n$ then $H_i(X) = 0$ for $i > n$ and $H_n(X)$ is free.\\
+(b) $H_n(X)$ is free with basis in bijective correspondence with the $n$-cells if there are no cells of dimension $n-1$ or $n+1$.\\
+(c) If $X$ has $k$ $n$-cells, then $H_n(X)$ is generated by at most $k$ elements.
+\end{problem}
+\begin{proof}
+(a) If $n = 0$ then $X$ is a collection of points so the homology group $H_0(X) \approx \mathbb{Z}^r$ where $r$ is the cardinality of the set of points. Furthermore, the homology groups of a point for $i > 0$ are trivial, so we have $H_i(0) = 0$ for $i > n = 0$.
+
+Now suppose the statement is true for some $n>0$ and consider a space $X$ with dimension $n+1$. We have the exact sequence
+\[
+H_i(X^n) \to H_i(X^{n+1}) \to H_i(X^{n+1}/X^n) \to H_{i-1}(X^n).
+\]
+If $i > n+1$ then $H_i(X^n) = 0$ by assumption and $H_i(X^{n+1}/X^n) \approx H_i(Y)$ where $Y$ is a wedge sum of $(n+1)$-spheres which is homeomorphic to $X^{n+1}/X^n$. But the $i^{\textup{th}}$ homology of an $(n+1)$-sphere is trivial for $i > n+1$ so $H_i(X^{n+1}/X^n) \approx H_i(Y) = 0$. Thus we're left with the exact sequence
+\[
+0 = H_i(X^n) \to H_i(X^{n+1}) \to H_i(X^{n+1}/X^n) = 0
+\]
+forcing $H_i(X^{n+1}) = 0$.
+
+In the case $i = n+1$ the $i^{\textup{th}}$ homology of an $(n+1)$-sphere is $\mathbb{Z}$ so $H_i(X^{n+1}/X^n) \approx H_i(Y) \approx \mathbb{Z}^r$ where $r$ is the number of $(n+1)$-spheres being wedged together. Then we're left with the exact sequence
+\[
+0 = H_i(X^n) \to H_i(X^{n+1}) \to H_i(X^{n+1}/X^n) \approx \mathbb{Z}^r \to H_{i-1}(X^n) = 0.
+\]
+By exactness, $H_i(X^{n+1})$ injects into $\mathbb{Z}^r$ and its image is the entire space thus $H_i(X^{n+1})$ is free on $r$ generators.
+
+(b) If $X$ has dimension $n = 0$ then $H_0(X) \approx \mathbb{Z}^r$ where $r$ is the cardinality of the set of $0$-cells and $H_i(X) = 0$ for $i > 0$ by the comments in part (a). Since there are no $i$-cells for $i > 0$, we see $H_i(X)$ is free with basis in bijective correspondence with the $i$-cells for $n = 0$.
+
+Now suppose the statement is true for some $n>0$ and note that we have the exact sequence
+\[
+H_{i+1}(X^{n+1}/X^n) \to H_i(X^n) \to H_i(X^{n+1}) \to H_i(X^{n+1}/X^n) \to H_{i-1}(X^n).
+\]
+Suppose $X$ has no $(i-1)$-cells or $(i+1)$-cells. Then this assumption is true for $X^n$ as well so we have $H_i(X^n) \approx \mathbb{Z}^r$ where $r$ is the number of $i$-cells. First suppose $i < n$ or $i > n+1$. Then by the same proof as in part (a) we know $H_{i+1}(X^{n+1}/X^n) \approx H_i(X^{n+1}/X^n) = 0$. This then gives the exact sequence
+\[
+0 = H_{i+1}(X^{n+1}/X^n) \to H_i(X^n) \approx \mathbb{Z}^r \to H_i(X^{n+1}) \to H_i(X^{n+1}/X^n) = 0
+\]
+and by exactness, $H_i(X^{n+1}) \approx \mathbb{Z}^r$ where $r$ is the number of $i$-cells. Now suppose $i = n$. Then since there are no $n+1$-cells we know $X^{n+1} = X^n$ which means $\mathbb{Z}^r \approx H_i(X^n) \approx H_i(X^{n+1})$. Finally suppose $i = n+1$. Then we once again have $H_{i+1}(X^{n+1}/X^n) = 0$ and $H_i(X^n) \approx \mathbb{Z}^r$ so we get the exact sequence
+\[
+0 = H_{i+1}(X^{n+1}/X^n) \to H_i(X^n) \approx \mathbb{Z}^r \to H_i(X^{n+1}) \to H_i(X^{n+1}/X^n) \to H_{i-1}(X^n).
+\]
+But in this case there are no $n$-cells so $X^{n+1}/X^n = X^{n+1}$ and by exactness we're left with an isomorphism between $\mathbb{Z}^r$ and $H_i(X^{n+1})$.
+
+(c) Suppose the dimension of $X$ is $n$ with $n = 0$. Then as we've seen in parts (a) and (b), $H_0(X) \approx \mathbb{Z}^k$ where $k$ is the number of $0$-cells in $X$. Furthermore, $X$ has no $i$-cells for $i > 0$ and as we've also seen before, $H_i(X) = 0$ for $i > 0$. Thus the statement holds for $n = 0$.
+
+Now suppose it's true for some $n$ and let $X$ be a space of dimension $n+1$ with $k$ $i$-cells. We have the long exact sequence
+\[
+H_{i+1}(X^{n+1}/X^n) \to H_i(X^n) \to H_i(X^{n+1}) \to H_i(X^{n+1}/X^n) \to H_{i-1}(X^n).
+\]
+If $i < n$ or $i > n+1$ then $H_{i+1}(X^{n+1}/X^n) = H_i(X^{n+1}/X^n) = 0$. Furthermore, $H_i(X^n) \approx \mathbb{Z}^j$ where $j < k$. Then we have the exact sequence
+\[
+0 = H_{i+1}(X^{n+1}/X^n) \to H_i(X^n) \approx \mathbb{Z}^j \to H_i(X^{n+1}) \to H_i(X^{n+1}/X^n) = 0
+\]
+and by exactness $H_i(X^{n+1}) \approx \mathbb{Z}^j$ as in part (b). If $i = n$ then we have $H_{i+1}(X^{n+1}/X^n) \approx \mathbb{Z}^{j'}$ for some $j'$ and we get an exact sequence
+\[
+\mathbb{Z}^{j'} \approx H_{i+1}(X^{n+1}/X^n) \to H_i(X^n) \approx \mathbb{Z}^j \to H_i(X^{n+1}) \to H_i(X^{n+1}/X^n) = 0.
+\]
+Thus $H_i(X^{n+1})$ is a quotient $\mathbb{Z}^j/\mathbb{Z}^{m}$ so it has fewer than $k$ generators. If $i = n+1$ then we have $H_i(X^n) = 0$ by part (a) and $H_i(X^{n+1}/X^n) = \mathbb{Z}^{j''}$ with $j'' < k$ since there are $k$ $(n+1)$-cells. Thus $H_i(X^{n+1})$ injects into $\mathbb{Z}^{j''}$ and the statement is true for all $n$.
+\end{proof}
+
+\begin{problem}
+Let $f : (X,A) \to (Y,B)$ be a map such that both $f : X \to Y$ and the restriction $f : A \to B$ are homotopy equivalences.\\
+(a) Show that $f_* : H_n(X,A) \to H_n(Y,B)$ is an isomorphism for all $n$.\\
+(b) For the case of the inclusion $f : (D^n,S^{n-1}) \hookrightarrow (D^n,D^n \backslash \{0\})$, show that $f$ is not a homotopy equivalence of pairs --- there is no $g : (D^n,D^n \backslash \{0\}) \to (D^n,S^{n-1})$ such that $fg$ and $gf$ are homotopic to the identity through maps of pairs.
+\end{problem}
+\begin{proof}
+(a) We have the property of naturality in the long exact sequence of pairs which means the following diagram commutes.
+\[
+\xymatrix{
+H_n(A) \ar[r]^{i_*} \ar[d]^{f_*} & H_n(X) \ar[r]^{j_*} \ar[d]^{f_*} & H_n(X,A) \ar[r]^{\partial} \ar[d]^{f_*} & H_{n-1}(A) \ar[r]^{i_*} \ar[d]^{f_*} & H_{n-1}(X) \ar[d]^{f_*}\\
+H_n(B) \ar[r]^{i_*} & H_n(Y) \ar[r]^{j_*} & H_n(Y,B) \ar[r]^{\partial} & H_{n-1}(B) \ar[r]^{i_*} & H_{n-1}(Y)
+}
+\]
+Since $f : X \to Y$ and $f : A \to B$ are homotopy equivalences we know $f_*$ is an isomorphism in the first two and the last two vertical maps. By the Five-Lemma $f_* : (X,A) \to (Y,B)$ is also an isomorphism.
+
+(b) Let $g : (D^n,D^n \backslash \{0\}) \to (D^n,S^{n-1})$ be a map of pairs. Since $S^{n-1}$ is closed we know $g^{-1}(S^{n-1})$ is closed in $D^n$ and also that $D^n \backslash \{0\} \subseteq g^{-1}(S^{n-1})$. Note also that $0 \in \overline{D^n \backslash \{0\}}$ so $g(0) \in S^{n-1}$. We then have a sequence $D^n \backslash \{0\} \hookrightarrow D^n \to S^{n-1}$ which splits $g$. This translates to induced maps on the homology groups $H_{n-1}(D^n \backslash \{0\}) \hookrightarrow H_{n-1}(D^n) \to H_{n-1}(S^{n-1})$ with the composition being $g_*$. But since $H_{n-1}(D^n) = 0$ we see that $g_* = 0$ and since $H_{n-1}(S^{n-1}) \approx \mathbb{Z}$ we have that $g_*$ is not an isomorphism on homology. Thus $g$ cannot be a homotopy equivalence of pairs by part (a) and since $g$ was arbitrary, neither is $f$.
+\end{proof}
+
+\begin{problem}
+\label{covering}
+Show that $S^1 \times S^1$ and $S^1 \vee S^1 \vee S^2$ have isomorphic homology groups in all dimensions, but their universal covering spaces do not.
+\end{problem}
+\begin{proof}
+We know the homology groups for the torus and the homology groups for $n > 0$ for $S^1 \vee S^1 \vee S^2$ can be computed by taking direct sums of the corresponding homology groups. Since this space is path connected it has homology group $\mathbb{Z}$ for $n = 0$. Also $H_n(S^1) \approx \mathbb{Z}$ for $n = 1$ and is trivial for $n > 1$. The same is true for $S^2$ for $n = 2$. All this gives
+\[
+\begin{tabular}{cc}
+$H_n(S^1 \times S^1) \approx \begin{cases} \mathbb{Z} & n = 0, n = 2\\ \mathbb{Z} \oplus \mathbb{Z} & n = 1\\ 0 & \textup{otherwise} \end{cases}$
+&
+$H_n(S^1 \vee S^1 \vee S^2) \approx \begin{cases} \mathbb{Z} & n = 0, n = 2\\ \mathbb{Z} \oplus \mathbb{Z} & n = 1\\ 0 & \textup{otherwise} \end{cases}$
+\end{tabular}
+\]
+On the other hand, the universal cover of $S^1 \times S^1$ is the plane $\mathbb{R}^2$ so the homology groups are trivial in all nonzero dimensions. The covering space of $S^1 \vee S^1 \vee S^2$ is an infinite graph in which every vertex has four edges and has a copy of $S^2$ attached to each edge. Let $X$ be this covering space and view $X$ as a CW complex with the obvious construction. Let $X^1$ and $X^2$ be the $1$ and $2$ skeleton structures of $X$. Then we have an exact sequence $H_2(X^1) \to H_2(X^2) \to H_2(X^2/X^1) \to H_1(X^1)$. Note that by Problem~\ref{cw} we know $H_2(X^1) = 0$. In a similar fashion, $H_2(X^2,X^1) \approx H_2(X^2/X^1) \approx \mathbb{Z}^r$ where $r$ is the number of $2$-cells in $X$ since $X^2/X^1$ is a wedge sum of $2$-cells. In particular, $H_2(X^2, X^1)$ is not trivial. Furthermore, if we view $X^1$ as a $\Delta$-complex with $1$-simplexes as each edge and $0$-simplexes at each vertex then every edge has two distinct vertices so $\ker \partial_1 = 0$. Thus $H_1(X^1) = 0$ and we have an isomorphism $H_2(X^2) \approx \mathbb{Z}^r$ where $r$ is countably infinite. This means that the homology groups differ at $n = 2$.
+\end{proof}
+
+\begin{problem}
+Let $M_g$ be the orientable surface of genus $g$, and let $A \subseteq M_g$ be a subspace homeomorphic to $M_1 \backslash e_2$, where $e_2$ is an open disk. (Draw a picture.) Consider the long exact sequence of $(M_g,A)$ in homology. Compute $H_n(M_g)$ for all $n$ by induction on $g$, starting with the case $M_1 = S^1 \times S^1$, as follows. Let $g \geq 2$ and assume that we already know $H_2(M_g,A) \cong H_2(M_g/A) = H_2(M_{g-1})$. First compute the boundary map
+\[
+\partial : H_2(M_g, A) \to H_1(A)
+\]
+and then use this to compute $H_n(M_g)$ for all $n$ using the long exact sequence of the pair.
+\end{problem}
+\begin{proof}
+We've already computed the homology groups for the case $g = 1$ and these have been listed in Problem~\ref{covering}. Assume we know the homology groups for some $g-1$ and let $g \geq 2$. Now let $c \in C_2(M_g,A) = C_2(X)/C_2(A)$ be a $2$-cycle. By surjectivity there is some element $b \in C_2(X)$ such that $j(b) = c$ where $j$ is the quotient map. Note that $\partial_n(b) \in \ker j$ so $\partial_n b = i(a)$ for some $a \in C_1(A)$ where $i$ is the inclusion map. This defines $\partial c = a$. But $a \in C_1(A)$ and since $A$ is homeomorphic to $M_g \backslash e_2$ we must have $a = 0$. Thus $\partial$ is the $0$-map from $H_2(M_g, A) \to H_1(A)$.
+
+We have the long exact sequence
+\[
+H_n(A) \to H_n(M_g) \to H_n(M_g, A) \to H_{n-1}(A).
+\]
+For $n > 2$ we know $H_n(M_g) = 0$ by Problem~\ref{cw} since $M_g$ is a CW complex. For $n = 2$ using the induction hypothesis we're left with the sequence
+\[
+H_2(A) \to H_2(M_g) \to H_2(M_g,A) \cong H_2(M_{g-1}) \cong \mathbb{Z} \to H_1(A).
+\]
+We know $H_2(A) = 0$ since $A$ is a $1$-dimensional CW complex. Furthermore, the map $\mathbb{Z} \to H_1(A)$ is the $0$-map by our above statements so $H_2(M_g) \cong \mathbb{Z}$. For $n = 1$ applying the induction hypothesis we have
+\[
+H_2(M_g,A) \cong \mathbb{Z} \to H_1(A) \to H_1(M_g) \to H_1(M_g,A) \cong H_1(M_{g-1}) \cong \mathbb{Z}^{2(g-1)} \to H_0(A) \cong \mathbb{Z} \to H_0(M_g) \cong \mathbb{Z}.
+\]
+Given that the first map is injective and the last map is surjective by exactness of the sequence we must have $H_1(M_g) \cong \mathbb{Z}^{2g}$. Finally, since $M_g$ is path connected we have $H_0(M_g) \cong \mathbb{Z}$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 3: Attack of the Continuum\newline
+
+\normalsize
+
+\textbf{Definition 1 (Disjoint)}
+\textsl{Two sets $A$ and $B$ are disjoint if $A \cap B = \emptyset$. A set of sets $S$ is pairwise disjoint if for all sets $A,B \in S$ we have $A=B$ or $A \cap B = \emptyset$.}\newline
+
+\textbf{Theorem 2}
+\textsl{If $p,q \in C$ and $p<q$, then there exist disjoint regions containing $p$ and $q$.}
+\begin{proof}
+Let $a,c,p,q \in C$ such that $a<p$, $p<q$ and $q<c$ (A2.1, A2.2, A2.3). Then there are two possibilities. There may be another point $b \in C$ which is between $p$ and $q$. We see that this implies $p<b$ and $b<q$ and so the region $(a;b)$ contains $p$ and the region $(b;c)$ contains $q$ but $(a;b) \cap (b;c) = \emptyset$. There is also the possibility that there are no points between $p$ and $q$. Then the region $(a;q)$ contains $p$ but not $q$ and the region $(p;c)$ contains $q$ but not $p$ and $(a;q) \cap (p;c) = (p;q) = \emptyset$.
+\end{proof}
+
+\textbf{Corollary 3}
+\textsl{A set consisting of one point has no limit points.}
+\begin{proof}
+Let $A \subseteq C$ be a set with one point $x$. If $p \in C$ is to be a limit point of $A$, then every region which contains $p$ must also contain a point in $A$ which is not $p$. So we see $p \neq x$. But then $p<x$ or $p>x$. In either case, Theorem 2 shows that there are disjoint regions containing $p$ and $x$ which means there exist regions containing $p$, but no points in $A$ so $p$ cannot be a limit point of $A$ (3.2).
+\end{proof}
+
+\textbf{Theorem 4}
+\textsl{A nonempty finite set of points has no limit points.}
+\begin{proof}
+By Corollary 3 we see that a set with one point has no limit points (3.3). Use induction on $n$ and assume that a subset of $C$ with $n \in \mathbb{N}$ points has no limit points. Consider the set $S$ where $|S| = n+1$ and let $a \in S$. We know that $|S \backslash a| = n$ and so $S \backslash a$ has no limit points. But $S = (S \backslash a) \cup \{a\}$ and so we know that a limit point of $S$ is a limit point of $S \backslash a$ or a limit point of $\{a\}$ (2.17). By the inductive hypothesis and Corollary 3 we know that both $S \backslash a$ and $\{a\}$ have no limit points (3.3). Therefore $S$ has no limit points. Thus, by induction, all nonempty finite sets have no limit points.
+\end{proof}
+
+\textbf{Corollary 5}
+\textsl{If $A \subseteq C$ is a finite set and $x \in A$, then there exists a region $R$ such that $A \cap R = \{x\}$.}
+\begin{proof}
+Let $A \subseteq C$ be a finite set of $n$ elements such that $x \in A$. We know that $x$ cannot be a limit point of $A$ by Theorem 4 and so there exists a region $R$ such that $x \in R$ and $R \cap (A \backslash x) = \emptyset$ (3.4). But then we have $R \cap A = \{x\}$.
+\end{proof}
+
+\textbf{Theorem 6}
+\textsl{If $p$ is a limit point of a set $A$ and $R$ is a region containing $p$, then the set $R \cap A$ is infinite.}
+\begin{proof}
+Assume that $p$ is a limit point of a set $A \subseteq C$ and $R$ is a region containing $p$. Assume to the contrary that $R \cap A$ is finite. Then $p$ is not a limit point of $R \cap A$ by Theorem 4 (3.4). But since $(A \backslash (R \cap A)) \cup (R \cap A) = A$, and $p$ is a limit point of the union, we see that $p$ must be a limit point of $A \backslash (R \cap A)$ (2.17). We also have $R \cap (A \backslash (R \cap A)) = \emptyset$ and $p \in R$ so $p$ is not a limit point of $A \backslash (R \cap A)$. This is a contradiction and so $R \cap A$ must be infinite.
+\end{proof}
+
+\textbf{Definition 7 (Closed Set)}
+\textsl{A set $A \subseteq C$ is closed if it contains all its limit points.}\newline
+
+\textbf{Corollary 8}
+\textsl{Finite sets are closed.}
+\begin{proof}
+Finite sets have no limit points and so they vacuously contain all of their limit points (3.4).
+\end{proof}
+
+\textbf{Definition 9 (Closure)}
+\textsl{Let $M \subseteq C$ be a set. Let $\overline{M}$, the closure of $M$, be the set consisting of $M$ and all of its limit points:
+\[
+\overline{M} = M \cup \{x \in C \mid x \text{ is a limit point of } M\}.
+\]}
+
+\textbf{Theorem 10}
+\textsl{A set is $M \subseteq C$ is closed if and only if $M=\overline{M}$.}
+\begin{proof}
+We see that if $M \subseteq C$ is closed, then it contains all its limit points. That is $\{x \in C \mid x \text{ is a limit point of }M\} \subseteq M$. So we have $M=M \cup \{x \in C \mid x \text{ is a limit point of }M\} = \overline{M}$. Conversely, if $M=\overline{M}$ then $M = M \cup \{x \in C \mid x \text{ is a limit point of }M\}$. Therefore $\{ x \in C \mid x \text{ is a limit point of }M\} \subseteq M$, and so $M$ contains all its limit points. Thus $M$ is closed.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{For all $M \subseteq C$ we have $\overline{M} = \overline{\overline{M}}$}
+\begin{proof}
+We wish to show that the set of limit points of $\overline{M}$ is a subset of $\overline{M}$ for $M \subseteq C$. Consider a limit point $p \in C$ of $\overline{M}$. Since $\overline{M} = M \cup \{x \mid x \text{ is a limit point of }M\}$ we see that $p$ is a limit point of $M$ or $p$ is a limit point of the set of limit points of $M$ because $p$ is a limit point of their union (2.17). If $p$ is a limit point of $M$, then $p \in \overline{M}$. If $p$ is a limit point of the set of limit points of $M$, then every region containing $p$ contains a limit point of $M$. But every region containing a limit point of $M$ contains a point in $M$ and so for all regions $R \subseteq C$ such that $p \in R$ we have $R \cap M \neq \emptyset$. But then either $p$ is in $M$ or $p$ is a limit point of $M$ and so $p \in \overline{M}$. Thus we see $\{x \mid x \text{ is a limit point of } \overline{M}\} \subseteq \overline{M}$ and so
+\[
+\overline{M} = M \cup \{x \mid x \text{ is a limit point of }M\} \cup \{x \mid x \text{ is a limit point of }\overline{M}\} = \overline{\overline{M}}.
+\]
+\end{proof}
+
+\textbf{Corollary 12}
+\textsl{If $M$ is a set of points, then $\overline{M}$ is closed.}
+\begin{proof}
+Let $M \subseteq C$ be a set of points. By Theorem 11 we know $\overline{M} = \overline{\overline{M}}$ and so by Theorem 10, $\overline{M}$ is closed (3.10, 3.11).
+\end{proof}
+
+\textbf{Theorem 13}
+\textsl{The sets $C$ and $\emptyset$ are closed.}
+\begin{proof}
+All limit points are elements of $C$ and so $C$ must contain all its limit points and is closed. The empty set can have no limit points since there are no regions which contain a point in $\emptyset$. Therefore it vacuously contains all its limit points and is closed.
+\end{proof}
+
+\textbf{Definition 14 (Open Set)}
+\textsl{A set of points $M$ is open if the complement $C \backslash M$ is closed.}\newline
+
+\textbf{Theorem 15}
+\textsl{The sets $C$ and $\emptyset$ are open.}
+\begin{proof}
+We see that the complement $C \backslash C = \emptyset$ and $\emptyset$ is closed so $C$ is open (3.13). Likewise $C \backslash \emptyset = C$ and $C$ is closed so $\emptyset$ is open (3.13).
+\end{proof}
+
+\textbf{Theorem 16}
+\textsl{Every region is open and its complement is closed.}
+\begin{proof}
+We wish to show that for all regions $R$, the complement $C \backslash R$ is closed. So we assume that for some region $R$ there exists a limit point $p$ of $C \backslash R$ such that $p \notin C \backslash R$. Thus, $p \in R$. But then, since $R \cap (C \backslash R) = \emptyset$, $p$ is not a limit point of $C \backslash R$ and this is a contradiction. Thus, $C \backslash R$ contains all its limit points and so it is closed which means $R$ is open for all $R \subseteq C$.
+\end{proof}
+
+\textbf{Theorem 17 (Open Condition)}
+\textsl{A set $A \subseteq C$ is open if and only if for all $x \in A$, there exists a region $R \subseteq A$ such that $x \in R$.}
+\begin{proof}
+Let $A \subseteq C$ be open. Then $C \backslash A$ is closed. Assume there exists $x \in A$ such that for all regions $R$ containing $x$, $R$ is not a subset of $A$. Then for all regions $R$ containing $x$, $R$ contains at least one point in $C \backslash A$ and so $x$ is a limit point of $C \backslash A$. But $x$ is in $A$ and $C \backslash A$ is closed and so we have a contradiction. Thus for all $x \in A$, there exists a region $R \subseteq A$ such that $x \in R$.\newline
+
+Conversely, let $A \subseteq C$ be a subset such that for all $x \in A$ there exists a region $R \subseteq A$ such that $x \in R$. Assume $A$ is not open. Then $C \backslash A$ is not closed and so it doesn't include all its limit points. But then there exists a limit point $p$ of $C \backslash A$ such that $p \in A$. And so there exists a region $R \subseteq A$ which contains $p$ and so $p$ is not a limit point of $C \backslash A$. This is a contradiction and so $A$ must be open.
+\end{proof}
+
+\textbf{Corollary 18}
+\textsl{Every nonempty open set is the union of regions.}
+\begin{proof}
+Let $R_a \subseteq A$ denote a region containing an element $a \in A$ for some open set $A$. Then we see that $\bigcup_{a \in A} R_a$ is a union of subsets of $A$ which contains every element of $A$ so it must be equal to $A$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

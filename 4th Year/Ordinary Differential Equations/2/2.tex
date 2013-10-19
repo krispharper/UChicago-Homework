@@ -1,0 +1,261 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27300\\
+
+January 21, 2011
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{problem}
+Suppose the inequality (1.44) is replaced by
+\[
+u(x) \leq \alpha(x) + \int_a^x \beta(s) u(s) ds,
+\]
+where $\alpha$ and $\beta$ are continuous functions on $[a,b]$, $\beta$ nonnegative and $\alpha$ non-increasing there. Find the generalization of Gronwall's lemma to this case.
+\end{problem}
+\begin{proof}
+Define
+\[
+R(x) = \int_a^x \beta(s) u(s) ds.
+\]
+Then
+\[
+\frac{dR}{dx} = \beta(x)u(x) \leq \alpha(x)\beta(x) + \beta(x)R(x).
+\]
+Multiplying both sides by $\exp \left ( -\int_a^x \beta(t) dt \right )$ the inequality simplifies to
+\[
+\frac{d}{dx} \left ( R(x) e^{-\int_a^x \beta(t) dt} \right ) \leq \alpha(x)\beta(x) e^{-\int_a^x \beta(t) dt}.
+\]
+Integrating from $a$ to $x$ we then have
+\[
+R(x)e^{-\int_a^x \beta(t) dt} \leq \int_a^x \alpha(x) \beta(x) e^{-\int_a^x \beta(t) dt} dx
+\]
+and so
+\[
+R(x) \leq e^{\int_a^x \beta(t) dt} \int_a^x \alpha(x) \beta(x) e^{-\int_a^x \beta(t) dt} dx.
+\]
+Plugging this back in we have
+\[
+u(x) \leq \alpha(x) + e^{\int_a^x \beta(t) dt} \int_a^x \alpha(x) \beta(x) e^{-\int_a^x \beta(t) dt} dx.
+\]
+This is the generalized conclusion of Gronwall's lemma. Note that if $\alpha$ and $\beta$ are constants the righthand side simplifies to
+\[
+\alpha + \alpha \beta e^{\beta x} \int_a^x e^{-\beta x} dx = \alpha + \alpha \beta e^{\beta x} \frac{e^{-\beta a} - e^{\beta x}}{\beta} = \alpha e^{\beta (x-a)}
+\]
+which is the original statement.
+\end{proof}
+
+\begin{problem}
+Find a Lipschitz constant $L$ such that $|f(x,y) - f(x,z)| \leq L|y-z|$ for the given function $f$ in the given domain:\\
+(a) $f(x,y) = x^2 + y^2$, $x \geq 0$, $|y| \leq 2$.\\
+(b) $f(x,y) = xy^2$, $0 \leq x \leq 2$, $|y| \leq 2$.\\
+\end{problem}
+\begin{proof}
+(a) Note that
+\[
+|f(x,y) - f(x,z)| = |x^2 + y^2 - x^2 - z^2| = |y^2 - z^2| = |(y+z)(y-z)| = |y+z||y-z| \leq 4|y-z|
+\]
+since we have $|y| \leq 2$ and $|z| \leq 2$ so $|y+z| \leq |y| + |z| \leq 4$.
+
+(b) Note that
+\[
+|f(x,y) - f(x,z)| = |xy^2 - xz^2| = |x||y^2 - z^2| \leq 2|y^2 - z^2| \leq 8|y-z|
+\]
+using part (a) and the fact that $|x| \leq 2$.
+\end{proof}
+
+\begin{problem}
+Consider the initial-value problem
+\[
+\begin{tabular}{cc}
+$\dot{x} = \sqrt{x}$, & $x(0) = 0$.
+\end{tabular}
+\]
+\begin{itemize}
+\item Find two solutions on the interval $[0,1]$.
+\item Show that the function $f(x) = \sqrt{x}$ cannot satisfy a Lipschitz condition on an interval of the form $[0,a)$ with $a > 0$.
+\end{itemize}
+\end{problem}
+\begin{proof}
+Two solutions are $x_1(t) = 0$ and $x_2(t) = x^2/4$. It's trivial that $x_1(t)$ satisfies the equation. For $x_2(t)$, note that $\dot{x_2} = x/2 = \sqrt{x^2/4} = \sqrt{x_2}$ and $x_2(0) = 0$.
+
+Suppose there exists $L$ such that $|\sqrt{x_1} - \sqrt{x_2}| \leq L|x_1 - x_2|$ for all $0 \leq x_1, x_2 < a$ for some $a > 0$. Then in particular, if $x_2 = 0$ and $x_1 > 0$, the condition simplifies to $\sqrt{x_1} \leq L x_1$ or $1 \leq L \sqrt{x_1}$. But we can choose $x_1$ arbitrarily close to $0$. In particular, choose $x_1$ such that $\sqrt{x_1} < 1/L$. Then $1 \leq L \sqrt{x_1} < 1$, a contradiction. Therefore no such $L$ exists.
+\end{proof}
+
+\begin{problem}
+Consider the equation
+\[
+\frac{dy}{dx} = \sqrt{x^2 - y^2}.
+\]
+Describe the domain where this equation is defined, assuming only real values are allowed. Show that on the domain
+\[
+D : |x| < K, x^2 - y^2 > \Delta
+\]
+where $K$ and $\Delta$ are positive constants with $\Delta < K^2$, the function $\sqrt{x^2 - y^2}$ satisfies a Lipschitz condition, and estimate the Lipschitz constant $L$.
+\end{problem}
+\begin{proof}
+The equation is defined for all values such that $x^2 - y^2 \geq 0$, or $y^2 \leq x^2$.
+
+The region $x^2 - y^2 > \Delta$ is the set of points outside of a hyperbola with a vertical axis. The region $|x| < K$ is a vertical strip centered at $0$ with width $2K$. Then condition $\Delta < K^2$ guarantees that the intersection of these two regions is nonempty.
+
+Now using the fact that $x^2 - \Delta > y^2$ and $|x| < K$, we have
+\begin{align*}
+|f(x,y_1) - f(x,y_2)|^2
+&= \left | \sqrt{x^2 - y_1^2} - \sqrt{x^2 - y_2^2} \right |^2\\
+&= x^2 - y_1^2 - x^2 + y_2^2 - 2\sqrt{x^4 - y_1^2y_2^2 - x^2(y_1^2 + y_2^2)}\\
+&= y_2^2 - y_1^2 - 2\sqrt{x^4 - y_1^2y_2^2 - x^2(y_1^2 + y_2^2)}\\
+&\leq (y_2 - y_1)(y_2 + y_1)\\
+&\leq (y_2 - y_1)(2x^2 - 2\Delta)\\
+&\leq 2(K^2 - \Delta)|y_2 - y_1|\\
+&\leq 2(K^2 - \Delta)|y_2 - y_1|^2.
+\end{align*}
+Thus $\sqrt{2(K^2 - \Delta)}$ gives an approximation for $L$. Note that we have $K^2 - \Delta > 0$ by assumption.
+\end{proof}
+
+\begin{problem}
+For the differential equation of the preceding problem with initial data $y = 1$ when $x = -2$, show that the interval of existence of the solution cannot extend to the origin, i.e., the solution cannot exist on the interval $(-2,0)$.
+\end{problem}
+\begin{proof}
+Since $dy/dx = \sqrt{x^2 - y^2}$ we know $dy/dx \geq 0$. Thus $y$ is a nondecreasing function. Given the initial data $y(-2) = 1$, suppose the solution $y(x)$ exists at $x = 0$. Then $dy/dx = \sqrt{0^2 - y^2} = \sqrt{-y^2}$. This is only defined for $y(0) = 0$. But $y$ is nondecreasing and $y(-2) = 1$, a contradiction.
+\end{proof}
+
+\begin{problem}
+Let $u(x) = x^3$ on $[-1,1]$ and define $v(x) = -x^3$ on $[-1,0]$ and $v(x) = +x^3$ on $(0,1]$. Verify that $v$ is $C^2$ on $[-1,1]$. Calculate $W(u,v;x)$. Are these functions linearly independent on $[-1,1]$?
+\end{problem}
+\begin{proof}
+Clearly $v$ is $C^2$ at all nonzero points. The derivatives of the left and right parts of $v$ are $-3x^2$ and $3x^2$ respectively. These functions agree at $0$ so the limit as $x \rightarrow 0^-$ and the limit as $x \rightarrow 0^+$ are the same. A similar statement can be made about the derivatives $-6x$ and $6x$. Since both derivatives are continuous we know $v$ is $C^2$ on $[-1, 1]$.
+
+For $x \in [-1,0]$ we have $v(x) = x^3$ and $v'(x) = -3x^2$. Thus $u(x)v'(x) - u'(x)v(x) = x^3(-3x^2) - (3x^2)(-x^3) = 0$ for $x \in [-1,0]$. For $x \in (0,1]$ we have $u(x)v'(x) - u'(x)v(x) = 0$ since $v = u$ on this interval. The Wronskian is thus identically $0$. The functions $u$ and $v$ are linearly independent on $[-1,1]$ since there is no $c$ such that $cv(x) = u(x)$ for all $x \in [-1,1]$.
+\end{proof}
+
+\begin{problem}
+Show that the three functions $\sin(x)$, $\sin(2x)$, $\sin(3x)$ are linearly independent on any nontrivial interval of the $x$ axis.
+\end{problem}
+\begin{proof}
+Suppose there are $c_1$, $c_2$ and $c_3$ such that
+\[
+c_1 \sin(x) + c_2 \sin(2x) + c_3 \sin(3x) = 0.
+\]
+Then
+\[
+c_1 \cos(x) + 2c_2 \cos(2x) + 3c_3 \cos(3x) = 0
+\]
+and
+\[
+c_1 \sin(x) + 4c_2 \sin(2x) + 9c_3 \sin(3x) = 0.
+\]
+Pick $a$ in the given interval such that $\sin(a) \neq 0$. Then we have the matrix
+\[
+\left (
+\begin{array}{ccc}
+\sin(a) & \sin(2a) & \sin(3a)\\
+\cos(a) & 2\cos(2a) & 3\cos(3a)\\
+-\sin(a) & -4\sin(2a) & -9\sin(3a)
+\end{array}
+\right ).
+\]
+The determinant of this matrix is
+\[
+9 \cos(3a) \sin(a) \sin(2a) - 16 \cos(2a) \sin(a) \sin (3a) + 5 \cos(2) \sin(2a) \sin(3a)
+\]
+which simplifies to $-16 \sin^6(a) \neq 0$. Since the matrix is invertible, the system of equations has only the solution $c_1 = c_2 = c_3 = 0$, so the functions are linearly independent.
+\end{proof}
+
+\begin{problem}
+Find bases of solutions for the following equations:\\
+(a) $u'' = 0$.\\
+(b) $u'' + 2u' = 0$.\\
+(c) $u'' + xu' = 0$.
+\end{problem}
+\begin{proof}
+(a) Clearly $u(x) = 1$ and $u(x) = x$ both satisfy the equation. These are linearly independent functions since $c_1 + c_2 x = 0$ evaluated at $x = 0$ shows $c_1 = 0$ and differentiating shows $c_2 = 0$.
+
+(b) We see that $u(x) = 1$ and $u(x) = - \frac{1}{2} e^{-2x}$ are both solutions. Suppose we have $c_1 - c_2/2 e^{-2x} = 0$. Then $c_1 - c_2/2 = 0$ and $c_1 - c_2/2 e = 0$. Therefore $c_2/2(e-1) = 0$ and since $e-1 \neq 0$, $c_2 = 0$, thus $c_1 = 0$. Hence $1$ and $-\frac{1}{2} e^{-2x}$ are a basis.
+
+(c) Clearly $u(x) = 1$ is a solution. Define
+\[
+f(x) = \sqrt{2} \int_0^{\frac{x}{\sqrt{2}}} e^{-t^2} dt.
+\]
+Then $f'(x) = \sqrt{2} e^{-x^2/2}$ and $f'' = -x\sqrt{2} e^{-x^2/2}$. So we see $f$ satisfies the equation as well. If we have $c_1 + c_2 f(x) = 0$, then putting in $0$ gives $c_1 = 0$ and putting in any $x > 0$ gives $c_2 = 0$. Thus $1$ and $f$ are a basis for this equation.
+\end{proof}
+
+\begin{problem}
+For the equation
+\[
+\frac{d}{dx} \left ( \left ( 1 - x^2 \right ) \frac{du}{dx} \right ) + 2u = 0
+\]
+\begin{itemize}
+\item On what interval does the existence theorem guarantee a solution?
+\item Verify that $u_1 = x$ is a solution.
+\item Find a second solution in an interval containing the origin. How far can this interval extend on each side of the origin?
+\end{itemize}
+\end{problem}
+\begin{proof}
+First rewrite the equation by differentiating
+\[
+0 = \frac{d}{d x} u' - \frac{d}{dx} (x^2 u') + 2u = u'' - 2xu' - x^2u'' + 2u = u'' (1 - x^2) - 2xu' + 2u.
+\]
+Assuming $x \neq \pm 1$ we have
+\[
+u'' - \frac{2x}{1 - x^2} u' + \frac{2}{1 - x^2} u = 0.
+\]
+The existence theorem guarantees a solution on some interval if the coefficients of $u'$ and $u$ are continuous on that interval. Then $(-1, 1)$ is an interval on which $2x/(1 - x^2)$ and $2/(1 - x^2)$ are continuous.
+
+For $u_1(x) = x$ we have $u_1' = 1$ and $u_1'' = 0$. Then $0 - 2x/(1 - x^2) + (2/(1-x^2))x = 0$ so $u_1$ is indeed a solution. Now consider the function
+\[
+f(x) = \frac{x}{2} (\log(1+x) - \log(1-x)) - 1.
+\]
+Then
+\[
+f'(x) = \frac{x}{2} \left ( \frac{1}{1+x} + \frac{1}{1-x} \right ) + \frac{1}{2} (\log(1+x) - \log(1-x))
+\]
+and
+\[
+f''(x) = \frac{x}{2} \left ( \frac{1}{(1-x)^2} - \frac{1}{(1+x)^2} \right ) + \left ( \frac{1}{1+x} + \frac{1}{1-x} \right ).
+\]
+Now
+\[
+-f(x) \frac{2}{1 - x^2} = \frac{x(\log(1-x) - \log(1+x)) + 2}{1 - x^2}
+\]
+and
+\[
+f'(x) \frac{2x}{1 - x^2} = x^2 \left ( \frac{1}{(1+x)^2(1-x)} + \frac{1}{(1-x)^2(1+x)} \right ) + x \frac{\log(1+x) - \log(1-x)}{1 - x^2}.
+\]
+Adding the last two equations together results in $f''(x)$, as desired. Note that $f(x)$ exists in the interval $|x| < 1$ since for any values larger than this, $\log(1 \pm x)$ will be undefined.
+\end{proof}
+
+\begin{problem}
+Let $u$ and $v$ be given $C^2$ functions on an interval $[a,b]$ whose Wronskian nowhere vanishes there. Show that there is a differential equation of the form (2.7) for which $u$ and $v$ form a basis of solutions.
+\end{problem}
+\begin{proof}
+In the case that there did exist such an equation, we would have
+\[
+u'' + p(x) u' + q(x) u = 0
+\]
+and
+\[
+v'' + p(x) v' + q(x) v = 0.
+\]
+Rewrite this as
+\[
+p(x) u' + q(x) u = -u''
+\]
+and
+\[
+p(x) v' + q(x) v = v''.
+\]
+The coefficients of this system form the transpose of the Wronskian matrix, so the determinant is unchanged. In particular, since the Wronskian is nonzero everywhere on $[a,b]$, there is a unique solution for $p(x)$ and $q(x)$ for each $x \in [a,b]$. Use these values as a definition for $p(x)$ and $q(x)$ and it follows that $u$ and $v$ are solutions to the above differential equation. Since they're linearly independent by assumption, they're a basis by definition.
+\end{proof}
+
+\end{document}

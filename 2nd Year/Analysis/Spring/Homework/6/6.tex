@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20900\\
+
+May 11, 2009
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{**}
+Let $(f_n)$ be an increasing sequence of nonnegative, measurable functions on $X$ and $f$ a function on $X$ such that
+\[
+f(x) = \lim_{n \rightarrow \infty} f_n(x).
+\]
+Then $f$ is measurable and
+\[
+\lim_{n \rightarrow \infty} \int_X f_n d\mu = \int_X f d\mu.
+\]
+\begin{proof}
+Because $(f_n)$ is monotonically increasing, we know that $f(x) = \sup_n f_n(x)$ and thus $f$ is measurable since $f_n$ is measurable for all $n$. Also, since $f \geq f_n$ for all $n$ by monotonicity of the Lebesgue integral we immediately have
+\[
+\sup_n \int_X f_n d\mu \leq \int_X f d\mu.
+\]
+Let $S$ be the set of all simple functions on $X$ such that $0 \leq s \leq f$. For $\alpha < 1$ and $s \in S$ define
+\[
+E_n = \{x \in X \mid f_n(x) \geq \alpha s(x)\}.
+\]
+Note that $E_n$ is measurable and $E_n \subseteq E_{n+1}$. Additionally, $\bigcup_{n} E_n = X$ since $\lim_{n \rightarrow \infty} f_n(x) = f(x) \geq s(x) > \alpha s(x)$. Furthermore
+\[
+\int_X f_n d\mu \geq \int_{E_n} f_n d\mu \geq \alpha \int_{E_n} s d\mu.
+\]
+We now use the measure $\nu(E) = \int_X s d\mu$ to obtain
+\[
+\sup_n \int_X f_n d\mu \geq \alpha \int_X s d\mu.
+\]
+Note that this inequality is true for every $\alpha < 1$ and every $s \leq f$. Then we have
+\[
+\sup_n \int_X f_n d\mu \leq \sup_{s,\alpha} \int_X s d\mu = \int_X f d\mu.
+\]
+Since both inequalities are satisfied, the proof is complete.
+\end{proof}
+\end{**}
+
+\begin{**}
+Suppose $f$ and $g$ are measurable. Then $f+g$ is measurable and if $f$ and $g$ are nonnegative then
+\[
+\int_X (f+g) d\mu = \int_X f d \mu + \int_X g d\mu.
+\]
+\begin{proof}
+We know that $f+g$ is measurable because
+\[
+\{x \in X \mid (f+g)(x) \leq a, a \in \mathbb{R}\} = (\{f = -\infty, g \neq \infty\} \cup \{f \neq \infty, g = -\infty\}) \cup (\{x \in X \mid f(x) < a - g(x), a \in \mathbb{R}\} \cap \{f \neq \pm \infty, g \neq \pm \infty\})
+\]
+and we can pick a rational number between $f$ and $a - g$. Now we have
+\[
+\int_X (f+g) d\mu = \sup_{s \leq f+g} \int_X s d\mu = \sup_{s \leq f, t \leq g} \int_X (s+t) d\mu.
+\]
+Let $\alpha_i$ and $\beta_i$ be constants and $A_i$ and $B_i$ sets such that $s(x) = \sum_{i=1}^{k} \alpha_i \chi_{A_i}$ and similarly for $t(x)$. Then if $E_ij = A_i \cap B_j$ we have
+\[
+\int_{E_{ij}} (s+t) d\mu = (\alpha_i + \beta_j) \mu(E_{ij})
+\]
+and
+\[
+\int_{E_{ij}} s d\mu + \int_{E_{ij}} t d\mu = \alpha_i \mu(E_{ij}) + \beta_i \mu(E_{ij}).
+\]
+Thus, the statement holds for the sets $E_{ij}$. But note that $E_{ij}$ is a disjoint union of $X$. Finally note that we can use the $\nu(E_{ij})$ metric so that the final statement holds for all simple functions. Then since $f$ and $g$ are simply supremums of the integrals of simple functions, we have the desired result.
+\end{proof}
+\end{**}
+
+\end{document}

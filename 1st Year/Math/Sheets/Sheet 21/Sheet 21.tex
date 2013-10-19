@@ -1,0 +1,451 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 21: Derivatives\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A function $f$ is differentiable at $a$ if
+\[
+\lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h}
+\]
+exists.}\newline
+
+\textbf{Definition 2}
+\textsl{The function $f'$, called the derivative of $f$, is defined as the function whose domain is all $a$ such that $f$ is differentiable at $a$ and whose value at $a$ is
+\[
+\lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h}.
+\]
+The function $f'' = (f')'$ is the second derivative of $f$. Similarly $f''' = (f'')'$. We denote $f^{(n)}$ as the $n$th derivative of $f$ for $n \geq 4$.}\newline
+
+\textbf{Theorem 3}
+\textsl{If $f$ is differentiable at $a$, then $f$ is continuous at $a$.}
+\begin{proof}
+We have
+\[
+\lim_{h \rightarrow 0} f(a+h) - f(a) = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} h = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} \lim_{h \rightarrow 0} h = f'(a) \cdot 0 = 0.
+\]
+Thus $\lim_{h \rightarrow 0} f(a + h) = f(a)$ which means that $f$ is continuous at $a$.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Give and prove an example of a function that is continuous but not differentiable.}
+\begin{proof}
+Let $f(x) = |x|$ and consider $x = 0$. Let $\varepsilon > 0$ and let $\delta = \varepsilon$. Then if we have $|x| < \delta = \varepsilon$ we have $|f(x)| = ||x|| = |x| < \varepsilon$. Thus $f$ is continuous at $x = 0$. Then consider
+\[
+\lim_{h \rightarrow 0^+} \frac{f(x+h) - f(x)}{h} = \lim_{h \rightarrow 0^+} \frac{|h|}{h} = 1
+\]
+and
+\[
+\lim_{h \rightarrow 0^-} \frac{f(x+h) - f(x)}{h} = \lim_{h \rightarrow 0^-} \frac{|h|}{h} = -1
+\]
+because $|h| \geq 0$. Since the left and right hand limits are not the same the limit does not exist and $f$ is not differentiable at $0$.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{If $g(x) = f(x+c)$ then $g'(x) = f'(x+c)$. Also if $g(x) = f(cx)$ then $g'(x) = cf'(cx)$.}
+\begin{proof}
+Both of these can be proved with the Chain rule. Let $h(x) = x+c$. Then $f(h(x))' = f'(h(x))h'(x) = f'(x+c)$ (21.16). If $h(x) = cx$. Then $f(h(x))' = f'(h(x))h'(x) = cf'(cx)$ (21.16).
+\end{proof}
+
+\textbf{Exercise 6}
+\textsl{Let $f$ be a function such that $|f(x)| \leq x^2$ for all $x$. Show that $f$ is differentiable at $0$.}
+\begin{proof}
+Note that $f(0) = 0$ because $0 \leq |f(0)| \leq 0^2 = 0$. We have $|f(h)/h| \leq |h^2/h| \leq |h|$ which means that $\lim_{h \rightarrow 0} f(h)/h = 0$. Thus $f'(0) = 0$.
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{If $f(x) = c$ then $f'(x) = 0$.}
+\begin{proof}
+We have
+\[
+f'(x) = \lim_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \rightarrow 0} \frac{c - c}{h} \lim_{h \rightarrow 0} \frac{0}{h} = 0.
+\]
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{If $f(x) = ax+b$ then $f'(x) = a$.}
+\begin{proof}
+We have
+\[
+f'(x) = \lim_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \rightarrow 0} \frac{(a(x+h) + b) - (ax+b)}{h} \lim_{h \rightarrow 0} \frac{ax+ah+b-ax-b}{h} = \lim_{h \rightarrow 0} \frac{ah}{h} = \lim_{h \rightarrow 0} a = a.
+\]
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{If $f$ and $g$ are differentiable at $a$ then $f+g$ is also differentiable at $a$ and
+\[
+(f+g)'(a) = f'(a) + g'(a).
+\]}
+\begin{proof}
+Since $f$ and $g$ are both differentiable at $a$ we know
+\[
+\lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} = f'(a)
+\]
+and
+\[
+\lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} = g'(a)
+\]
+both exist. Then
+\begin{align*}
+f'(a) + g'(a) &= \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} + \lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{f(a+h) - f(a) + g(a+h) - g(a)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{(f+g)(a+h) - (f+g)(a)}{h}
+	&= (f+g)'(a).
+\end{align*}
+We know this limit exists because the sum of the limits of two functions is the limit of their sum.
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{If $f$ and $g$ are differentiable at $a$ then
+\[
+(fg)'(a) = f'(a)g(a) + f(a)g'(a).
+\]}
+\begin{proof}
+Since $f$ and $g$ are both differentiable at $a$ we know
+\[
+\lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} = f'(a)
+\]
+and
+\[
+\lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} = g'(a)
+\]
+both exist. Then $f(a)$ and $g(a)$ are both constants so
+\begin{align*}
+f'(a)g(a) + f(a)g'(a) &= \lim_{h \rightarrow 0} g(a) \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} + \lim_{h \rightarrow 0} f(a+h) \lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{f(a+h)g(a) - f(a)g(a)}{h} + \lim_{h \rightarrow 0} \frac{g(a+h)f(a+h) - g(a)f(a+h)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{f(a+h)g(a) - f(a+h)g(a) + g(a+h)f(a+h) - g(a)f(a)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{f(a+h)g(a+h) - f(a)g(a)}{h} \\
+	&= (fg)'(a).
+\end{align*}
+\end{proof}
+	
+\textbf{Theorem 11}
+\textsl{If $g(x) = cf(x)$ and $f$ is differentiable at $a$ then $g$ is differentiable at $a$ and
+\[
+g'(a) = cf'(a).
+\]}
+\begin{proof}
+We have $f$ is differentiable at $a$ so
+\begin{align*}
+cf'(a) &= c \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} \\
+	 &= \lim_{h \rightarrow 0} \frac{cf(a+h) - cf(a)}{h} \\
+	 &= \lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} \\
+	 &= g'(a).
+\end{align*}
+We know this limit exists because the limit of the product of two functions is the product of their limits.
+\end{proof}
+
+\textbf{Theorem 12}
+\textsl{If $f(x) = x^n$ for some $n \in \mathbb{N}$ then
+\[
+f'(a) = na^{n-1}.
+\]}
+\begin{proof}
+Note that for $n = 1$ we have $f'(a) = 1 \cdot a^0 = 1$ by Theorem 8 (21.8). Use induction on $n$ and suppose that if $f(x) = x^n$ for $n \in \mathbb{N}$ we have $f'(a) = na^{n-1}$. Consider a function $f(x) = x^{n+1} = x \cdot x^n$. Then from Theorem 10 we have
+\[
+f'(a) = x^n + x \cdot (nx^{n-1}) = x^n + nx^n = (n+1)x^n
+\]
+as desired.
+\end{proof}
+
+\textbf{Theorem 13}
+\textsl{If $f$ is differentiable at $a$ and $f(a) \neq 0$ then $1/f$ is differentiable at $a$ and
+\[
+\left ( \frac{1}{f} \right )' (a) = \frac{-f'(a)}{(f(a))^2}.
+\]}
+\begin{proof}
+We have
+\begin{align*}
+\left ( \frac{1}{f} \right )' (a) & = \lim_{h \rightarrow 0} \frac{\frac{1}{f(a+h)} - \frac{1}{f(a)}}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{\frac{f(a)-f(a+h)}{f(a+h)f(a)}}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{1}{f(a+h)f(a)} \frac{f(a)-f(a+h)}{h} \\
+	&= \lim_{h \rightarrow 0} \frac{1}{f(a+h)f(a)} \lim_{h \rightarrow 0} \frac{f(a)-f(a+h)}{h} \\
+	&= \frac{1}{(f(a))^2} \left ( -\lim_{h \rightarrow 0} \frac{f(a+h)-f(a)}{h} \right ) \\
+	&= \frac{-f'(a)}{(f(a))^2}.
+\end{align*}
+Note that $1/f$ is differentiable at $a$ because of the product rules for limits and $f'(a)$ exists.
+\end{proof}
+
+\textbf{Corollary 14}
+\textsl{If $f$ and $g$ are differentiable at $a$ and $g(a) \neq 0$ then $f/g$ is differentiable at $a$ and
+\[
+\left ( \frac{f}{g} \right )' (a) = \frac{g(a)f'(a) - f(a)g'(a)}{(g(a))^2}.
+\]}
+\begin{proof}
+We have
+\begin{align*}
+\left ( \frac{f}{g} \right )' (a) &= \left ( f \frac{1}{g} \right )'(a) \\
+	&= \frac{f'(a)}{g(a)} + \frac{-g'(a)f(a)}{(g(a))^2} \\
+	&=\frac{g(a)f'(a) - f(a)g'(a)}{(g(a))^2}.
+\end{align*}
+using Theorems 10 and 13 (21.10, 21.13).
+\end{proof}
+
+\textbf{Lemma 15}
+\textsl{Let $g$ be continuous at $a$ and let $f$ be differentiable at $g(a)$. Let
+\[
+\phi (h) =
+\begin{cases}
+\frac{f(g(a+h)) - f(g(a))}{g(a+h)-g(a)} & \text{if $g(a+h) - g(a) \neq 0$} \\
+f'(g(a)) & \text{if $g(a+h) - g(a) = 0$}.
+\end{cases}
+\]
+Then $\phi (x)$ is continuous at $0$.}
+\begin{proof}
+Since $f'(g(a))$ exists we have
+\[
+\lim_{k \rightarrow 0} \frac{f(g(a)+k) - f(g(a))}{k} = f'(g(a))
+\]
+which means that for all $\varepsilon > 0$ there exists $\delta_1 > 0$ such that if $0 < |m| < \delta_1$ we have
+\[
+\left | \frac{f(g(a) + m) - f(g(a))}{k} - f'(g(a)) \right | < \varepsilon.
+\]
+Since $g'(a)$ exists then $g$ is continuous at $a$ (21.3). Thus for all $\delta_1 > 0$ there exists $\delta_2 > 0$ such that for all $h$ if $|h| < \delta_2$ we have $|g(a+h) - g(a)| < \delta_1$. Now let$|h| < \delta_2$. If $k = g(a+h) - g(a) \neq 0$ then we have
+\[
+\phi (h) = \frac{f(g(a+h) - f(g(a))}{g(a+h) - g(a)} = \frac{f(g(a)+k) - f(g(a))}{k}.
+\]
+We know from our second continuity statement that $|k| < \delta_1$ and from our first continuity statement that $|\phi(h) - f'(g(a))| < \varepsilon$. If $g(a+h) - g(a) = 0$ then $\phi(h) = f'(g(a)$ and so we have $0 = |\phi(h) - f'(g(a)| < \varepsilon$. Thus
+\[
+\lim_{h \rightarrow 0} \phi (h) = f'(g(a))
+\]
+which means $\phi$ is continuous at $0$.
+\end{proof}
+
+\textbf{Theorem 16 (Chain Rule)}
+\textsl{If $g$ is differentiable at $a$ and $f$ is differentiable at $g(a)$ then $f \circ g$ is differentiable at $a$ and
+\[
+(f \circ g)' (a) = f'(g(a)) g'(a).
+\]}
+\begin{proof}
+Use the function from Lemma 15 and note that if $h \neq 0$ we have
+\[
+\frac{f(g(a+h)) - f(g(a))}{h} = \phi(h) \frac{g(a+h) - g(a)}{h}.
+\]
+Then
+\[
+(f \circ g)' (a) = \lim_{h \rightarrow 0} \frac{f(g(a+h)) - f(g(a))}{h} = \lim_{h \rightarrow 0} \phi(h) \lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} = f'(g(a)) g'(a)
+\]
+which exists because $g'(a)$ exists and because of the product rules for limits.
+\end{proof}
+
+\textbf{Exercise 17}
+\textsl{Differentiate
+\[
+f(x) = \sin \left ( \frac{x^3}{\cos \left (x^3 \right )} \right ).
+\]}
+\begin{proof}
+Using the chain rule we have
+\[
+f'(x) = \cos \left ( (x^3)(\cos x^3)^{-1} \right ) \left ( 3(x^5)(\cos x^3)^{-2}(\sin x^3) + 3(x^2)(\cos x^3)^{-1} \right ).
+\]
+\end{proof}
+
+\textbf{Exercise 18}
+\textsl{Let $a$ be a double root of the polynomial function $f$ if $f(x) = (x-a)^2g(x)$ for some polynomial function $g$. Show that $a$ is a double root of $f$ if and only if $a$ is a root of both $f$ and $f'$.}
+\begin{proof}
+Let $a$ be a double root of $f$. Then $f(x) = (x-a)^2g(x)$ for some polynomial function $g$. Then $f(a) = (a-a)^2g(a) = (0)g(x) = 0$ so $a$ is a root of $f$. Also using the product and chain rules we have $f'(x) = (x-a)^2g'(x) + 2(x-a)g(x) = (x-a)((x-a)g'(x) + 2g(x))$. Then $f'(a) = (a-a)((a-a)g'(a) + 2g(a)) = 0$ so $a$ is a root of $f'$. Conversely assume that $a$ is a root of both $f$ and $f'$. Then $f(a) = f'(a) = 0$. Thus $f(x) = (x-a)g(x)$ for some polynomial function $g(x)$ and $f'(x) = (x-a)g'(x) + g(x)$. But since $f'(a) = 0$ we have $g(a) = 0$. Thus $g(a) = (x-a) h(x)$ for some polynomial function $h$. But then $f(x) = (x-a)^2h(x)$. Therefore $a$ is a double root of $f$.
+\end{proof}
+
+\textbf{Definition 19}
+\textsl{Let $f$ be a function and $A$ a set of numbers contained in the domain of $f$. A point $x \in A$ is a maximum point for $f$ on $A$ if $f(x) \geq f(y)$ for all $y \in A$. The number $f(x)$ itself is called the maximum value of $f$ on $A$ and we say that $f$ has its maximum value on $A$ at $x$.}\newline
+
+\textbf{Theorem 20}
+\textsl{Let $f$ be a function defined on $(a;b)$. If $x$ is a maximum or minimum point for $f$ on $(a;b)$ and $f$ is differentiable at $x$ then $f'(x) = 0$.}
+\begin{proof}
+Consider $h$ such that $x+h \in (a;b)$. Then $f(x+h) - f(x) \leq 0$. If $h > 0$ then we have
+\[
+\frac{f(x+h) - f(x)}{h} \leq 0
+\]
+which means
+\[
+\lim_{h \rightarrow 0^+} \frac{f(x+h)-f(x)}{h} \leq 0.
+\]
+If $h < 0$ then we have
+\[
+\frac{f(x+h) - f(x)}{h} \geq 0
+\]
+which means
+\[
+\lim_{h \rightarrow 0^-} \frac{f(x+h)-f(x)}{h} \geq 0.
+\]
+Since $f$ is differentiable at $x$ these two limits must be equal to $f'(x)$ which means $0 \leq f'(x) \leq 0$ and so $f'(x) = 0$. If $x$ is a minimum point for $f$ on $(a;b)$ then consider $-f$ and we end up with the equality $0 \leq -f'(x) \leq 0$ as well.
+\end{proof}
+
+\textbf{Definition 21}
+\textsl{Let $f$ be a function and $A$ a set of numbers contained in the domain of $f$. A point $x$ in $A$ is a local maximum or minimum point for $f$ on $A$ if there is some $\delta > 0$ such that $x$ is a maximum or minimum point for $f$ on $A \cap (x - \delta; x + \delta)$.}\newline
+
+\textbf{Theorem 22}
+\textsl{Let $f$ be a function defined on $(a;b)$. If $x$ is a local maximum or local minimum point for $f$ on $(a;b)$ and $f$ is differentiable at $x$ then $f'(x) = 0$.}
+\begin{proof}
+Let $x$ be a local maximum or minimum for $f$ on $(a;b)$ then there exists $\delta > 0$ such that $x$ is a maximum or minimum for $f$ on $(a;b) \cap (x - \delta; x + \delta)$. But this set is a subset of the domain of $f$ and so $f'(x) = 0$ (21.20).
+\end{proof}
+
+\textbf{Definition 23}
+\textsl{A critical point of a function $f$ is a number $x$ such that $f'(x) = 0$. The number $f(x)$ itself is called a critical value of $f$.}\newline
+
+\textbf{Exercise 24}
+\textsl{Prove that $f(x) = x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$ has at most $n-1$ critical points.}
+\begin{proof}
+Taking the derivative of $f$ we have $f'(x) = nx^{n-1} + (n-1)a_{n-1}x^{n-2} + \dots + 2a_2 x + a_1$. This is a polynomial of degree $n-1$ and so it must have at most $n-1$ roots which means that $f'(x) = 0$ at at most $n-1$ points (19.9). Thus $f$ has at most $n-1$ critical points.
+\end{proof}
+
+\textbf{Theorem 25 (Rolle's Theorem)}
+\textsl{If $f$ is continuous on $[a;b]$, differentiable on $(a;b)$ and $f(a) = f(b)$ then there is some $x \in (a;b)$ such that $f'(x) = 0$.}
+\begin{proof}
+Since $f$ is continuous on $[a;b]$ there exists $x_1, x_2 \in [a;b]$ such that $f(x_1) \geq f(x)$ and $f(x_2) \leq f(x)$ for all $x \in [a;b]$ (10.9). If $x_1 \in (a;b)$ or $x_2 \in (a;b)$ then we have a maximum or minimum point for $f$ on $(a;b)$ in $(a;b)$. Thus $f'(x_1) = 0$ or $f'(x_2) = 0$ and we're done. If $x_1, x_2 \notin (a;b)$ then $x_1$ and $x_2$ are the values $a$ and $b$, not necessarily respectively. Then since $f(a) = f(b)$ the maximum and minimum values of $f$ are the same so $f$ must be constant on $[a;b]$. Then $f'(x) = 0$ for all $x \in [a;b]$.
+\end{proof}
+
+\textbf{Corollary 26 (Mean Value Theorem)}
+\textsl{If $f$ is continuous on $[a;b]$ and differentiable on $(a;b)$ then there exists some $x \in (a;b)$ such that
+\[
+f'(x) = \frac{f(b) - f(a)}{b-a}.
+\]}
+\begin{proof}
+Let
+\[
+g(x) = f(x) - \frac{f(b) - f(a)}{b-a} (x-a).
+\]
+Then $g(x)$ is continuous on $[a;b]$ and differentiable on $(a;b)$ and we have $g(a) = f(a)$, $g(b) = f(a) = g(a)$. Then we know that there exists some $x \in (a;b)$ such that
+\[
+0 = g'(x) = f'(x) - \frac{f(b) - f(a)}{b-a}
+\]
+from Rolle's Theorem (21.25). Thus we have
+\[
+f'(x) = \frac{f(b) - f(a)}{b-a}.
+\]
+\end{proof}
+
+\textbf{Exercise 27}
+\textsl{If $f$ is defined on an interval and $f'(x) = 0$ for all $x$ in the interval then $f$ is constant on the interval.}
+\begin{proof}
+Consider two points $a$ and $b$ in the interval with $a \neq b$. We know that there exists $x \in (a;b)$ such that
+\[
+0 = f'(x) = \frac{f(b) - f(a)}{b-a}
+\]
+which means that $f(a) = f(b)$ (21.26). So for any two points in the interval the value of $f$ is the same which means $f$ is constant on the interval.
+\end{proof}
+
+\textbf{Exercise 28}
+\textsl{If $f$ and $g$ are defined on the same interval and $f'(x) = g'(x)$ for all $x$ in the interval then there is some number $c$ such that $f = g + c$.}
+\begin{proof}
+For all $x$ in the interval we have $f'(x) - g'(x) = (f-g)' (x) = 0$. Then we must have $(f-g) (x) = c$ for some constant $c$ (21.27). Thus $f = g + c$.
+\end{proof}
+
+\textbf{Definition 29}
+\textsl{A function is increasing on an interval if $f(a) < f(b)$ for all $a$ and $b$ in the interval with $a < b$. The function $f$ is decreasing on an interval if $f(a) > f(b)$ for all $a$ and $b$ in the interval with $a < b$.}\newline
+
+\textbf{Exercise 30}
+\textsl{If $f'(x) > 0$ for all $x$ in an interval, then $f$ is increasing on the interval. If $f'(x) < 0$ for all $x$ in the interval then $f$ is decreasing on the interval.}
+\begin{proof}
+Let $f'(x) > 0$ for all $x$ in the interval and let $a$ and $b$ be two points in the interval with $a < b$. Then there exists $x \in (a;b)$ such that
+\[
+0 < f'(x) = \frac{f(b) - f(a)}{b-a}
+\]
+and so $f(b) - f(a) > 0$ (21.26). But then $f(b) > f(a)$ and so $f$ is increasing on the interval. A similar proof holds for decreasing $f$.
+\end{proof}
+
+\textbf{Theorem 31}
+\textsl{Suppose $f'(a) = 0$. If $f''(a) > 0$ then $f$ has a local minimum at $a$. If $f''(a) < 0$ then $f$ has a local maximum at $a$.}
+\begin{proof}
+Suppose that $f''(a) > 0$. Since $f'(a) = 0$ we have
+\[
+f'' (a) = \lim_{h \rightarrow 0} \frac{f'(a+h)}{h} > 0.
+\]
+Then $f'(a+h)/h > 0$ for small enough values of $h$. Thus for small values of $h > 0$ we have $f'(a+h) > 0$ which means $f$ is increasing on an interval to the right of $a$. Similarly $f$ is decreasing on an interval to the left of $a$. Then $f$ must have a minimum at $a$. A similar proof holds for $f''(a) < 0$.
+\end{proof}
+
+\textbf{Exercise 32}
+\textsl{Let $a + \frac{b}{2} + \frac{c}{3} + \frac{d}{4} + \frac{e}{5} = 0$. Show that the polynomial $p(x) = a + bx + cx^2 + dx^3 + ex^4$ has at least one real zero.}
+\begin{proof}
+Let $P(x) = ax + \frac{b}{2}x^2 + \frac{c}{3}x^3 + \frac{d}{4}x^4 + \frac{e}{5}x^5$ and note that $P'(x) = p(x)$. Also note that $P(0) = P(1) = 0$. Then we know there exists some $x \in (0;1)$ such that
+\[
+p(x) = P'(x) = \frac{P(1) - P(0)}{1-0} = 0
+\]
+from the Mean Value Theorem (21.26).
+\end{proof}
+
+\textbf{Theorem 33}
+\textsl{Suppose that $f$ is continuous at $a$ and that $f'(a)$ exists for all $x$ in some interval containing $a$, except perhaps for $x = a$. Suppose, moreover, that $\lim_{x \rightarrow a} f'(x)$ exists. Then $f'(a)$ also exists and
+\[
+f'(a) = \lim_{x \rightarrow a} f'(x).
+\]}
+\begin{proof}
+Note that if $h > 0$ is small enough then $f$ is continuous on $[a; a+h]$ and differentiable on $(a;a+h)$. We know there exists some value $y$ such that
+\[
+f'(y) = \frac{f(a+h) - f(a)}{h}
+\]
+by the Mean Value Theorem (21.26). Note that $y$ goes to $a$ as $h$ goes to $0$ because $y \in (a; a+h)$. Then
+\[
+f'(a) = \lim_{h \rightarrow 0^+} \frac{f(a+h) - f(a)}{h} = \lim_{h \rightarrow 0^+} f'(y) = \lim_{x \rightarrow a^+} f'(x).
+\]
+If $h < 0$ is small enough then $f$ is continuous on $[a+h; a]$ and differentiable on $(a+h;a)$. We know there exists some value $y$ such that
+\[
+f'(y) = \frac{f(a) - f(a+h)}{-h} = \frac{f(a+h) - f(a)}{h}
+\]
+by the Mean Value Theorem (21.26). Note that $y$ goes to $a$ as $h$ goes to $0$ because $y \in (a; a+h)$. Then
+\[
+f'(a) = \lim_{h \rightarrow 0^-} \frac{f(a+h) - f(a)}{h} = \lim_{h \rightarrow 0^-} f'(y) = \lim_{x \rightarrow a^-} f'(x).
+\]
+Since the left and right hand limits are the same we must have
+\[
+f'(a) = \lim_{x \rightarrow a} f'(x).
+\]
+\end{proof}
+
+\textbf{Theorem 34 (Cauchy Mean Value Theorem)}
+\textsl{If $f$ and $g$ are continuous on $[a;b]$ and differentiable on $(a;b)$ then there exists $x \in (a;b)$ such that
+\[
+(f(b) - f(a)) g'(x) = (g(b) - g(a)) f'(x).
+\]
+If $g(b) \neq g(a)$ and $g'(x) \neq 0$ this equation can be written
+\[
+\frac{f(b)-f(a)}{g(b)-g(a)} = \frac{f'(x}{g'(x)}.
+\]}
+\begin{proof}
+Let
+\[
+h(x) = f(x) (g(b)-g(a)) - g(x) (f(b)-f(a)).
+\]
+Then $h$ is continuous on $[a;b]$, differentiable on $(a;b)$ and $h(a) = h(b)$. Then $h'(x) = 0$ for some $x \in (a;b)$ (21.25). Thus
+\[
+0 = f'(x) (g(b)-g(a)) - g'(x) (f(b)-f(a))
+\]
+giving the desired equality.
+\end{proof}
+
+\textbf{Theorem 35 (L'H\^{o}pital's Rule)}
+\textsl{Suppose that
+\[
+\lim_{x \rightarrow a} f(x) = 0,
+\]
+\[
+\lim_{x \rightarrow a} g(x) = 0
+\]
+and $\lim_{x \rightarrow a} f'(x)/g'(x)$ exists. Then $\lim_{x \rightarrow a} f(x)/g(x)$ exists and
+\[
+\lim_{x \rightarrow a} f(x)/g(x) = \lim_{x \rightarrow a} f'(x)/g'(x).
+\]}
+\begin{proof}
+Note that $f(a)$ and $g(a)$ need not necessarily defined so let $f(a) = g(a) = 0$. Then $f$ and $g$ are continuous on $[a;x]$ and differentiable on $(a;x)$. Then there exists some $y \in (a;x)$ such that
+\[
+(f(x) - f(a)) g'(y) = (g(x) - g(a)) f'(y)
+\]
+which means
+\[
+\frac{f(x)}{g(x)} = \frac{f'(y)}{g'(y)}
+\]
+after using the Cauchy Mean Value Theorem on $f$ and $g$ (21.34). But then $y$ goes to $a$ as $x$ goes to $a$ because $y \in (a;x)$. Then we have
+\[
+\lim_{x \rightarrow a} \frac{f(x)}{g(x)} = \lim_{x \rightarrow a} \frac{f'(y)}{g'(y)} = \lim_{z \rightarrow a} \frac{f'(z)}{g'(z)}.
+\]
+\end{proof}
+
+\end{flushleft}
+\end{document}

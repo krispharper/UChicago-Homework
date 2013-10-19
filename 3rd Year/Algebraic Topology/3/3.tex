@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage,bbm}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26300\\
+
+April 20, 2010
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{problem}
+Consider two arcs $\alpha$ and $\beta$ embedded in $D^2 \times I$ as shown in the figure. The loop $\gamma$ is obviously nullhomotopic in $D^2 \times I$, but show that there is no nullhomotopy of $\gamma$ in the complement of $\alpha \cup \beta$.
+\end{problem}
+\begin{proof}
+We will preform a series of homeomorphisms to the space. First we move the endpoints of both $\alpha$ and $\beta$ toward the center of the cylinder. These maps will necessarily move $\gamma$ to the position indicated in the figure.
+\vspace{100pt}
+Now we transform the cylinder to a $2$-sphere so that the arcs $\alpha$ and $\beta$ are chords in the sphere. Now we can draw a plane intersecting the sphere separating $\alpha$ and $\beta$ into two hemispheres. We deformation retract this space by taking the plane to a point, which we'll call $x_0$. The resulting space is a wedge sum of two $2$-spheres with diameters (namely the arcs $\alpha$ and $\beta$) removed. Note that this retraction will take $\gamma$ to a composition of four loops based at $x_0$.
+\vspace{100pt}
+Now we can deformation retract each of the two $2$-spheres into a disk which will take $\alpha$ and $\beta$ each to a point removed from these disks. These two spaces can then be deformation retracted to a copy of $S^1$ so the resulting space is a wedge sum $S^1 \vee S^1$ with fundamental group $\mathbb{Z} * \mathbb{Z}$.
+\vspace{100pt}
+While keeping track of $\gamma$ through this process we now see that $\gamma$ is the commutator $aba^{-1}b^{-1}$ so it cannot be nullhomotopic.
+\end{proof}
+
+\begin{problem}
+Consider the quotient space of a cube $I^3$ obtained by identifying each square face with the opposite square face via the right-handed screw motion consisting of a translation by one unit in the direction perpendicular to the face combined with a one-quarter twist of the face about its center point. Show this quotient space $X$ is a cell complex with two $0$-cells, four $1$-cells, three $2$-cells, and one three cell. Using this structure, show that $\pi_1(X)$ is the quaternion group $\{\pm 1, \pm i, \pm j, \pm k\}$ of order $8$.
+\end{problem}
+\begin{proof}
+Label the cube $I^3$ with vertices $a$, $b$, $c$, $d$, $e$, $f$, $g$ and $h$ as shown in the figure. Making the identifications described we have the following identifications of points. $(a,h)$, $(a,f)$, $(a,c)$, $(c,f)$, $(c,h)$ and $(f,h)$ as well as $(b,e)$, $(e,g)$, $(b,g)$, $(d,g)$, $(b,d)$, $(d,e)$. From these pairings we see that $a$, $c$, $f$ and $h$ get identified to one vertex $u$ and $b$, $d$, $e$ and $g$ get identified to another vertex $v$. So we have two distinct $0$-cells, $u$ and $v$.
+\vspace{100pt}
+
+We can make similar identification pairs with the edges so we have $(ad,cg)$, $(ad,ef)$, $(ef,ch)$ as well as $(ae,bc)$, $(ae,gh)$, $(bc,gh)$ as well as $(ab,fg)$, $(ab,dh)$, $(dh,fg)$ and finally $(bf,eh)$, $(cd,eh)$, $(bf,cd)$. Thus we have four distinct $1$-cells. Note that in each edge is identified with either $u$ or $v$ so our $1$-complex looks like a graph with two vertices and four double edges. For convenience relabel the $1$-cells as $a$, $b$, $c$ and $d$.
+\vspace{100pt}
+Now the six faces of the cube are identified into three pairs so we have three $2$-cells. The $2$-cells are attached via the maps $abcd$, $d^{-1}a^{-1}cb$ and $ac^{-1}db$. Finally we attach a $3$-cell appropriately to form the middle of the cube.
+
+We can contract the edge $d$ to the point $u$ in the $1$-skeleton and retain the same fundamental group overall. We now have a fundamental group consisting of $\mathbb{Z} * \mathbb{Z} * \mathbb{Z}$ quotiented out by the relations given by the attaching maps for the $2$-cells. With $d$ contracted to a point the relations are $abc = 1$, $a^{-1}cb = 1$ and $ac^{-1}b = 1$. From the first relation we see $a^{-1} = bc$ so $(a^{-1})^2 = a^{-1}bc$. Also from the first relation we have $b = a^{-1}c^{-1}$ and from the third relation we have $b = ca^{-1}$. Thus $b^2 = a^{-1}c^{-1}ca^{-1} = (a^{-1})^2 = a^{-1}bc$. Finally from the first relation we have $c = b^{-1}a^{-1}$ and from the second relation we have $c = ab^{-1}$ thus $c^2 = b^{-1}a^{-1}ab^{-1} = (b^{-1})^2 = a^{-1}bc$. Making the identifications $a^{-1} = i$, $b = j$, $c = k$ and $-1 = a^{-1}bc = ijk$ we have the following group presentation $\langle i, j , k \mid i^2 = j^2 = k^2 = ijk \rangle$ which is the quaternion group $Q_8$.
+\end{proof}
+
+\begin{problem}
+Given a space $X$ with basepoint $x_0 \in X$, we may construct a CW complex $L(X)$ having a single $0$-cell, a $1$-cell $e_{\gamma}^1$ for each loop $\gamma$ in $X$ based at $x_0$, and a $2$-cell $e_{\tau}^2$ for each map $\tau$ of a standard triangle $PQR$ into $X$ taking the three vertices $P$, $Q$ and $R$ of the triangle to $x_0$. The $2$-cell $e_{\tau}^2$ is attached to the three $1$-cells that are the loops obtained by restricting $\tau$ to the three oriented edges $PQ$, $PR$, and $QR$. Show that the natural map $L(X) \to X$ induces an isomorphism $\pi_1(L(X)) \approx \pi_1(X,x_0)$.
+\end{problem}
+\begin{proof}
+Let $f$ be any loop in $\pi_1(X,x_0)$. Then $f$ is a $1$-cell in $L(X)$ and since $L(X)$ has only one $0$-cell, this is a loop in $\pi_1(L(X))$. Thus the map from $\pi_1(L(X)) \to \pi_1(X,x_0)$ is surjective. Now suppose $f$ is a loop in $\pi_1(L(X))$ which gets mapped to a nullhomotopic loop $g$ in $\pi_1(X,x_0)$. Since $g$ is nullhomotopic we can use this homotopy to make a map of a triangle $PQR$ into $X$ with $P$, $Q$ and $R$ mapping to $x_0$. Restricting this map to the edges $PQ$, $PR$ and $QR$ we have the boundary of a $2$-cell in $L(X)$. But then the boundary of this $2$-cell is precisely the loop $f \in \pi_1(L(X))$ and so $f$ is nullhomotopic. Thus our map has trivial kernel and is injective.
+\end{proof}
+
+\begin{problem}
+For a covering space $p : \widetilde{X} \to X$ and a subspace $A \subseteq X$, let $\widetilde{A} = p^{-1}(A)$. Show that the restriction $p : \widetilde{A} \to A$ is a covering space.
+\end{problem}
+\begin{proof}
+Since $p : \widetilde{X} \to X$ is a covering space there exists an open cover $\{U_{\alpha}\}$ such that for each $\alpha$, $p^{-1}(U_{\alpha})$ is a disjoint union of open sets in $\widetilde{X}$ each of which is mapped homeomorphically onto $U_{\alpha}$. Note that $\{A \cap U_{\alpha}\}$ is an open cover of $A$ and that $p^{-1}(A \cap U_{\alpha}) = p^{-1}(A) \cap p^{-1}(U_{\alpha}) = \widetilde{A} \cap p^{-1}(U_{\alpha})$. Since each $p^{-1}(U_{\alpha})$ is a disjoint union of open sets in $\widetilde{X}$ it follows that $p^{-1}(A \cap U_{\alpha}) = \widetilde{A} \cap p^{-1}(U_{\alpha})$ is a disjoint union of open sets in $\widetilde{A}$. Moreover, for each alpha there is a homeomorphism from $p^{-1}(U_{\alpha})$ onto $U_{\alpha}$ and so the restriction of these maps to $\widetilde{A}$ gives homeomorphisms from $\widetilde{A} \cap p^{-1}(U_{\alpha})$ to $p(\widetilde{A} \cap p^{-1}(U_{\alpha})) = A \cap U_{\alpha}$. Thus $p : \widetilde{A} \to A$ is a covering space.
+\end{proof}
+
+\begin{problem}
+Show that if $p_1 : \widetilde{X}_1 \to X_1$ and $p_2 : \widetilde{X}_2 \to X_2$ are covering space, so is their product $p_1 \times p_2 : \widetilde{X}_1 \times \widetilde{X}_2 \to X_1 \times X_2$.
+\end{problem}
+\begin{proof}
+Let $\{U_{\alpha}\}$ and $\{V_{\beta}\}$ be the open covers of $X_1$ and $X_1$ corresponding to $p_1$ and $p_2$ respectively. Then $\{U_{\alpha} \times V_{\beta}\}$ is an open cover of $X_1 \times X_2$. Now note that $(p_1 \times p_2)^{-1} (U_{\alpha} \times V_{\beta}) = p_1^{-1}(U_{\alpha}) \times p_2^{-1}(V_{\beta})$. Since $p_1^{-1}(U_{\alpha})$ is a disjoint union of open sets in $\widetilde{X}_1$ and $p_2^{-1}(V_{\beta})$ is a disjoint union of open sets in $\widetilde{X}_2$ we see that $(p_1 \times p_2)^{-1} (U_{\alpha} \times V_{\beta})$ is a disjoint union of open sets in $\widetilde{X}_1 \times \widetilde{X}_2$. Moreover, for each $\alpha$ and $\beta$ there exists homeomorphisms from $p_1^{-1}(U_{\alpha})$ to $U_{\alpha}$ and from $p_2^{-1}(V_{\beta})$ to $V_{\beta}$. Taking the product of these homeomorphisms produces a homeomorphism from $p_1^{-1}(U_{\alpha}) \times p_2^{-1}(V_{\beta}) = (p_1 \times p_2)^{-1} (U_{\alpha} \times V_{\beta})$ to $U_{\alpha} \times V_{\beta}$. Thus $p_1 \times p_2 : \widetilde{X}_1 \times \widetilde{X}_2 \to X_1 \times X_2$ is a covering space as well.
+\end{proof}
+
+\begin{problem}
+Show that $f : X \to Y$ is a homotopy equivalence if there exist maps $g, h : Y \to X$ such that $fg \simeq \mathbbm{1}$ and $hf \simeq \mathbbm{1}$. More generally, show that $f$ is a homotopy equivalence if $fg$ and $hf$ are homotopy equivalences.
+\end{problem}
+\begin{proof}
+Composing the first homotopy with $h$ and the second homotopy with $g$ we have $hfg \simeq h$ and $hfg \simeq g$. Since homotopy is transitive we have that $g \simeq h$ so that we must have $gf \simeq \mathbbm{1}$ as well and $f$ is a homotopy equivalence.
+
+If $fg$ and $hf$ are homotopy equivalences then there exist maps $k : X \to Y$ and $k' : Y \to X$ such that $k'fg \simeq \mathbbm{1}$, $fgk \simeq \mathbbm{1}$, $khf \simeq \mathbbm{1}$ and $hfk' \simeq \mathbbm{1}$. Then we have $k \simeq k'fgk \simeq k'$ so that $k$ and $k'$ are homotopic. Thus $f$ must be a homotopy equivalence.
+\end{proof}
+
+\begin{problem}
+Let $\widetilde{X}$ and $\widetilde{Y}$ be simply-connected covering spaces of the path-connected, locally path-connected space spaces $X$ and $Y$. Show that if $X \simeq Y$ then $\widetilde{X} \simeq \widetilde{Y}$.
+\end{problem}
+\begin{proof}
+Let $p : \widetilde{X} \to X$ and $q : \widetilde{Y} \to Y$ be the covering spaces for $X$ and $Y$ in question. We know there exists a map $f : Y \to X$ and a map $g : X \to Y$ such that there is a homotopy $f_t : Y \to X$ taking $fg = f_0$ to $\mathbbm{1} = f_1$. Furthermore $f_*(\pi_1(Y)) \subseteq p_*(\pi_1(\widetilde{X}))$. Thus there exists a lift $\widetilde{f} : Y \to \widetilde{X}$ of $f$ and similarly a lift $\widetilde{g} : X \to \widetilde{Y}$ of $g$. Now $\widetilde{g} p : \widetilde{X} \to \widetilde{Y}$ and $\widetilde{f} q : \widetilde{Y} \to \widetilde{X}$. Furthermore $\widetilde{g} p \widetilde{f} q = \widetilde{g} f q \simeq \mathbbm{1}$ using the homotopy $f_t$. Thus $\widetilde{g} p$ is a homotopy equivalence of $\widetilde{X}$ and $\widetilde{Y}$.
+\end{proof}
+
+\begin{problem}
+Show that if a path-connected, locally path-connected space $X$ has $\pi_1(X)$ finite, then every map $X \to S^1$ is nullhomotopic.
+\end{problem}
+\begin{proof}
+Let $f : X \to S^1$ be a map so that we have the inclusion $f_*(\pi_1(X,x_0)) \subseteq \pi_1(S^1) = \mathbb{Z}$. Let $p : \mathbb{R} \to S^1$ be a covering space. Since $\pi_1(X,x_0)$ is finite we must have $f_*(\pi_1(X,x_0))$ is trivial since the only trivial subgroups of $\mathbb{Z}$ are trivial. This implies that $f_*(\pi_1(X,x_0)) \subseteq p_*(\pi_1(\mathbb{R}))$. Now we have a lift $\widetilde{f} : (X,x_0) \to \mathbb{R}$ so there exists a homotopy $f_t$ taking $\widetilde{f}$ to a constant map into $\mathbb{R}$. But then $pf_t$ is a homotopy of $f$ to the constant map.
+\end{proof}
+
+\end{document}

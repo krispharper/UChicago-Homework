@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 2: The Phantom Continuum\newline
+
+\normalsize
+
+\textbf{Axiom 1}
+\textsl{There is at least one point in $C$.}\newline
+
+\textbf{Axiom 2}
+\textsl{The relation $<$ is an ordering on $C$.}\newline
+
+\textbf{Definition 1 (First and Last Point)}
+\textsl{If $A \subseteq C$ is a subset, then a point $a \in A$ is called a first point of $A$ if for all $x \in A$, either $x = a$ or $a < x$. The last point is defined analogously.}\newline
+
+\textbf{Lemma 2}
+\textsl{Every nonempty finite set of points of $C$ has a first and a last point}
+\begin{proof}
+A subset of $C$ with one element, $a$, has a first point and a last point since for every element $x$ in the set, $a=x$ or $a<x$ and for every element $x$ in the set, $a=x$ or $a>x$. So $a$ is the first point and the last point. We now consider a set $S \subseteq C$ which has $n$ elements and since $n \in \mathbb{N}$ we can use induction on $n$. We assume every subset of $C$ with $n$ elements has a first point and a last point. Now let $T$ be a set with $n+1$ elements. Consider the set $T \backslash \{a\}$ for some $a \in T$. $T \backslash \{a\}$ has $n$ elements so it has a first point $x$ and a last point $y$. Since $a \notin T \backslash \{a\}$ we see that $a \neq x$ and $a \neq y$. Because $<$ is an ordering on $C$, we have four cases:\newline
+
+\textsl{Case 1:} Let $a<x$ and $a<y$. We know that $x \leq p$ for all points $p \in T$ such that $p \neq a$. But $a<x$ and so $a \leq p$ for all $p \in T$. Likewise, $y \geq p$ for all points $p \in T$ such that $p \neq a$. But $a<y$ and so $y \geq p$ for all $p \in T$. Then $a$ is less than or equal to every point in $T$ and $y$ is greater than or equal to every point in $T$ so the first and last points are $a$ and $y$.\newline
+
+\textsl{Case 2:} Let $x<a$ and $a<y$. Using a similar argument as in \textit{Case 1} we see that $a$ is between $x$ and $y$ and so $x$ is the first point of $T$ and $y$ is the last point.\newline
+
+\textsl{Case 3:} Let $x<a$ and $y<a$. Using the argument from \textit{Case 1} we have $x$ is less than or equal to every point in $T$ and $a$ is greater than or equal to every point in $T$ so the first and last points are $x$ and $a$.\newline
+
+\textsl{Case 4:} Let $a<x$ and $a>y$. Since we know that $x<y$ (because $x$ is the first point of $T \backslash \{a\}$), then we have $a<x$ and $x<y$ so $a<y$. But this is a contradiction so this case is impossible.\newline
+
+We see that in all possible cases $T$ has $n+1$ elements and has a first point and a last point. Thus, by induction, every nonempty finite subset of $C$ has a first and a last point.
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{Let $A$ be a nonempty finite set of points of $C$. If A contains $n$ points, then we can label them as $a_1, a_2, \dots , a_n$ in such a way that $a_1 < a_2,  a_2 < a_3, \dots ,a_{n-1} < a_n$. (In other words, $a_i < a_{i+1}$ for $i = 1,2, \dots n - 1$.)}
+\begin{proof}
+A subset of $C$ with one element can be indexed by labeling it $a_1$. Now let $S$ be a subset of $C$ with $n$ elements. Since $n \in \mathbb{N}$ we can use induction on $n$. We assume that every subset of $C$ with $n$ elements can be indexed as $a_1,a_2, \dots ,a_n$ such that $a_i<a_{i+1}$ for $i=1,2,\dots n-1$. Now consider a set $T$ with $n+1$ elements. By Lemma 2 we know that $T$ has a first point and a last point (2.2). Let $x$ be the last point. We see that $T\backslash \{x\}$ has $n$ elements and so it can be indexed $a_1,a_2, \dots ,a_n$ so that $a_i<a_{i+1}$ for $i=1,2,\dots ,n-1$. We now call $x$, $a_{n+1}$. We see that $T$ can be indexed since $a_n<a_{n+1}$ and so $a_i<a_{i+1}$ for $i=1,2, \dots n$. Since a set with one element can be indexed, and a set with $n+1$ elements can be indexed whenever a set with $n$ elements can be indexed, we see that all nonempty finite sets can be indexed.
+\end{proof}
+
+\textbf{Definition 4 (Betweenness)}
+\textsl{Let $x,y,z$ be points of $C$. We say that $y$ lies between $x$ and $z$ if $x<y$ and $y<z$.}\newline
+
+\textbf{Corollary 5}
+\textsl{Of three distinct points, one always lies between the other two.}
+\begin{proof}
+By Theorem 3, we can label three distinct points in a set $a_1$, $a_2$ and $a_3$ such that $a_1 < a_2$ and $a_2 < a_3$ (2.3). Thus $a_2$ will always be between $a_1$ and $a_3$.
+\end{proof}
+
+\textbf{Axiom 3}
+\textsl{The continuum $C$ has no first point and no last point.}\newline
+
+\textbf{Corollary 6}
+\textsl{$C$ is infinite.}
+\begin{proof}
+Suppose, to the contrary, that $C$ is finite. Then by Axiom 1 $C$ has at least one point and by Lemma 2 $C$ has a first and last point (A2.1, 2.2). But this defies Axiom 3 (2.3). This is a contradiction.
+\end{proof}
+
+\textbf{Definition 7 (Region)}
+\textsl{Let $a,b$ be points in $C$ such that $a<b$. The set of all points that lie between $a$ and $b$ is called the region $(a;b)$.}\newline
+
+\textbf{Theorem 8}
+\textsl{For every point $p \in C$, there exists a region containing $p$.}
+\begin{proof}
+Since $C$ has no first and last points then for every $p \in C$ there exist $a,b \in C$ such that $a < p$ and $p < b$ (A2.3). Therefore, since $p$ is between $a$ and $b$, $p$ is contained in the region $(a;b)$.
+\end{proof}
+
+\textbf{Definition 9 (Limit Point)}
+\textsl{Let $A \subseteq C$ be a subset. A point $p$ is called a limit point of $A$ if for every region $R$ that contains $p$, $R$ contains at least one point in $A$ other than $p$. In other words, for every region $R$ such that $p \in R$ we have
+\[
+R \cap (A \backslash p) \neq \emptyset.
+\]}
+
+\textbf{Theorem 10}
+\textsl{Let $A \subseteq B \subseteq C$ be subsets. If some point $p$ is a limit point of $A$, then it is also a limit point of $B$.}
+\begin{proof}
+Let $A \subseteq B \subseteq C$ be subsets. If $p$ is a limit point of $A$, then for every region $R$ containing $p$, it also contains at least one point in $A$. But since $A \subseteq B$, all points in $A$ are also in $B$. Thus, if $R$ contains at least one point in $A$, then it also contains at least one point in $B$. Therefore $p$ must also be a limit point for $B$.
+\end{proof}
+
+\textbf{Definition 11 (Exterior)}
+\textsl{Let $(a;b)$ be a region. Then $C \backslash (a;b) \backslash a \backslash b$ is called the exterior of $(a;b)$; the symbol is }$\text{ext}(a;b)$.\newline
+
+\textbf{Lemma 12}
+\textsl{For any region $(a;b)$, we have}
+\[
+C = \{ x \mid x < a \} \cup \{a\} \cup (a;b) \cup \{b\} \cup \{ x \mid b < x \}.
+\]
+\begin{proof}
+Let $(a;b)$ be a region in $C$. Let $S = \{ x \mid x < a \} \cup \{a\} \cup (a;b) \cup \{b\} \cup \{ x \mid b < x \}$. Suppose there is an element $k \in C$ such that $k \notin S$. Then $k \notin (a;b)$ and so $k$ is not between $a$ and $b$. Thus $k \leq a$ or $k \geq b$ (A2.2). But $k \neq a$ and $k \neq b$ and so $k<a$ or $k>b$. But we assumed that $k \notin \{ x \mid x < a \}$ and $k \notin \{ x \mid b < x \}$. This is a contradiction and so it is not the case that $k \in C$ and $k \notin S$. Therefore $C \subseteq S$. Since every point in $S$ is in $C$, we see that $C = \{ x \mid x < a \} \cup \{a\} \cup (a;b) \cup \{b\} \cup \{ x \mid b < x \}$.
+\end{proof}
+
+\textbf{Lemma 13}
+\textsl{For any region $(a;b)$, we have
+\[
+C = \textup{ext} (a;b) \cup (a;b) \cup \{a\} \cup \{b\}
+\]}
+\begin{proof}
+Let $(a;b)$ be a region in $C$ and let $p \in C$ be a point. Then either $p<a$, $p=a$ or $p>a$ and $p<b$, $p=b$ or $p>b$. Thus there are nine possibilities for $p$ in relation to $a$ and $b$, but since $a<b$ some are impossible. Since $a<b$ it's not the case that $p<a$ and $p=b$ or $p<a$ and $p>b$ and it's not the case that $p=a$ and $p=b$ or $p=a$ and $p>b$ (A2.2, 1.39). This leaves us with five cases.\newline
+
+\textit{Case 1:} If $p=a$ and $p<b$ then $p \in \{a\}$.\newline
+
+\textit{Case 2:} If $p>a$ and $p<b$ then $p \in (a;b)$.\newline
+
+\textit{Case 3:} If $p>a$ and $p=b$ then $p \in \{b\}$.\newline
+
+\textit{Case 4:} If $p<a$ and $p<b$ then $p \notin \{a\}$, $p \notin (a;b)$ and $p \notin \{b\}$ (A2.2, 1.39). But since $p \in C$, we have $p \in C \backslash (a;b) \backslash \{a\} \backslash \{b\}$ and therefore $p \in \text{ext}(a;b)$.\newline
+
+\textit{Case 5:} If $p>a$ and $p>b$ then by a similar argument from \textit{Case 4} we have $p \in \text{ext}(a;b)$.\newline
+
+In all possible cases we have $p \in \{a\}$, $p \in \{b\}$, $p \in (a;b)$ or $p \in \text{ext}(a;b)$. Therefore $p \in \text{ext} (a;b) \cup (a;b) \cup \{a\} \cup \{b\}$. Thus $C \subseteq \text{ext}(a;b) \cup (a;b) \cup \{a\} \cup \{b\}$. Likewise, since every element of $\text{ext}(a;b) \cup (a;b) \cup \{a\} \cup \{b\}$ is an element of $C$, we see that the set is a subset of $C$. Hence the two sets are equal.
+\end{proof}
+
+\textbf{Lemma 14}
+\textsl{No point of the exterior of a region is a limit point of the region. No point of a region is a limit point of the exterior of the region.}
+\begin{proof}
+Let $A = (a;b)$ be a region in $C$ and let $p \in \text{ext}(A)$. Suppose $p<a$. Then there exists a point $x \in \text{ext}(A)$ such that $x<p$ because $C$ has no first point (A2.3). So we have $(x;a)$ is a region containing $p$, which contains no points in $A$. We can make a similar statement if $p>b$ because $C$ has no last point (A2.3). Likewise, if $p \in A$, then $A$ is a region containing $p$, but no points in $A$ are in $\text{ext}(A)$ so $p$ cannot be a limit point of $\text{ext}(A)$.
+\end{proof}
+
+\textbf{Theorem 15}
+\textsl{If two regions $A$ and $B$ have a point $x$ in common, then $A \cap B$ is also a region containing $x$.}
+\begin{proof}
+Let $A=(a_1,a_2)$ and $B=(b_1,b_2)$ be regions such that $x \in A$ and $x \in B$. Then we see that $x \in A \cap B$. Without loss of generality, let $a_1 \leq b_1$. Then we see that $a_2>b_1$, otherwise $A \cap B = \emptyset$. Thus there are two cases.\newline
+
+\textsl{Case 1:} Let $a_1 \leq b_1$ and $a_2<b_2$ Then we have $a_1 \leq b_1<a_2<b_2$. Every element in $A$ which is also in $B$ must be both greater than $a_1$ and $b_1$ and less than $a_2$ and $b_2$. Since $a_1 \leq b_1$ and $a_2<b_2$, $A \cap B = (b_1,a_2)$.\newline
+
+\textsl{Case 2:} Let $a_1 \leq b_1$ and $a_2 \geq b_2$. Then we have $a_1 \leq b_1<b_2 \leq a_2$. Every element in $A$ which is also in $B$ must be both greater than $a_1$ and $b_1$ and less than $a_2$ and $b_2$. Since $a_1 \leq b_1$ and $b_2 \leq a_2$, $A \cap B = (b_1,b_2)$.\newline
+
+We see that in all cases, $A \cap B$ is a region which contains $x$.
+\end{proof}
+
+\textbf{Corollary 16}
+\textsl{If $n$ regions $R_1,R_2, \dots ,R_n$ have a point $x$ in common, then their intersection $R_1 \cap R_2 \cap \dots \cap R_n$ is also a region containing $x$.}
+\begin{proof}
+We use induction on $n$. Note that if $x \in R_1$ then $R_1$ is a region containing $x$ and so the statement holds for the base case $n=1$. We now assume that for $n$ regions $R_1,R_2, \dots ,R_n$ which all contain a point $x$, the intersection $R_1 \cap R_2 \cap \dots \cap R_n$ is a region containing $x$. Consider $n+1$ regions $R_1,R_2, \dots ,R_{n+1}$. Which all contain a point $x$. We know that the intersection $R_1 \cap R_2 \cap \dots \cap R_n$ is a region containing $x$ by the inductive hypothesis. But then by Theorem 15 we know that $R_1 \cap R_2 \cap \dots \cap R_n \cap R_{n+1}$ is also a region containing $x$ (2.15). Since this is true for $n=1$ and for $n+1$ when it's true for $n$, it must be true for all $n \in \mathbb{N}$.
+\end{proof}
+
+\textbf{Theorem 17}
+\textsl{Let $A$ and $B$ be subsets of $C$. We have $p$ is a limit point of $A \cup B$ if and only if $p$ is a limit point of $A$ or $p$ is a limit point of $B$.}
+\begin{proof}
+Let $p \in C$ be a limit point of $A \cup B$. Then suppose to the contrary that $p$ is a not a limit point of $A$ and $p$ is not a limit point of $B$. Then there exist regions $R_1$ and $R_2$ such that $p \in R_1$, $p \in R_2$, $R_1 \cap (A \backslash p) = \emptyset$ and $R_2 \cap (B \backslash p) = \emptyset$. Then there exists a region $R_3 = R_1 \cap R_2$ which also contains $p$ (2.15). And since $R_3 \cap (A \backslash p) = \emptyset$ and $R_3 \cap (B \backslash p) = \emptyset$ we see that $R_3 \cap ((A \cup B) \backslash p) = \emptyset$ which means $p$ is not a limit point of $A \cup B$. This is a contradiction. Conversely, if $p$ is a limit point of $A$ or $p$ is a limit point of $B$ then by Theorem 10, $p$ must be a limit point of $A \cup B$ since $A \subseteq A \cup B$ and $B \subseteq A \cup B$ (2.10).
+\end{proof}
+
+\textbf{Corollary 18}
+\textsl{Let $A_1,A_2, \dots ,A_n$ be subsets of $C$. We have $p$ is a limit point of the union $A_1 \cup A_2 \cup \dots \cup A_n$ if and only if $p$ is also a limit point of at least one of the sets $A_k$.}
+\begin{proof}
+We use induction on $n$. Note that if $p$ is a limit point of one set $A_1$, then the inductive base case holds for $n=1$. We now assume that if $p$ is a limit point of the union of the $n$ sets $A_1,A_2, \dots ,A_n$, then it is a limit point of at least one of the sets $A_k$. Now consider the $n+1$ sets $A_1,A_2, \dots ,A_n, A_{n+1}$ and let $p$ be a limit point of their union. Using Theorem 17 we know that $p$ is a limit point of the union $A_1 \cup A_2 \cup \dots \cup A_n$ or $p$ is a limit point of $A_{n+1}$ (2.17). Additionally, by the inductive hypothesis, if $p$ is a limit point the union $A_1 \cup A_2 \cup \dots \cup A_n$ then $p$ is a limit point of at least one set $A_k$. So we see that $p$ is a limit point of at least one of the sets $A_1, A_2, \dots ,A_{n+1}$. Since this is true for one set and for $n+1$ sets when it's true for $n$ sets, it must be true for every natural number of sets.\newline
+
+For the converse suppose that $A_1,A_2, \dots ,A_n$ are subsets of $C$ and suppose that $p$ is a limit point of at least one of the sets $A_k$. Then $A_k \subseteq A_1 \cup A_2 \cup \dots \cup A_n$ and so by Theorem 10, since $p$ is a limit point of a subset of the union, then $p$ must be a limit point of the union of all $n$ sets (2.10).
+\end{proof}
+
+\textbf{Exercise 19}
+\textsl{Find realizations of $(C, <)$, that is, concrete sets endowed with a relation $<$ that satisfies all the axioms so far. Are they the same? What does this question mean?}\newline
+
+The sets $\mathbb{Z}$ and $\mathbb{Q}$ are two sets with an ordering $<$ which satisfy the axioms so far. There are other sets such as the set of odd integers or even integers which also satisfy the axioms and have an ordering. The set of even integers is essentially the same as $\mathbb{Z}$ in this case though because there is a bijection between them which preserves the ordering.
+
+\end{flushleft}
+\end{document}

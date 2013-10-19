@@ -1,0 +1,1120 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,amsfonts,fullpage}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper
+
+MATH 16200
+
+Mikl\'{o}s Ab\'{e}rt
+
+February 21, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 4: Cardinal Numbers\newline
+
+\normalsize
+
+\textbf{Definition 1 (Cardinality)}
+\textsl{Two sets, $A$ and $B$, have the same cardinality if there exists a bijective function $f \; : \; A \rightarrow B$. The cardinality of a set $A$ is denoted by $|A|$.}
+\newline
+
+\textbf{Definition 2 (Finite and Infinite Sets)}
+\textsl{A set $X$ is finite if it is empty of there is a natural number $n$ and a bijective function $f \; : \; X \rightarrow \{1,2, \dots ,n\}$. A set that is not finite is infinite.}
+\newline
+
+\textbf{Theorem 3}
+\textsl{The even positive integers have the same cardinality as the natural numbers.}
+\begin{proof}
+Let $f \: : \: \mathbb{N} \rightarrow \{2n \mid n \in \mathbb{N}\}$ be defined as $f=2n$. Let $a$ and $b$ be even, positive integers such that $f(a)=f(b)$. Then $a=2k$ and $b=2l$ for some $k,l \in \mathbb{N}$. But then $2k=2l$ and so $k=l$. Thus $f$ is injective. Then note that $k \in \mathbb{N}$ and so for every even, positive integer, $a$, there exists a natural number $k$ such that $f(k)=n$. Thus $f$ is surjective.
+\end{proof}
+
+\textbf{Theorem 4}
+\textsl{$|\mathbb{N}|=|\mathbb{Z}|$.}
+\begin{proof}
+Define $f \: : \: \mathbb{Z} \rightarrow \mathbb{N}$ as
+\[
+f(n)=
+\begin{cases}
+2n & \text{if } n>0 \\
+-2n+1 & \text{if } n \leq 0.
+\end{cases}
+\]
+Let $a,b \in \mathbb{Z}$ such that $a \neq b$. Without loss of generality assume that $a > 0$. If $b > 0$ then we have $f(a)=2a \neq 2b=f(b)$. If $b<0$ then $f(a)$ is even and $f(b)$ is odd and so $f(a) \neq f(b)$. Lastly assume that $a<0$ and $b<0$. Then $f(a)=-2a+1$ and $f(b)=-2b+1$ and since $-2a \neq -2b$, clearly $f(a) \neq f(b)$. Since all cases are covered, $f$ is injective. Now let $a \in \mathbb{Z}$. Then $a$ is even or odd. If $a$ is even then $a=2k$ for some $k \in \mathbb{Z}$ and so $a=f(k)$. If $a$ is odd then $a=2k+1=-2(-k)+1$ for some $k \in \mathbb{Z}$ and so $a=f(-k)$. Since every natural number is the image of some integer, we have $f$ is surjective.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{Every subset of $\mathbb{N}$ is either finite or has the same cardinality as $\mathbb{N}$.}
+\begin{proof}
+Let $A \subseteq \mathbb{N}$ be a subset such that $A$ is not finite. Then $A$ is infinite. Since $A$ is a subset of $\mathbb{N}$ we can order the elements in $A$. Definite a function $f \; : \; \mathbb{N} \rightarrow A$ such that $f(n)$ is the $n$th element of $A$. This function is injective because for any two $a,b \in \mathbb{N}$, $f(a)<f(b)$ or $f(b)<f(a)$ and so $f(a) \neq f(b)$. The function is surjective because an arbitrary element of $A$ has a place in the order so that it corresponds to some element in $\mathbb{N}$. Thus we see that if a subset of $\mathbb{N}$ is not finite, then it has the same cardinality as $\mathbb{N}$.
+\end{proof}
+
+\textbf{Definition 6 (Countable Sets)}
+\textsl{A set that has the same cardinality as a subset of $\mathbb{N}$ is countable.}
+\newline
+
+\textbf{Theorem 7}
+\textsl{Every infinite set has a countably infinite subset.}
+\begin{proof}
+Create a subset of some infinite set by consecutively taking elements and numbering them in the order they were chosen. We can always choose a next element because the set is infinite.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{A set is infinite if and only if there is an injective function from the set into a proper subset of itself.}
+\begin{proof}
+Let $A$ be a set and let $B \subsetneq A$ be a proper subset such that there exists an injective function $f \; : \; A \rightarrow B$. Suppose that $A$ is finite. Then $|A|=n$ and $|B|=m$ for $m,n \in \mathbb{N}$ and $m<n$. We have $f$ is injective and so for any $a,b \in A$ such that $a \neq b$ we have $f(a) \neq f(b)$. But then $f(A)=\{f(x) \mid x \in A\}$ and since there are $n$ elements in $A$ and $f$ is injective, $|f(A)|=n$. But $f$ maps from $A$ to $B$ and $|B|<n$. This is a contradiction and so $A$ must be infinite.\newline
+
+Let $A$ be an infinite set and let $B \subseteq A$ be a countable subset of $A$ such that $B=\{b_1, b_2, b_3, \dots \}$. Define a function $f \; : \; A \rightarrow A$ where
+\[
+f(n) = 
+\begin{cases}
+n & \text{if $n \notin B$} \\
+b_{2k} & \text{if $n \in B$ and $n=b_k$}.
+\end{cases}
+\]
+Then $f$ is injective because for any two elements $a,b \in A$ such that $a \neq b$, we have $f(a) \neq f(b)$ if $a \in B$ and $b \notin B$ or $a \notin B$ and $b \in B$. If $a \notin B$ and $b \notin B$ then we have $f(a) = a \neq b = f(b)$. If $a \in B$ and $b \in B$ then $a=b_k$ and $b=b_j$ such that $k \neq j$. Then $f(a) = b_{2k} \neq b_{2j} = f(b)$. But $f$ maps to a proper subset of $A$ because all the elements of $B$ with odd indices are not mapped to.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{$\mathbb{Q}$ is countable.}
+\begin{proof}
+Let $S= \{ A_i \mid i \in \mathbb{Z} \}$ be a countable set of sets where each $A_i$ contains every element of $\mathbb{Q}$ of the form $i/q$ where $q \in \mathbb{Z}$. Note that each $A_i$ is a countable set since $\mathbb{Z}$ is countable. But also $S$ is countable for the same reason. Then by Theorem 11 we have $\bigcup_{A_i \in S} A_i$ is countable. Then for $a/b \in \mathbb{Q}$ we have $a/b \in A_a$ so $\mathbb{Q} \subseteq \bigcup_{A_i \in S} A_i$ and so $\mathbb{Q}$ is a subset of a countable set and must be countable.
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{The union of two countable sets is countable.}
+\begin{proof}
+Let $A$ and $B$ be two countable sets. If either $A$ or $B$ is finite then the problem is trivial: map all the elements of a finite set of size $n$ to the first $n$ natural numbers and then map the first element of the other set to $n+1$ and so on. So suppose $A$ and $B$ are both infinite. First suppose that $A \cap B \neq \emptyset$. Then we can consider $A \backslash B$ and $B$. These sets are disjoint and they are both countable since they are subsets of countable sets, but their union is still $A \cup B$. So we can effectively assume that $A$ and $B$ are disjoint. Since $A$ and $B$ are countable there exist functions $f \; : \; \mathbb{N} \rightarrow A$ and $g \; : \; \mathbb{N} \rightarrow B$. Define a new function $h \; : \; \mathbb{N} \rightarrow A \cup B$ such that
+\[
+h(n)=
+\begin{cases}
+f(\frac{n+1}{2}) & \text{if $n$ is odd} \\
+g(\frac{n}{2}) & \text{if $n$ is even}.
+\end{cases}
+\]
+Since $A$ and $B$ are disjoint and because every natural number is either even or odd, $h$ is injective. To show that $h$ is surjective we pick an element $x \in A \cup B$. Then $x \in A$ or $x \in B$. Suppose $x \in A$. Then $x = f(n)$ for some $n \in \mathbb{N}$ since $f$ is surjective. But then $n=\frac{k+1}{2}$ for some $k \in \mathbb{N}$ and so $h(k)=f(n)=x$. Since $h$ is a bijection we have $A \cup B$ is countable.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{The union of countably many countable sets is countable.}
+\begin{proof}
+Let $P$ be the set of primes, $\{p_1, p_2, p_3, \dots \}$. Consider the set, $R$, of all primes raised to natural number powers. That is
+\[
+R = \bigcup_{p_i \in P} \{p_i^1, p_i^2, p_i^3, \dots\}.
+\]
+Let $S=\{A_1, A_2, A_3 \dots \}$ be a set of countable sets and let $T = \bigcup_{A_i \in S} A_i = \{a_{i_j} \mid \text{$a_{i_j}$ is the $j$th element of $A_i$}\}$. Note that some $a_{i_j} \in T$ may belong to multiple sets from $S$. In this case, let the index correspond to the first set in $S$ for which $a_{i_j}$ belongs. Then let $f \; : \; T \rightarrow R$ be a function such that $f(a_{i_j}) = p_i^j$. Note that $f$ must be injective because each $a_{i_j} \in T$ has a unique index and so two distinct elements of $T$ will either be mapped to different primes raised to powers, or to the same prime raised to different powers so their images cannot be equal due to unique factorization. We have $f$ is surjective if $S$ and all of its elements are infinite. In this case we simply consider some element $x \in R$ and note that by definition $x = p_i^j$ for some $p \in P$ and $j \in \mathbb{N}$. But since $S$ and its elements are infinite there exists some $A_i \in S$ and some $a_j \in A_i$ such that $f(a_{i_j})=x$. In the case where $S$ or some $A_i \in S$ are not infinite, there exists some function $g \; : \; T \rightarrow R'$ where $R' \subseteq R \subseteq \mathbb{N}$ which is surjective and still holds the injective property that $f$ has. So in all cases we have $T$ is countable.
+\end{proof}
+
+\textbf{Theorem 12}
+\textsl{The set of all finite subsets of a countable set is countable.}
+\begin{proof}
+Let $P$ be the set of prime numbers. This set is countable because it is a subset of $\mathbb{N}$. Define $F = \{A \mid \text{$A$ is a finite subset of $P$}\}$ and $G = \{n \in \mathbb{N} \mid \text{$n$ is a product of distinct primes raised to a single power}\}$. Define $f \; : \; F \rightarrow G$ where $f$ takes a finite subset of $P$ and multiplies all the elements together. Let $A$ and $B$ be two distinct finite subsets of $P$. The product of all the elements in $A$ must be different than that of $B$ because of unique factorization. So we have $f(A) \neq f(B)$. Furthermore, for a given element of $\mathbb{N}$ there exists a unique prime factorization and since $G \subseteq \mathbb{N}$, for all $n \in G$ there exists some $A \in F$ whose elements multiply to $n$. Thus, $f$ is injective and surjective and since $G \subseteq \mathbb{N}$, the set of all finite subsets of $P$ is countable. Since $|P|=|\mathbb{N}|$, the set of all finite subsets for any countable set is countable.
+\end{proof}
+
+\textbf{Exercise 13 (Submarine Game)}
+\textsl{Suppose a submarine is moving in a straight line at a constant speed in the plane such that at each hour, the submarine is at a lattice point. Suppose at each hour you can explode one depth charge at a lattice point that will kill the submarine if it is there. You do not know where the submarine is nor do you know where or when it started. Can you eventually destroy the submarine?}
+\begin{proof}
+To find the submarine we need information from three countable sets. First let $S$ be the set of all possible starting points for the submarine. Assume it starts on the hour on a lattice point so that $S=\mathbb{Z} \times \mathbb{Z}$. Then we have the set $T$ of all possible elapsed times which is always a natural number so $T = \mathbb{N}$. Finally we need a speed and direction and so we take $V$ to be the set of all 2-vectors so that $|V|=|\mathbb{Z} \times \mathbb{Z}|$. If we consider $S \times T \times V$ then we have a set which encompasses all possible locations of the sub at any given time. But this set is countable because the union of countably many countable sets is countable. Thus $\mathbb{N} \times \mathbb{N}$ is countable and so the product of any two countable sets is countable (note that $S$, $T$ and $V$ are all countable). Since the location set is countable we can assign a natural number to every possible location for the sub and so we can eventually destroy it.
+\end{proof}
+
+\textbf{Exercise 14 (Algorithmic Submarine)}
+\textsl{Same game, but the submarine is now jumping between lattice points following an algorithm (that you don't know). Can you eventually destroy the submarine now?}
+\begin{proof}
+An algorithm is a set of instructions that can be followed by a computer so consequently the set of all algorithms is a countable set. Then, by a similar method to Exercise 13 we take the set of all starting points $S$ and all times elapsed $T$ and then the set of all algorithms $A$. Then $S \times T \times A$ is a countable set which gives us the position of the sub at any time. Thus we can still assign a natural number to the sub's location at any time so we can eventually destroy it.
+\end{proof}
+
+For a set $A$ let
+\[
+2^A=\{B \mid B \subseteq A\}
+\]
+be the set of subsets of $A$; we call it the power set of $A$.
+
+\textbf{Theorem 15}
+\textsl{For a set $A$, there is an injective function from $A$ to $2^A$.}
+\begin{proof}
+For $A = \emptyset$ any function $f \; : \; A \rightarrow 2^A$ will vacuously be injective because there are no elements of $A$. Thus every time we have $a,b \in A$ with $a \neq b$ we have $f(a) \neq f(b)$. For nonempty $A$ let $f \; : \; A \rightarrow 2^A$ be a function such that $f(a) = \{a\}$. This function is clearly injective because for all $a,b \in A$ with $a \neq b$ we have $f(a)=\{a\} \neq \{b\}=f(b)$.
+\end{proof}
+
+\textbf{Theorem 16}
+\textsl{For a set $A$, let $P$ be set of all functions from from $A$ to the two point set $\{0,1\}$.  Then $|P|=|2^A|$.}
+\begin{proof}
+Let $f \; : \; 2^A \rightarrow P$ be a function defined so that for $B \subseteq A$, $f(B)$ maps to some function $g$ with
+\[
+g(a)=
+\begin{cases}
+1 & \text{for $a \in B$} \\
+0 & \text{for $a \notin B$}.
+\end{cases}
+\]
+Let $B,C$ be distinct subsets of $A$. Without loss of generality, assume that there exists $a \in B$ such that $a \notin C$. Then $f(B)$ gives a function $g$ such that $g(a) = 1$ and $f(C)$ gives a function $h$ such that $h(a)=0$. Thus, for $B,C \in 2^A$ with $B \neq C$ we have $f(B) \neq f(C)$. Thus $f$ is injective. For surjectivity, let $g \in P$. Then create a subset $B \subseteq A$ such that $a \in B$ if $g(a)=1$ and $a \notin B$ if $g(a)=0$.
+\end{proof}
+
+\textbf{Theorem 17}
+\textsl{There is a bijection between $2^{\mathbb{N}}$ and infinite sequences of $0$'s and $1$'s.}
+\begin{proof}
+Let $f$ be a function from $2^{\mathbb{N}}$ to the set of infinite sequences of $0$'s and $1$'s. Define $f$ so that $f(A)$ is a sequence with the $n$th element as $1$ if $n \in A$ and $0$ if $n \notin A$. Consider two subsets of $\mathbb{N}$, $A,B$ with $A \neq B$. Without loss of generality assume that $a \in A$ and $a \notin B$. Then we have $f(A)$ is a sequence with a $1$ in the $a$th place and $f(B)$ is a sequence with a $0$ in the $a$th place. Thus, $f(A) \neq f(B)$ and so $f$ is injective. For surjectivity pick an infinite sequence of $1$'s and $0$'s. Create a subset of $\mathbb{N}$ by taking the places of all the $1$'s and putting them in the subset and excluding the places of the $0$'s. Since every place in the sequence is a natural number, clearly this subset exists.
+\end{proof}
+
+\textbf{Theorem 18 (Cantor)}
+\textsl{There is no map from the set $A$ onto $2^A$.}
+\begin{proof}
+Suppose that there is a bijective function $f \; : \; A \rightarrow 2^A$. Then for all $X \subseteq A$ there exists $x \in A$ such that $f(x) = X$. Consider $B = \{ x \in A \mid x \notin f(x) \}$. Then there exists $b \in A$ such that $f(b) = B$. In the case where $b \in B$, by definition of $B$, $b \notin f(b) = B$. In the case where $b \notin B$, then by definition of $B$, $b \in B$. In either case we have a contradiction and so there exists no such function $f$.
+\end{proof}
+
+\textbf{Corollary 19}
+\textsl{There are infinitely many different infinite cardinalities.}
+\begin{proof}
+From Theorem 18 we know that for an infinite set $A$, $|A|$ and $|2^A|$ are different cardinalities. But then $|2^A|$ and $|2^{2^A}|$ are different cardinalities. We can continue in the process indefinitely so that there cannot be a finite number of infinite cardinalities.
+\end{proof}
+
+\textbf{Exercise 20}
+\textsl{Find a bijection $f \; : \; [0;1] \rightarrow [0;1)$.}
+\begin{proof}
+Define a function $f \; : \; [0;1] \rightarrow [0;1)$ where
+\[
+f(x) =
+\begin{cases}
+x & \text{if $x \neq \frac{1}{n}$ for $n \in \mathbb{N}$} \\
+\frac{1}{n+1} & \text{if $x=\frac{1}{n}$ for $n \in \mathbb{N}$}.
+\end{cases}
+\]
+We see that $f$ is surjective because any number not of the form $1/n$ with $n \in \mathbb{N}$ in $[0;1)$ will have been mapped there by itself. If $y = 1/n$ for $n \in \mathbb{N}$ and $y \in [0;1)$ then $x = 1/n-1 \in [0;1]$ and $f(x) = y$. To show $f$ is injective take $f(a)=f(b)$ for $f(a), f(b) \in [0;1)$. There are three possibilities. First suppose that $f(a) \neq 1/m$ and $f(b) \neq 1/n$ for all $m,n \in \mathbb{N}$. Then $a=f(a)=f(b)=b$. Secondly we see that if $f(a) = 1/m$ and $f(b) \neq 1/n$ for $m,n \in \mathbb{N}$ then we have $a = 1/(m-1)$ and $b=f(b) \neq 1/n$ for $n \in \mathbb{N}$ so this case is impossible. Thirdly if we have $f(a)=1/m$ and $f(b)=1/n$ for $m,n \in \mathbb{N}$ then we have $a=1/(m-1)$ and $b=1/(n-1)$. But $f(a)=f(b)$ so $1/m=1/n$ and $m=n$. Then $a=1/(m-1)=1/(n-1)=b$. In all cases we have if $f(a)=f(b)$ then $a=b$ so $f$ is injective.
+\end{proof}
+
+\textbf{Theorem 21 (Schroeder-Bernstien)}
+\textsl{If $A$ and $B$ are sets such that there exist injective functions $f \; : \; A \rightarrow B$ and $g \; : \; B \rightarrow A$, then $|A| = |B|$.}
+
+\textbf{Theorem 22}
+\textsl{$|\mathbb{R}|=|(0;1)|=|[0;1]|$}
+\begin{proof}
+To show $|\mathbb{R}|=|(0;1)|$ we define $f \; : \; (0;1) \rightarrow \mathbb{R}$ such that
+\[
+f(x) =
+\begin{cases}
+\frac{1}{x}-2 & \text{if } 0 < x \leq \frac{1}{2} \\
+\frac{-1}{1-x}+2 & \text{if } \frac{1}{2}<x<1.
+\end{cases}
+\]
+Pick $a,b \in (0,1)$ such that $a \neq b$. There are three possibilities. Let $a,b \leq \frac{1}{2}$. Then $f(a) = \frac{1}{a}-2$ and $f(b) = \frac{1}{b}-2$ but then since $\frac{1}{a} \neq \frac{1}{b}$ we have $f(a) \neq f(b)$. Now suppose that $a,b > \frac{1}{2}$. Then we have $f(a) = \frac{-1}{1-a}+2$ and $f(b) = \frac{-1}{1-b}+2$. But we have $a \neq b$ and so $1-a \neq 1-b$ and $\frac{1}{1-a} \neq \frac{1}{1-b}$. Thus $f(a) \neq f(b)$. Finally without loss of generality consider $a \leq \frac{1}{2}$ and $b > \frac{1}{2}$. Then $f(a) = \frac{1}{a}-2$ and $f(b) = \frac{-1}{1-b}+2$. Suppose $f(a)=f(b)$. Then $\frac{1}{a}+\frac{1}{1-b}=4$. But since $b > \frac{1}{2}$ and $a \leq \frac{1}{2}$ we have a contradiction. Thus $f(a) \neq f(b)$. Therefore $f$ is injective. To show that $f$ is surjective pick an arbitrary element $x$ from $\mathbb{R}$. If $x>0$ then $x+2>0$ and so $0<\frac{1}{x+2} \leq \frac{1}{2}$. Likewise if $x<0$ then $x-2<0$ and so $\frac{1}{2} < \frac{-1}{x-2}-1 < 1$. Therefore $f$ is surjective. Thus $f$ is a bijection.\newline
+
+To show that $|(0;1)|=|[0;1]|$ we use a similar proof to Exercise 20 and let $f \; : \; [0;1] \rightarrow (0;1)$ be defined by
+\[
+f(x) =
+\begin{cases}
+x & \text{if $x \neq \frac{1}{n}$ for $n \in \mathbb{N}$} \\
+\frac{1}{2} & \text{if $x = 0$} \\
+\frac{1}{n+2} & \text{if $x=\frac{1}{n}$ for $n \in \mathbb{N}$}.
+\end{cases}
+\]
+Like in Exercise 20 this function maps elements of $[0;1]$ not of the form $1/n$ for $n \in \mathbb{N}$ to themselves and shifts elements of the form $1/n$. In this case $0$ needs to be mapped to $1/2$ because $0 \notin (0;1)$ so each $1/n$ is shifted two places instead of $1$. Similar arguments for surjectivity and injectivity used in Exercise 20 will hold for this function.
+\end{proof}
+
+\textbf{Theorem 23}
+\textsl{There is an injective function $f \; : \; \mathbb{R} \rightarrow 2^{\mathbb{N}}$.}
+\begin{proof}
+We know that $\mathbb{Q}$ is countable and so there exists an injective function $f \; : \; \mathbb{Q} \rightarrow \mathbb{N}$. But then there must exist a map from $2^{\mathbb{Q}}$ to $2^{\mathbb{N}}$ because any subset of $\mathbb{Q}$ will map to a subset of $\mathbb{N}$ containing the images of the elements in $\mathbb{Q}$ under $f$. But each element of $\mathbb{R}$ is a subset of $\mathbb{Q}$ because they are all cuts. We can map every element of $\mathbb{R}$ to $2^{\mathbb{N}}$ using the same map that we have from $2^{\mathbb{Q}}$ to $2^{\mathbb{N}}$ which is injective.
+\end{proof}
+
+\textbf{Theorem 24}
+\textsl{$|\mathbb{R}|=|2^{\mathbb{N}}|$.}
+\begin{proof}
+We know that there exists a map from $2^{\mathbb{N}}$ to infinite sequences of $0$'s and $1$'s. But we can turn any sequence of $0$'s and $1$'s into a real number by expressing it in decimal notation and putting a decimal point in from of it. This real number will be unique because it represents the intersection of an infinite number of enclosed sets. So now we have an injective map from $2^{\mathbb{N}}$ to $\mathbb{R}$ and from Theorem 23 we have an injective function from $\mathbb{R}$ to $2^{\mathbb{N}}$. Thus, by Theorem 21 we have $|\mathbb{R}| = |2^{\mathbb{N}}|$.
+\end{proof}
+
+\newpage
+
+\Large
+
+Sheet 8: Proving Connectedness\newline
+
+\normalsize
+
+\textbf{Theorem 1}
+\textsl{Let $A$ be a bounded infinite set. Then $A$ has a limit point.}
+\begin{proof}
+Assume that $A$ has no limit points. Then $A$ is closed because it vacuously contains all its limit points. Because $A$ is closed and bounded it is compact. Since $A$ has no limit points, for all $a \in A$ there exists some region $R_a$ with $a \in R_a$ such that $R_a \cap (A \backslash a) = \emptyset$. Let $\mathcal{A} = \{R_a \mid a \in A\}$ be an open cover for $A$. Since $A$ is compact there exists a finite subcover, $\mathcal{B}$, of $\mathcal{A}$ for $A$. But then $\mathcal{B}$ is a finite open cover for $A$ containing only regions which contain one point of $A$ and $A$ is an infinite set. This is a contradiction and so $A$ must have a limit point.
+\end{proof}
+
+\textbf{Theorem 2}
+\textsl{Let $O$ be a nonempty, bounded, open set. Then $\sup O$ is a limit point of both $O$ and the complement of $O$.}
+\begin{proof}
+We have $O$ is nonempty and bounded so $\sup O$ exists. Let $(a;b)$ be a region containing $\sup O$. Suppose there are no points of $O$ in $(a;\sup O)$. We know that regions are nonempty and since $\sup O$ is greater than every point in $O$, there exists a point in $(a; \sup O)$ which is greater than every point in $O$, but is less than $\sup O$. This is a contradiction and so there exists a point in $(a; \sup O)$ which is also in $O$ and in $(a;b)$. Thus, any region containing $\sup O$ must also contain an additional point from $O$ and so $\sup O$ is a limit point of $O$. Additionally if we take the region $(a;b)$ containing $\sup O$ then $(\sup O;b)$ is a nonempty region containing at least one point greater than $\sup O$ which is therefore not in $O$. Thus $(a;b)$ contains a point which is in the complement of $O$ and so $\sup O$ is a limit point of the complement of $O$.
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{Let $A$ be a set which is open and closed such that $A \neq \emptyset$ and $A \neq C$. Let $B$ be the complement of $A$. Let $a \in A$ and $b \in B$ and without loss of generality assume that $a < b$. Now let $s = \sup (A \cap (a;b))$. Then $s$ is a limit point of $A$ and $B$.}
+\begin{proof}
+Suppose that $s$ is not a limit point of $A$. Then there exists some region $(p;q)$ which contains $s$ but no other points of $A$. Thus $(p;q)$ contains no points of $(A \cap (a;b)) \backslash s$ as well. But $s \geq x$ for all $x \in A \cap (a;b)$ there exists an element of $(p;s)$ which is greater than or equal to every element of $A \cap (a;b)$ but less than $s$. This is a contradiction and so $s$ must be a limit point of $A$.\newline
+
+To show $s$ is a limit point of $B$ consider two cases.\newline
+
+\textit{Case 1:} Suppose $s \neq b$. First suppose $s>b$. Then there exists $c \in (b;s)$. For all $x \in A \cap (a;b)$ we have $x < b < c$ so $c$ is an upper bound for $A \cap (a;b)$ which is less than $s$. This is a contradiction so $s<b$. Suppose that $s<a$. Then for all $x \in A \cap (a;b)$ we have $s<a<x$ which is a contradiction since $s \geq x$ for all $x \in A \cap (a;b)$. Thus, $s \in (a;b)$. Consider the region $(s;b)$. Suppose there exists $x \in (s;b)$ such that $x \in A$. Then $x \in A \cap (s;b) \subseteq A \cap (a;b)$. But this is a contradiction since $x > s$. So for all $x \in (s;b)$ we have $x \in B$ so $(s;b) \subseteq B$. But then every region containing $s$ will contain a point in $(s;b) \subseteq B$ so $s$ is a limit point of $B$.\newline
+
+\textit{Case 2:} Suppose $s=b$. Then $A$ is closed and so $B$ is open. Thus there exists some region $R \subseteq B$ such that $s \in R$. But then every region containing $s$ will intersect $R \backslash s$ nontrivially so $s$ must be a limit point of  $B$.
+\end{proof}
+
+\textbf{Theorem 4}
+\textsl{If every bounded nonempty point set has a least upper bound and regions are nonempty, then the only sets that are both open and closed are $C$ and $\emptyset$.}
+\begin{proof}
+Suppose to the contrary that there exists an open and closed set $A$ such that $A \neq \emptyset$ and $A \neq C$. Then we can construct $B$, $(a;b)$ and $s$ as in Theorem 3 so that $s$ is a limit point of both $A$ and $B$. But $A$ is closed so $s \in A$. But $A$ is open so $B$ is closed and since $s$ is a limit point of $B$ we have $s \in B$ which is a contradiction. Therefore the only sets which are open and closed must be $\emptyset$ and $B$.
+\end{proof}
+
+\newpage
+
+\Large
+
+Sheet 9: Construction of the Reals\newline
+
+\normalsize
+
+\textbf{Definition 1 (Cuts)}
+\textsl{A subset $A \subseteq \mathbb{Q}$ is a cut, if\\
+1) $A \neq \emptyset$ and $A \neq \mathbb{Q}$;\\
+2) $A$ is open;\\
+3) if $x \in A$ then for all $y<x$ we have $y \in A$.}
+\newline
+
+\textbf{Theorem 2}
+\textsl{Show that 2) can be substituted with any of the following:\\
+2') Every upper bound of $A$ lies outside $A$;\\
+2'') For all $x \in A$ there exists $y \in A$ such that $x < y$.}
+\begin{proof}
+We need to show that given 1) and 3), we have firstly 2) if and only if 2') and secondly 2) if and only if 2''). So first assume 1), 2) and 3) for a subset $A \subseteq \mathbb{Q}$. Let $u$ be an upper bound of $A$ such that $u \in A$. Then since $A$ is open, there exists a region $(a;b) \subseteq A$ such that $u \in (a;b)$. But then since regions are nonempty, there exists a point $x \in (u;b)$ and since $(a;b) \subseteq A$ we have $x \in A$ and $u<x$. This is a contradiction and so all upper bounds of $A$ must lie outside of $A$. Now assume 1), 2') and 3) are true. Then $A$ has no last point because if it did then it would be an upper bound of $A$ in $A$. Thus for all $x \in A$ there exists a $b \in A$ such that $x<b$. But then by 3) there exists an $a \in A$ such that $a<x$ and so the region $(a;b) \subseteq A$ contains $x$. Thus $A$ is open and so we have 2) if and only if 2').\newline
+
+Next assume 1), 2) and 3) for $A \subseteq \mathbb{Q}$. Let $x \in A$. Since $A$ is open there exists a region $(a;b) \subseteq A$ such that $x \in (a;b)$. Then since regions are nonempty there exists a $y \in (x;b)$ and since $y \in A$ we have 2''). Now assume 1), 2'') and 3). Let $x \in A$. By 2'') let $b \in A$ such that $x<b$. Then by 3) let $a \in A$ such that $a<x$. Then $x \in (a;b)$ and $(a;b) \subseteq A$. Thus we have 2) if and only if 2'').
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{For all $q \in \mathbb{Q}$ the rational cut $L(q) = \{x \in \mathbb{Q} \mid x < q\}$ is a cut.}
+\begin{proof}
+Consider $L(q)$ for some $q \in \mathbb{Q}$. Since $\mathbb{Q}$ has no first point there exists $x \in \mathbb{Q}$ such that $x<q$ and so $x \in L(q)$ and $L(q) \neq \emptyset$. Likewise since $\mathbb{Q}$ has no last point there exists a point $y \in \mathbb{Q}$ such that $q<y$ and so $L(q) \neq \mathbb{Q}$. Let $x \in L(q)$ and since $\mathbb{Q}$ has no first point let $y \in \mathbb{Q}$ such that $y<x$. Then we have $x \in (y;q)$ and since $(y;q)$ only contains points less than $q$, $L(q)$ is open. Similarly since $y < x$ we have $y<q$ and so $y \in L(q)$. Thus if $y<x$ then $y \in L(q)$. Since all three conditions have been met $L(q)$ is open.
+\end{proof}
+
+\textbf{Theorem 4}
+\textsl{For $p,q \in \mathbb{Q}$, if $p \neq q$ we have $L(p) \neq L(q)$.}
+\begin{proof}
+Without loss of generality assume that $p<q$. Then we have $p \in L(q)$ but $q \notin L(p)$.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{The set $S=\{x \in \mathbb{Q} \mid x^2 < 2\} \cup \{x \in \mathbb{Q} \mid x < 0\}$ is a cut but it is not rational.}
+\begin{proof}
+Since $0,2 \in \mathbb{Q}$ we have $0^2<2$ and so $S \neq \emptyset$ and $2<2^2$ and so $S \neq \mathbb{Q}$. Rewrite $S$ as $\{x \in \mathbb{Q} \mid x<11/10\} \cup \{x \in \mathbb{Q} \mid x^2<2, x>1\}$. We see in the set $\{x \in \mathbb{Q} \mid x<11/10\}$ we can always choose a $y$ in the set for every $x$ in the set such that $x<y$ because there is always something between $x$ and $11/10$. Now let $x \in \{x \in \mathbb{Q} \mid x^2<2, x>1\}$. Then $x=\frac{p}{q}$ and so $\frac{p^2}{q^2}<2$. But then $\frac{(p+1)^2}{(q+1)^2}<2$ and so $\frac{p+1}{q+1} \in \{x \in \mathbb{Q} \mid x^2<2, x>1\}$. So we've found an element greater than $x$ which is in the set and so condition 2'') is fulfilled. Finally let $x \in S$ and let $y<x$. If $y<0$ then $y \in S$. If $y \geq 0$ then $y^2<x^2$ and so $y^2<2$ which means $y \in S$. Since all three conditions are met, $S$ is a cut. If $S$ were a rational cut then there would exist $q \in \mathbb{Q}$ such that $L(q)=S$. But then $q^2$ is not less than $2$ because then there would be another rational whose square is between $q^2$ and $2$. But it can't be greater than $2$ for similar reasons. Then $q^2=2$, but we proved that $\sqrt{2}$ is not rational. So $S$ cant be written as $L(q)$ for some $q \in \mathbb{Q}$.
+\end{proof}
+
+\textbf{Definition 6 (Real Numbers)}
+\textsl{Let $\mathbb{R} = \{A \subseteq \mathbb{Q} \mid A \text{ is a cut}\}$.}
+\newline
+
+\textbf{Definition 7 (Ordering on the Reals)}
+\textsl{Let $A, B \in \mathbb{R}$. We say that $A < B$ if $A$ is a proper subset of $B$.}
+\newline
+
+\textbf{Theorem 8}
+\textsl{The relation $<$ is an ordering on $\mathbb{R}$.}
+\begin{proof}
+Let $A, B \in \mathbb{R}$ such that $A \neq B$. Since $A \neq B$ without loss of generality assume that there exists an element $x \in A$ such that $x \notin B$. Then let $y \in B$. We see that $y<x$ because otherwise $x$ would be in $B$ since $B$ is a cut. But then since $y<x$ and $x \in A$, we have $y \in A$ and so $B \subset A$.\newline
+
+Let $A, B \in \mathbb{R}$ such that $A<B$. Then $A$ is a proper subset of $B$ and so by definition $A \neq B$.\newline
+
+Let $A, B, C \in \mathbb{R}$ such that $A < B$ and $B < C$. Then for all $x \in A$, we have $x \in B$ and for all $y \in B$ we have $y \in C$. Then for all $x \in A$ we have $x \in C$. Additionally, there exists some element of $B$ which is not in $A$ and so there exists some element of $C$ which is not in $A$. Therefore $A \neq C$ and $A \subset C$. We have shown all three conditions and so $<$ is an ordering on $\mathbb{R}$.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{$\mathbb{R}$ does not have a first or last point.}
+\begin{proof}
+Let $A \in \mathbb{R}$ such that $A = L(q)$ for some $q \in \mathbb{Q}$. We know $\mathbb{Q}$ has no first point and so there exists a $p \in \mathbb{Q}$ such that $p<q$. But then $L(p) < L(q)$ and so there exists a point in $\mathbb{R}$ which is less than $A$. There is a similar argument for a point greater than $A$ using the fact that $\mathbb{Q}$ has no last point.
+\end{proof}
+
+\textbf{Lemma 10}
+\textsl{A subset $X \subseteq \mathbb{R}$ is bounded above if and only if there exists $q \in \mathbb{Q}$ such that for all $x \in X$, $q$ is an upper bound for $x$ (as a subset of $\mathbb{Q}$)}
+\begin{proof}
+Suppose there exists a $q \in \mathbb{Q}$ such that for all $x \in X$, $q$ is an upper bound for $x$. Then let $y$ be an element from some $x \in X$. We have $q$ is an upper bound for $x$ and so $y<q$. Then $y \in L(q)$ and so $x \subseteq L(q)$. But then $x < L(q)$ for all $x \in X$ and so we have $L(q)$ is an upper bound for $X$.\newline
+
+Now suppose that $X \subseteq \mathbb{R}$ is bounded above. Then there exists some $u \in \mathbb{R}$ such that $x \leq u$ for all $x \in X$. Take the union of all elements in $X$. Each of these elements is a proper subset of $u$ and so their union is also a proper subset of $u$. Then there exists some $q \in u$ such that $q$ is not in this union. But then $q$ is not in any element of $X$ and so it is greater than every element in every set in $X$. Thus $q$ is an upper bound for every element of $X$.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{Let $X \subseteq \mathbb{R}$ be a bounded nonempty subset. Then $X$ has a least upper bound.}
+\begin{proof}
+Let $X \subseteq \mathbb{R}$ be a bounded nonempty subset. Consider the union of all the elements of $X$ and call this set $S$. $S$ is a union of cuts and so it is nonempty and it cannot be $\mathbb{Q}$ by Theorem 10. Since cuts are open and the union of open sets is open, we see that $S$ is open. Finally, let $x \in S$ and let $y<x$. Then $x$ is in some element of $X$ and that element is a cut. Therefore $y$ is in that cut and so $y$ must be in $S$ as well. Thus, $S$ is a cut and $S \in \mathbb{R}$. Since $S$ is made from cuts in $X$, for all $x \in X$ we have $x \leq S$. Thus $S$ is an upper bound for $X$. Assume there exists an upper bound for $X$, $u \in \mathbb{R}$ such that $u<S$. Then $u \subset S$ and so there exists $q \in \mathbb{Q}$ such that $q \in S$, but $q \notin u$. But if $q \in S$ then $q \in x$ for some $x \in X$. Since $q \notin u$, we have $x \nsubseteq u$ and this is a contradiction because $u$ is an upper bound for $X$. Thus $M$ is the least upper bound for $X$.
+\end{proof}
+
+\textbf{Theorem 12}
+\textsl{For every $a, b \in \mathbb{R}$ with $a<b$ there exists $q \in \mathbb{Q}$ such that $a<q<b$.}
+\begin{proof}
+Let $a,b \in \mathbb{R}$ such that $a<b$. Then $a \subset b$ but $a \neq b$ and so there exists some $q \in \mathbb{Q}$ such that $q \in b$, but $q \notin a$. But then $a \subseteq L(q)$ and since $q \in b$, $L(q) \subset b$ and $L(q) \neq b$. In the case where $a=L(q)$ we can choose another point in $b$ which is not in $a$ because between any two rationals there exists another.
+\end{proof}
+
+\textbf{Corollary 13 (The Reals are a Model of the Continuum)}
+\textsl{$(\mathbb{R},<)$ is a model of $C$.}
+\begin{proof}
+We have shown that $\mathbb{R}$ fulfills Axioms 1, 2 and 3 and Theorems 11 and 12 along with Sheet 8 tell us that $\mathbb{R}$ is satisfied as well.
+\end{proof}
+
+\textbf{Theorem 14 (Archimedean Property)}
+\textsl{For every $r \in \mathbb{R}$ there exists $n \in \mathbb{Z}$ such that $r<n$.}
+\begin{proof}
+The set $\{r\}$ is bounded above and by Lemma 10 there exists some $q \in \mathbb{Q}$ such that $q$ is an upper bound for $r$. By the Archimedean Property for the rationals, there exists some integer $n$ such that $q<n$. But then $n$ is an upper bound for $r$ and so $r < L(n)$.
+\end{proof}
+
+\textbf{Definition 15 (Sums of Sets)}
+\textsl{For two subsets $A, B \subseteq \mathbb{Q}$ let
+\[
+A+B = \{a+b \mid a \in A , b \in B\}
+\]
+be the sum of $A$ and $B$.}
+\newline
+
+\textbf{Theorem 16}
+\textsl{If $A \subseteq \mathbb{Q}$ is open, then $A + \{b\}$ is open for all $b \in \mathbb{Q}$.}
+\begin{proof}
+Let $A \subseteq \mathbb{Q}$ be an open subset and let $a \in A$. Since $A$ is open we have a region $(p;q) \subseteq A$ such that $a \in (p;q)$. Then consider $A+\{b\}$ for some $b \in \mathbb{Q}$. Then $a+b \in (A + \{b\})$ and $a+b \in (p+b;q+b)$. Thus, for all $x \in (A + \{b\})$ there exists some region which is a subset of $A + \{b\}$ such that the region contains $x$.
+\end{proof}
+
+\textbf{Theorem 17}
+\textsl{If $A \subseteq \mathbb{Q}$ is open, then $A+B$ is open for all $B \subseteq \mathbb{Q}$.}
+\begin{proof}
+From Theorem 16 we have $A + \{b\}$ is open for all $b \in B$. Since the union of any number of open sets is open, we have $S=\bigcup_{b \in B} A + \{b\}$ is open. Let $x \in S$. Then $x=a+b$ for some $a \in A$ and some $b \in B$. Then $x \in A+B$. Similarly let $x \in A+B$. Then $x=a+b$ for some $a \in A$ and some $b \in B$ and so $x \in S$. Thus $S$ is equal to $A + B$ and so $A + B$ is open.
+\end{proof}
+
+\textbf{Theorem 18 (Reals are Closed Under Addition)}
+\textsl{For $A, B \in \mathbb{R}$ we have $A + B \in \mathbb{R}$.}
+\begin{proof}
+$A$ and $B$ are cuts. We know $A$ and $B$ are not empty and so $A+B \neq \emptyset$. Likewise there exists some $p,q \in \mathbb{Q}$ such that $p \notin A$ and $q \notin B$. We know $p$ is greater than every element in $A$ because if it were less than some element it would be in $A$. A similar argument tells us that $q$ is greater than every element in $B$. Then $p+q \notin A+B$. If we use condition 2'') from Theorem 2 we know that for every $a \in A$ there exists an $a' \in A$ such that $a<a'$. A similar pair $b<b'$ are in $B$. Then $a+b<a'+b'$ and so for every element $a+b \in A+B$ there exists some other greater element in $A+B$. Finally choose an element $x \in A+B$ and consider a $y$ such that $y<x$. Then $x = a+b$ for some $a \in A$ and some $b \in B$ and so $y<a+b$ and $y-b<a$. But since $A$ is a cut, $y-b \in A$. Since $b \in B$ we have an element from $A$ and an element from $B$ whose sum is $y$ and so $y \in A+B$. Since all three conditions are met, $A+B \in \mathbb{R}$.
+\end{proof}
+
+\textbf{Theorem 19 (Associativity of Addition)}
+\textsl{For all $p,q,r \in \mathbb{R}$ we have $(p+q)+r=p+(q+r)$.}
+\begin{proof}
+We have
+\begin{align*}
+(p+q)+r&=\{a+b \mid a \in p, b \in q\} + r \\
+	  &=\{a+b \mid a \in \{a+b \mid a \in p, b \in q\}, b \in r\} \\
+	  &=\{a+b+c \mid a \in p, b \in q, c \in r\} \\
+	  &=\{a+b \mid a \in p, b \in \{a+b \mid a \in q, b \in r\}\} \\
+	  &=p + \{a+b \mid a \in q, b \in r\} \\
+	  &=p + (q+r)
+\end{align*}
+\end{proof}
+
+\textbf{Theorem 20 (Commutativity of Addition)}
+\textsl{For all $p,q \in \mathbb{R}$ we have $p+q = q+p$.}
+\begin{proof}
+We have
+\begin{align*}
+p+q &=\{a+b \mid a \in p, b \in q\} \\
+     &=\{b+a \mid b \in q, a \in p\} \\
+     &=q+p
+\end{align*}
+\end{proof}
+
+\textbf{Theorem 21 (Additive Identity)}
+\textsl{There exists $n \in \mathbb{R}$ such that for all $p \in \mathbb{R}$ we have $n+p=p$. Show that $n$ is unique.}
+\begin{proof}
+Let $n=L(0)$ and let $p \in \mathbb{R}$. Then we have $n+p=\{a+b \mid a \in n, b \in p\}$. If we let $x \in n+p$ then we have $x = a+b$ for some $a < 0$ and some $b \in p$. Then $a+b<b$ and since $p$ is a cut, $x \in p$. Additionally, let $x \in p$. Then there exists some $y \in p$ such that $y > x$ and $x-y < 0$. Then $x-y \in n$ and $y \in p$ and so $x \in n+p$. Since both sets are subsets of each other, $n+p=p$.\newline
+
+Suppose there are two values of $n$, $n_1$ and $n_2$ such that for all $p \in \mathbb{R}$ we have $n_1+p=p$ and $n_2+p=p$. Then we have $n_1=n_2+n_1=n_1+n_2=n_2$ by Theorem 20. Thus, $n$ is unique.
+\end{proof}
+
+\textbf{Theorem 22 (Additive Inverse)}
+\textsl{For all $p \in \mathbb{R}$ there exists $q \in \mathbb{R}$ such that $p+q=0$. Show that $q$ is unique.}
+\begin{proof}
+For a rational cut, $L(p)$ let $q = L(-p)$. For an irrational cut let $q=\{0-a \mid a \notin p\}$ for $p \in \mathbb{R}$. Let $x \in p+q$. Then $x=a+b$ for some $a \in p$ and some $b \in q$. By definition $b=0-y$ for some $y \notin p$. Then $y$ is greater than every element of $p$ and so $x=a+b=a-y<0$ since $a<y$. Thus $x \in 0$. Similarly, let $x \in 0$. Then $x<0$ and so $x=a-y$ for some $a<y$. Let $0-y=b$ so we have $x=a+b$ for $a \in p$ and $b \in q$. Thus $p+q=0$.\newline
+
+Suppose that for all $p \in \mathbb{R}$ there exist $q_1$ and $q_2$ such that $p+q_1=0$ and $p+q_2=0$. Then we have $p+q_1=p+q_2$. Adding $\{0-a \mid a \notin p\}$ to both sides will give us $q_1=q_2$. Thus $q$ is unique for all $p \in \mathbb{R}$.
+\end{proof}
+
+\textbf{Theorem 23}
+\textsl{For all $p,q \in \mathbb{Q}$ we have $L(p+q)=L(p)+L(q)$. Furthermore, $L(0)=0$.}
+\begin{proof}
+Let $x \in L(p)+L(q)$. Then $x=a+b$ for some $a < p$ and some $b < q$. Then $a+b < p+q$ and so $x<p+q$. But then $x \in L(p+q)$. Likewise assume that $x \in L(p+q)$. Then $x<p+q$ and there exists some $y \in \mathbb{Q}$ such that $x<y<p+q$. Then let $z = p+q-y>0$ and so we have $x<p+q-z$. Then $x-p+z<q$ and $p-z<p$. But then $x-p+z \in L(q)$ and $p-z \in L(p)$ and so we have $x \in L(p) + L(q)$. Therefore $L(p+q) = L(p) + L(q)$. We defined $0=L(0)$ in Theorem 21.
+\end{proof}
+
+\textbf{Definition 24 (Product of Sets)}
+\textsl{For two subsets $A, B \mathbb{Q}$ let $A * B = \{ab \mid a \in A, b \in B\}$ be the product of $A$ and $B$.}
+\newline
+
+\textbf{Definition 25 (Absolute Value)}
+\textsl{For $a \in \mathbb{R}$ let
+\[
+|a|=
+\begin{cases}
+a & \text{if } a \leq 0 \\
+-a & \text{if } a >0.
+\end{cases}
+\]
+Let $P=\{q \in \mathbb{Q} \mid q > 0\}$ and let $N=\{q \in \mathbb{Q} \mid q \leq 0\}$.}
+\newline
+
+\textbf{Definition 26 (Product of Positive Reals)}
+\textsl{For $A, B \in \mathbb{R}$ with $A,B > 0$ let
+\[
+A \cdot B = N \cup ((A \cap P) * (B \cap P)).
+\]}
+
+\textbf{Definition 27 (Product of Reals)}
+\textsl{For $A, B \in \mathbb{R}$ let
+\[
+A \cdot B=
+\begin{cases}
+0 & \text{if } A=0 \text{ or } B=0 \\
+|A| \cdot |B| & \text{if } (A>0 \text{ and } B>0) \text{ or } (A<0 \text{ and } B<0) \\
+-(|A| \cdot |B|) & \text{if } (A>0 \text{ and } B<0) \text{ or } (A<0 \text{ and } B>0).
+\end{cases}
+\]}
+\newline
+
+\textbf{Theorem 28 (Associativity of Multiplication)}
+\textsl{For all $p,q,r \in \mathbb{R}$ we have $(p \cdot q) \cdot r = p \cdot (q \cdot r)$.}
+\begin{proof}
+If any of $p,q,r$ are equal to $0$ then the result is trivial. Assume first that $p,q,r$ are all greater than $0$. This case is the same as having two values be less than zero since those values will eventually multiply to a value greater than zero. We have
+\begin{align*}
+(p \cdot q) \cdot r &=(N \cup ((p \cap P) * (q \cap P))) \cdot r \\
+				&=N \cup ((N \cup ((p \cap P) * (q \cap P)) \cap P) * (r \cap P)) \\
+				&=N \cup ((p \cap P) * (q \cap P) * (r \cap P)) \\
+				&=N \cup ((p \cap P) * (N \cup (((p \cap P) * (q \cap P)) \cap P))) \\
+				&=p \cdot (N \cup ((q \cap P) * (r \cap P))) \\
+				&=p \cdot (q \cdot r).
+\end{align*}
+Let all three values be negative. This is the same as having two values greater than zero. We have
+\begin{align*}
+(p \cdot q) \cdot r &=((N \cup ((p \cap P) * (q \cap P))) \cdot r \\
+				&=-(N \cup ((N \cup ((p \cap P) * (q \cap P)) \cap P) * (r \cap P))) \\
+				&=-(N \cup ((p \cap P) * (q \cap P) * (r \cap P))) \\
+				&=-(N \cup ((p \cap P) * (N \cup (((p \cap P) * (q \cap P)) \cap P)))) \\
+				&=p \cdot (N \cup ((q \cap P) * (r \cap P))) \\
+				&=p \cdot (q \cdot r).
+\end{align*}
+\end{proof}
+
+\textbf{Theorem 29 (Commutativity of Multiplication)}
+\textsl{For all $p,q \in \mathbb{R}$ we have $p \cdot q = q \cdot p$.}
+\begin{proof}
+If either $p$ or $q$ is $0$ then the result is trivial. Suppose that $p$ and $q$ are either both greater or less than $0$. We have
+\begin{align*}
+p \cdot q &= N \cup ((p \cap P) * (q \cap P)) \\
+		&= N \cup (\{ab \mid a \in (p \cap P), b \in (q \cap P)\}) \\
+		&= N \cup (\{ba \mid b \in (q \cap P), a \in (p \cap P)\} \\
+		&= N \cup ((q \cap P) * (p \cap P)) \\
+		&= q \cdot p.
+\end{align*}
+Let one of $p$ or $q$ be less than $0$. Then we have
+\begin{align*}
+p \cdot q &= -(N \cup ((p \cap P) * (q \cap P))) \\
+		&= -(N \cup (\{ab \mid a \in (p \cap P), b \in (q \cap P)\})) \\
+		&= -(N \cup (\{ba \mid b \in (q \cap P), a \in (p \cap P)\})) \\
+		&= -(N \cup ((q \cap P) * (p \cap P))) \\
+		&= q \cdot p.
+\end{align*}
+\end{proof}
+
+\textbf{Theorem 30 (Multiplicative Identity)}
+\textsl{There exists $e \in \mathbb{R}$ such that for all $p \in \mathbb{R}$ we have $e \cdot p = p$.}
+\begin{proof}
+Let $e=L(1)$. Then let $x \in e \cdot p$. Suppose first that $p>0$. Then $x \in N \cup ((e \cap P) * (p \cap P))$. So $x \in N$ or $x = ab$ for some $a \in e \cap P$ and some $b \in p \cap P$. If $x \in N$ then we're done since $N \subseteq p$ as $p>0$. If $x=ab$ then we see that $0<a<1$ and so $ab<b$. Thus $x<b$ and by the definition of a cut, $x \in (p \cap P) \subseteq p$. In either case, $x \in p$. A similar argument holds if $p<0$. Now let $x \in p$ and let $p>0$. Then $x \in N$ or $x \in p \cap P$. Suppose $x \in p \cap P$, then there exists $y \in p$ such that $x < y$ and there exists $z \in e$ such that $zy = x$. Then $x \in (e \cap P) * (p \cap P)$. But then $x \in N \cup ((e \cap P) * (p \cap P))$ and so $x \in e \cdot p$. A similar argument holds if $p<0$.\newline
+
+Now suppose that there exist $e_1$ and $e_2$ such that for all $p \in \mathbb{R}$ we have $e_1 \cdot p=p$ and $e_2 \cdot p=p$. Then we have $e_1=e_2 \cdot e_1=e_1 \cdot e_2=e_2$ by Theorem 29. Since $e_1=e_2$ we see that the multiplicative identity is unique.
+\end{proof}
+
+\textbf{Theorem 31 (Multiplicative Inverse)}
+\textsl{For all $p \in \mathbb{R}$ with $p \neq 0$ there exists $q \in \mathbb{R}$ such that $p \cdot q = 1$.}
+\begin{proof}
+Let
+\[
+q = \bigcup_{x \in \mathbb{Q}\backslash \{p\}} L(\frac{1}{x}).
+\]
+Assume that $p>0$. Let $x \in p \cdot q$. Then $x \in N \cup ((p \cap P) * (q \cap P))$. If $x \in N$ then we're done because if $p>0$ then $q>0$ as well as there exists $x \notin p$ such that $x>0$ and so $1/x>0$ and $L(1/x) \subseteq q$. Suppose that $x \in (p \cap P) * (q \cap P)$. Then $x=ab$ for some $a \in p$ and some $b \in q$. Thus $b \in L(1/m)$ for some $m \notin p$. We know that $m>a$ because if $m\leq a$ then $m \in p$. We have $b<1/m$ and $ab < a/m < 1$. Thus, $ab \in 1$. Suppose to the contrary that there exists $x \in 1$ such that for all $m \in p$ and for all $n \in \mathbb{Q} \backslash \{p\}$ that we have $nx \geq m$. For $x \in 1$ there exists $x' \in 1$ such that $x < x' < 1$. Then consider $m/x'$ for some $m \in p$. If $m/x' \notin p$ then $m/x' \in \mathbb{Q} \backslash \{p\}$ so $mx/x' \geq m$ and this can't happen because $x/x' < 1$. Thus $m/x' \in p$ for all $m \in p$. But then $m/x'^2 \in p$ and indeed $m/x'^n \in p$. But since $x'<1$ we have $m/x'^n < m/x'^{n+1}$ for all $n \in \mathbb{N}$ so at some point we will have $m/x'^n$ is greater than every element of $p$ which means it is no longer bounded. This cannot happen and so for all $x \in 1$ there exists $m \in p$ and $n \in \mathbb{Q} \backslash \{p\}$ such that $nx < m$. Thus for all $x \in 1$ we have $x < m/n < 1$. But then $L(1/n) \in q$ so there exists $y \in q$ such that $x = my < m/n$. Thus $x \in p \cdot q$.
+\newline
+
+Now suppose for all $p \in \mathbb{Q}$ there exists $q_1$ and $q_2$ such that $p \cdot q_1 = 1$ and $p \cdot q_2= 1$. Then we have $p \cdot q_1=p \cdot q_2$. Multiplying both sides by $\{x \in \mathbb{Q} \mid x<\frac{1}{p}\}$ will give us $q_1=q_2$ and so $q$ is unique for each $p \in \mathbb{R}$.
+\end{proof}
+
+\textbf{Theorem 32 (Distributivity)}
+\textsl{For all $p,q,r \in \mathbb{R}$ we have $p \cdot (q+r) = p \cdot q + p \cdot r$.}
+\begin{proof}
+If $p=0$ then the result is trivial. Suppose that $p>0$ and that $(q+r)>0$. Then we have
+\begin{align*}
+p \cdot (q+r) &= p \cdot \{a+b \mid a \in q, b \in r\} \\
+		    &= N \cup ((p \cap P) * (\{a+b \mid a \in q, b \in r\} \cap P)) \\
+		    &= N \cup \{ab \mid a \in (p \cap P), b \in \{a+b \mid a \in q, b \in r\} \cap P\} \\
+		    &= N \cup \{a(b+c) \mid a \in (p \cap P), b \in q, c \in r, (b+c)>0\} \\
+		    &= N \cup \{ab+ac \mid a \in (p \cap P), b \in q, c \in r, (b+c)>0\} \\
+		    &= \{ab \mid a \in (p \cap P), b \in q\} \cup \{ab \mid a \in (p \cap P), b \in r\} \\
+		    &= p \cdot q + p \cdot r.
+\end{align*}
+If $p<0$ and $(q+r)>0$ or $p>0$ and $(q+r)<0$ then we have
+\begin{align*}
+p \cdot (q+r) &= p \cdot \{a+b \mid a \in q, b \in r\} \\
+		    &= -(N \cup ((p \cap P) * (\{a+b \mid a \in q, b \in r\} \cap P))) \\
+		    &= -(N \cup \{ab \mid a \in (p \cap P), b \in \{a+b \mid a \in q, b \in r\} \cap P\}) \\
+		    &= -(N \cup \{a(b+c) \mid a \in (p \cap P), b \in q, c \in r, (b+c)>0\}) \\
+		    &= -(N \cup \{ab+ac \mid a \in (p \cap P), b \in q, c \in r, (b+c)>0\}) \\
+		    &= \{ab \mid a \in (p \cap P), b \in q\} \cup \{ab \mid a \in (p \cap P), b \in r\} \\
+		    &= p \cdot q + p \cdot r.
+\end{align*}
+\end{proof}
+
+\textbf{Theorem 33}
+\textsl{For all $p,q \in \mathbb{Q}$ we have $L(pq)=L(p) \cdot L(q)$. Furthermore, L(1)=1.}
+\begin{proof}
+Let $x \in L(p) \cdot L(q)$ and first suppose that both sets are greater than $0$. Then $x \in (N \cup \{ab \mid 0<a<p, 0<b<q\})$. So either $x \in N$ or $x = ab$ for some $a \in (L(p) \cap P)$ and some $b \in (L(q) \cap P)$. If $x \in N$ then we're done because $N \subseteq L(pq)$. If $x=ab$ then $0<a<p$ and $0<b<q$ and so $0<ab<pq$ and $x \in L(pq)$. A similar argument holds if one of $L(p)$ or $L(q)$ is less than $0$. Now let $x \in L(pq)$ and assume that $p$ and $q$ are both positive or both negative. Then $x<pq$ and either $x \in N$ or $0<x<pq$. If $x \in N$ then we're done. If $0<x<pq$ then $x=ab$ for some $a \in (p \cap P)$ and some $b \in (q \cap P)$. Thus $x \in L(p) \cdot L(q)$. We showed that $L(1) = 1$ in Theorem 30.
+\end{proof}
+
+\textbf{Theorem 34}
+\textsl{For all $a,b,c \in \mathbb{R}$ if $a<b$ then $a+c<b+c$.}
+\begin{proof}
+Let $a,b,c \in \mathbb{R}$ such that $a<b$. Since $a$ is a proper subset of $b$, there exists $y \in b$ such that $y \notin a$. Then for all $x \in a$ we have $x<y$. For all $x \in a$ and $z \in c$ we have $z+x<z+y$. Then $z+y \in b+c$ and $z+y$ is greater than every element of $a+c$ so $a+c \subsetneq b+c$ and $a+c < b+c$.
+\end{proof}
+
+\textbf{Theorem 35}
+\textsl{For all $a,b \in \mathbb{R}$, if $a > 0$ and $b > 0$ then $ab > 0$.}
+\begin{proof}
+By definition we have $ab=N \cup ((a \cap P) * (b \cap P))=N \cup \{ab \mid (a \cap P) * (b \cap P)\}$. For all $x \in \{ab \mid (a \cap P) * (b \cap P)\}$, $x>0$ and so $N \cup ((a \cap P) * (b \cap P))$ is greater than $0$.
+\end{proof}
+
+\textbf{Theorem 36 (Triangle Inequality)}
+\textsl{For all $a,b \in \mathbb{R}$ we have $|a+b| \leq |a| + |b|$.}
+\begin{proof}
+There are four possibilities. First let $a>0$ and $b>0$. Then $a+b>0$ and so we have $|a+b| = a+b \leq a+b = |a| + |b|$. Secondly without loss of generality suppose that $a<0$ and $b>0$ such that $a+b<0$. Then let $x \in |a+b|$. Then $x \in -\{p+q \mid p \in a, q \in b\}$ and so $x \in \{-p-q \mid p \notin a, q \notin b\}=\{-p \mid p \notin a\} + \{-q \mid q \notin b\}=-a+b$ because $b>0$. Then $x \in -a + b=|a| + |b|$. Thus $|a+b| \subseteq |a| + |b|$. But also there exists some $y \in |a|+|b|$ such that $y \notin |a+b|$ and so $|a+b| < |a| + |b|$. Next let $a<0$ and $b>0$ such that $a+b>0$. Then let $x \in |a+b|$ so that $x \in \{p+q \mid p \in a, q \in b\}$. Then $x \in a+b$ and so $x \in -a + b=|a|+|b|$. Likewise there exists a point $y \in |a|+|b|$ such that $y \notin |a+b|$. Thus $|a+b| < |a|+|b|$. Finally let $a<0$ and $b<0$ so that $a+b<0$. Then $|a+b|=-(a+b)=(-a)+(-b)=|a|+|b|$.
+\end{proof}
+
+\newpage
+
+\Large
+
+Sheet 10: Continuous Functions\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous if for all open subsets $O \subseteq \mathbb{R}$ the preimage $f^{-1} (O)$ is open.}\newline
+
+\textbf{Theorem 2}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a continuous function. Assume that there exist $a,b \in \mathbb{R}$ such that $f(a)<0$ and $f(b)>0$. Then there exists $c \in \mathbb{R}$ such that $f(c)=0$.}
+\begin{proof}
+Assume to the contrary that there exists no such point $c$. Then consider the sets $(- \infty ; 0)$ and $(0 ; + \infty)$. We know these sets are open. If we take the preimages of each of these and name them we have $A=f^{-1} ((- \infty ; 0)) = \{x \in \mathbb{R} \mid f(x) < 0\}$ and $B=f^{-1} ((0 ; + \infty)) = \{x \in \mathbb{R} \mid f(x) > 0\}$. Note that by definition $A$ and $B$ are disjoint. Additionally $\mathbb{R} \backslash (A \cup B) = \{x \in \mathbb{R} \mid f(x)=0\}$, but we assumed that this set was empty. Thus $A \cup B = \mathbb{R}$. We have $f(a)<0$ and so $a \in A$ and $f(b)>0$ and so $b \in B$ so neither $A$ or $B$ is empty. But then since $A$ and $B$ are disjoint and union to $\mathbb{R}$ they are complements of each other. So then $B$ is open but $A$ is open and so $\mathbb{R} \backslash A=B$ is closed. Since $B \neq \mathbb{R}$ and $B \neq \emptyset$ this is contradiction of Axiom 4.
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be continuous and let $a,b \in \mathbb{R}$ such that $a<b$. Let us define $g \; : \; \mathbb{R} \rightarrow \mathbb{R}$ as follows
+\[
+g(x)=
+\begin{cases}
+f(a) & \text{if $x \leq a$}\\
+f(x) & \text{if $a<x<b$}\\
+f(b) & \text{if $x \geq b$}
+\end{cases}
+\]
+Then $g$ is continuous.}
+\begin{proof}
+Let $O \subseteq \mathbb{R}$ be an open set and consider $g^{-1}(O)$. If $g^{-1}(O)$ is empty, then it is open so assume that there exists some $x \in g^{-1}(O)$. If $x < a$ then we have $f(a) \in O$ and so $(- \infty ; a) \subseteq g^{-1}(O)$. Thus there exists some $y \in \mathbb{R}$ such that $y<x$ and so $x \in (y;a)$ and $(y;a) \subseteq g^{-1}(O)$. A similar argument holds if $x > b$. If $x \in (a;b)$ then for $f(x) \in O$ there exists some region $R \subseteq O$ containing $f(x)$ by the open condition. But then $f^{-1}(R)$ is open since $R$ is open, $f$ is continuous and because of how $g$ is defined, $g^{-1}(R)$ is open as well. If $x=a$ then $f(a) \in O$ and so $(-\infty ; a) \subseteq g^{-1}(O)$. We know that $f^{-1}(O)$ is open so there exists some region $(p;q)$ containing $a$ such that $(p;q) \subseteq f^{-1}(O)$. But then consider $(a;q) \subseteq f^{-1}(O)$. For all $y \in (a;q)$ we have $f(y) \in O$. But $y>a$ so $g(y) \in O$ as well. Thus $(a;q) \subseteq (p;q) \subseteq g^{-1}(O)$. A similar argument holds for when $x=b$. In all cases there exists a region $R$ with $x \in R$ such that $R \subseteq g^{-1}(O)$ so $g^{-1}(O)$ is open by the open condition.
+\end{proof}
+
+\textbf{Theorem 4}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a continuous function. Assume that there exist $a,b \in \mathbb{R}$ such that $f(a)<0$ and $f(b)>0$. Then there exists $c \in (a;b)$ such that $f(c)=0$.}
+\begin{proof}
+Define a new function $g \; : \; \mathbb{R} \rightarrow \mathbb{R}$ as in Theorem 3. Then $g$ is continuous and so we know from Theorem 2 that there exists $c \in \mathbb{R}$ such that $g(c) = 0$. But we see that $c>a$ and $c<b$ because otherwise $g(c) \neq 0$. Thus there exists $c \in (a;b)$ such that $g(c)=0$. But then $f(c)=0$ as well.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a continuous function and let $C \subseteq \mathbb{R}$ be a compact set. Show that the image $f(C)$ is compact.}
+\begin{proof}
+Let $\mathcal{A}$ be an open cover for $f(C)$. Then for all $x \in C$ we have $f(x) \in f(C)$ and so for all $x \in C$ there exists an open set $O \in \mathcal{A}$ such that $f(x) \in O$. But then for all $x \in C$, $x \in f^{-1}(O)$ for some $O \in \mathcal{A}$. Then $C \subseteq \bigcup_{O \in \mathcal{A}} f^{-1} (O)$ and since $f$ is continuous $\{f^{-1} (O) \mid O \in \mathcal{A}\}$ covers $C$. But $C$ is compact and so there exists a finite subcover, $\{f^{-1} (O_1), f^{-1} (O_2), \dots ,f^{-1}(O_k)\}$, which covers $C$. So for all $x \in C$ there exists some $O_i \in \mathcal{A}$ such that $x \in f^{-1} (O_i)$. But then $f(x) \in O_i$ and since $f(C) =\{y \in \mathbb{R} \mid x \in C, f(x)=y\}$, we have for all $y \in f(C)$, $y \in O_i$. Since every $O_i \in \mathcal{A}$ we have found a finite subcover for $\mathcal{A}$ which covers $f(C)$. Thus $f(C)$ is compact.
+\end{proof}
+
+\textbf{Theorem 6}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a continuous function. Then for all $a<b$ the set $f([a;b])$ is bounded.}
+\begin{proof}
+For all $a<b$ we have $[a;b]$ is compact. By Theorem 5 we know that $f([a;b])$ is compact as well and we know that compact sets are bounded.
+\end{proof}
+
+\textbf{Lemma 7}
+\textsl{Let $C \subseteq \mathbb{R}$ be a nonempty compact set. Then $\sup C \in C$.}
+\begin{proof}
+Suppose that $\sup C \notin C$. Then by Theorem 6.8 we know that if $\sup C \notin C$ then it's a limit point of $C$. But $C$ is compact and so it's closed. Thus $C$ contains all its limit points so this is a contradiction.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a continuous function and let $a < b$. Then there exists $c \in [a;b]$ such that for all $x \in [a;b]$ we have $f(a) \leq f(c)$.}
+\begin{proof}
+From Theorem 6 we know $f([a;b])$ is bounded and we know it's nonempty because $f(a) \in f([a;b])$ and so $\sup f([a;b])$ exists. Let $f(c) = \sup f([a;b])$. Lemma 7 tells us that $f(c) \in f([a;b])$ and so there exists some $d \in [a;b]$ such that $f(d) = f(c)$.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous if and only if for all regions $A \subseteq \mathbb{R}$, the preimage $f^{-1}(A)$ is open.}
+\begin{proof}
+Let $f$ be continuous. Then we have $A \subseteq \mathbb{R}$ is a region which is open by definition. But then $f^{-1}(A)$ is open by definition. Conversely, suppose that for all regions $A \subseteq \mathbb{R}$ we have $f^{-1}(A)$ is open. Consider some open set $O \subseteq \mathbb{R}$. By the open condition $O$ is a union of regions and the preimage of each of these regions is open. But the preimage of a union of sets is the union of the preimages of each of those sets. To show this let $x \in f^{-1}(O)$. Then $f(x) \in O$ and so $f(x)$ is in some region which is a subset of $O$. But then $x$ must be in the preimage of that region and so $x$ is in the union of the preimages of all the regions which union to $O$. Since the preimage of each region is open, and the union of open sets is open, we have $f^{-1}(O)$ is open. Thus $f$ is continuous.
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous if and only if for all $a \in \mathbb{R}$ and all $\varepsilon > 0$ there exists $\delta > 0$ such that $(a - \delta ; a + \delta) \subseteq f^{-1}((f(a) - \varepsilon ; f(a) + \varepsilon))$.}
+\begin{proof}
+Suppose that $f$ is continuous and let $a \in \mathbb{R}$. Consider the region $(f(a) - \varepsilon ; f(a) + \varepsilon)$ for some $\varepsilon > 0$. We know that $a \in f^{-1}((f(a) - \varepsilon ; f(a) + \varepsilon))$ and we know that this preimage is open. Thus there exists some region $(a-m;a+n) \subseteq (f(a) - \varepsilon ; f(a) + \varepsilon)$. Now let $\delta = \min (m,n)$ so that we have $(a - \delta ; a + \delta) \subseteq (a-m;a+n) \subseteq (f(a) - \varepsilon ; f(a) + \varepsilon)$. To prove the converse consider an open set $O \subseteq \mathbb{R}$. We have $f^{-1}(O)$ may be empty, but $\emptyset$ is open and so let $a \in f^{-1}(O)$. Then $f(x) \in O$ and so by the open condition there exists some region $(f(a) - \varepsilon ; f(a) + \varepsilon) \subseteq O$ for $\varepsilon > 0$. Then there exists $\delta > 0$ such that $(a - \delta ; a + \delta) \subseteq (f(a) - \varepsilon ; f(a) + \varepsilon) \subseteq f^{-1} (O)$. Thus we have for all $a \in f^{-1} (O)$ there exists some region containing $a$ which is a subset of $f^{-1} (O)$ and so $f^{-1}(O)$ is open.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous if and only if for all $a \in \mathbb{R}$ and all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ with $|a-x| < \delta$ we have $|f(a)-f(x)| < \varepsilon$.}
+\begin{proof}
+Assume that $f$ is continuous. From Theorem 10 we know that for all $a \in \mathbb{R}$ and all $\varepsilon > 0$ there exists $\delta > 0$ such that $(a - \delta ; a + \delta) \subseteq (f(a) - \varepsilon ; f(a) + \varepsilon)$. Consider $x \in (a - \delta ; a + \delta)$. Then $- \delta < x-a < \delta$ and so $|a-x| < \delta$. But then $x \in f^{-1}((f(a) - \varepsilon ; f(a) + \varepsilon))$ and so $f(x) \in (f(a) - \varepsilon ; f(a) + \varepsilon)$. But then $|f(a) - f(x)| < \varepsilon$. To show the converse consider $x \in \mathbb{R}$ and $\epsilon > 0$ such that $|a-x| < \delta$ for $\delta > 0$. Then $x \in (a - \delta ; a + \delta)$. But we also know that $|f(a) - f(x)| < \epsilon$ and so $f(x) \in (f(a) - \varepsilon ; f(a) + \varepsilon)$. But then $x \in f^{-1}((f(a) - \varepsilon ; f(a) + \varepsilon))$. Thus by Theorem 10, $f$ must be continuous.
+\end{proof}
+
+\textbf{Definition 12 ($f$ is Continuous at $a$}
+\textsl{Let $a \in \mathbb{R}$. A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is continuous at $a$ if for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ with $|a-x| < \delta$ we have $|f(a)-f(x)| < \varepsilon$.}
+
+\newpage
+
+\Large
+
+Sheet 11: Limits of a Function\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A real function is a function $f \; : \; A \rightarrow \mathbb{R}$ where $A \subseteq \mathbb{R}$.}\newline
+
+\textbf{Definition 2}
+\textsl{Let $f$ be a real function and let $a \in \mathbb{R}$. We say that $f$ approaches $l$ at $a$ or
+\[
+\lim_{x \rightarrow a} f(x) = l
+\]
+if for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ with $0 < |a-x| < \delta$ we have $|l - f(x)| < \varepsilon$.}\newline
+
+\textbf{Corollary 3}
+\textsl{A real function $f$ is continuous at $a$ if and only if
+\[
+\lim_{x \rightarrow a} f(x) = f(a).
+\]}
+\begin{proof}
+Let $f$ be continuous at $a$. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ when $0 < |a - x| \delta$ we have $|f(a) - f(x)| < \varepsilon$. But then $\lim_{x \rightarrow a} f(x) = f(a)$. Conversely suppose that $\lim_{x \rightarrow a} f(x) = f(a)$. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta$ we have $|f(a)-f(x)| < \varepsilon$. Note that if $x=a$ then we have $f(x)-f(a) = 0 < \varepsilon$ so $f$ must be continuous at $a$.
+\end{proof}
+
+\textbf{Corollary 4}
+\textsl{If $\lim_{x \rightarrow a} f(x) = l$ and we define
+\[
+g(x)=
+\begin{cases}
+f(x) & \text{if } x \neq a\\
+l & \text{if } x = a
+\end{cases}
+\]
+then $g(x)$ is continuous at $a$.}
+\begin{proof}
+Let $\lim_{x \rightarrow a} f(x) = l$. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta$ we have $|l - f(x)| < \varepsilon$. But then this is valid for all $x \neq a$ so for all $\varepsilon > 0$ there exists $\delta > 0$ such that when $0 < |a-x| < \delta$ we have $|l - g(x)| < \varepsilon$. In the case where $x=a$ we have $l-g(x) = 0 < \varepsilon$. Thus $g(x)$ is continuous at $a$.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{Let $f(x)= \sin (1/x) \; (x \neq 0)$. Show that $\lim_{x \rightarrow 0} f(x)$ does not exist.}\newline
+
+This limit cannot exist because as $x$ approaches $0$, $\sin (1/x)$ gets more and more packed into the interval $(-1;1)$.\newline
+
+\textbf{Exercise 6}
+\textsl{Let $f(x)=x \sin (1/x) \; (x \neq 0)$. Show that $\lim_{x \rightarrow 0} f(x) = 0$.}
+\begin{proof}
+Let $\varepsilon > 0$. We have $\sin (x)$ is bounded between $-1$ and $1$, so $f(x)$ can never be larger than $x$ or smaller than $-x$. But the limits as $x$ and $-x$ as $x$ go to $0$ are $0$, so $x \sin (1/x)$ must have this limit as well.
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{If $\lim_{x \rightarrow a} f(x) = l$ and $\lim_{x \rightarrow a} g(x) = m$ then $l=m$.}
+\begin{proof}
+Suppose that $l \neq m$ and let $\varepsilon = 0$. Without loss of generality suppose that $m>l$ and consider $(m-l)/2 > 0$. Then there exists $\delta_1, \delta_2 > 0$ such that for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta_1$ we have $|l-f(x)| < (m-l)/2$ and when $0 < |a-x| < \delta_2$ we have $|m-g(x)| < (m-l)/2$. Let $\delta = \min (\delta_1 , \delta_2)$ so that there exists $\delta$ such that when $|a-x| < \delta$ we have $f(x) \in (l - (m-l)/2 ; l + (m-l)/2) = ((3l-m)/2 ; (l+m)/2)$ and $f(x) \in (m-(m-l)/2 ; m+(m-l)/2)=((m+l)/2 ; (3m-l)/2)$. But these regions are disjoint and so $l=m$.
+\end{proof}
+
+\textbf{Lemma 8}
+\textsl{If $|x-x_0| < \frac{\varepsilon}{2}$ and $|y-y_0| < \frac{\varepsilon}{2}$ then $|(x+y) - (x_0+y_0)| < \varepsilon$.}
+\begin{proof}
+We have $-\frac{\varepsilon}{2} < x-x_0 < \frac{\varepsilon}{2}$ and $-\frac{\varepsilon}{2} < y-y_0 < \frac{\varepsilon}{2}$. But then $-\varepsilon < x-x_0 + y-y_0 < \varepsilon$ and so we have $-\varepsilon < (x+y) - (x_0+y_0) < \varepsilon$. Thus $|(x+y) - (x_0+y_0)| < \varepsilon$.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{If $\lim_{x \rightarrow a} f(x) = l$ and $\lim_{x \rightarrow a} g(x) = m$ then $\lim_{x \rightarrow a} (f+g)(x) = l+m$.}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\frac{\varepsilon}{2}$. Then there exists some $\delta_f$ such that for all $x \in \mathbb{R}$ if $0 < |a - x| < \delta_f$ then $|l - f(x)| < \frac{\varepsilon}{2}$ and also there exists some $\delta_g$ such that for all $x \in \mathbb{R}$ if $0 < |a - x| < \delta_g$ then $|l - g(x)| < \frac{\varepsilon}{2}$. Choose $\min (\delta_f, \delta_g)$ and call this $\delta$. Then for all $x \in \mathbb{R}$ with $0 < |a-x| < \delta$ we have $|l - f(x)| < \frac{\varepsilon}{2}$ and $|m - g(x)| < \frac{\varepsilon}{2}$. But from Lemma 8 we know that $|(l+m)-(f(x)+g(x))| < \varepsilon$. Thus we have that for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ where $0 < |a-x| < \delta$ we have $|(l+m)-(f(x)+g(x))| < \varepsilon$. Thus $\lim_{x \rightarrow a} (f+g)(x) = l+m$.
+\end{proof}
+
+\textbf{Lemma 10}
+\textsl{If
+\[
+|x-x_0| < \min \left(1, \frac{\varepsilon}{2 (|y_0| + 1)} \right) \text{ and } |y-y_0| < \frac{\varepsilon}{2 (|x_0| + 1)}
+\]
+then
+\[
+|xy-x_0y_0| < \varepsilon.
+\]}
+\begin{proof}
+We take cases and see that if
+\[
+-1 < x-x_0 < 1 \text{ , } -\frac{\varepsilon}{2 (|y_0| + 1)} < x-x_0 < \frac{\varepsilon}{2 (|y_0| + 1)},
+\]
+and
+\[
+-\frac{\varepsilon}{2 (|x_0| + 1)} < y-y_0 < \frac{\varepsilon}{2 (|x_0| + 1)}
+\]
+Then we can take the product of the inequality and say that the middle terms are between the min and max values of the end terms. We'll take the first case as the product of the maximum terms. First let $\varepsilon, x_0 > 0$ and suppose that
+\begin{align*}
+\varepsilon & < -\frac{yx_0 + xy_0}{1-2(x_0 + 1)} \\
+		  & = -\frac{yx_0^2 + yx_0 + xx_0y_0 + xy_0}{x_0-2x_0(x_0+1) - 2(x_0+1) + 1} \\
+		  & = -\frac{2(yx_0^2+yx_0+xx_0y_0+xy_0)}{2(x_0+1)(1-2(x_0+1))}
+\end{align*}
+which means
+\[
+\frac{\varepsilon (1-2(x_0+1)) + 2(yx_0^2 + yx_0 + xx_0y_0 + xy_0)}{2(x_0+1)} < 0
+\]
+and then
+\begin{align*}
+\varepsilon & > \frac{\varepsilon + 2(yx_0^2 + yx_0 + xx_0y_0 + xy_0)}{2(x_0+1)} \\
+		  & = \frac{\varepsilon + 2(x_0 + 1)(yx_0+xy_0)}{2(x_0+1)} \\
+		  & = \frac{\varepsilon}{2(x_0+1)} + yx_0 + xy_0 \\
+		  & < xy - x_0y_0.
+\end{align*}
+If we have
+\[
+\frac{yx_0+xy_0}{1-2(x_0+1)} \leq \varepsilon
+\]
+then we can show that
+\[
+xy - x_0y_0 < \frac{\varepsilon^2}{4(y_0x_0 + x_0 + y_0 + 1)} + yx_0 + xy_0.
+\]
+The other cases follow from similar arguments.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{If $\lim_{x \rightarrow a} f(x) = l$ and $\lim_{x \rightarrow a} g(x) = m$ then $\lim_{x \rightarrow a} (fg)(x) = lm$.}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\min \left(1, \frac{\varepsilon}{2 (|m| + 1)} \right)$. Then there exists some $\delta_f$ such that for all $x \in \mathbb{R}$ if $0 < |a - x| < \delta_f$ then $|l - f(x)| < \min \left(1, \frac{\varepsilon}{2 (|m| + 1)} \right)$. Now consider $\frac{\varepsilon}{2 (|l| + 1)}$ so that there exists some $\delta_g$ such that for all $x \in \mathbb{R}$ if $0 < |a - x| < \delta_g$ then $|m - g(x)| < \frac{\varepsilon}{2 (|l| + 1)}$. Choose $\min (\delta_f, \delta_g)$ and call this $\delta$. Then for all $x \in \mathbb{R}$ with $0 < |a-x| < \delta$ we have $|l - f(x)| < \min \left(1, \frac{\varepsilon}{2 (|m| + 1)} \right)$ and $|m - g(x)| < \frac{\varepsilon}{2 (|l| + 1)}$. But from Lemma 10 we know that $|(lm)-(f(x)g(x))| < \varepsilon$. Thus we have that for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ where $0 < |a-x| < \delta$ we have $|(lm)-(f(x)g(x))| < \varepsilon$. Thus $\lim_{x \rightarrow a} (fg)(x) = lm$.
+\end{proof}
+
+\textbf{Lemma 12}
+\textsl{If $x_0 \neq 0$ and
+\[
+|x-x_0| < \min \left(\frac{|x_0|}{2}, \frac{\varepsilon |x_0|^2}{2} \right)
+\]
+then $x \neq 0$ and
+\[
+\left | \frac{1}{x} - \frac{1}{x_0} \right | < \varepsilon.
+\]}
+\begin{proof}
+Let $\varepsilon > 0$. Let $|x-x_0| < \frac{|x_0|}{2}$ and $|x-x_0| < \frac{\varepsilon |x_0|^2}{2}$. Suppose that $x_0 > 0$. Then
+\[
+x \in (x_0 - \frac{x_0}{2} ; x_0 + \frac{x_0}{2})=(\frac{x_0}{2} ; \frac{3x_0}{2})
+\]
+and
+\[
+x \in (\frac{2x_0 - \varepsilon x_0^2}{2} ; \frac{2x_0 - \varepsilon x_0^2}{2}) = (\frac{x_0(2-\varepsilon x_0)}{2} ; \frac{x_0(2 + \varepsilon x_0)}{2}).
+\]
+Also
+\[
+\frac{1}{x} \in (\frac{2}{3x_0} ; \frac{2}{x_0}) \text{ and } \frac{1}{x} \in (\frac{2}{x_0(2+\varepsilon x_)} ; \frac{2}{x_0(2-\varepsilon x_0)}).
+\]
+Let $x\varepsilon < 1$. Then $\varepsilon^2 x_0^2 < \varepsilon x_0$ and $2 < 2 + \varepsilon x_0 - \varepsilon^2 x_0^2$. So
+\[
+\frac{2}{x_0(2-\varepsilon x_0)} < \frac{2+\varepsilon x_0 - \varepsilon^2 x_0^2}{x_0(2 - \varepsilon x_0)}=\frac{(1-\varepsilon x_0)(2-\varepsilon x_0)}{x_0 (2-\varepsilon x_0)}=\frac{1+\varepsilon x_0}{x_0}=\frac{1}{x_0} + \varepsilon.
+\]
+Also, $\varepsilon, x_0 > 0$ so we have
+\[
+\varepsilon x_0 > -1 \text{ , } -\varepsilon x_0 < 1 \text{ , } 2 - \varepsilon x_0 - \varepsilon^2 x_0^2 < 2 \text{ , } \frac{2-\varepsilon x_0 - \varepsilon^2 x_0^2}{x_0 (2+\varepsilon x_0)} < \frac{2}{x_0 (2+\varepsilon x_0)} \text{ , }
+\]
+\[
+\frac{2}{x_0(2+\varepsilon x_0)} > \frac{(1-\varepsilon x_0)(2+\varepsilon x_0)}{x_0(2+ \varepsilon x_0)} = \frac{1-\varepsilon x_0}{x_0}=\frac{1}{x_0} - \varepsilon.
+\]
+Now let $\varepsilon x_0 \geq 1$. Then we have $2 \leq \varepsilon x_0 + 1$ so
+\[
+\frac{2}{x_0} \leq \frac{\varepsilon x_0 + 1}{x_0} = \frac{1}{x_0} + \varepsilon.
+\]
+Also $1-\varepsilon x_0 \leq 0 < \frac{2}{3}$ so
+\[
+\frac{2}{3 x_0} > \frac{1-\varepsilon x_0}{x_0} = \frac{1}{x_0} - \varepsilon.
+\]
+In all cases we have found that the inequality holds. A similar proof can be used for $x_0 \leq 0$.
+\end{proof}
+
+\textbf{Theorem 13}
+\textsl{If $\lim_{x \rightarrow a} f(x) = l \neq 0$ then
+\[
+\lim_{x \rightarrow a} \frac{1}{f(x)} = \frac{1}{l}.
+\]}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\min \left(\frac{|l|}{2}, \frac{\varepsilon |l|^2}{2} \right)$. Then there exists some $\delta$ such that for all $x \in \mathbb{R}$ if $0 < |a - x| < \delta$ then $|l - f(x)| < \min \left(\frac{|l|}{2}, \frac{\varepsilon |l|^2}{2} \right)$. But from Lemma 12 since $l \neq 0$ we know that $f(x) \neq 0$ and $\left |\frac{1}{l}-\frac{1}{f(x)} \right | < \varepsilon$. Thus we have that for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ where $0 < |a-x| < \delta$ we have $|\frac{1}{l}-\frac{1}{f(x)}| < \varepsilon$. Thus $\lim_{x \rightarrow a} \frac{1}{f(x)} = \frac{1}{l}$.
+\end{proof}
+
+\textbf{Corollary 14}
+\textsl{If $f$ and $g$ are continuous at $a$ then:\newline
+1) $f+g$ is continuous at $a$;\newline
+2) $fg$ is continuous at $a$;\newline
+3) if $f(a) \neq 0$ then $\frac{1}{f}$ is continuous at $a$.}
+\begin{proof}
+Let $f$ and $g$ be continuous at $a$. Then by Corollary 3 we have $\lim_{x \rightarrow a} f(x) = f(a)$ and likewise $\lim_{x \rightarrow a} g(x) = g(a)$. By Theorem 9 we have $\lim_{x \rightarrow a} (f+g)(x)=f(a)+g(a)=(f+g)(a)$. But by Corollary 3 we have that $f+g$ is continuous at $a$. Similarly from Theorem 11 we have $\lim_{x \rightarrow a} (fg)(x) = f(a)g(a)=(fg)(a)$. But again by Corollary 3 we know then that $fg$ must be continuous at $a$. Finally given that $f$ is continuous at $a$ and that $f(a) \neq 0$ Theorem 13 tells us that $\lim_{x \rightarrow a} \frac{1}{f(x)} = \frac{1}{f(a)}$. But this directly implies that $\frac{1}{f}$ is continuous at $a$ from Corollary 3.
+\end{proof}
+
+\textbf{Exercise 15}
+\textsl{Using the definition of a continuous function show that for a constant $C$, $f+C$ and $Cf$ are continuous when $f$ is.}
+\begin{proof}
+Let $f$ be a continuous function, let $O$ be an open set and let and $C$ be a constant. We have the sets $f^{-1}(\{x + C \mid x \in O\})$ and $\{x + C \mid x \in f^{-1}(O)\}$ are equal, and since the first set is open by definition, the second set must also be open. A similar statement holds for $Cf$.
+\end{proof}
+
+\newpage
+
+\Large
+
+Sheet 12: Uniform Continuity\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{Let $f$ be a real function and let $a \in \mathbb{R}$. We say that $f$ approaches $a$ at $l$ from the left, or
+\[
+\lim_{x \rightarrow a^-} f(x) = l
+\]
+if for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ with $0 < a - x < \delta$ we have $|l - f(x)| < \varepsilon$. We say that $f$ approaches $a$ at $l$ from the right, or
+\[
+\lim_{x \rightarrow a^+} f(x) = l
+\]
+if for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ with $0 < x - a < \delta$ we have $|l - f(x)| < \varepsilon$.}\newline
+
+\textbf{Definition 2}
+\textsl{A real function $f \; : \; [a;b] \rightarrow \mathbb{R}$ is continuous on $[a;b]$ if it is continuous for every $x \in (a;b)$, $\lim_{x \rightarrow a^+} f(x) = f(a)$ and $\lim_{x \rightarrow b^-} f(x) = f(b)$.}\newline
+
+\textbf{Theorem 3}
+\textsl{Let $f$ be a real function and let $a \in \mathbb{R}$. Then $\lim_{x \rightarrow a} f(x) = l$ if and only if $\lim_{x \rightarrow a^+} f(x) = l$ and $\lim_{x \rightarrow a^-} f(x) = l$.}
+\begin{proof}
+Suppose that $\lim_{x \rightarrow a^+} f(x) = l$ and $\lim_{x \rightarrow a^-} f(x) = l$. Then for all $\varepsilon > 0$ there exist $\delta_1 > 0$ and $\delta_2$ such that for all $x \in \mathbb{R}$ when $0 < a - x < \delta_1$ and $0 < x - a < \delta_2$ we have $|l - f(x)| < \varepsilon$. Let $\delta = \min (\delta_1 , \delta_2)$. Then for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta$ we have $|l - f(x)| < \varepsilon$. Thus $\lim_{x \rightarrow a} f(x) = l$.\newline
+
+Conversely, assume $\lim_{x \rightarrow a} f(x) = l$. Then for all $\varepsilon > 0$ there exists some $\delta > 0$ such that for all $x \in \mathbb{R}$ with $0 < |a-x| < \delta$ we have $|l-f(x)| < \varepsilon$. But then for all $x \in \mathbb{R}$ with $0 < x - a < \delta$ we have $|l-f(x)| < \varepsilon$ and so $\lim_{x \rightarrow a^+} f(x) = l$ and likewise for all $x \in \mathbb{R}$ with $0 < a - x < \delta$ we have $|l-f(x)| < \varepsilon$ and so $\lim_{x \rightarrow a^-} f(x) = l$.
+\end{proof}
+
+\textbf{Definition 4}
+\textsl{A function $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ is increasing if for all $x \leq y$ we have $f(x) \leq f(y)$.}\newline
+
+\textbf{Theorem 5}
+\textsl{Let $f \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be an increasing real function. Then for all $a \in \mathbb{R}$ the limits $\lim_{x \rightarrow a^+} f(x)$ and $\lim_{x \rightarrow a^-} f(x)$ both exist.}
+\begin{proof}
+Let $L= \{f(x) \mid a < x\}$. Since $f$ is defined for all $x>a$, $L \neq \emptyset$ and since $L$ is bounded below by $f(a)$, $\inf L$ exists. For all $\varepsilon > 0$ we have $\varepsilon + \inf L > \inf L$. So there exists some $y \in L$ such that $y \leq \inf L + \varepsilon$. Since $y \in L$, there exists some $x' > a$ such that $y = f(x')$. For $\varepsilon > 0$ let $\delta = x' - a > 0$. Now consider all $x \in \mathbb{R}$ such that $0 < x-a < x' -a$. Then we have $x<x'$ so $f(x) < f(x') \leq \inf L + \varepsilon$. So we have $|f(x) - \inf L| < \varepsilon$ when $0 < x-a < x'-a = \delta$. Thus $\inf L$ is the right hand limit of $f$. A similar proof holds for the left hand limit.
+\end{proof}
+
+\textbf{Theorem 6 (Intermediate Value Theorem)}
+\textsl{Let $f \; : \; [a;b] \rightarrow \mathbb{R}$ be continuous. Then $f$ takes on every value between $f(a)$ and $f(b)$ on $[a;b]$.}
+\begin{proof}
+Let $f \; : \; [a;b] \rightarrow \mathbb{R}$ be continuous. Without loss of generality suppose that $f(a)<f(b)$. For all $y \in (f(a);f(b))$ let $g(x)=f(x)-y$. We have $f(a) < y < f(b)$ for all $y \in (f(a);f(b))$ and so $g(a) < 0$ and $0 < g(b)$. But then for all $y \in (f(a);f(b))$ there exists $c \in [a;b]$. Such that $g(c)=f(c)-y=0$. Then $f(c)=y$ and so for all $y \in (f(a);f(b))$ there exists $x \in [a;b]$ such that $f(x)=y$.
+\end{proof}
+
+\textbf{Theorem 7 (Positive Continuous Functions are Bounded Away From Zero)}
+\textsl{Let $f \; : \; [a;b] \rightarrow \mathbb{R}$ be continuous. If $f(x) > 0$ for all $x \in [a;b]$  then there exists $C > 0$ such that $f(x) > C$ for all $x \in [a;b]$.}
+\begin{proof}
+From Theorem 10.8 we know that there exists some $c \in [a;b]$ such that $f(c) \leq f(x)$ for all $x \in [a;b]$. Let $C = f(c)/2$. Then we have $C < f(x)$ for all $x \in [a;b]$.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{A real function $f \; : \; [a;b] \rightarrow \mathbb{R}$ is continuous on $[a;b]$ if and only if for all $x \in [a;b]$ and for all $\varepsilon > 0$ there exists $\delta(x, \varepsilon) > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta(x, \varepsilon)$ we have $|f(x)-f(y)| < \varepsilon$.}
+\begin{proof}
+Let $f$ be continuous on $[a;b]$. Then for all $y \in (a;b)$ and all $\varepsilon > 0$ there exists $\delta > 0$ so that for all $x \in \mathbb{R}$ when $|y-x| < \delta$ we have $|f(y) - f(x)| < \varepsilon$. We can then confine our delta so that our definition holds only for $x \in [a;b]$. Let $\delta' = \min (\delta, |y-b|, |y-a|)$. But also $\lim_{x \rightarrow a^+} f(x) = f(a)$ so for all $\varepsilon > 0$ there exists $\delta > 0$ so that for all $x \in \mathbb{R}$, if $0 < x - a < \delta$ we have $|f(a) - f(x)| < \varepsilon$. But if $0 < x-a < \delta$ then $|a-x| < \delta$. Again truncate the $\delta$ so that $\delta' = \min (\delta, b)$. A similar statement can be said for the left hand limit and $f(b)$. Thus we have for all $y \in [a;b]$ and all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in [a;b]$ with $|y-x| < \delta$ we have $|f(y)-f(x)| < \varepsilon$.\newline
+
+Conversely suppose that for all $x \in [a;b]$ and for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta$ we have $|f(x) - f(y)| < \varepsilon$. Then the statement is true for all $x \in (a;b)$ as well. Note that for continuity we need to be able to choose $y$'s from $\mathbb{R}$, not just $[a;b]$, but as we've shown we can make equivalent statements about continuity for closed intervals if we restrict $\delta$ to be within the confines of $[a;b]$. We also have for $x=a$, there exists $\delta > 0$ such that for all $y \in [a;b]$ with $|a-y| < \delta$ we have $|f(a) - f(y)| < \varepsilon$. But if $|a-y| < \delta$ then $x-a < \delta$. So $\lim_{x \rightarrow a^+} f(x) = f(a)$. A similar statement can be made about $f(b)$. So we have these conditions implying continuity.
+\end{proof}
+
+\textbf{Exercise 9}
+\textsl{Calculate some good $\delta(x, \varepsilon)$ for the following real functions:
+1) $f(x) = 17$ ($x \in \mathbb{R}$)
+2) $f(x) = x$ ($x \in \mathbb{R}$)
+3) $f(x) = x^2$ ($x \in \mathbb{R}$)
+4) $f(x) = 1/x$ ($x \in \mathbb{R} \backslash \{0\}$).}\newline
+
+1) $\delta$ can be any value because for all $x \in \mathbb{R}$ we have $f(x)=17$. Then for all $a \in \mathbb{R}$ when $|a-x| < \delta$ we have $|f(a)-f(x)|=0<\varepsilon$.\newline
+
+2) Let $\delta=\varepsilon$. Then for all $a \in \mathbb{R}$ if $|a-x| < \delta = \varepsilon$ we have $|f(a) - f(x)| = |a-x| < \varepsilon = \delta$.\newline
+
+3) Let $\delta=\sqrt{\varepsilon}$. Then for all $a \in \mathbb{R}$ if $|a-x| < \delta$ we have $|f(a)-f(x)| = |a^2-x^2| < \varepsilon$.\newline
+
+4) Let $\delta=1/\varepsilon$. Then for all $a \in \mathbb{R}$ if $|a-x| < \delta=1/\varepsilon$ we have $|f(a)-f(x)| = |1/a - 1/x| < \varepsilon$.\newline
+
+\textbf{Definition 10}
+\textsl{Let $f$ be a real function and let $A$ be a subset of the domain of $f$. Then $f$ is uniformly continuous on $A$ if for all $\varepsilon > 0$ there exists $\delta(\varepsilon)>0$ such that for all $x,y \in A$ with $|x-y| < \delta(\varepsilon)$ we have $|f(x) - f(y)| < \varepsilon$.}\newline
+
+\textbf{Theorem 11 (Continuous Functions on Closed Intervals are Uniformly Continuous)}
+\textsl{Let $f \; : \; [a;b] \rightarrow \mathbb{R}$ be continuous. Then $f$ is uniformly continuous on $[a;b]$.}
+\begin{proof}
+Let $\varepsilon > 0$. Then for all $x \in [a;b]$ there exists $\delta_x > 0$ such that for all $y \in [a;b] \cap (x - \delta ; x + \delta)$ we have $f(y) \in (f(x) - \varepsilon ; f(x) + \varepsilon)$. Create an open cover for $[a;b]$ using $(x - \delta_x ; x + \delta_x)$ for all $x \in [a;b]$. Then $[a;b]$ is compact so there exist finitely many of these regions which will cover $[a;b]$. Choose the region with the smallest $\delta_x$ and call it $\delta$, note that $\delta$ will work for all the other regions in our cover since it is smaller than all of them. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x,y \in [a;b]$ if $|x-y| < \delta$ then $|f(x)-f(y)| < \varepsilon$.
+\end{proof}
+
+\textbf{Theorem 12}
+\textsl{Let $f \; : \; [a;b] \rightarrow \mathbb{R}$ be continuous and let $\varepsilon > 0$. For $x \in [a;b]$ let
+\[
+\Delta(x) = \sup \{\delta \mid \text{for all $y \in [a;b]$ with $|x-y| < \delta$, $|f(x)-f(y)| < \varepsilon$}\}.
+\]
+Then $\Delta$ is a continuous function of $x$.}
+
+\newpage
+
+\Large
+
+Sheet 13: Sequences\newline
+
+\normalsize
+
+\textbf{Definition 1 (Sequence)}
+\textsl{A sequence of real numbers is a function from $\mathbb{N}$ to $\mathbb{R}$.}\newline
+
+\textbf{Definition 2 (Limit)}
+\textsl{We say that a sequence $(a_n)$ converges to $a \in \mathbb{R}$ or
+\[
+\lim_{n \rightarrow \infty} a_n = a
+\]
+if for every region $R$ containing $a$, there are only finitely many $n \in \mathbb{N}$ with $a_n \notin R$. We call $a$ the limit of $(a_n)$.}\newline
+
+\textbf{Lemma 3}
+\textsl{For a sequence $(a_n)$ we have $\lim_{n \rightarrow \infty} a_n = a$ if and only if for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_n - a| < \varepsilon$.}
+\begin{proof}
+Let $(a_n)$ be a sequence and suppose that $\lim _{n \rightarrow \infty} a_n = a$. Then for every region $R$ containing $a$ there exist finitely many $n \in \mathbb{N}$ with $a_n \notin R$. Let $\varepsilon > 0$ and consider the region $(a - \varepsilon ; a + \varepsilon)$. We know there are finitely many $n \in \mathbb{N}$ such that $a_n \notin (a - \varepsilon ; a + \varepsilon)$. Since there are finitely many of these elements we know there exists a greatest $N \in \mathbb{N}$ such that $a_N \notin (a - \varepsilon ; a + \varepsilon)$. Thus, for all $n \in \mathbb{N}$ such that $n > N$ we have $a_n \in (a - \varepsilon ; a + \varepsilon)$ and so $|a_n - a| < \varepsilon$.\newline
+
+Conversely, suppose that for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_n - a| < \varepsilon$. Let $R$ be a region and let $a \in R$. Let $R=(a-p;a+q)$. Let $\varepsilon = \min (p,q)$ so that there exists some $N \in \mathbb{N}$ such that for all $n > N$ we have $a_n \in (a - \varepsilon ; a + \varepsilon)$. But then there exists only finitely many $n \in \mathbb{N}$ such that $a_n \notin (a - \varepsilon ; a + \varepsilon)$ and therefore finitely many $a_n \notin R$.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Are the following sequences convergent? If yes, what do they converge to?\newline
+1) $a_n=c$ for $c \in \mathbb{R}$;\newline
+2) $a_n=(-1)^n$;\newline
+3) $a_n=1/n$;\newline
+4) $a_n=(-1)^n/n$.}\newline
+
+1) Convergent.
+\begin{proof}
+For all $n \in \mathbb{N}$ we have $a_n = c$ and so every region containing $c$ will include every element of $(a_n)$. Thus, for every region $R$ such that $c \in R$ we have a finite number of $n \in \mathbb{N}$ such that $a_n \notin R$.
+\end{proof}
+
+2) Divergent.
+\begin{proof}
+For all $a \in \mathbb{R}$ there exists a region $R$ with $a \in R$ such that $-1 \notin R$ or $1 \notin R$. Consider the case where $-1 \notin R$. Then for all $n \in \mathbb{N}$ such that $n$ is odd we have $a_n \notin R$. But there are an infinite number of odd naturals. A similar case holds for $1 \notin R$ and even naturals.
+\end{proof}
+
+3) Convergent.
+\begin{proof}
+We have for all $n \in \mathbb{N}$, $a_n \in (0;1]$. Let $\varepsilon > 0$. In the case where $\varepsilon > 1$ then for all $n \in \mathbb{N}$ we have $|a_n| < \varepsilon$. If $\varepsilon = 1$ then for all $n \in \mathbb{N}$ with $n > 1$ we have $|a_n| < \varepsilon$. In the case where $\varepsilon \leq 1$ we have $1/\varepsilon \geq 1$ and by the Archimedean Property and the Well Ordering Principle there exists a least $k \in \mathbb{N}$ such that $k > 1/\varepsilon > k-1$. Then $1/k < \varepsilon < 1/(k-1)$ and so for all $n \in \mathbb{N}$ with $n>k-1$ we have $|a_n| < \varepsilon$. Thus, $\lim_{n \rightarrow \infty} a_n = 0$.
+\end{proof}
+
+4) Convergent.
+\begin{proof}
+We have for all $n \in \mathbb{N}$, $a_n \in [-1;1]$. Thus for all $n \in \mathbb{N}$, $|a_n| \in (0;1]$. From here we use a similar proof to 3) since we need to show that there exists some $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_n| < \varepsilon$. This is exactly what we did in 3). Thus, $\lim_{n \rightarrow \infty} a_n = 0$.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{The following hold.
+1) If $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} a_n = a'$ then $a=a'$;\newline
+2) If $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} b_n = b$ then $\lim_{n \rightarrow \infty} (a_n + b_n) = a+b$;\newline
+3) If $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} b_n = b$ then $\lim_{n \rightarrow \infty} (a_n b_n) = ab$;\newline
+4) If $\lim_{n \rightarrow \infty} a_n = a$ and $c \in \mathbb{R}$ then $\lim_{n \rightarrow \infty} (ca_n) = ca$;\newline
+5) If $\lim_{n \rightarrow \infty} a_n = a \neq 0$ and $a_n \neq 0$ for all $n$ then $\lim_{n \rightarrow \infty} (1 / a_n) = 1/a$;\newline
+6) If $a_n \leq b_n$ for all $n$ and both $(a_n)$ and $(b_n)$ are convergent then $\lim_{n \rightarrow \infty} a_n \leq \lim_{n \rightarrow \infty} b_n$.}
+\begin{proof}
+1) Let $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} a_n = a'$ and suppose $a \neq a'$. Without loss of generality let $a<a'$. Consider $0 < (a'-a)/2$. Then there exist $N_1, N_2 \in \mathbb{N}$ such that for all $n>N_1$ we have $|a-a_n| < (a'-a)/2$ and for all $n>N_2$ we have $|a'-a_n| < (a'-a)/2$. Let $N = \max{N_1,N_2}$ so that for all $n>N$ we have $a_n \in (a-(a'-a)/2 ; a + (a'-a)/2)$ and $a_n \in (a'-(a'-a)/2 ; a + (a'-a)/2)$. But these regions are disjoint so this is a contradiction and $a = a'$.
+\end{proof}
+\begin{proof}
+2) Let $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} b_n = b$ and consider $\varepsilon/2 > 0$. Then there exist $N_1, N_2 \in \mathbb{N}$ such that for all $n > N_1$ we have $|a-a_n| < \varepsilon/2$ and for all $n > N_2$ we have $|b-b_n| < \varepsilon/2$. Let $N = \max (N_1,N_2)$ so that for all $n>N$ we have $|a-a_n| < \varepsilon/2$ and $|b-b_n| < \varepsilon/2$. But by Lemma 11.8 this means we have $|(a+b) - (a_n+b_n)| < \varepsilon$ for all $n>N$. This implies that $\lim_{n \rightarrow \infty} (a_n+b_n) = a+b$.
+\end{proof}
+\begin{proof}
+3) Let $(a_n)$ converge to $a$ and $(b_n)$ converge to $b$. Let $\varepsilon > 0$ and consider $\min \left ( 1, \frac{\varepsilon}{2 (|b|+1)} \right ) > 0$. Then there exists an $N_1 \in \mathbb{N}$ such that for all $n>N_1$ we have $|a-a_n| < \min \left (1, \frac{\varepsilon}{2 (|b| + 1)} \right )$. Also, there exists $N_2 \in \mathbb{N}$ such that for all $n>N_2$ we have $|b-b_n| < \frac{\varepsilon}{2 (|a|+1)}$. Let $N= \max(N_1,N_2)$ so that for all $n>N$ we have $|a-a_n| < \min \left (1, \frac{\varepsilon}{2(|b|+1)} \right )$ and $|b-b_n| < \frac{\varepsilon}{2(|a|+1)}$. But then we know that for all $n>N$ we have $|ab-a_nb_n| < \varepsilon$. Thus $\lim_{n \rightarrow \infty} (a_nb_n) = ab$.
+\end{proof}
+\begin{proof}
+4) Let $(a_n)$ converge to $a$. From Exercise 4 we know that $\lim_{n \rightarrow \infty} c = c$ and so from 3) we have $\lim_{n \rightarrow \infty} (ca_n) = ca$.
+\end{proof}
+\begin{proof}
+5) Let $(a)$ converge to $a \neq 0$ such that $a_n \neq 0$ for all $n \in \mathbb{N}$. Let $\varepsilon > 0$ and consider $\min \left ( \frac{|a|}{2}, \frac{\varepsilon |a|^2}{2} \right ) > 0$. Then there exists $N \in \mathbb{N}$ such that for all $n>N$ we have $|a-a_n| < \min \left ( \frac{|a|}{2}, \frac{\varepsilon |a|^2}{2} \right )$. But then we have $\left | \frac{1}{a} - \frac{1}{a_n} \right | < \varepsilon$ for all $n>N$. Thus $\lim_{n \rightarrow \infty} (1/a_n)=1/a$.
+\end{proof}
+\begin{proof}
+Let $(a)$ converge to $a$ and $(b_n)$ converge to $b$ such that $a_n \leq b_n$ for all $n \in \mathbb{N}$. Suppose to the contrary that $a > b$. Let $\varepsilon = (a-b)/2 > 0$. Then there exist $N_1,N_2 \in \mathbb{N}$ such that for all $n>N_1$ we have $a_n \in (a - \varepsilon ; a + \varepsilon)$ and for all $n>N_2$ we have $b_n \in (b - \varepsilon ; b + \varepsilon)$. Let $N=\max (N_1,N_2)$ so that for all $n>N$ we have $a_n \in (a - (a-b)/2 ; a + (a-b)/2) = ((a+b)/2 ; (3a-b)/2)$ and $b_n \in (b - (a-b)/2 ; b + (a-b)/2) = ((3b-a)/2 ; (a+b)/2)$. But then $b_n < (a+b)/2 < a_n$ for all $n$ which is a contradiction therefore $a \leq b$.
+\end{proof}
+
+\textbf{Theorem 6}
+\textsl{Let $A \subseteq \mathbb{R}$ be a subset. Then $a \in \overline{A}$ if and only if there exists a sequence $a_n \in A$ that converges to $a$.}
+\begin{proof}
+Let $a \in \overline{A}$. Then we have $a \in A$ or $a$ is a limit point of $A$. If $a \in A$ then we let $a_n = a$. This converges to $a$ using a similar proof to 1) of Exercise 4. If $a$ is a limit point of $A$ and $R$ is a region containing $a$ then from Theorem 3 we have $R \cap A$ is infinite. Define $(a_n)$ as follows. Choose $a_1 < a$ from $R \cap A$. Now let $a_2 \in (a - \frac{a-a_1}{2} ; a + \frac{a - a_1}{2})$ such that $a_1 < a_2 < a$. Continue in this way so that $a_n \in (a - \frac{a-a_{n-1}}{2} ; a + \frac{a-a_{n-1}}{2})$ and $a_{n-1} < a_n < a$. Now consider some region $(p;q)$ such that $a \in (p;q)$. In the case where $p<a_1$ there are no elements of $(a_n)$ outside of $(p;q)$. If $a_1 < p$ then take the smallest $k \in \mathbb{N}$ such that $p<a_k$. Then $a_{k-1} \leq p$. Since there are a finite number of naturals less than $k$ and every other natural maps to something between $a_{k-1}$ and $a$, there are a finite number of $n \in \mathbb{N}$ such that $a_n \notin (p;q)$. We see that in all cases $\lim_{n \rightarrow \infty} a_n = a$.\newline
+
+Conversely suppose there exists a sequence $a_n \in A$ that converges to $a$. If $a=a_k$ for some $k \in \mathbb{N}$ then we have $a \in A$ and we're done. If $a \neq a_k$ for $k \in \mathbb{N}$ then for a region $R$ with $a \in R$ there exists a finite number of $n \in \mathbb{N}$ such that $a_n \notin R$. But then there are an infinite number of $n \in \mathbb{N}$ with $a_n \in R$ and since $a$ is not equal to any of these $a_n$ we have $a$ is a limit point of $A$ which means $a \in \overline{A}$.
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{Let $f$ be a real function. Then $f$ is continuous at $a$ if and only if for all sequences $(a_n)$ with $\lim_{a \rightarrow \infty} a_n = a$ we have $\lim_{n \rightarrow \infty} f(a_n) = f(a)$.}
+\begin{proof}
+Let $f$ be continuous at $a$ and consider some sequence $(a_n)$ which converges to $a$. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $a_n \in \mathbb{R}$ when $|a-a_n| < \delta$ we have $|f(a) - f(a_n)| < \varepsilon$. But also for $\delta > 0$ there exists some $N \in \mathbb{N}$ such that for all $n > N$ we have $|a-a_n| < \delta$. But then for $\varepsilon > 0$ there exists some $N \in \mathbb{N}$ such that for all $n>N$ we have $|f(a) - f(a_n)| < \varepsilon$.\newline
+
+To show the converse, we use the contrapositive. Assume that $f$ is not continuous at $a$. Then there exists $\varepsilon > 0$ such that for all $\delta > 0$ there exists some $x \in \mathbb{R}$ so that when $|a - x| < \delta$ we have $|f(a) - f(x)| \geq \varepsilon$. For this $\varepsilon$ there exists some $a_1 \in (a - 1 ; a + 1)$ such that $|f(a) - f(a_1)| \geq \varepsilon > 0$. Then let $(a_n)$ be a sequence such that $a_n \in (a - 1/n ; a + 1/n)$ such that $|f(a) - f(a_n)| \geq \varepsilon$. We know that $a_i$ exists for all $i \in \mathbb{N}$ because for each $\delta > 0$ there always exists an $x \in (a - \delta ; a + \delta)$ such that $|f(a) - f(x)| \geq \varepsilon$. Let $(p;q)$ be a region with $a \in (p;q)$. If $p \leq a - 1$ and $q \geq a + 1$ then for all $n$ we have $a_n \in (p;q)$ and so there are finitely many $n$ with $a_n \notin (p;q)$. Consider the case where $p \in (a-1;a)$. Using the Archimedean Property and the Well Ordering Principle there exists a least $k$ such that $a-1/k \leq p < a$. Then there are finitely many $n \leq k$ such that $a_n \leq p$. We can make a similar argument about $q$ so that there are finitely many $n$ with $a_n \notin (p;q)$. Then $(a_n)$ converges to $a$ but this means there exists a sequence which converges to $a$, but $\lim_{n \rightarrow \infty} f(a_n) \neq f(a)$.
+\end{proof}
+
+\textbf{Definition 8}
+\textsl{Let $(a_n)$ be a sequence. A point $a \in \mathbb{R}$ is called an accumulation point of $(a_n)$ if for every region $R$ containing $a$ there are infinitely many $n$ with $a_n \in R$.}\newline
+
+\textbf{Lemma 9}
+\textsl{For a sequence $(a_n)$, the set $A$ of all its accumulation points is a closed set.}
+\begin{proof}
+Let $(a_n)$ be a sequence and let $A$ be the set of its accumulation points. Let $x \in \mathbb{R} \backslash A$. Then $x$ is not an accumulation point of $(a_n)$ and so there exists some region $R$ such that there are finitely many $n \in \mathbb{N}$ with $a_n \in R$. Note that none of the points in $R$ are accumulation points because there are only finitely many $a_n \in R$. But this means that $R \subseteq \mathbb{R} \backslash A$ and since such a region exists for all $x \in \mathbb{R} \backslash A$ we know that this set is open. But then $A$ is closed.
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{Let $(a_n)$ be a sequence which converges to $a$. Then $a$ is the only accumulation point of $(a_n)$.}
+\begin{proof}
+Let $(a_n)$ be a sequence such that $\lim_{n \rightarrow \infty} a_n = a$ and suppose that $(a_n)$ has an accumulation point $a'$ such that $a' \neq a$. Let $R$ and $R'$ be disjoint regions containing $a$ and $a'$ respectively. Then there are finitely many $n \in \mathbb{N}$ with $a_n \notin R$ but also there are infinitely many $n \in \mathbb{N}$ with $a_n \in R'$. Since $R$ and $R'$ are disjoint this is a contradiction.
+\end{proof}
+
+\textbf{Definition 11 (Subsequence)}
+\textsl{Let $(a_n)$ be a sequence. A subsequence of $(a_n)$ is a sequence $(b_k=a_{n_k})$ (meaning that $b_1=a_{n_1}$, $b_2=a_{n_2}$, $b_3=a_{n_3}$ and so on), where $n_1<n_2<n_3< \dots$.}\newline
+
+\textbf{Lemma 12}
+\textsl{If $(a_n)$ converges to $a$, then so do all of it's subsequences.}
+\begin{proof}
+Let $(a_n)$ be a sequence which converges to $a$ and let $(b_k = a_{n_k})$ be a subsequence. Every element of $(b_k=a_{n_k})$ is an element of $(a_n)$ and for every region $R$ with $a \in R$ there are finitely many $n \in \mathbb{N}$ such that $a_n \notin R$. But then For every region $R$ containing $a$, there must be finitely many $k \in \mathbb{N}$ such that $b_k \notin R$. Thus $(b_k = a_{n_k})$ converges to $a$.
+\end{proof}
+
+\textbf{Lemma 13}
+\textsl{Let $(a_n)$ be a sequence. Then $a$ is an accumulation point of $(a_n)$ if and only if there is a subsequence $(b_k = a_{n_k})$ which converges to $a$.}
+\begin{proof}
+Let $(a_n)$ be a sequence which has a subsequence $(b_k = a_{n_k})$ which converges to $a$. Then for all regions $R$ with $a \in R$ there are finitely many $k \in \mathbb{N}$ with $b_k \notin R$. Then there are infinitely many $k$ with $b_k \in R$. But for all $k \in \mathbb{N}$ we have $b_k = a_{n_k}$ which means there are infinitely many $n \in \mathbb{N}$ with $a_n \in R$. Thus, $a$ is an accumulation point of $(a_n)$.\newline
+
+Conversely, let $a$ be an accumulation point of $(a_n)$. Create a subsequence $(b_k = a_{n_k})$ where $b_k = a_{n_k}$ and $a_{n_k} \in (a - 1/k ; a + 1/k)$. We know that $b_k$ will exist because for each $k \in \mathbb{N}$ there are infinitely many $n$ such that $a_n \in (a - 1/k ; a + 1/k)$ because $a$ is an accumulation point. Let $(p;q)$ be a region containing $a$. Then if $p \leq a - 1$ and $q \geq a + 1$ then we have $a_n \in (p;q)$ for all $n$ and so there are a finite number of $n$ such that $n \notin (p;q)$. In the case where $a - 1 < p < a$, using the Archimedean Property and the Well Ordering Principle we know there exists a least $k \in \mathbb{N}$ such that $a-1/k \leq p < a$. But then there are a finite number of $n \leq k$ such that $a_n \leq p$. Using a similar argument for $a < q < a + 1$ we have a finite number of $n$ such that $a_n \notin (p;q)$. Then $(b_k)$ converges to $a$.
+\end{proof}
+
+\textbf{Definition 14 (Bounded Sequence)}
+\textsl{A sequence $(a_n)$ is bounded above if there exists $M \in \mathbb{R}$ such that $a_n \leq M$ for all $n \in \mathbb{N}$. It is bounded below if there exists $m \in \mathbb{R}$ such that $a_n \geq m$ for all $n \in \mathbb{N}$. We have $(a_n)$ is bounded if it is bounded above and bounded below.}\newline
+
+\textbf{Lemma 15}
+\textsl{Every convergent sequence is bounded.}
+\begin{proof}
+Let $(a_n)$ be a sequence which converges to $a$. Let $(p;q)$ be a region with $a \in (p;q)$. In the case that for all $n \in \mathbb{N}$, $p < a_n$ or $a_n < q$ we have $p$ or $q$ are upper or lower bounds for $(a_n)$. Consider the case where there exists $n \in \mathbb{N}$ such that $a_n \leq p$. We have $(a_n)$ converges to $a$ so there are finitely many $n$ with $a_n \notin (p;q)$. Thus, there exists $k \in \mathbb{N}$ such that $a_k \leq a_n$ for all $n \in \mathbb{N}$. Then this $a_k$ is a lower bound for $(a_n)$. A similar proof holds to find and upper bound for $(a_n)$ if there exists $n \in \mathbb{N}$ with $a_n \geq q$.
+\end{proof}
+
+\textbf{Theorem 16 (Bolzano-Weierstrass for Sequences)}
+\textsl{Any bounded sequence has a convergent subsequence.}
+\begin{proof}
+Let $(a_n)$ be a bounded sequence. Then there exists $l,u \in \mathbb{R}$ such that for all $n \in \mathbb{N}$ we have $l \leq a_n \leq u$. Now suppose that $(a_n)$ has no accumulation points. Then for all points $a \in \mathbb{R}$ there exists a region $R_a$ such that there are finitely many $n \in \mathbb{N}$ with $a_n \in R_a$. Let $\mathcal{A} = \{R_a \mid a \in [l;u]\}$. Then $\mathcal{A}$ is an open cover for $[l;u]$ and $[l;u]$ is compact so let $\mathcal{B}$ be a finite subcover for $\mathcal{A}$. Then $\mathcal{B}$ covers $[l;u]$ with a finite number of regions $R$ which each have a finite number of $n \in \mathbb{N}$ with $a_n \in R$. But $(a_n)$ is bounded between $l$ and $u$ so there are an infinite number of $n \in \mathbb{N}$ with $a_n \in [l;u]$. This is a contradiction and so $(a_n)$ must have some accumulation point $a$. Then by Lemma 13 there must exist a convergent subsequence of $(a_n)$ which converges to $a$.
+\end{proof}
+
+\textbf{Corollary 17}
+\textsl{Let $(a_n)$ be a bounded sequence. Then $(a_n)$ is convergent if and only if it has only one accumulation point.}
+\begin{proof}
+If $(a_n)$ is convergent at $a$ then by Lemma 10 $a$ is the only accumulation point of $(a_n)$. Suppose now that $(a_n)$ has only one accumulation point $a$. Note that $(a_n)$ so there exist $l,u \in \mathbb{R}$ such that $a_n \in [l;u]$ for all $n \in \mathbb{N}$. Take an arbitrary region $(p;q) \subseteq [l;u]$ such that $a \in (p;q)$. Consider $[l;u] \backslash (p;q) = [l;p] \cup [q;u] = S$. Every element of $S$ is not an accumulation point of $(a_n)$. Thus for all $x \in S$ there exists some region $R_x$ such that there are finitely many $n \in \mathbb{N}$ with $a_n \in R_x$. Let $\mathcal{A} = \{R_x \mid x \in S\}$ be an open cover for $S$. We have $S$ is closed and bounded and so there exists a finite subcover $\mathcal{B}$ for $\mathcal{A}$. Then $\mathcal{B}$ covers $S$ with a finite number of regions, $R$, each of which have a finite number of $n$ with $a_n \in R$. Thus, there are finitely many $n \in \mathbb{N}$ with $a_n \notin (p;q)$. In the case where $[l;u] \subseteq (p;q)$ then we have every element of $(a_n)$ is in $(p;q)$ are so there are finitely many $n$ with $a_n \notin (p;q)$. In all cases we see that $(a_n)$ must converge to $a$.
+\end{proof}
+
+\textbf{Theorem 18 (Increasing Bounded Sequences are Convergent)}
+\textsl{Let $(a_n)$ be a bounded above sequence, such that $a_n \leq a_{n+1}$ for all $n$. Then $(a_n)$ converges and
+\[
+\lim_{n \rightarrow \infty} a_n = \sup \{a_n \mid n \in \mathbb{N}\}.
+\]}
+\begin{proof}
+Let $s = \sup \{a_n \mid n \in \mathbb{N}\}$. Consider some region $(p;q)$ with $s \in (p;q)$. In the case where $p < a_n$ for all $n \in \mathbb{N}$, we have a finite number of $n$ with $a_n \notin (p;q)$. Suppose that $a_n \leq q$ for all $n$. Then there exists $c \in (q;s)$ such that $c > a_n$ for all $n$. But this is a contradiction because $c < s$ and $c$ is an upper bound for $(a_n)$. Thus there exists $i \in \mathbb{N}$ such that $a_i \leq p < a_{i+1}$. So now we have $q < a_n$ for all $n > i$ and since there are a finite number of naturals less than $i+1$, there are a finite number of $n$ with $a_n \notin (p;q)$. But this is true for every region $R$ with $s \in R$. Thus $\lim_{n \rightarrow \infty} a_n = s$.
+\end{proof}
+
+\textbf{Theorem 19}
+\textsl{Every sequence has an increasing or decreasing subsequence.}
+\begin{proof}
+Let $(a_n)$ be a sequence. Define $n$ to be a peak point if for all $m>n$ we have $a_m < a_n$. Suppose there are infinitely many peak points for $(a_n)$ and let $n_1$ be the least peak point. We can do this because peak points are natural numbers. Define the next largest peak point to be $n_2$ and so on. Note that $a_{n_i} > a_{n_{i+1}}$ for all $i \in \mathbb{N}$. Thus, we have created a decreasing subsequence $(b_k = a_{n_k})$.\newline
+
+If there are no peak points then for all $n \in \mathbb{N}$, there exists $m>n$ such that $a_n \leq a_m$. Then we can make an increasing subsequence by letting $b_1 = a_1$. Then there exists $m_2 > 1$ such that $a_1 \leq a_{m_2}$. Let $b_2 = a_{m_2}$. Now there exists $m_3 > m_2$ such that $a_{m_2} \leq a_{m_3}$. Let $b_3 = a_{m_3}$. Thus $(b_k = a_{m_k})$.\newline
+
+Now suppose that there are finitely many peak points for $(a_n)$ and that there exists at least one peak point. Let $n \in \mathbb{N}$ be the largest peak point for $(a_n)$. Then for all $m>n$ we have $a_m < a_n$, but also $m$ is not a peak point and so there exists $m' > m$ with $a_m \leq a_{m'}$. Then create an increasing sequence as before by choosing an arbitrary $m_1>n$ and letting $b_1 = a_{m_1}$. Then there exists $m_2 > m_1$ such that $a_{m_1} \leq a_{m_2}$. Thus $(b_k = a_{m_k})$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

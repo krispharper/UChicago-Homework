@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\res}{\textup{Res}}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27000\\
+
+November 12, 2009
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{problem}
+\label{sinresidue}
+Find the residue of the following function at $0$: $e^z/\sin z$.
+\end{problem}
+\begin{proof}
+Since $(\sin z)' = \cos z \neq 0$ at $0$, we know $\res(e^z/\sin z ; 0) = e^0 \res(1/\sin z ; 0) = 1/\cos (0) = 1$.
+\end{proof}
+
+\begin{problem}
+(a) Find the integral
+\[
+\int_C \frac{1}{z^2 - 3z + 5}dz,
+\]
+where $C$ is a rectangle oriented clockwise, as shown in the figure.\\
+(b) Find the integral $\int_C 1/(z^2 + z + 1) dz$ over the same $C$.\\
+(c) Find the integral $\int_C 1/(z^2 - z + 1) dz$ over this same $C$.
+\end{problem}
+\begin{proof}
+(a) Factoring we find that $z_1 = 3/2 - i/2 \sqrt{11}$ and $z_2 = 3/2 + i/2 \sqrt{11}$ are the the two zeros of the polynomial. Thus, these are the places where the integrand has a simple pole. Only $z_2$ is in the interior of $C$. Then we have $\res(1/(z^2-3z+5) ; z_2) = 1/(z_2-z_1) = -i/\sqrt{11}$. Since $C$ is oriented clockwise we have
+\[
+\int_C \frac{1}{(z^2-3z=5)}dz = -2 \pi i \left ( \frac{-i}{\sqrt{11}} \right ) = \frac{-2 \pi}{\sqrt{11}}.
+\]
+
+(b) We find that the solutions to $z^2 + z + 1$ are $\pm(-1)^{2/3}$, both of which have negative real parts. Thus $1/(z^2+z+1)$ is holomorphic on the interior of $C$ and thus $\int_C 1/(z^2 + z + 1)dz = 0$.
+
+(c) Factoring we see that the solutions to $z^2 - z + 1$ are $z_1 = 1/2 - i/2\sqrt{3}$ and $z_2 = 1/2 + i/2 \sqrt{3}$. Since only $z_2$ is in the interior of $C$ we have
+\[
+\int_C \frac{1}{(z^2 - z + 1)}dz = -2 \pi i \res \left (\frac{1}{z^2 - z + 1} ; z_2 \right ) = -2 \pi i \left (\frac{1}{z_2-z_1} \right ) = \frac{-2 \pi}{\sqrt{3}}.
+\]
+\end{proof}
+
+\begin{problem}
+Find the integrals, where $C$ is the circle of radius $8$ centered at the origin.\\
+(a) $\int_C \frac{1}{\sin z} dz$.\\
+(c) $\int_C \frac{1+z}{1-e^z} dz$.
+\end{problem}
+\begin{proof}
+(a) We showed in Problem~\ref{sinresidue} that $\res(1/\sin z ; 0) = 1$. Then $\int_C 1/\sin z dz = 2 \pi i$.
+
+(c) Since $1 + z$ is holomorphic, and $(1-e^z)' = -e^z \neq 0$, we have $\res((1+z)/(1-e^z);0) = (1 + 0)\res(1/(1-e^z);0) = -e^0 = -1$, $\res((1+z)/(1-e^z); 2 \pi i) = (1+2\pi i)(-1)$ and $\res((1+z)/(1-e^z);-2 \pi i) = (1-2\pi i)(-1)$. Therefore $\int_C (1+z)(1-e^z)dz = 2 \pi i (-3) = -6 \pi i$.
+\end{proof}
+
+\begin{problem}
+Let $a$ be real $> 1$. Prove that the equation $ze^{a-z} = 1$ has a single solution with $|z| \leq 1$, which is real and positive.
+\end{problem}
+\begin{proof}
+Let $f(z) = ze^{a-z}$ and $g(z) = f(z) - 1$. Then $|f(z) - g(z)| = 1$ and if $|z| = 1$ with $z = x+iy$, we have $|f(z)| = e^{a-x}$. Since $a > 1$ we see that $|f(z)| > 1$ for $|z| = 1$ which means $|f(z)-g(z)| < |f(z)|$ on unit circle. Now apply Rouch\'{e}'s theorem to see that $ze^{a-x} = 0$ and $ze^{a-x} = 1$ have the same number of solutions on the unit disk. The second equation only has one solution ($z = 0$), and so we see that $ze^{a-z} = 1$ has a single solution with $|z| \leq 1$. Since $0 = f(0) < f(1) > 1$ we know by the intermediate value theorem that this solution must be real and positive.
+\end{proof}
+
+\begin{problem}
+Let $f$, $h$ be analytic on the closed disc of radius $R$, and assume that $f(z) \neq 0$ for $z$ on the circle of radius $R$. Prove that there exists $\epsilon > 0$ such that $f(z)$ and $f(z) + \epsilon h(z)$ have the same number of zeroes inside the circle of radius $R$. Loosely speaking, we may say that $f$ and a small perturbation of $f$ have the same number of zeros inside the circle.
+\end{problem}
+\begin{proof}
+For $\epsilon > 0$ and let $g_{\epsilon}(z) = f(z) - \epsilon h(z)$. Then $|g_{\epsilon}(z) - f(z)| \leq \epsilon |h(z)|$. Let $C$ be the boundary of the disk of radius $R$. We know $f$ is continuous and nonzero on $C$, so $f$ is bounded away from $0$ on $C$. That is, there exists $\delta > 0$ such that $|f(z)| > \delta$ on $C$. But also, $h$ is continuous on $C$ and so there exists $\epsilon > 0$ such that $\epsilon |h(z)| < \delta$ for $z \in C$. But now
+\[
+|g_{\epsilon}(z) - f(z)| < \epsilon |h(z)| < \delta < |f(z)|
+\]
+on $C$. But then $f(z)$ and $g_{\epsilon} = f(z) - \epsilon h(z)$ have the same number of zeros on $D_R(0)$ and its easy to see that this also applies to $f(z) + \epsilon h(z)$.
+\end{proof}
+
+\begin{problem}
+Let $P_n(z) = \sum_{k=0}^n z^k/k!$. Given $R$, prove that $P_n$ has no zeros in the disc of radius $R$ for all $n$ sufficiently large.
+\end{problem}
+\begin{proof}
+Let $f(z) = e^z$. Note that $f(z)$ has no zeros in $\mathbb{C}$ so $|f(z)| > \delta_R > 0$ for some $\delta_R$ and all $z \in \overline{D}_R(0)$. But since $P_n$ converges to $f$ uniformly on $\overline{D}_R(0)$. Thus for sufficiently large $n$, $|f(z) - P_n(z)| \leq \delta_R < |f(z)|$. Since $f$ has no zeros on $D_R(0)$, we see that $P_n$ doesn't either.
+\end{proof}
+
+\begin{problem}
+(a) $\int_{-\infty}^{\infty} \frac{1}{x^6+1}dx = 2 \pi /3$.\\
+(b) Show that for a positive integer $n \geq 2$,
+\[
+\int_0^{\infty} \frac{1}{1+x^n}dx = \frac{\pi/n}{\sin \pi/n}.
+\]
+\end{problem}
+\begin{proof}
+(a) We know the integrand is bounded by $B/|x|^6$ for some constant $B$. We thus calculate the residues in the upper half plane of $1/(1+x^6)$. This function has poles at the $6$th roots of unity, and $e^{i\pi/6}$, $e^{i\pi/2}$ and $e^{5i\pi/6}$ are the three in the upper half plane. Since these are all simple poles, we can take the derivative of $1 + x^6$ to find the residues. In particular
+\[
+\int_{-\infty}^{\infty} \frac{1}{x^6 + 1}dx = 2 \pi i \left (\frac{1}{6(e^{i\pi/6})^5} + \frac{1}{6(e^{i\pi/3})^5} + \frac{1}{6(e^{5i\pi/6})^5} \right ) = \frac{\pi i}{3} \left ( -\frac{\sqrt{3}}{2} - \frac{i}{2} - i - \frac{i}{2} + \frac{\sqrt{3}}{2} \right ) = \frac{2 \pi}{3}.
+\]
+
+(b) Let $\gamma$ be the segment from $0$ to $R$, $\eta$ be the arc from $R$ to $Re^{2 \pi i/n}$ and $\gamma'$ be the segment from $Re^{2 \pi i/n}$ to $0$. The integral over $\eta$ tends to $0$ as $R$ becomes large since it's bounded by $||f||_{\eta}$ and the length of $\eta$ (which goes to $0$ as $R$ gets large since $n \geq 2$). The only pole of $1/(1 + z^n)$ in the interior of $\gamma + \eta + \gamma'$ is $e^{i \pi/n}$ which is a simple pole. Taking the derivative of $1 + x^n$ and putting this value in we see that $\res (1/(1 + x^n) ; e^{i\pi/n}) = (1/n) e^{-(n-1)i\pi/n} = -1/ne^{i\pi/n}$.
+
+On the other hand, we can parameterize $\gamma'$ by $te^{2 \pi i /n}$ where $0 \leq t \leq R$ and then we find
+\[
+\int_{\gamma'} = \frac{1}{1+x^n}dx = -e^{2 \pi i/n} \int_{\gamma}\frac{1}{1 + x^n}dx.
+\]
+Now use the residue formula and the fact that $\gamma + \eta + \gamma'$ is a closed path so that
+\[
+(1 - e^{2 \pi i /n}) \int_{0}^{\infty} \frac{1}{1+x^n}dx = 2 \pi i \left ( \frac{-1}{n}e^{\pi i/n} \right ).
+\]
+After dividing we have
+\[
+\frac{e^{i \pi /n} - e^{-i \pi /n}}{2 i} \int_{0}^{\infty} \frac{1}{1+x^n}dx = \frac{\pi}{n}.
+\]
+Use the fact that $\sin z = (e^{iz} - e^{-iz})/(2i)$ to conclude the result.
+\end{proof}
+
+\begin{problem}
+(a) $\int_{-\infty}^{\infty} \frac{e^{iax}}{x^2+1}dx = \pi e^{-a}$ if $a > 0$.\\
+(b) For any real number $a > 0$,
+\[
+\int_{-\infty}^{\infty} \frac{\cos x}{x^2 + a^2}dx = \pi e^{-a}/a.
+\]
+\end{problem}
+\begin{proof}
+(a) Note that the integrand is bounded by $K/|x|^2$ for some constant $K$. We now must find the residues for poles in the upper half plane. But this function only has poles at $i$ and $-i$, and the pole at $-i$ has residue $e^{iai}(1/(2i))$. Thus the integral is $2 \pi i e^{-a}/(2i) = \pi e^{-a}$.
+
+(b) Let $x = ay$. Then using part (a) we have
+\[
+\int_{-\infty}^{\infty} \frac{\cos x}{x^2 + a^2}dx = \frac{1}{a} \int_{-\infty}^{\infty} \frac{\cos(ay)}{y^2+1}dy = \frac{1}{a} \text{Re} \left ( \int_{-\infty}^{\infty} \frac{e^{iay}}{y^2+1}dy \right ) = \frac{\pi e^{-a}}{a}.
+\]
+\end{proof}
+
+\begin{problem}
+(a) $\int_0^{\infty} \frac{(\log x)^2}{1+x^2}dx = \pi^3/8$.\\
+(b) $\int_0^{\infty} \frac{\log x}{(x^2+1)^2} dx = -\pi/4$.
+\end{problem}
+\begin{proof}
+(a) Let $\gamma$ be the segment from $\delta$ to $R$, $\gamma'$ be the segment from $-R$ to $-\delta$, $S(\delta)$ be the half circle in the upper half plane centered at $0$ with radius $\delta$ and let $S(R)$ be defined similarly. Then let $C = \gamma + S(R) + \gamma' + S(\delta)$. Note that the integrand only has a pole at $i$ in $C$ and this pole is simple. We find the residue to be $(\log(i))^2 (1/2i) = -\pi^2/8i$. Then we have
+\[
+\int_{C} \frac{(\log x)^2}{1+x^2}dx = \frac{-\pi^3}{4}.
+\]
+Now we can break up $C$ into it's component paths so that
+\[
+\int_{\delta}^{\infty} \frac{(\log x)^2}{1+x^2}dx + \int_{-\delta}^{-\infty} \frac{(\log x)^2}{1+x^2}dx = \int_{S(\delta)}\frac{(\log x)^2}{1+x^2}dx - \int_{S(R)} \frac{(\log x)^2}{1+x^2}dx + \frac{\pi^3}{4}.
+\]
+If we take the limit as $R$ goes to infinity and as $\delta$ goes to $0$, we get twice the desired integral, so dividing by $2$ gives us $\pi^3/8$.
+
+(b) We use the same method as in part (a). The only pole inside $C$ is at $i$. Splitting the integral into it's component paths, we see that the integral evaluates to $-\pi/4$.
+\end{proof}
+
+\begin{problem}
+Let $U \subseteq C$ be open and connected and let $f_n \in H(U)$ converge to $f$ uniformly on compact subsets of $U$. If none of $f_n$ has a root in $U$, prove that either $f$ has no root in $U$ or $f \equiv 0$ on $U$.
+\end{problem}
+\begin{proof}
+Suppose that $f$ is not constantly $0$ on $U$. Then $f$ is bounded away from $0$ by some $\delta$ on any compact subset $K \subseteq U$. Since $f_n$ converges uniformly to $f$ on $K$, there exists $N$ such that $|f_N(z) - f(z)| < \delta$ for all $z \in K$. But then $|f_N(z) - f(z)| < |f(z)|$ for all $z \in K$ and so $f(z)$ has no roots in $K$ since $f_N$ doesn't either. Since we can take compact subsets to be arbitrarily large in $U$, this must be true for all points in $U$.
+\end{proof}
+
+\end{document}

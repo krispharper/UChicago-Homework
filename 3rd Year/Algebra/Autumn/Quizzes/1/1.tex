@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{10pt}
+\renewcommand{\textheight}{609pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25700\\October 7, 2009\\}
+\chead{Quiz 1\\}
+
+Consider a cube that exactly fills a certain cubical box. The ways in which the cube can be placed in the box correspond to a certain group of permutations of the vertices of the cube; this group is called the \u{group of rigid motions} (or rotations) of the cube.
+
+\begin{problem}
+What is the order of this group?
+\end{problem}
+\begin{proof}
+Call the group of rigid motions $G$. Let $C$ be a cube with side length $s$. The possible permutations of the vertices are limited to the number of rotations of $C$. There are six faces on $C$, grouped into three sets of opposite faces. These define three natural axes of rotation, namely, the axes going through the centers of each opposite face. Performing a rotation of $\pi/2$ about any of these axes maps two faces to themselves (albeit rotated) and the other four faces to an adjacent face in the direction of rotation. We'll call these three rotations $r_1$, $r_2$ and $r_3$.
+
+Let $a$ and $e$ be two vertices of $C$ which lie on a diagonal. Let $b$, $c$ and $d$ be the vertices which share an edge with $a$ and let $f$, $g$ and $h$ be the vertices which share an edge with $e$. Note that $b$, $c$ and $d$ are all equidistant from each other (each of them lies on a diagonal of a face of $C$ so their distance from each other is $s \sqrt{2}$). Furthermore, they're each equidistant from $a$. Thus the line defined by $ae$ is perpendicular to the plane defined by $b$, $c$ and $d$, and points $b$, $c$ and $d$ form an equilateral triangle in this plane. A similar statement can be made for points $f$, $g$ and $h$. Thus, any diagonal of $C$ is also an axis of rotation. There are four of these axes so we'll call a rotation of $2\pi/3$ about each one $d_1$, $d_2$, $d_3$, and $d_4$.
+
+Finally, consider an axis of rotation from the midpoint, called $u$, of an edge (say edge $ab$) to the midpoint, called $v$, of the farthest parallel edge (call it edge $cd$). A rotation about this axis by $\pi$ maps $ab$ to $ba$ (because the angle between $a$ and $b$ is $\pi$). The same can be said for any edge parallel to $ab$, and so $C$ must be mapped onto to itself (since all $8$ vertices are mapped to vertices in the same configuration). There are two of these axes for each pair of opposite sides, so there are $6$ total axes. Call the rotations by $\pi$ along these $m_1$, $m_2$, $m_3$, $m_4$, $m_5$ and $m_6$.
+
+This enumerates all possible rotations of $C$. To be sure of this note that we now have
+\[
+G = \{e\} \cup \{r_i^j \mid 1 \leq i \leq 3, 1 \leq j \leq 3\} \cup \{d_i^j \mid 1 \leq i \leq 4, 1 \leq j \leq 2\} \cup \{m_i \mid 1 \leq i \leq 6\}.
+\]
+Thus $|G| = 24$. But note that there are only $6$ possible spots for each face to get mapped to and each face has $4$ possible rotations. Thus $G$ can have at most $24$ elements and so these rotations must be all of them.
+\end{proof}
+
+\begin{problem}
+Argue geometrically that this group has at least three different subgroups with $4$ elements, and at least four different subgroups with $3$ elements.
+\end{problem}
+\begin{proof}
+Consider the group given by $H_{r_1} = \langle r_1 \rangle$. We see $H_{r_1}$ contains the identity since $r_1^4 = e$ is a rotation by $2 \pi$. This also shows that $|H_{r_1}| = 4$. $H_{r_1}$ is clearly closed under composition since two elements of $H_{r_1}$ are $r_1^i$ and $r_1^j$ and $r_1^i r_1^j = r_1^{i+j} \in H_{r_1}$. Finally, we see that $H_{r_1}$ is closed under inverses since $(r_1^n)^{-1} = (r_1^{-1})^n \in H_{r_1}$. We can create similar groups $H_{r_2}$ and $H_{r_3}$ which produces three subgroups with $4$ elements.
+
+Now consider the subgroup $H_{d_1} = \langle d_1 \rangle$. Note that $d_1^3 = e$ and so $H_{d_1}$ has three elements, including the identity. Similar arguments as those for $H_{r_1}$ show that $H_{d_1}$ is closed under composition and inverses. Thus $H_{d_1}$ is a subgroup of the group of rigid motions. A similar argument holds for the other three diagonals and this produces four subgroups with three elements each.
+\end{proof}
+
+\begin{problem}
+Can you tell what group (isomorphism class) this is?
+\end{problem}
+\begin{proof}
+We see that $G \cong S_4$. To see this note that there are four diagonals of $C$. These diagonals completely determine the orientation of $C$, so each permutation of the diagonals gives no more than one rotation of $C$. Furthermore, there are $24$ distinct permutations of the diagonals and since each one (except for the identity) changes at least one pair of endpoints, there are $24$ distinct rotations given by these permutations. We know that $S_4 \cong S_{\Omega}$ for a set $\Omega$, provided that $|\Omega| = 4$. Letting the diagonals be the elements of $\Omega$ finishes the proof.
+\end{proof}
+
+\end{document}

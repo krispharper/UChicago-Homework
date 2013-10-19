@@ -1,0 +1,124 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,fullpage}
+\begin{document}
+
+\begin{flushright}
+Kris Harper
+
+MATH 16100
+
+Mikl\'{o}s Ab\'{e}rt
+
+October 2, 2007
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{flushleft}
+
+1. \textsl{Show that for all natural numbers $n$ we have
+\[
+1+3+5+ \cdots +(2n-1)=n^2.
+\]}
+\begin{proof}
+We use induction on $n$. Let $S_n$ be the statement $1+3+5+ \cdots +(2n-1) = n^2$. We see that $S_1$ is true because $(2(1)-1)=1=1^2$. We now assume that $S_k$ is true for some $k \in \mathbb{N}$ and show that $S_{k+1}$ is true. We see that
+\begin{align*}
+1+3+5+ \cdots +(2k-1)+(2(k+1)-1) &= k^2 + (2(k+1) - 1) \\
+								   &= k^2 + 2k + 1 \\
+								   &= (k+1)^2. \\
+\end{align*}
+Thus, if $S_k$ is true, then $S_{k+1}$ is true for all $k \in \mathbb{N}$. Since $S_1$ is also true, then $S_n$ is true for all $n \in \mathbb{N}$.
+\end{proof}
+
+2. \textsl{Prove that $\sqrt{2}$ is irrational}\newline
+
+First we prove a lemma showing that if $n^2$ is even, then $n$ is even for all $n \in \mathbb{Z}$.
+\begin{proof}
+We use proof by contrapositive. We assume that if $n$ is not even, then $n^2$ is not even for all $n \in \mathbb{Z}$. If $n$ is not even, then it is odd. Thus $n=2k+1$ for some $k \in \mathbb{Z}$. But then $n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1$. Since $2k^2+2k \in \mathbb{Z}$, $n^2$ must be odd. Since the contrapositive is true, then for every even $n^2$, $n$ is also even.
+\end{proof}
+
+Now we prove the original result.
+
+\begin{proof}
+Suppose to the contrary that $\sqrt{2}$ is rational. Then $\sqrt{2}=\frac{a}{b}$ for some $a,b \in \mathbb{Z}$ such that $b \neq 0$ and $\frac{a}{b}$ is reduced to lowest terms so that $a$ and $b$ have no common factors. Thus, $2=\frac{a^2}{b^2}$ and $2b^2=a^2$. Hence, $a^2$ is even and by the previous lemma $a$ is even. Thus $a=2k$ for some $k \in \mathbb{Z}$ and so $2b^2=(2k)^2=4k^2$. Therefore $b^2=2k^2$. But then $b^2$ is even and so $b$ is even. Thus $a$ and $b$ share the common factor $2$. This is a contradiction.
+\end{proof}
+
+3. \textsl{Show that for all natural numbers $n$ we have
+\[
+1^3+2^3+ \dots + n^3 = \left( \frac {n (n+1)} {2} \right)^2.
+\]}
+\begin{proof}
+We use induction on $n$. Let $S_n$ be the statement $1^3+2^3+ \dots + n^3 = \left( \frac {n (n+1)} {2} \right)^2$. Then we see that $S_1$ is true since $1^3=1= (1 (1+1)) / 2 =2 / 2=1$. We now assume $S_k$ is true for any $k \in \mathbb{N}$ and show that $S_{k+1}$ is true. We see that
+\begin{align*}
+1^3+2^3+ \dots + k^3 + (k+1)^3 &= \left( \frac {k (k+1)} {2} \right)^2 + (k+1)^3 \\
+								  &= \frac {(k^2 +k)^2} {4} + \frac {4(k^3 + 3k^2 + 3k + 1)} {4} \\
+								  &= \frac {k^4 + 2k^3 + k^2 + 4k^3 + 12k^2 + 12k + 4} {4} \\
+								  &= \frac {k^4 + 6k^3 + 13k^2 + 12k + 4} {4} \\
+								  &= \frac {(k^2 + 3k + 2)^2} {4} \\
+								  &= \left( \frac {(k+1)(k+2)} {2} \right)^2 \\
+								  &= \left( \frac { (k+1) ( (k+1) + 1) } {2} \right)^2.\\
+\end{align*}
+Thus, if $S_k$ is true then $S_{k+1}$ is also true. Since $S_1$ is true as well, $S_n$ is true for all $n \in \mathbb{Z}$.
+\end{proof}
+
+4. \textsl{Is $\sqrt{2} + \sqrt{3}$ irrational?}\newline
+
+Yes.
+
+\begin{proof}
+Suppose, to the contrary, that $\sqrt{2} + \sqrt{3}$ is rational. Then $\sqrt{2} + \sqrt{3} = \frac {a}{b}$ for some $a,b \in \mathbb{Z}$ such that $b \neq 0$. Squaring both sides we have $2 + 2 \sqrt{6} + 3 = \frac{a^2}{b^2}$. Thus $\frac {a^2-5b^2}{2b^2}=\sqrt{6}$. But $a^2 - 5b^2$ and $2b^2$ are integers which means that $\sqrt{6}$ is rational. This is a contradiction.
+\end{proof}
+
+5. \textsl{Let $f_1 = 1$, $f_2=2$ and for $n>2$ let $f_n=f_{n-1}+f_{n-2}$. Show that
+\[
+f_n = \frac { \left( \frac { 1 + \sqrt{5} } {2} \right)^n - \left( \frac { 1 - \sqrt{5} } {2} \right)^n} { \sqrt{5} }.
+\]}
+\begin{proof}
+We assume that $f_n$ is in the form $ax^n + by^n$. Note that by definition then $ax^{n} + by^{n} = ax^{n-1} + by^{n-1} + ax^{n-2} + by^{n-2}$. And so $ax^2(x^{n-2}) + by^2(y^{n-2}) = ax(x^{n-2}) + by(y^{n-2}) + a(x^{n-2}) + b(y^{n-2})$. If we take $n=2$, then we see that $ax^2+by^2=ax + by + a + b$ and so $a(x^2-x-1) + b(y^2-y-1) = 0$. Thus the solutions for $x$ and $y$ are the solutions to the polynomial $n^2-n-1$ which are $\frac {1 \pm \sqrt{5}} {2}$. Hence we take $x= \frac {1 + \sqrt{5}} {2}$ and $y=\frac{1-\sqrt{5}}{2}$ so the equation becomes $f_n=a \left( \frac {1 + \sqrt{5}} {2} \right)^n + b \left( \frac{1-\sqrt{5}}{2} \right)^n$. Now we find $a$ and $b$ such that the equation is satisfied for $f_1=1$ and $f_2=1$. We see that for $n=1$ we have $f_1=1=a \left( \frac {1 + \sqrt{5}} {2} \right) + b \left( \frac{1-\sqrt{5}}{2} \right)$ and for $n=2$ we have $f_2=1=a \left( \frac {1 + \sqrt{5}} {2} \right)^2 + b \left( \frac{1-\sqrt{5}}{2} \right)^2$. Thus, we have
+\[
+a\left( \frac {1 + \sqrt{5}} {2} \right)^2 + b \left( \frac{1-\sqrt{5}}{2} \right)^2=a \left( \frac {1 + \sqrt{5}} {2} \right) + b \left( \frac{1-\sqrt{5}}{2} \right)
+\]
+and so
+\[
+a\left( \frac {1 + \sqrt{5}} {2} \right)^2 - a \left( \frac {1 + \sqrt{5}} {2} \right) = -b \left( \frac{1-\sqrt{5}}{2} \right)^2 + b \left( \frac{1-\sqrt{5}}{2} \right)
+\]
+and
+\[
+a\left( \left(\frac {1 + \sqrt{5}} {2} \right)^2 - \left( \frac {1 + \sqrt{5}} {2} \right) \right) = b \left( -\left( \frac{1-\sqrt{5}}{2} \right)^2 + \left( \frac{1-\sqrt{5}}{2} \right)\right)
+\]
+therefore
+\[
+a \left( \frac {1 +2 \sqrt{5} + 5 - 2 - 2\sqrt{5}} {4} \right) = b \left( \frac{ -1 + 2 \sqrt{5} -5 + 2 -2\sqrt{5}}{4}\right)
+\]
+and hence
+\[
+a=-b.
+\]
+Using this in the equation for $f_1$ we have
+\begin{align*}
+1&=a\left(\frac{1+\sqrt{5}}{2}\right)-a\left(\frac{1-\sqrt{5}}{2}\right)\\
+ &=a\left(\frac{1+ \sqrt{5} -1 + \sqrt{5}}{2}\right)\\
+ &=a\left(\sqrt{5}\right).\\
+\end{align*}
+Thus $a=-b=\frac{1}{\sqrt{5}}$. Therefore, the equation for $f_n$ becomes
+\[
+f_n = \frac { \left( \frac { 1 + \sqrt{5} } {2} \right)^n - \left( \frac { 1 - \sqrt{5} } {2} \right)^n} { \sqrt{5} }
+\]
+for all $n>2$.
+\end{proof}
+
+6. \textsl{The Sahara Run is a long circular car route. You start without fuel, but there are tanks along the route. If your fuel runs out, you loose. The sum of all the fuel is exactly enough for the whole trip. Show that no matter how the tanks are distributed along the way and how the fuel is distributed in the tanks, there exists a starting point from where you can make the Sahara Run.}
+\begin{proof}
+We will use contradiction. We assume that there exists a way to lay out the tanks so that at every starting point the run is impossible to complete. The only way that the run would be impossible to complete is if for every starting point, at some point thereafter, the car runs out of fuel. Therefore, at every starting point, the total fuel gained before stopping is less than is needed to get to the next tank. But if this is true for all tanks and all starting points then there is not enough fuel in total to make it around the track. This is a contradiction.
+\end{proof}
+
+7. \textsl{There are 25 lions on a secluded island. There is a big piece of meat in the middle of the island. Problem is, it is tranquilized, so whoever eats the meat, falls asleep for a whole day (and basically becomes the meat). The lions are super-intelligent, they will not cooperate or share the meat and they rather starve than fight. What is going to happen?}\newline
+
+Let $n$ denote the number of lions on the island. Consider the case where $n=1$. Then the lion eats the meat because there are no other lions to eat him while he is asleep. Then consider the case where $n=2$. If either lion eats the meat, the case is reduced to $n=1$ and the second lion will eat the first. Thus, neither lion eats the meat and they both starve. If $n=3$ then one lion will eat the meat because it knows that the case will then be reduced to $n=2$ and neither of the other lions will eat it. For any odd $n$, one lion will eat the meat safe in the knowledge that the case will be reduced to an even $n$ in which the lions will all starve. For any even $n$, the lions will all starve because they know that if they eat the meat, the case will be reduced to an odd $n$ and they will be eaten.
+
+
+
+\end{flushleft}
+\end{document}

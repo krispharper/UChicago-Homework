@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20900\\
+
+April 13, 2009
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+When is a locally compact group metrizable?
+\end{**}
+\begin{proof}
+Note that a topological space is metrizable if and only if there exists an embedding of the space into a metric space. We wish to show the topological product of a countable family of metric spaces is metrizable. Let $X$ be the topological product of a sequence of metric spaces $\{X_n\}$. Define for each $n$ and $x_n, y_n \in X_n$ the function $f_n(x_n, y_n) = \min\{1, d_n(x_n,y_n)\}$. Then $f_n$ is a metric for $X_n$ which generates the same topology as $d_n$ but has the property that $f_n \leq 1$ for all points in $X_n$. Now we are able to define a metric for $X$ by
+\[
+d(x,y) = \sum_{n=1}^{\infty} \frac{1}{2^n} f_n(x_n,y_n).
+\]
+Then $d$ is a metric on $X$ which generates the topology of $X$. This result directly implies that the space defined as the topological product of the closed intervals $[0,1/n]$ is metrizable. This space is the Hilbert Cube.\newline
+
+Let $F$ be a family of mappings $\{f_a : X \rightarrow Y_a \mid a < y\}$ from a space $X$ into spaces $Y$ for each $a < y$. Let $Y$ denote the topological product of the family $\{Y_a\}$. Let $f : X \rightarrow Y$ denote the product mapping defined by $(f(x))_a = f_a(x)$ for each $x \in X$ and $a < y$. Then $f$ is a continuous mapping from $X$ to $Y$. We wish to show that if $F$ can distinguish points of $X$ and can distinguish points from closed sets the $f: X \rightarrow Y$ is an embedding. Assume that $F$ can distinguish points and distinguish points from closed sets. If $x, y \in X$ such that $x \neq y$ then there exists $a < y$ such that $f_a(x) \neq f_a(y)$ and $f(x) \neq f(y)$. Thus, $f$ is injective. Let $U \subseteq X$ be open. Let $p \in U$ and $q = f(p)$. Since $X \backslash U$ is closed and $p \notin X \backslash U$ there exists $a < y$ such that $f_a(p) \notin \overline{f_a(X \backslash U)}$. Let
+\[
+V = \{b \in Y \mid b_a \notin \overline{f_a(X \backslash U)}\}.
+\]
+Then $V$ is open in $Y$ which means $V \cap f(X)$ is open in $f(X)$. But then $q \in V \cap f(X)$ and $V \cap f(X) \subseteq f(U)$. This shows that $f(U)$ is open in $f(X)$. This $f$ is an injective continuos open mapping and therefore an imbedding.\newline
+
+Finally, we show that a regular $T_1$ space with a countable base can be imbedded as a subspace of the Hilbert cube. Let $B$ be a countable base for $X$ and let $C$ be the subset of $B \times B$ which consists of open sets $(U, V)$ such that $\overline{V} \subseteq U$. Note that $C$ is countable. Since $X$ is normal, we can obtain a countable family $F = \{f_{(U,V)} : X \rightarrow [0,1] \mid (U,V) \in C\}$ of continuous functions which map $\overline{V}$ to $0$ and $X \backslash U$ to $1$. To show that $F$ can distinguish points from closed sets let $p \in X \backslash K$ where $K$ is closed in $X$. Since $X$ is regular and $B$ is a base, it is possible to find $U,V \in B$ such that $p \in V \subseteq \overline{V} \subseteq U \subseteq X \backslash K$. Then $f_{(U,V)}(p) = 0$ and $f_{(U,V)}(K) = 1$. Thus $F$ can distinguish points from closed sets. This shows that $F$ can be imbedded as a subspace of the Hilbert cube which is metrizable. Therefore $X$ is metrizable.
+\end{proof}
+
+\begin{**}
+Show $GL_n (\mathbb{R})$ is a dense open subset of $M_n(\mathbb{R})$.
+\end{**}
+\begin{proof}
+The fact that $GL_n (\mathbb{R})$ is open in $M_n (\mathbb{R})$ follows from the fact that the determinant map is a polynomial map. To show that $GL_n (\mathbb{R})$ is dense in $M_n (\mathbb{R})$, consider an element $x \in M_n (\mathbb{R}) \backslash GL_n (\mathbb{R})$. Note that $\det x = 0$, but by changing an appropriate element of $x$ by a small amount, the determinant will be nonzero. Thus we can create a sequence of matrices of this form which converges to $x$. Since each of the matrices in the sequence has nonzero determinant, we have every element of $M_n (\mathbb{R})$ is the limit of a sequence of elements of $GL_n (\mathbb{R})$. Therefore $GL_n (\mathbb{R})$ is dense in $M_n (\mathbb{R})$.
+\end{proof}
+
+\begin{**}
+Show $GL_n (\mathbb{R})$ is a locally compact group that is nonabelian if and only if $n > 1$.
+\end{**}
+\begin{proof}
+If $n=1$, then $GL_n(\mathbb{R}) = \mathbb{R}^{\times}$ which is clearly a locally compact, abelian group under multiplication. Conversely, suppose $n > 1$. $GL_n(\mathbb{R})$ is a set of matrices and it's known that matrix multiplication is noncommutative for $n>1$. The group axioms are satisfied using matrix multiplication by the identity element and matrix inverses, since the determinant of an element is never $0$. The set $GL_n (\mathbb{R})$ takes on the topology of $\mathbb{R}^{n^2}$ which we know is a locally compact space. Thus, $GL_n(\mathbb{R})$ is a locally compact nonabelian group.
+\end{proof}
+
+\begin{**}
+Show that a closed subgroup of a locally compact group is a locally compact group.
+\end{**}
+\begin{proof}
+Let $C$ be a compact space and let $B \subseteq C$ be closed. If $B$ is covered by a family $\{U_{\alpha}\}_{\alpha \in A}$ of open sets then $C = (C \backslash B) \cup \bigcup_{\alpha \in F} U_{\alpha}$ and we can find a finite subset $F \subseteq A$ such that $C = (C \backslash B) \cup \bigcup_{\alpha \in F} U_{\alpha}$. This shows that $B$ is compact. Therefore every closed subspace of a compact space is compact. Now let $G$ be a locally compact group and consider a closed subgroup $H$. Every point in $H$ has a neighborhood which is compact in $G$. Taking the intersection of this neighborhood with $H$ produces a closed subset of a compact set, which is then compact.
+\end{proof}
+
+\begin{**}
+Let $V$ and $W$ be real normed linear spaces and let $T : V \rightarrow W$ be an isometry such that $T(0) = 0$. Then $T$ is linear.
+\end{**}
+\begin{proof}
+Let $(X,d)$ be a metric space and $A$ be a bounded subset of $X$. We say that a point $x_0$ is a center of $A$ of the first order if $d(x_0, a) \leq (\text{diam} A)/2$ for all $a \in A$. We say $x_0$ is a center of $A$ of the $n$th order if it is a center of the first order of the set of all centers of the $(n-1)$th order which belong to $A$. A point $x_0$ is a metric center of $A$ if for all $n$ it is a metric center of $A$ of the $n$th order.\newline
+
+Now let $v_1, v_2 \in V$ and let $A = \{v \in V \mid ||v_1 - v|| = ||v_2 - v|| = ||v_1 - v_2||/2\}$. It follows that $A$ is symmetric about $(v_1 + v_2)/2$ and so $(v_1 + v_2)/2$ is the metric center of $A$. Then $T((v_1 + v_2)/2)$ is the metric center of $T(A)$. Then since $T$ is an isometry we have
+\[
+T(A) = \{Tv \in W \mid ||v_1 - v|| = ||v_2 - v|| = ||v_1 - v_2||/2\} = \{w \in W \mid ||Tv_1 - w|| = ||Tv_2 - w|| = ||Tv_1 - Tv_2||/2\}.
+\]
+Thus $T(A)$ is symmetric about $(Tv_1 + Tv_2)/2$ and so this is the metric center of $T(A)$. Therefore $T((v_1 + v_2)/2) = (Tv_1 + Tv_2)/2$ for all $v_1, v_2 \in V$. Setting $v_1 = 0$ and using the fact that $T(0) = 0$ gives the result $T((x_1 + x_2)/2) = T(x_1/2) + T(x_2/2)$. This shows that $T$ is additive and the fact that $T$ is linear follows from $T$ being continuous.
+\end{proof}
+
+\begin{**}
+What happens for complex normed linear spaces?
+\end{**}
+\begin{proof}
+The result of ** Problem 5 does not hold for complex normed linear space, as conjugation is an example of a nonlinear isometry which preserves $0$.
+\end{proof}
+
+\begin{**}
+Let $T$ be a linear isometry of $\mathbb{R}^n$ and let $v \in \mathbb{R}^n$. Show that if $Tv \cdot Tv = v \cdot v$ is equivalent to $(T^TTv \mid v) = (v \mid v)$ then $T^TT = I$.
+\end{**}
+\begin{proof}
+We have $Tv \cdot Tv = v \cdot v = T^TTv \cdot v$. From the last equality, the only way this can hold true for all $v \in \mathbb{R}^n$ is if $T^TT = I$.
+\end{proof}
+
+\begin{**}
+Show $O(n, \mathbb{R})$ is a maximal compact subgroup of $GL_n(\mathbb{R})$.
+\end{**}
+\begin{proof}
+Let $A \subseteq GL_n (\mathbb{R})$ be a compact subset such that $O(n, \mathbb{R}) \subsetneq GL_n (\mathbb{R})$. Then there exists $x \in A \backslash O(n, \mathbb{R})$ such that $xx^T \neq I$. From the Iwasawa decomposition in ** Problem 10, we can write every element of $GL_n (\mathbb{R})$ as a product of elements in $O (n, \mathbb{R})$, $A^+$ and $N$. Since $A$ is compact, we can write $x$ as a product of elements from $A^+$ and $N$. Thus, we have $A = GL_n (\mathbb{R})$.
+\end{proof}
+
+\begin{**}
+For $z, w \in \mathbb{C}^n$ show $|(z \mid w)| \leq |z||w|$.
+\end{**}
+\begin{proof}
+We can assume $(w \mid w)$ is nonzero since the state is trivial if $w = 0$. Let $\lambda \in \mathbb{C}$. Then
+\[
+0 \leq ||z - \lambda w||^2 = (z - \lambda w \mid z - \lambda w) = (z \mid z) - \overline{\lambda}(z \mid w) - \lambda (w \mid z) + |\lambda|^2 (w \mid w).
+\]
+Now let $\lambda = (z \mid w) (w \mid w)^{-1}$. We have
+\[
+0 \leq (z \mid z) - |(z \mid w)|^2 (w \mid w)^{-1}
+\]
+which means $|(x \mid y)|^2 \leq (z \mid z) (w \mid w)$ and taking the square root gives the desired result.
+\end{proof}
+
+\begin{**}
+Every element $g \in GL_n(\mathbb{C})$ can be written uniquely as a product $g = kan$ where $k \in K$, $a \in A^+$ and $n \in N$.
+\end{**}
+\begin{proof}
+Let $e_1, \dots , e_n$ be the standard basis vectors for $GL_n (\mathbb{C})$. Let $x \in GL_n (\mathbb{C})$ and let $v_i = xe_i$. We can orthogonalize $v = (v_1, \dots , v_n)$ using a matrix $u \in N$. Let $w_1 = v_1$, $w_2 = v_2 - u_{21} w_1 \perp w_1$, $w_3 = v_3 - u_{32}w_2 - u_{31}w_1 \perp w_1, w_2$ and so on. Then $e_i' = w_i/||w_i||$ is a unit vector and we can define $a \in A^+$ such that $a$ has $||w_i||^{-1}$ for its diagonal elements. Let $k = aux$ then $x = a^{-1} u^{-1} k$ so that $k$ is unitary. This shows $GL_n (\mathbb{C}) = K A^+ N$. Now suppose $u_1 a^T u_1 = u_2 b^T u_2$ with $u_1, u_2 \in N$ and $a,b \in A^+$. Let $u = u_2^{-1} u_1$ and we have $ua = b u^T$. Since $u$ is upper triangular, we must have $u$ is diagonal which shows $a = b$. Thus, we have an isomorphism between $A^+ \times N \times K$ and $GL_n (\mathbb{C})$.
+\end{proof}
+
+\begin{**}
+Let $X = \mathbb{R}$ and $S = \{(a,b) \mid a,b \in \mathbb{R}\}$. Describe $M(S)$, that is, the $\sigma$-algebra generated by $S$.
+\end{**}
+\begin{proof}
+The set $M(S)$ contains the following sets, as well as others. All of $\mathbb{R}$, since it is the countable union of open intervals, and $\emptyset$ since it is the intersection of disjoint intervals. All one element sets can be written as $\{a\} = \cap_{n=1}^{\infty} (a-1/n, a+1/n)$. This is a countable intersection of open intervals. This means every countable subset of $\mathbb{R}$ is in $M(S)$, in particular, the rationals and their complement, the irrationals are contained. All closed intervals and half open intervals as well as unbounded half closed intervals. The Cantor set, as it is a countable union of closed intervals.
+\end{proof}
+
+\end{flushleft}
+\end{document}

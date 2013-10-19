@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16100
+
+Mikl\'{o}s Ab\'{e}rt
+
+November 13, 2007
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 1}
+\textsl{You have a $10 \times 10$ table of chocolate. An entity came and ate the top right and the bottom left corner (that left you 98 pieces). Can you break the remaining chocolate into $2 \times 1$ pieces?}\newline
+
+No.
+\begin{proof}
+Suppose we color the original $10 \times 10$ table in alternating white and black colors so that a white square shares its sides with only black squares and vice-versa. Then we see that any diagonal created on the board will be made of one color. Additionally any $2 \times 1$ piece will have one black and one white square. So to break the board into $2 \times 1$ pieces we need an equal number of white and black squares. Without loss of generality, suppose that the upper right corner is black. Then the lower left corner must be black as well since it is on a diagonal with the upper right. But on the new board there are $48$ black squares and $50$ white squares making it impossible to break the table into $2 \times 1$ pieces.
+\end{proof}
+
+\textbf{Exercise 2}
+\textsl{After a long night of work, Jim finally has $n^2 + 1$ zombies standing in a row. Their sizes vary and they were too dumb to line up properly. Show that nevertheless, she can choose $n + 1$ that are lined up properly (that is, either in non-increasing or in non-decreasing order in size).}
+\begin{proof}
+We use induction on $n$. We see that for the base case with $2$ zombies, there is always an non-increasing or non-decreasing pattern because one is always equal or lesser in height than the other. Assume that for $n^2+1$ zombies, $n+1$ will always be in order. Then consider $(n+1)^2 +1$ zombies. This is $n^2+n+1+n+1$ so we can pick out two sets of zombies that are ordered in a non-increasing or non-decreasing pattern. From here we have two cases. In case 1, suppose that one set of ordered zombies is non-increasing while the other is non-decreasing. Then wherever the two lines intersect, or at the endpoints of the two lines there is another zombie to add to one line making a line of $n+2$. If the two sets are both non-increasing or non-decreasing, then we can use zombies from both sets to make a larger set containing at least $n+2$ zombies in order.
+\end{proof}
+
+\textbf{Exercise 3}
+\textsl{Let $A$ be a finite set of points on the plane which is not a subset of a line. Prove that there exists a line which contains exactly 2 points of A.}
+\begin{proof}
+Let $A$ be a finite set of $n > 2$ points which are not a subset of a line. For $n=3$ we see that the points must form a triangle and so there exists a line connecting exactly two points for every edge of the triangle. Use induction on $n$ and assume that for $n$ points in $A$ there exists a line connecting exactly two of them. Now let $A$ have $n+1$ points and consider $A \backslash p_1$ where $p_1$ is some point in $A$. We see that there exists a line connecting exactly two points in $A \backslash p_1$ and so $p_1$ will either fall on this line or not. If $p_1$ is not on this line, then we are done. If $p_1$ falls on the only line connecting exactly two points then consider another set of $n$ points $A \backslash p_2$ such that $p_1 \neq p_2$. Then there exists a line connecting exactly two points of $A \backslash p_2$ and so if $p_2$ doesn't fall on this line then we're done. If it does fall on the only line connecting exactly two points, consider $A \backslash p_3$ such that $p_1 \neq p_3 \neq p_2$. Continue with this process until all $n+1$ points have been considered. If it's the case that every $p_i \in A$ falls on the only line connecting exactly two other points in $A$, then all points must lie on the same line. This is a contradiction so some $p_i$ must not lie on such a line. This shows that for $n+1$ points in $A$, there exists a line connecting exactly two of them. And so by induction this must be true for all $n \in \mathbb{N}$.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{There are $17$ weights with the property that when any one is removed, the others can be divided into two groups of equal sum weight. Show that all weights must be the same.}
+\begin{proof}
+Let us label the weights $a_1,a_2, \dots ,a_{17}$. Consider two the weights $a_1$ and $a_2$. Let $M$ be the total mass. Then, if we take out each of $a_1$ and $a_2$ independently we have the equations
+\[
+a_a+ \dots +a_b + a_2 =a_c + \dots + a_d = \frac{M-a_1}{2}
+\]
+and
+\[
+a_e+\dots +a_f +a_1 = a_g + \dots +a_h = \frac{M-a_2}{2}
+\]
+where $a_i+ \dots +a_j$ indicates some sum of masses and all masses are represented in each equation. From these equations we see that
+\[
+a_c+ \dots +a_d + a_g \dots a_h + \frac{a_1 +a_2}{2} = M.
+\]
+Since all the masses except $a_1$ and $a_2$ are present in $a_c+ \dots +a_d$ or $a_g+ \dots +a_h$, we see that the average of $a_1$ and $a_2$ must be equal to both $a_1$ and $a_2$ so $a_1=a_2$. So any two weights are equal to each other and so all weights must be equal.
+\end{proof}
+
+
+
+
+\end{flushleft}
+\end{document}

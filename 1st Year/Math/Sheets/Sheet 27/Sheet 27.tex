@@ -1,0 +1,255 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 27: Sine and Cosine\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{Let
+\[
+\pi = 2 \int_{-1}^1 \sqrt{1-x^2} dx.
+\]}
+
+\textbf{Definition 2}
+\textsl{For $-1 \leq x \leq 1$ let
+\[
+A(x) = x \sqrt{1-x^2} + 2 \int_x^1 \sqrt{1-t^2} dt.
+\]}
+
+\textbf{Theorem 3}
+\textsl{For $-1 < x < 1$ the function $A(x)$ is differentiable at $x$ and
+\[
+A'(x) = \frac{-1}{\sqrt{1-x^2}}.
+\]}
+\begin{proof}
+Let $f(x) = \sqrt{x} = x^{1/2}$. Then
+\[
+f'(x) = \lim_{h \rightarrow 0} \frac{\sqrt{x+h} - \sqrt{x}}{h} = \lim_{h \rightarrow 0} \frac{x+h-x}{h(\sqrt{x+h} + \sqrt{x})} = \lim_{h \rightarrow \infty} \frac{1}{2\sqrt{x}}
+\]
+which shows that $f(x)$ is differntiable. Note that $x$ is differentiable on $[-1;1]$ and so using products of differentiable functions and the Fundamental Theorem of Calculus we have $A(x)$ is differentiable on $(-1;1)$ (21.10, 22.17). Also we have
+\begin{align*}
+A'(x) &= \frac{1}{2} x \left ( 1-x^2 \right )^{-\frac{1}{2}} (-2x) + \sqrt{1-x^2} - 2 \sqrt{1-x^2} \\
+	 &= \frac{-x^2}{\sqrt{1-x^2}} + \sqrt{1-x^2} - 2 \sqrt{1-x^2} \\
+	 &= \frac{-x^2 + 1 - x^2 - 2 (1-x^2)}{\sqrt{1-x^2}} \\
+	 &= \frac{-1}{\sqrt{1-x^2}}
+\end{align*}
+from the Chain Rule and the Fundamental Theorem of Calculus (21.16, 22.17).
+\end{proof}
+
+\textbf{Theorem 4}
+\textsl{$A(-1) = \pi$, $A(1) = 0$ and $A$ is decreasing between $-1$ and $1$.}
+\begin{proof}
+We have
+\[
+A(-1) = (-1) \sqrt{1 - (-1)^2} + 2 \int_{-1}^1 \sqrt{1 - t^2} dt = 0 + \pi = \pi,
+\]
+and
+\[
+A(1) = \sqrt{1 - 1^2} + 2 \int_1^1 \sqrt{1-t^2} dt = 0.
+\]
+Note that for $a \in (-1,1)$ we have $0 \leq a^2 < 1$. Thus
+\[
+A'(a) = \frac{-1}{\sqrt{1-a^2}} < 0
+\]
+which means that $A$ is decreasing between $-1$ and $1$ because its derivative is negative there.
+\end{proof}
+
+\textbf{Definition 5}
+\textsl{For $0 \leq x \leq \pi$ let $\cos x$ be the unique number such that
+\[
+A(\cos x) = x.
+\]
+Also let
+\[
+\sin x = \sqrt{1 - (\cos x)^2}.
+\]}
+
+\textbf{Theorem 6}
+\textsl{For $0 < x < \pi$ the following hold:
+\[
+\cos' (x) = - \sin x
+\]
+\[
+\sin' (x) = \cos x.
+\]}
+\begin{proof}
+We have
+\[
+A'(\cos x) \cos' x = 1
+\]
+using the inverse function identity from Theorem 3 (27.3). Then $\sin x = \sqrt{1 - (\cos x)^2}$ and thus
+\[
+\sin' x = \frac{1}{2} \frac{1}{\sqrt{1-(\cos x)^2}} (-2 \cos x) \cos' x = \cos x \left ( \frac{-1}{\sqrt{1-(\cos x)^2}} \right ) \cos ' x = \cos x A' (\cos x) \cos' x = \cos x
+\]
+using the Chain Rule and the above identity (22.16)
+Also $\cos x = \sqrt{1 - (\sin x)^2}$ and thus
+\[
+\cos' x = \frac{1}{2} \frac{1}{\sqrt{1-(\sin x)^2}} (-2 \sin x) \sin' x = - \sin x \frac{\sin' x}{\cos x} = - \sin x
+\]
+using the Chain Rule and the fact that $\sin' x = \cos x$ (21.16).
+\end{proof}
+
+\textbf{Exercise 7}
+\textsl{Analyze $\cos$ and $\sin$ on $[0;\pi]$ (extremal places, monotonicity, convexity etc.)}
+\begin{proof}
+We have $\cos$ and $\sin$ on $[0;\pi]$ are both functions which map to $[-1;1]$. Then note that $A(-1) = \pi$ so $\cos \pi = -1$. Likewise $A(1) = 0$ and so $\cos 0 = 1$. We know that $A(x)$ and $\cos x$ are inverse functions on $[0,\pi]$ so these values will only be taken on once. Also, $\sin x = \sqrt{1-(\cos x)^2}$ and letting $\sin x = 1$ we have $\cos x = 0$. Then
+\[
+A(0) = 2 \int_0^1 \sqrt{1-t^2} dt = \int_{-1}^1 \sqrt{1-x^2} dt = \frac{\pi}{2}
+\]
+because $t^2$ takes on the same values on $[-1;0]$ as on $[0;1]$. Thus $\cos (\pi/2) = 0$ and $\sin (\pi/2) = 1$. Note that $\cos$ will only take on $0$ once on $[0;\pi]$ and so $\sin$ takes on $1$ only once. Note also that $\sin x$ is defined to be always positive on $[0;\pi]$. Thus the lowest value it could take on is $0$. Letting $\sin x = 0$ we have $\cos x = \pm 1$. Thus $\sin 0 = \sin \pi = 0$. Hence $\cos$ has a maximum at $0$ and a minimum at $\pi$ and $\sin$ has a maximum at $\pi/2$ and a minimum at $0$ and $\pi$.\newline
+
+We already determined that $\sin x > 0$ on $[0;\pi]$ and so $\cos' x = -\sin x < 0$ on $[0;\pi]$. Thus $\cos$ is decreasing on $[0;\pi]$. We also know that $\cos 0 = 1$, $\cos (\pi/2) = 0$ and $\cos \pi = -1$ and since $\cos$ is decreasing on $[0; \pi]$, it must be the case that $\cos x > 0$ for $x \in [0;\pi/2]$ and $\cos x < 0$ for $x \in [\pi/2;\pi]$. Thus, since $\sin' x = \cos x$ we have $\sin$ is increasing on $[0;\pi/2]$ and decreasing on $[\pi/2; \pi]$.\newline
+
+Finally, we have $\sin'' x = -\sin x$ and since $- \sin x < 0$ for $x \in [0;\pi]$, we have $\sin$ is concave down on $[0;\pi]$. Additionally we have $\cos'' x = -\cos x$ and so we have $\cos$ is concave down on $[0;\pi/2]$ and concave up on $[\pi/2; \pi]$ based on where $\cos$ is positive or negative.
+\end{proof}
+
+\textbf{Definition 8}
+\textsl{For $\pi \leq x \leq 2 \pi$ let
+\[
+\sin x = - \sin (2\pi - x)
+\]
+\[
+\cos x = \cos (2\pi - x).
+\]
+For $0 \leq x \leq 2\pi$ and a nonzero integer $k$ let
+\[
+\sin (x + 2\pi) = \sin x
+\]
+\[
+\cos (x + 2\pi) = \cos x.
+\]}
+
+\textbf{Definition 9}
+\textsl{For $x \neq k \pi + \pi/2$ let
+\[
+\sec x = \frac{1}{\cos x}
+\]
+\[
+\tan x = \frac{\sin x}{\cos x}.
+\]
+For $x \neq k \pi$ let
+\[
+\csc x = \frac{1}{\sin x}
+\]
+\[
+\cot x = \frac{\cos x}{\sin x}.
+\]}
+
+\textbf{Exercise 10}
+\textsl{Compute the derivatives of the above functions.}
+\begin{proof}
+We have
+\[
+\sec' x = \left ( \frac{1}{\cos x} \right )' = \frac{-\cos' x}{(\cos x)^2} = \frac{1}{\cos x} \frac{\sin x}{\cos x} = \sec x \tan x,
+\]
+\[
+\tan' x = \left ( \frac{\sin x}{\cos x} \right )' = \frac{\cos x \sin' x - \sin x \cos' x}{(\cos x)^2} = \frac{(\sin x)^2 + (\cos x)^2}{(\cos x)^2} = \frac{1}{(\cos x)^2} = \sec^2 x,
+\]
+\[
+\csc' x = \left ( \frac{1}{\sin} \right )' = \frac{-\sin x}{(\sin x)^2} = \frac{1}{\sin x} \frac{-\cos x}{\sin x} = -\csc x \cot x,
+\]
+and
+\[
+\cot' x = \left ( \frac{\cos x}{\sin x} \right )' = \frac{\sin x \cos' x - \cos x \sin' x}{(\sin x)^2} = \frac{-((\sin x)^2 + (\cos x)^2)}{(\sin x)^2} = \frac{-1}{(\sin x)^2} = -\csc^2 x
+\]
+using the rules of differentiation (21.13, 21.14).
+\end{proof}
+
+\textbf{Definition 11}
+\textsl{Let $\arcsin$ be the inverse of $\sin$ restricted to $[-\pi/2; \pi/2]$. Let $\arccos$ be the inverse of $\cos$ restricted to $[0; \pi]$. Let $\arctan$ be the inverse of $\tan$ restricted to $[-\pi/2; \pi/2]$.}\newline
+
+\textbf{Theorem 12}
+\textsl{For $-1 < x < 1$ we have
+\[
+\arcsin' (x) = \frac{1}{\sqrt{1-x^2}}
+\]
+\[
+\arccos' (x) = \frac{-1}{\sqrt{1-x^2}}
+\]
+and for all $x$ we have
+\[
+\arctan' (x) = \frac{1}{1+x^2}.
+\]}
+\begin{proof}
+We have
+\[
+\arcsin' x = \frac{1}{\sin' (\arcsin x)} = \frac{1}{\cos (\arcsin x)} = \frac{1}{\sqrt{1 - (\sin (\arcsin x))^2}} = \frac{1}{\sqrt{1-x^2}}
+\]
+\[
+\arccos' x = \frac{1}{\cos' (\arccos x)} = \frac{-1}{\sin (\arccos x)} = \frac{-1}{\sqrt{1 - (\cos (\arccos))^2}} = \frac{-1}{\sqrt{1-x^2}}
+\]
+and
+\begin{align*}
+\arctan' x &= \frac{1}{\tan' (\arctan x)} \\
+		 &= \frac{1}{(\sec (\arctan x))^2} \\
+		 &= \frac{1}{\frac{1}{(\cos (\arctan x))^2}} \\
+		 &= \frac{1}{\frac{\sin^2 x + \cos^2 x}{(\cos (\arctan x))^2}} \\
+		 &= \frac{1}{1 + \left ( \frac{\sin (\arctan x)}{\cos (\arctan x)} \right )^2} \\
+		 &= \frac{1}{1 + (\tan (\arctan x))^2} \\
+		 &= \frac{1}{1+x^2}
+\end{align*}
+from the identity in Theorem 3 (27.3).
+\end{proof}
+
+\textbf{Theorem 13}
+\textsl{Suppose that $f$ has a second derivative everywhere and that
+\[
+f + f'' = 0
+\]
+\[
+f(0) = 0
+\]
+\[
+f'(0) = 0.
+\]
+Then $f = 0$.}
+\begin{proof}
+We have $ff' + f'f'' = 0$. Then consider
+\[
+\int_0^x ff' + \int_0^x f'f'' = \int_0^x 0
+\]
+\[
+\frac{1}{2}f^2(x) - \frac{1}{2}f^2(0) + \frac{1}{2}f'^2(x) - \frac{1}{2}f'^2(0) = 0
+\]
+\[
+\frac{1}{2}f^2 + \frac{1}{2}f'^2 = 0
+\]
+and since $f^2$ and $f'^2$ are both greater than or equal to $0$, they must both be $0$. Then $f=0$.
+\end{proof}
+
+\textbf{Theorem 14}
+\textsl{Suppose that $f$ has a second derivative everywhere and that
+\[
+f + f'' = 0
+\]
+\[
+f(0) = a
+\]
+\[
+f'(0) = b.
+\]
+Then $f = b \sin + a \cos$.}
+\begin{proof}
+Let $g = f - b \sin - a \cos$. Then $g(0) = a - 0 - a = 0$, $g' = f' - b \cos + a \sin$, $g'(0) = b - b + 0 = 0$ and $g'' = f'' + b \sin + a \cos $ (27.6). Then $g+g'' = f - b \sin - a \cos + f'' + b \sin + a \sin = f+f'' = 0$. Then $g = 0$ and so $f = b \sin + a \cos$ (27.13).
+\end{proof}
+
+\textbf{Theorem 15}
+\textsl{For all $x,y$ we have
+\[
+\sin (x+y) = \sin x \cos y + \cos x \sin y
+\]
+\[
+\cos (x+y) = \cos x \cos y - \sin x \sin y
+\]}
+\begin{proof}
+Let $f(x) = \sin (x+y)$ for some $y \in \mathbb{R}$. Then $f'(x) = \cos(x+y)$, $f''(x) = -\sin(x+y)$ and $f + f'' = 0$. Also $f(0) = \sin y$ and $f'(0) = \cos y$. Then we have $f (x) = \sin x \cos y + \cos x \sin y$ (27.14). Letting $f = \cos (x+y)$ gives the second identity.
+\end{proof}
+
+\end{flushleft}
+\end{document}

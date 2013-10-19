@@ -1,0 +1,196 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 11: Limits of a Function\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A real function is a function $f \; : \; A \rightarrow \mathbb{R}$ where $A \subseteq \mathbb{R}$.}\newline
+
+\textbf{Definition 2}
+\textsl{Let $f$ be a real function and let $a \in \mathbb{R}$. We say that $f$ approaches $l$ at $a$ or
+\[
+\lim_{x \rightarrow a} f(x) = l
+\]
+if for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ with $0 < |a-x| < \delta$ we have $|l - f(x)| < \varepsilon$.}\newline
+
+\textbf{Corollary 3}
+\textsl{A real function $f$ is continuous at $a$ if and only if
+\[
+\lim_{x \rightarrow a} f(x) = f(a).
+\]}
+\begin{proof}
+Let $f$ be continuous at $a$. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ when $0 < |a - x| \delta$ we have $|f(a) - f(x)| < \varepsilon$. But then $\lim_{x \rightarrow a} f(x) = f(a)$. Conversely suppose that $\lim_{x \rightarrow a} f(x) = f(a)$. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta$ we have $|f(a)-f(x)| < \varepsilon$. Note that if $x=a$ then we have $f(x)-f(a) = 0 < \varepsilon$ so $f$ must be continuous at $a$.
+\end{proof}
+
+\textbf{Corollary 4}
+\textsl{If $\lim_{x \rightarrow a} f(x) = l$ and we define
+\[
+g(x)=
+\begin{cases}
+f(x) & \text{if } x \neq a\\
+l & \text{if } x = a
+\end{cases}
+\]
+then $g(x)$ is continuous at $a$.}
+\begin{proof}
+Let $\lim_{x \rightarrow a} f(x) = l$. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta$ we have $|l - f(x)| < \varepsilon$. But then this is valid for all $x \neq a$ so for all $\varepsilon > 0$ there exists $\delta > 0$ such that when $0 < |a-x| < \delta$ we have $|l - g(x)| < \varepsilon$. In the case where $x=a$ we have $l-g(x) = 0 < \varepsilon$. Thus $g(x)$ is continuous at $a$.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{Let $f(x)= \sin (1/x) \; (x \neq 0)$. Show that $\lim_{x \rightarrow 0} f(x)$ does not exist.}\newline
+
+This limit cannot exist because as $x$ approaches $0$, $\sin (1/x)$ gets more and more packed into the interval $(-1;1)$.\newline
+
+\textbf{Exercise 6}
+\textsl{Let $f(x)=x \sin (1/x) \; (x \neq 0)$. Show that $\lim_{x \rightarrow 0} f(x) = 0$.}
+\begin{proof}
+Let $\varepsilon > 0$. We have $\sin (x)$ is bounded between $-1$ and $1$, so $f(x)$ can never be larger than $x$ or smaller than $-x$. But the limits as $x$ and $-x$ as $x$ go to $0$ are $0$, so $x \sin (1/x)$ must have this limit as well.
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{If $\lim_{x \rightarrow a} f(x) = l$ and $\lim_{x \rightarrow a} g(x) = m$ then $l=m$.}
+\begin{proof}
+Suppose that $l \neq m$ and let $\varepsilon = 0$. Without loss of generality suppose that $m>l$ and consider $(m-l)/2 > 0$. Then there exists $\delta_1, \delta_2 > 0$ such that for all $x \in \mathbb{R}$ when $0 < |a-x| < \delta_1$ we have $|l-f(x)| < (m-l)/2$ and when $0 < |a-x| < \delta_2$ we have $|m-g(x)| < (m-l)/2$. Let $\delta = \min (\delta_1 , \delta_2)$ so that there exists $\delta$ such that when $|a-x| < \delta$ we have $f(x) \in (l - (m-l)/2 ; l + (m-l)/2) = ((3l-m)/2 ; (l+m)/2)$ and $f(x) \in (m-(m-l)/2 ; m+(m-l)/2)=((m+l)/2 ; (3m-l)/2)$. But these regions are disjoint and so $l=m$.
+\end{proof}
+
+\textbf{Lemma 8}
+\textsl{If $|x-x_0| < \frac{\varepsilon}{2}$ and $|y-y_0| < \frac{\varepsilon}{2}$ then $|(x+y) - (x_0+y_0)| < \varepsilon$.}
+\begin{proof}
+We have $-\frac{\varepsilon}{2} < x-x_0 < \frac{\varepsilon}{2}$ and $-\frac{\varepsilon}{2} < y-y_0 < \frac{\varepsilon}{2}$. But then $-\varepsilon < x-x_0 + y-y_0 < \varepsilon$ and so we have $-\varepsilon < (x+y) - (x_0+y_0) < \varepsilon$. Thus $|(x+y) - (x_0+y_0)| < \varepsilon$.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{If $\lim_{x \rightarrow a} f(x) = l$ and $\lim_{x \rightarrow a} g(x) = m$ then $\lim_{x \rightarrow a} (f+g)(x) = l+m$.}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\frac{\varepsilon}{2}$. Then there exists some $\delta_f$ such that for all $x \in \mathbb{R}$ if $0 < |a - x| < \delta_f$ then $|l - f(x)| < \frac{\varepsilon}{2}$ and also there exists some $\delta_g$ such that for all $x \in \mathbb{R}$ if $0 < |a - x| < \delta_g$ then $|l - g(x)| < \frac{\varepsilon}{2}$. Choose $\min (\delta_f, \delta_g)$ and call this $\delta$. Then for all $x \in \mathbb{R}$ with $0 < |a-x| < \delta$ we have $|l - f(x)| < \frac{\varepsilon}{2}$ and $|m - g(x)| < \frac{\varepsilon}{2}$. But from Lemma 8 we know that $|(l+m)-(f(x)+g(x))| < \varepsilon$. Thus we have that for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ where $0 < |a-x| < \delta$ we have $|(l+m)-(f(x)+g(x))| < \varepsilon$. Thus $\lim_{x \rightarrow a} (f+g)(x) = l+m$.
+\end{proof}
+
+\textbf{Lemma 10}
+\textsl{If
+\[
+|x-x_0| < \min \left(1, \frac{\varepsilon}{2 (|y_0| + 1)} \right) \text{ and } |y-y_0| < \frac{\varepsilon}{2 (|x_0| + 1)}
+\]
+then
+\[
+|xy-x_0y_0| < \varepsilon.
+\]}
+\begin{proof}
+We take cases and see that if
+\[
+-1 < x-x_0 < 1 \text{ , } -\frac{\varepsilon}{2 (|y_0| + 1)} < x-x_0 < \frac{\varepsilon}{2 (|y_0| + 1)},
+\]
+and
+\[
+-\frac{\varepsilon}{2 (|x_0| + 1)} < y-y_0 < \frac{\varepsilon}{2 (|x_0| + 1)}
+\]
+Then we can take the product of the inequality and say that the middle terms are between the min and max values of the end terms. We'll take the first case as the product of the maximum terms. First let $\varepsilon, x_0 > 0$ and suppose that
+\begin{align*}
+\varepsilon & < -\frac{yx_0 + xy_0}{1-2(x_0 + 1)} \\
+		  & = -\frac{yx_0^2 + yx_0 + xx_0y_0 + xy_0}{x_0-2x_0(x_0+1) - 2(x_0+1) + 1} \\
+		  & = -\frac{2(yx_0^2+yx_0+xx_0y_0+xy_0)}{2(x_0+1)(1-2(x_0+1))}
+\end{align*}
+which means
+\[
+\frac{\varepsilon (1-2(x_0+1)) + 2(yx_0^2 + yx_0 + xx_0y_0 + xy_0)}{2(x_0+1)} < 0
+\]
+and then
+\begin{align*}
+\varepsilon & > \frac{\varepsilon + 2(yx_0^2 + yx_0 + xx_0y_0 + xy_0)}{2(x_0+1)} \\
+		  & = \frac{\varepsilon + 2(x_0 + 1)(yx_0+xy_0)}{2(x_0+1)} \\
+		  & = \frac{\varepsilon}{2(x_0+1)} + yx_0 + xy_0 \\
+		  & < xy - x_0y_0.
+\end{align*}
+If we have
+\[
+\frac{yx_0+xy_0}{1-2(x_0+1)} \leq \varepsilon
+\]
+then we can show that
+\[
+xy - x_0y_0 < \frac{\varepsilon^2}{4(y_0x_0 + x_0 + y_0 + 1)} + yx_0 + xy_0.
+\]
+The other cases follow from similar arguments.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{If $\lim_{x \rightarrow a} f(x) = l$ and $\lim_{x \rightarrow a} g(x) = m$ then $\lim_{x \rightarrow a} (fg)(x) = lm$.}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\min \left(1, \frac{\varepsilon}{2 (|m| + 1)} \right)$. Then there exists some $\delta_f$ such that for all $x \in \mathbb{R}$ if $0 < |a - x| < \delta_f$ then $|l - f(x)| < \min \left(1, \frac{\varepsilon}{2 (|m| + 1)} \right)$. Now consider $\frac{\varepsilon}{2 (|l| + 1)}$ so that there exists some $\delta_g$ such that for all $x \in \mathbb{R}$ if $0 < |a - x| < \delta_g$ then $|m - g(x)| < \frac{\varepsilon}{2 (|l| + 1)}$. Choose $\min (\delta_f, \delta_g)$ and call this $\delta$. Then for all $x \in \mathbb{R}$ with $0 < |a-x| < \delta$ we have $|l - f(x)| < \min \left(1, \frac{\varepsilon}{2 (|m| + 1)} \right)$ and $|m - g(x)| < \frac{\varepsilon}{2 (|l| + 1)}$. But from Lemma 10 we know that $|(lm)-(f(x)g(x))| < \varepsilon$. Thus we have that for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ where $0 < |a-x| < \delta$ we have $|(lm)-(f(x)g(x))| < \varepsilon$. Thus $\lim_{x \rightarrow a} (fg)(x) = lm$.
+\end{proof}
+
+\textbf{Lemma 12}
+\textsl{If $x_0 \neq 0$ and
+\[
+|x-x_0| < \min \left(\frac{|x_0|}{2}, \frac{\varepsilon |x_0|^2}{2} \right)
+\]
+then $x \neq 0$ and
+\[
+\left | \frac{1}{x} - \frac{1}{x_0} \right | < \varepsilon.
+\]}
+\begin{proof}
+Let $\varepsilon > 0$. Let $|x-x_0| < \frac{|x_0|}{2}$ and $|x-x_0| < \frac{\varepsilon |x_0|^2}{2}$. Suppose that $x_0 > 0$. Then
+\[
+x \in (x_0 - \frac{x_0}{2} ; x_0 + \frac{x_0}{2})=(\frac{x_0}{2} ; \frac{3x_0}{2})
+\]
+and
+\[
+x \in (\frac{2x_0 - \varepsilon x_0^2}{2} ; \frac{2x_0 - \varepsilon x_0^2}{2}) = (\frac{x_0(2-\varepsilon x_0)}{2} ; \frac{x_0(2 + \varepsilon x_0)}{2}).
+\]
+Also
+\[
+\frac{1}{x} \in (\frac{2}{3x_0} ; \frac{2}{x_0}) \text{ and } \frac{1}{x} \in (\frac{2}{x_0(2+\varepsilon x_)} ; \frac{2}{x_0(2-\varepsilon x_0)}).
+\]
+Let $x\varepsilon < 1$. Then $\varepsilon^2 x_0^2 < \varepsilon x_0$ and $2 < 2 + \varepsilon x_0 - \varepsilon^2 x_0^2$. So
+\[
+\frac{2}{x_0(2-\varepsilon x_0)} < \frac{2+\varepsilon x_0 - \varepsilon^2 x_0^2}{x_0(2 - \varepsilon x_0)}=\frac{(1-\varepsilon x_0)(2-\varepsilon x_0)}{x_0 (2-\varepsilon x_0)}=\frac{1+\varepsilon x_0}{x_0}=\frac{1}{x_0} + \varepsilon.
+\]
+Also, $\varepsilon, x_0 > 0$ so we have
+\[
+\varepsilon x_0 > -1 \text{ , } -\varepsilon x_0 < 1 \text{ , } 2 - \varepsilon x_0 - \varepsilon^2 x_0^2 < 2 \text{ , } \frac{2-\varepsilon x_0 - \varepsilon^2 x_0^2}{x_0 (2+\varepsilon x_0)} < \frac{2}{x_0 (2+\varepsilon x_0)} \text{ , }
+\]
+\[
+\frac{2}{x_0(2+\varepsilon x_0)} > \frac{(1-\varepsilon x_0)(2+\varepsilon x_0)}{x_0(2+ \varepsilon x_0)} = \frac{1-\varepsilon x_0}{x_0}=\frac{1}{x_0} - \varepsilon.
+\]
+Now let $\varepsilon x_0 \geq 1$. Then we have $2 \leq \varepsilon x_0 + 1$ so
+\[
+\frac{2}{x_0} \leq \frac{\varepsilon x_0 + 1}{x_0} = \frac{1}{x_0} + \varepsilon.
+\]
+Also $1-\varepsilon x_0 \leq 0 < \frac{2}{3}$ so
+\[
+\frac{2}{3 x_0} > \frac{1-\varepsilon x_0}{x_0} = \frac{1}{x_0} - \varepsilon.
+\]
+In all cases we have found that the inequality holds. A similar proof can be used for $x_0 \leq 0$.
+\end{proof}
+
+\textbf{Theorem 13}
+\textsl{If $\lim_{x \rightarrow a} f(x) = l \neq 0$ then
+\[
+\lim_{x \rightarrow a} \frac{1}{f(x)} = \frac{1}{l}.
+\]}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\min \left(\frac{|l|}{2}, \frac{\varepsilon |l|^2}{2} \right)$. Then there exists some $\delta$ such that for all $x \in \mathbb{R}$ if $0 < |a - x| < \delta$ then $|l - f(x)| < \min \left(\frac{|l|}{2}, \frac{\varepsilon |l|^2}{2} \right)$. But from Lemma 12 since $l \neq 0$ we know that $f(x) \neq 0$ and $\left |\frac{1}{l}-\frac{1}{f(x)} \right | < \varepsilon$. Thus we have that for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in \mathbb{R}$ where $0 < |a-x| < \delta$ we have $|\frac{1}{l}-\frac{1}{f(x)}| < \varepsilon$. Thus $\lim_{x \rightarrow a} \frac{1}{f(x)} = \frac{1}{l}$.
+\end{proof}
+
+\textbf{Corollary 14}
+\textsl{If $f$ and $g$ are continuous at $a$ then:\newline
+1) $f+g$ is continuous at $a$;\newline
+2) $fg$ is continuous at $a$;\newline
+3) if $f(a) \neq 0$ then $\frac{1}{f}$ is continuous at $a$.}
+\begin{proof}
+Let $f$ and $g$ be continuous at $a$. Then by Corollary 3 we have $\lim_{x \rightarrow a} f(x) = f(a)$ and likewise $\lim_{x \rightarrow a} g(x) = g(a)$. By Theorem 9 we have $\lim_{x \rightarrow a} (f+g)(x)=f(a)+g(a)=(f+g)(a)$. But by Corollary 3 we have that $f+g$ is continuous at $a$. Similarly from Theorem 11 we have $\lim_{x \rightarrow a} (fg)(x) = f(a)g(a)=(fg)(a)$. But again by Corollary 3 we know then that $fg$ must be continuous at $a$. Finally given that $f$ is continuous at $a$ and that $f(a) \neq 0$ Theorem 13 tells us that $\lim_{x \rightarrow a} \frac{1}{f(x)} = \frac{1}{f(a)}$. But this directly implies that $\frac{1}{f}$ is continuous at $a$ from Corollary 3.
+\end{proof}
+
+\textbf{Exercise 15}
+\textsl{Using the definition of a continuous function show that for a constant $C$, $f+C$ and $Cf$ are continuous when $f$ is.}
+\begin{proof}
+Let $f$ be a continuous function, let $O$ be an open set and let and $C$ be a constant. We have the sets $f^{-1}(\{x + C \mid x \in O\})$ and $\{x + C \mid x \in f^{-1}(O)\}$ are equal, and since the first set is open by definition, the second set must also be open. A similar statement holds for $Cf$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

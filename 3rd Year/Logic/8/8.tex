@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27700\\
+
+November 23, 2009
+\end{flushright}
+
+\begin{center}
+Homework 8
+\end{center}
+
+\begin{problem}
+(a) Let $M$ be an $\mathcal{L}$-structure and let $a_1, \dots , a_n$, $b_1, \dots , b_n$ be elements of $|M|$. Suppose there is an automorphism $f$ of $M$ such that $f(a_i) = b_i$ for $1 \leq i \leq n$. Show that for all $\varphi(x_1, \dots , a_n)$, $M \models \varphi(a_1, \dots a_n) \iff M \models \varphi(b_1, \dots , b_n)$. In other words, $a_1, \dots a_n$ and $b_1, \dots b_n$ satisfy the same complete type.
+
+(b) Show that the converse may fail; in some models, the map $a_i \mapsto b_i$ will not extend to an automorphism.
+\end{problem}
+\begin{proof}
+(a) Ket $\varphi(x_1, \dots x_n)$ be a formula. Suppose that $M \models \varphi(a_1, \dots , a_n)$. We induct on the complexity of $\varphi$. Suppose $\varphi$ is an atomic formula with $n$-ary relation relation $R$. Then $R(a_1, \dots , a_n)$. But since $f$ is an automorphism, $R(f(a_1), \dots , f(a_n)) = R(b_1, \dots , b_n)$ as well and $M \models \varphi(b_1, \dots , b_n)$. Now Suppose that $\varphi = \theta \wedge \psi$. Then $M \models \theta(a_1, \dots , a_n)$ and $M \models \psi(a_1, \dots , a_n)$. From induction, we know that $M \models \theta(b_1, \dots , b_n)$ and $M \models \psi(b_1, \dots , b_n)$. Thus $M \models \varphi(b_1, \dots , b_n)$. If $\varphi = \neg \theta(a_1, \dots , a_n)$ then not $M \models \theta(a_1, \dots , a_n)$. From induction, not $M \models \theta(b_1, \dots , b_n)$ and so $M \models \neg \varphi(b_1, \dots , b_n)$. In the case $\varphi = \forall x_1 \dots \forall x_n \theta$, it's clear that $M \models \varphi(b_1, \dots , b_n)$. Therefore $M \models \varphi(a_1, \dots a_n) \iff M \models \varphi(b_1, \dots , b_n)$.
+
+(b) Let $R$ be a relation and suppose $M$ is a model in which $a$ is related to countably many things and $b$ is related to uncountably many. Then any finitary statements about $a$ and $b$, so $M \models \varphi(a) \iff M \models \varphi(b)$ for all $\varphi$. But any automorphism taking $a$ to $b$ will force $a$ to be related to uncountably many things.
+\end{proof}
+
+\begin{problem}
+\label{dense}
+Let $\mathcal{L}$ be the language containing a single binary relation $<$ (and equality).\\
+(a) Let $T$ be the theory of dense linear orders without endpoints in the language containing a single binary relation symbol $<$ and equality. You may assume that $\mathcal{M}$, $\mathcal{N}$ are countable models of $T$, then tuples $(a_1, \dots , a_n) \in |\mathcal{M}|^n$ and $(b_1, \dots , b_n) \in |\mathcal{N}|^n$ have the same type \underline{iff} for $1 \leq i < j \leq n$ we have both $a_i <^{\mathcal{M}} a_j$ iff $b_i <^{\mathcal{N}} b_j$ and $a_i =^{\mathcal{M}} a_j$ iff $b_i =^{\mathcal{N}} b_j$. Show that the theory $T$ of dense linear orders without endpoints over $\mathcal{L}$ is $\omega$-categorical.\\
+(b) Use the above to show that there is a \emph{unique} complete $T'$ containing $T$.\\
+(c) Construct two nonisomorphic models of $T$ of the same cardinality which are not isomorphic, and prove that this is the case.
+\end{problem}
+\begin{proof}
+(a) Let $M$ and $N$ be two countably infinite models of $T$. We inductively construct an isomorphism between $M$ and $N$. Let $m_1 \in |M|$, $n_1 \in |N|$ and define $f : |M| \to |N|$ such that $f(m_1) = n_1$. Now choose $m_2 \in |M| \backslash \{m_1\}$. If $m_1 < m_2$, then since $N$ has no endpoints we can find $n_2 \in |N| \backslash \{n_1\}$ with $n_1 < n_2$. Clearly if $m_2 < m_1$ then we can find $n_2 \in |N|$ with $n_2 < n_1$ for the same reasons. Set $f(m_2) = n_2$. Now pick $n_3 \in |N| \backslash \{n_1, n_2\}$. If $n_3$ is less than both $n_1$ and $n_2$ or $n_3$ is greater than $n_1$ and $n_2$, then we can find $m_3 \in |M|$ with the same relation to $m_1$ and $m_2$ just as we did in picking $n_2$. Otherwise, $n_1 < n_3 < n_2$ or $n_2 < n_3 < n_1$. In this case since $|M|$ is dense linear ordering we can find $m_3$ between $m_1$ and $m_2$ which has the same relations as $n_1$, $n_2$ and $n_3$. Hence set $f(m_3) = n_3$. This completes the base case.
+
+Now assume that we have defined $f$ to be an isomorphism between the two sets $\{m_1, \dots , m_{n-1}\}$ and $\{n_1, \dots , n_{n-1}\}$. Pick $m_n \in |M| \backslash \{m_1, \dots , m_{n-1}\}$. Either $m_n$ is less than every $m_i$, $1 \leq i \leq n-1$, $m_n$ is greater than every $m_i$, $1 \leq i \leq n-1$ or $m_i < m_n < m_j$ for some $1 \leq i < j \leq n-1$. In the first two cases use the fact that $N$ has no end points to choose $n_n$ less than or greater than each $n_i$ with $1 \leq i \leq n$. Otherwise use the fact that $N$ is dense to choose $n_n$ with $n_i < n_n < n_j$. Choosing $n_{n+1} \in |N| \backslash \{n_1, \dots , n_n\}$ lets us use the exact same argument to find a suitable $m_n$. Thus $f$ is now a bijection between $\{m_1, \dots , m_{n+1}\}$ and $\{n_1, \dots , n_{n+1}\}$. Since this is true for all $n$ by induction and $M$ and $N$ are countable, we must have $M \cong N$. Therefore $T$ is $\omega$-categorical.
+
+(b) Let $S$ be a complete theory containing $T$. Extend $T$ to a maximally consistent $T'$. Since $T$ is $\omega$-categorical it follows directly that every sentence of $S$ must also be a sentence of $T'$ and so $S$ is isomorphic to $T'$.
+
+(c) Let $M = \langle \mathbb{R}, < \rangle$ and $N$ be the same model with a copy of $\mathbb{Q}$ added to the end. Define both models to have the usual interpretation of $<$. These are both dense linear orderings and clearly neither of them is countable. Also both have the cardinality of the continuum. But these models can't be isomorphic since $N$ contains an element with countably many things greater than it while $M$ does not.
+\end{proof}
+
+\begin{problem}
+Let $\mathcal{L}$ consist of a binary relation $<$ together with constants $c_n$ for $n \in \mathbb{N}$. Let $T$ be the theory stating that $\mathcal{L}$ is a dense linear order without endpoints, and that for each $n$ we have $c_n < c_{n+1}$. You may assume without proof that this theory is complete.\\
+(a) Show that any countable model of this theory is isomorphic to a model $\mathcal{M}$ given by $\langle \mathbb{Q}, < , c_0, c_1 \rangle$ (with the usual interpretation of $<$) in which $\{c_n^{\mathcal{M}}\}_{n \in \mathbb{N}}$ is a strictly increasing sequence of elements.\\
+(b) There are three models (up to isomorphism) of this theory, characterized by the behavior of this sequence:\\
+(i) $\lim_{n} c_n = q$ for some $q \in \mathbb{Q}$.\\
+(ii) $\{c_n\}_{n \in \mathbb{N}}$ is bounded, but does not posses a least upper bound in $\mathbb{Q}$.\\
+(iii) $\{c_n\}_{n \in \mathbb{N}}$ is bounded in $\mathbb{Q}$.\\
+Explain (with proof) which model is saturated and which one is atomic.
+\end{problem}
+\begin{proof}
+(a) Let $M$ be a countable model of $T$ and let $a_i$ be the interpretation of $c_i$ in $M$. We will inductively construct an isomorphism between $M$ and $N = \langle \mathbb{Q}, < , b_0, b_1 \rangle$ in which $\{b_n\}_{n \in \mathbb{N}}$ is a strictly increasing sequence of elements. Pick $m_1 \in |M| \backslash \{a_i\}$ and $n_1 \in |N| \backslash \{b_i\}$. Note that either $m_1 < a_1$ or $a_i < m_1 < a_j$ for some $i < j$. In either case, since $N$ is dense and without endpoints, we can find $n_1$ sucht that $n_1 < b_1$ or $b_i < n_1 < b_j$. Hence define $f : M \to N$ such that $f(m_1) = n_1$ and $f(a_1) = b_1$. Now choose some $n_2 \in |N| \backslash (\{b_i\} \cup \{n_1\})$. Once again, we consider the relationship of $n_2$ with $n_1$ and $\{b_i\}$ and note that since $M$ is a dense linear order without endpoints, we can find $m_2$ which has the same relationship to $m_1$ and $\{a_i\}$ and $n_2$ has with $n_1$ and $\{b_i\}$. Thus let $f(m_2) = n_2$ and $f(a_2) = b_2$. This completes the base case.
+
+The inductive step follows in precisely the same manner as in Problem~\ref{dense}. The only difference is that in this case we choose $m_n$ different from $\{a_i\} \cup \{m_1, \dots , m_{n-1}\}$. We can find a suitable $n_n$ for the same reasons as above. Going backwards and finding a suitable $m_{n+1}$ for a chosen $n_{n+1}$ distinct from $\{b_i\} \cup \{n_1, \dots , n_n\}$ is also the same. Thus, we've inductively constructed $f$ to be an isomorphism between $M$ and $N$ such that $f(m_i) = n_i$ and $f(a_i) = b_i$. Since $a_n < a_{n+1}$ for each $n$, it follows that $b_n < b_{n+1}$ for each $n$ and therefore $\{b_n\}$ is a strictly increasing sequence.
+
+(b) Model (iii) is atomic. Any $n$-tuple of elements $a_1, \dots , a_n$ can be described by their relation to $c_i$ for $1 \leq i \leq n$. Thus there exists some formula $\varphi (x_1, \dots , x_n)$ realized by $a_1, \dots , a_n$ which will decide every other formula by describing the relationship between $x_i$ and $c_i$. Note that model (ii) can't be saturated because there exists a type which isn't realized over any set which includes the least upper bound of $\{c_i\}$. This leaves (iii) to be the saturated model, which we know exists since since $T$ has countably many consistent $n$-types for each $n < \omega$ and we're assuming $T$ is complete.
+\end{proof}
+
+\begin{problem}
+Let $R$ be the language with a single binary relation symbol $R$ and equality. Let $T = \{\psi_n \mid n < \omega\} \cup \{\theta_n \mid n < \omega\} \cup \rho$ where $\rho$ says that $R$ is symmetric and irreflexive,
+\[
+\psi_n \mathrel{\mathop:}= \exists x_1 \dots x_n \left ( \bigwedge_{1 \leq i < j \leq n} x_i \neq x_j \right )
+\]
+and
+\[
+\theta_n \mathrel{\mathop:}= \forall x_1 \dots x_n \left ( \bigwedge_{\sigma \subset n} \exists z \left ( \bigwedge_{i \in \sigma} R(z, x_i) \wedge \bigwedge_{j \notin \sigma} \neg R(z, x_j) \right ) \right ).
+\]
+(a) Informal, what do these axioms say?\\
+(b) Prove that $T$ is $\omega$-categorical.
+\end{problem}
+\begin{proof}
+(a) For each $n < \omega$, $\psi_n$ tells us that there are $n$ elements which are all distinct from each other. This immediately says any model can't be finite, since for any finite model of size $n$, there are $n+1$ distinct elements. For each $n < \omega$, $\theta_n$ tells us that for every possible subset of $n$, there is some point $z$ which is related to all the $x_i$ for $i$ in that subset, and is not related to $x_j$ for $j$ not in the subset. Informally, this means that for each finite set of elements, there's an element which partitions the set in every possible way using $R$ (although if we assume strict inclusion, $\sigma \subsetneq n$, then we can't get the trivial partition). That is, an element will either be related to $z$ or not which forms a partition of that set.
+
+(b) Let $M$ and $N$ be two countably infinite models of $T$. Choose $m_1 \in |M|$ and $n_1 \in |N|$ and define a function $f : M \to N$ with $f(m_1) = n_1$. If $f$ is to be an isomorphism it must preserve all the functions, relations and constants of $\mathcal{L}$, but in this case we only need to worry about $R$. Choose some other point $m_2 \in |M| \backslash \{m_1\}$. Suppose first that $R(m_1, m_2)$. Then note that $\psi_2$ gives $2$ distinct elements in $|N|$, say $n_1$ and $n_1'$. Also, using $\theta_2$ and the subset $\{1\}$ of $2$, there exists some $n_2 \in |N|$ with $R(n_1, n_2)$ and $\neg R(n_1', n_2)$. So define $f(m_2) = n_2$. Note that $n_1 \neq n_2$ since $R$ is antisymmetric from $\rho$. On the other hand, if $\neg R(m_1, m_2)$ then there exists $n_2'$ and $n_2''$ such that $R(n_1', n_2')$ and $\neg R(n_1', n_2'')$ while $\neg R(n_1, n_2')$ and $\neg R(n_1, n_2'')$. This all follows from using $\theta_2$. But since this means $n_2' \neq n_2''$, at least one of them must be different from $n_1$. Choose this to be $n_2 \in |N|$ so that $\neg R(n_1, n_2)$.
+
+To complete the loop, we choose $n_3 \in |N| \backslash \{n_1, n_2\}$ (using $\psi_3$ or the fact that $N$ is countably infinite). We must consider the possibilities for $R(n_i, n_3)$ with $i = 1$ and $i = 2$. For each $i$ with $R(n_i, n_3)$ let $i \in \sigma \subset 3$. Now note that using $\psi_3$ and $\theta_3$ in $M$ there is some $m_3$ with precisely the same relationship to $m_1$ and $m_2$ as $n_3$ has with $n_1$ and $n_2$. Thus let $f(m_3) = n_3$. This completes the base case for an inductively created isomorphism from $M$ to $N$.
+
+For the inductive step, choose $m_n \in |M| \backslash \{m_1, \dots , m_{n-1}\}$. For each $1 \leq i \leq n-1$, let $i \in \sigma$ if $R(m_i, m_n)$. Now use $\psi_n$ to pick $n_n'$ distinct from $n_1, \dots n_{n-1}$. Since $\sigma \subset n$, we can use $\theta_{n}$ to pick an element $n_n$ which has the same relations with $n_1, \dots , n_{n-1}$ as $m_n$ has with $m_1, \dots , m_{n-1}$. Call this element $n_n$ and let $f(m_n) = n_n$. Note that we can choose $n_n$ distinct from all the $n_i$ with $1 \leq i < n$ using the same argument as in the base case. The argument for finding a pair of elements $n_{n+1}$ and $m_{n+1}$ is identical to this one. Since we've constructed $f$ to preserve $R$ for every element of $M$ and $N$ (as they are both countable, so every element is some $m_i$ or $n_i$), $f$ must be an isomorphism between $M$ and $N$. Therefore $M \cong N$ and $T$ is $\omega$-categorical.
+\end{proof}
+
+\begin{problem}
+Give a complete proof of the statement from class that if $R = \{M_1, \dots , M_n\}$ is a finite set of $\mathcal{L}$-structures, then [there exists a set of sentences $T$ such that $M \models T$ iff there is $N \in R$ such that $M \cong N$] if and only if each of the $M_i$ is finite.
+\end{problem}
+\begin{proof}
+Suppose first that each $M_i$ is finite. Let $\varphi_{i_j}$ be an index of every sentence in each of the $M_i$. For $m > 0$ let $T_m$ be given by the formula
+\[
+\bigvee_{i = 1}^{n} \left ( \bigwedge_{j=1}^{m} \varphi_{i_j} \right )
+\]
+and let $T$ be the collection of these $T_m$. For each $1 \leq i \leq n$ and each $m$ then, we have $M_i \models \bigwedge_{j=1}^{m} \varphi_{i_j}$. Thus every $M_i \in R$ is a model of $T$. On the other hand, if $N \ncong M_i$ then not $N \models \varphi_{i_k}$ for some $i$ and $k$. But it must be the case that not $N \models \bigwedge_{j=1}^{m} \varphi_{i_j}$ for $m > k$. Thus $R$ is the complete set of models of $T$ up to isomorphism.
+
+Conversely, suppose that there exists $T$ such that $R$ is the entire set of models for $T$ up to isomorphism. Suppose that one of the models $M_i$ were infinite. Then using upward L\"{o}wenheim-Skolem we can produce a model of every infinite cardinality. Thus $R$ can't be finite, which is a contradiction, and so each $M_i$ is finite.
+\end{proof}
+
+\end{document}

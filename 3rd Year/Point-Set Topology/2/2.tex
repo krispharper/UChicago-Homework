@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26200\\
+
+January 21, 2010
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{problem}
+Let $X$ be a topological space; let $A$ be a subset of $S$. Suppose that for each $x \in A$ there is an open set $U$ containing $x$ such that $U \subseteq A$. Show that $A$ is open in $X$.
+\end{problem}
+\begin{proof}
+Let $V$ be the union of each of these sets $U$. Since $U \subseteq A$ for each $x \in A$, we see that $V \subseteq A$. But also, for every $x \in A$, since $x \in U$ for some $U$, we have $x \in V$. Thus $A = V$ and so $A$ is the union of open sets. Therefore $A$ is open as well.
+\end{proof}
+
+\begin{problem}
+Show that the collection $\mathcal{T}_c$ given in Example 4 of \S 12 is a topology on the set $X$. Is the collection
+\[
+\mathcal{T}_{\infty} = \{U \mid \text{$X \backslash U$ is infinite or empty or all of $X$}\}
+\]
+a topology on $X$?
+\end{problem}
+\begin{proof}
+The collection $\mathcal{T}_c$ is the set of all subsets $U$ of $X$ such that $X \backslash U$ either is countable or is all of $X$. We immediately have that $X, \emptyset \in \mathcal{T}_c$ since $X \backslash X = \emptyset$ is countable and $X \backslash \emptyset = X$. Let $\{U_i\}_{i \in I}$ be a collection of elements from $\mathcal{T}_c$. Then using De Morgan's Laws we have
+\[
+X \backslash \left ( \bigcup_{i \in I} U_i \right ) = \bigcap_{i \in I} (X \backslash U_i).
+\]
+Since each $X \backslash U_i$ is countable, their intersection is also countable and thus $\bigcup_{i \in I} U_i \in \mathcal{T}_c$. Now let $\{V_i\}$ be a finite collection of elements from $\mathcal{T}_c$. Then using De Morgan's Laws again we have
+\[
+X \backslash \left ( \bigcap_{i} V_i \right ) = \bigcup_{i} (X \backslash V_i).
+\]
+Since a finite union of countable sets is countable, we see that $\bigcap_{i} V_i \in \mathcal{T}_c$ as well. Since $\mathcal{T}_c$ is closed under arbitrary union and finite intersection and contains $X$ and $\emptyset$, it must be a topology on $X$.
+
+The collection $\mathcal{T}_{\infty}$ is not a topology on $X$ since the complement of the union of two such sets is the intersection of their complements. This intersection could be a finite set, making $\mathcal{T}_{\infty}$ not closed under unions. As an explicit example, let $X = \mathbb{R}$, let $U_1 = (-\infty,0)$ and let $U_2 = (0,\infty)$. Then $X \backslash U_1 = [0, \infty)$ and $X \backslash U_2 = (-\infty, 0]$ so $U_1, U_2 \in \mathcal{T}_{\infty}$. But $U_1 \cup U_2 = \mathbb{R} \backslash \{0\}$ which has a finite complement so $U_1 \cup U_2 \notin \mathcal{T}_{\infty}$.
+\end{proof}
+
+\begin{problem}
+\label{rlrk}
+Show that the topologies of $\mathbb{R}_{\ell}$ and $\mathbb{R}_K$ are not comparable.
+\end{problem}
+\begin{proof}
+Let $\mathcal{T}$ and $\mathcal{T}'$ be the topologies for $\mathbb{R}_{\ell}$ and $\mathbb{R}_K$ respectively. We wish to show that there exists $x \in \mathbb{R}$ and some interval $B \in \mathcal{T}$ such that for all basis elements $B' \in \mathcal{T}'$ either $x \notin B'$ or $B' \nsubseteq B$. Choosing an arbitrary element $x \in \mathbb{R}$ and the interval $[x, x+1)$ will suffice. Now it's clear that any open interval in $\mathcal{T}'$ cannot contain $x$ and be contained in $[x, x+1)$. Furthermore, an element of the form $(a,b) \backslash K$ which contains $x$ cannot be contained in $[x, x+1)$ for the same reasons.
+
+Conversely, if we choose $x = 0$ and the set $(-1,1) \backslash K$, then any interval of the form $[a,b)$ which contains $0$ will necessarily contain some elements of $K$. Thus $[a,b) \nsubseteq (-1,1) \backslash K$. These facts together show that $\mathcal{T}$ is not finer than $\mathcal{T}'$ and $\mathcal{T}'$ is not finer than $\mathcal{T}$. Thus, they are not comparable.
+\end{proof}
+
+\begin{problem}
+Consider the following topologies on $\mathbb{R}$:
+\begin{align*}
+&\mathcal{T}_1 = \text{the standard topology},\\
+&\mathcal{T}_2 = \text{the topology of $\mathbb{R}_K$},\\
+&\mathcal{T}_3 = \text{the finite complement topology},\\
+&\mathcal{T}_4 = \text{the upper limit topology, having all sets $(a,b]$ as basis},\\
+&\mathcal{T}_5 = \text{the topology having all sets $(-\infty, a) = \{x \mid x < a\}$ as basis}.
+\end{align*}
+Determine, for each of these topologies, which of the others it contains.
+\end{problem}
+\begin{proof}
+We know $\mathcal{T}_2 \nsubseteq \mathcal{T}_1$ since $\mathcal{T}_1$ doesn't contain, for example, $(-1, 1) \backslash K$. It's clear however that $\mathcal{T}_1 \subseteq \mathcal{T}_2$ since $\mathcal{T}_2$ contains all open intervals.
+
+Let $U \in \mathcal{T}_3$. Then $\mathbb{R} \backslash U = \{x_1, \dots , x_n\}$. Since there are only finitely many $x_i$, we can order them so that $x_1 < \dots < x_n$. Note that $U = \mathbb{R} \backslash \{x_1, \dots , x_n\}$. Let $p$ be the largest integer less than $x_1$ and $q$ be the smallest integer greater than $x_n$. Note that we can write $(-\infty, p)$ as a union of unit intervals placed at integers and half integers and the same can be done for $(q, \infty)$. But now,
+\[
+U = (-\infty, p) \cup (p-1/2, x_1) \cup (x_1, x_2) \cup \dots \cup (x_{n-1}, x_n) \cup (x_n, q-1/2) \cup (q, \infty).
+\]
+Thus $U \in \mathcal{T}_1$ and $\mathcal{T}_3 \subseteq \mathcal{T}_1$. Conversely, it's clear that $\mathcal{T}_1 \nsubseteq \mathcal{T}_3$ since $(-1,1)$ doesn't have a finite complement.
+
+Let $(a,b) \in \mathcal{T}_1$ and $x \in (a,b)$. Then $(a,x]$ contains $x$ and lies in $(a,b)$. Thus, $\mathcal{T}_1 \subseteq \mathcal{T}_4$. On the other hand, given $(c,x] \in \mathcal{T}$ there is no open interval $(a,b)$ which contains $x$ and lies in $(c,x]$. Thus $\mathcal{T}_4$ is strictly finer than $\mathcal{T}_1$ and $\mathcal{T}_4 \nsubseteq \mathcal{T}_1$.
+
+Let $x \in \mathbb{R}$ and let $(-\infty, a) \in \mathcal{T}_5$ such that $x \in (-\infty, a)$. But then the basis element $(x-1,a) \in \mathcal{T}_1$ contains $x$ and is contained in $(-\infty, a)$. Therefore $\mathcal{T}_5 \subseteq \mathcal{T}_1$. On the other hand, if we pick any element $x \in \mathbb{R}$ and an interval $(a,b)$ containing $x$, then no basis element of $\mathcal{T}_5$ is contained in this interval since none of these basis elements have lower bounds. Therefore $\mathcal{T}_1 \nsubseteq \mathcal{T}_5$.
+
+A similar proof to the one showing $\mathcal{T}_3 \subseteq \mathcal{T}_1$ shows that $\mathcal{T}_3 \subseteq \mathcal{T}_2$. Similarly, $\mathcal{T}_2 \nsubseteq \mathcal{T}_3$ since $(-1,1)$ doesn't have a finite complement.
+
+A similar proof to that of Problem~\ref{rlrk} shows that $\mathcal{T}_2 \nsubseteq \mathcal{T}_4$ and $\mathcal{T}_4 \nsubseteq \mathcal{T}_2$.
+
+A similar proof to the one showing $\mathcal{T}_5 \subseteq \mathcal{T}_1$ and $\mathcal{T}_1 \nsubseteq \mathcal{T}_5$ shows that $\mathcal{T}_5 \subseteq \mathcal{T}_2$ and $\mathcal{T}_2 \nsubseteq \mathcal{T}_5$.
+
+Let $U \in \mathcal{T}_3$ such that $U = \mathbb{R} \backslash \{x_1, \dots , x_n\}$ where we've ordered the $x_i$ so that $x_1 < \dots < x_n$. Note that $(x_i,x_{i+1}) =  \bigcup_{x_1<p<x_{i+1}} (x_i,p]$. In this way, we can create open intervals by taking infinite unions of elements of $\mathcal{T}_4$. Now the problem is reduced to the relationship between $\mathcal{T}_1$ and $\mathcal{T}_3$ so we have $\mathcal{T}_3 \subseteq \mathcal{T}_4$. Conversely, since $(-1,1]$ doesn't have a finite complement, $\mathcal{T}_4 \nsubseteq \mathcal{T}_3$.
+
+Let $U \in \mathcal{T}_5$. Then $U$ is an arbitrary union of elements of the form $(-\infty, a)$ for $a \in \mathbb{R}$. If there are a finite number of elements in this union, then $U = (-\infty, a)$ where $a$ is the largest least upper bound on any of the individual elements. Suppose the union is infinite, and consider the sequence composed of the least upper bounds for each element in the union. If this sequence has a maximal element $a$, then $U = (-\infty, a)$. If this sequence has some limit $b$, but no maximal element, then $U = (-\infty, b]$. Finally, if the sequence doesn't converge and has no maximal element, then $U = \mathbb{R}$. Thus, an element of $\mathcal{T}_5$ is either $\mathbb{R}$ or of the form $(-\infty,a)$ or $(-\infty, a]$ for some $a \in \mathbb{R}$. An element of $\mathcal{T}_3$ then cannot be an element of $\mathcal{T}_5$ unless that element is $\emptyset$ or $\mathbb{R}$. Therefore $\mathcal{T}_3 \nsubseteq \mathcal{T}_5$. Since $(-\infty,a)$ doesn't have a finite complement, we see that $\mathcal{T}_5 \nsubseteq \mathcal{T}_3$.
+
+Let $x \in \mathbb{R}$ and let $(-\infty,a)$ be a basis element of $\mathcal{T}_5$ containing $x$. Then $x < a$, so there exists $b$ with $x < b < a$. But now $(x-1,b] \subseteq (-\infty, a)$ and we have $\mathcal{T}_5 \subseteq \mathcal{T}_4$. On the other hand, choosing $x = 0$ and the interval $(-1,0]$ There is no basis element of $\mathcal{T}_5$ which will contain $x$ and be contained in $(-1,0]$ since all basis elements of $\mathcal{T}_5$ aren't bounded below. Thus $\mathcal{T}_4 \nsubseteq \mathcal{T}_5$.
+
+In summary we have the following relations. We've shown
+\[
+\text{$\mathcal{T}_1 \subseteq \mathcal{T}_2$, $\mathcal{T}_1 \nsubseteq \mathcal{T}_3$, $\mathcal{T}_1 \subseteq \mathcal{T}_4$, $\mathcal{T}_1 \nsubseteq \mathcal{T}_5$},
+\]
+\[
+\text{$\mathcal{T}_2 \nsubseteq \mathcal{T}_1$, $\mathcal{T}_2 \nsubseteq \mathcal{T}_3$, $\mathcal{T}_2 \nsubseteq \mathcal{T}_4$, $\mathcal{T}_2 \nsubseteq \mathcal{T}_5$},
+\]
+\[
+\text{$\mathcal{T}_3 \subseteq \mathcal{T}_1$, $\mathcal{T}_3 \subseteq \mathcal{T}_2$, $\mathcal{T}_3 \subseteq \mathcal{T}_4$, $\mathcal{T}_3 \nsubseteq \mathcal{T}_5$},
+\]
+\[
+\text{$\mathcal{T}_4 \nsubseteq \mathcal{T}_1$, $\mathcal{T}_4 \nsubseteq \mathcal{T}_2$, $\mathcal{T}_4 \nsubseteq \mathcal{T}_3$, $\mathcal{T}_4 \nsubseteq \mathcal{T}_5$},
+\]
+\[
+\text{$\mathcal{T}_5 \subseteq \mathcal{T}_1$, $\mathcal{T}_5 \subseteq \mathcal{T}_2$, $\mathcal{T}_5 \nsubseteq \mathcal{T}_3$, $\mathcal{T}_5 \subseteq \mathcal{T}_4$}.
+\]
+\end{proof}
+
+\begin{problem}
+(a) Apply Lemma 13.2 to show that the countable collection
+\[
+\mathcal{B} = \{(a,b) \mid \text{$a < b$, $a$ and $b$ rational}\}
+\]
+is a basis that generates the standard topology on $\mathbb{R}$.\\
+(b) Show that the collection
+\[
+\mathcal{C} = \{[a,b) \mid \text{$a < b$, $a$ and $b$ rational}\}
+\]
+is a basis that generates a topology different from the lower limit topology on $\mathbb{R}$.
+\end{problem}
+\begin{proof}
+(a) Let $X$ be the usual topology on $\mathbb{R}$. Suppose $(a,b) \in X$ and pick some $x \in (a,b)$. Let $p,q \in \mathbb{Q}$ such that $a < p < x < q < b$. We know such $p$ and $q$ exists because there exists a rational number between any two real numbers. Then $x \in (p,q)$, $(p,q) \subseteq (a,b)$ and $(p,q) \in \mathcal{B}$. This shows that $\mathcal{B}$ is a basis for the usual topology on $\mathbb{R}$.
+
+(b) We know that the topology generated by $\mathcal{C}$ is the set of unions of elements of $\mathcal{C}$. Let $[a,b)$ be in the lower limit topology, $X$, such that $a$ and $b$ are not rational. This element of $X$ is clearly not an element of $\mathcal{C}$, so we must show that it's also not a union of elements from $\mathcal{C}$. Suppose that $U$ is such a union and that some element $[a',b') \subseteq U$ where $a' < a$ or $b < b'$. Then $U$ must contain some point $c$ with $a' < c < a$ or a point $d$ with $b < d < b'$ which is a contradiction. This shows that all sets in the union must be of the form $[a', b')$ with $a < a' < b' < b$. But then it's impossible that $a$ ever be a part of $U$ since all elements of $\mathcal{C}$ involved have all their elements strictly greater than $a$. Thus $U$ cannot exist and so the lower limit topology contains some element which the topology generated by $\mathcal{C}$ does not.
+\end{proof}
+
+\end{document}

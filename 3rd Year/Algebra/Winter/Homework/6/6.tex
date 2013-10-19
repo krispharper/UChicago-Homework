@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{10pt}
+\renewcommand{\textheight}{609pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newcommand{\ann}{\textup{Ann}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25800\\March 5, 2010\\}
+\chead{Homework 6\\}
+
+\begin{problem}[11.3.3]
+Let $S$ be any subset of $V^*$ for some finite dimensional space $V$. Define $\ann(S) = \{v \in V \mid f(v) = 0 \textup{ for all } f \in S\}$. ($\ann(S)$ is called the \emph{annihilator} of $S$ in $V$).\\
+(a) Prove that $\ann(S)$ is a subspace of $V$.\\
+(b) Let $W_1$ and $W_2$ be subspaces of $V^*$. Prove that $\ann(W_1 + W_2) = \ann(W_1) \cap \ann(W_2)$ and $\ann(W_1 \cap W_2) = \ann(W_1) + \ann(W_2)$.\\
+(c) Let $W_1$ and $W_2$ be subspaces of $V^*$. Prove that $W_1 = W_2$ if and only if $\ann(W_1) = \ann(W_2)$.
+\end{problem}
+
+\begin{proof}
+(a) Note that $0 \in \ann(S)$ so $\ann(S) \neq \emptyset$. Let $v,u \in \ann(S)$ and let $r \in F$. Let $f \in V^*$. Then $f(rv + u) = rf(v) + f(u) = 0$ because $f$ is linear. Thus $rv + u \in \ann(S)$ as well and $\ann(S)$ is a subspace of $V$.
+
+(b) Let $v \in \ann(W_1 + W_2)$. Then for each $f \in W_1$ and $g \in W_2$ we have $0 = (f+g)(v) = f(v) + g(v)$. In particular, if $g$ is the zero function, then $f(v) = 0$ necessarily. The same is true for $g$ and so $f(v) = g(v) = 0$. Thus $v \in \ann(W_1) \cap \ann(W_2)$. Conversely, suppose $v \in \ann(W_1) \cap \ann(W_2)$. Then for each $f \in W_1$ and $g \in W_2$ we have $f(v) = g(v) = 0$. But then $f(v) + g(v) = (f+g)(v) = 0$ and $v \in \ann(W_1 + W_2)$.
+
+Now note that
+\begin{align*}
+\ann(W_1 \cap W_2)
+&= \{v \in V \mid \text{$f(v) = 0$ for all $f \in W_1 \cap W_2$}\}\\
+&= \{v \in V \mid \text{$(f+g)(v) = 0$ for all $f \in W_1$ and $g \in W_2$}\}\\
+&= \{v + u \in V \mid \text{$f(v) = 0$ for all $f \in W_1$ and $g(u) = 0$ for all $g \in W_2$}\}\\
+&= \ann(W_1) + \ann(W_2).
+\end{align*}
+
+(c) Suppose $W_1 = W_2$. Let $v \in \ann(W_1)$ and let $f \in W_2$. Since $W_1 = W_2$, $f \in W_1$ as well, so $f(v) = 0$. Since $f$ was arbitrary, $v \in \ann(W_2)$. The second inclusion holds similarly. Conversely, suppose $\ann(W_1) = \ann(W_2)$. Let $f \in W_1$. Since $W_1$ and $W_2$ are subspace of $V^*$ and $f$ agrees with every function of $W_2$ on the vectors in $\ann(W_1)$, it follows that $f \in W_2$ as well. The second inclusion follows similarly.
+\end{proof}
+
+\begin{problem}
+(a) Prove that the elementary row operations have the following effect on determinants:\\
+(i) Interchanging two rows changes the sign of the determinant.\\
+(ii) Add a multiple of a row to another does not alter the determinant.\\
+(iii) Multiplying any row by a nonzero element $u$ from $F$ multiplies the determinant by $u$.\\
+(b) Prove that $\det A$ is nonzero if and only if $A$ is row equivalent to the $n \times n$ identity matrix. Suppose $A$ can be row reduced to the identity matrix using a total of $s$ row interchanges as in (i) and by multiplying rows by the nonzero elements $u_1, u_2, \dots , u_t$ as in (iii). Prove that $\det A = (-1)^s(u_1u_2 \dots u_t)^{-1}$.
+\end{problem}
+\begin{proof}
+(a) These all follow from the fact that $\det$ is alternating and multilinear and that $\det(A) = \det(A^t)$. In particular, if $A$ is a matrix with columns $A_1, \dots A_n$, then we know
+\[
+\det(A_1, \dots , A_i, \dots , A_j, \dots , A_n) = -\det(A_1, \dots , A_j, \dots , A_i, \dots , A_n).
+\]
+Also,
+\[
+\det(A_1, \dots , A_i + kA_j, \dots , A_n) = \det(A_1, \dots , A_i, \dots , A_n) + k\det(A_1, \dots , A_j, \dots , A_j, \dots , A_n) = \det(A) + 0.
+\]
+Finally, note
+\[
+\det(A_1, \dots , kA_i, \dots , A_n) = k \det(A_1, \dots , A_i, \dots , A_n).
+\]
+Looking at $A^t$ instead of $A$ will translate all of these statements about columns to rows.
+
+(b) Suppose $A$ is row equivalent to the identity. Then a finite number of the operations (i), (ii) and (iii) will result in the identity matrix. Part (a) states that the determinant of $A$ will then be a finite number of constants multiplied together with a possible sign change. Conversely, if $\det A$ is nonzero then the rows $A_1, \dots , A_n$ must be linearly independent. This means we can perform row operations on them until we end up with the identity matrix. In particular, if $A$ is reduced to the identity in $s$ row interchanges, then part (a) tells us that $\det(A)$ will change by $(-1)^s$ from $\det(I)$. If $A$ is reduced by multiplying by the elements $u_1, \dots , u_t$, then part (a) tells us $\det(A)$ will change by $u_1 \dots u_t$ from $\det(I)$. Thus, in total $\det(A) = (-1)^s(u_1 \dots u_t)^{-1} \det(I) = (-1)^s(u_1 \dots u_t)^{-1}$.
+\end{proof}
+
+\begin{problem}
+Compute the determinants of the following matrices using row reduction.
+\end{problem}
+\begin{proof}
+First we consider $A$. Interchange the first and third rows and add the second row to the first.
+\[
+\left (
+\begin{array}{ccc}
+1 & 4 & 0\\
+-2 & 0 & 2\\
+5 & 4 & -6\\
+\end{array}
+\right )
+\]
+Add twice the first row to the second row and $-5$ times the first row to the third row.
+\[
+\left (
+\begin{array}{ccc}
+1 & 4 & 0\\
+0 & 8 & 2\\
+0 & -16 & -6
+\end{array}
+\right )
+\]
+Add twice the second row to the third row. Multiply the third row by $-1/2$. Add $-2$ times the third row to the second row.
+\[
+\left (
+\begin{array}{ccc}
+1 & 4 & 0\\
+0 & 8 & 0\\
+0 & 0 & 1
+\end{array}
+\right )
+\]
+Multiply the second row by $1/8$ and add $-4$ times this row to the first row.
+\[
+\left (
+\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{array}
+\right )
+\]
+In all, we've interchanged rows once ance multiplied by $-1/2$ and $1/8$. Thus, $\det(A) = 16$. Now consider $B$. Interchange the first and third rows. Add $-2$ times the first row to the second row and $-1$ times the first row to the third row.
+\[
+\left (
+\begin{array}{cccc}
+1 & 0 & 1 & -2\\
+0 & -1 & 2 & -4\\
+0 & 2 & -5 & 6\\
+0 & 1 & -2 & 3
+\end{array}
+\right )
+\]
+Add the second row to the fourth row and two times the second row to the third row. Multiply the second row by $-1$.
+\[
+\left (
+\begin{array}{cccc}
+1 & 0 & 1 & -2\\
+0 & 1 & -2 & 4\\
+0 & 0 & -1 & -2\\
+0 & 0 & 0 & -1
+\end{array}
+\right )
+\]
+Multiply the last row by $-1$, add twice this to the third row. Multiply the third row by $-1$. Add twice this to the second row and $-4$ times the last row to the second row. Add $-1$ times the third row and two times the fourth row to the first row.
+\[
+\left (
+\begin{array}{cccc}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1
+\end{array}
+\right )
+\]
+In all, we've interchanged rows once and multiplied by $-1$ three times. Thus, $\det(B) = 1$.
+\end{proof}
+
+\end{document}

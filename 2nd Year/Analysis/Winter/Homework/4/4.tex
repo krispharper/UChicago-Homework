@@ -1,0 +1,154 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20800\\
+
+January 26, 2009
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Let $V$ and $W$ be normed linear spaces. On $V \times W$ define $||(v,w)|| = (||v||^p + ||w||^p)^{1/p}$ for $1 \leq p < \infty$. Show that this is a norm.
+\end{**}
+\begin{proof}
+Since $||v|| \geq 0$ and $||w|| \geq 0$, it's clear that $||(v,w)|| \geq 0$. Suppose that $||(v,w)|| = 0$. Then $||v||^p + ||w||^p = 0$ and $||v|| + ||w|| = 0$. But since each term on the left is greater or equal to $0$, we must have $||v|| = ||w|| = 0$ which implies $v = w = 0$ and $(v, w) = (0, 0)$. Supposing that $(v, w) = (0, 0)$ we clearly have $||(v, w)|| = (||0||^p + ||0||^p)^{1/p} = 0$.\newline
+
+For some $\alpha \in F$ we have
+\[
+||\alpha (v, w)|| = ||(\alpha v, \alpha w)|| = (||\alpha v||^p + ||\alpha w||^p)^{1/p} = (|\alpha|^p(||v||^p + ||w||^p))^{1/p} = |\alpha| (||v||^p + ||w||^p)^{1/p} = |\alpha| \cdot ||(v, w)||.
+\]\newline
+
+Finally, for $(v_1, w_1), (v_2, w_2) \in V \times W$ note that
+\begin{align*}
+||(v_1, w_1) + (v_2, w_2)||
+&= ||(v_1 + v_2, w_1 + w_2)||\\
+&= (||v_1 + v_2||^p + ||w_1 + w_2||^p)^{1/p}\\
+&\leq ((||v_1|| + ||v_2||)^p + (||w_1|| + ||w_2||)^p)^{1/p}\\
+&\leq (||v_1||^p + ||w_1||^p)^{1/p} + (||v_2||^p + ||w_2||^p)^{1/p}\\
+&= ||(v_1, w_1)|| + ||(v_2, w_2)||
+\end{align*}
+which follows from the same use of H\"{o}lder's inequality as is used in the $\ell^p_n (F)$ metric.
+\end{proof}
+
+\begin{**}
+Let $V$ and $W$ be normed linear spaces. On $V \times W$ define $||(v,w)|| = \max (||v||, ||w||)$. Show that this is a norm.
+\end{**}
+\begin{proof}
+Since $||v|| \geq 0$ and $||w|| \geq 0$ it's clear that $||(v, w)|| \geq 0$. Suppose that $||(v, w)|| = 0$. Then without loss of generality suppose that $||v|| \geq ||w||$ so that $||(v, w)|| = 0 = ||v||$. Then we have $0 \leq ||w|| \leq ||v|| = 0$ which shows that $||v|| = ||w|| = 0$ and so $v = w = 0$. If $(v, w) = (0, 0) = 0$ then it's clear that $||v|| = ||w|| = 0$ and so $||(v, w)|| = 0$.\newline
+
+For some $\alpha \in F$ we have
+\[
+||\alpha (v, w)|| = ||(\alpha v, \alpha w)|| = \max (||\alpha v||, ||\alpha w||) = \max (|\alpha| ||v||, |\alpha| ||w||) = |\alpha| \max (||v||, ||w||) = |\alpha| \cdot ||(v, w)||.
+\]\newline
+
+Finally, for $(v_1, w_1), (v_2, w_2) \in V \times W$ note that
+\begin{align*}
+||(v_1, w_1) + (v_2, w_2)||
+&= ||(v_1 + v_2, w_1 + w_2)||\\
+&= \max (||v_1 + v_2||, ||w_1 + w_2||)\\
+&\leq \max (||v_1|| + ||v_2||, ||w_1|| + ||w_2||)\\
+&< \max (||v_1||, ||w_1||) + \max (||v_2||, ||w_2||)\\
+&= ||(v_1, w_1)|| + ||(v_2, w_2)||.
+\end{align*}
+Since all three properties are met, $||\cdot||$ is a norm.
+\end{proof}
+
+\begin{**}
+Let $\pi : V \rightarrow V / V_0$ such that $\pi (v) = v + V_0$. Show the following:\\
+1) $\pi (v_1 + v_2) = \pi (v_1) + \pi (v_2)$.\\
+2) $\pi(\alpha v) = \alpha \pi (v)$.\\
+3) $\pi$ is an open map.\\
+4) $\pi$ is continuous.
+\end{**}
+\begin{proof}
+1) We have
+\[
+\pi (v_1 + v_2) = (v_1 + v_2) + V_0 = (v_1 + V_0) + (v_2 + V_0) = \pi (v_1) + \pi (v_2).
+\]\newline
+
+2) We have
+\[
+\pi (\alpha v) = (\alpha v) + V_0 = \alpha (v + V_0) = \alpha \pi (v).
+\]\newline
+
+3) Let $A \subseteq V$ be an open set. Clearly $\pi (\emptyset) = \emptyset$, so let $v \in A$. Since $A$ is open, there exists some $r \in \mathbb{R}$ such that $B_r(v) \subseteq A$. Then for all $w \in B_r(v)$ we have $||v-w|| < r$. Note that
+\[
+||\pi (v) - \pi (w)|| = ||\pi (v - w)|| = \inf \{||v|| \mid v \in \pi (v-w)\} < r
+\]
+since $v-w \in \pi (v-w)$. Thus for all $v' \in \pi (A)$ there exists a ball around $v'$ completely contained in $\pi (A)$ so $\pi (A)$ is open.\newline
+
+4) To show that $\pi$ is continuous, consider some open set, $U \subseteq V / V_0$ and suppose that $\pi^{-1} (U)$ is not open. Then there exists $v \in \pi^{-1} (U)$ such that for all $r > 0$ there exists $u \in B_r(v)$ such that $u \notin \pi^{-1} (U)$. Note that from the definition of the norm on $V / V_0$, we have $||\pi(v) - \pi(u)|| \leq ||u - v|| < r$. But since $U$ is open and $v \in U$, there exists some $r' > 0$ such that $B_{r'} (\pi(u)) \subseteq U$, and since $r$ can be arbitrarily small, choose $r < r'$. Then $||\pi(v) - \pi(u)|| \leq ||u - v|| < r < r'$, which shows that $\pi (u) \in U$ and $u \in \pi^{-1} (U)$. This is a contradiction, and so $\pi^{-1}$ maps open sets to open sets. Thus $\pi$ is continuous.
+\end{proof}
+
+\begin{**}
+Let $V$ and $W$ be normed linear spaces over $F$. Prove $\mathcal{BL}(V, W)$ is a vector space over $F$.
+\end{**}
+\begin{proof}
+Let $T, U \in \mathcal{BC} (V, W)$ and $\alpha, \beta \in F$. Define $(T + U)v = Tv + Uv$ and $(\alpha T)v = T\alpha v$. It's clear that commutativity and associativity of addition hold, since they do in $V$ and $W$. The zero operator, which maps all vectors to $0$, serves as the additive identity since $(T + 0)v = Tv + 0 = Tv$. The additive inverse of $T$ maps a vector $v$ to $-Tv$. Then $(T + (-T))v = Tv + (-Tv) = 0$. Thus $\mathcal{BC} (V, W)$ is an abelian group under addition. Additionally we have
+\[
+(\alpha(T + U))v = (T + U)\alpha v = T\alpha v + U\alpha v = (\alpha T)v + (\alpha U)v,
+\]
+\[
+((\alpha + \beta)T)v = T(\alpha + \beta)v = T(\alpha v + \beta v) = T(\alpha v) + T(\beta v) = (\alpha T)v + (\beta T)v,
+\]
+\[
+(\alpha(\beta T))v = (\beta T) \alpha v = T \beta \alpha v = T \alpha \beta v = (\alpha \beta T)v
+\]
+and $(1 \cdot T)v = T \cdot 1 \cdot v = Tv$ so that the remaining axioms of a vector space are all met.
+\end{proof}
+
+\begin{**}
+Define $||T|| = \inf \{M \mid ||Tv|| \leq M||v||\}$. Show $||T_1 + T_2|| \leq ||T_1|| + ||T_2||$.
+\end{**}
+\begin{proof}
+We have
+\begin{align*}
+||T_1 + T_2||
+&= \inf \{M \mid ||(T_1 + T_2)v|| \leq M ||v||\}\\
+&= \inf \{M \mid ||T_1v + T_2v|| \leq M ||v||\}\\
+&\leq \inf \{M \mid ||T_1v|| + ||T_2v|| \leq M ||v||\}\\
+&\leq \{M \mid ||T_1v|| \leq M ||v||\} + \inf \{M \mid ||T_2v|| \leq M ||v||\}\\
+&= ||T_1|| + ||T_2||
+\end{align*}
+where the first inequality arises from the triangle inequality in a vector space and the second is a property of greatest lower bounds.
+\end{proof}
+
+\begin{**}
+Consider $\{e_j\}$, a linearly independent set of $\ell^{\infty} (\mathbb{R})$. Let $B$ be the space of all finite linear combinations of $\{e_j\}$ over $\mathbb{R}$. Show $B$ is dense in $\ell^{p} (\mathbb{R})$ for $1 \leq p < \infty$. Show that this is not dense in $\ell^{\infty} (\mathbb{R})$.
+\end{**}
+\begin{proof}
+Let $1 \leq p < \infty$ and note that for $(x_n) \in \ell^p(\mathbb{R})$, we must have $\lim_{n \rightarrow \infty} x_n = 0$. This is a consequence of the sequence satisfying the $p$-norm on the space. Then consider a ball of radius $r$ around $(x_n)$. We know that there exists $N$ such that for all $n > N$ we have $|x_n| < \varepsilon$ for any $\varepsilon > 0$. Consider the sequence $(y_n) = (x_1, x_2, \dots , x_{N-1}, x_N, 0, 0, \dots )$ which has the first $N$ terms of $(x_n)$ and then terminates in $0$s. Note that $(y_n) \in B$. Since we can choose $\varepsilon$ to be arbitrarily small, it follows that $||(x_n) - (y_n)|| < r$. Thus any open ball in $\ell^p (\mathbb{R})$ must contain some element of $B$ which shows that $B$ is dense in $\ell^p (\mathbb{R})$.\newline
+
+Now let $p = \infty$. Consider the sequence $(x_n)$ where $x_n = (-1)^{n+1}$ and the ball $B_{1/2}((x_n))$. Then since every sequence $(y_n) \in B$ must terminate in $0$s, we must have $||(x_n) - (y_n)|| \geq 1$. But then there exists an open set in $\ell^{\infty} (\mathbb{R})$ with empty intersection with $B$. Thus $B$ is not dense in $\ell^{\infty} (\mathbb{R})$.
+\end{proof}
+
+\begin{**}
+Show $\mathcal{BL} (V, W)$ is complete if $W$ is complete.
+\end{**}
+\begin{proof}
+Let $W$ be a complete normed linear space. Let $(T_n)$ be a cauchy sequence in $\mathcal{BL} (V, W)$. Note that $||T_n - T_m|| = \inf \{M \mid ||(T_n - T_m)v|| \leq M ||v||, v \in V\} = \sup \{||(T_n - T_m)v|| \mid ||v|| = 1\}$. For each $v \in V$ with $||v|| = 1$, we have a sequence in $W$ where $w_n = T_nv$. Then
+\[
+||w_n - w_m|| = ||T_nv - T_mv|| = ||(T_n - T_m)v|| \leq ||T_n - T_m||
+\]
+which shows that $(w_n)$ is Cauchy in $W$. Since $W$ is complete, we have $\lim_{n \rightarrow \infty} w_n = w$ for some $w \in W$. Because every nonzero vector in $V$ can be rescaled to have a norm of $1$, such a sequence and limit can be created for all $v \in V$. We can then define a bounded linear operator $T$ such that $Tv = w$ where $v \in V$ and $w$ is the limit of the Cauchy sequence in $W$ generated by $V$. Then note that
+\[
+||T_n - T|| = \sup \{||(T_n - T)v|| \mid ||v|| = 1\} = \sup \{||T_nv - Tv|| \mid ||v|| = 1\} = \sup \{||w_n - w||\}
+\]
+and since $(w_n)$ converges to $w$, we must have $T_n$ converges to $T$. Thus $\mathcal{BL} (V, W)$ is complete.
+\end{proof}
+
+\end{flushleft}
+\end{document}

@@ -1,0 +1,216 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 31: Taylor Series\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A function of the form
+\[
+f(x) = \sum_{n=0}^{\infty} a_n (x-a)^n
+\]
+is called a power series centered at $a$.}\newline
+
+\textbf{Theorem 2}
+\textsl{Suppose that the series
+\[
+\sum_{n=0}^{\infty} a_n x_0^n
+\]
+converges and let $0 < a < |x_0|$. Then on $B(0,a)$ the series
+\[
+f(x) = \sum_{n=0}^{\infty} a_n x^n
+\]
+and
+\[
+g(x) = \sum_{n=0}^{\infty} n a_n x^{n-1}
+\]
+uniformly and absolutely converge. Also $f$ is differentiable and
+\[
+f'(x) = g(x)
+\]
+for all $x \in B(0,a)$.}
+\begin{proof}
+Note that for $x \in B(0,a)$ we have $|x/x_0| < 1$ and so
+\[
+\sum_{n=0}^{\infty} \left | \frac{x}{x_0} \right |^n
+\]
+is convergent since it's a geometric series. Then by the Comparison Criterion we have
+\[
+\sum_{n=0}^{\infty} |a_n| \left | \frac{x}{x_0} \right |^n = \sum_{n=0}^{\infty} \left | a_n \frac{x^n}{x_0^n} \right |
+\]
+is convergent and so
+\[
+\sum_{n=0}^{\infty} |a_n x^n|
+\]
+is convergent. A similar proof holds to show that $g(x)$ is absolutely convergent using the fact that $1/n$ converges to $0$. Also we have $a_n x^n$ is bounded by $|a_n a^n|$ on $B(0,a)$ and $n a_n x^{n-1}$ is bounded by $|n a_n a^{n-1}|$ on $B(0,a)$ and since the series absolutely converge, we can use the Weierstrass M-test to show that $f$ and $g$ are uniformly convergent (30.10). Finally since $n a_n x^{n-1}$ is integrable on $[a;b]$, $n a_n x^{n-1}$ uniformly converges and $n a_n x^{n-1}$ is continuous so $g$ is continuous, we have $f'(x) = g(x)$ for all $x \in B(0,a)$ (30.9).
+\end{proof}
+
+\textbf{Theorem 3}
+\textsl{For a power series $\sum_{n=0}^{\infty} a_n x^n$ let
+\[
+A = \left \{ x \mid \sum_{n=0}^{\infty} a_n x^n \textup{ converges} \right \}
+\]
+be the set of converge for the power series. Then either $A$ is everything or there exists $a$ such that
+\[
+B(0,a) \subseteq A \subseteq \overline{B(0,a)}.
+\]
+This $a$ is called the radius of convergence of the power series.}
+\begin{proof}
+Suppose that $A$ is not everything. Then there exists $b \in \mathbb{R}$ such that $\sum_{n=1}^{\infty} a_n b^n$ diverges. Note then that for all $x \in \mathbb{R}$ with $x \geq b$ we have $\sum_{n=1}^{\infty} a_n x^n$ diverges. Note also that $\sum_{n=1}^{\infty} a_n (0)^n$ converges. Then note that $b$ is an upper bound for $A$ and $A$ is nonempty so let $a = \sup A$. Then we have $B(0,a) \subseteq A$. If we have $c > a$ then $\sum_{n=1}^{\infty} a_n c^n$ diverges so it must also be the case that $A \subseteq \overline{B(0,a)}$.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Find real power series centered at $0$ with sets of convergence $0$, $\mathbb{R}$, $(-1;1)$, $[-1;1)$ and $[-1;1]$.}\newline
+
+$0$:
+\[
+\sum_{n=0}^{\infty} n! x^n.
+\]
+$\mathbb{R}$:
+\[
+\sum_{n=0}^{\infty} \frac{x^n}{n!}.
+\]
+$(-1;1)$:
+\[
+\sum_{n=0}^{\infty} -x^{2n}.
+\]
+$[-1;1)$:
+\[
+\sum_{n=0}^{\infty} x^n.
+\]
+$[-1;1]$:
+\[
+\sum_{n=1}^{\infty} (-1)^n x^{2n}.
+\]
+
+\textbf{Theorem 5}
+\textsl{If $\sum_{n=0}^{\infty} a_n$ and $\sum_{n=0}^{\infty} b_n$ converge absolutely and $(c_n)$ is a sequence containing the products $a_i b_j$ for each pair $(i,j)$ then
+\[
+\sum_{n=0}^{\infty} c_n = \left ( \sum_{n=0}^{\infty} a_n \right ) \left ( \sum_{n=0}^{\infty} b_n \right ).
+\]}
+\begin{proof}
+Note that
+\[
+c_k = \sum_{i=0}^k a_i b_{k-i}.
+\]
+Since $\sum_{n=0}^{\infty} a_n$ and $\sum_{n=0}^{\infty} b_n$ are absolutely convergent, we can rearrange the terms and they will still converge to the same thing. Then the partial sums of $\sum_{n=0}^{\infty} b_n$ can be rearranged in the same way as $c_n$ so that the partials sums of $\sum_{n=0}^{\infty} c_n$ are just the product of the partial sums of $\sum_{n=0}^{\infty} a_n$ and $\sum_{n=0}^{\infty} b_n$. Then since the product of limits is the limit of products we have the desired relation.
+\end{proof}
+
+\textbf{Theorem 6 (Cauchy Product)}
+\textsl{Let $f(x) = \sum_{n=0}^{\infty} a_n x^n$ and $g(x) = \sum_{n=0}^{\infty} b_n x^n$ be the power series with radius of convergence at least $a$. Let
+\[
+c_n = \sum_{i=0}^{n} a_i b_{n-i}.
+\]
+Then the power series
+\[
+h(x) = \sum_{n=0}^{\infty} c_n x^n
+\]
+has radius of convergence of at least $a$ and for $x \in B(0,a)$ we have
+\[
+h(x) = f(x) g(x).
+\]}
+\begin{proof}
+We know that $f(x)$ and $g(x)$ are absolutely convergent on $B(0,a)$ (31.2). Also we know that $h(x)$ is uniformly and absolutely convergent on $B(0,a)$ because $f(x)$ and $g(x)$ are (31.2, 31.5). Also using Theorem 5 we know that for $x \in B(0,a)$ we have $h(x) = f(x)g(x)$.
+\end{proof}
+
+\textbf{Definition 7}
+\textsl{Let $f$ be a real function such that $f^{(n)} (a)$ exists for all $n$. Then the Taylor series of $f$ at $a$ is
+\[
+\sum_{n=0}^{\infty} \frac{f^{(n)} (a)}{n!} (x-a)^n.
+\]}
+
+\textbf{Theorem 8}
+\textsl{For all real $x$ we have
+\[
+\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{2n+1}}{(2n+1)!}
+\]
+\[
+\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \dots = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{2n}}{(2n)!}
+\]
+\[
+e^x = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots = \sum_{n=0}^{\infty} \frac{x^n}{n!}.
+\]}
+\begin{proof}
+Consider the function
+\[
+f(x) = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{2n+1}}{(2n+1)!} + \frac{(-1)^{n} x^{2n}}{(2n)!}
+\]
+and note that
+\[
+f'(x) = \sum_{n=0}^{\infty} -\frac{(-1)^{n} x^{2n+1}}{(2n+1)!} + \frac{(-1)^{n} x^{2n}}{(2n)!}
+\]
+and
+\[
+f''(x) = \sum_{n=0}^{\infty} -\frac{(-1)^{n} x^{2n+1}}{(2n+1)!} - \frac{(-1)^{n} x^{2n}}{(2n)!}.
+\]
+Then we can easily verify $f+f'' = 0$, $f(0) = 1$ and $f'(0) = 1$. Then we must have $f = \cos + \sin$ (27.14). Then since $\sin' = \cos$ it must be the case that
+\[
+\sin x = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{2n+1}}{(2n+1)!}
+\]
+and
+\[
+\cos x = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{2n}}{(2n)!}.
+\]
+Also we have $(e^x)' = e^x$ and $e^0 = 1$ so the Taylor series for $e^x$ is
+\[
+\sum_{n=0}^{\infty} \frac{x^n}{n!}.
+\]
+But note then that for all $n$, the remainder terms in the Taylor polynomial will converge to zero because of the $n!$ factor. Thus
+\[
+e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}.
+\]
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{For $x \in (-1;1)$ we have
+\[
+\log (1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{n+1}}{n+1}
+\]
+and
+\[
+\frac{1}{1-x} = \sum_{n=0}^{\infty} x^n
+\]}
+\begin{proof}
+We have $1/(1-x)$ is a geometric series (15.6). Also, using the Taylor polynomial definition we have the Taylor series for $\log$ is
+\[
+\sum_{n=0}^{\infty} \frac{(-1)^{n} x^{n+1}}{n+1}.
+\]
+Note that for $x < 1$ we know this series converges so the remainder terms must go to zero. Thus
+\[
+\log x = \sum_{n=0}^{\infty} \frac{(-1)^{n} x^{n+1}}{n+1}.
+\]
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{Let $f(x) = \sum_{n=0}^{\infty} a_n (x-a)^n$ be a convergent sequence in $B(a,r)$ for some $r>0$. Then the Taylor series of $f(x)$ at $a$ equals $\sum_{n=0}^{\infty} a_n (x-a)^n$.}
+\begin{proof}
+Note that since
+\[
+f(x) = \sum_{n=0}^{\infty} a_n (x-a)^n
+\]
+we have
+\[
+f'(x) = f(x) = \sum_{n=0}^{\infty} n a_n (x-a)^{n-1}
+\]
+and in general
+\[
+f^{(j)}(x) = \sum{n=0}^{\infty} \frac{n!}{(n-j)!} a_n (x-a)^{n-j}
+\]
+using Theorem 2 (31.2). But then each term in $f^{(j)} (a)$ is zero unless $n=j$ in which case we have
+\[
+f^{(j)}(a) = \frac{j!}{(j-j)!} a_j (a-a)^{j-j} = j! a_j (0)^{0} = j! a_j
+\]
+Thus $f^{(n)} (a) = n! a_n$. Using this in the Taylor Series definition we have
+\[
+\sum_{n=0}^{\infty} \frac{f^{(n)} (a)}{n!} (x-a)^n = \sum_{n=0}^{\infty} \frac{n! a_n}{n!} (x-a)^n = \sum_{n=0}^{\infty} a_n (x-a)^n = f(x).
+\]
+\end{proof}
+
+\end{flushleft}
+\end{document}

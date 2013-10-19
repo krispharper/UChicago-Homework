@@ -1,0 +1,194 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\input xy
+\xyoption{all}
+
+\newcommand{\Max}{\textup{Max}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26800\\
+
+January 25, 2011
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{problem}
+Let $A = A_1 \times \dots \times A_r$ be the direct product of rings $A_i$, $1 \leq i \leq r$. Show that any ideal $I$ of $A$ is of the form $I = I_1 \times \dots \times I_r$. Deduce that $A$ is Noetherian (respectively Artinian) if and only if each of the $A_i$ are Noetherian (Artinian).
+\end{problem}
+\begin{proof}
+Let $I$ be an ideal of $A$. For each $1 \leq i \leq r$, consider the set
+\[
+I_i = \{(0, 0, \dots , a , \dots , 0, 0) \cdot I \mid a \in A\}
+\]
+where the (potentially) nonzero coordinate is the $i^{\textup{th}}$ coordinate. Since $I$ is an ideal, $I_i \subseteq I$. Furthermore, each element of $I_i$ has a zero in each coordinate except the $i^{\textup{th}}$ coordinate, thus multiplication by any element $(a_1, \dots , a_r) \in A$ will remain in $I_i$. Finally, $I_i$ is nonempty (since $0 \in I_i$) and closed under addition and multiplication. Thus $I_i$ is isomorphic to some ideal of $A_i$. Since this is true for each $i$, we have $I = I_1 \times \dots \times I_r$.
+
+If each $A_i$ is Noetherian, then every ideal $I_i$ is finitely generated, which means every ideal $I = I_1 \times \dots \times I_r$ is finitely generated. Thus $A$ is Noetherian. Conversely, if $A$ is Noetherian, then given an ideal $I_i \subseteq A_i$, we know $I_i = 0 \times \dots \times I_i \times \dots \times 0$ is finitely generated. Thus $A_i$ is Noetherian.
+\end{proof}
+
+\begin{problem}
+Let $A \subseteq B$ be a commutative rings. Suppose $B$ is a finite $A$-module.\\
+(a) Let $I \subsetneq A$ be an ideal. Show that $IB \neq B$.\\
+(b) Suppose further that $B$ is an integral domain. Show that $A$ is a field if and only if $B$ is a field.\\
+(c) Show that a prime ideal $Q$ of $B$ is maximal if and only if $A \cap Q$ is maximal.\\
+(d) Let $M$ be a maximal ideal of $A$. Show that there exists a maximal ideal $Q$ of $B$ such that $Q \cap A \subseteq M$.
+\end{problem}
+\begin{proof}
+(a) Suppose $IB = B$. Then since $B$ is a finite $A$-module, there exists $a \in I$ such that $(1-a)B = 0$. In particular, if we pick $x \in A$ then $0 = (1-a)x = x - ax$ so $x = ax$. But $a \in I$ so $ax \in I$ as well which means $x \in I$. Thus $A \subseteq I$ and this contradicts the assumption $I \subsetneq A$. Thus $IB \neq B$.
+
+(b) Suppose $A$ is field. Then $A$ is Artinian. Since $B$ is a finitely generated $A$-module, it too is Artinian. But we know Artinian integral domains are fields. So $B$ is a field.
+
+Conversely, suppose $B$ is a field. If $A$ is not a field then there exists some nontrivial proper ideal $I \subsetneq A$. By part (a) we know $IB \neq B$. But $IB$ is an ideal of $B$ and $B$ is field so $IB = 0$. Thus $I = 0$ and the only proper ideal of $A$ is trivial. Therefore $A$ is a field.
+
+(c) Note that since $B$ is a finite $A$-module, we know $B/Q$ is a finite $A/(Q \cap A)$ module. Since $Q$ is a prime ideal, $B/Q$ is an integral domain. Thus, by part (b), $B/Q$ is a field if and only if $A/(Q \cap A)$ is a field. Therefore $Q$ is maximal if and only if $A \cap Q$ is maximal.
+
+(d) Let $M$ be a maximal ideal of $A$ and let $Q = MB$. Then $Q \cap A = M$. By part (a) we know $Q \neq B$. Now suppose $x,y \in B \backslash Q$ and write $x = \sum_i a_i x_i$, $y = \sum_j b_j x_j$, $a_i \in A$, $x_i \in B$. Since $x,y \notin MB$, at least one $a_i$ and $b_j$, say $a_1$ and $b_1$ are not in $M$. Then $xy = \sum_{ij} a_i b_j x_i$. Since $M$ is maximal, it's prime and thus $a_1b_1 \notin M$. Thus $xy \in B \backslash Q$, so $Q$ is prime as well. Now by part (c) we know $Q$ is maximal in $B$ since $Q \cap A = M$ is maximal in $A$.
+\end{proof}
+
+\begin{problem}
+\label{extension}
+Let $A \subseteq B$, with $A$ and $B$ being finitely generated algebras over an algebraically closed field $K$. Let $f : A \to K$ be a $K$-algebra homomorphism (i.e. a ring homomorphism such that $f(a) = a$ for all $a \in K$). Show that there exists a $K$-algebra homomorphism $\tilde{f} : B \to K$ such that $\tilde{f} |_A = f$.
+\end{problem}
+\begin{proof}
+Let $M = \ker f$ so that $A/M \cong K$. Note $M \subseteq A \subseteq B$, so pick any maximal ideal $N \subseteq B$ with $M \subseteq N$. Note that since $K$ is algebraically closed, by Nullstellensatz we have $B/N \cong K$, which shows that $N$ is $\ker g$ for some homomorphism $g : B \to K$. Furthermore since $M \subseteq N$ then for $a \in A$ we have $g(a) = f(a)$ so $g$ restricts to $f$ on $A$. Take $\tilde{f} = g$.
+\end{proof}
+
+\begin{problem}
+\label{eval}
+Let $K$ be an algebraically closed field and $A = K[t]$, a polynomial ring in one variable $t$. Let $f_i(t) \in A$, $1 \leq i \leq n$. Suppose that $f_k(t) \notin K$ for some $k$. Let $R = K[f_1(t), \dots , f_n(t)]$ be the subring of $A$ generated by $f_i(t)$, $1 \leq i \leq n$. Let $\varphi : R \to K$ be a $K$-algebra homomorphism and $\varphi(f_i(t)) = a_i$, $1 \leq i \leq n$. Show that there exists an $a \in K$ such that $a_i = f_i(a)$, $1 \leq i \leq n$.
+\end{problem}
+\begin{proof}
+Since $R \subseteq A$ are both finitely generated $K$-algebras and $\varphi$ is a $K$-algebra homomorphism, we can apply Problem~\ref{extension} to get an extension $\tilde{\varphi} : A \to K$ which restricts to $\varphi$ on $R$. Let $\tilde{\varphi}(t) = a$. Then since $\tilde{\varphi}$ fixes elements of $K$, for each $1 \leq i \leq n$ we have
+\[
+a_i = \varphi(f_i(t)) = \tilde{\varphi}(f_i(t)) = f_i(\tilde{\varphi}(t)) = f_i(a)
+\]
+as desired.
+\end{proof}
+
+\begin{problem}
+Let $K$ be an algebraically closed field and $f_i \in K[x]$, $1 \leq i \leq n$. Let
+\[
+V = \{(f_1(a), \dots , f_n(a)) \mid a \in K\}.
+\]
+Show that $V$ is a $K$-affine algebraic set in $K^n$.
+\end{problem}
+\begin{proof}
+Let $\varphi : K[x_1, \dots , x_n] \to K[x]$ be the $K$-algebra homomorphism defined by $\varphi(x_i) = f_i(x)$, $1 \leq i \leq n$. Let $I = \ker \varphi$. Note that we must have $V \subseteq V(I)$ since if $x \in V$ we know $x = (f_1(a), \dots , f_n(a))$ and for all $f \in I$ we have $f(f_1(a), \dots , f_n(a)) = 0$.
+
+Conversely, let $a = (a_1, \dots , a_n) \in V(I)$. Form the evaluation map $E_a : K[x_1, \dots , x_n] \to K$ which evaluates at $a$. Note that we have the projection map $K[x_1, \dots , x_n] \to K[x_1, \dots , x_n]/I$. If we take $f + I$ in this quotient and evaluate at $a$ then since $a \in V(I)$ we know $I$ will map to $0$ so $f$ maps to $E_a(f)$. Thus the following diagram is well defined and commutes.
+\[
+\xymatrix{
+K[x_1, \dots , x_n] \ar[r] \ar[d]^-{E_a} & K[x_1, \dots , x_n]/I \ar[dl]^-{\tilde{E}_a}\\
+K
+}
+\]
+Now note that by the first isomorphism theorem we have $K[x_1, \dots , x_n]/I \cong K[f_1(x), \dots , f_n(x)]$ and we have a $K$-algebra homomorphism $\tilde{E}_a : K[f_1(x), \dots , f_n(x)] \to K$ with $\tilde{E}_a (f_i(x)) = a_i$. Now we can apply Problem~\ref{eval} to find an element $c \in K$ with $f_i(c) = a_i$, $1 \leq i \leq n$. Now $(a_1, \dots , a_n) = (f_1(c), \dots , f_n(c))$ so $a \in V$ as desired.
+\end{proof}
+
+\begin{problem}
+\label{fieldmax}
+Let $K$ be any field. Show that any maximal ideal $M$ of $A = K[x_1, \dots , x_n]$ is generated by $n$ irreducible polynomials $f_i \in K[x_1, \dots , x_n]$, $1 \leq i \leq n$.
+\end{problem}
+\begin{proof}
+Suppose $M \cap K[x_1] = 0$. Then note that $K \subseteq K(x_1)$. Since $M$ contains no polynomials with $x_1$, we have an injection from $K[x_1] \to A/M$. Since $K(x)$ is the field of fractions for $K[x_1]$ and $A/M$ is a field, by the universal property of the field of fractions, we also have $K(x_1) \subseteq A/M$ (or at the very least, $K(x_1)$ injects into $A/M$).
+
+Since $M$ is maximal, $A/M$ is a field and since $A$ is a finitely generated $K$-algebra, we have $A/M$ is a finite algebraic extension of $K$. Thus $A/M$ is a finite $K$-module, and thus a finite $K(x)$-module. Since $K$ is Noetherian, we can conclude that $K(x)$ is a finite $K$-algebra. But, since $K$ is algebraically closed, we know $K(x)$ can't be generated as a $K$-algebra (since it's not a finite algebraic extension). Thus $M \cap K[x_1] \neq 0$.
+
+Since $K$ is a field, $K[x_1]$ is a principle ideal domain and all prime ideals are maximal. Pick $f, g \in K[x_1]$ with $fg \in M \cap K[x_1]$. Then $fg \in M$ and since $M$ is maximal in $K[x_1, \dots , x_n]$, it's prime so $f \in M$ without loss of generality. Then $f \in M \cap K[x_1]$ so $M \cap K[x_1]$ is prime in $K[x_1]$ (note that it can't be the whole ring otherwise $M$ would contain $1$). Therefore $M \cap K[x_1]$ is a maximal ideal in the principle ideal domain $K[x_1]$ and thus $M \cap K[x_1] = (f_1)$ for some irreducible element $f_1 \in K[x_1]$.
+
+Now suppose the statement is true for $n-1$ and take a maximal ideal $M \subseteq K[x_1, \dots , x_n]$. Then by the above we can consider the field $K[x_1]/(M \cap K[x_1])$ and the ring $K[x_1]/(M \cap K[x_1]) [x_2, \dots , x_n]$. Now note $M/(M \cap K[x_1])$ in this ring is a maximal ideal, so $M = (f_2, \dots , f_n)$. Now take the preimage under the quotient and we get $M = (f_1, \dots , f_n)$.
+\end{proof}
+
+\begin{problem}
+\label{zmax}
+Let $A = \mathbb{Z}[x_1, \dots , x_n]$. Show that for any maximal ideal $M$ of $A$, $A/M$ is a finite field.
+\end{problem}
+\begin{proof}
+Suppose $M \cap \mathbb{Z} = 0$. Then each element of $\mathbb{Z}$ maps injectively into $A/M$. Since $A/M$ is a field, by the universal property of the field of fractions we have $\mathbb{Q}$ injects into $A/M$ as well. Thus we have $\mathbb{Z} \subseteq \mathbb{Q} \subseteq A/M$. Since $\mathbb{Z}$ is a principle ideal domain, it's Noetherian. Also $A/M$ is a finite $\mathbb{Z}$-algebra and $A/M$ is a finitely algebraic extension of $\mathbb{Q}$. Thus $\mathbb{Q}$ is a finite $\mathbb{Z}$-algebra, a contradiction.
+
+Thus $M \cap \mathbb{Z} \neq 0$ and since $M$ is a maximal in $\mathbb{Z}$, $M \cap \mathbb{Z} = p \mathbb{Z}$ for some prime $p \in \mathbb{Z}$. Consider the quotient $A/(M \cap \mathbb{Z})A$. Note that the quotient ring is $p\mathbb{Z}A$, which in particular contains $p$. Thus, this quotient is simply $\mathbb{Z}/p\mathbb{Z}[x_1, \dots, x_n]$, a finite $\mathbb{Z}/p\mathbb{Z}$-algebra. Now note that $A/M$ also contains $\mathbb{Z}/p\mathbb{Z}$ and $A/p\mathbb{Z}A$ is a finite $A/M$-module. Thus we can conclude that $A/M$ is a finite $\mathbb{Z}/p\mathbb{Z}$ algebra. By Nullstellensatz we know that since $A/M$ is a field, it's a finite algebraic extension of $\mathbb{Z}/p\mathbb{Z}$ and therefore a finite field.
+\end{proof}
+
+\begin{problem}
+Let $A = \mathbb{Z}[x_1, \dots , x_n]$ and $M$ a maximal ideal of $A$. Then there exists $f_i \in \mathbb{Z}[x_1, \dots , x_n]$, $1 \leq i \leq n$ such that $M = Ap + \sum_{i=1}^n A f_i$ for some prime $p$.
+\end{problem}
+\begin{proof}
+By Problem~\ref{zmax} we know $M \cap \mathbb{Z} = p\mathbb{Z}$ for some prime $p \in \mathbb{Z}$. Now consider $M/p\mathbb{Z} \subseteq A/p\mathbb{Z} = \mathbb{Z}/p\mathbb{Z}[x_1, \dots , x_n]$. Since $\mathbb{Z}/p\mathbb{Z}$ is a field, we can apply Problem~\ref{fieldmax} to get $M = \sum_{i=1}^n A/p\mathbb{Z} f_i$ for some $f_i \in A/p\mathbb{Z}$, $1 \leq i \leq n$. Now take the preimage under the quotient map to get $M = Ap + \sum_{i=1}^n Af_i$ as desired.
+\end{proof}
+
+\noindent
+Here $K$, $L$ denote fields with $K \subseteq L$.
+
+\begin{problem}
+Let $V$, $W$ be $K$-affine algebraic sets in $L^m$ and $L^n$ respectively. Identifying $L^m \times L^n$ with $L^{m+n}$ (identify $((a_1, \dots , a_m), (b_1, \dots , b_n))$ with $(a_1, \dots a_m, b_1, \dots b_n)$), show that $V \times W$ is a $K$-affine algebraic set in $L^{m+n}$.
+\end{problem}
+\begin{proof}
+Let $V = V(\{f_1, \dots , f_r\})$ and $W = V(\{g_1, \dots , g_s\})$. Then consider $U = V(\{f_1, \dots , f_r, g_1, \dots , g_s\})$ as a subset of $L^{m+n}$ where each $f_i$ and $g_j$ are considered as elements of $L[x_1, \dots , x_r, y_1, \dots , y_s]$. An element $a \in U$ vanishes on each $f_i$ and $g_j$ so its first $r$ coordinates form an element of $V$ and its last $s$ coordinates form an element of $W$. Thus $U \subseteq V \times W$. Similarly, if we take element $a \in V \times W$, then the first $r$ coordinates of $a$ must be $0$ on each $f_i$ and the last $s$ must be $0$ on each $g_j$. Thus $a \in U$ and $U = V \times W$. Thus $V \times W$ is an algebraic set in $L^{m+n}$.
+\end{proof}
+
+\begin{problem}
+\label{polys}
+(a) Let $f = a_0x^n + a_1x^{n-1} + \dots + a_n \in K[x]$ be an irreducible polynomial of degree $n \geq 2$. Let $F(x,y) = y^n f(x/y) = a_0x^n + a_1x^{n-1}y + \dots + a_ny^n$. $F(x,y) \in K[x,y]$. Show that $F(t_1, t_2) = 0$, $t_1, t_2 \in K$ if and only if $t_1 = t_2 = 0$.\\
+(b) Let $K$ be a \emph{non-algebraically closed field}. Show that for all $r \geq 1$ there exists a polynomial $F_r(x_1, \dots x_r) \in K[x_1, \dots , x_r]$ such that $F_r(t_1, \dots , t_r) = 0$, $(t_1, \dots , t_r) \in K^r$ if and only if $t_1 = t_2 = \dots = t_r = 0$.
+\end{problem}
+\begin{proof}
+(a) Suppose $F(t_1, t_2) = 0$ with $t_1 \neq 0$ or $t_2 \neq 0$. First suppose $t_2 = 0$. Then we have $a_0t_1^n = 0$ and $t_1 = 0$, contrary to assumption. Then $t_2 \neq 0$ and we have $t_2^n f(t_1/t_2) = 0$ so $f(t_1/t_2) = 0$. But we assumed $f$ was irreducible. Thus $t_1 = t_2 = 0$. The other direction is trivial.
+
+(b) For $r = 1$ we have $F_1(x_1) = x_1$. For $r = 2$ take $F_2(x_1, x_2) = F(x,y)$ from part (a). Assume we have such a polynomial from some positive integer $r-1$. Then we construct $F_r(x_1, \dots , x_r)$ as $F_2(F_{r-1}(x_1, \dots , x_{r-1}), x_r)$. Now $F_r$ will be $0$ at $(t_1, \dots , t_r)$ if and only if $t_r = 0$ and $F_{r-1}(t_1, \dots , t_{r-1}) = 0$. But this this last condition is only true when $t_1 = t_2 = \dots = t_{r-1} = 0$ by the inductive hypothesis.
+\end{proof}
+
+\begin{problem}
+\label{phi}
+Let $K$ be a non-algebraically closed field. Let $V$ be a $K$-affine algebraic set in $K^n$. Show that there exists a $\varphi \in K[x_1, \dots , x_n]$ such that $V = V(\varphi)$.
+\end{problem}
+\begin{proof}
+Let $V = V(\{f_1, \dots , f_r\})$. Then form $F_r(x_1, \dots , x_r)$ as in Problem~\ref{polys} and set
+\[
+\varphi(x_1, \dots , x_n) = F_r(f_1(x_1, \dots , x_n), \dots f_r(x_1, \dots , x_n)).
+\]
+Then by Problem~\ref{polys}, $\varphi$ will be $0$ if and only each of $f_i$ are $0$.
+\end{proof}
+
+\begin{problem}
+Let $K$ be any field. Let $I$ be an ideal in $A = K[x_1, \dots , x_n]$. Suppose for all $f \in I$, there exists a $k \in K^n$ such that $f(a) = 0$ (depending on $f$). Show that there exists $t = (t_1, \dots , t_n) \in K^n$ such that $f(t) = 0$ for all $f \in I$.
+\end{problem}
+\begin{proof}
+If $K$ is not algebraically closed, use problem~\ref{phi} to form the function $\varphi$ for the set $V = V(I)$. Now let $t$ be a $0$ of $\varphi$. Then $t$ must be a $0$ of each of the $f \in I$.
+
+If $K$ is algebraically closed then we know $I \subseteq A$ is a proper ideal if and only if $V(I) \neq \emptyset$. But for each $f \in I$ we have $f(a) = 0$ for some $a \in K^n$. Thus all constant functions are not in $I$ so $I$ is proper and $V(I)$ is nonempty. Pick any $t \in V(I)$.
+\end{proof}
+
+\begin{problem}
+Let $f : A \to B$ be a ring homomorphism of commutative rings. Show that for any prime ideal $Q$ of $B$, $f^{-1}(Q)$ is a prime ideal of $A$. Give an example to show that in general $M \in \Max(B)$ does \emph{not} imply $f^{-1}(M) \in \Max(A)$.
+\end{problem}
+\begin{proof}
+First note that we can't have $f(A) \subseteq Q$ since $f(1) = 1$ and $Q \subsetneq B$. Thus $f^{-1}(Q) \subsetneq A$. Now let $ab \in f^{-1}(Q)$. Then $f(ab) = f(a)f(b)$ is in $Q$. Since $Q$ is prime, $f(a), f(b) \in Q$. Thus $a \in f^{-1}(Q)$ and $b \in f^{-1}(Q)$, so $f^{-1}(Q)$ is prime in $A$.
+
+Take the inclusion $\mathbb{Z} \subseteq \mathbb{Q}$. Then since $\mathbb{Q}$ is a field, $\{0\}$ is a maximal ideal. But $\{0\} \subseteq \mathbb{Z}$ is not maximal since there are nontrivial ideals in $\mathbb{Z}$.
+\end{proof}
+
+\begin{problem}
+\label{homomax}
+Let $B$ be a finitely generated $K$-algebra. Let $A$ be a commutative ring with $K \subseteq A$. Let $f: A \to B$ be a $K$-algebra homomorphism (i.e. a ring homomorphism with $f(a) = a$ for all $a \in K$). Show that for all $M \in \Max(B)$, $f^{-1}(M) \in \Max(A)$.
+\end{problem}
+\begin{proof}
+Let $M \in \Max(B)$. Then $B/M$ is a field. Furthermore, since $B$ is a finite $K$-algebra, $B/M$ is also a finite $K$-algebra where we take generators $x_1 + M, \dots , x_n + M$ if $B = K[x_1, \dots , x_n]$. Now we have $B/M$ is a finite algebraic extension of $K$ by Nullstellensatz. Note that $f^{-1}(M)$ is an ideal in $A$ and so $A/f^{-1}(M)$ is a ring containing $K$. We can view $A/f^{-1}(M) \subseteq B/M$ using $f(a + f^{-1}(M)) = f(a) + M$. Note that this gives an injection for if $a + f^{-1}(M) \neq 0$ then it's image in $B/M$ is $f(a) + M$ which can't be $0$ since $a \notin f^{-1}(M)$. Since $K \subseteq A/f^{-1}(M) \subseteq B/M$, we know $A/f^{-1}(M)$ is a field so $f^{-1}(M)$ is maximal.
+\end{proof}
+
+\begin{problem}
+Let $f : A \to B$ be a ring homomorphism with $B$ a finitely generated $\mathbb{Z}$-algebra. Show that for all $M \in \Max(B)$, $f^{-1}(M) \in \Max(A)$.
+\end{problem}
+\begin{proof}
+Since $B$ is a finite $\mathbb{Z}$-algebra, $B$ is isomorphic quotient of $Z[x_1, \dots , x_n]$. We can now apply Problem~\ref{zmax} to get $B/M$ is a finite field, say with characteristic $p$. Thus $B/M$ contains $\mathbb{Z}/p\mathbb{Z}$. Then we have a sequence $A \to B \to B/M$ where $p \cdot 1$ in $A$ maps to $0$ in $B/M$. Now, similar to Problem~\ref{homomax} we have an injection $A/f^{-1}(M) \to B/M$. Furthermore, since $A$ contains an element of characteristic $p$, it must contain $\mathbb{Z}/p\mathbb{Z}$ as well and the same can be said about $A/f^{-1}(M)$. Now we can apply Problem~\ref{homomax}. Pick a maximal ideal in $B/M$. This must be the $0$ ideal. Then the preimage of $0$ is $0$ in $A/f^{-1}(M)$ and this is a maximal ideal. Thus $A/f^{-1}(M)$ is a field and $f^{-1}(M)$ is maximal.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{10pt}
+\renewcommand{\textheight}{609pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25800\\January 20, 2010\\}
+\chead{Quiz 2\\}
+
+\begin{problem}
+Let $R$ be a ring, $I$ and ideal in $R$. Prove that factor ring $R/I$ is commutative iff $rs-sr$ is an element of $I$ for all $r$, $s$ in $R$.
+\end{problem}
+\begin{proof}
+Suppose $R/I$ is commutative. Then $rs + I = (r + I)(s + I) = (s + I)(r + I) = sr + I$ for all $r,s \in R$. But these two additive cosets are equal precisely when $rs - sr \in I$. Conversely, suppose that $rs - sr \in I$ for all $r,s \in R$. Then $0 + I = rs - sr + I$ and adding the coset $sr + I$ to both sides gives $sr + I = (rs - sr + I) + (sr + I) = rs - sr + sr + I = rs + I$. Thus $(r + I)(s + I) = (rs + I) = (sr + I) = (s + I)(r + I)$ for all $r,s \in R$ and $R/I$ is commutative.
+\end{proof}
+
+\begin{problem}
+Let $R$ be the ring of continuous functions from $\mathbb{R}$ to $\mathbb{R}$ (the reals to the reals). Let $A$ be the set $A = \{f \in R \mid \text{$f(0)$ is an even integer}\}$. Show $A$ is a subring of $R$ but not an ideal of $R$.
+\end{problem}
+\begin{proof}
+Let $f, g \in A$. Then $f(0) = 2n$ and $g(0) = 2m$ for some integers $n$ and $m$. Thus $(f - g)(0) = f(0) - g(0) = 2(n - m)$ is also an even integer and $A$ is closed under subtraction. Likewise $(fg)(0) = f(0)g(0) = 2(2nm)$ is an even integer and $A$ is closed under multiplication. The zero function shows that $A$ is nonempty and thus $A$ is a subring of $R$.
+
+Now let $h$ be the constant function $1/2$ and $f$ be the constant $2$ function so that $h(x) = 1/2$ and $f(x) = 2$ for all $x \in \mathbb{R}$. It's clear that $h$ is a member of $R$, $f$ is a member of $A$, $h(0) = 1/2$ and $f(0) = 2$. But then $(hf)(0) = h(0)f(0) = 1$. Therefore $A$ is not closed under left multiplication by elements from $R$ and is not an ideal.
+\end{proof}
+
+\end{document}

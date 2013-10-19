@@ -1,0 +1,223 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newcommand{\ass}{\textup{Ass}}
+\newcommand{\ann}{\textup{ann}}
+\newcommand{\spec}{\textup{Spec}}
+\newcommand{\Ht}{\textup{ht}\;}
+\newcommand{\Max}{\textup{Max}}
+\newcommand{\supp}{\textup{Supp}}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26800\\
+
+March 1, 2011
+\end{flushright}
+
+\begin{center}
+Homework 8
+\end{center}
+
+\begin{problem}
+\label{UFD}
+(a) Let $A$ be a Noetherian UFD. Show that a prime ideal $P$ is of height one if and only if $P = Aa$, with $a \neq 0$ and $a \notin A^*$.\\
+(b) Let $A$ be a Noetherian integral domain. Show that every $a \in A$, $a \neq 0$, $a \notin A^*$ is a product of irreducible elements. (Recall that $a \in A$, $a \neq 0$, $a \notin A^*$ is irreducible if $a = bc$ implies $b \in A^*$ or $c \in A^*$.)\\
+(c) A Noetherian integral domain is a UFD if and only if every irreducible element is a prime element.
+\end{problem}
+\begin{proof}
+(a) An integral domain is a UFD if and only every nonzero prime ideal contains a prime element. So suppose $P$ has height one. Then we have a maximal length chain $0 \subseteq P$. Take $p \in P$ and note that $0 \subseteq (p) \subseteq P$. Since $p$ is prime, $(p)$ is prime so $P = (p)$. Take $a = p$.
+
+Conversely, suppose $P = Aa$. Let $0 \subsetneq Q \subsetneq P$ be a prime ideal. Then there is some prime $q \in Q$. Since $q \in P$, $q = ab$ for some $b \in A$. Since $a$ and $q$ both generate prime ideals, they're both prime and thus both irreducible. Since $q = ab$, either $a$ or $b$ must be a unit. But $a \notin A^*$ by assumption, so $b \in A^*$ and $Q \subseteq P = Aa = Aq \subseteq Q$. Thus $P$ is minimal over $0$ and so $\Ht P = 1$.
+
+(b) Suppose false and let
+\[
+T = \{Aa \mid a \neq 0, a \notin A^*, \text{ $a$ is not a product of irreducibles }\}.
+\]
+Then $T$ is nonempty by assumption, so let $I = Aa$ be a maximal element of $T$. We can write $a = bc$, $b,c \notin A^*$. Note that $b \notin I$ since if it were then we could write $b = bcx$ and since $A$ is an integral domain, $cx = 1$ and $c \in A^*$, a contradiction. Similarly, $c \notin I$. Thus $I \subsetneq Ab$ and $I \subsetneq Ac$. Thus $b$ and $c$ are both products of irreducibles since $I$ is maximal, which means $a = bc$ is as well. This is a contradiction, so all elements can be written as a product of irreducibles.
+
+(c) Let $A$ be a Noetherian integral domain and suppose $A$ is a UFD. Let $p$ be an irreducible and suppose $p \mid ab$ in $A$. Then $pc = ab$ for some $c \in A$. Since $A$ is a UFD, we can write $a$ and $b$ as products of irreducibles as $a = up_1 \cdots p_n$, $b = vq_1 \cdots q_m$, $u,v \in A^*$. Because $p$ is irreducible and the product of the irreducibles in $ab$ is unique, we must have $p$ appearing as some $p_i$ or $q_i$. Without loss of generality, we may assume $a = upp_2 \cdots p_n$, so that $p \mid a$. Thus $p$ is prime.
+
+Conversely, suppose every irreducible element of $A$ is prime. Let $P$ be any nonzero prime ideal and pick $a \in P$. By part (b) we can write $a = p_1 \cdots p_n$ where the $p_i$ are irreducible. Since $P$ is prime, $P$ must contain some $p_i$. By assumption, $p_i$ is prime. So every nonzero prime ideal contains a prime element, which is equivalent to being a UFD.
+\end{proof}
+
+\begin{problem}
+\label{UFD2}
+(a) Let $A$ be a Noetherian domain. Show that $a \in A \backslash (\{0\} \cup A^*)$ is contained in a prime ideal of height one.\\
+(b) Show that a Noetherian integral domain is a UFD if and only if every prime ideal of height one is a principal ideal.
+\end{problem}
+\begin{proof}
+(a) Suppose false and consider
+\[
+T = \{Aa \mid a \in A \backslash (\{0\} \cup A^*), \text{ $P \in \spec(A)$ with $a \in P$ implies $\Ht P > 1$ }\}.
+\]
+Then since $A$ is Noetherian we know $T$ has a maximal ideal $I = Aa$. By part (b) of Problem~\ref{UFD} we know $a = p_1 \cdots p_n$ where each $p_i$ is irreducible. Note that if $p_i \in I$, then $p_i = p_1 \cdots p_n b$ for some $b \in A$. Since $A$ is an integral domain, $1 = p_1 \cdots p_{i-1}p_{i+1} \cdots p_n b$ so $p_1$ is a unit. But $p_1$ is irreducible, so this is a contradiction and $p_i \in I$. Thus $I \subsetneq Ap_i$. But since $I$ is maximal with respect to the above property, and $a \in Ap_i$, there must be a prime $P_i$ with $a \in P_i$ and $\Ht P \leq 1$. Since $0$ is prime in $A$ and $a \neq 0$, $\Ht P = 1$. This is a contradiction so $T$ must be empty and every $a \in A \backslash (\{0\} \cup A^*)$ is contained in a prime ideal of height one.
+
+(b) By part (a) of Problem~\ref{UFD}, if $A$ is a UFD then all height one primes are principal. Conversely, assume all height one primes are principal and take $a \in A$ irreducible. Then $a$ is nonzero and not a unit, so by part (a) it's contained in a prime ideal $P$ of height one. By assumption, $P = Ap$ for some prime $p \in A$. Then $Aa \subseteq Ap$ so $a = pb$ for some $b \in A$. But $a$ is irreducible and $p$ is not a unit, so $b \in A^*$. Thus $Aa = Abp = Ap$ so $a$ is prime. Thus every irreducible element of $A$ is prime, so $A$ is a UFD by part (c) of Problem~\ref{UFD}.
+\end{proof}
+
+\begin{problem}
+Let $K$ be a field and $A = K[x_1, x_2, x_3, x_4, x_5]$. Determine the heights of the following ideals.\\
+(a) $\sum_{i=1}^4 Ax_i$\\
+(b) $\sum_{i=1}^4 Ax_ix_5$\\
+(c) $Ax_1x_3 + Ax_2x_3 + Ax_1x_4 + Ax_2x_4$\\
+(d) $(Ax_1 + Ax_2) \cap (Ax_3x_5 + Ax_4x_5)$\\
+\end{problem}
+\begin{proof}
+(a) By the principal ideal theorem we know the height is less than or equal to $4$. But we also have a chain $0 \subseteq Ax_1 \subseteq Ax_2 \subseteq Ax_3 \subseteq Ax_4 \subseteq A$. Thus the height is equal to $4$.
+
+(b) Note that each generator is contained in $Ax_5$, which is of height $1$. Since the ideal is not $0$, we must have the height equal to $1$.
+
+(c) Let $I = Ax_1x_3 + Ax_2x_3 + Ax_1x_4 + Ax_2x_4$. Note that $I \subseteq (Ax_1 + Ax_2) \cap (Ax_3 + Ax_4)$. Each of these has height $2$, so $\Ht I \leq 2$. Note that since $A$ is a Noetherian UFD, we have every ideal of height $1$ is a principal ideal. So if $I \subseteq Aa$ for some $a \in A$, then $a$ is prime and we have $a \mid x_1x_3$ and $a \mid x_2x_4$. So without loss of generality, $a \mid x_1$ and $a \mid x_2$, a contradiction. Thus $\Ht I = 2$.
+
+(d) Note that $(Ax_1 + Ax_2) \cap (Ax_3x_4 + Ax_4x_5) = (Ax_1 + Ax_2) \cap (Ax_3 + Ax_4) \cap Ax_5$. So $Ax_5$ contains this ideal, and since $\Ht Ax_5 = 1$ and the ideal is nonzero, it must have height one as well.
+\end{proof}
+
+\begin{problem}
+\label{infiniteones}
+Let $A$ be a Noetherian ring with $\dim(A) \geq 2$. Show that there exist infinitely many prime ideals of height one.
+\end{problem}
+\begin{proof}
+If $A$ is not an integral domain, then $0$ is not a prime ideal, so there exists some minimal prime ideal $P \neq 0$. Then any prime $\overline{Q} \subseteq A/P$ contains $0$ in $A/P$ and no other primes. Then $Q \subseteq A$ contains $P$ and no other primes since $P$ is minimal. So if we can show there are infinitely many prime ideals of height one in $A/P$, then we're done. So we may assume $A$ is an integral domain.
+
+Take any prime $P \in \spec(A)$. By part (a) of Problem~\ref{UFD2}, we know $a \in P$ is contained in some prime ideal $P_a$ with $\Ht P_a = 1$. Therefore $P \subseteq \bigcup_{a \in P} P_a$, a union of height one primes. Now since $\dim(A) \geq 2$, we can take $P$ with $\Ht P = 2$. Then since $P$ is contained in a union of height one primes, if this union were finite, then by prime avoidance, $P$ would be contained in some $P_a$, $a \in P$. But $\Ht P = 2 > 1 = \Ht P_a$, a contradiction. Thus the union must be infinite, so there are infinitely many height one primes.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a Noetherian ring of $\dim(A) = n \geq 2$. Show that for all $i$, with $1 \leq i \leq n-1$, there exist infinitely many prime ideals $P$ such that $\Ht P = i$ and $\dim(A/P) = n-i$.
+\end{problem}
+\begin{proof}
+Let $P_0 \subsetneq P_1 \subsetneq \cdots \subsetneq P_n \subsetneq A$, $P_i \in \spec(A)$ be a chain of primes in $A$ of maximal length $n = \dim(A)$. Note that $\Ht P_i = i$ since we've demonstrated a series of length $i$, and any longer series could be added to $P_{i+1} \subsetneq \cdots \subsetneq P_n$ to make a series with length greater than $n$. Also, note that $P_i \subsetneq \cdots \subsetneq P_n$ corresponds to a series of primes $0 = \overline{P_i} \subsetneq \cdots \subsetneq \overline{P_n} \subsetneq A/P_i$. Thus $\dim(A/P_i) \geq n-i$. But if there were a longer series then the preimage of each term under the natural projection would contain $P_i$, so we could add these terms to the series $P_0 \subsetneq \cdots \subsetneq P_i$ and show that $\dim(A) > n$. Thus $\dim(A/P_i) = n - i$.
+
+Now note that if $1 \leq i \leq n-1$ we have $\dim(A/P_{i-1}) = n - i + 1 \geq 2$. Further, consider $\overline{P_{i+1}} \supseteq \overline{P_{i-1}} = 0$ and localize at this prime. Then we have the ring $\overline{A}_{\overline{P_{i+1}}}$ which has dimension $\Ht \overline{P_{i+1}} = 2$. By Problem~\ref{infiniteones}, there are infinitely many prime ideals $\overline{P}_{\overline{P_{i+1}}}$ of height one in this ring. Note that their height being one means that they're strictly contained in the maximal ideal $\overline{P_{i+1}}_{\overline{P_{i+1}}}$ and they strictly contain the $0$ ideal $\overline{P_{i-1}}_{\overline{P_{i+1}}}$, since every ideal is contained in and contains these two ideals respectively. Now note that each $\overline{P}_{\overline{P_{i+1}}}$ corresponds to an ideal $\overline{P} \subseteq \overline{A} = A/P_{i-1}$, and $\overline{P} \subsetneq \overline{P_{i+1}} \subsetneq \cdots \subsetneq \overline{P_n} \subsetneq \overline{A}$. Further, $\overline{P} \supsetneq \overline{P_{i-1}} = 0$, so we also have $P_0 \subsetneq \cdots \subsetneq P_{i-1} \subsetneq P$. Taking the preimage under the natural projection of the first chain and adding it to this chain shows gives a chain $P_0 \subsetneq \cdots \subsetneq P_{i-1} \subsetneq P \subsetneq P_{i+1} \subsetneq \cdots \subsetneq P_n \subsetneq A$, for infinitely many primes $P$. This shows that there are infinitely many primes of height $i$ which are also contained in a chain of length $n$. This gives $\dim(A/P) = n-i$ by the same reasoning as the $P_i$ case above.
+\end{proof}
+
+\begin{problem}
+\label{downbyone}
+Let $A$ be a Noetherian local integral domain with maximal ideal $M$. Let $x \in M$, $x \neq 0$. Show that $\dim(A/Ax) = \dim(A) - 1$.
+\end{problem}
+\begin{proof}
+Take a maximal length chain $0 = P_0 \subsetneq \cdots \subsetneq P_n = M \subsetneq A$ of prime ideals in $A$. Note that since $x \in M$ and $A$ is local, $x \in P_i$ for some $1 \leq i \leq n$. Let $P_{i+1}$ be the smallest prime in the series such that $x \in P_{i+1}$. That is, $x \notin P_i$ and $x \notin P_{i-1}$. Now quotient by this prime to get $0 = \overline{P_{i-1}} \subsetneq \cdots \subsetneq \overline{P_n} \subsetneq \overline{A} = A/P_{i-1}$. Note that $x \notin P_{i-1}$ so $\overline{x} = x + P_{i-1} \neq 0$. We can now localize at the prime $\overline{P_{i+1}}$ to get $0 = \overline{P_{i-1}}_{\overline{P_{i+1}}} \subsetneq \overline{P_i}_{\overline{P_{i+1}}} \subsetneq \overline{P_{i+1}}_{\overline{P_{i+1}}} \subseteq \overline{A}_{\overline{P_{i+1}}}$. This ring has dimension $\Ht \overline{P_{i+1}} = 2$ and $\overline{x}$ is still nonzero. By part (a) of Problem~\ref{UFD2}, we know $\overline{x} \in \overline{P}_{\overline{P_{i+1}}}$, a height one prime. Note that this prime strictly contains the $0$ ideal $\overline{P_{i-1}}_{\overline{P_{i+1}}}$ and is strictly contained in the maximal ideal $\overline{P_{i+1}}_{\overline{P_{i+1}}}$, since it is of height one and all ideals contain and are contained in these two ideals respectively.
+
+Note that $\overline{P}_{\overline{P_{i+1}}}$ corresponds to an ideal $\overline{P} \subseteq \overline{A}$ with $0 = \overline{P_{i-1}} \subsetneq \overline{P} \subsetneq \overline{P_{i+1}} \subsetneq \cdots \subsetneq \overline{P_n} \subsetneq \overline{A}$ and that $\overline{x} \in \overline{P}$. Taking the preimage under the quotient map gives a chain $P_{i-1} \subsetneq P \subsetneq P_{i+1} \subsetneq \cdots \subsetneq P_n \subsetneq A$, with $x \in P$. Further, $P_{i-1} \supsetneq \cdots \supsetneq P_0 = 0$, so we have a chain $0 = P_0 \subsetneq \cdots \subsetneq P_{i-1} \subsetneq P \subsetneq P_{i+1} \subsetneq \cdots \subsetneq P_n \subsetneq A$. This shows that $\Ht P = i$, since it contains a chain of length $i$ and any longer chain could be added to $P_{i+1} \subsetneq \cdots \subsetneq P_n$ to get a chain longer than $\dim(A) = n$. But note that $x \in P$, so we we've decreased the lowest height of a prime containing $x$ by one. Inductively, we can then find a height one prime $P$ containing $x$ which is part of a maximal length chain. Then taking the quotient by $Ax$ gives a length $\dim(A) - 1$ chain in $A/Ax$ by looking at the quotients of all the primes in this chain. So $\dim(A/Ax) \geq \dim(A) - 1$. But note that we must also have $\dim(A/Ax) \leq \dim(A) - 1$ since $\Ht Ax = 1$ by the principal ideal theorem so any longer chain in $A/Ax$ could be made into a chain of length greater than $\dim(A)$ by taking the preimages and adding $0$. We must then have $\dim(A/Ax) = \dim(A/P) = \dim(A) - 1$.
+\end{proof}
+
+\begin{problem}
+\label{fielddim}
+Show that every maximal ideal of $K[x_1, \dots , x_n]$, $K$ a field (respectively $\mathbb{Z}[x_1, \dots , x_{n-1}]$) is of height $n$. Deduce that for all $f \in K[x_1, \dots , x_n]$, $f \notin K$ (for all $f \in \mathbb{Z}[x_1, \dots , x_{n-1}]$, $f \neq 0$, $f \neq \pm 1$), $\dim(K[x_1, \dots , x_n]/(f)) = n-1$ ($\dim(\mathbb{Z}[x_1, \dots , x_{n-1}]/(f)) = n-1$).
+\end{problem}
+\begin{proof}
+For $n = 0$ the only maximal ideal of $K$ is $0$, so $\Ht M = 0$ for all $M \in \Max(K)$. Similarly, if $n = 1$ then the maximal ideals of $\mathbb{Z}$ are $p\mathbb{Z}$ for $p$ prime, and $0 \subseteq p\mathbb{Z}$ shows $\Ht p\mathbb{Z} = 1$. Now we induct on $n$. Assume the statement is true for some $n-1$ and take $M \in \Max(K[x_1, \dots , x_n])$. Now localize at $M$ and note that $\Ht M = \dim((K[x_1, \dots , x_n])_M)$. Now quotient by $(Ax_n)_M$ and use Problem~\ref{downbyone} to get
+\begin{align*}
+\Ht M
+&= \dim((K[x_1, \dots , x_n])_M)\\
+&= 1 + \dim((K[x_1, \dots , x_n])_M/(Ax_n)_M)\\
+&= 1 + \dim((K[x_1, \dots , x_n]/Ax_n)_M)\\
+&= 1 + \dim((K[x_1, \dots , x_{n-1}])_M)\\
+&= 1 + n - 1\\
+&= n
+\end{align*}
+where we've used the induction hypothesis to note that $\dim((K[x_1, \dots , x_{n-1})_M) = \Ht M = n-1$. Similarly, if we assume the statement for $\mathbb{Z}[x_1, \dots , x_{n-1}]$ is true for $n - 2$, then since $\mathbb{Z}[x_1, \dots , x_{n-1}]$ is a Noetherian integral domain, we can apply Problem~\ref{downbyone} to get
+\begin{align*}
+\Ht M
+&= \dim((\mathbb{Z}[x_1, \dots , x_{n-1}])_M)\\
+&= 1 + \dim((\mathbb{Z}[x_1, \dots , x_{n-1}])_M/(Ax_{n-1})_M)\\
+&= 1 + \dim((\mathbb{Z}[x_1, \dots , x_{n-2})_M)\\
+&= 1 + n - 1\\
+&= n.
+\end{align*}
+Now since $f \notin K$, $f \in M$ for some $M \in \Max(A)$. Then localize $K[x_1, \dots , x_n]/(f)$ at $M$ and apply Problem~\ref{downbyone} to get
+\begin{align*}
+\dim(K[x_1, \dots , x_n]/(f))
+&= \Ht M\\
+&= \dim((K[x_1, \dots , x_n]/(f))_M)\\
+&= \dim((K[x_1, \dots , x_n])_M) - 1\\
+&= \Ht M - 1\\
+&= n - 1.
+\end{align*}
+The same proof works for $\mathbb{Z}[x_1, \dots , x_{n-1}]$ since this ring satisfies the conditions of Problem~\ref{downbyone}.
+\end{proof}
+
+\begin{problem}
+Let $f : A \to B$ be a ring homomorphism of Noetherian local rings with maximal ideals $M_A \subseteq A$ and $M_B \subseteq B$. Suppose $f(M_A) \subseteq M_B$. Show that $\dim(B) \leq \dim(A) + \dim(B/M_AB)$. (Here $M_AB = f(M_A)B$).
+\end{problem}
+\begin{proof}
+Suppose $\dim(A) = m$ and $\dim(B/M_AB) = n$. Since $A$ is local, $\Ht M_A = n$ and we can find an ideal generated by $n$ elements $x_1, \dots , x_n \in M_A$ such that $M_A$ is minimal over $(x_1, \dots , x_n)$. Then $A/(x_1, \dots , x_n)$ has only one prime ideal, which must be the nilradical of this ring. Therefore there is some $p > 0$ such that $M_A^p \subsetneq (x_1, \dots , x_n)$. Similarly, we can find elements $y_1, \dots , y_m \in M_B$ such that $M_B^q \subseteq (y_1, \dots , y_m) + M_AB$ for some $q > 0$. Then we have
+\[
+M_B^{pq} \subseteq ((y_1, \dots , y_m) + M_AB)^p \subseteq M_A^PB + (y_1, \dots , y_m) \subseteq (x_1, \dots , x_n, y_1, \dots , y_m)B \subseteq M_B.
+\]
+Here we've identified $M_AB = f(M_A)B$ so $x_i$ is identified with $f(x_i)$. Then $M_B$ must be minimal over $(x_1, \dots , x_n, y_1, \dots , y_m)$ since $M_B$ is in the radical of this ideal. Since $B$ is local $\dim(B) = \Ht M_B$ and by the principal ideal theorem, $\Ht M_B \leq m + n = \dim(A) + \dim(B/M_AB)$.
+\end{proof}
+
+\noindent
+Let $A$ be a commutative ring and $E$ an $A$-module. We define \emph{dimension of $E$} ($\dim(E)$) as the dimension of the subspace $\supp(E)$ of $\spec(A)$. Thus if $E$ is a finite $A$-module, $\dim(E) = \dim(V(\ann(E))) = \dim(A/\ann(E))$.
+
+\begin{problem}
+Let $A$ be a Noetherian local ring with maximal ideal $M$. Let $E$ be a finite $A$-module. Then $\dim(E) \leq \infty$. Show that\\
+(a) $x_1, \dots , x_r$ elements of $M$ with $\ell (E/(x_1 E + \cdots + x_r E)) < \infty$ implies $\dim(E) \leq r$.\\
+(b) $\dim(E)$ is the least integer $n$ such that there exists $x_i \in M$, $1 \leq i \leq n$ with $\ell(E/(x_1E + \cdots + x_nE)) < \infty$.
+\end{problem}
+\begin{proof}
+(a) Note that $\ell(E/(x_1E + \cdots + x_rE))$ implies that $\supp(E/(x_1E + \cdots + x_rE)) \subseteq \{M\}$. Note that if $\supp(E/(x_1E + \cdots + x_rE)) = \emptyset$, then $E = (x_1A + \cdots + x_rA)E$. Since $x_1A + \cdots + x_rA \subseteq M$, is in the Jacobson radical of $A$ and $E$ is finitely generated, then $E = 0$, so $\dim(E) \leq r$. Otherwise, $\supp(E/(x_1E + \cdots + x_rE)) = \supp(E) \cap V(x_1A + \cdots + x_rA) = \{M\}$. Now note that $\supp(E) \cap V(x_1A + \cdots + x_rA) = V(\ann(E)) \cap V(x_1A + \cdots + x_rA) = V(\ann(E) \cup (x_1A + \cdots + x_rA))$. So $M$ is minimal over $\ann(E) \cup (x_1A + \cdots + x_rA)$, which means $M/\ann(E)$ is minimal over $x_1A + \cdots + x_rA$, which means $\Ht M/\ann(E) \leq r$ by the principal ideal theorem. But note that $\dim(E) = \dim(A/\ann(E)) = \Ht M/\ann(E)$, so $\dim(E) \leq r$.
+
+(b) If $\dim(E) = r$ then $\Ht M/\ann(E) = \dim(A/\ann(E)) = \dim(E) = r$. Then we can find an ideal $I/\ann(E) \subseteq A/\ann(E)$ generated by $r$ elements such that $M/\ann(E)$ is minimal over $I/\ann(E)$. Then $M$ is minimal over $\ann(E) \cup I$, so $\{M\} = V(\ann(E) \cup I) = V(\ann(E)) \cap V(I) = \supp(E) \cap V(I) = \supp(E/IE)$. Thus $\ell(E/IE) < \infty$. Note that $I$ is generated by elements in $M$ since $A$ is local and so none of the generators can be units.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a commutative ring and $E$ a finite $A$-module. Show that $\dim(E_P) + \dim(E/PE) \leq \dim(E)$ for $P \in \spec(A)$. (We put $\dim(0) = -\infty$).
+\end{problem}
+\begin{proof}
+If $P \notin \supp(E)$ then $E_P = 0$ so $\dim(E_P) + \dim(E/PE) = \dim(E_P) = - \infty \leq \dim(E)$. Also if $\dim(E) = \infty$, then we're done. So assume $P \in \supp(E)$ and $\dim(E) < \infty$. Take a maximal length series in $A_P$, $(\ann(E))_P \subseteq (P_0)_P \subsetneq \cdots \subsetneq (P_n)_P = P_P$. Note that $(P_0)_P \supseteq \ann(E_P) \supseteq (\ann(E))_P$ and that $P$ is maximal in $A_P$, so $(P_n)_P = P_P$. Now note that $\dim(E/PE) = \dim(\supp(E) \cap V(P)) = \dim(V(\ann(E)) \cap V(P)) = \dim(V(P))$. Take a maximal length series for this space as $P = Q_0 \subsetneq \cdots \subsetneq Q_m$. Since each of the primes $(P_i)_P$ correspond to primes $P_i \subseteq P$ with $P_i \supseteq \ann(E)$, we have a chain
+\[
+\ann(E) \subseteq P_0 \subsetneq \cdots \subsetneq P_n = P = Q_0 \subsetneq Q_1 \subsetneq \cdots \subsetneq Q_m.
+\]
+This shows that $\dim(E) \geq n + m$.
+\end{proof}
+
+\begin{problem}
+\label{sizetwo}
+Let $A$ be a nonzero ring and $R = A[x]$. Let $P$ be a prime ideal of $A$. Show that the maximum cardinality of any totally ordered subset of $\{Q \in \spec(R) \mid Q \cap A = P\}$ is $2$. In other words, any maximal chain of prime ideals lying over a single prime ideal $P$ of $A$ is of length $2$.
+\end{problem}
+\begin{proof}
+Since we're only concerned with primes lying over $P$, we need not consider any primes contained in $P$. In particular, we can consider the quotient ring $A/P$ and take the zero ideal. With that in mind, replace $A$ by an integral domain and take $P = 0$. Suppose we have a chain of length $2$, $0 \subsetneq P_1 \subsetneq P_2 \subsetneq R$ such that $P_1 \cap A = P$ and $P_2 \cap A = P$. Now localize at $P$. Since $P = 0$, $A_P$ is the field of fraction for $A$ and $A_P[x] = R_P$ is a polynomial ring over a field. By Problem~\ref{fielddim} we know $\dim(R_P) = 1$, so the longest possible series of primes is $0 \subsetneq Q_P \subsetneq R_P$ for some $Q \in \spec(R)$ with $Q \cap (A \backslash P) = \emptyset$. But since $P_1 \cap A = 0$ and $P_2 \cap A = 0$, we also have $P_1 \cap (A \backslash P) = \emptyset$ and $P_2 \cap (A \backslash P) = \emptyset$, so we can form the chain $0 \subsetneq (P_1)_P \subsetneq (P_2)_P \subsetneq R_P$, a contradiction. Thus the longest possible chain in $R$ is $0 \subsetneq P_1 \subsetneq R$ with $P_1 \cap A = P$ and $0 \cap A = P$.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a commutative ring. Show that $\dim(A[x]) \leq 2 \dim(A) + 1$.
+\end{problem}
+\begin{proof}
+Set $\dim(A) = n$. Let $Q_0 \subsetneq \cdots \subsetneq Q_n$ be a chain of prime ideals in $A[x]$. Note that such a chain exists for if we take a maximal length chain $P_0 \subsetneq \cdots \subsetneq P_n \subsetneq A$, then just set $Q_i = P_i[x]$. Now consider the series $Q_0 \cap A \subseteq \cdots \subseteq Q_n \cap A$. From Problem~\ref{sizetwo}, we know that for each $0 \leq i \leq n$ there can be at most one prime ideal $Q_i'$ with either $Q_i' \subsetneq Q_i$ or $Q_i \subsetneq Q_i'$. Without loss of generality, assume the later for each $i$. Then the longest possible chain we could make using the $Q_i$ is $Q_0 \subsetneq Q_0' \subsetneq \cdots \subsetneq Q_n \subsetneq Q_n' \subsetneq R$. Note that we started with any arbitrary series of length $n$. A shorter series would clearly produce a new series less than or equal in length. A longer series would produce $Q_i \cap A = Q_j \cap A$ for some $i \neq j$. Thus, this series is maximal in length for $R$ and it is of length $2n + 1 = 2 \dim(A) + 1$.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a Noetherian ring and $R = A[x]$. Show that\\
+(a) $P \in \spec(A)$, $P \in \ass(A)$ if and only if $P[x] \in \ass(R)$.\\
+(b) Let $Q \in \ass(R)$. Show that $Q = P[x]$ with some $P \in \ass(R)$. Thus $\ass(R) = \{P[x] \mid P \in \ass(A)\}$.
+\end{problem}
+\begin{proof}
+(a) Let $P \in \ass(A)$ so that $P = \ann(y) = \{a \in A \mid ay = 0\}$ for some $y \in A$. Then we certainly have $P[x] \subseteq \ann(y)$ when $y$ is considered as an element of $R$ since any polynomial with coefficients in $P$ will annihilate $y$ on a term by term basis. On the other hand, if we pick any polynomial $a_nx^n + \cdots + a_0 \in R$ with $y(a_nx^n + \cdots + a_0) = ya_nx^n + \cdots + ya_0 = 0$, then we must have $ya_i = 0$ for each $0 \leq i \leq n$. Therefore $a_i \in P$ for each $0 \leq i \leq n$ and this polynomial is in $P[x]$.
+
+Conversely, suppose $P[x] \in \ass(R)$ so that $P[x] = \ann(p) = \{a \in R \mid ap = 0\}$ where $p = a_n x^n + \cdots + a_0$ is an element of $R$. Now consider $I = \bigcap_{i=0}^n \ann(a_i) \subseteq A$. If $a \in I$ then $aa_i = 0$ for $0 \leq i \leq n$ so $ap = 0$ and $a \in P[x]$. On the other hand if $a \in P$ then $0 = ap = aa_nx^n + \cdots + aa_0$ so $aa_i = 0$ for $0 \leq i \leq n$ and $a \in I$. Thus $P = I$. But note that if a prime ideal contains an intersection of ideals, it contains their product, and thus contains one of them, by primality. Then since $P \subseteq \bigcap_{i=0}^n \ann(a_i)$, we know $P \subseteq \ann(x_i)$ for each $0 \leq i \leq n$. Therefore $P = \ann(a_i)$ for some $i$ and $P \in \ass(A)$.
+
+(b) Since $A$ is Noetherian, we know there exists a series of ideals $0 = I_n \subseteq \cdots \subseteq I_0 = A$ with $I_i/I_{i+1} \cong A/P_i$ for $0 \leq i \leq n-1$ where $\ass(A) \subseteq \{P_0, \dots , P_{n-1}\}$. Now take the series $0 = I_n[x] \subseteq \cdots \subseteq I_0[x] = R$. Note that
+\[
+I_i[x]/I_{i+1}[x] \cong (I_i/I_{i+1})[x] \cong (A/P_i)[x] \cong A[x]/P_i[x] = R/P_i[x].
+\]
+But now we know that all the associated primes of $R$ must appear among the $P_i[x]$, so $Q = P_i[x]$ for some $i$. Using the inclusion of part (a), we now have $\ass(R) = \{P[x] \mid P \in \ass(A)\}$.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a Noetherian ring and $M \in \Max(A)$. Suppose each $x \in M$ is a zero divisor. Show that $M \in \ass(A)$. Give an example a prime ideal $P$ which consists of zero divisors, but $P \notin \ass(A)$.
+\end{problem}
+\begin{proof}
+Since $A$ is Noetherian, the union of all primes in $\ass(A)$ is the set of zero divisors of $A$. Since $M$ is contained in this union of primes and $M$ is an ideal, we know $M \subseteq P$, with $P \in \ass(A)$ by the prime avoidance lemma. Since $M$ is maximal we must have $M = P$.
+
+Let $A = \mathbb{Z}[x,y,z]/(Axy + Ayz)$ and let $P = \overline{Ax}$. Then $P$ is prime because the preimage is prime in $\mathbb{Z}[x,y,z]$. Note that $P$ consists of zero divisors since $\overline{xy} = \overline{xz} = 0$ and $x$, $y$ and $z$ are generators. But if $P = \ann(\overline{a})$ then we must have $y \mid a$ and so $\overline{z} \overline{a} = 0$, but $\overline{z} \notin P$.
+\end{proof}
+
+\end{document}

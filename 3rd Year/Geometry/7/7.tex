@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 24100\\
+
+May 28, 2010
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{problem}
+Give a one-to-one correspondence between $SO(3)$ and $\mathbb{R}P^3$.
+\end{problem}
+\begin{proof}
+Note that we can view $\mathbb{R}P^3$ as a closed unit ball in $\mathbb{R}^3$ with the antipodal points of its boundary identified. Since $SO(3)$ is the group of rotations in $3$ space, each element is defined by a direction and an angle to rotate by. But each point in $\mathbb{R}P^3$ can be described as $(\theta/2 \pi) \mathbf{n}$ where $\mathbf{n}$ is the unit normal vector and $\theta \in [0, 2 \pi]$. These points then give both a direction and an angle to rotate by. Furthermore, antipodal points are identified so picking a direction or it's negative gives the same element of $SO(3)$. This shows surjectivity of our correspondence since given any point in $\mathbb{R}P^3$ we can find some rotation to which it corresponds.
+
+Now if we pick two different elements of $SO(3)$ then they either have different directions, in which case they correspond to different unit normal vectors in $\mathbb{R}P^3$, or they have the same direction but with a different angle, in which case they correspond to two distinct points on the same unit normal vector in $\mathbb{R}P^3$. This shows injectivity. We thus have a bijective correspondence between $SO(3)$ and $\mathbb{R}P^3$.
+\end{proof}
+
+\end{document}

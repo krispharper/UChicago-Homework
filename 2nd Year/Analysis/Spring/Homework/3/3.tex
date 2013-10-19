@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20900\\
+
+April 20, 2009
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Let $G = GL_n (\mathbb{Q}_p)$, $K = GL_n (R_p)$ and $N$ be the set of upper triangular matrices with $1$s on the diagonal and elements of $\mathbb{Q}_p$ above the diagonal. Find $A$ such that $G = KAN$ uniquely.
+\begin{proof}
+Let $A$ be the set of diagonal matrices such that each of the diagonal elements is positive. Then by the Iwasawa decomposition, $G = KAN$ uniquely.
+\end{proof}
+\end{**}
+
+\begin{**}
+Given $g \in U(n)$ show there exists $t \in \mathbb{T}^n$ and $h \in U(n)$ such that $g = hth^{-1}$.
+\begin{proof}
+Multiplying by $h^{-1}$ on the left and $h$ on the right gives $t = h^{-1}gh$. But since $h$, $g$, and $h^{-1}$ are all in $U(n)$ it follows that $t \in \mathbb{T}^n$.
+\end{proof}
+\end{**}
+
+\begin{**}
+Let $M$ be a sigma algebra of $X$. Suppose $\{A_n\}_{n \in \mathbb{N}}$ are in $M$ and $A_1 \subseteq A_2 \subseteq A_3 \subseteq \dots$. Show that
+\[
+\mu \left (\bigcup_{n=1}^{\infty} A_n \right ) = \lim_{n \rightarrow \infty} \mu (A_n).
+\]
+\begin{proof}
+We have
+\begin{align*}
+\mu \left (\bigcup_{n=1}^{\infty} A_n \right )
+&= \mu \left (\bigcup_{n=1}^{\infty} (A_n-A_{n-1} \right )\\
+&= \sum_{n=1}^{\infty} \mu (A_n - A_{n-1})\\
+&= \lim_{m \rightarrow \infty} \sum_{n=1}^{m} (A_n-A_{n-1})\\
+&= \lim_{m \rightarrow \infty} \mu \left (\bigcup_{n=1}^{\infty} A_n - A_{n-1}\right )\\
+&= \lim_{m \rightarrow \infty} \mu (A_m).
+\end{align*}
+\end{proof}
+\end{**}
+
+\begin{**}
+Let $M$ be a sigma algebra of $X$. Suppose $\{A_i\}_{i \in \mathbb{N}}$ are in $M$ and $A_1 \supseteq A_2 \supseteq A_3 \supseteq \dots$ and $\mu (A_k) < \infty$ for some $k$, then
+\[
+\mu \left (\bigcap_{i=1}^{\infty} A_i \right ) = \lim_{n \rightarrow \infty} \mu (A_n)
+\]
+\begin{proof}
+We have
+\[
+\mu \left (\lim_{n \rightarrow \infty} (A_k - A_n) \right ) = \mu \left (A_k - \lim_{n \rightarrow \infty} A_n \right ) = \mu (A_k) - \mu \left (\lim_{n \rightarrow \infty} A_n \right ).
+\]
+Then using ** Problem 3 and the fact that $\mu (A \backslash B) = \mu (A) - \mu (B)$, we have
+\[
+\mu \left (\lim_{n \rightarrow \infty} (A_k - A_n) \right ) = \lim_{n \rightarrow \infty} \mu \left (A_k - A_n \right ) = \mu (A_k) - \lim_{n \rightarrow \infty} \mu (A_n).
+\]
+Setting these equal gives the desired result.
+\end{proof}
+\end{**}
+
+\begin{**}
+1) Show any open set in $\mathbb{R}^n$ can be written as a countable union of pairwise disjoint half open rectangles.
+\begin{proof}
+We already know that every open set can be written as the countable union of open balls. Since an open rectangle can fit inside an open ball, we can thus express any open set as a countable union of open rectangles. To make the rectangles pairwise disjoint, we can take intersections. Note that the intersection of two open rectangles will be a half open rectangle. This shows the result.
+\end{proof}
+
+2) Show this is false for open rectangles.
+\begin{proof}
+Consider $\mathbb{Q} \subseteq \mathbb{R}$. It's possible to put an interval around every point in $\mathbb{Q}$ and have a countable union of open rectangles, but every rectangle will intersect infinitely many others. This will be true as long as the rectangles remain intervals, which shows that open rectangles can't union to the whole set.
+\end{proof}
+\end{**}
+
+
+\begin{**}
+Find a nontrivial outer measure on $\mathbb{Q}_p$.
+\begin{proof}
+Note that $\mathbb{Q}_p^{\times} = \bigcup_{n \in \mathbb{Z}} p^n U_p$. Let $A \subseteq \mathbb{Q}_p$ and define
+\[
+\mu^*(A) = \sup_{n \in \mathbb{Z}} \left \{n \in \mathbb{Z} \mid x \in A, x \in p^n U_p \right \}.
+\]
+Then $\mu^*(A)$ picks out the highest $p$-adic absolute value of all elements in $A$. If $A$ is empty or $A$ only contains $0$ we define $\mu^*(A) = 0$. If $A$ isn't bounded above and the $\sup$ doesn't exist, we define $\mu^*(A) = \infty$. Now if $A \subseteq B$ we have $\mu^*(A) \leq \mu^*(B)$. Also, $\mu^*$ is countably subadditive which show's it's an outer measure.
+\end{proof}
+\end{**}
+
+\begin{**}
+If $A$ is a rectangle in $\mathbb{R}^n$ then $A$ is Lebesgue measurable and $m(A)$ is the volume of $A$.
+\begin{proof}
+Take $E \subseteq \mathbb{R}^n$. If $m^*(E) = \infty$ then $m^*(E \backslash A) = \infty$ and we're done so $m^*(E) < \infty$. Take $\varepsilon > 0$ and cover $E$ with a countable union of rectangles $\{R_i\}_{i \in I}$ such that
+\[
+\sum_{i \in I} m^*(R_i) < m^*(E) + \varepsilon.
+\]
+Take the rectangles $\{S_j\}_{j \in J}$ in $\{R_i\}_{i \in I}$ that intersect $A$. Then $S_j \cap A$ is a rectangle and $S_j \backslash A$ is a finite union of rectangles for all $j$. Now we can sum over all $j$ so that
+\[
+m^*(E \backslash A) + m^*(E \cap A) = m^*(\bigcup_{j \in J} S_j \backslash A) + m^*(\bigcup_{j \in J} S_j \cap A) = \sum_{i \in I} m^*(R_i) < m^*(E) + \varepsilon.
+\]
+But since $\varepsilon$ was arbitrary, we have $m^*(E \backslash A) + m^*(E \cap A) = m^*(E)$ and so $A$ is measurable. Moreover, since $S_j \cap A$ and $S_j \backslash A$ are all rectangles, we have that $m(A)$ is the volume of $A$.
+\end{proof}
+\end{**}
+
+\begin{**}
+If $X$ is a set and $\mu^*$ is an outer-measure on $X$ then the collection of $\mu^*$ measurable sets forms a $\sigma$-algebra.
+\begin{proof}
+We wish to show if $\{A_i\}$ is a sequence of measurable sets then $\bigcup_{i=1}^{\infty} A_i$ and $\bigcap_{i=1}^{\infty} A_i$ are measurable as well. Let $A = \bigcup_{i=1}^{\infty} A_i$, Let $B_1 = A_1$ and let $B_n = A_n - \bigcup_{i=1}^{n-1} A_i$ for each $n \geq 2$. Then $\{B_n\}$ is a sequence of disjoint measurable sets and $A = \bigcup_{n=1}^{\infty} B_n$. Note that $^c A \subseteq ^c \left (\bigcup_{n=1}^{n} B_n \right )$ for each $n$. Let $E \subseteq X$. We can inductively show that
+\[
+\mu^*(E) = \mu^* \left ( E \cap \left (\bigcup_{n=1}^{\infty} B_n \right ) \right ) + \mu^* \left ( E \cap ^c\left (\bigcup_{n=1}^{\infty} B_n \right ) \right ) \geq \sum_{i=1}^{n} \mu^* (E \cap B_i) + (E \cap ^cA)
+\]
+for each $n$. It follows that
+\[
+\mu^*(E) \geq \sum_{i=1}^{\infty} \mu^* (E \cap B_i) + \mu^* (E \cap ^c A).
+\]
+Since $E \cap A = \bigcup_{i=1}^{\infty} (E \cap B_i)$ is a countable union we have subadditivity and so
+\[
+\mu^*(E \cap A) + \mu^* (E \cap ^c A) \leq \sum_{i=1}^{\infty} \mu^* (E \cap B_i) + \mu^* (E \cap ^c A) \leq \mu^*(E).
+\]
+Thus $A$ is a measurable set. Since $\bigcap_{i=1}^{\infty} A_i = ^c \left ( \bigcup_{i=1}^{\infty} {^c A_i} \right )$ the set $\bigcap_{i=1}^{\infty} A_i$ is also measurable.
+\end{proof}
+\end{**}
+
+\begin{**}
+Show that the cardinality of the collection of Borel sets is $\mathfrak{c} = 2^{\aleph_0}$.
+\begin{proof}
+Let $S_0$ be a subset of the power set of $\mathbb{R}$. Assume that $\emptyset$ and $\mathbb{R}$ are in $S_0$. For each countable ordinal $\alpha$ let $S_{\alpha}$ be the set of all complements and countable unions of $S_{\beta}$ for $\beta < \alpha$. If $\omega_1$ is the first uncountable ordinal then $S_{\omega_1}$ is the $\sigma$-algebra generated by $S$. If $S_0$ is the set of open subsets of $\mathbb{R}$, we know that $S_0$ has cardinality $\mathfrak {c}$. Suppose that $S_{\alpha}$ then has cardinality $\mathfrak {c}$ and consider $S_{\alpha + 1}$. We know that $S_{\alpha + 1}$ is the set of all countable unions and complements of $S_{\beta}$ for $\beta < \alpha + 1$. But since $|S_{\alpha}| = \mathfrak{c}$ and we can only take countable unions and complements, we must have $|S_{\alpha + 1}| = \mathfrak{c}$. Thus, but transfinite induction we have that the cardinality of the Borel sets is $\mathfrak{c}$.
+\end{proof}
+\end{**}
+
+\end{flushleft}
+\end{document}

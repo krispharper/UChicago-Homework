@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26200\\
+
+January 14, 2010
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{problem}
+Formulate and prove DeMorgan's laws for arbitrary unions and intersections.
+\end{problem}
+\begin{proof}
+Let $X$ be a set and let $\mathcal{A}$ be a collection of sets. We wish to prove the following
+\[
+X \backslash \left ( \bigcup_{A \in \mathcal{A}} A \right ) = \bigcap_{A \in \mathcal{A}} (X \backslash A)
+\]
+and
+\[
+\bigcup_{A \in \mathcal{A}} (X \backslash A) = X \backslash \left ( \bigcap_{A \in \mathcal{A}} A \right ).
+\]
+Let $a \in X \backslash \left ( \bigcup_{A \in \mathcal{A}} A \right )$. Then $a \in X$ and $a \notin \left ( \bigcup_{A \in \mathcal{A}} A \right )$. That is, $a \in A$ for all $A \in \mathcal{A}$. Thus, for all sets $A \in \mathcal{A}$, $a \in X \backslash A$. Therefore $a \in \bigcap_{A \in \mathcal{A}} (X \backslash A)$ and $X \backslash \left ( \bigcup_{A \in \mathcal{A}} A \right ) \subseteq \bigcap_{A \in \mathcal{A}} (X \backslash A)$.
+
+Now suppose $a \in \bigcap_{A \in \mathcal{A}} (X \backslash A)$. Then for each $A \in \mathcal{A}$ we have $a \in X$ and $a \notin A$. Since $a \notin A$ for each of these sets, we can say that $a \notin \bigcup_{A \in \mathcal{A}} A$. Also, since $a \in X$, we now have $a \in X \backslash \left ( \bigcup_{A \in \mathcal{A}} A \right )$. This shows both inclusions so the first equality is done.
+
+Next let $a \in \bigcup_{A \in \mathcal{A}} (X \backslash A)$. So $a \in X$ and $a \notin A$ for some $A \in \mathcal{A}$. But then it must be that $a \notin \bigcap_{A \in \mathcal{A}} A$ so we have $a \in X \backslash \left ( \bigcap_{A \in \mathcal{A}} A \right )$. Thus $\bigcup_{A \in \mathcal{A}} (X \backslash A) \subseteq X \backslash \left ( \bigcap_{A \in \mathcal{A}} A \right )$.
+
+Finally, suppose $a \in X \backslash \left ( \bigcap_{A \in \mathcal{A}} A \right )$. Then $a \in X$, but $a \notin \left ( \bigcap_{A \in \mathcal{A}} A \right )$. This is only possible if there exists $A \in \mathcal{A}$ such that $a \notin A$. Then for this set, $a \in X \backslash A$ which means $a \in \bigcup_{A \in \mathcal{A}} (X \backslash A)$. This shows the second inclusion and so the second equality also holds.
+\end{proof}
+
+\begin{problem}
+In general, let us denote the \emph{identity function} for a set $C$ by $i_C$. That is, define $i_C : C \to C$ to be the function given by the rule $i_C(x) = x$ for all $x \in C$. Given $f : A \to B$, we say that a function $g : B \to A$ is a \emph{left inverse} for $f$ is $g \circ f = i_A$; and we say that $h : B \to A$ is a \emph{right inverse} for $f$ if $f \circ h = i_B$.\\
+(a) Show that if $f$ has a left inverse, $f$ is injective; and if $f$ has a right inverse, $f$ is surjective.\\
+(b) Give an example of a function that has a left inverse but no right inverse.\\
+(c) Give an example of a function that has a right inverse but no left inverse.\\
+(d) Can a function have more that one left inverse? More than one right inverse?\\
+(e) Show that if $f$ has both a left inverse $g$ and a right inverse $h$, then $f$ is bijective and $g = h = f^{-1}$.
+\end{problem}
+\begin{proof}
+(a) Suppose $f : A \to B$ and has a left inverse $g : B \to A$. Let $a, b \in A$ and suppose that $f(a) = f(b)$. Then $a = i_A(a) = g \circ f(a) = g \circ f(b) = i_A(b) = b$. Thus $f$ is injective. Now suppose that $h : B \to A$ is a right inverse for $f$. Let $b \in B$ and note that $f(h(b)) = b$ so $h(b) \in A$ is an element which $f$ maps to $b \in B$. Thus, any element of $B$ has a preimage under $f$ in $A$, so $f$ is surjective.
+
+(b) Consider the functions $f : \mathbb{R} \to \mathbb{R}$ where $f(x) = e^x$ and $g : \mathbb{R}^+ \to \mathbb{R}$ where $g(x) = \ln x$. Then $g \circ f$ is the identity on $\mathbb{R}$, but since $g$ is only defined on positive reals, $f \circ g$ is not the identity on all of $\mathbb{R}$. We know that $f$ cannot have a right inverse because $f$ is not surjective.
+
+(c) Consider the functions $f : \mathbb{R} \to \mathbb{R}^+ \cup \{0\}$ where $f(x) = x^2$ and $h : \mathbb{R}^+ \cup \{0\} \to \mathbb{R}^+ \cup \{0\}$ where $h(x) = \sqrt{x}$. Then $f \circ h = (\sqrt{x})^2 = x$ on $\mathbb{R}^+ \cup \{0\}$, but $(\sqrt{x})^2 = x$ only for nonnegative real values. Thus, $h \circ f$ is not the identity on all of $\mathbb{R}$. We know that $f$ cannot have a left inverse because $f$ is not injective.
+
+(d) For a function to have multiple left inverses, we simply need an injective function which is not surjective. Then choose the left inverses to be defined differently on the codomain which is not part of the image set of our function. As an example, let $f : \mathbb{R} \to \mathbb{R}$ be defined as $f : x \mapsto e^x$. Then $f$ only takes on positive values, so $g : \mathbb{R}^+ \to \mathbb{R}$ with $g(x) = \ln x$ is a left inverse for $f$, but so is $g' : \mathbb{R} \to \mathbb{R}$ defined as
+\[
+g'(x) =
+\begin{cases}
+0 & \text{if $x \leq 0$}\\
+\ln x & \text{if $x > 0$}.
+\end{cases}
+\]
+An example of a function with more than one right inverse is $f : \mathbb{R} \to \mathbb{R}^+ \cup \{0\}$ with $f(x) = x^2$. Then $h : \mathbb{R}^+ \cup \{0\} \to \mathbb{R}^+ \cup \{0\} \to \mathbb{R} \cup \{0\}$ with $h(x) = \sqrt{x}$ is a right inverse for $f$, but so is $h' : \mathbb{R} \to \mathbb{R} \cup \{0\}$ defined as
+\[
+h'(x) =
+\begin{cases}
+0 & \text{if $x < 0$}\\
+\sqrt{x} & \text{if $x \geq 0$}.
+\end{cases}
+\]
+
+(e) Suppose $g$ and $h$ are as in the statement. Then by part (a) we know $f$ is both injective and surjective, so it is bijective. Let $f : A \to B$ and let $a \in A$ such that $f(a) = b$. Consider $g(b) = g(f(a)) = a$. Thus, $g(b)$ is the unique element $a$ for which $f(a) = b$. Therefore $g = f^{-1}$ and the proof for $h$ is similar.
+\end{proof}
+
+\begin{problem}
+Prove the following:\\
+Theorem. If an ordered set $A$ has the least upper bound property, then it has the greatest lower bound property.
+\end{problem}
+\begin{proof}
+Let $B \subseteq A$ be nonempty and bounded below. Let $U$ be the set of lower bounds for $B$. By assumption, this set is nonempty, and since $B$ is nonempty, $U$ is bounded above. Therefore $U$ has a least upper bound, $u$. If $u \in U$, then we're done since then $u$ is a lower bound for $B$ and is greater than or equal to every element of $U$. Thus it's a greatest lower bound for $B$. But note that every element of $B$ is an upper bound for $U$, so $u$ must be less than or equal to every element of $B$. This forces $u \in U$ and so we're done.
+\end{proof}
+
+\begin{problem}
+Let $A = A_1 \times A_2 \times \dots$ and $B = B_1 \times B_2 \times \dots$.\\
+(a) Show that if $B_i \subseteq A_i$ for all $i$, then $B \subseteq A$.\\
+(b) Show the converse of (a) holds if $B$ is nonempty.\\
+(c) Show that if $A$ is nonempty, each $A_i$ is nonempty. Does the converse hold?\\
+(d) What is the relation between the set $A \cup B$ and the cartesian product of the sets $A_i \cup B_i$? What is the relation between the set $A \cap B$ and the cartesian product of the sets $A_i \cap B_i$?
+\end{problem}
+\begin{proof}
+(a) Let $(b_1, b_2, \dots ) \in B$. Since $B_i \subseteq A_i$ we know $b_i \in A_i$ for each $i$. But then this means that $(b_1, b_2, \dots ) \in A$ as well. Therefore $B \subseteq A$.
+
+(b) Suppose $B \subseteq A$ and let $(b_1, b_2, \dots ) \in B$. By definition, this means that $b_i \in B_i$ for each $i$. Now consider $c \in B_i$ for some $i$. We know the cartesian product $B$ must contain the element $(b_1, b_2, \dots , b_{i-1}, c, b_{i+1}, \dots )$. By assumption, this element is also in $A$, and therefore $c \in A_i$ as well. Thus $B_i \subseteq A_i$ for all $i$.
+
+(c) Suppose $(a_1, a_2, \dots ) \in A$. Then we immediately have $a_1 \in A_1$, $a_2 \in A_2$ and in general $a_i \in A_i$ for all $i$. Conversely, suppose there exists $a_i \in A_i$ for each $i$. Then, assuming the Axiom of Choice, $A$ must contain the element $(a_1, a_2, \dots )$ so $A$ is nonempty.
+
+(d) The set $A \cup B$ contains all $\omega$-tuples of the form $(x_1, x_2, \dots )$ where every $x_i$ is in $A_i$ or every $x_i$ is in $B_i$. On the other hand, the infinite cartesian product of the sets $A_i \cup B_i$ contains all $\omega$-tuples of the form $(x_1, x_2, \dots )$ where $x_i$ is in $A_i$ or $x_i$ is in $B_i$. In particular, if $x_i \in A_i$ for all $i$, then $(x_1, x_2, \dots ) \in A$ and the same is true for $B_i$. Thus $A \cup B \subseteq (A_1 \cup B_1) \times (A_2 \cup B_2) \times \dots$.
+
+The set $A \cap B$ contains all $\omega$-tuples of the form $(x_1, x_2, \dots )$ where $x_i \in A_i$ and $x_i \in B_i$. The cartesian product of the sets $A_i \cap B_i$ contains all $\omega$-tuples of the form $(x_1, x_2, \dots )$ where $x_i \in A_i \cap B_i$. But this means $x_i \in A_i$ and $x_i \in B_i$. Thus $A \cap B = (A_1 \cap B_1) \times (A_2 \cap B_2) \times \dots$.
+\end{proof}
+
+\begin{problem}
+We say that two sets $A$ and $B$ \emph{have the same cardinality} if there is a bijection of $A$ with $B$.\\
+(a) Show that if $B \subseteq A$ and if there is an injection
+\[
+f : A \to B,
+\]
+then $A$ and $B$ have the same cardinality.\\
+(b) Theorem (Schoreder-Bernstein theorem). If there are injections $f: A \to C$ and $g : C \to A$, then $A$ and $C$ have the same cardinality.
+\end{problem}
+\begin{proof}
+(a) Define $A_1 = A$, $B_1 = B$, $A_n = f(A_{n-1})$ and $B_n = f(B_{n-1})$ for $n > 1$. Since $B \subseteq A$ we have the relations $A_1 \subseteq B_1 \subseteq A_2 \subseteq B_2 \subseteq \dots$. Now define $h : A \to B$ as
+\[
+h(x) =
+\begin{cases}
+f(x) & \text{if $x \in A_n \backslash B_n$ for some $n$}\\
+x & \text{otherwise}.
+\end{cases}
+\]
+If $x, y \in A$ with $x \neq y$, then without loss of generality we have the three cases $x,y \in A_n \backslash B_n$ for some $n$, $x$ and $y$ are not in $A_n \backslash B_n$ for some $n$ or $x \in A_n \backslash B_n$ for some $n$ and $y$ is not. In the first case, $f$ is injective, so $h(x) = f(x) \neq f(y) = h(y)$. In the second case $h(x) = x \neq y = h(y)$. In the third case, from the relation above we know that $y \notin f(A)$, so $y \neq f(z)$ for any $z \in A$. But then $h(x) = f(x) \neq y = h(y)$ which shows that $h$ is injective.
+
+Now let $y \in B$. If $y \notin A_n \backslash B_n$ for some $n$, then $h(y) = y$. Assume then, that $y \in A_n \backslash B_n$ for some $n$. But then $y \in f(A)$ and so there exists $x \in A$ such that $h(x) = f(x) = y$. Therefore, $h$ is also surjective and we have a bijection from $A$ to $B$. Hence $A$ and $B$ have the same cardinality.
+
+(b) First note that without loss of generality, we can assume that $A$ and $C$ are disjoint. Let $G = (E, V)$ be the graph in which $E = A \cup C$ and $V$ is the set of ordered pairs $(a, f(a))$ and $(c, g(c)$ for all $a \in A$ and $c \in C$. Note that since $A$ and $C$ are disjoint, by the way we've defined $V$, $G$ is a bipartite graph. We consider each connected component of $G$ in turn. Since $f$ and $g$ are functions, each vertex of $G$ cannot have more than one edge leaving it. Likewise, since $f$ and $g$ are injective, only one edge may enter any vertex as well. This leaves only three possibilities for a connected component of $G$. It is either an even cycle, an infinite line, or a ray, that is, a half infinite line. Note that all cycles in bipartite graphs must be even.
+
+At this point, it's easy to construct a bijection $h : A \to C$ for each connected component of $G$. Namely, $h$ is the collection of edges which go from $A$ to $C$ and $h^{-1}$ is the collection of edges which go from $C$ to $A$. We see that $h$ is injective since all connected components only consist of vertices with one edge leaving them. To see that $h$ is surjective, pick a point $c \in C$. Now note that in all three possibilities for the connected component that $c$ lies in, there is an edge leaving $c$ and going to some point in $A$. Since $h$ is defined bijectively on each connected component of $G$, we can now combine all of these together to see that $h$ is a bijection from $A$ to $C$.
+\end{proof}
+
+\begin{problem}
+Prove Theorem 8.4.
+\end{problem}
+\begin{proof}
+First we prove that for a given $n \in \mathbb{Z}_+$ there exists a function $f : \{1, \dots , n\} \to A$ that satisfies $f(1) = a_0$ and $h(i) = \rho(h \mid \{1, \dots , i-1\})$ for $i > 1$. For $n = 1$ we can simply choose $f(1) = a_0$. Now suppose there exists such a function for $n-1 \in \mathbb{Z}_+$ which we'll call $f'$. Now define $f : \{1, \dots , n\} \to A$ by $f(i) = f'(i)$ for $1 \leq i < n$ and $f(n) = \rho(f' \mid \{1, \dots , n-1\})$. Thus, such a function exists for each $n \in \mathbb{Z}_+$.
+
+Now assume that $f : \{1, \dots , n\} \to A$ and $g : \{1, \dots , m\} \to A$ both satisfy the above conditions for all $i$ in each respective domain. Suppose it's the case that $f(i) \neq g(i)$ for some integer $i$ and choose this $i$ to be the least such. It's not possible that $i = 1$ since $f(1) = a_0 = g(1)$. By assumption, for all $j < i$ we have $f(j) = g(j)$ and also $f(i) = \rho(f \mid \{1, \dots , i-1\})$ and $g(i) = \rho(g \mid \{1, \dots , i-1\})$. But we know $f(\{1, \dots , i-1\}) = g(\{1, \dots , i-1\})$ since $f$ and $g$ agree on these values. Then it must be that $f(i) = g(i)$ contrary to assumption. Therefore, such functions from $\{1, \dots , n\}$ to $A$ exist and when they do exist, they are unique.
+
+Next let $f_n : \{1, \dots , n\} \to A$ denote the unique such function satisfying the above conditions. We now let $h$ be the function defined as $f_n$ as $n \rightarrow \infty$. That is $h(n) = f_m(n)$ for $m \geq n$. This is well defined since $n$ is in the range of $f_m$ for $m \geq n$ and we've just shown that for $m$ and $m'$ greater than $n$, $f_m = f_{m'}$. We know that $h$ satisfies the above properties since $h(1) = f_1(1) = a_0$ and $h(i) = f_n(i)$ for $n \geq i$ and $f_n$ satisfies this property. The proof that $h$ is unique is similar to the above proof for $f_n$.
+\end{proof}
+
+\end{document}

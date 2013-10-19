@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 24100\\
+
+April 16, 2010
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{problem}
+Fix a point $P$. Show that axiom 4b($P$) is equivalent to Desargues' theorem (D$P$).
+\end{problem}
+\begin{proof}
+Suppose we have three lines $\ell_1$, $\ell_2$ and $\ell_3$ which intersect at a point $P$. Let $\ell_1 = Q + Q'$, $\ell_2 = R + R'$ and $\ell_3 = S + S'$ for points $Q$, $Q'$, $R$, $R'$, $S'$ and $S'$ which are distinct from $P$. Suppose $Q + R \parallel Q' + R'$ and $Q + S \parallel Q' + S'$. Assuming 4b($P$) let $\sigma$ be a dilatation which fixes $P$ and sends $Q$ to $Q'$. Then the three lines $\ell_1$, $\ell_2$ and $\ell_3$ are all traces of $\sigma$. Thus $Q + R \parallel \sigma Q + \sigma R = Q' + \sigma R$ so we obtain $\sigma R = R'$. Likewise $\sigma S = S'$. Then $R + S \parallel \sigma R + \sigma S = R' + S'$.
+
+To prove the converse we first need to suppose that every line only contains two points. Then there can only be two lines in any pencil and therefore only four points in total. These give six lines and this structure is uniquely determined. In particular, it satisfies axiom 4b($P$).
+
+Now assume D$P$ and let $P$ be a point and $Q$ and $Q'$ be distinct points (and distinct from $P$) on a line through $P$. Let $R \neq P$ be any point not on the line $Q + Q'$. Let $\ell$ be a line through $P$ containing $R$. Then $\ell \neq Q + Q'$. Let $m$ be the line parallel to $Q + R$ which contains $Q'$. Then $m \neq Q + R$. It follows that $\ell \nparallel m$ so let $R'$ be their point of intersection. Since $R'$ lies on $\ell$ we see that $Q + Q'$ and $R + R'$ are both lines through $P$ and we also have $Q + R \parallel Q' + R'$. This precisely describes the image of $R$ under a map which call $\sigma_{QQ'}$. Note that $\sigma_{QQ'}$ is defined for all points not on $Q + Q'$ (it fixes the point $P$).
+
+Let's now construct $\sigma_{RR'}$. Let $S \neq P$ be any point not on $R + R'$ or $Q + Q'$ and $S'$ the image of $S$ under $\sigma_{QQ'}$. We now have three lines $Q+Q'$, $R+R'$ and $S+S'$ passing through $P$ and each of these lines must be distinct. Also by our discussion $Q + R \parallel Q' + R'$ and $Q + S \parallel Q' + S'$. By axiom D$P$ we know $R + S \parallel R' + S'$. But this precisely means that $S'$ is the image of $S$ under $\sigma_{RR'}$. Since we've assumed there exists a point not on $Q + Q'$ and $R + R'$ we can also form $\sigma_{SS'}$. Note that all three of $\sigma_{QQ'}$, $\sigma_{RR'}$ and $\sigma_{SS'}$ agree where they are defined. Let $\sigma$ be the composite of these maps so that $\sigma(Q) = Q'$.
+
+Finally we must show that $\sigma$ is indeed a dilatation taking $Q$ to $Q'$ and fixing $P$ as desired. Let $U$ and $V$ be two distinct points. One of the three lines $Q + Q'$, $R + R'$ and $S + S'$ will not contain both $U$ and $V$. Without loss of generality assume it's $Q + Q'$. If $U + V$ passes through $P$ then $U+V = U' + V'$ so we can assume otherwise. But then we can simply choose $U = R$ and $V = S$ to obtain $U + V = R + S \parallel R' + S' = U' + V'$ so that $\sigma$ is indeed a dilatation.
+\end{proof}
+
+\begin{problem}
+Let $\tau$ be a translation and let $\alpha \in k$ satisfy $\tau^{\alpha} = 1$. Show that $\tau = 1$ or $\alpha = 0$.
+\end{problem}
+\begin{proof}
+Suppose that $\alpha \neq 0$ and let $P$ be a point. Then there exists a unique dilatation $\sigma$ fixing $p$ such that $\sigma \tau \sigma^{-1} = \tau^{\alpha} = 1$. Multiplying on the left by $\sigma^{-1}$ and on the right by $\sigma$ gives us $\tau = 1$.
+\end{proof}
+
+\begin{problem}
+Fix a point $P$. For each $\alpha \in k^{\times}$, there is a unique dilatation $\sigma_{\alpha}$ fixing $P$ and satisfying $\tau^{\alpha} = \sigma_{\alpha} \tau \sigma_{\alpha}^{-1}$ for all translations $\tau$. Show that the assignment $\alpha \mapsto \sigma_{\alpha}$ gives a group isomorphism from $k^{\times}$ to the group $D_P$ of dilatations fixing $P$.
+\end{problem}
+\begin{proof}
+Let $\alpha, \beta \in k^{\times}$. Then we have
+\[
+\sigma_{\alpha \beta} \tau \sigma_{\alpha \beta}^{-1} = \tau^{\alpha \beta} = (\tau^{\beta})^{\alpha} = (\sigma_{\beta} \tau \sigma_{\beta}^{-1})^{\alpha} = \sigma_{\alpha} \sigma_{\beta} \tau \sigma_{\beta}^{-1} \sigma_{\alpha}^{-1} = \sigma_{\alpha} \sigma_{\beta} \tau (\sigma_{\alpha} \sigma_{\beta})^{-1}.
+\]
+Since $\sigma_{\alpha}$ is uniquely determined by $P$ and $\alpha$ we have $\sigma_{\alpha \beta} = \sigma_{\alpha} \sigma_{\beta}$ and this map is a homomorphism. Furthermore we know for each $\alpha$, $\sigma_{\alpha}$ is uniquely determined and so the map is injective. Finally if we're given a dilatation $\sigma$ fixing $P$ then a translation $\tau$ and $\sigma \tau \sigma^{-1}$ have the same direction so this is a trace preserving homomorphism and is given by some element $\alpha \in k^{\times}$. Thus the map is also surjective and therefore an isomorphism.
+\end{proof}
+
+\begin{problem}
+Show that the cyclotomic polynomial $\Phi_d(x)$ has integer coefficients. Recall that $\Phi_d(x)$ is the product of $(x - \omega)$ over all primitive $d$th roots of unity $\omega$.
+\end{problem}
+\begin{proof}
+We induct on $d$. $\Phi_1 = x-1$ so the result holds for $d = 1$. Suppose that $\Phi_k (x) \in \mathbb{Z}[x]$ for all $1 \leq k < d$. Then $x^d - 1 = f(x) \Phi_d(x)$ where $f(x) = \prod_{k \mid d, k < d} \Phi_k (x)$ is monic and has coefficients in $\mathbb{Z}$. So now we have that $f(x) \mid x^d - 1$ in $\mathbb{C}[x]$, but by assumption $f(x)$ and $x^d - 1$ both have coefficients in $\mathbb{Q}$ so by the uniqueness of the division algorithm we see that $f(x)$ divides $x^d - 1$ in $\mathbb{Q}[x]$. But since $\mathbb{Q}$ is the field of fractions for $\mathbb{Z}$, using Gauss' Lemma we have $f(x)$ divides $x^d-1$ in $\mathbb{Z}[x]$ so $\Phi_d(x) \in \mathbb{Z}[x]$.
+\end{proof}
+
+\end{document}

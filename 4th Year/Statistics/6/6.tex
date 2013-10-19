@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage,graphicx}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\var}{\textup{Var}}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+STAT 24400\\
+
+November 11, 2010
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{problem}
+Let $X_i$ be as in Problem 5.1 but with $E(X_i) = \mu_i$ and $n^{-1} \sum_{i=1}^n \mu_i \rightarrow \mu$. Show that $\overline{X} \rightarrow \mu$ in probability.
+\end{problem}
+\begin{proof}
+By Chebyshev's inequality we have
+\[
+P(|X_i - \mu_i| > \varepsilon) \leq \frac{\var(X_i)}{\varepsilon^2}
+\]
+for each $i$ and therefore we have
+\[
+P \left ( \left | \frac{1}{n} \sum_{i=1}^n X_i - E \left ( \frac{1}{n} \sum_{i=1}^n X_i \right ) \right | > \varepsilon \right ) \leq \frac{1}{\varepsilon^2} \var \left ( \frac{1}{n} \sum_{i=1}^n X_i \right ).
+\]
+Reducing both sides and noting $E(X_i) = \mu_i$, we have
+\[
+P \left ( \left | \overline{X}_n - \frac{1}{n} \sum_{i=1}^n \mu_i \right | > \varepsilon \right ) \leq \frac{1}{(\varepsilon n)^2} \sum_{i=1}^n \var(X_i).
+\]
+From Problem 5.1, $n^{-2} \sum_{i=1}^n \var(X_i) \rightarrow \sigma^2$, and we know $n^{-1} \sum_{i=1}^n \mu_i \rightarrow \mu$. Thus, as $n \rightarrow \infty$, both sides of this inequality reduce to
+\[
+P(|\overline{X}_n - \mu| > \varepsilon) \leq \frac{\sigma^2}{n\varepsilon^2}
+\]
+and the righthand side goes to $0$. Thus $\overline{X} \rightarrow \mu$ in probability.
+\end{proof}
+
+\begin{problem}
+Suppose that the number of insurance claims, $N$, filed in a year is Poisson distributed with $E(N) = 10,000$. Use the normal approximation to the poisson to approximate $P(N > 10,200)$.
+\end{problem}
+
+We use standardization so we have
+\[
+P(N > 10200) = P \left ( \frac{N - 10000}{\sqrt{10000}} > \frac{10200 - 10000}{\sqrt{10000}} \right ) \approx 1 - \Phi (2) = .0228
+\]
+
+\begin{problem}
+Show that if $X_n \rightarrow c$ in probability and if $g$ is a continuous function, then $g(X_n) \rightarrow g(c)$ in probability.
+\end{problem}
+\begin{proof}
+Since $X_n \rightarrow c$ in probability we know for each $\varepsilon > 0$ $P(|X_n - c| > \varepsilon) \rightarrow 0$. Since $g$ is continuous we know for each $\eta > 0$ there is some $\delta > 0$ such that for each $X_i$ we have $|X_n - c| < \delta$ implies $|g(X_n) - g(c)| < \eta$. Thus for each $X_i$, we see that $|g(X_i) - g(c)|$ is bounded given that $|X_i - c|$ can be bounded. Since $P(|X_n - c| > \varepsilon) \rightarrow 0$, we then know that $P(|g(X_n) - g(c)| > \varepsilon) \rightarrow 0$ as well.
+\end{proof}
+
+\begin{problem}
+A skeptic gives the following argument to show that there must be a flaw in the central limit theorem: ``We know that the sum of independent Poisson random variables follows a Poisson distribution with a parameter that is the sum of the parameters of the summands. In particular, if $n$ independent Poisson random variables, each with parameter $n^{-1}$, are summed, the sum has a Poisson distribution with parameter $1$. The central limit theorem says that as $n$ approaches infinity, the distribution of the sum tends to be a normal distribution, but the Poisson with parameter $1$ is not the normal.'' What do you think of this argument?
+\end{problem}
+
+The argument can be stated as follows. Fix $n$, and let $X_1, \dots , X_n$ be $n$ independent Poisson random variables with parameter $n^{-1}$. As it's stated, the central limit theorem doesn't apply because we need an infinite sequence of random variables, but we only have $n$. We can try to increase the number of variables $n$, but to keep the conditions on the parameter, we must also decrease the parameter $n^{-1}$. As $n \rightarrow \infty$, $n^{-1} \rightarrow 0$ so once we have a sequence of such variables, they have parameter $0$, which is no longer a Poisson distribution.
+
+Essentially, this argument is invalid because you can't vary your parameter as you increase your sequence of variables. You must start with a sequence of variables with fixed parameters.
+
+\begin{problem}
+Suppose that $X_1, \dots , X_{20}$ are independent random variables with density functions
+\[
+\begin{tabular}{cc}
+$f(x) = 2x$, & $0 \leq x \leq 1$.
+\end{tabular}
+\]
+Let $S = X_1 + \dots + X_{20}$. Use the central limit theorem to approximate $P(S \leq 10)$.
+\end{problem}
+
+From the last homework we know $E(X_i) = \frac{2}{3}$ and $\var(X_i) = \frac{1}{18}$. Then $E(S - 40/3) = E(S) - 40/3 = 20 E(X_i) - 40/3 = 0$ and $\var(S - 40/3) = \var(S) = 20/18$. Then the central limit theorem says
+\begin{align*}
+P(S \leq 10)
+&= P \left ( S - \frac{40}{3} \leq 10 - \frac{40}{3} \right )\\
+&= P \left ( \frac{S - \frac{40}{3}}{\sqrt{\frac{20}{18}} \sqrt{20}} \leq \frac{10 - \frac{40}{3}}{\sqrt{\frac{20}{18}} \sqrt{20}} \right )\\
+&\approx \Phi \left ( \frac{10 - \frac{40}{3}}{\sqrt{\frac{20}{18}} \sqrt{20}} \right )\\
+&= \Phi \left ( \frac{-1}{\sqrt{2}} \right )\\
+&\approx \Phi(-.707)\\
+&\approx .2206.
+\end{align*}
+
+\begin{problem}
+Suppose that a company ships packages that are variable in weight, with an average weight of $15$ lb and a standard deviation of $10$. Assuming that the packages come from a large number of different customers so that it is reasonable to model their weights as independent random variables, find the probability that $100$ packages will have a total weight exceeding $1700$ lb.
+\end{problem}
+
+Let $X_i$ be the weight of a given package so that $E(X_i) = 15$ and $\var(X_i) = 100$. Let $S_n = \sum_{i=1}^{n} X_i$. We want to find $P(S_n \geq 1700)$. By the central limit theorem this is
+\begin{align*}
+P(S_n - 100 \cdot 15 \geq 1700 - 100 \cdot 15)
+&= P \left ( \frac{S_n - 100 \cdot 15}{10 \cdot \sqrt{100}} \geq \frac{1700 - 100 \cdot 15}{10 \cdot \sqrt{100}} \right )\\
+&= 1 - P \left ( \frac{S_n - 1500}{100} \leq \frac{200}{100} \right )\\
+&\approx 1 - \Phi \left ( \frac{200}{100} \right )\\
+&= 1 - \Phi(2)\\
+&\approx .0228.
+\end{align*}
+
+\begin{problem}
+Suppose that $X$ is a discrete random variable with
+\[
+P(X = 0) = \frac{2}{3} \theta
+\]
+\[
+P(X = 1) = \frac{1}{3} \theta
+\]
+\[
+P(X = 2) = \frac{2}{3} (1 - \theta)
+\]
+\[
+P(X = 3) = \frac{1}{3} (1 - \theta)
+\]
+where $0 \leq \theta \leq 1$ is a parameter. The following $10$ independent observations were taken from such a distribution: $(3, 0, 2, 1, 3, 2, 1, 0, 2, 1)$.\\
+(e) If the prior distribution of $\Theta$ is uniform on $[0,1]$, what is the posterior density? Plot it. What is the mode of the posterior?
+\end{problem}
+
+We can write the prior density as
+\[
+f_{X_i \mid \Theta} (x_i \mid \theta) =
+\begin{cases}
+\frac{2}{3} \theta & x_i = 0\\
+\frac{1}{3} \theta & x_i = 1\\
+\frac{2}{3} \theta & x_i = 2\\
+\frac{1}{3} \theta & x_i = 3
+\end{cases}.
+\]
+The total joint density for the experiment is given (by independence) as the product of each of the marginal densities for each $X_i$. Since we know the numbers of each possible instance of $x_i$, we can now write this product as
+\[
+f_{X \mid \Theta} (x \mid \theta) = \left ( \frac{2}{3} \theta \right )^2 \left ( \frac{1}{3} \theta \right )^3 \left ( \frac{2}{3} (1 - \theta) \right )^3 \left ( \frac{1}{3} (1 - \theta) \right )^2 = \frac{32}{59049} (1-\theta)^5 \theta^5.
+\]
+The posterior density is given by
+\[
+f_{\Theta \mid X}(\theta \mid x) = \frac{f_{X \mid \Theta}(x \mid \theta) f_{\Theta}(\theta)}{\int f_{X \mid \Theta}(x \mid \theta) f_{\theta}(\theta) d \theta} = \frac{(1-\theta)^5 \theta^5}{\int_0^1 (1-\theta)^5 \theta^5 d \theta} = 2772 (1-\theta)^5 \theta^5 = \frac{\Gamma(6 + 6)}{\Gamma(6) \Gamma(6)} (1-\theta)^5 \theta^5
+\]
+so this is a beta distribution with parameters $6$ and $6$. The following is a plot of $f_{\Theta \mid X}$.
+\begin{center}
+\includegraphics[width=300pt]{plot.pdf}
+\end{center}
+To find the mode we must maximize $f_{\Theta \mid X}(\theta \mid x) = 2772 (1-\theta)^5 \theta^5$. Taking the derivative we have
+\[
+f_{\Theta \mid X}'(\theta \mid x) = 13860 ((1-\theta)^5 \theta^4 - (1-\theta)^4 \theta^5)
+\]
+and setting this equal to zero gives the maximum at $\theta = 1/2$.
+
+\begin{problem}
+Suppose that $X$ follows a geometric distribution,
+\[
+P(X = k) = p(1-p)^{k-1}
+\]
+and assume an i.i.d. sample of size $n$.\\
+(d) Let $p$ have a uniform prior distribution on $[0,1]$. What is the posterior distribution of $p$? What is the posterior mean?
+\end{problem}
+
+Let $X_1, \dots , X_n$ be the $n$ i.i.d. observations. Then for an arbitrary $X_i$, we have the distribution
+\[
+f_{X_i \mid p} (x_i \mid p) = p(1-p)^{x_i - 1}.
+\]
+By independence, the joint distribution is the product of the marginals
+\[
+f_{X \mid p} (x \mid p) = p^n(1-p)^{\sum_{i=1}^n x_i - n}.
+\]
+The posterior distribution is then given by
+\begin{align*}
+f_{p \mid X}(p \mid x)
+&= \frac{(1-p)^{\sum_{i=1}^n x_i - n}f_p(p)}{\int (1-p)^{\sum_{i=1}^n x_i - n} f_p(p)dp}\\
+&= \frac{(1-p)^{\sum_{i=1}^n x_i - n}}{\int_0^1 (1-p)^{\sum_{i=1}^n x_i - n}dp}
+\end{align*}
+where $0 \leq p \leq 1$. But now note that the denominator is $B \left (1, 1 - n + \sum_{i=1}^n x_i \right )$, where $B(\alpha, \beta)$ is the beta function. Thus, the $f_{p \mid X}$ is a beta distribution with parameters $1$ and $1 - n + \sum_{i=1}^n x_i$.
+
+The posterior mean for a beta distribution with parameters $\alpha$ and $\beta$ is given by $\alpha/(\alpha + \beta)$. So in our case
+\[
+\mu = \frac{1}{2 - n + \sum_{i=1}^n x_i}.
+\]
+
+\end{document}

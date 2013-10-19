@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{40pt}
+\renewcommand{\textheight}{590pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\normal}{\unlhd}
+\newcommand{\aut}{\textup{Aut}}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25700\\December 2, 2009\\}
+\chead{Homework 7\\}
+
+\begin{problem}[6.1.1]
+Prove that $Z_i(G)$ is a characteristic subgroup of $G$ for all $i$.
+\end{problem}
+\begin{proof}
+We proceed by induction on $i$. In the base case we know that the trivial subgroup is preserved by any automorphism of $G$, so $Z_0$ char $G$. Assume that $Z_i(G)$ char $G$ and let $\varphi \in \aut(G)$. This naturally induces a function $\varphi' : G/Z_i(G) \to G/Z_i(G)$ defined by $\varphi'(xZ_i(G)) = \varphi(x)Z_i(G)$. Note that this function is a homomorphism because
+\begin{align*}
+\varphi'(xZ_i(G)yZ_i(G))
+&= \varphi'(xyZ_i(G))\\
+&= \varphi(xy)Z_i(G)\\
+&= \varphi(x)\varphi(y)Z_i(G)\\
+&= \varphi(x)Z_i(G) \varphi(y)Z_i(G)\\
+&= \varphi'(xZ_i(G))\varphi'(yZ_i(G)).
+\end{align*}
+It's also clearly surjective since $\varphi$ is an automorphism of $G$. Now suppose $\varphi'(aZ_i(G)) = \varphi'(bZ_i(G))$. Then we have $\varphi(a)Z_i(G) = \varphi(b)Z_i(G)$ and $\varphi(b^{-1}a) \in Z_i(G)$. Thus $b^{-1}a \in \varphi^{-1}(Z_i(G))$ But by our inductive hypothesis, $\varphi^{-1}(Z_i(G)) = Z_i(G)$ and so $b^{-1}a \in Z_i(G)$. Therefore $aZ_i(G) = bZ_i(G)$ and so $\varphi'$ must be injective. Now note that $Z(G/Z_i(G))$ is characteristic and so $\varphi'(Z_{i+1}(G)/Z_i(G)) = Z_{i+1}(G)/Z_i(G)$. Thus, if $x \in Z_{i+1}$ then $\varphi(x)Z_i = \varphi'(xZ_i) = yZ_i$ for some $y \in Z_{i+1}$. Hence $\varphi(x) \in Z_{i+1}$ and $Z_{i+1}$ char $G$.
+\end{proof}
+
+\begin{problem}[6.1.3]
+If $G$ is finite prove that $G$ is nilpotent if and only if it has a normal subgroup of each order dividing $|G|$, and is cyclic if and only if it has a unique subgroup of each order dividing $|G|$.
+\end{problem}
+\begin{proof}
+Suppose $G$ has a normal subgroup of each order dividing $|G|$. Then every Sylow $p$-subgroup of $G$ is normal in $G$ and $G$ is nilpotent. Now suppose that $G$ is nilpotent and has Sylow $p$-subgroups $P_i$ for $1 \leq i \leq s$ so that $|G| = p_1^{a_1} \dots p_s^{a_s}$. Then $G \cong P_1 \times \dots \times P_s$. But each $P_i$ has a normal subgroup of order $p_i^{b}$ for each $1 \leq b \leq a_i$. Now let $k \mid |G|$ such that $k = p_1^{b_1} \dots p_s^{b_s}$. We simply take $N = N_1 \times \dots \times N_s$ where $N_i \normal P_i$ and $|N_i| = p_i^{b_i}$. Clearly $N$ has the appropriate order, but we also have $N \normal G$ since multiplication is performed coordinate-wise and each $N_i \normal P_i$.
+
+Now suppose that $G$ is cyclic. Then we know that $G$ has a unique subgroup of each order dividing the order of $G$. On the other hand, if $G$ has a unique subgroup of each order $n$ dividing the order of $G$, then each of these subgroups must contain all elements of $G$ such that $x^n = 1$. Otherwise $\langle x \rangle$ would form another subgroup of order $n$. Thus for each $n$ dividing $|G|$ there are at most $n$ elements with $x^n = 1$. Therefore $G$ is cyclic.
+\end{proof}
+
+\begin{problem}[6.1.6]
+Show that if $G/Z(G)$ is nilpotent then $G$ is nilpotent.
+\end{problem}
+\begin{proof}
+We first show that $[G/Z(G), G^n/Z(G)] = [G, G^n]/Z(G)$. Let $\varphi : [G, G^n] \to [G/Z(G), G^n/Z(G)]$ be defined so that $\varphi(x^{-1}y^{-1}xy) = (x^{-1}y^{-1}xy)Z(G)$. Then $\varphi$ is a homomorphism because if $z_1 = x_1^{-1}y_1^{-1}x_1y_1$ and $z_2 = x_2^{-1}y_2^{-1}x_2y_2$ then $\varphi(z_1z_2) = z_1z_2Z(G) = z_1Z(G)z_2Z(G) = \varphi(z_1)\varphi(z_2)$. Furthermore, if $\varphi(x^{-1}y^{-1}xy) = Z(G)$, then $x^{-1}y^{-1}xy \in Z(G)$ and conversely if $x^{-1}y^{-1}xy \in Z(G)$ then $\varphi(x^{-1}y^{-1}xy) = x^{-1}y^{-1}xyZ(G) = Z(G)$. Thus $\ker \varphi = Z(G)$. Finally, since elements of the form $x^{-1}y^{-1}xy$ are generators of $[G, G^n]$ and $x^{-1}y^{-1}xyZ(G)$ are generators of $[G/Z(G), G^n/Z(G)]$, we see that $\varphi([G, G^n]) = [G/Z(G), G^n/Z(G)]$. Thus by the First Isomorphism Theorem we have $[G/Z(G), G^n/Z(G)] = [G, G^n]/Z(G)$.
+
+Now we proceed by induction on $n$ to show that $G^n/Z(G) = (G/Z(G))^n$. If $n = 0$ the result is clearly true as $G^0 = G$ and $(G/Z(G))^0 = G/Z(G)$. Suppose the result is true for some $n$. Now using this assumption and the above result we have
+\[
+(G/Z(G))^{n+1} = [G/Z(G), (G/Z(G))^n] = [G/Z(G), G^n/Z(G)] = [G, G^n]/Z(G) = G^{n+1}/Z(G).
+\]
+Since $G/Z(G)$ is nilpotent, we know it's lower central series terminates in $(G/Z(G))^n = 1$ for some $n$. But now this is the same as saying $G^n/Z(G) = 1$, or alternatively, $G = Z(G)$ and $G$ is abelian. Thus $G$ is nilpotent as well.
+\end{proof} 
+
+\begin{problem}[6.1.8]
+Prove that $p$ is a prime and $P$ is a non-abelian group of order $p^3$ then $|Z(P)| = p$ and $P/Z(P) \cong Z_p \times Z_p$.
+\end{problem}
+\begin{proof}
+Note that $|Z(P)| \neq p^3$ because $P$ is nonabelian, $|Z(P)| \neq 1$ by Cauchy's Theorem and $|Z(P)| \neq p^2$ because othewise $|P/Z(P)| = p$ and $P$ would be abelian. Thus $|Z(P)| = p$. Also note that if $P/Z(P) \cong Z_{p^2}$ then once again $P$ would be abelian as $Z_{p^2}$ is cyclic. Thus $P/Z(P) \cong Z_p \times Z_p$.
+\end{proof}
+
+\begin{problem}[6.1.12]
+Find the upper and lower central series for $A_4$ and $S_4$.
+\end{problem}
+\begin{proof}
+We have $Z_0(A_4) = 1$ and $Z_1(A_4) = 1$ which means $Z_n(A_4) = 1$ for all $0 \leq n$. On the other hand $A_4^0 = A_4$ and $A_4^1 = [A_4, A_4] = \langle (12)(34), (13)(24) \rangle$. Now $A_4^2 = [A_4, A_4^1]$. Since $A_4^1 \normal A_4$ we know that $[A_4, A_4^1] \leq A_4^1$. But $(12)(34)(132)(12)(34)(123) = (14)(23)$ which shows that we can write every element of $A_4^1$ as a commutator in $[A_4, A_4^1]$. Therefore $A_4^n = \langle (12)(34), (13)(24) \rangle$ for $n \geq 1$.
+
+Now $Z_0(S_4) = 1$ and $Z_1(S_4) = 1$ which means $Z_n(S_4) = 1$ for all $0 \leq n$. On the other hand $S_4^0 = S_4$ and $S_4^1 = [S_4, S_4] = A_4$. Now $S_4^2 = [S_4, A_4] = A_4$ since $(ab)(abc)(ab)(acb) = (abc)$ shows that any $3$-cycle can be written as a commutator. Since $3$-cycles generate $A_4$, we have $S_4^n = A_4$ for all $n \geq 1$.
+\end{proof}
+
+\begin{problem}[6.1.21]
+\label{fchar}
+Prove that $\Phi(G)$ is a characteristic subgroup of $G$.
+\end{problem}
+\begin{proof}
+Let $M < G$ be a maximal subgroup and let $\varphi \in \aut(G)$. Then $\varphi(M)$ is also a proper subgroup of $G$. Suppose there exists a proper subgroup $H < G$ such that $\varphi(M) < H$. Since $\varphi$ is an automorphism we know $\varphi^{-1}(H)$ is a subgroup. Furthermore, if $m \in M$ then $\varphi(m) \in H$ and so $\varphi^{-1}(\varphi(m)) \in \varphi^{-1}(H)$. Thus $m \in \varphi^{-1}(H)$. Once again, since $\varphi$ is an automorphism all inclusions are proper. But this contradicts the maximality of $M$ since now $M < \varphi^{-1}(H) < G$. Thus $\varphi(M)$ is also a maximal subgroup of $G$. Now let the maximal subgroups of $G$ be indexed $M_i$. Note that since $\varphi$ is injective, we have
+\[
+\varphi(\Phi(G)) = \varphi \left ( \bigcap_i M_i \right ) = \bigcap_i \varphi(M_i).
+\]
+And by the above argument for each $i$ $\varphi(M_i) = M_j$ for some $j$. Thus since $\varphi$ is an automorphism we may write $\bigcap_i \varphi(M_i) = \bigcap_i M_i$. Thus $\varphi(\Phi(G)) = \Phi(G)$ and this subgroup is characteristic.
+\end{proof}
+
+\begin{problem}[6.1.26a]
+Let $p$ be a prime, let $P$ be a finite $p$-group and let $\overline{P} = P/\Phi(P)$.\\
+(a) Prove that $\overline{P}$ is an elementary abelian $p$-group.
+\end{problem}
+\begin{proof}
+First let $M < P$ be a maximal subgroup of $P$. We know that $|P : M| = p$ and $M \normal P$. Thus $P/M \cong Z_p$ and is thus abelian. Therefore $P' \leq M$. Since this is true of every maximal subgroup we must have $P' \leq \Phi(P)$. Now choose some element $x \notin M$. Then note that $x \notin \langle M , x^p \rangle$ since $p$ is prime. Thus $\langle M, x^p \rangle$ is proper subgroup of $G$ and so it must be the case that $x^p \in M$. In the case that $x \in M$ we clearly have $x^p \in M$. Thus $x^p$ is in every maximal subgroup for every element $x$ and therefore $x^p \in \Phi(P)$. Now we know $\overline{P}$ is abelian (since $P' \leq \Phi(P)$ and $\Phi(P) \normal P$ by Problem~\ref{fchar}) and every element of $\overline{P}$ has order $p$ (since $x^p \in \Phi(P)$ for all $x$ so $|x\Phi(P)| = p$). Thus $\overline{P}$ must be an elementary abelian $p$-group.
+\end{proof}
+
+\begin{problem}[6.2.2]
+In the group $S_3 \times S_3$ exhibit a pair of Sylow $2$-subgroups that intersect in the identity and exhibit another pair that intersect in a group of order $2$.
+\end{problem}
+\begin{proof}
+Take the pair $\langle (12) \rangle \times \langle (23) \rangle$ and $\langle (23) \rangle \times \langle (12) \rangle$. These groups each have order $4$ and so they are Sylow $2$-subgroups of $S_3 \times S_3$. But they must intersect in the identity since each of the coordinates intersect in the identity.
+
+Now consider $\langle (12) \rangle \times \langle (12) \rangle$ and $\langle (12) \rangle \times \langle (23) \rangle$. These groups each have order $4$ and so they are Sylow $2$-subgroups of $S_3 \times S_3$. But they must intersect in a group of order $2$ since the second coordinate intersects trivially. Thus, all that's left in the intersection is $\langle (12) \rangle \times 1$.
+\end{proof}
+
+\begin{problem}[6.2.6]
+Prove that there are no simple groups of order $2205$, $4125$, $5103$, $6545$, $6435$.
+\end{problem}
+\begin{proof}
+We prove the case where a group $G$ has order $5103$. This has factorization $3^6 \cdot 7$. Possibilities for $n_3$ are $1$ and $7$ and possibilities for $n_7$ are $1$ and $729$. Note that the smallest integer $k$ for which $|G| \mid k!$ is $12$. Thus, if $G$ is to be simple there are no subgroups of $G$ with index less than $12$, otherwise we would obtain a permutation representation with a nontrivial kernel, which would then be normal in $G$. But note that if $n_3 = 7$ we would have $|G : N_G(P)| = 7$ for some Sylow $3$-subgroup $P$. Therefore for $G$ to be simple we must have $n_3 = 1$, which immediately produces a normal Sylow $3$-subgroup proving that $G$ is in fact not simple.
+\end{proof}
+
+\begin{problem}[6.2.10]
+Prove that there are no simple groups of order $4095$, $4389$, $5113$ or $6669$.
+\end{problem}
+\begin{proof}
+We prove the case where a group $G$ has order $5313$. This has factorization $3 \cdot 7 \cdot 11 \cdot 23$. Possibilities for $n_7$ are $1$ or $253$ and possibilities for $n_11$ are $1$ or $23$. Now let $Q \in Syl_11(G)$. Supposing that $G$ is not simple, we have $n_11 = 23$ which means $|N_G(Q)| = 231$. Since $7 \mid 231$ we have a subgroup $P \leq N_G(Q)$ with $|P| = 7$. This shows that $PQ$ is a group with order $7 \cdot 11 = 77$. Since $7 \nmid 11$ we know that $PQ$ is cyclic and therefore abelian. This means $PQ \leq N_G(P)$ and $11 \mid |N_G(P)|$. But if $G$ is to be simple, $n_7 = 253$ which means $|N_G(P)| = 21$. But $11 \nmid 21$ which is a contradiction. Therefore $G$ cannot be simple.
+\end{proof}
+
+\begin{problem}[6.2.13]
+Let $G$ be a group with more than one Sylow $p$-subgroup. Over all pairs of distinct Sylow $p$-subgroups let $P$ and $Q$ be chosen so that $|P \cap Q|$ is maximal. Show that $N_G(P \cap Q)$ has more than one Sylow $p$-subgroup and that any two distinct Sylow $p$-subgroups of $N_G(P \cap Q)$ intersect in the subgroup $P \cap Q$. (Thus $|N_G(P \cap Q)|$ is divisible by $p \times |P \cap Q|$ and by some prime other than $p$. Note that Sylow $p$-subgroups of $N_G(P \cap Q)$ need not be Sylow in $G$.)
+\end{problem}
+\begin{proof}
+Let $N = N_G(P \cap Q)$. Note that since $P$ is a $p$-group, $P \cap Q < N_P(P \cap Q) \leq N$ so it can't be the case that $P \cap Q \in Syl_p(N)$.  We claim that $P \cap N \in Syl_p(N)$. Clearly $P \cap N$ is a $p$-group since it's order must divide $|P|$. Suppose that $P \cap N < R$ where $R \in Syl_p(N)$. Then $R$ is a $p$-group and so $R \leq R'$ where $R' \in Syl_p(G)$. Thus $P \cap Q < P \cap R \leq P \cap R'$. But then $|P \cap Q| < |P \cap R'|$ which contradicts the choice of $P$ and $Q$. Thus $P \cap N$, and similarly $Q \cap N$, are Sylow $p$-subgroups of $N$. Suppose now that $P \cap N = Q \cap N$. Then $(P \cap N) \cap Q = (Q \cap N) \cap Q = Q \cap N$ and $Q \cap N = P \cap Q = Q \cap N$. But we've already shown that $P \cap Q$ isn't a Sylow $p$-subgroup of $N$ while $P \cap N$ is. Thus it can't be the case that $P \cap N = Q \cap N$, which shows that there are two distinct Sylow $p$-subgroups of $N$, namely $P \cap N$ and $Q \cap N$.
+
+We know $P \cap Q$ is a $p$-group and thus if $R \in Syl_p(N)$, $x(P \cap Q)x^{-1} \leq R$ for some $x \in N$. That is, for every Sylow $p$-subgroup $R \leq N$, $P \cap Q$ is a subgroup of some conjugate of $R$, or more helpfully, some conjugate of $P \cap Q$ is a subgroup of $R$. But since $P \cap Q$ is clearly in $N$, we simply have $x(P \cap Q)x^{-1} = P \cap Q$ so $P \cap Q \leq R$ for all $R \in Syl_p(N)$. Therefore if $R, S \in Syl_p(N)$ we have $P \cap Q \leq R \cap S$.
+
+Now take $R, S \in Syl_p(N)$ distinct. There exists $x \in N$ such that $P \cap N = xRx^{-1}$ and so let $S' = xSx^{-1}$. Since $x(P \cap Q)x^{-1} = P \cap Q$, without loss of generality we can simply show $(P \cap N) \cap S' \leq P \cap Q$ to finish the proof. Suppose this is not the case. Then $P \cap Q < (P \cap N) \cap S'$ by the above inclusion. Once again, we know there exists a Sylow $p$-subgroup of $G$, $S''$, such that $S' \leq S''$. Note that $S'' \neq P$ because otherwise $S' \leq P$ and $P \cap N \leq P$. But then $P \cap Q < (P \cap N) \cap S' \leq P \cap S''$ which means $|P \cap Q| < |P \cap S''|$, contradicting the maximality of $|P \cap Q|$. Thus we must have $(P \cap N) \cap S' \leq P \cap Q$. Since both inclusions have been shown, we have $R \cap S = P \cap Q$ for any two Sylow $p$-subgroups $R$ and $S$ of $N$.
+\end{proof}
+
+\begin{problem}[6.3.2]
+Prove that if $|S| > 1$ then $F(S)$ is non-abelian.
+\end{problem}
+\begin{proof}
+Let $\{a, b\} \subseteq S$. We show that $a^{-1}b^{-1}ab \neq 1$ by showing that $a^{-1}b^{-1}ab$ is in reduced form. Note that $a \neq b^{-1}$ and $b \neq a^{-1}$. Thus $a^{-1}b^{-1}ab$ is in reduced form and $F(S)$ is nonabelian.
+\end{proof}
+
+\end{document}

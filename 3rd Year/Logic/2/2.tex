@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,MnSymbol,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27700\\
+
+October 12, 2009
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{problem}
+(a) The wff $A$ is \emph{satisfiable} if it has at least one model. Show that $A$ is satisfiable iff $\neg A$ is not valid.\\
+(b) If the wff $A$ is satisfiable and the set $\mathcal{S}$ of basic sentence symbols is countably infinite, then the set of all models of $A$ has the cardinality of the continuum.
+\end{problem}
+\begin{proof}
+(a) Assume that $\neg A$ is not valid. Then there exists some model $M$ such that $\neg A$ is not true in this model. But $A = \neg (\neg A)$ and since $M \nmodels \neg A$, we must have $M \models A$. Therefore $A$ is satisfiable. Conversely, suppose that $A$ is satisfiable. Then there exists $M \subseteq \mathcal{S}$ such that $M \models A$. But then we know that $M \nmodels \neg A$. Thus $A$ is not valid since it is not true in every model.
+
+(b) Since $A$ is satisfiable, there exists $M \subseteq \mathcal{S}$ such that $M \models A$. We can argue that $M \subseteq \text{sup}(A)$. To see this, note that $M \models A$ is defined recursively based on elements of $M$. That is, $A$ can be broken down using formula building functions until only elements of $\text{sup}(A)$ remain. At this point we see that $M$ can be a finite set. Now let $M' \subseteq \mathcal{S} \backslash \text{sup}(A)$. We know $M'$ will always be nonempty because $\mathcal{S}$ is countably infinite and $\text{sup}(S)$ is finite. But then $M \cup M' \models A$ as well. Since $M'$ can be all but finitely many subsets of $\mathcal{S}$, and $\mathcal{S}$ is countably infinite, we know that the number of models of $A$ must have at least the cardinality of the continuum. On the other hand, a model is always a subset of $\mathcal{S}$ and there are $|\mathcal{P}(\mathcal{S})|$ subsets of $\mathcal{S}$. But is also the cardinality of the continuum. Thus, the number of models of $A$ must have the cardinality of the continuum.
+\end{proof}
+
+\begin{problem}
+Let $R = \{M_1, \dots, M_n\}$ be a finite set of models (recall this means that $M_i \subseteq \mathcal{S}$ for each $i$). Show that there is a set $T$ of well formed formulas such that $R$ is the set of all models of $T$.
+\end{problem}
+\begin{proof}
+We can assume that each $M_i$ is nonempty. Otherwise, $M_i$ is not a model of any wff. Choose a sentence symbol $S_i$ for each $M_i$. This symbol need not be distinct. Let
+\[
+T = \bigcap_{i=1}^{n} M_i \cup \{\bigvee_{i=1}^{n} S_i \} \cup \mathcal{S} \backslash \left ( \bigcup_{i=1}^{n} M_i \right ).
+\]
+Now consider some $M_i$. Note that $T$ only consists of sentence symbols from $\mathcal{S}$ as well as the middle term in the equation for $T$, which we'll call $S$. Since each element of $T$, except $S$, is in $M_i$, and $M_i \models S$, we see that $M_i \models T$. We need $S$ in the formula for $T$ in the case that some $M_i$ is disjoint from the others.
+
+On the other hand, take some arbitrary subset $M \subseteq \mathcal{S}$ such that $M \neq M_i$ for any $i$. Then either $M = \emptyset$ in which case it doesn't model anything, or $M$ contains some element in the union of all $M_i$, but not in the intersection. But then there exists $S_i \in T$ such that $S_i \notin M$. This shows that $R$ is the set of all models for $T$.
+\end{proof}
+
+\begin{problem}
+Continue in the framework of Problem 2.\\
+(a) Can $T$ be chosen to be finite?\\
+(b) Give an example of a set of wffs $T$ such that the set of all models of $T$ is countably infinite.
+\end{problem}
+\begin{proof}
+(a) Suppose $T$ is finite. Then since $\mathcal{S}$ is countably infinite, there exists some sentence symbol $S_i$ such that $S_i \notin \text{sup}(A)$ for all $A \in T$. Consider $M \subseteq S$ such that $M = M_i \cup \{S_i\}$ for some $M_i \in R$ (there exists some set $R$ of models for which we can always do this). Then $M \models T$ as well since $M_i$ models $T$ and $T$ is independent of $S_i$. This shows that $T$ cannot be finite as long as $\mathcal{S}$ is countably infinite.
+
+(b) If $\mathcal{S} = \{S_1, S_2, \dots\}$ then let $T = \{t_1, t_2, \dots\}$ where
+\[
+t_i = (S_1 \wedge \neg S_2 \wedge \dots \wedge \neg S_i) \vee (S_1 \wedge S_2 \wedge \neg S_3 \wedge \dots \wedge \neg S_i) \vee \dots \vee (S_1 \wedge S_2 \wedge \dots S_i).
+\]
+We claim the set of models for $T$ is the set
+\[
+R = \bigcup_i \left \{  \bigcup_{j=1}^i \{ S_j \} \right \}.
+\]
+Take $M_i = \{S_1, S_2, \dots , S_i\}$ in $R$. Now take an arbitrary element of $T$, $t_i$. Since $S_1 \in M_i$, we know that $M_i \models t_1$. Thus, any $M_i \in R$ is a model for $T$. On the other hand, take some arbitrary model $M \subseteq \mathcal{S}$. If $M \notin R$ then there exists $S_i \in \mathcal{S}$ such that $S_i \notin M$ but some $S_j \in M$ for $i < j$ . Now take $t_{j+1}$. We see that $M \nmodels t_{j+1}$ since $t_{j+1}$ contains no terms $S_1 \wedge \dots \wedge \neg S_i \wedge \dots \wedge S_j$. Thus $R$ is the set of all models of $T$. But we can assign a natural number to each element of $R$, namely, the largest index of an element in an element of $R$. Therefore $R$ is countably infinite.
+\end{proof}
+
+\begin{problem}
+(a) Give a deduction of $P$ from the set $\{\neg S \vee R, R \rightarrow P, S\}$.\\
+(b) Let $T$ be a set of wffs. Say that $T$ is \emph{inconsistent} if $T \vdash A$ for all wffs $A$. Otherwise $T$ is consistent. Show that $T$ is inconsistent iff for some basic sentence symbol $S$, we have that $T \vdash S \wedge \neg S$.
+\end{problem}
+\begin{proof}
+(a) Note that $S \wedge (\neg S \vee R) \rightarrow R$ is a tautology. This is easy to see from a truth table. Then our deduction will be $S \wedge (\neg S \vee R) \rightarrow R$, $R$, $R \rightarrow P$, $P$.
+
+(b) Suppose that $T$ is inconsistent. Then $T \vdash A$ for all wffs $A$. But then given a basic sentence symbol $S \in \mathcal{S}$ we know $S \wedge \neg S$ is a wff. Therefore $T \vdash S \wedge \neg S$. Now suppose that $T \vdash S \wedge \neg S$ for some basic sentence symbol $S$. Note that $S \wedge \neg S \rightarrow A$ is a tautology for all wffs $A$. This arises because $S \wedge \neg S$ will always have a value of $F$ under any truth assignment. Therefore, the deduction, $S \wedge \neg S \rightarrow A$, $A$ is a deduction of any wff $A$ from $T$.
+\end{proof}
+
+\begin{problem}
+(a) Show that $\{\neg, \rightarrow\}$ is complete.\\
+(b) Show that $\{\neg, \leftrightarrow\}$ is not complete.
+\end{problem}
+\begin{proof}
+(a) We know $\{\neg, \vee\}$ is complete. We use induction on a wff $A$. The inductive step will go thusly. If $A = (\neg B)$ for some wff $B$, then let $A' = (\neg B')$. If $A = B \rightarrow C$ for some wffs $B$ and $C$, then let $A' = \neg B' \vee C'$. Since $B'$ and $C'$ are tautologically equivalent to $B$ and $C$ respectively we have
+\[
+A' = \neg B' \vee C' = \neg B \vee C = B \rightarrow C = A.
+\]
+This shows that any wff using $\neg$ or $\rightarrow$ can be rewritten using $\neg$ or $\vee$. Since $\{\neg, \vee\}$ is complete, it follows that $\{\neg, \rightarrow\}$ is complete.
+
+(b) To show that this system is not complete, we need to note the possible truth values of a wff in this system of connectives. We claim that any wff made using these connectives has an equal number of Boolean functions which evaluate to true and false. We can inductively show this. For the base case, note that if $A$ and $B$ are sentence symbols, then a simple truth table argument will show that $A \leftrightarrow B$ and $\neg A \leftrightarrow B$ both have two possible values of $T$ and two values of $F$. If we assume given wffs $A'$ and $B'$ have this property, then the inductive step is identical to the base case. This shows the desired result, that in the system, any wff will have an equal number of Boolean functions outputting $T$ as $F$. But this shows that the system is not complete because $\{\neg, \vee\}$ is complete, and $A \vee B$ doesn't have this property.
+\end{proof}
+
+\end{document}

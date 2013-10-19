@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26200\\
+
+February 18, 2010
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{problem}
+Let $X$ and $Y$ be metric spaces with metrics $d_X$ and $d_Y$ respectively. Let $f : X \to Y$ have the property that for every pair of points $x_1$, $x_2$ of $X$,
+\[
+d_Y(f(x_1),f(x_2)) = d_X(x_1,x_2).
+\]
+Show that $f$ is an imbedding. It is called an \emph{isometric imbedding} of $X$ in $Y$.
+\end{problem}
+\begin{proof}
+We need to show that $f$ is a homeomorphism onto its image in $Y$. Note that $f$ is injective since $x \neq y$ in $X$ means $d_X(x,y) \neq 0$ and so $d_Y(f(x),f(y)) \neq 0$ which implies $f(x) \neq f(y)$. Also $f$ is clearly surjective onto its image so $f$ is a bijection onto it's image. Let $B = B_{d_Y}(y,\varepsilon)$ be a $\varepsilon$-ball around $y \in Y$. Then consider an element $x \in f^{-1}(B)$ and note that $f(x) \in B$ so $d_Y(y,f(x)) < \varepsilon$ so $d_X(f^{-1}(y),x) < \varepsilon$. Thus, the ball $B_{d_X}(f^{-1}(y),\varepsilon) \subseteq f^{-1}(B)$ and $f^{-1}(B)$ is open. The proof that $f$ is an open mapping follows similarly.
+\end{proof}
+
+\begin{problem}
+Show that $\mathbb{R}_{\ell}$ and the ordered square satisfy the first countability axiom. (This result does not, of course, imply that they are metrizable.)
+\end{problem}
+\begin{proof}
+Let $x \in \mathbb{R}$ and consider the set of open sets $A_x = \{[x-(1/n), x+(1/n)) \mid n \in \mathbb{N}\}$. Now consider any neighborhood of $x$. This will necessarily contain some basis element of the form $[x-\varepsilon, x+\varepsilon)$. Picking $1/n < \varepsilon$ shows that this contains an element of $A_x$ and so $A_x$ serves as a countable basis at the point $x$. Since this is true for each point of $\mathbb{R}$ we see that $\mathbb{R}_{\ell}$ satisfies the first countability axiom.
+
+Now let $x \times y \in I_0^2$. Consider the set of basis elements $\{(x \times y-(1/n), x \times y + (1/n)) \mid n \in \mathbb{N}\}$. Now any open set containing $x \times y$ will necessarily contain some interval of the form $(x \times y - \varepsilon, x \times y + \varepsilon)$ and choosing $1/n < \varepsilon$ gives the desired result. Thus $I_0^2$ is first countable.
+\end{proof}
+
+\begin{problem}
+Let $X$ be a topological space and let $Y$ be a metric space. Let $f_n : X \to Y$ be a sequence of continuous functions. Let $x_n$ be a sequence of points of $X$ converging to $x$. Show that if the sequence $(f_n)$ converges uniformly to to $f$, then $(f_n(x_n))$ converges to $f(x)$.
+\end{problem}
+\begin{proof}
+Let $\varepsilon > 0$. If $(f_n)$ converges uniformly to $f$ then there exists some $N_1$ such that for all $n > N_1$ and for each $x \in X$ we have $d(f_n(x), f(x)) < \varepsilon/2$. In particular for each $n > N_1$ we have $d(f_n(x_n), f(x_n)) < \varepsilon/2$. Note also that $f$ is continuous since each $f_n$ is continuous so there exists some $N_2$ such that for all $n > N_2$ we have $d(f(x_n),f(x)) < \varepsilon/2$. Let $N = \max\{N_1, N_2\}$. Now using the triangle inequality we have $d(f_n(x_n),f(x)) \leq d(f_n(x_n), f(x_n)) + d(f(x_n), f(x)) < \varepsilon/2 + \varepsilon/2 = \varepsilon$ for all $n > N$. Thus $(f_n(x_n))$ converges to $f(x)$.
+\end{proof}
+
+\begin{problem}
+Check the details of Example 3.
+\end{problem}
+\begin{proof}
+There are only $6$ nontrivial subsets to check, so we'll just do them individually. The preimages of the sets $\{a\}$ and $\{b\}$ are the open rays $(0, \infty)$ and $(-\infty, 0)$ so these sets must be open in $A$. The preimage of the set $\{c\}$ is the one point set $\{0\}$ so this set is not open in $A$. The preimage of the set $\{a,b\}$ is the set $\mathbb{R} \backslash \{0\}$ which is open so this set is open in $A$. The preimages of $\{a,c\}$ and $\{b,c\}$ are closed rays in $\mathbb{R}$ so these sets are not open. Clearly $A$ and the empty set are both open in $A$. Thus, the open sets are $\emptyset$, $\{a\}$, $\{b\}$, $\{a,b\}$ and $A$.
+\end{proof}
+
+\begin{problem}
+(a) Let $p : X \to Y$ be a continuous map. Show that if there is a continuous map $f : Y \to X$ such that $p \circ f$ equals the identity map of $Y$, then $p$ is a quotient map.\\
+(b) If $A \subseteq X$, a \emph{retraction} of $X$ onto $A$ is a continuous map $r : X \to A$ such that $r(a) = a$ for each $a \in A$. Show that a retraction is a quotient map.
+\end{problem}
+\begin{proof}
+(a) Note that $f$ is a right inverse for $p$ so $p$ must be surjective. Let $U$ be an open set in $Y$. Then since $p$ is continuous, $p^{-1}(U)$ is open in $X$. Conversely, let $V$ be a subset of $Y$ such that $p^{-1}(V)$ is open in $X$. Since $f$ is continuous, $f^{-1}(p^{-1}(V)) = (p \circ f)^{-1}(V)$ is open. But we know that $p \circ f$ is the identity map on $Y$ so $V$ must be open in $Y$. Therefore $p$ is a quotient map.
+
+(b) This is just a special case of part (a) where $p = r$ and $f : A \to X$ is the identity map. Then $f$ is continuous and $r \circ f$ is the identity on $A$. Therefore $r$ must be a quotient map.
+\end{proof}
+
+\begin{problem}
+(a) Define an equivalence relation on the plane $X = \mathbb{R}^2$ as follows:
+\[
+\begin{tabular}{ccc}
+$x_0 \times y_0 \sim x_1 \times y_1$ & if & $x_0 + y_0^2 = x_1 + y_1^2$.
+\end{tabular}
+\]
+Let $X^*$ be the corresponding quotient space. It is homeomorphic to a familiar space; what is it?\\
+(b) Repeat (a) for the equivalence relation
+\[
+\begin{tabular}{ccc}
+$x_0 \times y_0 \sim x_1 \times y_1$ & if & $x_0^2 + y_0^2 = x_1^2 + y_1^2$.
+\end{tabular}
+\]
+\end{problem}
+\begin{proof}
+(a) Note that the equivalence classes are sets of the form $\{(x,y) \mid x + y^2 = a, a \in \mathbb{R}\}$. That is, they are concentric parabolas parallel to the $x$-axis. Let $f : X^* \to \mathbb{R}$ be defined by taking the value of $x$ when the parabola intersects the $x$-axis. Note that $f$ is injective since two different equivalence classes will have two different intersection points. Also $f$ is surjective since for a point $a \in \mathbb{R}$ the equivalence class $x + y^2 = a$ is mapped to $a$.
+
+Consider an open interval $(a,b) \subseteq \mathbb{R}$. Then consider the preimage of $f^{-1}((a,b))$ under the induced quotient map from $X$ to $X^*$. This is the union of all the those parabolas $x + y^2 = c$ with $c \in (a,b)$. Note that this set is open in $X$, so $f^{-1}((a,b))$ is open in $X^*$. Thus $f$ is continuous. Now consider an open set $U$ in $X^*$ and pick $f(a) \in U$. The preimage of this set under the quotient map is a union of parabolas which is open in $X$. In particular, if we consider the parabola which intersects the $x$-axis at $a$, then there's some $\varepsilon > 0$ such that $(a - \varepsilon, a + \varepsilon)$ is contained in this union. Then this interval must be in the image $f(U)$ so $f(U)$ is open and $f$ is an open map. Therefore $f$ is a homeomorphism. Thus $X^*$ is homeomorphic to $\mathbb{R}$ in the usual topology.
+
+(b) Now the equivalence classes are concentric circles. We can map these classes to the nonnegative reals in the subspace topology by mapping the radius of a circle to a number in $\mathbb{R}^+ \cup \{0\}$. A similar proof to the one in part (a) shows that $f$ is a homeomorphism. Thus $X^*$ is homeomorphic to the nonnegative reals in the subspace topology.
+\end{proof}
+
+\begin{problem}
+Recall that $\mathbb{R}_K$ denote the real line in the $K$-topology. (See \S 13.) Let $Y$ be the quotient space obtained from $\mathbb{R}_K$ by collapsing the set $K$ to a point; let $p : \mathbb{R}_K \to Y$ be the quotient map.\\
+(a) Show that $Y$ satisfies the $T_1$ axiom, but is not Hausdorff.\\
+(b) Show that $p \times p : \mathbb{R}_K \times \mathbb{R}_K \to Y \times Y$ is not a quotient map.
+\end{problem}
+\begin{proof}
+(a) We can view $Y$ as a collection of equivalence classes where each point of $\mathbb{R} \backslash K$ is in its own equivalence class and $K$ is its own equivalence class which we'll denote by the point $y$. An open set in $Y$ is then a collection of these equivalence classes whose union is open in $\mathbb{R}_K$. Let $x \in Y$ such that $x \neq y$. Then $p^{-1}(Y \backslash \{x\})$ is a union of equivalence classes which contains every point in $\mathbb{R}$ other than $x$. This set is open in $\mathbb{R}_K$, so $Y \backslash \{x\}$ is open in $Y$ and $\{x\}$ is closed. Now consider the set $Y \backslash \{y\}$. The union of these equivalence classes is $\mathbb{R} \backslash K = (-\infty, 0) \cup ((-1,2) \backslash K) \cup (1, \infty)$ which is open in $\mathbb{R}_K$. Therefore $Y \backslash \{y\}$ is open in $Y$ and $\{y\}$ is closed. Thus $Y$ is $T_1$.
+
+Now suppose $U$ is an open set of $Y$ which contains $y$. Then $U$ is a union of equivalence classes whose union contains $K$ and is open in $\mathbb{R}_K$. Note also that if $V$ is an open set in $Y$ which contains the equivalence class containing $\{0\}$, then $p^{-1}(V)$ must contain an interval of the form $(0 - \varepsilon, 0 + \varepsilon)$ (possibly without $K$). Then choose $1/n < \varepsilon$. Note that $p^{-1}(U)$ must contain some interval around $1/n$ since this point is in $K$ and $K$ is contained in $p^{-1}(U)$. Thus, $p^{-1}(U)$ and $p^{-1}(V)$ necessarily intersect at some point in $\mathbb{R} \backslash K$ less than $1/n$. The equivalence class for this point is thus in both $U$ and $V$ an so it's impossible to separate $U$ and $V$ with open sets. Therefore $Y$ is not Hausdorff.
+
+(b) Since $Y$ is not Hausdorff, we know the diagonal $\Delta$ is not closed in $Y \times Y$. Consider $(p \times p)^{-1}(\Delta)$ in $\mathbb{R}_K \times \mathbb{R}_K$. This is the union of all elements of the form $x \times x$ where $x$ is an equivalence class in $Y$. But this is just the diagonal of $\mathbb{R}_K \times \mathbb{R}_K$. Since $\mathbb{R}_K$ is Hausdorff, this set is closed. So $p \times p$ takes a set which is not closed to a closed set so it can't be a quotient map.
+\end{proof}
+
+\end{document}

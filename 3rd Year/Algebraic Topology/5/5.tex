@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage,bbm}
+
+\input xy
+\xyoption{all}
+
+\newcommand{\coker}{\textup{coker}}
+\newcommand{\im}{\textup{im}\,}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26300\\
+
+May 11, 2010
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{problem}
+Construct a $\Delta$-complex structure on $\mathbb{R}P^n$ as a quotient of a $\Delta$-complex structure on $S^n$ having vertices the two vectors of length $1$ along each coordinate axis in $\mathbb{R}^{n+1}$.
+\end{problem}
+\begin{proof}
+To make the described $\Delta$-complex structure on $S^n$ we first take the $2n$ vertices that are distance $1$ away from the origin in $\mathbb{R}^n$ on the coordinate axes. For each of these vertices, attach a $1$-simplex between this vertex and the $2n-2$ vertices not lying on the same axis. Now attach $2$-simplexes between any three vertices not lying in a plane determined by two coordinate axes.
+\vspace{100pt}
+Next attach $3$-simplexes between any four vertices not lying in a $3$-dimensional subspace determined by the coordinate axes. Continue in this way until all points $(x_1, \dots , x_{n+1})$ with $\sum_i x_i = 1$ are included in our complex. This space, which is composed of $2^{n+1}$ $n$-simplexes, is then homeomorphic to $S^n$. To get $\mathbb{R}P^n$ we need to identify antipodal points. For each $n$-simplex in our structure, there is another one reflected about the origin. Identify these two simplexes (after doing a reflection) so that antipodal points of our space are identified. Then this is a $\Delta$-complex structure on $\mathbb{R}P^n$.
+\end{proof}
+
+\begin{problem}
+Compute the simplicial homology groups of the Klein bottle using the $\Delta$-complex structure described at the beginning of this section.
+\end{problem}
+\begin{proof}
+We can view the Klein bottle as a union of two $2$-simplexes $U$ and $L$ with sides $a$, $b$ and $c$ and a vertex $v$ as follows.
+\vspace{100pt}
+Then our chain complex $\Delta_2 \to \Delta_1 \to \Delta_0 \to 0$ is $\mathbb{Z}^2 \to \mathbb{Z}^3 \to \mathbb{Z} \to 0$. We also have $\partial_2 : U \mapsto b - c + a$ and $\partial_2 : L \mapsto a - b + c$ while $\partial_1 : a \mapsto v-v$, $\partial_1 : b \mapsto v-v$ and $\partial_1 : c \mapsto v-v$. Since the images of $U$ and $L$ are distinct under $\partial_2$, it must be injective and we see that $H_2(X) = \ker \partial_2/\im \partial_3 = 0$. Since $\partial_1$ maps all elements to $0$ we have $\ker \partial_1 = \mathbb{Z}^3\{a,b,c\} = \mathbb{Z}^3\{a,a+b-c,c\}$. Also $\im \partial_2 = \mathbb{Z}^2\{a+b-c, a-b+c\} = \mathbb{Z}^2\{a+b-c,2a\}$. Thus $H_1(X) = \ker \partial_1/\im \partial_2 = \mathbb{Z} \oplus \mathbb{Z}/2\mathbb{Z}$. Finally, $\ker \partial_0 = \mathbb{Z}\{v\}$ and $\im \partial_1 = 0$ so $H_0(X) = \mathbb{Z}$.
+\end{proof}
+
+\begin{problem}
+Construct a $3$-dimensional $\Delta$-complex $X$ from $n$ tetrahedra $T_1, \dots , T_n$ by the following two steps. First arrange the tetrahedra in a cyclic pattern as in the figure, so that each $T_i$ shares a common vertical face with its two neighbors $T_{i-1}$ and $T_{i+1}$, subscripts being taken mod $n$. Then identify the bottom face of $T_i$ with the top face of $T_{i+1}$ for each $i$. Show the simplicial homology groups of $X$ in dimensions $0$, $1$, $2$, $3$ are $\mathbb{Z}$, $\mathbb{Z}_n$, $0$, $\mathbb{Z}$ respectively.
+\end{problem}
+\begin{proof}
+Note that all the outer vertices are identified with each other in the first step, and the middle vertices are identified in the second step, so there are only two $0$-simplexes, $v_0$ and $v_1$. Call the outer vertex $v_0$ and the inner vertex $v_1$. Each tetrahedron has $6$ edges, but the outer edges are identified in the first step as is the middle edge, so there are $4$ left for each $T_i$. Two of these get paired off in the first step, and two more get paired off when the bottom faces are identified with the top faces. This leaves $n$ edges plus the outer and middle edges for a total of $n+2$ $1$-simplexes. Each tetrahedron has four faces, but these are paired off in the first step and then again in the second step so we're left with $2n$ $2$-simplexes. There are $n$ $3$-simplexes. We thus have the following chain complex
+\[
+\xymatrix{
+0 \ar[r]^{\partial_4} & \mathbb{Z}^n \ar[r]^{\partial_3} & \mathbb{Z}^{2n} \ar[r]^{\partial_2} & \mathbb{Z}^{n+2} \ar[r]^{\partial_1} & \mathbb{Z}^2 \ar[r]^{\partial_0} & 0
+}.
+\]
+Note that each $1$-simplex either connects $v_0$ to $v_1$ or connects $v_0$ or $v_1$ to itself. Thus $\partial_1$ takes each $1$ cell either to $0$ or to $v_1 - v_0$ so $\im \partial_1(X) = \mathbb{Z}\{v_1-v_0\}$ and $H_0(X) = \ker \partial_0 / \im \partial_1 = \mathbb{Z}^2/\mathbb{Z} \approx \mathbb{Z}$.
+
+Number the $T_i$ in a counterclockwise fashion and label the face on the bottom of $T_i$ $f_i$ and the face on the right side of $T_i$ $f_{n+i}$ so that the bottom and top faces are labeled $f_1$ through $f_n$ and the vertical faces are labeled $f_{n+1}$ through $f_{2n}$. Label the outer edge $d_1$ and the inner edge $d_2$. Label the bottom edge of $f_{n+i}$ $e_i$. Using the labeling in the diagram we see that for $1 \leq i \leq n$ we have $\partial_2(f_i) = e_i - e_{i-1} + d_1$ and $\partial_2(f_{n+i}) = d_2 - e_{i-1} + e_i$ where $e_0 = e_n$. Order the edges as $d_1, e_1, e_2, \dots , e_n, d_2$. We can take the coefficients from the images of $\partial_2$ and express them as the rows in the following $2n \times (n+2)$ matrix
+\[
+\left (
+\begin{array}{cccccccc}
+1 & 1 & 0 & 0 & \dots & 0 & -1 & 0\\
+1 & -1 & 1 & 0 & \dots & 0 & 0 & 0\\
+1 & 0 & -1 & 1 & \dots & 0 & 0 & 0\\
+&&&& \vdots &&&\\
+1 & 0 & 0 & 0 & \dots & -1 & 1 & 0\\
+0 & 1 & 0 & 0 & \dots & 0 & -1 & 1\\
+0 & -1 & 1 & 0 & \dots & 0 & 0 & 1\\
+0 & 0 & -1 & 1 & \dots & 0 & 0 & 1\\
+&&&& \vdots &&&\\
+0 & 0 & 0 & 0 & \dots & -1 & 1 & 1
+\end{array}
+\right).
+\]
+For $1 \leq i \leq n$ we can subtract row $i$ from row $n+1$ (namely, replace a generator in the image with that generator plus another) and note that the last $n$ rows are the same. This leaves the following $(n+1) \times (n+2)$ matrix
+\[
+\left (
+\begin{array}{cccccccc}
+1 & 1 & 0 & 0 & \dots & 0 & -1 & 0\\
+1 & -1 & 1 & 0 & \dots & 0 & 0 & 0\\
+1 & 0 & -1 & 1 & \dots & 0 & 0 & 0\\
+&&&& \vdots &&&\\
+1 & 0 & 0 & 0 & \dots & -1 & 1 & 0\\
+-1 & 0 & 0 & 0 & \dots & 0 & 0 & 1
+\end{array}
+\right ).
+\]
+Now for $1 \leq i \leq n$ we can add the first $i-1$ rows to the $i^{\textup{th}}$ row as
+\[
+\left (
+\begin{array}{cccccccc}
+1 & 1 & 0 & 0 & \dots & 0 & -1 & 0\\
+2 & 0 & 1 & 0 & \dots & 0 & -1 & 0\\
+3 & 0 & 0 & 1 & \dots & 0 & -1 & 0\\
+&&&& \vdots &&&\\
+n & 0 & 0 & 0 & \dots & 0 & 0 & 0\\
+-1 & 0 & 0 & 0 & \dots & 0 & 0 & 1
+\end{array}
+\right ).
+\]
+This means that the image is generated by the $n+1$ elements $id_1 + e_i - e_n$, $nd_1$ and $d_2 - d_1$ for $1 \leq i \leq n-1$. On the other hand, $\partial_1$ takes $d_1$ and $d_2$ to $0$ while it takes $e_i$ to $v_1 - v_0$. Thus $\ker \partial_1$ is generated by $d_1$, $d_2$ and all the differences $e_i - e_j$ for $1 \leq i < j \leq n$. We can express these last generators as $e_i - e_n$ for $1 \leq i \leq n-1$. Now if we add $d_1$ to each generator a particular number of times we get the set of generators $\{d_1, d_2-d_1, id_1 + e_i-e_n\}$. Comparing this to the generators for $\im \partial_2$ we see that $H_1(X) = \ker \partial_1/\im \partial_2 = \mathbb{Z}/n\mathbb{Z}$.
+
+Let $a_1f_1 + \dots + a_{2n} f_{2n} \in \ker \partial_2$. From the first matrix above representing the image of $\partial_2$ we see that we must have $a_1 + \dots + a_n = a_{n+1} + \dots + a_{2n} = 0$ and for $1 < i \leq n$ we have $a_i + a_{n+i} = a_{i-1} + a_{n+i-1}$ and $a_1 + a_{n+1} = a_n + a_{2n}$. Then $a_1 + a_{n+1} = a_2 + a_{n+2} = \dots = a_n + a_{2n}$. Since the sum of these terms is $0$ we must have $a_i = -a_{n+i}$ for $1 \leq i \leq n$. Now consider
+\begin{align*}
+\partial_3(b_1 T_1 + \dots + b_n T_n)
+&= b_1(f_{n+1} - f_{2n} + f_n - f_1) + \dots + b_n(f_{2n} - f_{2n-1} + f_{n-1} - f_n)\\
+&= (b_2-b_1)f_1 + (b_3-b_2)f_2 + \dots + (b_1 - b_n)f_n\\
+&+ (b_1-b_2)f_{n+1} + (b_2-b_3)f_{n+2} + \dots + (b_n - b_1)f_{2n}.
+\end{align*}
+Fix $b_1$ as any integer. Pick $b_2$ such that $b_2 - b_1 = a_1$. This determines $b_2$ and in a similar fashion we can determine $b_i$ by picking it such that $b_i - b_{i-1} = a_{i-1}$. We need to make sure that $b_n-b_1 = a_n$. Note $b_n - b_1 = -((b_2-b_1) + (b_3-b_2) + \dots + (b_n - b_{n-1})) = -(a_1 + \dots + a_{n-1}) = a_n$. Thus any element of $\ker \partial_2$ is also in $\im \partial_3$, $\ker \partial_2 = \im \partial_3$ and $H_2(X) = 0$.
+
+For $1 < i \leq n$ we have $\partial_3(T_i) = f_{n+i} - f_{n+i-1} + f_{i-1} - f_i$ and $\partial_3(T_1) = f_{n+1} - f_{2n} + f_{n} - f_1$. Any $2$-simplex $f_k$ appearing in the image of $\partial_3$ belongs to two neighboring $3$-simplexes, $T_i$ and $T_{i+1}$. But the coefficient of $f_k$ in $\partial_3(T_i)$ and $\partial_3(T_{i+1})$ have opposite sign so they cancel out. Therefore if $a_1T_1 + \dots + a_nT_n \in \ker \partial_3$ then $a_1 = a_2 = \dots = a_n$ so $\ker \partial_3 = \mathbb{Z}$ and $H_3(X) = \mathbb{Z}$.
+\end{proof}
+
+\begin{problem}
+Show that a chain homotopy of chain maps is an equivalence relation.
+\end{problem}
+\begin{proof}
+Let $(C_*, \partial_*)$ and $(D_*, \partial_*')$ be chain complexes. If $f_*,g_* : C_* \to D_*$ are chain maps we will write $f \sim g$ if $f$ and $g$ are chain homotopic, that is, if there are maps $P_n : C_n \to D_{n+1}$ with $\partial_{n+1}P_n + P_{n-1}\partial_n' = g_n-f_n$. If $P$ is the $0$ map then $f \sim f$. If $P$ is such a map that $f \sim g$ then $-P$ is a map giving $g \sim f$ since $f_n - g_n = -(g_n-f_n) = -(\partial_{n+1}P_n + P_{n-1}\partial_n') = \partial_{n+1}(-P_n) + (-P_{n-1})\partial_n'$. Finally if $f \sim g$ using $P$ and $g \sim h$ using $Q$ then
+\[
+h_n - f_n = (h_n - g_n) + (g_n - f_n) = \partial_{n+1}Q_n + Q_{n-1} \partial_n' + \partial_{n+1}P_n + P_{n-1} \partial_n' = \partial_{n+1}(Q_n + P_n) + (Q_{n-1} + P_{n-1}) \partial_n'
+\]
+and $f \sim h$ using $Q + P$. Thus a chain homotopy is an equivalence relation.
+\end{proof}
+
+\begin{problem}
+Determine whether there exists a short exact sequence $0 \to \mathbb{Z}_4 \to \mathbb{Z}_8 \oplus \mathbb{Z}_2 \to \mathbb{Z}_4 \to 0$. More generally, determine which abelian groups $A$ fit into a short exact sequence $0 \to \mathbb{Z}_{p^m} \to A \to \mathbb{Z}_{p^n} \to 0$ with $p$ prime. What about the case of short exact sequences $0 \to \mathbb{Z} \to A \to \mathbb{Z}_n \to 0$?
+\end{problem}
+\begin{proof}
+Suppose $\xymatrix{0 \ar[r] & \mathbb{Z}_{p^m} \ar[r]^{\varphi} & A \ar[r]^{\psi} & \mathbb{Z}_{p^n} \ar[r] & 0}$ is an exact sequence. Suppose $A$ is infinite. Then $\psi$ must map infinitely many elements to the identity in $\mathbb{Z}_{p^n}$. Since $\ker \psi = \im \varphi$, it follows that $\im \varphi$ is infinite, but this is a contradiction since $\mathbb{Z}_{p^m}$ is finite. Thus $A$ must be finite, and since $A$ is abelian we know $A = \mathbb{Z}_{n_1} \oplus \dots \oplus \mathbb{Z}_{n_k}$ where $n_1 \mid n_2 \mid \dots \mid n_k$. Furthermore, by Lagrange's Theorem we know $|A| = |\mathbb{Z}_{p^n}||\mathbb{Z}_{p^m}| = p^{n+m}$. Thus $n_i \mid p^{n+m}$ and so $n_i = p^{\alpha_i}$. We know $\varphi$ maps a generator of $\mathbb{Z}_{p^m}$ to an element of order $p^m$ in $A$ and this element and its powers make up the entire kernel of $\psi$. Then $n_j \geq m$ for some $j$ and the other $n_i$ add up to $n$. But then if we have more than two summands the only possible element of $A$ with order $p^n$ is in the kernel of $\psi$, thus $\psi$ cannot be surjective. This is a contradiction so we must only have two components. Hence $A = \mathbb{Z}_{p^{\alpha_1}} \oplus \mathbb{Z}_{p^{\alpha_2}}$ where $m \leq \alpha_1$ and $\alpha_1 + \alpha_2 = m + n$. The map $\varphi$ takes a generator of $\mathbb{Z}_{p^m}$ to the element $(p^{\alpha_1 - m}, 1)$. In particular, $0 \to \mathbb{Z}_4 \to \mathbb{Z}_8 \oplus \mathbb{Z_2} \to \mathbb{Z}_4 \to 0$ is a short exact sequence given by the map which takes a generator of $\mathbb{Z}_4$ to $(2,1)$ and then mapping $(1,1)$ to a generator of $\mathbb{Z}_4$.
+
+Now suppose we have the exact sequence $\xymatrix{0 \ar[r] & \mathbb{Z} \ar[r]^{\varphi} & A \ar[r]^{\psi} & \mathbb{Z}_n \ar[r] & 0}$. Note that $A$ must have a $\mathbb{Z}^r$ component with $r > 0$ so that $\varphi$ maps $\mathbb{Z}$ into one component of this. But also, if $r > 1$ then more than one copy of $\mathbb{Z}$ will be mapped by $\psi$ to the identity in $\mathbb{Z}_n$. Since there is no injection $\mathbb{Z} \to \mathbb{Z}^r$ for $r > 1$, we must have $r = 1$. By a similar argument as above, $A = \mathbb{Z} \oplus \mathbb{Z}_m$ for some $m \geq n$. Since $\psi$ is a homomorphism from $\mathbb{Z}_m \to \mathbb{Z}_n$ it must be the case that $n \mid m$. In this case $\varphi : 1 \mapsto (1,n)$ so that the element $(1,1)$ has order $n$ under $\psi$.
+\end{proof}
+
+\begin{problem}
+Suppose we have a commutative diagram
+\[
+\xymatrix{
+0 \ar[r] & A \ar[r]^i \ar[d]^f & B \ar[r]^p \ar[d]^g & C \ar[r] \ar[d]^h & 0\\
+0 \ar[r] & X \ar[r]^j & Y \ar[r]^q & Z \ar[r] & 0\\
+}
+\]
+of abelian groups where the horizontal sequences are exact. Show that we get a long exact sequence
+\[
+0 \to \ker(f) \to \ker(g) \to \ker(h) \to \coker(f) \to \coker(g) \to \coker(h) \to 0.
+\]
+\end{problem}
+\begin{proof}
+Let's label the maps in question as follows
+\[
+\xymatrix{
+0 \ar[r] & \ker(f) \ar[r]^{\alpha} & \ker(g) \ar[r]^{\beta} & \ker(h) \ar[r]^{\gamma} & \coker(f) \ar[r]^{\delta} & \coker(g) \ar[r]^{\varepsilon} & \coker(h) \ar[r] & 0.
+}
+\]
+Pick $a \in \ker(f)$ so that $f(a) = 0$ in $X$. Then $jf(a) = 0 = gi(a)$. Thus $i(a) \in \ker(g)$ so we get a map $\alpha : \ker(f) \to \ker(g)$ given by $\alpha(a) = i(a)$. Now let $b \in \ker(g)$ so that $g(b) = 0$ in $Y$. Then $qg(b) = 0 = hp(b)$ so $p(b) \in \ker(h)$. We get a map $\beta : \ker(g) \to \ker(h)$ by $\beta(b) = p(b)$. Let $x + f(A) \in \coker(f)$ and apply $j$ to get $j(x) + jf(A) = j(x) + gi(A) \in \coker(g)$. Thus we get a map $\delta : \coker(f) \to \coker(g)$ as $\delta(x + f(A)) = j(x + f(A))$. Finally let $y + g(B) \in \coker(g)$ and apply $q$ to get an element of $\coker(h)$. This gives the map $\varepsilon : \coker(g) \to \coker(h)$ given by $\varepsilon(y + g(B)) = q(y + g(B))$.
+
+Pick $c \in \ker(h)$. Since $p$ is surjective, there exists $b \in B$ with $p(b) = c$. Then $q(g(b)) = h(p(b)) = h(c) = 0$ since $c \in \ker(h)$. Thus $g(b) \in \ker(q)$ and $\ker(q) = \im(j)$. Find $x \in X$ such that $j(x) = g(b)$ and note that $x$ is unique since $j$ is injective. Now define $\gamma(c) = x + f(A)$. Suppose now we chose some $b' \in B$ also with $p(b') = c$. We would then get some other element $x'$ such that $j(x') = g(b')$. Note though that $p(b-b') = c-c = 0$ so $b-b' \in \ker(p)$ and $\ker(p) = \im(i)$. Pick $a \in A$ so that $i(a) = b-b'$. Then $j(f(a)) = g(i(a)) = g(b-b') = g(b)-g(b') = j(x)-j(x') = j(x-x')$. Since $j$ is injective $f(a) = x-x'$ so $x-x' \in f(A)$. This shows that we still get the same element $x + f(A) = \gamma(c)$ so that $\gamma$ is well-defined.
+
+Suppose now we pick another element $c' \in \ker(h)$ so that $\gamma(c') = x' + f(A)$. Suppose that $b,b' \in B$ with $p(b) = c$ and $p(b') = c'$. From the definition of $\gamma$ we know $j(x) = g(b)$ and $j(x') = g(b')$. Then $j(x+x') = g(b) + g(b') = g(b+b')$ and also $p(b+b') = p(b) + p(b') = c + c'$. This means $\gamma(c + c') = (x + x') + f(A)$. Then $\gamma(c) + \gamma(c') = (x + f(A)) + (x' + f(A)) = (x + x') + f(A) = \gamma(c + c')$ so $\gamma$ is a homomorphism.
+
+Now let $a \in \ker(\alpha)$. Then $\alpha(a) = i(a) = 0$. Since $i$ is injective, $a = 0$. Take $b \in \im(\alpha)$ so $b = i(a)$ for some $a \in \ker(f)$. Then $\beta(b) = \beta(i(a)) = p(i(a))$ and since the top sequence is exact, we get $p(i(a)) = \beta(b) = 0$ and $b \in \ker(\beta)$. Thus $\im(\alpha) = \ker(\beta)$. This shows the long sequence is exact at $\ker(f)$ and $\ker(g)$.
+
+Let $c \in \im(\beta)$ so $c = p(b)$ for some $b \in \ker(g)$. From above we know $g(b) \in \ker(q)$ and $\ker(q) = \im(j)$ so we can find $x \in X$ such that $j(x) = g(b) = 0$. But then $x = 0$ since $j$ is injective so $\gamma(c) = 0 + f(A) = 0$. Conversely, let $c \in \ker(\gamma)$ so that $\gamma(c) \in f(A)$. Then we can find $a \in A$ such that $f(a) = \gamma(c)$. Note that $\gamma(c) = x$ with $j(x) = g(b)$ for $b \in B$ with $p(b) = c$. Since $f(a) = x$ we have $gi(a) = jf(a) = j(x) = g(b)$ so $b = i(a)$. Applying $p$ we see that $c \in \im(\beta)$ so that $\im(\beta) = \ker(\gamma)$ and the sequence is exact at $\ker(h)$.
+
+Now let $x + f(A) \in \im(\gamma)$ so that $\gamma(c) = x + f(A)$. Note that $x \in X$ such that $j(x) = g(b)$ for some $b \in B$ with $p(b) = c$. Then $j(x + f(A)) = j(x) + jf(A) = g(b) + jf(A) = g(b) + gi(A) = 0$. So $x + f(A) \in \ker(\delta)$. Conversely, suppose $x + f(A) \in \ker(\delta)$ so that $j(x) + jf(A) = j(x) + gi(A) = 0$. This is the same as saying $j(x) = g(b)$ for some $b \in B$. Since $p$ is surjective, $p(b) = c$ and it follows that $\gamma(c) = x + f(A)$. Thus $x + f(A) \in \im(\gamma)$ and $\im(\gamma) = \ker(\delta)$. This shows that the sequence is exact at $\coker(f)$.
+
+Let $y + g(B) \in \im(\delta)$ so $y + g(B) = j(x + f(A))$ for some $x + f(A) \in \coker(f)$. Then $\varepsilon(y + g(B)) = q(y + g(B)) = q(j(x + f(A)) = 0$ since the bottom sequence is exact. Thus $y + g(B) \in \ker(\varepsilon)$ and $\im(\delta) = \ker(\varepsilon)$. Finally pick some element $z + h(C) \in \coker(h)$. Note that since $q$ is surjective, $z + h(C) = q(y + g(B))$ for some $y + g(B) \in \coker(g)$. Since $\varepsilon(y + g(B)) = q(y + g(B))$ we see that $\varepsilon$ is surjective. This finally shows that the sequence is exact at $\coker(g)$ and $\coker(h)$.
+\end{proof}
+
+\end{document}

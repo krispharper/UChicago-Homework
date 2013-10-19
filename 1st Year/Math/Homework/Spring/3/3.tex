@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 22, 2008
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Problem 9.15}
+\textsl{Let $f$ be a function such that $|f(x)| \leq x^2$ for all $x$. Prove that $f$ is differentiable at $0$.}
+\begin{proof}
+Note that $f(0) = 0$ because $0 \leq |f(0)| \leq 0^2 = 0$. We have $|f(h)/h| \leq |h^2/h| \leq |h|$ which means that $\lim_{h \rightarrow 0} f(h)/h = 0$. Thus $f'(0) = 0$.
+\end{proof}
+
+\textsl{This result can be generalized if $x^2$ is replaced by $|g(x)|$ where $g$ has what property?}\newline
+
+We need the fact that $|f(x)| \leq |g(x)|$ and $g(0) = 0$.\newline
+
+\textbf{Problem 10.2}
+\textsl{Let
+\[
+f(x) = \sin \left ( (x^3)(\cos x^3)^{-1} \right )
+\]
+and find $f'(x)$.}\newline
+
+Using the chain rule we have
+\[
+f'(x) = \cos \left ( (x^3)(\cos x^3)^{-1} \right ) \left ( 3(x^5)(\cos x^3)^{-2}(\sin x^3) + 3(x^2)(\cos x^3)^{-1} \right )
+\]\newline
+
+\textbf{Problem 10.22}
+\textsl{Let $a$ be a double root of the polynomial function $f$ if $f(x) = (x-a)^2g(x)$ for some polynomial function $g$. Show that $a$ is a double root of $f$ if and only if $a$ is a root of both $f$ and $f'$.}
+\begin{proof}
+Let $a$ be a double root of $f$. Then $f(x) = (x-a)^2g(x)$ for some polynomial function $g$. Then $f(a) = (a-a)^2g(a) = (0)g(x) = 0$ so $a$ is a root of $f$. Also using the product and chain rules we have $f'(x) = (x-a)^2g'(x) + 2(x-a)g(x) = (x-a)((x-a)g'(x) + 2g(x))$. Then $f'(a) = (a-a)((a-a)g'(a) + 2g(a)) = 0$ so $a$ is a root of $f'$. Conversely assume that $a$ is a root of both $f$ and $f'$. Then $f(a) = f'(a) = 0$. Thus $f(x) = (x-a)g(x)$ for some polynomial function $g(x)$ and $f'(x) = (x-a)g'(x) + g(x)$. But since $f'(a) = 0$ we have $g(a) = 0$. Thus $g(a) = (x-a) h(x)$ for some polynomial function $h$. But then $f(x) = (x-a)^2h(x)$. Therefore $a$ is a double root of $f$.
+\end{proof}
+
+\textbf{Problem 10.29}
+\textsl{Show that it is impossible to have $x = f(x)g(x)$ where $f$ and $g$ are differentiable and $f(0) = g(0) = 0$.}
+\begin{proof}
+Suppose we have the above equality. Then $f(x)g(x) - x = 0$ and we have $f(x)g'(x) + f'(x)g(x) - 1 = 0$. But then for $x = 0$ we have $f(0)g'(0) + f'(0)g(0) - 1 = 0 - 1 = - 1 = 0$. This is a contradiction and so the equality must be false.
+\end{proof}
+
+\textbf{Problem 11.11}
+\textsl{A right triangle with hypotenuse of length $a$ is rotated about one of its legs to generate a right circular cone. Find the greatest possible volume of such a cone.}
+\begin{proof}
+Let the two legs of the triangle be $h$ and $r$. Then the volume of the cone is $V(h,r) = \pi/3 r^2 h$. But $r^2 = a^2 - h^2$ so $V(h) = \pi/3 (ha^2 - h^3)$. Then $V'(h) = \pi/3 (a^2 - 3h^2)$ and $V'$ has a zero at $h=a/\sqrt{3}$. Thus the maximum volume is then $V(a/\sqrt{3}) = \pi/3 (a^3/\sqrt{3} - a^3/(3\sqrt{3}))$.
+\end{proof}
+
+\textbf{Problem 11.52}
+\textsl{Suppose that $\lim_{x \rightarrow \infty} f(x) = \lim_{x \rightarrow \infty} g(x) = \infty$ and $\lim_{x \rightarrow \infty} f'(x) / g'(x) = l$. For every $\varepsilon > 0$ there exists $a$ such that
+\[
+\left | \frac{f'(x)}{g'(x)} - l \right | < \varepsilon
+\]
+for $x > a$. Show that
+\[
+\left | \frac{f(x) - f(a)}{g(x) - g(a)} - l \right | < \varepsilon
+\]
+for $x > a$.}
+\begin{proof}
+From our assumption we know that $g'(x) \neq 0$ for $x > a$. But then $g(x) - g(a) \neq 0$ for $x > a$ by Rolle's Theorem. Then use the Cauchy Mean Value Theorem to state that
+\[
+\frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f'(y)}{g'(y)}
+\]
+for some $y \in (a;x)$. But since $y > a$ we have our desired inequality.
+\end{proof}
+
+\textsl{Conclude that
+\[
+\left | \frac{f(x)}{g(x)} - l \right | < 2 \varepsilon
+\]
+for sufficiently large $x$.}
+\begin{proof}
+Note that
+\[
+\frac{f(x)}{g(x)} = \frac{(f(x) - f(a)}{g(x) - g(a)} \frac{f(x)}{f(x)-f(a)} \frac{g(x)-g(a)}{g(x)}
+\]
+and $f(x) - f(a) \neq 0$ and $g(x) - g(a) \neq 0$ for large $x$ because $\lim_{x \rightarrow \infty} f(x) = \lim_{x \rightarrow \infty} g(x) = \infty$. But then we have
+\[
+\lim_{x \rightarrow \infty} \frac{f(x)}{f(x)-f(a)} = \lim_{x \rightarrow \infty} \frac{g(x)}{g(x)-g(a)} = 1.
+\]
+Then we can make $|f(x)/g(x) - (f(x)-f(a))/(g(x)-g(a)) < \varepsilon$ for large enough $x$. Using this with the previous inequality we have
+\[
+\left | \frac{f(x)}{g(x)} - l \right | < 2 \varepsilon
+\]
+for sufficiently large $x$.
+\end{proof}
+
+\textbf{Problem 11.56}
+\textsl{If $|f|$ is differentiable at $a$ and $f$ is continuous at $a$ then $f$ is also differentiable at $a$.}
+\begin{proof}
+If $f(a) \neq 0$ then by continuity we know that $f = |f|$ or $f = -|f|$ for some region around $a$ which means that $f$ is differentiable at $a$. Consider $a$ such that $f(a) = 0$. Then $a$ is a minimum point for $|f|$ which means that
+\[
+0 = |f|'(a) = \lim_{h \rightarrow 0} \frac{|f(a+h)| - |f(a)|}{h} = \lim_{h \rightarrow 0} \frac{|f(a+h)|}{h}
+\]
+which implies that $f'(a) = 0$.
+\end{proof}
+
+\textbf{Problem 11.59}
+\textsl{Show that if $f'$ is increasing then every tangent line intersects $f$ only once.}
+\begin{proof}
+Let $a$ be in the domain of $f$. Then the tangent line to $f$ at $(a,f(a))$ is $g(x) = f'(a)(x-a) + f(a)$. Suppose there exists $b \neq a$ such that $g(b) = f(b)$. Then there must exist $x \in (a;b)$ or $x \in (b;a)$ such that $g'(x) = f'(x)$ which means $f'(a) = f'(x)$. But this can't happen since $f$ is increasing.
+\end{proof}
+
+\end{flushleft}
+\end{document}

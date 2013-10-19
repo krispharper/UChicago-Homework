@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20800\\
+
+February 9, 2009
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Let $V$ be a normed linear space over $\mathbb{R}$ and let $W$ be a subspace of $V$. Let $f \in W^*$ and let $v_0 \in V \backslash W$ such that $W' = W + \{\lambda v_0 \mid \lambda \in \mathbb{R}\}$. We define $F : W' \rightarrow V$ such that $F(w + \lambda v_0) = f(w) + \lambda c$. The constant $c$ is chosen as follows. Suppose that $||f|| = 1$. Then
+\[
+\sup_{w_1 \in W} -f(w_1) - ||w_1 - v_0|| \leq c \leq \inf_{w_2 \in W} ||w_2 - v_0|| - f(w_2).
+\]
+Now we must show that $||F|| = 1$.
+\end{**}
+\begin{proof}
+For $\lambda \neq 0$ we have
+\[
+|F(w + \lambda v_0)| = |\lambda| |F \left ( \frac{1}{\lambda} w + v_0 \right )| = |\lambda| |f \left ( \frac{1}{\lambda} w \right) + c|.
+\]
+Thus
+\[
+|\lambda| |f \left ( \frac{1}{\lambda} w \right) - c| = |F \left ( \frac{1}{\lambda} w - v_0 \right)| \leq ||F|| |\frac{1}{\lambda} w - v_0|
+\]
+and thus based on our choice of $c$, this forces $||F|| = 1$.
+\end{proof}
+
+\begin{**}
+Suppose $V$ is a Banach space over $\mathbb{R}$ and that $p$ is a subadditive functional on $V$. Take $v \neq 0$ in $V$ and let $W = \{\alpha v \mid \alpha \in \mathbb{R}\}$. Define a function $f : W \rightarrow \mathbb{R}$ by $f(\alpha v) = \alpha p(v)$ for all $\alpha \in \mathbb{R}$. Show that, $f(w) \leq p (w)$ for all $w \in W$.
+\end{**}
+\begin{proof}
+Note that $0 = 0 p(v) = p(0 \cdot v) = p(0)$. For $\alpha \geq 0$ we have $f(\alpha v) = \alpha p(v) = p (\alpha v)$. For $\alpha < 0$ we have $p(\alpha v - \alpha v) \leq p(\alpha v) + p(-\alpha v)$. Thus $0 \leq p(\alpha v) -\alpha p(v)$ and so $f(\alpha v) = \alpha p(v) \leq p(\alpha v)$.
+\end{proof}
+
+\begin{**}
+Let $V$ be a normed linear space. Show that the Hahn-Banach Theorem implies a linear functional can be extended when the subadditive functional on $V$ is the norm.
+\end{**}
+\begin{proof}
+We must show that the norm is subadditive for $v, w \in V$. But these are simply properties of the norm function. That is, for all $\alpha \geq 0$ we have $||\alpha v|| = \alpha ||v||$. Additionally we have $||v + w|| \leq ||v|| + ||w||$. Since these properties are true for all $v, w \in V$, and because of the way the norm of $f \in V^*$ is defined, a linear functional on a subspace of $V$ can be extended to a functional with the same norm.
+\end{proof}
+
+\begin{**}
+Let $p$ be a subadditive functional on $\ell^{\infty}(\mathbb{R})$ such that for $c = (c_n) \in \ell^{\infty} (\mathbb{R})$
+\[
+p(c) = \inf \left \{ \limsup_{n \rightarrow \infty} \frac{1}{k} \sum_{j=1}^{k} c_{n+i_j} \mid i_1, i_2, \dots i_k \text{ is a finite sequence in $\mathbb{N}$} \right \}.
+\]
+Let $f \in (\ell^{\infty})^*$ be the extended linear functional defined in ** Problem 2. Show that $f((c_{n+1})) = f((c_n))$. Show that if $c_n = 1$ for all $n$ then $f((c_n)) = 1$. 
+\end{**}
+\begin{proof}
+Let $c = (c_n)$ and $c' = (c_{n+1})$. Then we have
+\begin{align*}
+p(c)
+&= \inf \left \{ \limsup_{n \rightarrow \infty} \frac{1}{k} \sum_{j=1}^{k} c_{n+i_j+1} \mid i_1, i_2, \dots i_k \text{ is a finite sequence in $\mathbb{N}$} \right \}\\
+&= \inf \left \{ \limsup_{n \rightarrow \infty} \frac{1}{k} \sum_{j=1}^{k} c_{n+i_j} \mid i_1, i_2, \dots i_k \text{ is a finite sequence in $\mathbb{N}$} \right \}\\
+&= p(c').
+\end{align*}
+Note that $f(c) - f(c') = f(c-c') \leq p(c-c') \leq p(c) + p(-c') = 0$. Likewise $f(c') - f(c) = 0$. Therefore $f(c) = f(c')$.
+
+Suppose that $c_n = 1$ for all $n$. Then the quantity
+\[
+\frac{1}{k} \sum_{j=1}^{\infty} c_{n+i_j} = 1
+\]
+for all $n$ and all finite sequences of natural numbers. Thus $f(c) \leq p(c) = 1$. Moreover, $p(-c) = -1$ for the same reasons and $f(-c) \leq p(-c)$. Then $f(c) = -f(-c) \geq -p(-c) = 1$. Thus $f(c) \leq 1 \leq f(c)$ and $f(c) = 1$.
+\end{proof}
+
+\begin{**}
+Let $f : \ell^{\infty} \rightarrow \mathbb{R}$ be defined as in ** Problem 4 and let $c = (c_n) \in \ell^{\infty} (\mathbb{R})$. Show that
+\[
+\liminf_{n \rightarrow \infty} c_n \leq f(c) \leq \limsup_{n \rightarrow \infty} c_n.
+\]
+\end{**}
+\begin{proof}
+Note that for arbitrary finite sequences of natural numbers $i_1, i_2, \dots , i_j$ we have
+\[
+\limsup_{n \rightarrow \infty} \frac{1}{k} \sum_{j=1}^{k} c_{n+i_j} \leq \limsup_{n \rightarrow \infty} c_n
+\]
+because the terms on the left are averages of groups of terms on the right. Then it must be the case that
+\[
+f(c) \leq p(c) \leq \limsup_{n \rightarrow \infty} c_n.
+\]
+We know that $-\liminf_{n \rightarrow \infty} c_n = \limsup_{n \rightarrow \infty} -c_n$. Since $(c_n)$ is an arbitrary element of $\ell^{\infty} (\mathbb{R})$ we have
+\[
+-f(c) = f(-c) \leq \limsup_{n \rightarrow \infty} -c_n = -\liminf_{n \rightarrow \infty}
+\]
+and thus $\liminf_{n \rightarrow \infty} \leq f(c)$. Therefore
+\[
+\liminf_{n \rightarrow \infty} c_n \leq f(c) \leq \limsup_{n \rightarrow \infty} c_n.
+\]
+\end{proof}
+
+\begin{**}
+1) Show that $p((c_n)) = \limsup_{n \rightarrow \infty} c_n$ defines a subadditive functional on $\ell^{\infty} (\mathbb{R})$.\\
+2) Use this subadditive functional, $p$, to construct a different functional, $f$, on $\ell^{\infty} (\mathbb{R})$ and show that $f((c_n)) \geq 0$ if $c_n \geq 0$ for all $n$ and $f((c_n)) = 1$ if $c_n = 1$ for all $n$.\\
+3) Show that $f$ may be constructed in such a way that $f((c_{n+1})) \neq f((c_n))$.
+\end{**}
+\begin{proof}
+1) For $\alpha \geq 0$ in $\mathbb{R}$ we have
+\begin{align*}
+p(\alpha (c_n))
+&= \limsup_{n \rightarrow \infty} \alpha c_n\\
+&= \inf \{ \sup \{\alpha c_m \mid m \geq n\} \mid n \geq 1\}\\
+&= \inf \{ \alpha \sup \{c_m \mid m \geq n\} \mid n \geq 1\}\\
+&= \alpha \inf \{ \sup \{c_m \mid m \geq n\} \mid n \geq 1\}\\
+&= \alpha \limsup_{n \rightarrow \infty} c_n\\
+&= \alpha p((c_n)).
+\end{align*}
+Let $(d_n) \in \ell^{\infty} (\mathbb{R})$. Then we have
+\begin{align*}
+p((c_n) + (d_n))
+&= p((c_n + d_n))\\
+&= \limsup_{n \rightarrow \infty} c_n + d_n\\
+&= \inf \{ \sup \{c_m + d_m \mid m \geq n\} \mid n \geq 1\}\\
+&\leq \inf \{ \sup \{c_m \mid m \geq n\} + \sup \{d_m \mid m \geq n\} \mid n \geq 1\}\\
+&= \inf \{ \sup \{c_m \mid m \geq n\} \mid n \geq 1\} + \inf \{ \sup \{d_m \mid m \geq n\} \mid n \geq 1\}\\
+&= \limsup_{n \rightarrow \infty} c_n + \limsup_{n \rightarrow \infty} d_n\\
+&= p((c_n)) + p((d_n)).
+\end{align*}\newline
+
+2) Suppose that $c_n \geq 0$ for all $n$. Then we must have $p(c) \limsup_{n \rightarrow \infty} c_n \geq 0$. Likewise $p(-c) \leq 0$. Then $f(-c) \leq p(-c) \leq 0$ and so $f(c) = -f(-c) \geq -p(-c) \geq 0$. Now suppose that $c_n = 1$ for all $n$. We have $\limsup_{n \rightarrow \infty} c_n = 1$ and $-\limsup_{n \rightarrow \infty} c_n = -1$. Then $f(c) \leq p(c) = 1$. Additionally we have $f(-c) \leq p(-c) = -1$ and so $f(c) = -f(-c) \geq -p(-c) = 1$. Thus $1 \leq f(c) \leq 1$.\newline
+
+3) Because $p$ no longer takes the average over terms in a sequence, it is possible to create a functional on $\ell^{\infty} (\mathbb{R})$ which maps to a different number if the sequence is shifted. A sequence such as $c_n = (-1)^{n+1}$ will either map to $1$ or $-1$ depending on whether the sequence starts on $n = 1$ or $n = 2$. Thus $f(c_n) \neq f(c_{n+1})$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

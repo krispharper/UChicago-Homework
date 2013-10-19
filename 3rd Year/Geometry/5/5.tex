@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\normal}{\unlhd}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 24100\\
+
+May 14, 2010
+\end{flushright}
+
+\begin{center}
+Homework 5
+\end{center}
+
+\begin{problem}
+Let $G$ be a finite group with $|G| > 4$ and let $N$ and $N'$ be simple subgroups, both of index $2$ in $G$ (so in particular, they are normal in $G$). Show that $N = N$. This is the last step in our proof that $PSL(2,7) \cong PSL(3,2)$.
+\end{problem}
+\begin{proof}
+Consider $N \cap N'$. Since $N$ and $N'$ are both normal, any conjugate of $N \cap N'$ is contained in both $N$ and $N'$, so $N \cap N'$ is normal in $G$. It is thus also normal in $N$ and $N'$. Since $N$ and $N'$ are both simple, we see that $N \cap N'$ is either trivial or equal to $N$ and $N'$. Suppose that $N \cap N'$ is trivial. Then since $N$ is normal we know $NN'$ is a subgroup of $G$ and $|NN'| = |N||N'|/|N \cap N'| = |N||N'| = (|G|/2)(|G|/2) = |G|(|G|/4)$. But $|G| > 4$ so $|NN'| > |G|$, a contradiction. Thus $N = N \cap N' = N'$.
+\end{proof}
+
+\begin{problem}
+Let $\beta$ be a bilinear form on a finite dimensional vector space $V$. Write $B_{\mathcal{E}}$ for its matrix with respect to a basis $\mathcal{E}$. Show that the following are equivalent:
+\begin{itemize}
+\item $\det B_{\mathcal{E}} \neq 0$ for some basis $\mathcal{E}$.
+\item $\det B_{\mathcal{E}} \neq 0$ for every basis $\mathcal{E}$.
+\item For every nonzero vector $v \in V$, there is some $v' \in V$ such that $\beta(v,v') \neq 0$
+\item The maps $v \mapsto \beta(v, \cdot)$ and $v \mapsto \beta(\cdot , v)$ are isomorphisms $V \to V^*$.
+\end{itemize}
+If these equivalent conditions hold, we say $\beta$ is \emph{nondegenerate}.
+\end{problem}
+\begin{proof}
+Suppose $\det B_{\mathcal{E}} \neq 0$ for some basis $\mathcal{E}$ and let $\mathcal{F}$ be another basis. Then if $A$ is the change of basis matrix from $\mathcal{E}$ to $\mathcal{F}$ we know $B_{\mathcal{F}} = A^{T} B_{\mathcal{E}} A$. Taking determinants we see $\det B_{\mathcal{F}} = \det (A^T) \det (B_{\mathcal{E}}) \det (A) = \det B_{\mathcal{E}} \neq 0$.
+
+Now assume $\det B_{\mathcal{E}} \neq 0$ for every basis $\mathcal{E}$. Let $v \in V$ be nonzero and let $\mathcal{E}$ be a basis containing $v$. Then some column of $B_{\mathcal{E}}$ contains $\beta(v,w)$ for each $w \in \mathcal{E}$. Since $\det B_{\mathcal{E}} \neq 0$ we see that this column cannot be $0$ so there must be some $w \in \mathcal{E}$ with $\beta(v,w) \neq 0$.
+
+Now assume for each nonzero $v \in V$ there exists $v' \in V$ such that $\beta(v,v') \neq 0$. Let $\varphi : V \to V^*$ be a map given by $\varphi : v \mapsto \beta(v, \cdot)$. Let $v \in \ker \varphi$ so that $\varphi(v)$ is the linear functional taking every element of $V$ to $0$. But by assumption, if $v \neq 0$ then there exists $v' \in V$ such that $\beta(v,v') \neq 0$. Therefore $v = 0$ and $\ker \varphi = 0$. Thus $\varphi$ is injective. Now let $\gamma \in V^*$. Let $\beta(v,w) = \gamma(w)$ for each $w \in V$. Then $\beta$ is clearly a linear functional and $\varphi(v) = \beta(v, \cdot)$ so $\varphi$ is surjective and thus an isomorphism. The proof for $\beta(\cdot, v)$ is nearly identical.
+
+Finally, suppose that the maps $v \mapsto \beta(v, \cdot)$ and $v \mapsto \beta(\cdot, v)$ are isomorphisms from $V$ to $V^*$. Then the kernel of these maps are $0$ so for $v \neq 0$ there must be some vector $w$ such that $\beta(v,w) \neq 0$. Let $\mathcal{E}$ be a basis for $V$ and note that for each basis vector $v_i$ it's not possible that $\beta(v_i,v_j) = 0$ for all $j$ because then $\beta(v_i,w) = 0$ for any vector $w$. Thus $\beta(v_i,v_j) \neq 0$ for at least value of $j$ for each $i$ which ensures that $\det B_{\mathcal{E}} \neq 0$.
+\end{proof}
+
+\end{document}

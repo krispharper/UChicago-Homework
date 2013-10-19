@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushright}
+Kris Harper
+
+MATH 16200
+
+Mikl\'{o}s Ab\'{e}rt
+
+January 29, 2008
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Exercise 1}
+\textsl{Let
+\[
+A_1 \supseteq A_2 \supseteq A_3 \supset \dots
+\]
+be a sequence of closed nonempty subsets of $\mathbb{R}$. Assume that $A_1$ is bounded. Then
+\[
+\bigcap_n A_n \neq \emptyset.
+\]}
+\begin{proof}
+Since $A_1$ is bounded and any $A_i$ is a subset of $A_1$ we have $A_i$ is bounded as well. Thus there exists a greatest lower bound for every set in the sequence. Let $I=\{x \in \mathbb{R} \mid x = \inf A_i \text{ for some $A_i$}\}$. $I$ is nonempty and it is bounded above by $\sup A_1$ since every element of $I$ is less than every element of some $A_n$, and every element of $A_n$ is less than $\sup A_1$. So $\sup I$ exists. Suppose to the contrary that $\sup I \notin \bigcap_n A_n$. Then there exists some $A_i$ such that $\sup I \notin A_i$. We know that $\inf A_i \in A_i$ by Theorem 6.8 and so $\sup I$ cannot be a lower bound of $A_i$ because it must be greater than or equal to $\inf A_i$ and not in $A_i$. Consider the case where $\sup I$ is between two elements of $A_i$. We have $\inf A_i$ is greater than or equal to $\inf A_j$ for $j \leq i$ and we have $\inf A_j \in A_i$ for $j \geq i$. But since $\sup I$ is not in $A_i$ and $A_i$ is closed, $\sup I$ is not a limit point of $A_i$ and so there exists a disjoint region from $A_i$ which contains $\sup I$. But then there exists some other point in this region which is less than $\sup I$ and still greater than every point in $I$ since all of these points are in $A_i$ or are less than $\inf A_i$. This is a contradiction and so $\sup I$ is not between two elements of $A_i$. So we have $\sup I$ is an upper bound for $A_i$. But $\sup A_i \in A_i$ and so $\sup A_i < \sup I$. But we must have $\sup A_i$ is greater than every greatest upper bound of all the sets otherwise two sets would be disjoint. So then we have an upper bound for $I$ which is less than $\sup I$. This is a contradiction and so $\sup I \in \bigcap_n A_n$.
+\end{proof} 
+
+\textbf{Exercise 2}
+\textsl{Show that Exercise 1 does not hold for open intervals.}
+\begin{proof}
+Define a series of sets where $A_1=(0;1)$ and $A_n=(0;\frac{1}{n})$. Suppose that $\bigcap_n A_n \neq \emptyset$. Then suppose $x \in \bigcap_n A_n$. We have $x \in \mathbb{R}$ and so there exists some $q \in (0;x)$ such that $q$ is rational. But then since $0<q<1$ and $q \in \mathbb{Q}$, by the Archimedean property there exists an integer $k$ such that $\frac{1}{q}<k$. But then $\frac{1}{k}<q<x$ and so $x \notin (0;\frac{1}{k})$. This means that $x \notin \bigcap_n A_n$ and so the intersection must be empty.
+\end{proof}
+
+\textbf{Exercise 3}
+\textsl{Show that Exercise 1 does not hold if we omit boundedness.}
+\begin{proof}
+Consider $\mathbb{N}$ and make a series of subsets of $\mathbb{N}$ where each succeeding subset removes the least element from the previous one. That is $A_{n+1}=A_n \backslash \{\text{the least element of $A_n$}\}$. Each succeeding subset in this sequence is a subset of the previous one, but the intersection of all of them will be empty because every natural number is eventually excluded from some set.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Let $A_1, A_2, \dots$ be a sequence of closed intervals. Assume that for all $i,j>0$, $A_i \cap A_j \neq \emptyset$. Show that
+\[
+\bigcap_n A_n \neq \emptyset.
+\]}
+\begin{proof}
+Let $\mathcal{A}$ be the set of all $A_i$ in the sequence. Let $I=\{x \in \mathbb{R} \mid x=\inf A_i \text{ for some $A_i$}\}$ and let $S=\{x \in \mathbb{R} \mid x=\sup A_i \text{ for some $A_i$}\}$. We know that $I$ is nonempty and bounded above because every $A_i$ is bounded above. So we have $\sup I$ exists and by a similar argument $\inf S$ exists. Note that for all $A_i,A_j \in \mathcal{A}$ we have $\inf A_i < \sup A_j$ because $A_i \cap A_j \neq \emptyset$. Also note that $\sup I$ is either in $I$ or is a limit point of $I$ and the same is true for $\inf S$ and $S$ by Theorem 6.8. Assume that $\sup I > \inf S$. There are four cases:\newline
+
+\textit{Case 1:} Let $\sup I \in I$ and $\inf S \in S$. This is a contradiction because every element of $I$ and $S$ is either $\inf A_i$ or $\sup A_i$ for some $A_i \in \mathcal{A}$ and we never have $\inf A_i > \sup A_j$.\newline
+
+\textit{Case 2:} Let $\sup I \in I$ and let $\inf S$ be a limit point of $S$. Then we let $(a;b)$ be a region containing $\inf S$ such that there exists some $x \in S$ where $x \in (a;b)$. Since this is true for any region containing $\inf S$, suppose that $b< \sup I$. But then we have some $x \in S$ and $\sup I \in I$ such that $x < \sup I$ which is a contradiction.\newline
+
+\textit{Case 3:} Let $\inf S \in S$ and let $\sup I$ be a limit point of $I$. This is a contradiction by a similar argument to \textit{Case 2}.\newline
+
+\textit{Case 4:} Let $\inf S$ be a limit point of $S$ and let $\sup I$ be a limit point of $I$. So there exist two disjoint regions, $(a;b)$ and $(b;c)$ such that $\inf S \in (a;b)$ and $\sup I \in (b;c)$ and there exist elements $s \in S$ and $i \in I$ such that $s \in (a;b)$ and $i \in (b;c)$. But then we have $s<i$ which is a contradiction.\newline
+
+So we have $\sup I \leq \inf S$. In the case where $\inf S = \sup I$ we have $\inf S \leq \sup A_i$ and $\sup I \geq \inf A_i$ for all $A_i \in \mathcal{A}$. But then $\inf S \leq \sup A_i$ and $\inf S \geq \inf A_i$ for all $A_i \in \mathcal{A}$. But by definition $A_i=[\inf A_i ; \sup A_i]$ and so we have $\inf S \in \bigcap_n A_n$. In the case where $\sup I < \inf S$ we consider $x \in [\sup I ; \inf S]$. Then $x \leq \sup A_i$ and $x \geq \inf A_i$ for all $A_i \in \mathcal{A}$. Thus we have $x \in \bigcap_n A_n$.
+\end{proof}
+
+\textbf{Exercise 5}
+\textsl{Show that if $A$ is an uncountable set of positive real numbers, then there exists $\varepsilon > 0$ such that there are uncountably many elements of $A$ that are bigger than $\varepsilon$.}
+\begin{proof}
+Suppose that for an uncountable set of positive reals and for all $\varepsilon > 0$ there are countably many elements of this set greater than $\varepsilon$. Then consider some $\varepsilon > 0$ and an uncountable set of positive reals $A$. We have countably many elements of $A$ greater than $\varepsilon$ and since two countable sets will union to a countable set, there must be uncountably many elements of $A$ less than $\varepsilon$. But then consider the reciprocals of every element in $A$. We now have an uncountable set with countably many elements less than $1/\varepsilon$ and uncountably many elements of greater than $1/\varepsilon$. But $1/\varepsilon > 0$ and so this is a contradiction.
+\end{proof}
+
+\textbf{Exercise 6}
+\textsl{Is there an uncountable set of pairwise disjoint real regions?}\newline
+
+No.
+\begin{proof}
+Let $S$ be a set of pairwise disjoint real regions. Every element of $S$ contains some rational number because between every two real numbers there exists a rational number. But since every two elements are disjoint, we have every element containing a unique rational number. But then we can make a function from $S$ to a subset of $\mathbb{Q}$ by mapping each element of $S$ to a rational representative. This function is clearly surjective and it must be injective because every element maps to a distinct and unique rational number. This subset of $\mathbb{Q}$ is countable since $\mathbb{Q}$ is countable. Thus $S$ is countable.
+\end{proof}
+
+\textbf{Exercise 7}
+\textsl{Let $A$ be an uncountable subset of the reals. Show that there exists $a \in A$ which is a limit point of $A$.}
+\begin{proof}
+Assume that there exists no limit point $a \in A$ for an uncountable set $A$. For all $x \in A$ there exists some region $(a;b)$ such that $x \in (a;b)$. Choose these regions to be disjoint as in Exercise 6 from Homework 2. But now we have an uncountable set of pairwise disjoint real regions which is a contradiction from Exercise 6. Thus there must exist some limit point of $A$ in $A$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

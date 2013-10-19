@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 26: Log and Exp\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{For $x > 0$ let
+\[
+\log x = \int_1^x \frac{1}{t}dt.
+\]}
+
+\textbf{Theorem 2}
+\textsl{If $x,y > 0$ then
+\[
+\log (xy) = \log x + \log y.
+\]}
+\begin{proof}
+Let $f(x) = \log(xy)$. Then $f'(x) = \log' (xy) = (1/xy)y = 1/x = \log' x$ (21.16, 22.17). Then $\log (xy) = \log (x) + c$ for some constant $c$. Letting $x = 1$ we have $\log y = 0 + c$ so we must have $\log (xy) = \log x + \log y$.
+\end{proof}
+
+\textbf{Corollary 3}
+\textsl{For a natural number $n$ and $x > 0$ we have
+\[
+\log (x^n) = n \log x.
+\]}
+\begin{proof}
+Note that for $n=1$ we have $\log x = \log x$. Induct on $n$ and assume that for some $n \in \mathbb{N}$ we have $\log (x^n) = n \log x$. Consider
+\[
+\log (x^{n+1}) = \log(x \cdot x^n) = \log x + \log (x^n) = \log x + n \log x = (n+1) \log x
+\]
+by Theorem 2 (26.2). Then by mathematical induction the statement must be true for all $n \in \mathbb{N}$.
+\end{proof}
+
+\textbf{Corollary 4}
+\textsl{For $x,y > 0$ we have
+\[
+\log \left ( \frac{x}{y} \right ) = \log x - \log y.
+\]}
+\begin{proof}
+Note that
+\[
+\log (y) + \log \left ( y^{-1} \right ) = \log (yy^{-1}) = \log 1 = \int_1^1 \frac{1}{t} dt = 0
+\]
+and thus $\log (y^{-1}) = -\log y$. We have
+\[
+\log \left ( \frac{x}{y} \right ) = \log \left ( x y^{-1} \right ) = \log x + \log \left ( y^{-1} \right ) = \log x + (- \log y) = \log x - \log y
+\]
+from Theorem 2 and Corollary 3 (26.2, 26.3).
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{The function $\log$ is increasing, unbounded and takes on every real value exactly once.}
+\begin{proof}
+Let $x,y \in \mathbb{R}$ such that $0 < x < y$. Then we have
+\[
+\log y - \log x = \int_1^y \frac{1}{t} dt - \int_1^x \frac{1}{t}dt = \int_x^y \frac{1}{t} dt
+\]
+for $x,y > 0$ (22.10). Note that for all $x>0$, $1/x > 0$. Then for a partition $P = \{t_0, \dots , t_n\}$ with $x = t_0$ and $y = t_n$ we have the lower sum
+\[
+L(f,P) = \sum_{i=1}^n m_i (t_i-t_{i-1})
+\]
+where $m_i = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\}$. Note that for all values of $x \in [t_{i-1}, t_i]$, $x \leq t_i$ so $1/t_i \leq 1/x$. Then $m_i = 1/t_i > 0$ for all $1 \leq i \leq n$ which means
+\[
+\int_x^y \frac{1}{t} dt \geq L(f,P) > 0.
+\]
+Thus $\log y > \log x$ and so $\log$ is increasing. The function $\log$ must be unbounded above because the series
+\[
+\sum_{n=1}^{\infty} \frac{1}{n}
+\]
+is divergent, which means the partial sums are unbounded (15.7). That is, if the partial sums of this series were bounded, they would form a bounded increasing sequence and it would converge. But because
+\[
+\int_1^x \frac{1}{t}dt
+\]
+is defined by lower and upper sums, we can always choose a partial made of natural numbers which will correspond to the series $\sum_{n=1}^{\infty} 1/n$. Thus $\log$ must be unbounded above. To show $\log$ is unbounded below choose a partition $P = \{1, 1/2, 1/3, \dots , 1/n\}$. Then
+\[
+U(f,P) = \sum_{i=1}^n m_i (t_i - t_{i-1}) = \sum_{i=1}^n \frac{1}{t_{i-1}} (t_i - t_{i-1}) = \sum_{i=1}^n (i+1) \left ( \frac{1}{i+1} - \frac{1}{i} \right ) = \sum_{i=1}^n (i+1) \left ( \frac{1}{i(i+1)} \right ) = \sum_{i=1}^n \frac{1}{i}
+\]
+which is divergent and so the partial sums are unbounded. Since $1/x$ is integrable we know that $\log$ is continuous (22.16). Then we have an unbounded continuous function so $\log$ must take on every real value. But we also know that $\log$ is strictly increasing so it's impossible that $\log$ take on one value twice.
+\end{proof}
+
+\textbf{Definition 6}
+\textsl{The exponential function
+\[
+\exp = \log^{-1}.
+\]}
+
+\textbf{Theorem 7}
+\textsl{For all $x$ we have $\exp'(x) = \exp(x)$.}
+\begin{proof}
+Note that $\log (\exp(x)) = x$ and taking the derivatives of both sides we have $\log' (\exp(x)) \exp'(x) = 1$ and so $1/\exp(x) = 1/\exp'(x)$ which means $\exp(x) = \exp'(x)$.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{For all $x,y$ we have
+\[
+\exp(x+y) = \exp(x)\exp(y).
+\]}
+\begin{proof}
+We have $\log (\exp(x+y)) = x+y = \log(\exp(x)) + \log(\exp(y)) = \log(\exp(x)\exp(y))$ (26.2). But since $\log$ takes on every real number exactly once, $\exp(x+y) = \exp(x)\exp(y)$ (26.5).
+\end{proof}
+
+\textbf{Definition 9}
+\textsl{Let
+\[
+e = \exp (1).
+\]}
+
+\textbf{Exercise 10}
+\textsl{Show that $2 < e < 4$.}
+\begin{proof}
+Let $P = \{1, 3/2, 2\}$ be a partition of $[1;2]$. We have
+\[
+\log 2 = \int_1^2 \frac{1}{x} dx \leq U(f,P) = \frac{1}{2} \left ( 1 + \frac{2}{3} \right ) = \frac{5}{6} < 1 = \log e
+\]
+and so $2 < e$. Now let $P = \{1, 3/2, 2, 5/2, 3, 7/2, 4\}$ be a partition of $[1;4]$. We have
+\[
+\log e = 1 < \frac{341}{280} = \frac{1}{2} \left ( \frac{3}{2} + \frac{1}{2} + \frac{2}{5} + \frac{1}{3} + \frac{2}{7} + \frac{1}{4} \right ) = L(f,P) \leq \int_1^4 \frac{1}{x} dx = \log 4
+\]
+and so $e < 4$.
+\end{proof}
+
+\textbf{Definition 11}
+\textsl{For a real number $x$ let
+\[
+e^x = \exp(x).
+\]}
+
+\textbf{Definition 12}
+\textsl{For a real number $x$ and $a > 0$ let
+\[
+a^x = e^{x \log a}.
+\]}
+
+\textbf{Theorem 13}
+\textsl{For $a > 0$ the following hold: \newline
+1) $(a^b)^c = a^{bc}$; \newline
+2) $a^1 = a$; \newline
+3) $a^{b+c} = a^b a^c$.}
+\begin{proof}
+We have
+\[
+a^{bc} = e^{bc \log a} = e^{c \log \left ( a^b \right )} = (a^b)^c,
+\]
+\[
+a^1 = e^{\log a} = \exp (\log (a)) = a,
+\]
+and
+\[
+a^{b+c} = e^{(b+c) \log a} = \exp ((b+c) \log a) = \exp (b \log a + c \log a) = \exp (b \log a) \exp (c \log a) = e^{b \log a} e^{c \log a} = a^b a^c
+\]
+from Corollary 3 and Theorem 8 (26.3, 26.8).
+\end{proof}
+
+\textbf{Exercise 14}
+\textsl{Analyze the functions $\log x$ and $a^x$.}
+\begin{proof}
+Note that $\log'x = 1/x > 0$ for all $x > 0$. Thus $\log x$ is increasing for all $x > 0$. Also $\log''x = -1/x^2 < 0$ for all $x > 0$ which means $\log x$ is concave down for all $x > 0$. Furthermore $1/x > 0$ for all $x > 0$ and so it's never the case that $\log'x = 0$ which means $\log$ has no maximum or minimum values.\newline
+
+Note that $(a^x)' = (e^{x \log a})' = \log a e^{x \log a}$. Since $e^{x \log a} > 0$ for all $x$ we have $(a^x)' > 0$ for $a > 1$ and $(a^x)' < 0$ for $a < 1$. Then for $a > 1$ we have $a^x$ is increasing and for $a < 1$ we have $a^x$ is decreasing. Also $(a^x)'' = (\log a)^2 e^{x \log a} \geq 0$ for all $x$. Thus $a^x$ is concave up for all $x$.
+\end{proof}
+
+\textbf{Theorem 15}
+\textsl{Let $f$ be a differentiable real function such that for all $x$ we have
+\[
+f'(x) = f(x).
+\]
+Then there exists $c$ such that
+\[
+f(x) = c e^x.
+\]}
+\begin{proof}
+Consider
+\[
+\left ( \frac{f(x)}{e^x} \right )' = \frac{e^x f'(x) - f(x) e^x}{e^{2x}} = 0.
+\]
+Thus the function $f(x)/e^x$ must equal a constant, $c$. Therefore $f(x) = c e^x$.
+\end{proof}
+
+\textbf{Theorem 16}
+\textsl{If $x>0$ the
+\[
+\frac{x}{1+x} < \log (1+x) < x.
+\]}
+
+\end{flushleft}
+\end{document}

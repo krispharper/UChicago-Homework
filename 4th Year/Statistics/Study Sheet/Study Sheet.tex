@@ -1,0 +1,228 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[paper=letterpaper, top=.2in, bottom=0in, left=.25in, right=.25in]{geometry}
+
+\newcommand{\var}{\textup{Var}}
+\newcommand{\cov}{\textup{Cov}}
+
+\setlength{\parindent}{0in}
+
+\begin{document}
+
+\begin{tabular}{|lcccc|}
+\hline
+
+Distribution & $f_X(x)$ & $F_X(x)$ & $E(X)$ & $\var(X)$\\
+\hline
+
+Bernoulli $(p)$
+& $(1-p)^{1-k}p^k$
+& $(1-p)^{1-k}$
+& $p$
+& $p(1-p)$\\
+
+Binomial $(n,p)$
+& $\binom{n}{k}(1-p)^{n-k}p^k$
+& $I_{1-p}(n-k,k+1)$
+& $np$
+& $np(1-p)$\\
+
+Hypergeometric(N,m,n)
+& $\frac{\binom{m}{k}\binom{N-m}{n-k}}{\binom{N}{n}}$
+& $\approx \Phi \left ( \frac{k-np}{\sqrt{np(1-p)}} \right )$
+& $\frac{nm}{N}$
+& $\frac{nm(N-n)(N-m)}{N^2(N-1)}$\\
+
+Negative Binomial $(r,p)$
+& $\binom{k-1}{r-1}(1-p)^r p^k$
+& $1 - I_p(k+1,r)$
+& $r\frac{p}{1-p}$
+& $r\frac{p}{(1-p)^2}$\\
+
+Geometric $(n,p)$
+& $(1-p)^{k-1}p$
+& $1-(1-p)^k$
+& $\frac{1}{p}$
+& $\frac{1-p}{p^2}$\\
+
+Poisson $(\lambda)$
+& $\frac{\lambda^k}{k!}e^{-\lambda}$
+& $e^{-\lambda} \sum_{i=0}^k \frac{\lambda^i}{i!}$
+& $\lambda$
+& $\lambda$\\
+\hline
+
+Uniform
+& $\frac{I(a \leq x \leq b)}{b-a}$
+& $\frac{x - a}{b-a}$
+& $\frac{a + b}{2}$
+& $\frac{(b-a)^2}{12}$\\
+
+Normal $(\mu, \sigma^2)$
+& $\phi(x) = \frac{1}{\sigma \sqrt{2 \pi}} \exp \left ( - \frac{(x-\mu)^2}{2 \sigma^2} \right )$
+& $\Phi(x) = \int_{-\infty}^x \phi(t) dt$
+& $\mu$
+& $\sigma^2$\\
+
+Exponential $(\lambda)$
+& $\lambda e^{-\lambda x}$
+& $1 - e^{-\lambda x}$
+& $\frac{1}{\lambda}$
+& $\frac{1}{\lambda^2}$\\
+
+Gamma $(\alpha, \lambda)$
+& $\frac{\lambda^{\alpha}}{\Gamma(\alpha)} x^{\alpha - 1}e^{-\lambda x}$
+& $\frac{\gamma(\alpha, x \lambda)}{\Gamma(\alpha)}$
+& $\frac{\alpha}{\lambda}$
+& $\frac{\alpha}{\lambda^2}$\\
+
+Beta $(\alpha, \beta)$
+& $\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha - 1} (1 - x)^{\beta - 1}$
+& $I_x(\alpha, \beta)$
+& $\frac{\alpha}{\alpha + \beta}$
+& $\frac{\alpha \beta}{(\alpha + \beta)^2(\alpha + \beta + 1)}$\\
+\hline
+
+\end{tabular}
+\begin{tabular}{|c|}
+\hline
+$\Gamma(\alpha) = \int_0^{\infty} t^{\alpha-1} e^{-t} dt$\\
+$\gamma(\alpha, x) = \int_0^x t^{\alpha - 1} e^{-t} dt$\\
+$B(\alpha, \beta) =$\\
+$\int_0^1 t^{\alpha - 1}(1 - t)^{\beta - 1} dt =$\\
+$\frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}$\\
+$B(x; \alpha, \beta) =$\\
+$\int_0^x t^{\alpha - 1} (1 - t)^{\beta - 1} dt$\\
+$I_x(\alpha,\beta) = \frac{B(x; \alpha, \beta)}{B(\alpha, \beta)}$\\
+\hline
+$P(X \geq t) \leq E(X)/t$\\
+$P(|X - \mu| > t) \leq \sigma^2/t^2$\\
+\hline
+\end{tabular}
+
+\begin{tabular}{|ccc|}
+\hline
+$P(A) = \sum_{i=1}^n P(A \mid B_i)P(B_i)$
+& $P(B_j \mid A) = \frac{P(A \mid B_j)P(B_j)}{\sum_{i=1}^n P(A \mid B_i)P(B_i)}$
+& $f_Y(y) = f_X(g^{-1}(y)) |(g'(g^{-1}(y)))^{-1}|$\\
+$f_{Y \mid X}(y \mid x) = \frac{f_{XY}(x,y)}{f_X(x)}$
+& $f_Y(y) = \int_{-\infty}^{\infty} f_{Y \mid X}(y \mid x)f_X(x) dx$
+&  $f_Z(z) = \int_{-\infty}^{\infty}f_X(x)f_Y(z-x)dx$\\
+\hline
+\end{tabular}
+
+\begin{tabular}{|cccc|}
+\hline
+$E(g(X)) = \int_{-\infty}^{\infty} g(x)f(x)dx$
+& $E(a + bX + cY) = a + bE(X) + cE(Y)$
+& \multicolumn{2}{c|}{$E(g(Y) \mid X = x) = \int_{-\infty}^{\infty} g(y) f_{Y \mid X}(y \mid x)dy$}\\
+
+\multicolumn{4}{|c|}{
+\begin{tabular}{ccc}
+$E(Y + Z \mid X) = E(Y \mid X) + E(Z \mid Z)$
+& $E(g(X) Y \mid X) = g(X) E(Y \mid X)$
+& $E(Y) = E(E(Y \mid X))$
+\end{tabular}
+}\\
+\hline
+\end{tabular}
+
+\begin{tabular}{|cccc|}
+\hline
+$\var(X) = E(X^2) - E(X)^2$
+& $\cov(X,Y) = E((X - \mu_X)(Y - \mu_Y))$
+& \multicolumn{2}{c|}{\text{Independence } $\implies \var(X + Y) = \var(X) + \var(Y)$}\\
+
+$\var(X) = E((X-E(X))^2)$
+& $\var(a + bX) = b^2 \var(X)$
+& \multicolumn{2}{c|}{$\var \left (a + \sum_{i=1}^n b_iX_i \right ) = \sum_{i=1}^n \sum_{j=1}^n b_ib_j \cov(X_i,X_j)$}\\
+
+\multicolumn{2}{|c}{$\var(Y) = \var(E(Y \mid X)) + E(\var (Y \mid X))$}
+& \multicolumn{2}{c|}{$V(Y \mid X) = E(Y^2 \mid X) - E(Y \mid X)^2$}\\
+\hline
+\end{tabular}
+
+\begin{tabular}{|cccc|}
+\hline
+$\rho = \frac{\cov(X,Y)}{\sqrt{\var(X) \var(Y)}}$
+& $\rho = \pm 1 \iff \exists(ab)(P(Y = a + bX))$
+& \multicolumn{2}{c|}{$\cov \left (a + \sum_{i=1}^n b_iX_i, c + \sum_{j=1}^m d_jY_j \right ) = \sum_{i=1}^n \sum_{j=1}^m b_id_j \cov(X_i,Y_j)$}\\
+
+\multicolumn{4}{|c|}{
+\begin{tabular}{cc}
+$\cov(X, X) = \var(X)$
+& $\cov(aX,bY) = ab\cov(X,Y)$
+\end{tabular}
+}\\
+\hline
+\end{tabular}
+
+\hrule
+Let $X_1, \dots , X_i, \dots$ be a sequence of independent random variables with $E(X_i) = \mu$ and $\var(X_i) = \sigma^2$. Let $\overline{X}_n = n^{-1} \sum_{i=1}^n X_i$. Then, for any $\varepsilon > 0$,
+\[
+\begin{tabular}{cc}
+$P(|\overline{X}_n - \mu| > \varepsilon) \rightarrow 0$ & as $n \rightarrow \infty$.
+\end{tabular}
+\]
+\hrule
+
+Let $X_1, X_2, \dots$ be a sequence of random variables with mean $\mu$ and variance $\sigma^2$ and a common distribution. Let $S_n = \sum_{i=1}^n X_i$. Then
+\[
+\lim_{n \rightarrow \infty} P \left ( \frac{S_n - n \mu}{\sigma \sqrt{n}} \leq x \right ) = \Phi(x).
+\]
+\hrule
+
+\begin{tabular}{|cccc|}
+\hline
+$\textup{lik}(\theta) = \prod_{i=1}^n f(X_i \mid \theta)$
+& $l(\theta) = \sum_{i=1}^n \log (f(X_i \mid \theta))$
+& \multicolumn{2}{c|}{$\text{asymptotic variance is } \frac{1}{nI(\theta_0)} = - \frac{1}{E(l''(\theta_0))}$}\\
+
+\multicolumn{2}{|c}{$I(\theta) = E \left ( \frac{\partial}{\partial \theta} \log (f(X \mid \theta)) \right)^2$}
+& \multicolumn{2}{c|}{$I(\theta) = -E \left ( \frac{\partial^2}{\partial \theta^2} \log (f(X \mid \theta)) \right )$}\\
+
+\multicolumn{2}{|c}{$f_{\Theta \mid X}(\theta \mid x) = \frac{f_{X, \Theta}(x, \theta)}{f_X(x)}$}
+& \multicolumn{2}{c|}{$f_{\Theta \mid X}(\theta \mid x) = \frac{f_{X \mid \Theta}(x \mid \theta)f_{\Theta}(\theta)}{\int f_{X \mid \Theta}(x \mid \theta) f_{\Theta}(\theta) d \theta}$}\\
+\hline
+\end{tabular}
+
+\hrule
+Under smoothness conditions on $f$, the probability distribution of $\sqrt{n I(\theta_0)}(\hat{\theta} - \theta_0)$ tends to a standard normal distribution.
+\hrule
+
+\begin{tabular}{|cccc|}
+\hline
+$\frac{P(H_0 \mid x)}{P(H_1 \mid x)} = \frac{P(H_0) P(x \mid H_0)}{P(H_1) P(x \mid X_1)} > 1$
+& $\frac{P(x \mid H_0)}{P(x \mid H_1)} > c$
+& $\alpha = P(\text{reject } H_0 \mid H_0)$
+& $\beta = P(\text{accept } H_0 \mid H_1)$\\
+
+\multicolumn{2}{|c}{
+$\displaystyle{\Lambda^* = \frac{\max_{\theta \in \omega_0}(\textup{lik}(\theta))}{\max_{\theta \in \omega_1}(\textup{lik}(\theta))}}$}
+& \multicolumn{2}{c|}{
+$\displaystyle{\Lambda = \frac{\max_{\theta \in \omega_0}(\textup{lik}(\theta))}{\max_{\theta \in \Omega}(\textup{lik}(\theta))}}$}\\
+\hline
+\end{tabular}
+
+\hrule
+Suppose that $H_0$ and $H1$ are simple hypotheses and consider the test that rejects $H_0$ whenever the likelihood ratio is less than $c$ and significance level $\alpha$. Then any other test for which the significance level is less than or equal to $\alpha$ has power less than or equal to that of the likelihood ratio test.
+\hrule
+
+Suppose that for every value $\theta_0$ in $\Theta$ there is a test at level $\alpha$ of the hypothesis $H_0 : \theta = \theta_0$. Denote the acceptance region of the test by $A(\theta_0)$. Then the set
+\[
+C(\mathbf{X}) = \{\theta \mid \mathbf{X} \in A(\theta)\}
+\]
+is a $100(1-\alpha)\%$ confidence region for $\theta$.
+\hrule
+
+Suppose that $C(\mathbf{X})$ is a $100(1-\alpha)\%$ confidence region for $\theta$; that is, for every $\theta_0$,
+\[
+P(\theta_0 \in C(\mathbf{X}) \mid \theta = \theta_0) = 1 - \alpha.
+\]
+Then an acceptance region for a test at level $\alpha$ of the hypothesis $H_0 : \theta = \theta_0$ is
+\[
+A(\theta_0) = \{\mathbf{X} \mid \theta_0 \in C(\mathbf{X})\}.
+\]
+\hrule
+
+\end{document}

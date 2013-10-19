@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 24100\\
+
+April 9, 2010
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{problem}
+Recall the three point geometry we mentioned in class, with three distinct points $P$, $Q$ and $R$ and three distinct lines $P+Q$, $P+R$ and $Q+R$. This satisfies the first and third axioms but not the second.\\
+(a) Place the points in $\mathbb{R}^2$ as $P = (0,0)$, $Q = (1,0)$ and $R = (0,1)$. Show that any subgeometry of $\mathbb{R}^2$ containing these three points contains all of $\mathbb{Q}^2$. You should work out exactly what ``subgeometry'' should mean.\\
+(b) Now consider the above consideration abstractly, not contained in $\mathbb{R}^2$. How few points and lines must we add to get a geometry satisfying all three axioms?
+\end{problem}
+\begin{proof}
+(a) By axiom 2 we must have lines through $P$, $Q$ and $R$ which are parallel to $P+Q$, $P+R$ and $Q+R$ respectively. Call the line which is parallel to $P+Q$ through $R$, $\ell$.
+\vspace{100pt}
+We will inductively show that there must be points $(n,0)$ and $(0,n)$ for $n \in \mathbb{Z}$ in our set of points. Note that the base case $n=0$ is done for us. Suppose we have points $(n,0)$, $(-n,0)$, $(0,n)$ and $(0,-n)$ for some integer $n$. Note that the line $(n,0) + (0,-n)$ intersects $\ell$ in some point. Now draw the line parallel to $Q+R$ which goes through this point. This necessarily intersects the line $P+Q$ in the point $(n+1,0)$.
+\vspace{100pt}
+The cases for $(0,n+1)$, $(-(n+1),0)$ and $(0,-(n+1))$ are similar. Note now that the lines through each of these points which are parallel to $P+R$ and $P+Q$ form a lattice on the plane and their intersections give us the set of points $\mathbb{Z}^2$.
+
+Now we can construct any point of the form $(a/b,0)$ where $a,b \in \mathbb{Z}$ and $a/b < 1$. Simply find the point $(a,b-a)$ (which we've just shown must exist) and draw the line through $P$ and $(a,b-a)$. Note that the equation of this line is $y = ((b-a)/a)x$ and it's easy to see that its intersection with the line $Q+R$ occurs at the point $(a/b, (b-a)/b)$.
+\vspace{100pt}
+Drawing the line through this point parallel to $P+R$ we find a point at $(a/b,0)$ as desired. An argument to construct the points $(0,a/b)$, $(-a/b,0)$ and $(0,-a/b)$ is similar. Furthermore, we could have used the lines $(n+1,0) + (0,n+1)$ and $(n,0) + (b+n,a)$ to construct $(n+a/b,0)$ for some integer $n$. In this way we see that we've constructed all the points $(a/b,0)$ and $(0,a/b)$ for $a/b \in \mathbb{Q}$. Taking the lines through these points parallel to $P+R$ and $P+Q$ and all their intersections we get all points $(a/b,c/d)$, that is, all points in $\mathbb{Q}^2$.
+
+(b) From the second axiom we need to add at least three lines. Namely, we need a line containing $P$ parallel to $Q+R$, a line containing $Q$ parallel to $P+R$ and a line containing $R$ parallel to $P+Q$. Any two of these lines intersect in some point because otherwise they would be parallel which would imply two of $P+Q$, $Q+R$ and $P+R$ are parallel since parallelism is transitive. Suppose each of our new lines intersect in some point $S$.
+\vspace{100pt}
+Axiom 1 is satisfied for $S$ by the lines $P+S$, $Q+S$ and $R+S$ which are the lines we just added. Axiom 2 is satisfied for any line not containing $S$ and the point $S$ by the lines we added. For a line containing $S$, say $P+S$ and a point not on $S$, say $Q$, the line $Q+R$ contains $Q$ and is parallel to $S$ by our own constructions. The other possibilities following similarly. Finally, axiom 3 was already satisfied before we added any new lines or points. Thus we must add at least three lines and one point to satisfy all three axioms.
+\end{proof}
+
+\begin{problem}
+Show that the group $T$ of translations is normal in the group $D$ of dilatations. If $\tau \neq 1$ is a translation, show that $\sigma \tau \sigma^{-1}$ is a translation with the same direction as $\tau$.
+\end{problem}
+\begin{proof}
+Let $\tau \in T$ and $\sigma \in D$. Suppose $\sigma \tau \sigma^{-1}$ has a fixed point $P$. Then $\tau \sigma^{-1}P = \sigma^{-1}P$ so $\sigma^{-1}P$ is a fixed point of $\tau$. Thus $\tau = 1$ and $\sigma \tau \sigma^{-1} = 1$ as well. Therefore $\sigma \tau \sigma^{-1}$ is necessarily in $T$ so that $\sigma T \sigma^{-1} = T$ and $T \unlhd D$.
+
+Now suppose $\tau \neq 1$ and let $\pi$ be the direction of $\tau$. Note that $\sigma^{-1}P + \tau \sigma^{-1}P$ is a trace of $\tau$ and therefore in $\pi$. Since $\sigma$ is a dilatation $\sigma^{-1}P + \tau \sigma^{-1}P \parallel \sigma \sigma^{-1} P + \sigma \tau \sigma^{-1}P = P + \sigma \tau \sigma^{-1}P$. Therefore $P + \sigma \tau \sigma^{-1}P$ is in $\pi$ as well and so $\tau$ and $\sigma \tau \sigma^{-1}$ have the same direction.
+\end{proof}
+
+\begin{problem}
+Let $\pi$ be a pencil of parallel lines. Show that the set $T_{\pi}$ of translations with direction $\pi$ or equal to $1$ is a subgroup of $T$.
+\end{problem}
+\begin{proof}
+Note that our set is nonempty as identity is assumed to be included. Let $\tau, \tau' \in T_{\pi}$. If $\tau \neq 1$ then $P + \tau P = \tau^{-1} \tau P + \tau^{-1} P$ is both a $\tau$ trace and a $\tau^{-1}$ trace so $\tau^{-1} \in T_{\pi}$ as well.
+
+If $\tau'$ or $\tau$ is the identity then we're done since $\tau \tau' = \tau$ or $\tau \tau' = \tau'$. Suppose $\tau \neq 1$ and $\tau' \neq 1$. Then $P + \tau P$ is a trace of $\tau$. Note that $P + \tau P$ also contains $\tau' \tau P$. If $\tau' \tau P = P$ then $\tau' \tau = 1$ since $T$ is a group and nontrivial translations have no fixed points. Otherwise $P + \tau P = P + \tau'\tau P$ so $\tau' \tau \in T_{\pi}$ as well. Therefore $T_{\pi}$ is closed under products and inverses and is nonempty so it must be a subgroup of $T$.
+\end{proof}
+
+\begin{problem}
+Consider the Moulton Plane introduced in class: the points are the points of $\mathbb{R}^2$, and the lines are the subsets defined by the following equations:
+\begin{itemize}
+\item $x = c$ (vertical lines);
+\item $y = mx + b$ for $m \geq 0$ (lines with nonnegative slope); and
+\item $y = \begin{cases} mx+b & \text{if $x \leq 0$}\\ 2mx + b & \text{if $x \geq 0$} \end{cases}$ for $m \leq 0$ (broken lines).
+\end{itemize}
+Show that this satisfies axioms 1, 2 and 3, but not 4a.
+\end{problem}
+\begin{proof}
+Let $P = (p_1,p_2)$ and $Q = (q_1,q_2)$ be two distinct points. If it happens that $p_1 = q_1$ or $p_2 = q_2$ then the lines $x = p_1$ or $y = p_2$ will respectively contain $P$ and $Q$. If $p_1 > q_1$ and $p_2 > q_2$ or $p_1 < q_1$ and $p_2 < q_2$ then the line
+\[
+y = \frac{p_2-q_2}{p_1-q_1}x + \frac{p_1q_2-p_2q_1}{p_1-q_1}
+\]
+contains $P$ and $Q$. It's easy to see each of these lines is the unique such line since the slope is uniquely determined by $P$ and $Q$. Now suppose $p_1 < q_1$ and $p_2 > q_2$ or $p_1 > q_1$ and $p_2 < q_2$. If $p_1 < 0$ and $q_1 < 0$ then the same line as above (but broken this time) will contain $P$ and $Q$. Likewise if $p_1 > 0$ and $q_1 > 0$ then the line above (but broken) will contain $P$ and $Q$. Now suppose, without loss of generality, that $p_1 \leq 0 < q_1$ and $p_2 > q_2$. Then find the point on the $y$-axis such that the line drawn from that point to $P$ has half the slope as the line drawn from that point to $Q$. The intermediate value theorem ensures that such a point will exist and will be unique. This line contains $P$ and $Q$ and is the unique line which does so. Thus the Moulton plane satisfies axiom 1.
+
+Let $\ell$ be a line and let $P = (p_1,p_2)$ be a point not on $\ell$. Note that if $\ell$ is vertical, then $\ell$ necessarily intersects every non-vertical line. Likewise, if $\ell$ has nonnegative slope then $\ell$ intersects every vertical line as well as every broken line. Finally, if $\ell$ is not vertical or with nonnegative slope then it necessarily intersects every vertical line and every line with nonnegative slope. This shows that we only need to consider lines of a particular category when finding a unique line parallel to $\ell$.
+
+Now if $\ell$ is vertical then the line $x = p_1$ parallel to $\ell$ and contains $P$. Clearly no other vertical line will contain $P$ and by the above argument all other lines intersect $\ell$ so this line is unique. Suppose $\ell$ has positive slope $m$. Then the line $y = mx + (p_2-mp_1)$ contains $P$ (as is easily verified) and is parallel to $\ell$ (since it has the same slope). All other lines with the same slope will not contain $P$ because they have different constant terms. Using the above argument again we see that this line is then unique. Finally, suppose $\ell$ is of the third category with slopes $m$ and $2m$. If $p_1 \leq 0$ then the line with slopes $m$ and $2m$ and constant term $p_2-mp_1$ contains $P$ and is parallel to $\ell$. If $p_1 \geq 0$ then the line with slopes $m$ and $2m$ with constant term $p_2-2mp_1$ is parallel to $\ell$ and contains $P$. No other line of this category which is parallel to $\ell$ can contain $P$ since the corresponding line pieces will not contain $P$. Also, by the above argument this line intersects all lines of the other two categories so this is indeed unique. Therefore the Moulton plane satisfies axiom 2.
+
+Finally note that axiom 3 is nearly trivially satisfied by (for example) the points $(0,0)$, $(1,0)$ and $(1,1)$. Then $(1,1)$ is clearly not on the line $(0,0) + (1,0)$, i.e. $y = 0$.
+
+Let $f : \mathbb{R}^2 \to \mathbb{R}^2$ be a (nontrivial) dilatation of the Moulton plane and write $f(x,y) = (f_1(x,y),f_2(x,y))$. Note that this implies that lines with nonnegative slope are taken to parallel lines with nonnegative slope, i.e., lines with the same slope. Let $P = (p_1,p_2)$ be a point on such a line with slope $m$ and equation $y = mx + b_1$. Suppose $f(P)$ lies on the line $y = mx + b_2$. Consider the function $f_r : \mathbb{R}^2 \to \mathbb{R}^2$ defined by $f_r(x,y) = (rx,ry)$. Choose $r = b_2/b_1$. It follows that $rp_2 = mrp_1 + b_2$ so $f_r(P)$ lies on the same line as $f(P)$. Now let $a = f_1(p_1,p_2) - rp_1$ and $b = f_2(p_1,p_2) - rp_2$. Then $f(p_1,p_2) = (rp_1 + a, rp_2 + b)$. Furthermore, it's not hard to see that this is actually independent of $P$ so we arrive at the result $f(x,y) = (rx + a, ry + b)$ for some $r,a,b \in \mathbb{R}$.
+
+Note that if $r = 1$ and $b/a = m$ then $f$ is the identity, so assume $r \neq 1$. Then note that the point $(a/(1-r), b/(1-r))$ is defined and is a fixed point for $f$ since
+\[
+\frac{ra}{1-r} + a = \frac{ra + a(1-r)}{1-r} = \frac{a}{1-r} = x
+\]
+and similarly for $y$. Therefore, for $f$ to be a translation we need $r = 1$ so that $f(x,y) = (x+a,y+b)$. Note that this is the unique translation taking a point $P = (p_1,p_2)$ to the point $(p_1+a,p_2+a)$. Suppose $b = 0$ and $a > 0$ so that $f$ simply shifts points to the right. Suppose we have a line with slopes $m$ and $2m$. Note that points on the this line with negative $x$-coordinate greater than $-a$ will be sent to a line which has slope $m$ for points with nonnegative $x$-coordinate. But this image line is clearly not parallel to our original line since it has the wrong slope for positive $x$-coordinates. Thus there is no translation of the Moulton plane which takes, for example, the point $(-1,0)$ to the point $(2,0)$ since the translation $f(x,y) = (x+3,y)$ is not a dilatation. Therefore the Moulton plane doesn't satisfy axiom 4a.
+\end{proof}
+
+\end{document}

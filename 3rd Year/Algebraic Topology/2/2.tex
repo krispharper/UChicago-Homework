@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 26300\\
+
+April 13, 2010
+\end{flushright}
+
+\begin{center}
+Homework 2
+\end{center}
+
+\begin{problem}
+Given a map $f : X \to Y$ and a path $h : I \to X$ from $x_0$ to $x_1$, show that $f_* \beta_h = \beta_{fh}f_*$ in the diagram at right.
+\end{problem}
+\begin{proof}
+Let $g \in \pi_1(X,x_0)$. We see that $f_* \beta_h$ takes $g$ first to $hgh^{-1}$ and then to $f(hgh^{-1})$ and $\beta_{fh}f*$ takes $g$ first to $fg$ and then to $(fh)fg(fh^{-1})$. The first is a path which traces the image under $f$ of the path $hgh^{-1}$. But this is the same as saying it traces the image of $h$ under $f$, then the image of $g$ under $f$ then the image of $h^{-1}$ under $f$. This is precisely the second path in question so the two must be equal. Therefore $f_* \beta_h$ and $\beta_{fh} f_*$ have the same value on each point so they must be equal.
+\end{proof}
+
+\begin{problem}
+Show that there are no retractions $r : X \to A$  in the following cases:
+(a) $X = \mathbb{R}^3$ and $A$ any subspace homeomorphic to $S^1$.\\
+(b) $X = S^1 \times D^2$ with $A$ its boundary torus $S^1 \times S^1$.\\
+(c) $X = S^1 \times D^2$ and $A$ the circle shown in the figure.\\
+(d) $X = D^2 \vee D^2$ with $A$ its boundary $S_1 \vee S^1$.\\
+(e) $X$ a disk with two points on its boundary identified and $A$ its boundary $S^1 \vee S^1$.
+(f) $X$ the M\"{o}bius band and $A$ its boundary circle.
+\end{problem}
+\begin{proof}
+(a) Suppose there is such a retraction. Then we have an injection $\mathbb{Z} \approx \pi_1(S^1,s_0) \approx \pi_1(A,x_0) \to \pi_1(\mathbb{R}^3,x_0) = 0$. This is a contradiction.
+
+(b) Suppose there is such a retraction. Then we have an injection $\mathbb{Z} \times \mathbb{Z} \approx \pi_1(S^1,s_0) \times \pi_1(S^1,s_0) \approx \pi_1(S^1 \times S^1,(s_0,s_0)) \to \pi_1(S^1 \times D^2,(s_0,s_0)) \approx \pi_1(S^1,s_0) \times \pi_1(D^2,s_0) \approx \mathbb{Z} \times 0 = \mathbb{Z}$ since both $S^1$ and $D^2$ are path connected. This is a contradiction.
+
+(c) Suppose such a retraction exists and let $\iota_* : \pi_1(A,x_0) \to \pi_1(X,x_0)$ induced by the inclusion $\iota : A \to X$. This is necessarily an injective map, but if $f$ is the generator loop of $\pi_1(A,x_0)$ we see that $i_*f$ is nullhomotopic. Thus this map cannot be injective, a contradiction.
+
+(d) We know that $D^2$ is a contractable space and so the fundamental group  of $D^2 \vee D^2$ must be trivial. But $\pi_1(S^1 \vee S^1, x_0)$ is the free group on two generators. There is clearly no injection from this free group to the trivial group so there can be no such retraction.
+
+(e) We may assume, possibly using a homeomorphism, that the disk is the unit disk in $\mathbb{R}^2$ and that the identified points are $(1,0)$ and $(-1,0)$. Note then that $X$ is homotopically equivalent to a circle on the interval $[-1,1]$ on the $x$-axis through the homotopy $F_t(x,y) = (x,(1-t)y)$. Thus $\pi_1(X,x_0) \approx \mathbb{Z}$. As in part (d), $\pi_1(A,x_0) = F_2$, the free group on two generators. Suppose $f : F_2 \to \mathbb{Z}$ is some homomorphism. Then we have $f(a) = n$ and $f(b) = m$ for some integers $n$ and $m$. But then $f(a^m) = mn = f(b^n)$ so $f$ cannot be injective. Thus no retraction can exist.
+
+(f). Note that the fundamental group in each case is the same as that of $S^1$, that is, $\mathbb{Z}$. But further, note that the induced inclusion $i_*(n) = 2n$. This is because going around the boundary of the M\"{o}bius band amounts to traversing the strip twice. Suppose $r$ is such a retraction so that $r_*i_*$ is the identity. Then $1 = r_*i_*(1) = r_*(2) = r_*(1) + r_*(1)$.  But this is a contradiction since $r_*(1)$ cannot possibly have an integer value. Thus no such retraction can exist.
+\end{proof}
+
+\begin{problem}
+Show that the free product $G*H$ of nontrivial groups $G$ and $H$ has trivial center, and that the only elements of $G*H$ of finite order are the conjugates of finite-order elements of $G$ and $H$.
+\end{problem}
+\begin{proof}
+Let $g \in G$ and suppose that $x \in G*H$ commutes with $g$. Write $x = x_1 \dots x_n$ in reduced form. If it happens that $x_1$ and $x_n$ are both in $G$ then we can replace $x$ with $x_n^{-1}xx_n^{-1}$ which commutes with $x_n^{-1}xx_n^{-1}$ so we may assume $x_1$ and $x_n$ are from different groups. Then we have $gx_1 \dots x_n = x_1 \dots x_n$ and the only way this can happen is if $n = 1$ and $x = x_1$. So given an element $g \in G$ or $h \in H$, the only elements of $G*H$ which commute with it are in $G$ or $H$ respectively. Thus if $g \in G$ and $h \in H$ are nontrivial and distinct then $gh$ doesn't commute with any singleton $g' \in G$ or $h' \in H$ so it can't commute with any word in $G*H$. Thus if $G$ and $H$ are both nontrivial then $G*H$ must have trivial center.
+
+Now suppose $x = x_1 \dots x_n$ is a reduced word in $G*H$ which has finite order. Then for some $m$ we have $1 = x^m = (x_1 \dots x_n)(x_1 \dots x_n) \dots (x_1 \dots x_n)$. Since $x$ is reduced and the right hand side reduces to $1$ we must have cancellations of $x_n$ and $x_1$. Following that, $x_{n-1}$ and $x_2$ must cancel as well. Inductively, each "end" of $x$ cancels with the other end until we're left with only $x_1x_i^mx_n = x_1x_i^mx_1^{-1}$. For this to reduce to $1$ we need $x_i^m = 1$ so that $x_i$ has finite order in $G$ or $H$. Putting the terms $x_1^{-1}x_1$ back in we see that $x^m = (x_1x_ix_1^{-1})^m$ so that $x$ is indeed a conjugate of some element of finite order in $G$ or $H$.
+\end{proof}
+
+\begin{problem}
+Let $X = \mathbb{R}^3$ be the union of $n$ lines through the origin. Compute $\pi_1(\mathbb{R}^3 - X)$.
+\end{problem}
+\begin{proof}
+Note that $\mathbb{R}^{3} \backslash \{0\}$ is homeomorphic to $S^2$. To see this we can use the retraction $f(\mathbf{x}) = \mathbf{x}/||\mathbf{x}||$ which is defined for $x \neq 0$. Thus the space in question, $\mathbb{R}^3 \backslash X$ is homeomorphic to $S^2$ minus the $2n$ points where each of the lines intersects the unit sphere around the origin.
+\vspace{100pt}
+Pick one of these missing points and note that using the one-point compactification of $\mathbb{R}^2$ our space in question is homeomorphic to $\mathbb{R}^2$ minus $2n-1$ points. We can choose these points to be evenly distributed on the unit circle about the origin with one point at $(1,0)$. Let $B$ be the open disk of radius $1/2$ around the origin. For $1 \leq k \leq 2n-1$ define $A_k = B \cup \{re^{i\theta} \mid r \geq 0, 2\pi i (k-3/2-\varepsilon)/(2n-1) < \theta < 2\pi i (k - 1/2 + \varepsilon)/(2n-1)\}$ where $\varepsilon$ is chosen small enough such that $A_k \cap A_{k+1}$ contains none of the missing points.
+\vspace{100pt}
+Note that each $A_k$ is an open set containing exactly one missing point and together they cover $\mathbb{R}^2$. Moreover two sets $A_k$ either intersect only in $B$ (if they aren't consecutive) or in a sliver of angle width $2\pi \varepsilon/(2n-1)$ unioned with $B$. Any three $A_k$ necessarily intersect in the path-connected space $B$.
+\vspace{100pt}
+Finally note that each $A_k$ deformation retracts onto $S^1$ using a similar retraction as above. Namely, take a circle contained in $A_k$ around the point missing from $A_k$. For each vector in $A_k$ outside of this circle we can shrink the vector until it has norm the radius of the circle. We can likewise scale vectors inside the circle since the center is missing. Thus each $A_k$ has fundamental group isomorphic to $\mathbb{Z}$. Note also that each intersection of two $A_k$ is a space homeomorphic to $\mathbb{R}^2$ and so has trivial fundamental group. Van Kampen's Theorem now tells us that the fundamental group of our space is isomorphic to $*_{k=1}^{2n-1} \mathbb{Z}$.
+\end{proof}
+
+\begin{problem}
+Let $X \subseteq \mathbb{R}^2$ be a connected graph that is the union of a finite number of straight line segments. Show that $\pi_1(X)$ is free with a basis consisting of loops formed by the boundaries of the bounded complementary regions of $X$, joined to a basepoint by suitably chosen paths in $X$.
+\end{problem}
+\begin{proof}
+Let $T$ be a maximal tree for $X$. We know such a $T$ exists because $X$ is finite and connected so for a given cycle we can remove an edge and repeat this process for any remaining cycles. Since $X$ is finite this process will eventually terminate. We know the resulting subgraph is a tree because we only removed an edge if it was part of a cycle. We know $T$ is maximal because adding any edge to $T$ will clearly create a cycle.
+
+Now for each edge $e_{\alpha} \in X \backslash T$ let $A_{\alpha}$ be an open neighborhood of $T \cup e_{\alpha}$ which deformation retracts onto $T \cup e_{\alpha}$. Any two $A_{\alpha}$ will necessarily intersect in a space which deformation retracts onto $T$. Thus their intersection is contractable. Likewise the intersection of three of them deformation retracts onto a path connected space. These $A_{\alpha}$ form an open cover of $X$ and so van Kampen's Theorem tells us that $\pi_1(X) \approx *_{\alpha} \pi_1(A_{\alpha})$. But now note that since $T$ is maximal, each $A_{\alpha}$ necessarily contains a cycle of $X$ and so each $A_{\alpha}$ deformation retracts onto a circle in $\mathbb{R}^2$. Thus $\pi_1(X)$ is the free product of $n$ copies of $\mathbb{Z}$ where $n$ is the cardinality of the edge set of $X$ minus the cardinality of the edge set of $T$. The generators for $\pi_1(X)$ are the paths in each $A_{\alpha}$ which traverse the cycle it contains. Namely, they are the paths which follow $T$ to one end of $e_{\alpha}$, then traverse $e_{\alpha}$ then follow $T$ back to the basepoint of $X$.
+\end{proof}
+
+\begin{problem}
+In the surface $M_g$ of genus $g$, let $C$ be a circle that separates $M_g$ into two compact subsurfaces $M_h'$ and $M_k'$ obtained from the closed surfaces $M_h$ and $M_k$ by deleting an open disk from each. Show that $M_h'$ does not retract onto its boundary circle $C$, and hence $M_g$ does not retract onto $C$. But show that $M_g$ does retract onto the nonseparating circle $C'$ in the figure.
+\end{problem}
+\begin{proof}
+Suppose that there exists a retraction $M_h'$ onto it's boundary circle $C$. Then we have the inclusion map $\iota_* : \pi_1(C,x_0) \to \pi_1(M_h',x_0)$ induced by the map $\iota : C \to M_h'$. This map is injective if such a retraction exists. But note that a generator of $\pi_1(C,x_0)$ under $\iota_*$ is nullhomotopic since it can be homotoped to a point on the other end of $M_h'$. Thus this map cannot be injective, a contradiction.
+\vspace{100pt}
+
+Now let $T$ be a torus and $C'$ the corresponding nonseparating circle for $T$. It's clear that $T = S^1 \times S^1$ retracts onto $C' = S^1$ by simply using the projection map $(x,y) \mapsto x$. Call this retraction $f$. Now consider an open disk on $T$ and use a homotopy to pass this disk to the open unit disk in the plane. We can use the function
+\[
+g(x) =
+\begin{cases}
+f(0) & 0 \leq r \leq \frac{1}{2}\\
+f((2r-1)e^{i \theta} & \frac{1}{2} \leq r < 1
+\end{cases}.
+\]
+\vspace{100pt}
+This function will send all the points on a closed disk to a single point while keeping the image of the entire open disk containing it the same. In particular the boundary of this closed disk is constant, so we may affix whichever spaces we like, provided they have the same boundary, and send them all to this same point and this will be a retraction of the resulting space to $C'$.
+\vspace{100pt}
+Namely, we can add $M_{g-1}'$ minus the open disk with the same boundary to our torus and get a genus $g$ surface which retracts to $C'$.
+\end{proof}
+
+\end{document}

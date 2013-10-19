@@ -1,0 +1,407 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27300\\
+
+February 18, 2011
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{problem}
+Let $Lu = u'$ and let $Mv = v' + p(x)v$ where the coefficient $p$ is not constant. Show that $LM \neq ML$.
+\end{problem}
+\begin{proof}
+Let $u(x)$ be a function. Then $MLu = M(u') = u'' + p(x)u'$ and $LMu = L(u' + p(x)u) = u'' + p'(x)u + p(x)u'$. Taking the difference we have $LMu - MLu = p'(x)u$. Since $p$ is not constant, $p'(x) \neq 0$ so picking $u(x)$ not $0$, we have $p'(x)u(x) \neq 0$ and $LM \neq ML$.
+\end{proof}
+
+\begin{problem}
+Find the coefficients $a_1$, $a_2$, $a_3$ of equation (3.1) with $n = 3$ if that equation is satisfied by the functions\\
+(a) $\exp(-x)$, $x \exp(-x)$, $\exp(-2x)$.\\
+(b) $\cos(2x)$, $\sin(2x)$, $\exp(2x)$.
+\end{problem}
+
+(a) We know that the three functions in question are linearly independent and they're the solutions to an equation of the form (3.1), where the coefficients are constant. We can find the coefficients using the characteristic polynomial, the roots of which are given in the exponentials. The polynomial is then $(p+1)(p+1)(p+2) = x^3 + 4x^2 + 5x + 2$. Thus, $a_1 = 4$, $a_2 = 5$ and $a_3 = 2$.
+
+(b) We have the same situation as in part (a), but now the roots are $p = 2$ and  $p = \pm 2i$. Thus the characteristic polynomial is $(p+2i)(p-2i)(p-2) = x^3 - 2x^2 + 4x - 8$ so $a_1 = -2$, $a_2 = 4$ and $a_3 = -8$.
+
+\begin{problem}
+Consider the equation $u''' + 3u'' + 3u' + u = 0$.\\
+(a) Find a basis $u_1$, $u_2$, $u_3$ of solutions.\\
+(b) Is the trivial solution stable?\\
+(c) For the initial-value problem consisting of this equation together with initial values $u_0$, $\dot{u}_0$, $\ddot{u}_0$, express the constants $a_1$, $a_2$, $a_3$ in the expression $u(t) = a_1u_1(t) + a_2u_2(t) + a_3u_3(t)$ explicitly in terms of the initial data.
+\end{problem}
+
+(a) The characteristic polynomial is $p^3 + 3p^2 + 3p + p = (p+1)^3$ which has a solution $p = -1$ with multiplicity $3$. This gives us the basis functions $u_1(x) = e^{-x}$, $u_2(x) = xe^{-x}$ and $u_3(x) = x^2e^{-x}$.
+
+(b) All the zeros of the characteristic polynomial have negative real part, so the trivial solution is asymptotically stable.
+
+(c) We have $u_0 = u(0) = a_1e^{0} = a_1$. Differentiating we have
+\[
+\dot{u}_0 = u'(0) = e^0(-a_1 - a_2 \cdot 0 + a_2 - a_3(0 - 2)0) = -a_1 + a_2
+\]
+and again we have
+\[
+\ddot{u}_0 = u''(0) = e^0(a_1 + a_2(0-2) + a_3(0 - 4 \cdot 0 + 2)) = a_1 - 2a_2 + 2a_3.
+\]
+So this gives $a_1 = u_0$, $a_2 = \dot{u}_0 + u_0$ and $a_3 = (\ddot{u}_0 - u_0 + 2\dot{u}_0)/2$.
+
+\begin{problem}
+Find the solution to the initial-value problem
+\[
+\begin{tabular}{ccc}
+$\ddot{u} + 2 \nu \dot{u} + u = \cos(\sigma t)$, & $u(0) = 1$, & $u'(0) = 0$
+\end{tabular}
+\]
+assuming $0 < \nu < 1$. Show that the solution tends to a purely oscillatory solution as $t \rightarrow \infty$. Find the amplitude of this oscillatory solution as a function of $\sigma$ for fixed $\nu$.
+\end{problem}
+
+The characteristic polynomial is $p^2 + 2 \nu p + 1$ which has solutions $-\nu \pm \sqrt{\nu^2 - 1}$. Since $\nu < 1$, $\nu^2 - 1 < 0$ so we have two complex roots $-\nu \pm i \sqrt{1 - \nu^2}$, which we'll call $\alpha$ and $\overline{\alpha}$.
+
+Furthermore, $\cos(\sigma t) = (e^{i \sigma t} + e^{-i \sigma t})/2$, so we have the two equations $u'' + 2 \nu u' + u = e^{i \sigma t}$ and $u'' + 2 \nu u' + u = e^{-i \sigma t}$. Since $\sigma \in \mathbb{R}$, we know $\pm i \sigma$ is purely imaginary, so we can't have $i \sigma = \alpha$ or $i \sigma = \overline{\alpha}$. Thus, two particular solutions to the above equations are $u_1(t) = c_1 e^{i \sigma t}$ and $u_2(t) = c_2 e^{-i \sigma t}$. Substituting $u_1$ and $u_2$ into the above equations we have
+\[
+e^{i \sigma t} = c_1 ( - \sigma^2 + 2 i \sigma \nu + 1)e^{i \sigma t}
+\]
+so $c_1 = 1/(1 - \sigma^2 + 2 i \sigma \nu) = 1/\beta$ where $\beta = 1 - \sigma^2 + 2i \sigma \nu$. Likewise
+\[
+e^{-i \sigma t} = c_2 ( - \sigma^2 - 2 i \sigma \nu + 1)e^{-i \sigma t}
+\]
+so $c_2 = 1/\overline{\beta}$. Putting these together we have a particular solution
+\[
+U(t) = \frac{u_1(t) + u_2(t)}{2} = \frac{1}{2} \left ( \frac{e^{i \sigma t}}{\beta} + \frac{e^{-i \sigma t}}{\overline{\beta}} \right ).
+\]
+Then the general solution for the equation is $u(t) = a_1 e^{\alpha t} + a_2 e^{\overline{\alpha} t} + U(t)$. Putting in $0$ we have
+\[
+1 = u(0) = a_1 + a_2 + \frac{1}{2 \beta} + \frac{1}{2 \overline{\beta}}.
+\]
+Differentiating and putting in $0$ for $u'(0)$ we have
+\[
+0 = u'(0) = a_1 \alpha + a_2 \overline{\alpha} + \frac{i \sigma}{2 \beta} + \frac{i \sigma}{2 \overline{\beta}}.
+\]
+Solving for $a_1$ and $a_2$ we find
+\[
+a_1 = \frac{\overline{\alpha}}{\overline{\alpha} - \alpha} + \frac{\overline{\alpha} - i \sigma}{2(\alpha - \overline{\alpha})} \left ( \frac{1}{\beta} + \frac{1}{\overline{\beta}} \right )
+\]
+and
+\[
+a_2 = \frac{\alpha}{\alpha - \overline{\alpha}} + \frac{\alpha - i \sigma}{2(\overline{\alpha} - \alpha)} \left ( \frac{1}{\beta} + \frac{1}{\overline{\beta}} \right ).
+\]
+As $t \rightarrow \infty$, the solutions from the homogeneous terms will approach $0$ since they have negative real part (as $0 < \nu < 1$). So in the limit we're left with $U(t)$ dominating the behavior of $u(t)$. But $U(t)$ is the sum of two complex exponentials, which can be written as oscillatory trigonometric functions. The amplitude of this function will be $1/(2|\beta|^2) = 1/(2((1-\sigma^2)^2 + 4 \sigma^2 \nu))$.
+
+\begin{problem}
+let $Lu(t) = u^{(iv)}(t) - 5u''(t) + 4u(t)$. Find a particular integral of the equation $Lu = t^3$.
+\end{problem}
+
+Let $u(t) = t^3/4 + 15t/8$. Then $u^{(iv)}(t) = 0$ and $-5u''(t) = -15/2 t$. Thus $Lu(t) = -15/2t + 4(t^3/4 + 15t/8) = t^3$. So this is a particular integral.
+
+\begin{problem}
+Solve the initial-value problem
+\[
+\begin{tabular}{cc}
+$u''' - 3u'' + 3u' - u = 1 + e^t$, & $u(0) = u'(0) = u''(0) = 1$.
+\end{tabular}
+\]
+\end{problem}
+
+The characteristic polynomial is $p^3 - 3p^2 + 3p - p = (p-1)^3 = 0$ which has $p = 1$ as a repeated root three times. Consider the function $U(t) = e^t t^3/6 - 1$. Respectively, the first, second and third derivatives are
+\[
+\frac{e^t t^2(t+3)}{6},
+\]
+\[
+\frac{e^t t(t^2 + 6t + 6)}{6}
+\]
+and
+\[
+\frac{e^t (t^3 + 9t^2 + 18t + 6)}{6}.
+\]
+It's then easy to see that $U'''(t) - 3U''(t) + 3U'(t) - U(t) = 1 + e^t$ so $U$ is a particular solution. The general equation is then
+\[
+u(t) = a_1 e^t + a_2 t e^t + a_3 t^2 e^t \frac{e^t t^3}{6} - 1.
+\]
+Now putting in $u(0) = u'(0) = u''(0) = 1$ we have
+\[
+1 = a_1 - 1
+\]
+\[
+1 = a_1 + a_2
+\]
+and
+\[
+1 = a_1 + 2a_2 + 2a_3
+\]
+so $a_1 = 2$, $a_2 = -1$ and $a_3 = 1/2$. Thus the solution is $u(t) = 2e^t - te^t + (1/2)t^2e^t + (e^t t^3)/6 - 1$.
+
+\noindent
+In the following three problems, denote by $A$ the $2 \times 2$ matrix
+\[
+A =
+\left (
+\begin{array}{cc}
+\lambda & 1\\
+0 & \lambda
+\end{array}
+\right ),
+\]
+where $\lambda$ is a nonzero constant.
+
+\begin{problem}
+Find a closed form expression for $\exp(A)$ in terms of elementary functions.
+\end{problem}
+\begin{proof}
+We will first show by induction that
+\[
+A^n =
+\left (
+\begin{array}{cc}
+\lambda^n & n \lambda^{n-1}\\
+0 & \lambda^n
+\end{array}
+\right ).
+\]
+Clearly this is true for $n = 1$. Suppose it's true for some $n$ and consider
+\[
+A^{n+1} = A^n A =
+\left (
+\begin{array}{cc}
+\lambda^n & n \lambda^{n-1}\\
+0 & \lambda^n
+\end{array}
+\right ) \left (
+\begin{array}{cc}
+\lambda & 1\\
+0 & \lambda
+\end{array}
+\right )
+=
+\left (
+\begin{array}{cc}
+\lambda^{n+1} & (n+1)\lambda^n\\
+0 & \lambda^{n+1}
+\end{array}
+\right )
+\]
+as desired. Thus we now have
+\[
+\exp(A) = \sum_{k=0}^{\infty} \frac{A^k}{k!} =
+\left (
+\begin{array}{cc}
+\sum_{k=0}^{\infty} \frac{\lambda^k}{k!} & 0 + \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!}\\
+0 & \sum_{k=0}^{\infty} \frac{\lambda^k}{k!}
+\end{array}
+\right ) = \left (
+\begin{array}{cc}
+e^{\lambda} & e^{\lambda}\\
+0 & e^{\lambda}
+\end{array}
+\right ).
+\]
+\end{proof}
+
+\begin{problem}
+Solve the initial-value problem
+\[
+\begin{tabular}{cc}
+$\displaystyle{\dot{x} = Ax}$, & $\displaystyle{x(0) = \left ( \begin{array}{c} 1\\ 1 \end{array} \right )}$.
+\end{tabular}
+\]
+\end{problem}
+
+It can be shown using the same induction argument as in the previous problem that
+\[
+e^{At} =
+\left (
+\begin{array}{cc}
+e^{t \lambda} & t e^{t \lambda}\\
+0 & e^{t \lambda}
+\end{array}
+\right ).
+\]
+Now we know the solution has the form
+\[
+x(t) = e^{At} x_0 =
+\left (
+\begin{array}{cc}
+e^{t \lambda} & t e^{t \lambda}\\
+0 & e^{t \lambda}
+\end{array}
+\right ) \left (
+\begin{array}{c}
+1\\
+1
+\end{array}
+\right ) = \left (
+\begin{array}{cc}
+e^{t \lambda} + t e^{t \lambda}\\
+e^{t \lambda}
+\end{array}
+\right ).
+\]
+
+\begin{problem}
+Solve the initial-value problem
+\[
+\begin{tabular}{ccc}
+$\displaystyle{\dot{x} = Ax + R(t)}$, & $\displaystyle{x(0) = 0}$, & where $\displaystyle{R(t) = \left ( \begin{array}{c} t\\ 1 \end{array} \right )}$.
+\end{tabular}
+\]
+\end{problem}
+
+A formula for a particular solution is given by
+\begin{align*}
+x_P(t)
+&= \int_{t_0}^t e^{A(t-s)} R(s) ds\\
+&= \int_{t_0}^t
+\left (
+\begin{array}{cc}
+e^{(t-s) \lambda} & (t-s)e^{(t-s) \lambda}\\
+0 & e^{(t-s) \lambda}
+\end{array}
+\right ) \left (
+\begin{array}{c}
+s\\
+1
+\end{array}
+\right ) ds\\
+&= \int_{t_0}^t
+\left (
+\begin{array}{c}
+se^{(t-s) \lambda} + (t-s)e^{(t-s) \lambda}\\
+e^{(t-s) \lambda}
+\end{array}
+\right ) ds\\
+&= \left (
+\begin{array}{c}
+\int_{t_0}^t se^{(t-s) \lambda} + (t-s)e^{(t-s) \lambda} ds\\
+\int_{t_0}^t e^{(t-s) \lambda} ds
+\end{array}
+\right )\\
+&= \left (
+\begin{array}{c}
+\frac{t}{\lambda} (e^{\lambda(t-t_0)} - 1)\\
+\frac{1}{\lambda} (e^{\lambda (t-t_0)} - 1)
+\end{array}
+\right )\\
+&= \frac{1}{\lambda} \left (
+\begin{array}{c}
+e^{\lambda (t - t_0)} - t\\
+e^{\lambda (t - t_0)} - 1
+\end{array}
+\right ).
+\end{align*}
+Now the general equation is
+\[
+x(t) = x_P(t) + e^{A t}c =
+\left (
+\begin{array}{c}
+e^{\lambda (t - t_0)} - t\\
+e^{\lambda (t - t_0)} - 1
+\end{array}
+\right ) + \left (
+\begin{array}{c}
+c_1 e^{t \lambda} + c_2 t e^{t \lambda}\\
+c_2 e^{t \lambda}
+\end{array}
+\right ) = \left (
+\begin{array}{c}
+c_1 e^{t \lambda} + c_2 t e^{t \lambda} + e^{\lambda (t - t_0)} - t\\
+c_2 e^{t \lambda} + e^{\lambda (t - t_0)} - 1
+\end{array}
+\right ).
+\]
+Plugging in $t = 0$ we have $0 = c_1 + e^{-\lambda t_0}$ and $0 = c_2 + e^{-\lambda t_0} - 1$ so the solution is
+\[
+x(t) = \left (
+\begin{array}{c}
+te^{\lambda t} - te^{\lambda (t - t_0)} - t\\
+e^{\lambda t} - 1
+\end{array}
+\right ).
+\]
+
+\begin{problem}
+Let $w' + p(z)w = 0$ be a first-order equation with $p(z) = \sum_{k=0}^{\infty} p_zz^k$ for $|z| < R$. Obtain the formal power-series solution of the equation.
+\end{problem}
+
+Let $w(z) = \sum_{n=0}^{\infty} a_n z^n$ be a solution. Then $w'(z) = \sum_{n=0}^{\infty} a_n n z^{n-1}$. Since $w$ satisfies the equation, we have
+\[
+0 = \sum_{n=0}^{\infty} a_n n z^{n-1} + \sum_{n=0}^{\infty} \left ( \sum_{k=0}^n a_k p_{n-k} \right ) z^n = \sum_{n=0}^{\infty} \left ( a_{n+1} (n+1) + \sum_{k=0}^n a_k p_{n-k} \right ) z^n.
+\]
+This gives the recursion formula
+\[
+a_{n+1} = - \frac{1}{n+1} \sum_{k=0}^n a_k p_{n-k}.
+\]
+So the general solution to this equation must be
+\[
+w(z) = \sum_{n=0}^{\infty} \left ( - \frac{1}{n+1} \sum_{k=0}^n a_k p_{n-k} \right ) z^n
+\]
+where $a_k$ is defined as above and $a_0$ is given as an initial condition.
+
+\begin{problem}
+Find the recursion formula for the coefficients of the power-series solution of the equation
+\[
+w'' + \frac{1}{1 + z^2} w = 0.
+\]
+What is the radius of convergence for general initial conditions?
+\end{problem}
+
+Note that $1/(1 + z^2) = \sum_{k=0}^{\infty} (-1)^k z^{2k}$. (This can be obtained by starting with $1/(1-x)$ and making the appropriate substitutions). So now we can just use the general recursion formula with $p_k = 0$ and $q_k = (1/2) (1 + (-1)^k) (-1)^(k/2)$. Note that we want the $q$ coefficients to be $0$ for the odd terms. This gives us the recursion
+\[
+w_{k+2} = - \frac{1}{(k+1)(k+2)} \sum_{l=0}^k \left ( \frac{1 + (-1)^k}{2} (-1)^{\frac{k}{2}} \right ) w_{k-l}.
+\]
+Since the radius of convergence of $1/(1 + z^2)$ is $1$, we know that $w$ has a radius of convergence at least as large as $1$.
+
+\begin{problem}
+Legendre's equation is
+\[
+\frac{d}{dz} \left ( \left ( 1 - z^2 \right ) \frac{dw}{dz} \right ) + \lambda w = 0,
+\]
+where $\lambda$ is a constant. Find a condition on $\lambda$ for this equation to have a polynomial solution.
+\end{problem}
+
+Expanding out the equation gives $(1-x^2) w'' - 2z w' + \lambda w = 0$. Let $w = \sum_{k=0}^{\infty} a_k z^k$ be a solution. Then $w' = \sum_{k=0}^{\infty} a_k k z^{k-1}$ and $w'' = \sum_{k=0}^{\infty} a_k k (k-1) z^{k-2}$. Now substituting this into the equation we have
+\begin{align*}
+0
+&= (1 - z^2) w'' - 2z w' + \lambda w\\
+&= (1 - z^2) \sum_{k=0}^{\infty} a_k k (k-1) z^{k-2} - 2z \sum_{k=0}^{\infty} a_k k z^{k-1} + \lambda \sum_{k=0}^{\infty} a_k z^k\\
+&= \sum_{k=0}^{\infty} (-k(k-1) - 2k + \lambda) a_k z^k + \sum_{k=0}^{\infty} k(k-1) a_k x^{k-2}\\
+&= \sum_{k=0}^{\infty} (\lambda - k^2 - k) a_k z^k + \sum_{k=0}^{\infty} (k+2)(k+1) a_{k+2} z^k\\
+& = \sum_{k=0}^{\infty} (\lambda - k^2 - k) a_k + (k+2)(k+1)a_{k+2}) z^k.
+\end{align*}
+Thus we have
+\[
+a_{k+2} = - \frac{\lambda - k^2 - k}{(k+2)(k+1)} a_k.
+\]
+So if $\lambda = k^2 + k$ for some integer $k$, then this series will terminate.
+
+\begin{problem}
+Chebyshev's equation is
+\[
+(1 - z^2) u'' - zu' + \lambda u = 0.
+\]
+The Chebyshev polynomials are solutions of this equation for certain values of $\lambda$. What are they?
+\end{problem}
+
+Let $w = \sum_{k=0}^{\infty} a_k z^k$ be a solution. Then plugging this in we have
+\begin{align*}
+0
+&= (1-z^2) w''(z) - 2z w'(z) + \lambda w\\
+&= (1-z^2) \sum_{k=0}^{\infty} a_k k(k-1) z^{k-2} - \sum_{k=0}^{\infty} a_k k z^k + \lambda \sum_{k=0}^{\infty} a_k z^k\\
+&= \sum_{k=0}^{\infty} a_k k(k-1) z^{k-2} + \sum_{k=0}^{\infty} (-a_k k(k-1) - a_k k + \lambda a_k) z^k\\
+&= \sum_{k=0}^{\infty} ( a_{k+2} (k+1)(k+2) - a_k k^2 + \lambda a_k ) z^k.
+\end{align*}
+This gives the recursion relation
+\[
+a_{k+2} = \frac{k^2 - \lambda}{(k+1)(k+2)} a_k.
+\]
+Thus if $\lambda = k^2$ for some integer $k$ then this series terminates in a polynomial.
+
+\end{document}

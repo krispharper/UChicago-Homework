@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage,fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\headheight}{50pt}
+\renewcommand{\footskip}{10pt}
+\renewcommand{\textheight}{609pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\newtheorem{problem}{Problem}
+
+\newcommand{\normal}{\unlhd}
+\newcommand{\aut}{\textup{Aut}}
+
+\begin{document}
+
+\rhead{Kris Harper\\MATH 25700\\November 25, 2009\\}
+\chead{Quiz 5\\}
+
+\begin{problem}
+Let $H \cong Z_8$, $K \cong Z_2$.\\
+(a) Find $\aut(H)$.\\
+(b) Describe the four different groups of order $16$, given by $H \rtimes K$.
+\end{problem}
+\begin{proof}
+(a) $\aut(H) \cong (\mathbb{Z}/8\mathbb{Z})^{\times}$. Since $2$, $4$ and $6$ are not relatively prime to $8$, $\varphi(8) = 4$ and $|\aut(H)| = 4$. The only choices are then $\aut(H) = Z_4$ or $\aut(H) = Z_2 \times Z_2$. But note that $\overline{3}^2 = \overline{5}^2 = \overline{7}^2 = \overline{1}$. Thus $\aut(H)$ has three elements of order $2$ and we have $\aut(H) \cong Z_2 \times Z_2$.
+
+(b) Let $H = \langle x \rangle$ and $K = \langle y \rangle$. Define the three nonidentity elements of $\aut(H)$ as follows. Let $a$ be the automorphism which takes $x$ to $x^3$, $b$ the automorphism which takes $x$ to $x^5$ and $ab$ be the automorphism which takes $x$ to $x^7$. Note that these must be automorphisms because we know $\aut(H) \cong (\mathbb{Z}/8\mathbb{Z})^{\times}$, where the isomorphism between them takes $a \in (\mathbb{Z}/8\mathbb{Z})^{\times}$ to $\psi_a$, an automorphism taking $x$ to $x^a$.
+
+First note that if $\varphi : K \to \aut(H)$ is the trivial homomorphism, then we simply have $H \rtimes K \cong H \times K \cong Z_8 \times Z_2$. Now suppose that $\varphi(y) = a$. Then we have $y \cdot x = yxy^{-1} = x^3$. Note that $y = y^{-1}$ and so we have $xy = yx^3$. Thus in this case
+\[
+H \rtimes K \cong \langle x, y \mid x^8 = y^2 = 1, xy = yx^3 \rangle.
+\]
+This is $QD_{16}$, the quasidihedral group of order $16$. Now suppose that $\varphi(y) = b$. In this case $y \cdot x = yxy^{-1} = x^5$. We see that now
+\[
+H \rtimes K \cong \langle x, y \mid x^8 = y^2 = 1, xy = yx^5 \rangle.
+\]
+This is the modular group of order $16$. Finally, suppose that $\varphi(y) = ab$. Then we have $y \cdot x = yxy^{-1} = x^7$. But note that $x^7 = x^{-1}$ which gives $xy = yx^{-1}$. The presentation is now
+\[
+H \rtimes K \cong \langle x, y \mid x^8 = y^2 = 1, xy = yx^{-1} \rangle
+\]
+which is precisely the presentation of $D_{16}$.
+
+In general, if $H \cong Z_n = \langle x \rangle$, $K \cong Z_2 = \langle y \rangle$, $\psi_a \in \aut(H)$ takes $x$ to $x^a$ for $a \in (\mathbb{Z}/n\mathbb{Z})^{\times}$, and $\varphi_a : K \to \aut(H)$ takes $y$ to $\psi_a$, then
+\[
+H \rtimes_{\varphi_a} K \cong \langle x, y \mid x^n = y^2 = 1, xy = yx^a \rangle.
+\]
+\end{proof}
+
+\end{document}

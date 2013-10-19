@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 6: The Continuum Strikes Back\newline
+
+\normalsize
+
+\textbf{Definition 1 (Upper and Lower Bound)}
+\textsl{Let $A \subseteq C$ be a set. We say that $u \in C$ is an upper bound of $A$ if for all $a \in A$ we have $a \leq u$. We say that $l \in C$ is a lower bound of $A$ if for all $a \in A$ we have $a \geq l$.}\newline
+
+\textbf{Exercise 2}
+\textsl{Show that $C$ has no upper or lower bounds.}
+\begin{proof}
+Since $C$ has no last point, for every point $u \in C$, there exists another point $u' \in C$ such that $u'>u$ (A2.3). Similarly, since $C$ has no first point, for every $l \in C$, there exists another point $l' \in C$ such that $l'<l$ (A2.3). Thus, $C$ can have no upper or lower bounds.
+\end{proof}
+
+\textbf{Definition 3 (Bounded Sets)}
+\textsl{A set $A \subseteq C$ is bounded above if there exists an upper bound of $A$. A set $A \subseteq C$ is bounded below if there exists a lower bound of $A$. A set $A \subseteq C$ is bounded if it is bounded above and bounded below.}\newline
+
+\textbf{Definition 4 (Least Upper Bound)}
+\textsl{Let $A \subseteq C$ be a set. We say that $u \in C$ is the least upper bound of $A$, or $u = \sup A$, if $u$ is an upper bound of $A$ and for all $u'$ that are upper bounds of $A$ we have $u \leq u'$.}\newline
+
+\textbf{Definition 5 (Greatest Lower Bound)}
+\textsl{Let $A \subseteq C$ be a set. We say that $l \in C$ is the greatest lower bound of $A$, or $l = \inf A$, if $l$ is a lower bound of $A$ and for all $l'$ that are lower bounds of $A$ we have $l' \leq l$.}
+\newline
+
+\textbf{Exercise 6}
+\textsl{Show that if $\sup A$ exists then it is unique.}
+\begin{proof}
+Let $A \subseteq C$ be a set and let $u$ and $u'$ be least upper bounds of $A$. Then for all $a \in C$ such that $a$ is an upper bound of $A$, we have $u \leq a$ and $u' \leq a$. But $u$ and $u'$ and upper bounds of $A$ so we have $u \leq u'$ and $u' \leq u$. Thus we have $u' = u$ and $\sup A$ is unique.
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{For all $a < b$ we have $\sup (a;b) = b$ and $\inf (a;b) = a$.}
+\begin{proof}
+Let $a,b \in C$ such that $a < b$. We see $b$ is an upper bound of $(a;b)$ because $b>p$ for all $p \in (a;b)$. Suppose to the contrary that there exists $u \in C$ such that $u$ is an upper bound of $(a;b)$ and $u < b$. Then for all $p \in (a;b)$ we have $a<p$ and $p \leq u<b$ and so we see that $u \in (a;b)$. But there exists a $u' \in C$ such that $u < u' < b$ because regions are nonempty (5.8). Since $a<u'<b$, we see $u' \in (a;b)$. Thus, since $u<u'$, this is a contradiction and so there are no upper bounds of $(a;b)$ which are less than $b$. Therefore $b = \sup (a;b)$. A similar proof holds to show that $a = \inf (a;b)$.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{Let $A$ be a point set that has a least upper bound $s = \sup A$. Show that if $s \notin A$ then $s$ is a limit point of $A$.}
+\begin{proof}
+Let $A \subseteq C$ such that $s = \sup A$ and let $s \notin A$. Consider the case where $A$ has a last point $x$. Then $x \geq a$ for all $a \in A$ so $x$ is an upper bound of $A$. Likewise, since $x$ is the largest element of $A$, any other upper bound of $A$ must be greater than $x$. Then $x = s$ and so $A$ has no last point. Consider a region $(a;b)$ such that $s \in (a;b)$. Since $s = \sup A$ and $A$ has no last point there exists $c \in A$ such that $a < c < s$. But then $c \in A$ and $c \in (a;b)$. Since every region containing $s$ contains a point in $A$, $s$ must be a limit point of $A$.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{Let $A \subseteq C$ be a set. Show that the set
+\[
+N(A) = \{x \in C \mid x \text{ is not an upper bound of } A\}
+\]
+is open.}
+\begin{proof}
+Let $p \in N(A)$ for some $A \subseteq C$. Then $p$ is not an upper bound of $A$ and so there exists $b \in A$ such that $p < b$. But $C$ has no first point so there exists $a \in C$ such that $a<p$ and since $a<b$, $a$ is not an upper bound of $A$ (A2.3). But then $p \in (a;b)$ and $(a;b) \subseteq N(A)$ and so $N(A)$ must be open by the open condition (3.17).
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{Let $A \subseteq C$ be a set. Show that the set
+\[
+U(A) = \{x \in C \mid x \text{ is an upper bound of } A \text{ but not a least upper bound} \}
+\]
+is open.}
+\begin{proof}
+$U(A)$ can have no first point. To show this we assume the first point of $U(A)$ is $x$ and consider two possibilities. First, if $\sup A$ exists, then the region $(\sup A;x)$ is empty because there are no non-least upper bounds of $A$ which are less than the first point $x$. But this is a contradiction because regions are nonempty (5.8). Similarly, if $\sup A$ does not exist, then $x$ is an upper bound of $A$ which is less than or equal to all upper bounds of $A$ so $x = \sup A$. But this is a contradiction as well since $\sup A \notin U(A)$.\newline
+
+Let $p \in U(A)$ for some $A \subseteq C$. Then $p$ is an upper bound of $A$ but $p \neq \sup A$. $C$ has no last point so there exists $b \in C$ such that $p<b$ and so $b$ is an upper bound of $A$ since it is greater than every point in $A$ (2.3). Since $U(A)$ has no first point, there exists another upper bound $a$ of $A$ such that $a<p$. But then $p \in (a;b)$ and $(a;b) \subseteq U(A)$ so $U(A)$ must be open by the open condition (3.17).
+\end{proof}
+
+\textbf{Theorem 11 (Nonempty Bounded Sets Have Least Upper Bounds)}
+\textsl{Let $A$ be a nonempty point set that is bounded above. Show that $\sup A$ exists.}
+\begin{proof}
+Let $A$ be a nonempty set which is bounded above such that $\sup A$ doesn't exist. The sets $N(A)$ and $U(A)$ are two open sets that share no common points by definition. That is $N(A) \cap U(A) = \emptyset$. But also, since there is no least upper bound of $A$, every point in $C$ is either in $N(A)$ or $U(A)$ and so $N(A) \cup U(A) = C$. But $A$ is bounded above so $U(A)$ is not empty. Also $A$ is nonempty and $C$ has no first point so there exists some point which is less than a point in $A$ so $N(A)$ is nonempty (A2.3). Then this is a contradiction because $N(A) \neq \emptyset$ and $U(A) \neq \emptyset$ (5.17). So $\sup A$ must exist.
+\end{proof}
+
+\textbf{Theorem 12 (Nonempty Bounded Sets Have Greatest Upper Bounds)}
+\textsl{Let $A$ be a nonempty point set that is bounded below. Show that $\inf A$ exists.}
+\begin{proof}
+We can make analogous proofs for Theorems 9 and 10 about lower bounds of a set $A \subseteq C$. Using the two sets defined in these proofs for lower bounds we can make another analogous proof for Theorem 11 about $\inf A$.
+\end{proof}
+
+\textbf{Exercise 13}
+\textsl{Do the above two theorems hold in $(\mathbb{Q},<)$?}\newline
+
+No.
+\begin{proof}
+Let $(\mathbb{Q},<)$ be a model of the continuum and consider the set $S=\{x \in C \mid x^2 < 2\}$. For $x \in S$ we have $x^2 < 2$ and so $x < \sqrt{2}$ or $x > -\sqrt{2}$. Thus $\sqrt{2}$ is an upper bound of $S$. Suppose that $p$ is an upper bound of $S$ such that $p<\sqrt{2}$. We know that $1^2<2$ and so $1 \in S$ which means $1<p<\sqrt{2}$. But then $1<p^2<2$. Consider the set $T=\left\{1+\frac{2n+1}{n^2} \mid n \in \mathbb{N} \backslash \{1,2\} \right\}$. This set is based on the reciprocals of the natural numbers and so it reverses their ordering. That is $1+\frac{1}{n^2} > 1+ \frac{1}{(n+1)^2}$ for $n \in \mathbb{N}$. Using the Archimedean Property we know that there exists an element of $T$ such that this element is less than $p^2$ (4.20). But using the Well Ordering Principle we know that there exists a greatest such element $1+\frac{2q+1}{q^2}$. But then $p^2 < 1+\frac{2(q-1) +1}{(q-1)^2}$. We see that $1+\frac{2(q-1) +1}{(q-1)^2} = \frac{q^2}{(q-1)^2}$ and so $\sqrt{\frac{q^2}{(q-1)^2}}=\pm \frac{q}{q-1}$. But then we have $p<\frac{q}{q-1}<\sqrt{2}$ and so there exists an element of $S$ which is greater than an upper bound of $S$. This is a contradiction and so $\sqrt{2} = \sup S$. But $\sqrt{2} \notin C$ and so $(\mathbb{Q},<)$ is not a model of $C$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

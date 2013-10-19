@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage,pstricks}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+CMSC 27500\\
+
+May 27, 2009
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{problem}
+Describe a polynomial-time $2$-approximation algorithm for Max Cut.
+\begin{proof}
+We know that every loopless graph, $G$, contains a spanning bipartite subgraph, $F$, such that $d_F(v) \geq \frac{1}{2} d_G (v)$ for all $v \in V$. If we sum over every vertex we have
+\[
+2e(F) = \sum_{v \in V} d_F(v) \geq \frac{1}{2} \sum_{v \in V} d_G(v) = 2e(G).
+\]
+Thus $e(F) \geq \frac{1}{2} e(G)$. To generate this subgraph, first order the vertices and create two sets, $X$ and $Y$. Without loss of generality, place the first vertex in a set $X$. For each subsequent vertex, $v$, do one of the following:\\
+1) If $v$ is adjacent to an element of $X$, and not adjacent to any element of $Y$, then place $v$ in $Y$.\\
+2) If $v$ is not adjacent to a vertex in $X$ and $v$ is not adjacent to a vertex in $Y$, then place $v$ arbitrarily in $X$ or $Y$.\\
+3) If $v$ is adjacent to vertices in both $X$ and $Y$, then sum the edges going to $X$ and the edges going to $Y$ and delete the lesser sum of edges, then place $v$ in the set to which it's still connected.\\
+In this way, each vertex is placed in one of two sets, and there are no edges between the sets. Moreover, in the case of every edge deletion, at most half of the edges for a particular vertex were deleted. Thus $e(F) \geq \frac{1}{2} e(G)$. Then the weight of $F$ is at least half of the total weight of $G$, and so this is a $2$-approximation for Max Cut.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Show that in a graph applied to the Euclidian Traveling Salesman Problem, the minimum-weight Hamilton cycles are crossing-free.
+\begin{proof}
+Suppose that a minimum-weight Hamilton cycle, $C$, has a crossing. Suppose there are four vertices, $a$, $b$, $c$, and $d$ in $C$ such that $ad$ and $bc$ are edges which cross. By definition, $ad$ and $bc$ are straight lines in $\mathbb{R}^2$ and so the triangle inequality applies. But then, line segments $ab$ and $cd$ would together have a small combined length. This can be seen from defining $p$ as the point of intersection and noting
+\[
+|ac| + |bd| < |ap| + |pc| + |bp| + |pd| = |ad| + |bc|.
+\]
+We have strict inequality because no three points are collinear. Similarly,
+\[
+|ab| + |cd| < |ad| + |bc|
+\]
+Replacing $ad$ and $bc$ with either $ab$ and $cd$ or $ac$ and $bd$ must keep the path connected. Replacing the crossing by either of these choices results in a disconnected graph, then it follows that $a$ and $b$ are not connected. Then $C$ isn't Hamilton and so replacing the crossing by either $ab$ and $cd$ or $ac$ and $bd$ must produce a Hamilton cycle with less weight.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Show that the Metric Traveling Salesman Problem is $\mathcal{NP}$-hard.
+\begin{proof}
+Let $G$ be a graph on $n$ vertices. Map these vertices to $\mathbb{R}^2$ such that they form a regular $n$-gon. Weight the edges with their distances in $\mathbb{R}^2$. Note that if $G$ has a Hamilton cycle, then it must trace out the edges of the $n$-gon since it can only meet a vertex once. Now complete $G$ to $(K_n, w)$ by adding the rest of the edges to $K_n$ and weighting them with their respective distances. From Problem 2 we know the minimum weight Hamilton cycle will trace out the edges of the $n$-gon since it must be non-crossing. Thus $G$ has a Hamilton cycle if and only if $(K_n,w)$ has a minimum weight Hamilton cycle. Therefore any algorithm solving the Metric Traveling Salesman Problem will also solve the Hamilton Cycle Problem, and since Hamilton Cycle is $\mathcal{NP}$-complete, Metric Traveling Salesman is $\mathcal{NP}$-hard.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+1) Let $G$ be a simple graph with $n \geq 3$ and let $t$ be a positive integer. Consider the weighted complete graph $(K, w)$, where $K = G \cup \overline{G}$, in which $w(e) = 1$ if $e \in E(G)$ and $w(e) = (t-1)n + 2$ if $e \in E(\overline{G})$. Show that:\\
+a) $(K,w)$ has a Hamilton cycle of weight $n$ if and only if $G$ has a Hamiltonian cycle.
+\begin{proof}
+Suppose $G$ has a Hamilton cycle, $C$. Since $G$ is simple, There's no need to visit any edge more than once and so $C$ will traverse as many edges are there are vertices. Thus, its weight is precisely $n$ in $(K,w)$. Conversely, suppose that $(K,w)$ has a Hamilton cycle of weight $n$. If this cycle, $C$, lies in $G$ then we're done. Suppose that some edge, $e$, of $C$ lies in $\overline{G}$. If $t = 1$, then $w(e) = 2$. But by the pigeon hole principle, $C$ can have at most $n-1$ edges, and thus it cannot be a Hamilton cycle. Likewise, since $n \geq 3$, if $t > 1$, then $w(e) \geq 5$ and the same argument applies. Thus, $C$ must lie in $G$ and since $G$ has $n$ vertices, $C$ is a Hamilton cycle in $G$.
+\end{proof}
+b) Any Hamilton cycle of $(K,w)$ of weight greater than $n$ has weight at least $tn+1$.
+\begin{proof}
+Suppose $C$ is a Hamilton cycle of $(K,w)$ which has weight greater than $n$. Then since $(K,w)$ has $n$ vertices, one edge of $C$ must have weight $(t-1)n + 2$. The sum of the other edges is at least $n-1$, in the case that they are all in $G$. Then $n-1 + (t-1)n + 2 = n-1 + tn-n +2 = tn+1$.
+\end{proof}
+2) Deduce that, unless $\mathcal{P} = \mathcal{NP}$, there cannot exist a polynomial-time $t$-approximation algorithm for solving the Traveling Salesman Problem.
+\begin{proof}
+If $\mathcal{P} \neq \mathcal{NP}$ then Part a) shows that $(K,w)$ cannot have a cycle of weight $n$, because then $G$ would have a Hamilton cycle. But then since $G$ has $n$ vertices and is simple, Part b) tells us that the weight of any Hamilton cycle must be $tn+1$. This is more than $t$ times the minimum weight and so this graph provides a counterexample to any attempts at a $t$-approximation in polynomial time.
+\end{proof}
+\end{problem}
+
+\end{document}

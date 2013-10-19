@@ -1,0 +1,429 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{**}{** Problem}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20700\\
+
+October 20, 2008
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+Let $R$ be an integral domain. Show that $(\widetilde{R}, +, \cdot)$ is a field.\newline
+\end{**}
+
+\textbf{** Problem 1.1}
+\textit{Show that $+$ and $\cdot$ are well-defined. That is if $(a_1,b_1) \sim (c_1,d_1)$ and $(a_2,b_2) \sim (c_2,d_2)$ then
+\[
+(a_1b_2+a_2b_1,b_1b_2) \sim (c_1d_2+c_2d_1,d_1d_2)
+\]
+and
+\[
+(a_1a_2,b_1b_2) \sim (c_1c_2,d_1d_2)
+\].}
+\begin{proof}
+Let $(a_1,b_1) \sim (c_1,d_1)$ and $(a_2,b_2) \sim (c_2,d_2)$. Then we have
+\[
+a_1d_1=b_1c_1
+\]
+and
+\[
+a_2d_2=b_2c_2.
+\]
+We multiply the first equation by $b_2d_2$ so we have
+\[
+a_1b_2d_1d_2 = b_1b_2c_1d_2
+\]
+and we multiply the second equation by $b_1d_1$ so we have
+\[
+a_2b_1d_1d_2 = b_1b_2c_2d_1.
+\]
+Now we add the two new equations together so we have
+\[
+a_1b_2d_1d_2 + a_2b_1d_1d_2 = b_1b_2c_1d_2 + b_1b_2c_2d_1
+\]
+and so
+\[
+(a_1b_2+a_2b_1)d_1d_2 = (c_1d_2 + c_2d_1)b_1b_2
+\]
+which implies
+\[
+(a_1b_2+a_2b_1,b_1b_2) \sim (c_1d_2+c_2d_1,d_1d_2).
+\]
+Similarly, if we multiply $a_1d_1=b_1c_1$ and $a_2d_2=b_2c_2$ together we have
+\[
+a_1a_2d_1d_2=b_1b_2c_1c_2
+\]
+and so
+\[
+(a_1a_2,b_1b_2) \sim (c_1c_2,d_1d_2).
+\]
+\end{proof}
+
+\textbf{** Problem 1.2 (Associativity of Addition)}
+\textit{For all $p,q,r \in \widetilde{R}$ we have $(p+q)+r = p+(q+r)$.}
+\begin{proof}
+Let $p,q,r \in \widetilde{R}$ such that $(p_1,p_2) \in p$, $(q_1,q_2) \in q$ and $(r_1,r_2) \in r$. Then we see that
+\begin{align*}
+(p+q)+r&=\left(\overline{(p_1,p_2)}+\overline{(q_1,q_2)}\right)+\overline{(r_1,r_2)} \\
+		&=\overline{(p_1q_2+p_2q_1,p_2q_2)}+\overline{(r_1,r_2)} \\
+		&=\overline{((p_1q_2+p_2q_1)r_2+p_2q_2r_1,p_2q_2r_2)} \\
+		&=\overline{(p_1q_2r_2+p_2q_1r_2+p_2q_2r_1,p_2q_2r_2)} \\
+		&=\overline{((q_1r_2+q_2r_1)p_2+p_1q_2r_2,p_2q_2r_2)} \\
+		&=p+\overline{(q_1r_2+q_2r_1,q_2r_2)} \\
+		&=p+(q+r).
+\end{align*}
+\end{proof}
+
+\textbf{** Problem 1.3 (Commutativity of Addition)}
+\textit{For all $p,q \in \widetilde{R}$ we have $p+q=q+p$.}
+\begin{proof}
+Let $p,q \in \widetilde{R}$ such that $(p_1,p_2) \in p$ and $(q_1,q_2) \in q$. Then we have
+\[
+p+q=\overline{(p_1,p_2)}+\overline{(q_1,q_2)}=\overline{(p_1q_2+p_2q_1,p_2q_2)}=\overline{(q_1p_2+q_2p_1,q_2p_2)}=\overline{(q_1,q_2)}+\overline{(p_1,p_2)}=q+p.
+\]
+\end{proof}
+
+\textbf{** Problem 1.4 (Additive Identity)}
+\textit{There exists an $n \in \widetilde{R}$ such that for all $p \in \widetilde{R}$ we have $n+p=p$.}
+\begin{proof}
+We see that if we let $n \in \widetilde{R}$ such that $n = \overline{(0,1)}$ and if we let $(p_1,p_2) \in p$ for some $p \in \widetilde{R}$ then we have
+\[
+n+p=\overline{(0,1)}+\overline{(p_1,p_2)}=\overline{((0)p_2+(1)p_1,(1)p_2)}=\overline{(p_1,p_2)}=p.
+\]
+\end{proof}
+
+\textbf{** Problem 1.5 (Additive Inverse)}
+\textit{For all $p \in \widetilde{R}$ there exists $q \in \widetilde{R}$ such that $p+q=0$.}
+\begin{proof}
+Let $p \in \widetilde{R}$ such that $(p_1,p_2) \in p$. Then we choose $q=\overline{(-p_1,p_2)}$ for $q \in \widetilde{R}$. Then we have
+\[
+p+q=\overline{(p_1,p_2)}+\overline{(-p_1,p_2)}=\overline{(p_1p_2+-p_1p_2,p_2p_2)}=\overline{(0,p_2p_2)}=\overline{(0,1)}=0
+\]
+since $(0)p_2p_2=(0)(1)$.
+\end{proof}
+
+\textbf{** Problem 1.6 (Associativity of Multiplication)}
+\textit{For all $p,q,r \in \widetilde{R}$ we have $(p \cdot q) \cdot r = p \cdot (q \cdot r)$.}
+\begin{proof}
+Let $p,q,r \in \widetilde{R}$ such that $(p_1,p_2) \in p$, $(q_1,q_2) \in q$ and $(r_1,r_2) \in r$. Then we have
+\[
+(p \cdot q) \cdot r=\left(\overline{(p_1,p_2)} \cdot \overline{(q_1,q_2)}\right) \cdot \overline{(r_1,r_2)}=\overline{(p_1q_1,p_2q_2)} \cdot \overline{(r_1,r_2)}=\overline{(p_1q_1r_1,p_2q_2r_2)}=p \cdot \overline{(q_1r_1,q_2r_2)}=p \cdot (q \cdot r).
+\]
+\end{proof}
+
+\textbf{** Problem 1.7 (Commutativity of Multiplication)}
+\textit{For all $p,q \in \widetilde{R}$ we have $p \cdot q = q \cdot p$.}
+\begin{proof}
+Let $p,q \in \widetilde{R}$ such that $(p_1,p_2) \in p$ and $(q_1,q_2) \in q$. Then
+\[
+p \cdot q = \overline{(p_1,p_2)} \cdot \overline{(q_1,q_2)} = \overline{(p_1q_1,p_2q_2)} = \overline{(q_1p_1,q_2p_2)} = \overline{(q_1,q_2)} \cdot \overline{(p_1,p_2)} = q \cdot p.
+\]
+\end{proof}
+
+\textbf{** Problem 1.8 (Multiplicative Identity)}
+\textit{There exists $e \in \widetilde{R}$ such that for all $p \in \widetilde{R}$ we have $e \cdot p=p$.}
+\begin{proof}
+Let $p \in \widetilde{R}$ such that $(p_1,p_2) \in p$ and let $e \in \widetilde{R}$ such that $e = \overline{(1,1)}$. Then we have
+\[
+e \cdot p = \overline{(1,1)} \cdot \overline{(p_1,p_2)} = \overline{(p_1(1),p_2(1))} = p.
+\]
+\end{proof}
+
+\textbf{** Problem 1.9 (Multiplicative Inverse)}
+\textit{For all $p \in \widetilde{R}$ with $p \neq 0$ there exists $q \in \widetilde{R}$ such that $p \cdot q=1$.}
+\begin{proof}
+Let $p \in \widetilde{R}$ such that $(p_1,p_2) \in p$ and since $p_1 \neq 0$ let $q \in \widetilde{R}$ such that $(p_2,p_1) \in q$. Then we see that
+\[
+p \cdot q = \overline{(p_1,p_2)} \cdot \overline{(p_2,p_1)} = \overline{(p_1p_2,p_1p_2)}=\overline{(1,1)}=1.
+\]
+\end{proof}
+
+\textbf{** Problem 1.10 (Distributivity)}
+\textit{For all $p,q,r \in \widetilde{R}$ we have $p \cdot (q+r)=p \cdot q + p \cdot r$.}
+\begin{proof}
+Let $p,q,r \in \widetilde{R}$ such that $(p_1,p_2) \in p$, $(q_1,q_2) \in q$ and $(r_1,r_2) \in r$. Then we have
+\begin{align*}
+p \cdot (q+r) &= \overline{(p_1,p_2)} \cdot \left(\overline{(q_1,q_2)} + \overline{(r_1,r_2)}\right) \\
+			   &= \overline{(p_1,p_2)} \cdot \overline{(q_1r_2+q_2r_1,q_2r_2)}\\
+			   &= \overline{(p_1q_1r_2+p_1q_2r_1,p_2q_2r_2)} \\
+			   &= \overline{(p_1q_1r_2+p_1q_2r_1,p_2q_2r_2)} \cdot \overline{(p_2,p_2)} \\
+			   &= \overline{(p_1p_2q_1r_2+p_1p_2q_2r_1,p_2p_2q_2r_2)} \\
+			   &= \overline{(p_1q_1,p_2q_2)} + \overline{(p_1r_1,p_2r_2)} \\
+			   &= \overline{(p_1,p_2)} \cdot \overline{(q_1,q_2)} + \overline{(p_1,p_2)} \cdot \overline{(r_1,r_2)} \\
+			   &= p \cdot q + p \cdot r. \\
+\end{align*}
+\end{proof}
+
+Since all the field axioms have been met for $(\widetilde{R}, +, \cdot)$ we see that it is a field.
+
+\begin{**}
+Show that the ordering axioms hold for $<$ on an integral domain $R$.
+\end{**}
+\begin{proof}
+Let $P \subseteq R$ be a set such that for $a \in R$ exactly one of $a \in P$, $a = 0$, $-a \in P$ holds and for $a,b \in P$ we have $a + b, ab \in P$. Let $a,b \in R$. Suppose first that $a < b$. Then $(b-a) \in P$ and $(b - a) \neq 0$. Therefore $b \neq a$. Also, we know $-(b-a) = a-b$ is not in $P$ so $b$ is not less than $a$. If $a = b$, then $a - b =b - a = 0$ so $(a - b), (b-a) \notin P$ and $b$ is not less than $a$ nor is $a$ less than $b$. Finally, if $b < a$ then $(a - b) \in P$ and so $a - b \neq 0$ so $b \neq a$. Also $-(a-b) = b-a$ is not in $P$. Thus $a$ is not less than $b$. Therefore either $a < b$, $a = b$ or $a > b$.\newline
+
+Let $a,b,c \in R$ such that $a < b$ and $b < c$. Then $(b-a), (c-b) \in P$. Since $P$ is closed under addition, $(b-a) + (c-b) = c-a$ is in $P$. Thus $a < c$.\newline
+
+Suppose again that $a < b$. Then $(b - a) \in P$. Note that
+\[
+b - a = b - a + c - c = (b+c) - (a+c)
+\]
+so $(b+c) - (a+c) \in P$. Then $a+c < b+c$.\newline
+
+Finally let $a<b$ and $c > 0$. Then $(b - a) \in P$ and since $P$ is closed under multiplication, $(b-a)c = bc - ac$ is in $P$. Thus $ac < bc$.
+\end{proof}
+
+\begin{**}
+On $\widetilde{R}$ define $\overline{(a,b)} \in P$ if $ab \in P$ in $R$. Show that this is well defined and gives an ordering on $\widetilde{R}$.
+\end{**}
+\begin{proof}
+Let $\overline{(a,b)}, \overline{(c,d)} \in \widetilde{R}$ such that $(a,b) \sim (c,d)$ and $\overline{(a,b)} \in P$. Then $ab \in P$ in and $ad = bc$ in $R$. Multiplying both sides by $ac$ we have
+\[
+a^2cd = abc^2.
+\]
+Since $ab > 0$ and $c^2 > 0$ we know that $abc^2 > 0$ so $a^2cd > 0$. Also, since $a^2 > 0$, we see that $cd > 0$ so $cd \in P$ and $\overline{(c,d)} \in P$. This shows that the definition is well defined. An ordering on $\widetilde{R}$ is defined by $\overline{(a_1, b_1)} < \overline{(a_2, b_1)}$ if $\overline{(a_2, b_2)} + \overline{(-a_1, b_1)} \in P$. We now show the ordering axioms are met for this relation and elements $a = \overline{(a_1, a_2)}$, $b = \overline{(b_1, b_2)}$, $c = \overline{(c_1, c_2)}$ in $\widetilde{R}$.\newline
+
+First let $a < b$. Then
+\[
+\overline{(a_2b_1 - a_1b_2, a_2b_2)} \in P
+\]
+so
+\[
+(a_2b_1 - a_1b_2)a_2b_2 \in P
+\]
+and
+\[
+(a_2b_1 - a_1b_2)a_2b_2 \neq 0.
+\]
+Since $a_2b_2 \neq 0$, we see that
+\[
+a_2b_1 \neq a_1b_2
+\]
+so
+\[
+\overline{(a_1, a_2)} \neq \overline{(b_1, b_2)}.
+\]
+Also,
+\[
+-((a_2b_1 - a_1b_2)a_2b_2) = (a_1b_2 - a_2b_1)a_2b_2
+\]
+is not in $P$ so
+\[
+\overline{(a_1b_2 - a_2b_1, a_2b_2)} = \overline{(a_1, a_2)} + \overline{(-b_1, b_2)}
+\]
+is not in $P$ in $\widetilde{R}$. Thus $b$ is not less than $a$. If $b < a$ it follows similarly that $a \neq b$ and $a$ is not less than $b$. Finally, if $a = b$ then $(a_1, a_2) \sim (b_1, b_2)$ and
+\[
+a_1b_2 = a_2b_1.
+\]
+Thus
+\[
+(a_1b_2 - a_2b_1) = 0
+\]
+and
+\[
+(a_1b_2 - a_2b_1)a_2b_2 = 0
+\]
+which implies
+\[
+\overline{(a_1b_2 - a_2b_1, a_2b_2)} = \overline{(b_1, b_2)} + \overline{(-a_1, a_2)}
+\]
+is not in $P$. Thus $a$ is not less than $b$. A similar argument shows that $b$ is not less than $a$.\newline
+
+Suppose now that $a<b$ and $b<c$. Then
+\[
+\overline{(a_2b_1 - a_1b_2, a_2b_2)} \in P
+\]
+and
+\[
+\overline{(b_2c_1 - b_1c_2, b_2c_2)} \in P.
+\]
+Thus
+\[
+(a_2b_1 - a_1b_2)a_2b_2 > 0
+\]
+and
+\[
+(b_2c_1 - b_1c_2)b_2c_2 > 0.
+\]
+Multiply the first equation by $c_2^2$ and the second by $a_2^2$ and add them to obtain
+\[
+0 < (a_2^2b_2^2c_1c_2 - a_2^2b_1b_2c_2^2) + (a_2^2b_1b_2c_2^2 - a_1a_2b_2^2c_2^2) = a_2^2b_2^2c_1c_2 - a_1a_2b_2^2c_2^2.
+\]
+Then
+\[
+(a_2c_1 - a_1c_2)a_2c_2 > 0
+\]
+which means
+\[
+a = \overline{(a_1, a_2)} < \overline{(c_1, c_2)} = c.
+\]\newline
+
+Still supposing that $a < b$, we have again
+\[
+(a_2b_1 - a_1b_2)a_2b_2 > 0.
+\]
+Multiplying both sides by $c_2^4$ we can write
+\[
+c_2^2(a_2b_1 - a_1b_2)a_2b_2c_2^2 = (a_2b_1c_2^2 + a_2b_2c_1c_2 - (a_1b_2c_2^2 + a_2b_2c_1c_2))a_2b_2c_2^2 > 0
+\]
+which simplifies to
+\[
+((b_1c_2 + b_2c_1)a_2c_2 - (a_1c_2 + a_2c_1)b_2c_2)a_2b_2c_2^2 > 0.
+\]
+Thus
+\[
+a + c = \overline{(a_1, a_2)} + \overline{(c_1, c_2)} = \overline{(a_1c_2 + a_2c_1, a_2c_2)} < \overline{(b_1c_2 + b_2c_1, b_2c_2)} = \overline{(b_1, b_2)} + \overline{(c_1, c_2)} = b + c.
+\]\newline
+
+Finally, assume that $a < b$ and $c > 0$. Then
+\[
+(a_2b_1 - a_1b_2)a_2b_2 > 0
+\]
+and $c_1c_2 > 0$. Then we have
+\[
+0 < (a_2b_1 - a_1b_2)a_2b_2(c_1c_2)(c_2^2) = (a_2b_1c_1c_2 - a_1b_2c_1c_2)a_2b_1c_2^2
+\]
+which means
+\[
+ac = \overline{(a_1, a_2)} \cdot \overline{(c_1, c_2)} = \overline{(a_1c_1, a_2c_2)} < \overline{(b_1c_1, b_2c_2)} = \overline{(b_1, b_2)} \cdot \overline{(c_1, c_2)} = bc.
+\]
+\end{proof}
+
+\begin{**}
+Show that for a polynomial $p(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$ the definition $p(x) \in P$ if $a_n > 0$ holds for the above definition.
+\end{**}
+\begin{proof}
+Note that if $a_n > 0$ in $R$ then $a_n \neq 0$ and $-a_n > 0$. Thus $p(x) \neq 0$ and $-p(x) \in P$. Also, if we let $q(x) = b_m x^m + b_{m-1} x^{m-1} + \dots b_1 x + b_0$ such that $q(x) \in P$, then $p(x) + q(x) \in P$ because $p(x) + q(x)$ either has leading term $\max (a_n, b_m)$ or $a_n + b_m$. Likewise $p(x)q(x) \in P$ since it has leading term $a_nb_m > 0$.
+\end{proof}
+
+\begin{lemma}
+Let $a \in \mathbb{Q}$ such that $0 < a < 1$. Then $a^2 < a$. Likewise, if $a > 1$, then $a^2 > a$.
+\end{lemma}
+\begin{proof}
+Let $0 < a < 1$ such that $a = \overline{(a_1, a_2)}$. Then $a^2 = \overline{(a_1^2, a_2^2)}$ and
+\[
+a - a^2 = \overline{(a_1, a_2)} + \overline{(-a_1^2, a_2^2)} = \overline{(a_1a_2^2 - a_1^2a_2, a_2^3)}.
+\]
+Since $a > 0$, we can assume that both $a_1, a_2 > 0$. Then $a_2^3 > 0$. Also, since $a < 1$ we have $1 - a > 0$ so $a_2 - a_1 > 0$ and $a_1 < a_2$. Then $a_1 (a_1a_2) < a_2 (a_1a_2)$. This shows that
+\[
+(a_1a_2^2 - a_1^2a_2)(a_2^3) > 0
+\]
+which means $a^2 < a$. A similar proof is used to show that for $a > 1$, $a^2 > a$.
+\end{proof}
+
+\begin{problem}
+Let $a$ be a positive rational number. Let $A = \{x \in \mathbb{Q} \mid x^2 < a\}$. Show that $A$ is bounded in $\mathbb{Q}$.
+\end{problem}
+\begin{proof}
+Let $x \in A$. Note that if $x \leq 0$ then $x \leq 0 < a < a+1$. If $0 < x < 1$ then by Lemma 1, $x^2 < x < 1 < a + 1$ since $a > 0$. If $x \geq 1$ then by Lemma 1, $x \leq x^2 < a < a + 1$. In all cases $a + 1$ serves as an upper bound for $A$.
+\end{proof}
+
+\begin{problem}
+Show that the least upper bound of a set is unique, if it exists.
+\end{problem}
+\begin{proof}
+Let $A$ be set such that $u$ and $v$ are least upper bounds for $A$. Then $u$ and $v$ are upper bounds for $A$ and each one is less than every other upper bound of $A$. Thus, it is not the case that $u < v$ or $v < u$. Therefore $u = v$.
+\end{proof}
+
+\begin{problem}
+Show that any two ordered fields with the least upper bound property are order isomorphic.
+\end{problem}
+\begin{proof}
+Let $F$ and $F'$ be two ordered fields with the least upper bound property. We already know that $F$ and $F'$ contain the rationals as a subfield. Thus there exist injective maps $q_1 : \mathbb{Q} \rightarrow Q$ and $q_2 : \mathbb{Q} \rightarrow Q'$ where $Q \subseteq F$ and $Q' \subseteq F'$. Since both $Q$ and $Q'$ are both order isomorphic to $\mathbb{Q}$, we know there is an  order isomorphism from $Q$ to $Q'$. Thus there is an injective order homomorphism $f : Q \rightarrow F'$. Now let $A_r = \{x \in Q \mid x < r\}$ for $r \in F$. Since $A_r$ is nonempty and bounded in $F$, it follows that $f(A_r)$ is nonempty and bounded in $F'$. Now define $g : F \rightarrow F'$ such that $g(x) = \sup (A_x)$. Define
+\[
+A_{x+y} = \{a + b \in Q \mid a \in A_x, b \in A_y\}.
+\]
+For multiplication define sets $P = \{p \in Q \mid p > 0\}$, $N = \{p \in Q \mid p \leq 0\}$ and the product of two sets $A$ and $B$ as $A * B = \{ab \mid a \in A, b \in B\}$. Then for $x,y > 0$ we have
+\[
+A_{xy} = N \cup ((A \cap P) * (B \cap P))
+\]
+and in general
+\[
+A_{xy} =
+\begin{cases}
+0 & \text{if $x = 0$ or $y=0$}\\
+A_{|x||y|} & \text{if $x > 0$ and $y > 0$ or $x < 0$ and $y < 0$}\\
+-A_{|x||y|} & \text{if $x < 0$ and $y > 0$ or $x > 0$ and $y < 0$}
+\end{cases}
+\]
+Here $-A_x = \{a \in Q \mid a < -x\}$. Using Problem 5 we can see that
+\[
+g (x+y) = \sup (A_{x+y}) = \sup (A_x) + \sup (A_y) = g(x) + g(y)
+\]
+and
+\[
+g (xy) = \sup (A_{xy}) = \sup (A_x) \sup (A_y) = g(x)g(y).
+\]
+Additionally, since $f$ is an order preserving map from $Q$ to $F'$ we see that $g$ is order preserving. Thus there exists an order homomorphism from $Q$ to $F'$. Similarly, there exists an order homomorphism from $Q'$ to $F$. Using the Schršder-Berstein Theorem, we can say that there is an order preserving isomorphism from $F$ to $F'$.
+\end{proof}
+
+\begin{problem}
+Let $n$ be a positive integer that is not a perfect square. Let $A = \{x \in \mathbb{Q} \mid x^2 < n\}$. Show that $A$ is bounded in $\mathbb{Q}$, but has neither a greatest lower bound nor a least upper bound in $\mathbb{Q}$. Conclude that $\sqrt{n}$ exists in $\mathbb{R}$, that is, there exists a real number $a$ such that $a^2 = n$.
+\end{problem}
+\begin{proof}
+Problem 1 Shows that $A$ is bounded in $\mathbb{Q}$ by $n + 1$. Suppose that $u$ is an upper bound for $A$. Note that since $0 \in A$, we have $u > 0$. Then $u^2 > n$ and $u^2 - n > 0$. But then
+\[
+\frac{u^2 - n}{u + n} > 0
+\]
+and letting
+\[
+v = u - \frac{u^2 - n}{u + n} =  \frac{nu+n}{u+n}
+\]
+we see that $u - v > 0$ so $v < u$. But
+\[
+v^2 = \frac{n^2u^2 + 2n^2u + n^2}{u^2 + 2nu + n^2} > \frac{n^2u^2 + 2n^2u + n^2}{\frac{1}{n} (n^2u^2 + 2n^2u + n^2)} = n
+\]
+since $n (u^2 - n) + n - u^2 > 0$ as $n > 1$. Thus $v$ is also an upper bound for $A$. Therefore the least upper bound for $A$ is not in $\mathbb{Q}$. But since $A$ is nonempty and bounded, a least upper bound exists in $\mathbb{R}$.
+\end{proof}
+
+\begin{problem}
+Suppose that $A$ and $B$ are bounded sets in $\mathbb{R}$. Prove or disprove the following:\\
+1) The $\sup (A \cup B) = \max \{\sup(A), \sup(B)\}$.\\
+2) If $A+B = \{a + b \mid a \in A, b \in B\}$, then $\sup (A+B) = \sup (A) + \sup (B)$.\\
+3) If the elements of $A$ and $B$ are positive and $A \cdot B = \{ab \mid a \in A, b \in B\}$, then $\sup (A \cdot B) = \sup (A) \sup (B)$.\\
+4) Formulate the analogous problems for the greatest lower bound.
+\end{problem}
+\begin{proof}
+Note the the statements only make sense if $A$ and $B$ are nonempty. Otherwise the $\sup A$ and $\sup B$ do not exist. Hence, assume that $A$ and $B$ are nonempty, bounded subsets of $\mathbb{R}$ and let $a = \sup A$ and $b = \sup B$.\newline
+
+1) Let $x \in A$. Then $x \leq a \leq \max \{a, b\}$. Let $y \in B$. Then $y \leq b \leq \max \{a, b\}$. Thus every element in $A$ or in $B$ is less than or equal to $\max \{a, b\}$. Therefore $\max \{a, b\}$ is an upper bound for $A \cup B$. Suppose there exists $c < \max \{a, b\}$ such that $c$ is an upper bound for $A \cup B$. Then $c$ is an upper bound for $A$ and an upper bound for $B$. Since $c < \max \{a, b\}$, $c < a$ or $c < b$. Without loss of generality, assume that $c < a$. Then $c$ is an upper bound for $A$ which is less than $\sup A$. This is a contradiction and so there exists no upper bounds for $A \cup B$ which are less than $\max \{a, b\}$. Therefore $\sup (A \cup B) = \max \{a, b\}$.\newline
+
+2) Let $k \in A+B$. Then $k = x + y$ where $x \in A$ and $y \in B$. Since $x \leq a$ and $y \leq b$ we know that $k = x + y \leq a + b$. Thus $a+b$ is an upper bound for $A + B$. Suppose there exists $c < a + b$ such that $c$ is an upper bound for $A+B$. Consider the value $r = (a+b-c)/2 > 0$. Since $a$ is the least upper bound for $A$, it must be the case that there exists some element $p \in A$ such that $a - r < p \leq a$, otherwise $a - r$ would be an upper bound for $A$ which is less than $a$. Likewise, there exists a $q \in B$ such that $b - r < q \leq b$. Then $p + q \in A + B$ and
+\[
+c = a + b - (a + b - c) = (a - r) + (b - r) < p + q \leq a + b.
+\]
+Thus there exists an element of $A + B$ which is greater than $c$ and so $\sup (A+B) = a+b$.\newline
+
+3) Let $k \in A \cdot B$. Then $k = xy$ where $x \in A$ and $y \in B$. Since $0 < x \leq a$ and $0 < y \leq b$ we have $k = xy \leq ab$. Thus $ab$ is an upper bound for $A \cdot B$. Now suppose there exists $c < ab$ such that $c$ is an upper bound for $A \cdot B$. Let $r = ab - c$. Then there exists $x,y \in \mathbb{R}$ such that $xy = ab- r/2$. Let $p = a - x$ and $q = b - y$. Then there exists $u \in A$ such that $u > a - p/2 > x$ and there exists $v \in B$ such that $v > b - q/2 > y$. But then $uv \in A \cdot B$, but $uv > xy = ab - r/2 > c$.\newline
+
+4) The analogous problems for the greatest lower bound are:\newline
+
+1) $\inf (A \cup B) = \min \{ \inf(A), \inf(B)\}$.\newline
+
+2) If $A+B = \{a+b \mid a \in A, b \in B\}$ then $\inf (A+B) = \inf (A) + \inf (B)$.\newline
+
+3) If the elements of $A$ and $B$ are positive and $A \cdot B = \{ab \mid a \in A, b \in B\}$ then $\inf (A \cdot B) = \inf (A) \inf (B)$.
+\end{proof}
+
+\begin{problem}
+Let $F$ be an Archimedean ordered field. Show that $F$ is order isomorphic to a subfield of $\mathbb{R}$.
+\end{problem}
+\begin{proof}
+Note that since $F$ is an ordered field, the rationals exist as a subfield which we will refer to as $\mathbb{Q}$. Define the function $f : \mathbb{Q} \rightarrow \mathbb{R}$ where $f(x) = \{p \in \mathbb{Q} \mid p < x\}$. Using the Archimedean property, we know that for all $x \in F$, $f(x) \neq \emptyset$. From here it's easy to see that for all $x \in F$, $f(x)$ is a Dedekind cut. Using the definitions of addition and multiplication from Problem 3 for $p,q \in F$ we see that $f(p + q) = f(p) + f(q)$ and $f(pq) = f(p)f(q)$. Also, since the ordering of $\mathbb{Q}$ holds in $\mathbb{R}$, $f$ preserves the ordering of $F$. Finally, we can show that $f$ is injective because if $p \neq q$ in $\mathbb{Q}$, there exists some number $r \in \mathbb{Q}$ such that $p < r < q$ because $F$ is Archimedean. Therefore $f(p) \neq f(q)$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

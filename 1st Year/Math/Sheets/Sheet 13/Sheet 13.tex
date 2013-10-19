@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 13: Sequences\newline
+
+\normalsize
+
+\textbf{Definition 1 (Sequence)}
+\textsl{A sequence of real numbers is a function from $\mathbb{N}$ to $\mathbb{R}$.}\newline
+
+\textbf{Definition 2 (Limit)}
+\textsl{We say that a sequence $(a_n)$ converges to $a \in \mathbb{R}$ or
+\[
+\lim_{n \rightarrow \infty} a_n = a
+\]
+if for every region $R$ containing $a$, there are only finitely many $n \in \mathbb{N}$ with $a_n \notin R$. We call $a$ the limit of $(a_n)$.}\newline
+
+\textbf{Lemma 3}
+\textsl{For a sequence $(a_n)$ we have $\lim_{n \rightarrow \infty} a_n = a$ if and only if for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_n - a| < \varepsilon$.}
+\begin{proof}
+Let $(a_n)$ be a sequence and suppose that $\lim _{n \rightarrow \infty} a_n = a$. Then for every region $R$ containing $a$ there exist finitely many $n \in \mathbb{N}$ with $a_n \notin R$. Let $\varepsilon > 0$ and consider the region $(a - \varepsilon ; a + \varepsilon)$. We know there are finitely many $n \in \mathbb{N}$ such that $a_n \notin (a - \varepsilon ; a + \varepsilon)$. Since there are finitely many of these elements we know there exists a greatest $N \in \mathbb{N}$ such that $a_N \notin (a - \varepsilon ; a + \varepsilon)$. Thus, for all $n \in \mathbb{N}$ such that $n > N$ we have $a_n \in (a - \varepsilon ; a + \varepsilon)$ and so $|a_n - a| < \varepsilon$.\newline
+
+Conversely, suppose that for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_n - a| < \varepsilon$. Let $R$ be a region and let $a \in R$. Let $R=(a-p;a+q)$. Let $\varepsilon = \min (p,q)$ so that there exists some $N \in \mathbb{N}$ such that for all $n > N$ we have $a_n \in (a - \varepsilon ; a + \varepsilon)$. But then there exists only finitely many $n \in \mathbb{N}$ such that $a_n \notin (a - \varepsilon ; a + \varepsilon)$ and therefore finitely many $a_n \notin R$.
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Are the following sequences convergent? If yes, what do they converge to?\newline
+1) $a_n=c$ for $c \in \mathbb{R}$;\newline
+2) $a_n=(-1)^n$;\newline
+3) $a_n=1/n$;\newline
+4) $a_n=(-1)^n/n$.}\newline
+
+1) Convergent.
+\begin{proof}
+For all $n \in \mathbb{N}$ we have $a_n = c$ and so every region containing $c$ will include every element of $(a_n)$. Thus, for every region $R$ such that $c \in R$ we have a finite number of $n \in \mathbb{N}$ such that $a_n \notin R$.
+\end{proof}
+
+2) Divergent.
+\begin{proof}
+For all $a \in \mathbb{R}$ there exists a region $R$ with $a \in R$ such that $-1 \notin R$ or $1 \notin R$. Consider the case where $-1 \notin R$. Then for all $n \in \mathbb{N}$ such that $n$ is odd we have $a_n \notin R$. But there are an infinite number of odd naturals. A similar case holds for $1 \notin R$ and even naturals.
+\end{proof}
+
+3) Convergent.
+\begin{proof}
+We have for all $n \in \mathbb{N}$, $a_n \in (0;1]$. Let $\varepsilon > 0$. In the case where $\varepsilon > 1$ then for all $n \in \mathbb{N}$ we have $|a_n| < \varepsilon$. If $\varepsilon = 1$ then for all $n \in \mathbb{N}$ with $n > 1$ we have $|a_n| < \varepsilon$. In the case where $\varepsilon \leq 1$ we have $1/\varepsilon \geq 1$ and by the Archimedean Property and the Well Ordering Principle there exists a least $k \in \mathbb{N}$ such that $k > 1/\varepsilon > k-1$. Then $1/k < \varepsilon < 1/(k-1)$ and so for all $n \in \mathbb{N}$ with $n>k-1$ we have $|a_n| < \varepsilon$. Thus, $\lim_{n \rightarrow \infty} a_n = 0$.
+\end{proof}
+
+4) Convergent.
+\begin{proof}
+We have for all $n \in \mathbb{N}$, $a_n \in [-1;1]$. Thus for all $n \in \mathbb{N}$, $|a_n| \in (0;1]$. From here we use a similar proof to 3) since we need to show that there exists some $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_n| < \varepsilon$. This is exactly what we did in 3). Thus, $\lim_{n \rightarrow \infty} a_n = 0$.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{The following hold.
+1) If $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} a_n = a'$ then $a=a'$;\newline
+2) If $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} b_n = b$ then $\lim_{n \rightarrow \infty} (a_n + b_n) = a+b$;\newline
+3) If $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} b_n = b$ then $\lim_{n \rightarrow \infty} (a_n b_n) = ab$;\newline
+4) If $\lim_{n \rightarrow \infty} a_n = a$ and $c \in \mathbb{R}$ then $\lim_{n \rightarrow \infty} (ca_n) = ca$;\newline
+5) If $\lim_{n \rightarrow \infty} a_n = a \neq 0$ and $a_n \neq 0$ for all $n$ then $\lim_{n \rightarrow \infty} (1 / a_n) = 1/a$;\newline
+6) If $a_n \leq b_n$ for all $n$ and both $(a_n)$ and $(b_n)$ are convergent then $\lim_{n \rightarrow \infty} a_n \leq \lim_{n \rightarrow \infty} b_n$.}
+\begin{proof}
+1) Let $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} a_n = a'$ and suppose $a \neq a'$. Without loss of generality let $a<a'$. Consider $0 < (a'-a)/2$. Then there exist $N_1, N_2 \in \mathbb{N}$ such that for all $n>N_1$ we have $|a-a_n| < (a'-a)/2$ and for all $n>N_2$ we have $|a'-a_n| < (a'-a)/2$. Let $N = \max{N_1,N_2}$ so that for all $n>N$ we have $a_n \in (a-(a'-a)/2 ; a + (a'-a)/2)$ and $a_n \in (a'-(a'-a)/2 ; a + (a'-a)/2)$. But these regions are disjoint so this is a contradiction and $a = a'$.
+\end{proof}
+\begin{proof}
+2) Let $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} b_n = b$ and consider $\varepsilon/2 > 0$. Then there exist $N_1, N_2 \in \mathbb{N}$ such that for all $n > N_1$ we have $|a-a_n| < \varepsilon/2$ and for all $n > N_2$ we have $|b-b_n| < \varepsilon/2$. Let $N = \max (N_1,N_2)$ so that for all $n>N$ we have $|a-a_n| < \varepsilon/2$ and $|b-b_n| < \varepsilon/2$. But by Lemma 11.8 this means we have $|(a+b) - (a_n+b_n)| < \varepsilon$ for all $n>N$. This implies that $\lim_{n \rightarrow \infty} (a_n+b_n) = a+b$.
+\end{proof}
+\begin{proof}
+3) Let $(a_n)$ converge to $a$ and $(b_n)$ converge to $b$. Let $\varepsilon > 0$ and consider $\min \left ( 1, \frac{\varepsilon}{2 (|b|+1)} \right ) > 0$. Then there exists an $N_1 \in \mathbb{N}$ such that for all $n>N_1$ we have $|a-a_n| < \min \left (1, \frac{\varepsilon}{2 (|b| + 1)} \right )$. Also, there exists $N_2 \in \mathbb{N}$ such that for all $n>N_2$ we have $|b-b_n| < \frac{\varepsilon}{2 (|a|+1)}$. Let $N= \max(N_1,N_2)$ so that for all $n>N$ we have $|a-a_n| < \min \left (1, \frac{\varepsilon}{2(|b|+1)} \right )$ and $|b-b_n| < \frac{\varepsilon}{2(|a|+1)}$. But then we know that for all $n>N$ we have $|ab-a_nb_n| < \varepsilon$. Thus $\lim_{n \rightarrow \infty} (a_nb_n) = ab$.
+\end{proof}
+\begin{proof}
+4) Let $(a_n)$ converge to $a$. From Exercise 4 we know that $\lim_{n \rightarrow \infty} c = c$ and so from 3) we have $\lim_{n \rightarrow \infty} (ca_n) = ca$.
+\end{proof}
+\begin{proof}
+5) Let $(a)$ converge to $a \neq 0$ such that $a_n \neq 0$ for all $n \in \mathbb{N}$. Let $\varepsilon > 0$ and consider $\min \left ( \frac{|a|}{2}, \frac{\varepsilon |a|^2}{2} \right ) > 0$. Then there exists $N \in \mathbb{N}$ such that for all $n>N$ we have $|a-a_n| < \min \left ( \frac{|a|}{2}, \frac{\varepsilon |a|^2}{2} \right )$. But then we have $\left | \frac{1}{a} - \frac{1}{a_n} \right | < \varepsilon$ for all $n>N$. Thus $\lim_{n \rightarrow \infty} (1/a_n)=1/a$.
+\end{proof}
+\begin{proof}
+Let $(a)$ converge to $a$ and $(b_n)$ converge to $b$ such that $a_n \leq b_n$ for all $n \in \mathbb{N}$. Suppose to the contrary that $a > b$. Let $\varepsilon = (a-b)/2 > 0$. Then there exist $N_1,N_2 \in \mathbb{N}$ such that for all $n>N_1$ we have $a_n \in (a - \varepsilon ; a + \varepsilon)$ and for all $n>N_2$ we have $b_n \in (b - \varepsilon ; b + \varepsilon)$. Let $N=\max (N_1,N_2)$ so that for all $n>N$ we have $a_n \in (a - (a-b)/2 ; a + (a-b)/2) = ((a+b)/2 ; (3a-b)/2)$ and $b_n \in (b - (a-b)/2 ; b + (a-b)/2) = ((3b-a)/2 ; (a+b)/2)$. But then $b_n < (a+b)/2 < a_n$ for all $n$ which is a contradiction therefore $a \leq b$.
+\end{proof}
+
+\textbf{Theorem 6}
+\textsl{Let $A \subseteq \mathbb{R}$ be a subset. Then $a \in \overline{A}$ if and only if there exists a sequence $a_n \in A$ that converges to $a$.}
+\begin{proof}
+Let $a \in \overline{A}$. Then we have $a \in A$ or $a$ is a limit point of $A$. If $a \in A$ then we let $a_n = a$. This converges to $a$ using a similar proof to 1) of Exercise 4. If $a$ is a limit point of $A$ and $R$ is a region containing $a$ then from Theorem 3 we have $R \cap A$ is infinite. Define $(a_n)$ as follows. Choose $a_1 < a$ from $R \cap A$. Now let $a_2 \in (a - \frac{a-a_1}{2} ; a + \frac{a - a_1}{2})$ such that $a_1 < a_2 < a$. Continue in this way so that $a_n \in (a - \frac{a-a_{n-1}}{2} ; a + \frac{a-a_{n-1}}{2})$ and $a_{n-1} < a_n < a$. Now consider some region $(p;q)$ such that $a \in (p;q)$. In the case where $p<a_1$ there are no elements of $(a_n)$ outside of $(p;q)$. If $a_1 < p$ then take the smallest $k \in \mathbb{N}$ such that $p<a_k$. Then $a_{k-1} \leq p$. Since there are a finite number of naturals less than $k$ and every other natural maps to something between $a_{k-1}$ and $a$, there are a finite number of $n \in \mathbb{N}$ such that $a_n \notin (p;q)$. We see that in all cases $\lim_{n \rightarrow \infty} a_n = a$.\newline
+
+Conversely suppose there exists a sequence $a_n \in A$ that converges to $a$. If $a=a_k$ for some $k \in \mathbb{N}$ then we have $a \in A$ and we're done. If $a \neq a_k$ for $k \in \mathbb{N}$ then for a region $R$ with $a \in R$ there exists a finite number of $n \in \mathbb{N}$ such that $a_n \notin R$. But then there are an infinite number of $n \in \mathbb{N}$ with $a_n \in R$ and since $a$ is not equal to any of these $a_n$ we have $a$ is a limit point of $A$ which means $a \in \overline{A}$.
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{Let $f$ be a real function. Then $f$ is continuous at $a$ if and only if for all sequences $(a_n)$ with $\lim_{a \rightarrow \infty} a_n = a$ we have $\lim_{n \rightarrow \infty} f(a_n) = f(a)$.}
+\begin{proof}
+Let $f$ be continuous at $a$ and consider some sequence $(a_n)$ which converges to $a$. Then for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $a_n \in \mathbb{R}$ when $|a-a_n| < \delta$ we have $|f(a) - f(a_n)| < \varepsilon$. But also for $\delta > 0$ there exists some $N \in \mathbb{N}$ such that for all $n > N$ we have $|a-a_n| < \delta$. But then for $\varepsilon > 0$ there exists some $N \in \mathbb{N}$ such that for all $n>N$ we have $|f(a) - f(a_n)| < \varepsilon$.\newline
+
+To show the converse, we use the contrapositive. Assume that $f$ is not continuous at $a$. Then there exists $\varepsilon > 0$ such that for all $\delta > 0$ there exists some $x \in \mathbb{R}$ so that when $|a - x| < \delta$ we have $|f(a) - f(x)| \geq \varepsilon$. For this $\varepsilon$ there exists some $a_1 \in (a - 1 ; a + 1)$ such that $|f(a) - f(a_1)| \geq \varepsilon > 0$. Then let $(a_n)$ be a sequence such that $a_n \in (a - 1/n ; a + 1/n)$ such that $|f(a) - f(a_n)| \geq \varepsilon$. We know that $a_i$ exists for all $i \in \mathbb{N}$ because for each $\delta > 0$ there always exists an $x \in (a - \delta ; a + \delta)$ such that $|f(a) - f(x)| \geq \varepsilon$. Let $(p;q)$ be a region with $a \in (p;q)$. If $p \leq a - 1$ and $q \geq a + 1$ then for all $n$ we have $a_n \in (p;q)$ and so there are finitely many $n$ with $a_n \notin (p;q)$. Consider the case where $p \in (a-1;a)$. Using the Archimedean Property and the Well Ordering Principle there exists a least $k$ such that $a-1/k \leq p < a$. Then there are finitely many $n \leq k$ such that $a_n \leq p$. We can make a similar argument about $q$ so that there are finitely many $n$ with $a_n \notin (p;q)$. Then $(a_n)$ converges to $a$ but this means there exists a sequence which converges to $a$, but $\lim_{n \rightarrow \infty} f(a_n) \neq f(a)$.
+\end{proof}
+
+\textbf{Definition 8}
+\textsl{Let $(a_n)$ be a sequence. A point $a \in \mathbb{R}$ is called an accumulation point of $(a_n)$ if for every region $R$ containing $a$ there are infinitely many $n$ with $a_n \in R$.}\newline
+
+\textbf{Lemma 9}
+\textsl{For a sequence $(a_n)$, the set $A$ of all its accumulation points is a closed set.}
+\begin{proof}
+Let $(a_n)$ be a sequence and let $A$ be the set of its accumulation points. Let $x \in \mathbb{R} \backslash A$. Then $x$ is not an accumulation point of $(a_n)$ and so there exists some region $R$ such that there are finitely many $n \in \mathbb{N}$ with $a_n \in R$. Note that none of the points in $R$ are accumulation points because there are only finitely many $a_n \in R$. But this means that $R \subseteq \mathbb{R} \backslash A$ and since such a region exists for all $x \in \mathbb{R} \backslash A$ we know that this set is open. But then $A$ is closed.
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{Let $(a_n)$ be a sequence which converges to $a$. Then $a$ is the only accumulation point of $(a_n)$.}
+\begin{proof}
+Let $(a_n)$ be a sequence such that $\lim_{n \rightarrow \infty} a_n = a$ and suppose that $(a_n)$ has an accumulation point $a'$ such that $a' \neq a$. Let $R$ and $R'$ be disjoint regions containing $a$ and $a'$ respectively. Then there are finitely many $n \in \mathbb{N}$ with $a_n \notin R$ but also there are infinitely many $n \in \mathbb{N}$ with $a_n \in R'$. Since $R$ and $R'$ are disjoint this is a contradiction.
+\end{proof}
+
+\textbf{Definition 11 (Subsequence)}
+\textsl{Let $(a_n)$ be a sequence. A subsequence of $(a_n)$ is a sequence $(b_k=a_{n_k})$ (meaning that $b_1=a_{n_1}$, $b_2=a_{n_2}$, $b_3=a_{n_3}$ and so on), where $n_1<n_2<n_3< \dots$.}\newline
+
+\textbf{Lemma 12}
+\textsl{If $(a_n)$ converges to $a$, then so do all of it's subsequences.}
+\begin{proof}
+Let $(a_n)$ be a sequence which converges to $a$ and let $(b_k = a_{n_k})$ be a subsequence. Every element of $(b_k=a_{n_k})$ is an element of $(a_n)$ and for every region $R$ with $a \in R$ there are finitely many $n \in \mathbb{N}$ such that $a_n \notin R$. But then For every region $R$ containing $a$, there must be finitely many $k \in \mathbb{N}$ such that $b_k \notin R$. Thus $(b_k = a_{n_k})$ converges to $a$.
+\end{proof}
+
+\textbf{Lemma 13}
+\textsl{Let $(a_n)$ be a sequence. Then $a$ is an accumulation point of $(a_n)$ if and only if there is a subsequence $(b_k = a_{n_k})$ which converges to $a$.}
+\begin{proof}
+Let $(a_n)$ be a sequence which has a subsequence $(b_k = a_{n_k})$ which converges to $a$. Then for all regions $R$ with $a \in R$ there are finitely many $k \in \mathbb{N}$ with $b_k \notin R$. Then there are infinitely many $k$ with $b_k \in R$. But for all $k \in \mathbb{N}$ we have $b_k = a_{n_k}$ which means there are infinitely many $n \in \mathbb{N}$ with $a_n \in R$. Thus, $a$ is an accumulation point of $(a_n)$.\newline
+
+Conversely, let $a$ be an accumulation point of $(a_n)$. Create a subsequence $(b_k = a_{n_k})$ where $b_k = a_{n_k}$ and $a_{n_k} \in (a - 1/k ; a + 1/k)$. We know that $b_k$ will exist because for each $k \in \mathbb{N}$ there are infinitely many $n$ such that $a_n \in (a - 1/k ; a + 1/k)$ because $a$ is an accumulation point. Let $(p;q)$ be a region containing $a$. Then if $p \leq a - 1$ and $q \geq a + 1$ then we have $a_n \in (p;q)$ for all $n$ and so there are a finite number of $n$ such that $n \notin (p;q)$. In the case where $a - 1 < p < a$, using the Archimedean Property and the Well Ordering Principle we know there exists a least $k \in \mathbb{N}$ such that $a-1/k \leq p < a$. But then there are a finite number of $n \leq k$ such that $a_n \leq p$. Using a similar argument for $a < q < a + 1$ we have a finite number of $n$ such that $a_n \notin (p;q)$. Then $(b_k)$ converges to $a$.
+\end{proof}
+
+\textbf{Definition 14 (Bounded Sequence)}
+\textsl{A sequence $(a_n)$ is bounded above if there exists $M \in \mathbb{R}$ such that $a_n \leq M$ for all $n \in \mathbb{N}$. It is bounded below if there exists $m \in \mathbb{R}$ such that $a_n \geq m$ for all $n \in \mathbb{N}$. We have $(a_n)$ is bounded if it is bounded above and bounded below.}\newline
+
+\textbf{Lemma 15}
+\textsl{Every convergent sequence is bounded.}
+\begin{proof}
+Let $(a_n)$ be a sequence which converges to $a$. Let $(p;q)$ be a region with $a \in (p;q)$. In the case that for all $n \in \mathbb{N}$, $p < a_n$ or $a_n < q$ we have $p$ or $q$ are upper or lower bounds for $(a_n)$. Consider the case where there exists $n \in \mathbb{N}$ such that $a_n \leq p$. We have $(a_n)$ converges to $a$ so there are finitely many $n$ with $a_n \notin (p;q)$. Thus, there exists $k \in \mathbb{N}$ such that $a_k \leq a_n$ for all $n \in \mathbb{N}$. Then this $a_k$ is a lower bound for $(a_n)$. A similar proof holds to find and upper bound for $(a_n)$ if there exists $n \in \mathbb{N}$ with $a_n \geq q$.
+\end{proof}
+
+\textbf{Theorem 16 (Bolzano-Weierstrass for Sequences)}
+\textsl{Any bounded sequence has a convergent subsequence.}
+\begin{proof}
+Let $(a_n)$ be a bounded sequence. Then there exists $l,u \in \mathbb{R}$ such that for all $n \in \mathbb{N}$ we have $l \leq a_n \leq u$. Now suppose that $(a_n)$ has no accumulation points. Then for all points $a \in \mathbb{R}$ there exists a region $R_a$ such that there are finitely many $n \in \mathbb{N}$ with $a_n \in R_a$. Let $\mathcal{A} = \{R_a \mid a \in [l;u]\}$. Then $\mathcal{A}$ is an open cover for $[l;u]$ and $[l;u]$ is compact so let $\mathcal{B}$ be a finite subcover for $\mathcal{A}$. Then $\mathcal{B}$ covers $[l;u]$ with a finite number of regions $R$ which each have a finite number of $n \in \mathbb{N}$ with $a_n \in R$. But $(a_n)$ is bounded between $l$ and $u$ so there are an infinite number of $n \in \mathbb{N}$ with $a_n \in [l;u]$. This is a contradiction and so $(a_n)$ must have some accumulation point $a$. Then by Lemma 13 there must exist a convergent subsequence of $(a_n)$ which converges to $a$.
+\end{proof}
+
+\textbf{Corollary 17}
+\textsl{Let $(a_n)$ be a bounded sequence. Then $(a_n)$ is convergent if and only if it has only one accumulation point.}
+\begin{proof}
+If $(a_n)$ is convergent at $a$ then by Lemma 10 $a$ is the only accumulation point of $(a_n)$. Suppose now that $(a_n)$ has only one accumulation point $a$. Note that $(a_n)$ so there exist $l,u \in \mathbb{R}$ such that $a_n \in [l;u]$ for all $n \in \mathbb{N}$. Take an arbitrary region $(p;q) \subseteq [l;u]$ such that $a \in (p;q)$. Consider $[l;u] \backslash (p;q) = [l;p] \cup [q;u] = S$. Every element of $S$ is not an accumulation point of $(a_n)$. Thus for all $x \in S$ there exists some region $R_x$ such that there are finitely many $n \in \mathbb{N}$ with $a_n \in R_x$. Let $\mathcal{A} = \{R_x \mid x \in S\}$ be an open cover for $S$. We have $S$ is closed and bounded and so there exists a finite subcover $\mathcal{B}$ for $\mathcal{A}$. Then $\mathcal{B}$ covers $S$ with a finite number of regions, $R$, each of which have a finite number of $n$ with $a_n \in R$. Thus, there are finitely many $n \in \mathbb{N}$ with $a_n \notin (p;q)$. In the case where $[l;u] \subseteq (p;q)$ then we have every element of $(a_n)$ is in $(p;q)$ are so there are finitely many $n$ with $a_n \notin (p;q)$. In all cases we see that $(a_n)$ must converge to $a$.
+\end{proof}
+
+\textbf{Theorem 18 (Increasing Bounded Sequences are Convergent)}
+\textsl{Let $(a_n)$ be a bounded above sequence, such that $a_n \leq a_{n+1}$ for all $n$. Then $(a_n)$ converges and
+\[
+\lim_{n \rightarrow \infty} a_n = \sup \{a_n \mid n \in \mathbb{N}\}.
+\]}
+\begin{proof}
+Let $s = \sup \{a_n \mid n \in \mathbb{N}\}$. Consider some region $(p;q)$ with $s \in (p;q)$. In the case where $p < a_n$ for all $n \in \mathbb{N}$, we have a finite number of $n$ with $a_n \notin (p;q)$. Suppose that $a_n \leq q$ for all $n$. Then there exists $c \in (q;s)$ such that $c > a_n$ for all $n$. But this is a contradiction because $c < s$ and $c$ is an upper bound for $(a_n)$. Thus there exists $i \in \mathbb{N}$ such that $a_i \leq p < a_{i+1}$. So now we have $q < a_n$ for all $n > i$ and since there are a finite number of naturals less than $i+1$, there are a finite number of $n$ with $a_n \notin (p;q)$. But this is true for every region $R$ with $s \in R$. Thus $\lim_{n \rightarrow \infty} a_n = s$.
+\end{proof}
+
+\textbf{Theorem 19}
+\textsl{Every sequence has an increasing or decreasing subsequence.}
+\begin{proof}
+Let $(a_n)$ be a sequence. Define $n$ to be a peak point if for all $m>n$ we have $a_m < a_n$. Suppose there are infinitely many peak points for $(a_n)$ and let $n_1$ be the least peak point. We can do this because peak points are natural numbers. Define the next largest peak point to be $n_2$ and so on. Note that $a_{n_i} > a_{n_{i+1}}$ for all $i \in \mathbb{N}$. Thus, we have created a decreasing subsequence $(b_k = a_{n_k})$.\newline
+
+If there are no peak points then for all $n \in \mathbb{N}$, there exists $m>n$ such that $a_n \leq a_m$. Then we can make an increasing subsequence by letting $b_1 = a_1$. Then there exists $m_2 > 1$ such that $a_1 \leq a_{m_2}$. Let $b_2 = a_{m_2}$. Now there exists $m_3 > m_2$ such that $a_{m_2} \leq a_{m_3}$. Let $b_3 = a_{m_3}$. Thus $(b_k = a_{m_k})$.\newline
+
+Now suppose that there are finitely many peak points for $(a_n)$ and that there exists at least one peak point. Let $n \in \mathbb{N}$ be the largest peak point for $(a_n)$. Then for all $m>n$ we have $a_m < a_n$, but also $m$ is not a peak point and so there exists $m' > m$ with $a_m \leq a_{m'}$. Then create an increasing sequence as before by choosing an arbitrary $m_1>n$ and letting $b_1 = a_{m_1}$. Then there exists $m_2 > m_1$ such that $a_{m_1} \leq a_{m_2}$. Thus $(b_k = a_{m_k})$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,fullpage}
+
+\begin{document}
+\begin{flushleft}
+
+\Large
+
+Sheet 5: A New Continuum\newline
+
+\normalsize
+
+\textbf{Theorem 1 (Intersections)}
+\textsl{The intersection of any set of closed sets is closed and the intersection of a finite number of open sets is open.}
+\begin{proof}
+Consider the set $S$ of closed sets $A \subseteq C$. Then let $p$ be a limit point of $\bigcap_{A \in S} A$. Then since $\bigcap_{A \in S} \subseteq A$ for all $A \in S$ we see that $p$ is a limit point of $A$ for all $A \in S$ (2.10). But all $A \in S$ are closed so $p \in A$ for all $A \in S$. And so $p \in \bigcap_{A \in S} A$ and we have $\bigcap_{A \in S} A$ is closed.\newline
+
+To show that an intersection of finitely many open sets is open, use induction on the number of sets, $n$. For the base case we have a single open set. Assume that the intersection of any $n$ open sets is open. Then consider the set of $n+1$ open sets $S = \{A_1,A_2, \dots ,A_{n+1}\}$. We see that the intersection $\bigcap_{A_i \in S\backslash A_{n+1}} A_i$ is open and $A_{n+1}$ is open. Then for all $x \in \bigcap_{A_i \in S} A_i$ , we have $x \in \bigcap_{A_i \in S \backslash A_{n+1}}$ and $x \in A_{n+1}$. By the open condition, for all $x \in \bigcap_{A_i \in S} A_i$ there exist regions $R_1 \subseteq \bigcap_{A_i \in S \backslash A_{n+1}} A_i$ and $R_2 \subseteq A_{n+1}$ such that $x \in R_1$ and $x \in R_2$ (3.17). But then $x$ is in the region $R_3=R_1 \cap R_2$ and $R_3 \subseteq \bigcap_{A_i \in S} A_i$ (2.15). So for all $x \in \bigcap_{A_i \in S} A_i$  there exists a region $R \subseteq \bigcap_{A_i \in S} A_i$ such that $x \in R$. Thus the intersection is open by the open condition (3.17). By mathematical induction, this must be true for all $n \in \mathbb{N}$.
+\end{proof}
+
+\textbf{Theorem 2 (Unions)}
+\textsl{The union of any set of open sets is open, and the union of a finite set of closed sets is closed.}
+\begin{proof}
+Consider the set $S$ of open sets $A \subseteq S$. By the open condition, for every $x \in A$ for some $A \in S$, there exists a region $R \subseteq A$ such that $x \in R$ (3.17). But if $x \in A$, then $x \in \bigcup_{A \in S} A$ and so there exists a region $R \subseteq A \subseteq \bigcup_{A \in S} A$ and $x \in R$ so the union must be open (3.17).\newline
+
+Now we use induction on a finite number of closed sets $n$. For the base case we have one closed set. Assume that the union of any $n$ closed sets is closed. Consider the set of $n+1$ closed sets $S=\{A_1,A_2, \dots ,A_{n+1} \}$. We see $\bigcup_{A_i \in S \backslash A_{n+1}} A_i$ is closed and $A_{n+1}$ is closed. Then if $p$ is a limit point of $\bigcup_{A_i \in S} A_i$ then it is a limit point of $\bigcup_{A_i \in S \backslash A_{n+1}} A_i$ or it is a limit point of $A_{n+1}$ (2.17). And since $\bigcup_{A_i \in S \backslash A_{n+1}} A_i$ and $A_{n+1}$ are closed, then we have $p \in \bigcup_{A_i \in S \backslash A_{n+1}} A_i$ or $p \in A_{n+1}$. Thus $p \in \bigcup_{A_i \in S} A_i$ and so it is closed. So by mathematical induction we see that this is true for any $n \in \mathbb{N}$.
+\end{proof}
+
+\textbf{Axiom 1 (Connectedness)}
+\textsl{The only point sets which are both closed and open are $C$ and $\emptyset$.}\newline
+
+\textbf{Exercise 3}
+\textsl{Show that Theorem 1 does not hold for the intersection of an infinite number of open sets.}
+\begin{proof}
+We see that for all $a \in C$ we have $\{a\}=C \backslash (C \backslash a)$ is closed since $\{a\}$ is a finite set and so $C \backslash a$ must be open (2.8). Now consider a point $p \in C$ and consider the intersection
+\[
+\bigcap_{a \in C, a \neq p} C \backslash a = \{p\}.
+\]
+Since $C \backslash p$ is infinite, this is an intersection of an infinite number of open sets. But their intersection is $\{p\}$ which is not open (2.8, A5.1).
+\end{proof}
+
+\textbf{Exercise 4}
+\textsl{Show that Theorem 2 does not hold for the union of an infinite number of closed sets.}
+\begin{proof}
+Similarly, we take a point $p \in C$ and then consider all the sets containing a single point other than $p$. Then we have
+\[
+\bigcup_{a \in C, a \neq p} \{a\} = C \backslash p.
+\]
+Since $\{a\}$ is finite, it is closed for all $a \in C$ (2.8). From Exercise 3 and Axiom 1 we know $C \backslash p$ is not closed (A5.1, 5.3). So we have a union of an infinite number of closed sets which equals a set that is not closed.
+\end{proof}
+
+Let $O$ be an open subset of $C$. Let us define the relation $\sim$ on $O$ as follows: $a \sim b$ if there exists a region $R \subseteq O$ containing both $a$ and $b$.\newline
+
+\textbf{Theorem 5}
+\textsl{$\sim$ is an equivalence relation.}\newline
+
+First we prove a lemma showing that if two regions contain a common element $x$, then their union is also a region containing all points in either region.
+\begin{proof}
+Let $A=(a_1,a_2)$ and $B=(b_1,b_2)$ be regions such that $x \in A$ and $x \in B$. Then we see that $x \in A \cup B$. Without loss of generality, let $a_1 \leq b_1$. Then we see that $a_2>b_1$, otherwise $A$ and $B$ would not both contain $x$. Thus there are two cases.\newline
+
+\textsl{Case 1:} Let $a_1 \leq b_1$ and $a_2<b_2$ Then we have $a_1 \leq b_1<a_2<b_2$. If $x \in A \cup B$ then $x \in A$ or $x \in B$. If $x \in A$ then $a_1<x<a_2$. But $a_2<b_2$ so $a_1<x<b_2$ and $x \in (a_1,b_2)$. Likewise, if $x \in B$ then $b_1<x<b_2$. But $a_1 \leq b_2$ so $a_1<x<b_2$ and $x \in (a_1,b_2)$. Therefore $A \cup B \subseteq (a_1,b_2)$. Additionally, if $x \in (a_1,b_2)$ then $x<a_2$ or $x \geq a_2$. If $x<a_2$ then $a_1<x<a_2$ and $x \in A$. If $x \geq a_2$ then $b_1<x<b_2$ and $x \in B$. Therefore $x \in A$ or $x \in B$ and $x \in A \cup B$. Thus $(a_1,b_2) \subseteq A \cup B$ and so $A \cup B = (a_1,b_2)$.\newline
+
+\textsl{Case 2:} Let $a_1 \leq b_1$ and $a_2 \geq b_2$. Then we have $a_1 \leq b_1<b_2 \leq a_2$. If $x \in A \cup B$ then $x \in A$ or $x \in B$. If $x \in A$ then $x \in (a_1,a_2)$. Likewise, if $x \in B$ then $b_1<x<b_2$. But $a_1 \leq b_2$ and $b_2 \leq a_2$ so $a_1<x<a_2$ and $x \in (a_1,a_2)$. Therefore $A \cup B \subseteq (a_1,a_2)$. Additionally, if $x \in (a_1,a_2)$ then either $x>b_1$ and $x<b_2$ and so $x \in (b_1,b_2)$ or $x \leq b_1$ or $x \geq b_2$. If $x \in (b_1,b_2)$ then $x \in B$. If $x \leq b_1$ or $x \geq b_2$ then $a_1<x<a_2$ and $x \in A$. Therefore $x \in A$ or $x \in B$ and $x \in A \cup B$. Thus $(a_1,a_2) \subseteq A \cup B$ and so $A \cup B = (a_1,a_2)$.\newline
+
+We see that in either case, $A \cup B$ is a region which contains every point in either $A$ or $B$.
+\end{proof}
+We now prove the original result.
+\begin{proof}
+Let $O$ be an open subset of $C$. We see that if a $a \in O$, then by the open condition there exists a region $R \subseteq O$ such that $a \in R$ and so $a \sim a$ so we have reflexivity (3.17). Also if $a \sim b$ then $a,b \in R$ for a region $R \subseteq O$ and so $b,a \in R$ and $b \sim a$. So we have symmetry. Finally, if $a \sim b$ and $b \sim c$, then we have $a,b \in R_1$ and $b,c \in R_2$ where $R_1,R_2 \subseteq O$ are regions. But by the previous lemma $R_3=R_1 \cup R_2 \subseteq O$ is a region and since $a,b,c \in R_3$ we have $a \sim c$ so we have transitivity.
+\end{proof}
+
+\textbf{Theorem 6}
+\textsl{For all $a \in C$ the sets $\{x \mid x < a\}$ and $\{x \mid a < x\}$ are open.}
+\begin{proof}
+Let $a,p \in C$ such that $p \in \{x \mid x < a\}$. Then there exists some point $q \in C$ such that $q<p$ since $C$ has no first point and so $p \in (q;a)$ (A2.3). Since $(q;a) \subseteq \{x \mid x<a\}$ we see that there exists a region containing $p$ which is a subset of $\{x \mid x<a\}$. So $\{x \mid x<a\}$ must be open by the open condition (3.17). A similar proof holds for $\{x \mid a < x\}$ because $C$ has no last point (A2.3).
+\end{proof}
+
+\textbf{Corollary 7}
+\textsl{If $A,B \subseteq C$ are open subsets, $A \cap B = \emptyset$ and $A \cup B = C$, then $A=\emptyset$ or $B=\emptyset$.}
+\begin{proof}
+We have $A \cap B = \emptyset$ and so $B \subseteq C \backslash A$. But additionally we have $A \cup B = C$ and so $C \backslash A \subseteq  B$. Then $B = C \backslash A$ and since $A$ is open, $C \backslash A$ is closed and so $B$ is both open and closed. But then either $B = C$ or $B = \emptyset$ by Axiom 1 (A5.1). If $B = \emptyset$ then we're done and if $B=C$ then $A = \emptyset$ because $A \cap B = \emptyset$. So either $A$ or $B$ is empty.
+\end{proof}
+
+\textbf{Theorem 8 (Regions are Nonempty)}
+\textsl{For all $a<b$ there exists $c$ such that $a<c<b$.}
+\begin{proof}
+Consider $a,b \in C$ such that $a<b$. Then the sets $\{x \mid x < b\}$ and $\{x \mid a < x\}$ are both open by Theorem 6 (5.6). For every $p \in C$ we have $p<a$, $p=a$ or $p>a$ and so $\{x \mid x < b\} \cup \{x \mid a < x\} = C$. But $\{x \mid x<b\} \cap \{x \mid a<x\}=(a;b)$ and using Corollary 7 and the fact that $C$ has no first or last point we see that this intersection cannot be empty since $\{x \mid x<b\} \neq \emptyset$ and $\{x \mid x>a\} \neq \emptyset$ (A2.3, 5.7).
+\end{proof}
+
+\textbf{Corollary 9}
+\textsl{For all $a<b$ both $a$ and $b$ are limit points of the region $(a;b)$.}
+\begin{proof}
+Let $(p;q)$ be a region such that $a \in (p;q)$. Then $q \geq b$ or $q<b$. If $q \geq b$ then $(a;b) \subseteq (p;q)$ and because regions are nonempty there exists $c \in (a;b)$ such that $c \in (p;q)$ (5.8). If $q<b$ then there exists a point $c \in C$ such that $a < c < q$ and so $c \in (a;b)$ and $c \in (p;q)$ (5.8). We see that all regions containing $a$ also contain a point in $(a;b)$ so $a$ must be a limit point of $(a;b)$. A similar proof holds for $b$.
+\end{proof}
+
+\textbf{Corollary 10}
+\textsl{Every point of a region is a limit point of that region.}
+\begin{proof}
+Let $A$ be a region and let $p \in A$. Then for all regions $R$ such that $p \in R$, we have $R \cap A = (a;b) \neq \emptyset$ where $(a;b)$ is a region containing $p$ (2.15). Thus there exists a $c \in (a;b)$ such that $a<c<p$ (5.8). But then for all regions $R$ containing $p$ we have $R \cap (A \backslash p) \neq \emptyset$ and so $p$ is a limit point of $A$.
+\end{proof}
+
+\textbf{Corollary 11}
+\textsl{Every nonempty region contains infinitely many points}
+\begin{proof}
+Suppose to the contrary that a nonempty region contains a finite number of points. Then it has no limit points (3.4). But by Corollary 10 we know that every point is a limit point and so this is a contradiction (5.10).
+\end{proof}
+
+\textbf{Corollary 12}
+\textsl{Every point in $C$ is a limit point of $C$}
+\begin{proof}
+Let $p \in C$. Then we see that every region $R$ which contains $p$ contains infinitely many points and so for all regions $R$ which contain $p$, we have $R \cap (C \backslash p) \neq \emptyset$ (5.11).
+\end{proof}
+
+\end{flushleft}
+\end{document}

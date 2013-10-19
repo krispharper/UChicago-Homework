@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20700\\
+
+October 27, 2008
+\end{flushright}
+
+\begin{center}
+Midterm Problems
+\end{center}
+
+\begin{flushleft}
+
+\textbf{Problem 1a}
+\textit{Prove that for $\mathbb{N}$, the Well-Ordering Principle implies the Induction Axiom.}
+\begin{proof}
+Let $S \subseteq \mathbb{N}$ be a subset such that $1 \in S$ and if $n \in S$ then $n' \in S$. Suppose that $S \neq \mathbb{N}$. Then $\mathbb{N} \backslash S \neq \emptyset$. Let $k$ be the least element of $\mathbb{N} \backslash S$. We know that $k = l'$ for some $l \in \mathbb{N}$. Note that $l < l' = k$ and so $l \notin \mathbb{N} \backslash S$. Then $l \in S$. But then $l' \in S$ and $l'=k$. This is a contradiction, hence $S = \mathbb{N}$.
+\end{proof}
+
+\textbf{Problem 1b}
+\textit{Prove that for $\mathbb{N}$, the Induction Axiom implies the Well-Ordering Principle.}
+\begin{proof}
+Let $A \subseteq \mathbb{N}$ be a nonempty subset. Suppose that $A$ has no least element. Then let $B$ be the set of elements of $\mathbb{N}$ which are not in $A$. We see that $1 \in B$ because otherwise it would be the least element of $A$. Also, if $n \in B$ then $n' \in B$ because otherwise $n'$ would be the least element of $A$. Then by Induction, $B = \mathbb{N}$. But then $A$ must be empty which is a contradiction.
+\end{proof}
+
+\textbf{Problem 2a}
+\textit{Show that the sequence
+\[
+a_n = \sum_{k=1}^{n} \frac{1}{10^{\frac{(k^2 + k)}{2}}}
+\]
+is a Cauchy sequence.}
+\begin{proof}
+Let $\varepsilon > 0$. Then note that there exists $N \in \mathbb{N}$ such that
+\[
+\frac{1}{10^{\frac{N^2 + N}{2}}} < \varepsilon.
+\]
+Then for all $n, m > N$ with $n > m$ we have
+\[
+|a_n - a_m| = \left | \sum_{k=m}^{n} \frac{1}{10^{\frac{k^2+k}{2}}} \right | < \frac{1}{10^{\frac{N^2 + N}{2}}} < \varepsilon.
+\]
+\end{proof}
+
+\textbf{Problem 2b}
+\textit{Show that $(a_n)_{n=1}^{\infty}$ does not converge to a rational number.}
+\begin{proof}
+Note that
+\[
+\lim_{n \rightarrow \infty} = 0.1.01001000100001000001 \dots.
+\]
+We see that this number will never terminate or repeat. Thus it cannot be rational.
+\end{proof}
+
+\textbf{Problem 3}
+\textit{For $p(x), q(x) \in \mathbb{R}(x)$, we define the open interval
+\[
+(p(x), q(x)) = \{f(x) \in \mathbb{R}(x) \mid p(x) < f(x) < q(x)\}.
+\]
+For any $a \in \mathbb{R}$ show that there exist $p(x), q(x) \in \mathbb{R}(x)$, such that $(p(x), q(x)) \cap \mathbb{R} = \{a\}$.}
+\begin{proof}
+Let $a \in \mathbb{R}$ and consider the interval $S = (a - 1/x, a + 1/x)$. Suppose that $b \in S \cap \mathbb{R}$ such that $b \neq a$. Then we have
+\[
+0 < b - \frac{ax - 1}{x} = \frac{(b-a)x - 1}{x}
+\]
+which means $(b-a)x^2 - x > 0$ and so $b-a > 0$. Thus $b > a$. Similarly,
+\[
+0 < \frac{ax + 1}{x} - b = \frac{(a-b)x - 1}{x}
+\]
+which means $(a-b)x^2 - x > 0$ and so $a-b > 0$. Thus $a > b$. This is a contradiction and so $b = a$.
+\end{proof}
+
+\textbf{Problem 4a}
+\textit{Let $(a_n)_{n=1}^{\infty}$ be a bounded sequence in $\mathbb{R}$. Define the sequence $(b_n)_{n=1}^{\infty}$ as
+\[
+b_n = \sup \{a_k \mid k \geq n\}.
+\]
+Show that $\lim_{n \rightarrow \infty}$ exists.}
+\begin{proof}
+We have
+\[
+b_n = \sup \{a_k \mid k \geq n\} \leq \sup \{a_k \mid k \geq n + 1\} = b_{n+1}
+\]
+which means that $(b_n)$ is a monotonically decreasing sequence. Thus it is convergent.
+\end{proof}
+
+\textbf{Problem 4b}
+\textit{Suppose that a subsequence $(a_{n_j})_{n=1}^{\infty}$ of $(a_n)$ converges to $x$. Show that $x \leq \lim_{n \rightarrow \infty} b_n$.}
+\begin{proof}
+Note that $b_n \geq a_{n_j}$ for all $n$ and $j$. Thus
+\[
+\lim_{n \rightarrow \infty} b_n \geq x.
+\]
+\end{proof}
+
+\textbf{Problem 4c}
+\textit{Prove that there exists a convergent subsequence $(a_{n_j})_{j=1}^{\infty}$ of $(a_n)$ such that
+\[
+\lim_{j \rightarrow \infty} a_{n_j} = \lim_{n \rightarrow \infty} b_n.
+\]}
+\begin{proof}
+Let $\lim_{n \rightarrow \infty} b_n = b$. There exists $N_1$ such that for all $n > N_1$ we have
+\[
+b-1 < b_n < b+1.
+\]
+Since there exists some $n > N_1$, there exists $n_1$ such that
+\[
+b-1 < a_{n_1} < b_n < b + 1.
+\]
+Similarly, there exists some $N_2 > N_1$ such that for all $n > N_2$
+\[
+b - \frac{1}{2} < b_n < b + \frac{1}{2}.
+\]
+Then there exists $n_2$ such that
+\[
+b - \frac{1}{2} < a_{n_2} < b_n < b + \frac{1}{2}.
+\]
+Then in general, there exists $n_j$ such that
+\[
+b - \frac{1}{j} < a_{n_j} < b + \frac{1}{j}
+\]
+which means that $a_{n_j}$ will converge to $b$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

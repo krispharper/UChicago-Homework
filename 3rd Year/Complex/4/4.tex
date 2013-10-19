@@ -1,0 +1,173 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27000\\
+
+October 29, 2009
+\end{flushright}
+
+\begin{center}
+Homework 4
+\end{center}
+
+\begin{problem}
+Let $f$ be analytic on an open set $U$, let $z_0 \in U$ and $f'(z_0) \neq 0$. Show that
+\[
+\frac{2 \pi i}{f'(z_0)} = \int_C \frac{1}{f(z) - f(z_0)}dz,
+\]
+where $C$ is a small circle centered at $z_0$.
+\end{problem}
+\begin{proof}
+Write $f(z) - f(z_0) = a_1(z-z_0) + a_2(z-z_0)^2 + \dots)$ where $a_1 = f'(z_0)$. This implies $f(z) - f(z_0) = a_1(z-z_0) \left (1 + \frac{a_2}{a_1}(z-z_0) + \dots \right )$. This shows that in a small disc around $z_0$, the function $\frac{z-z_0}{f(z)-f(z_0)}$ is analytic. Using Cauchy's formula and the fact that $a_1 \neq 0$ we have
+\[
+\int_C \frac{1}{f(z) - f(z_0)}dz = \frac{1}{a_1} = \frac{2 \pi i}{f'(z_0)}.
+\]
+\end{proof}
+
+\begin{problem}
+Weierstrass' theorem for a real interval $[a,b]$ states that a continuous function can be uniformly approximated by polynomials. Is this conclusion still true for the closed unit disc, i.e. can ever continuous function on the disc be uniformly approximated by polynomials?
+\end{problem}
+\begin{proof}
+No since not every continuous function on the unit disc is holomorphic, $f(z) = \overline{z}$, for example.
+\end{proof}
+
+\begin{problem}
+Prove that the two series in Exercise 4 are actually equal.
+\end{problem}
+\begin{proof}
+Write $\frac{1}{1-z^n} = \sum_{k=0}^{\infty} (z^n)^k$ so that
+\[
+\sum_{n=1}^{\infty} \frac{nz^n}{1-z^n} = \sum_{n=1}^{\infty} nz^n \sum_{k=0}^{\infty} (z^n)^k = \sum_{n=1}^{\infty} \sum_{k=0}^{\infty} n(z^n)^{k+1} = \sum_{k=1}^{\infty}\sum_{n=1}^{\infty} n(z^k)^n.
+\]
+Also
+\[
+\sum_{n=1}^{\infty} \frac{z^n}{(1-z^n)^2} = \sum_{n=1}^{\infty} \left ( \sum_{k=0}^{\infty} (z^n)^k \sum_{k=0}^{\infty} (z^n)^k \right ) = \sum_{n=0}^{\infty} z^n \sum_{k=0}^{\infty} (k+1)(z^n)^k = \sum_{n=1}^{\infty}\sum_{k=0}^{\infty} (k+1)(z^n)^{k+1} = \sum_{n=1}^{\infty} \sum_{k=1}^{\infty} k(z^n)^k.
+\]
+Both series are thus equal.
+\end{proof}
+
+\begin{problem}
+Let $f$ be analytic on a closed disc $\overline{D}$ of radius $b > 0$, centered at $z_0$. Show that
+\[
+\frac{1}{nb^2} \int \int_D f(x+iy)dydx = f(z_0).
+\]
+\end{problem}
+\begin{proof}
+We can assume that $z_0 = 0$ by creating the function $g(z) = f(z+z_0)$. Using a change of variables we see that
+\[
+\int \int_D f(x+iy)dydx = \int \int_{D_0(b)} g(x+iy)dydx.
+\]
+Let $0 < r < b$ and let $C_r$ be the circle centered at $0$ with radius $r$. We know
+\[
+f(0) = \frac{1}{2 \pi i} \int_{C_r} \frac{f(\zeta)}{\zeta} d\zeta.
+\]
+Parameterize $C_r$ with $re^{i \theta}$ so we have
+\[
+f(0) = \frac{1}{2 \pi i} \int_{0}^{2 \pi} \frac{f(re^{i\theta})}{re^{i \theta}} ire^{i \theta} d \theta = \frac{1}{2 \pi} \int_{0}^{2 \pi} f(re^{i \theta}) d \theta.
+\]
+Multiply both sides by $r$ and integrate with respect to $r$ from $0$ to $b$. We now have
+\[
+f(0) \int_0^b r dr = \frac{1}{2 \pi} \int_{0}^{2 \pi} \int_0^b f(re^{i \theta}) r dr d \theta.
+\]
+The left side evaluates to $f(0) \frac{b^2}{2}$. Dividing by this and switching back to rectangular coordinates gives the result.
+\end{proof}
+
+\begin{problem}
+Is there a polynomial $P(z)$ such that $P(z)e^{1/z}$ is an entire function? Justify your answer. What is the Laurent expansion of $e^{1/z}$ for $|z| \neq 0$?
+\end{problem}
+\begin{proof}
+Suppose such a polynomial $P(z) = \sum_{i=1}^{m} a_iz^i$ exists. We know that $e^{1/z} = \sum_{n=0}^{\infty} \frac{1}{n!} \frac{1}{z}^n$. The coefficient of $1/z^N$ in $P(z)e^{1/z}$ is then
+\[
+b_N = \frac{a_0}{N!} + \frac{a_1}{(N+1)!} + \dots + \frac{a_d}{(N+d)!}.
+\]
+Let $r$ be the smallest nonnegative integer such that $a_r \neq 0$. Then we have
+\[
+b_N = \frac{1}{(N+r)!} \left ( a_r + \frac{a_{r+1}}{N+r+1} + \dots + \frac{a_d}{(N+r+1) \dots (N+d)} \right ).
+\]
+Therefore this coefficient is nonzero for all large enough $N$. This shows that no such $P(z)$ exists such that $P(z)e^{1/z}$ is entire.
+\end{proof}
+
+\begin{problem}
+Expand the function
+\[
+f(z) = \frac{z}{1+z^3}
+\]
+(a) In a series of positive powers of $z$, and\\
+(b) In a series of negative powers of $z$.\\
+In each case, specify the region in which the expansion is valid.
+\end{problem}
+\begin{proof}
+(a) For $|z| < 1$ we have
+\[
+f(z) = z \frac{1}{1 - (-z)^3} = z(1 + (-z^3) + (-z^3)^2 + \dots ) = \sum_{n=0}^{\infty} (-1)^n z^{3n+1}.
+\]
+
+(b) For $|z| > 1$ we have
+\[
+f(z) = \frac{1}{z^2} \frac{1}{1 + \frac{1}{z^3}} = \frac{1}{z^2} \left ( 1 + \left ( \frac{-1}{z^3} \right ) + \left ( \frac{-1}{z^3} \right )^2 \dots \right ) = \sum_{n=0}^{\infty} \frac{(-1)^n}{z^{3n+2}}.
+\]
+\end{proof}
+
+\begin{problem}
+Let $f$ be meromorphic on $\mathbb{C}$ but not entire. Let $g(z) = e^{f(x)}$. Show that $g$ is not meromorphic on $\mathbb{C}$.
+\end{problem}
+\begin{proof}
+Since $f$ is not entire, it must have a pole at some point $z_0$. In a neighborhood of $z_0$ we have $(z-z_0)^m f(z) = p(z) + (z-z_0)^mh(z)$ where $h$ is holomorphic and $p$ is a polynomial of degree less than $m$. Thus
+\[
+f(z) = \frac{p(z)}{(z-z_0)^m} + h(z)
+\]
+and so
+\[
+e^{f(z)} = e^{\frac{p(z)}{(z-z_0)^m}}e^{h(z)}.
+\]
+Since $e^{h(z)}$ is holomorphic, and the power series of $e^{\frac{p(z)}{(z-z_0)^m}}$ has an essential singularity at $z_0$, we see that $e^{f(z)}$ is not meromorphic on $\mathbb{C}$.
+\end{proof}
+
+\begin{problem}
+Let $f$ be a non-constant entire function, i.e. a function analytic on all of $\mathbb{C}$. Show that the image of $f$ is dense in $\mathbb{C}$.
+\end{problem}
+\begin{proof}
+Suppose $\alpha \in \mathbb{C}$ and $s \in \mathbb{R}$ such that $|f(z) - \alpha| > s$ for all $z \in \mathbb{C}$. Then $g(z) = 1/(f(z) - \alpha)$ is entire and bounded, therefore $g$ is constant. But then $f$ is constant which is a contradiction. Therefore $f$ is dense on all of $\mathbb{C}$.
+\end{proof}
+
+\begin{problem}
+Show that there is no $f \in H(D_2(0))$ such that $f(z) = z^{-1}$ for all $z \in \partial \mathbb{D}$.
+\end{problem}
+\begin{proof}
+Suppose such a function does exist. Then from Cauchy's formula on $\partial \mathbb{D}$ we have
+\[
+f(z) = \frac{1}{z} = \frac{1}{2 \pi i} \int_{D_2(0)} \frac{f(\zeta)}{\zeta - z} d \zeta.
+\]
+Which means
+\[
+2 \pi i = \int_{D_2(0)} \frac{f(\zeta)z}{\zeta - z} d \zeta.
+\]
+Now since $\partial D_2(0)$ is homotopic to $\partial \mathbb{D}$, we can rewrite this as
+\[
+2 \pi i = \int_{\partial \mathbb{D}} \frac{f(\zeta)z}{\zeta - z} d \zeta = \int_{\partial \mathbb{D}} \frac{\frac{1}{z}z}{\zeta - z} d \zeta = \int_{0}^{2 \pi} \frac{1}{e^{i \theta} - z} d \theta.
+\]
+But since $z \in \partial \mathbb{D}$ we know that $z = e^{i \varphi}$ for some angle $\varphi$ and since we're integrating over $\theta \in [0, 2 \pi)$, the function in the integrand is not holomorphic. This is a contradiction and so $f$ cannot exist.
+\end{proof}
+
+\begin{problem}
+Let $f \in H(\mathbb{D})$ be such that $f(0) = 0$ and $|f(z)| < 1$ for all $z \in \mathbb{D}$. Show that $|f(z)| \leq |z|$ for all $z \in \mathbb{D}$, and if $|f(z)| = |z|$ for some $z \in \mathbb{D}$, then $f$ is a rotation $f(z) = \alpha z$ with $\alpha \in \partial \mathbb{D}$.
+\end{problem}
+\begin{proof}
+Write $f(z) = \sum_{n=0}^{\infty} a_n z^n$. Then $|f(z)| = \left | \sum_{n=0}^{\infty} a_n z^n \right | \leq \sum_{n=0}^{\infty} |a_n| |z^n|$. Since $f(0) = 0$, $a_0 = 0$ and so the last term is less than or equal to $|z|$. In the case that $|f(z)| = |z|$ we see that $|a_1| = 1$ and every other term in the Taylor series is $0$. Therefore $f(z) = a_1 z$ where $|a_1| = 1$ and so $a_1 \in \partial \mathbb{D}$.
+\end{proof}
+
+\begin{problem}
+Assume that $f(z) \in H(D_r(0) \backslash \{1\})$ for some $r > 1$ and $f$ has a pole at $1$. If $f(z) = \sum_{n=0}^{\infty} a_n z^n$ on $\mathbb{D}$ show that $\lim_{n \rightarrow \infty} \frac{a_n}{a_{n+1}} = 1$.
+\end{problem}
+\begin{proof}
+We know that since $f$ has a pole of some order $m$ at $1$, the function $g(z) = f(z)(0-1)^m$ is holomorphic and nonzero at $1$. Note that $m$ must be odd otherwise $f$ would be holomorphic on $D_r(0)$. But now $f(z) = \sum_{n=0}^{\infty} a_n z^n$ and $g(z) = \sum_{n=0}^{\infty} (-1)^n a_n z^n$ are both holomorphic on $D_r(0) \backslash \{1\}$. But this is only possible if $\lim_{n \rightarrow \infty}\frac{a_n}{a_{n+1}} = 1$.
+\end{proof}
+
+\end{document}

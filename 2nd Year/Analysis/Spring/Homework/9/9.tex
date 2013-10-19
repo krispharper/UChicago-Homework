@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\re}{\text{Re}}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20900\\
+
+June 2, 2009
+\end{flushright}
+
+\begin{center}
+Homework 9
+\end{center}
+
+\begin{**}
+For a Hilbert space $V$, show that the norm defined by $||v|| = (v|v)^{1/2}$ is an actual norm.
+\begin{proof}
+We already know $(v|v) \geq 0$ and $(v|v) = 0$ if and only if $v = 0$. Thus, $||v|| = (v|v)^{1/2} \geq 0$ and $||v|| = 0$ means $(v|v) = 0$ and so $v = 0$. Now consider $\alpha \in \mathbb{C}$. We have
+\[
+||\alpha v|| = (\alpha v | \alpha v)^{\frac{1}{2}} = (\alpha(v|\alpha v))^{\frac{1}{2}} = (\alpha \overline{\alpha}(v|v))^{\frac{1}{2}} = |\alpha|(v|v)^{\frac{1}{2}} = |\alpha|||v||.
+\]
+Finally, for $w \in V$, we have
+\[
+||v+w||^2 = (v + w|v+w) = ||v||^2 + ||w||^2 + (v|w) + (w|v) = ||v||^2 + ||w||^2 + 2 \re (v|w).
+\]
+The triangle inequality follows using Cauchy-Schwartz.
+\end{proof}
+\end{**}
+
+\begin{**}
+Show $\widehat{(\mathbb{R},+)} = \{\chi_t \mid t \in \mathbb{R}, \chi_t(x) = e^{itx}\}$.
+\begin{proof}
+Given $\chi \in \widehat{(\mathbb{R},+)}$ we want to show there exists $t \in \mathbb{R}$ such that $\chi = \chi_t$. Let $H$ be the kernel of $\chi$ and note that $H$ is a closed subgroup of $\mathbb{R}$ under addition. Either $H = \mathbb{R}$, $H = \{0\}$ or there exists $b \in \mathbb{R}^+$ such that $H = \{nb \mid n \in \mathbb{Z}\}$. In the case $H = \mathbb{R}$ we know $\chi = 1$ and $t = 0$ suffices. The case $H = \{0\}$ is impossible since $\chi(0) = \chi(2n\pi)$. Consider the third case. Note $\chi(b/2)^2 = \chi(b) = 1$ and since $b/2 < b$, $\chi(b/2) = -1$. Now note $\chi(b/4)^2 = \chi(b/2) = -1$ and so $\chi(b/4) = \pm i$ and without loss of generality we can choose $\chi(b/4) = i$. We show by induction on $n$ that for $n \geq 2$, $\chi(b/2^n) = e^{i \pi/2^{n-1}}$. We have shown this for the base case, $n = 2$, so now assume that for some $n \geq 2$ the result holds. Consider $\chi(b/2^{n+1}$. Note that $\chi(b/2^{n+1})^2 = \chi(b/2^n) = e^{i \pi/2^{n-1}}$. Then we have $\chi(b/2^{n+1}) = \pm e^{i \pi/2^n}$. Note that $\chi((-b/4,b/4))$ must map to $\{e^{i \theta} \mid -\pi/2 < \theta < \pi/2\}$ from continuity. Therefore $\chi(b/2^{n+1} = e^{i \pi/2^n}$. Now consider $x \in [0,b]$ and create a sequence $a_m$ such that $a_m$ converges to $x$ and $c_m = kb/2^n$ for some $k \in \mathbb{R}$. Then $\chi(c_m) = \chi(b/2^n)^k = e^{i k \pi/2^{n-1}}$ and since $\chi$ is continuous this must converge to $\chi(x) = e^{2 \pi i x/b}$. Therefore $t = 2/b$.
+\end{proof}
+\end{**}
+
+\begin{**}
+Show $\widehat{\mathbb{T}} = \{\chi_n \mid n \in \mathbb{Z}, \chi_n(e^{i \theta} = e^{i n \theta}\}$.
+\begin{proof}
+Note that $\mathbb{T}$ is the quotient of $(\mathbb{R}, +)$ by the subgroup $[0, 2 \pi)$. We can thus use the proof in ** Problem 2 where $b = 2 \pi$.
+\end{proof}
+\end{**}
+
+\end{document}

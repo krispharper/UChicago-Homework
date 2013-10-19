@@ -1,0 +1,209 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{**}{** Problem}
+
+\newcommand{\diam}{\textup{diam}}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20700\\
+
+November 10, 2008
+\end{flushright}
+
+\begin{center}
+Homework 6
+\end{center}
+
+\begin{flushleft}
+
+\begin{problem}
+Find an uncountable number of subsets of $\ell_n^p(\mathbb{R})$ and $\ell_n^p(\mathbb{C})$ that are neither open nor closed.
+\end{problem}
+\begin{proof}
+For every $x \in \mathbb{R}^n$ consider the ball of arbitrary radius $r$ and some point $x_0$ such that $d_p(x, x_0) = r$. Then the set $B_r(x) \cup \{x_0\}$ is neither open nor closed. Consider a ball of radius $r'$ around $x_0$, $B_{r'}(x_0)$. Then there exists a point $x_1$ in $\mathbb{R}^n$ such that $d_p(x, x_1) \geq r$ but $d_p(x_0, x_1) < r'$. Then $x_1 \in B_{r'}(x_0)$ but $x_1 \notin B_r(x)$. Therefore for all $r' > 0$, we have $B_{r'}(x_0) \nsubseteq B_r(x) \cup \{x_0\}$. Thus $B_r(x) \cup \{x_0\}$ is not open. But the same proof holds to show that $^c B_r(x) \cup \{x_0\}$ is not open, thus $B_r(x) \cup \{x_0\}$ is also not closed. Since $\mathbb{R}$ is uncountable, there are infinitely many subsets of $\ell_n^p(\mathbb{R})$ which are neither open nor closed. A similar proofs holds for $\ell_n^p(\mathbb{C})$.
+\end{proof}
+
+\begin{problem}
+1) Let $A_n = B{1/n}((0,0))$ in $\mathbb{R}^2$ with the usual metric. Show that
+\[
+\bigcap_{n=1}^{\infty} A_n
+\]
+is not open.\\
+2) Find an infinite collection of distinct open sets in $\mathbb{R}^2$ with the usual metric whose intersection is a nonempty open set.
+\end{problem}
+\begin{proof}
+1) Suppose that there exists $(x,y) \in \bigcap_{n=1}^{\infty} A_n$ such that $(x,y) \neq (0,0)$. Then let $r = d((0,0), (x,y))$. Choose $N$ such that $1/N < r$ by the Archimedean Property. But then $(x,y) \notin A_N$ and $\bigcap_{n=1}^{\infty} A_n \subseteq A_N$. Thus $\bigcap_{n=1}^{\infty} A_n = \{(0,0)\}$. But this set is not open because any ball around it must include points which are not $(0,0)$.\newline
+
+2) Take $B_n = B_n((0,0))$. Then $\bigcap_{n=1}^{\infty} B_n = B_1((0,0))$ which is an open ball.
+\end{proof}
+
+\begin{problem}
+Suppose that $A$ is a subset of a metric space $X$. Show that $\overline{A} = A \cup \{x \mid \text{$x$ is an accumulation point of $A$}\}$.
+\end{problem}
+\begin{proof}
+Let $S = A \cup \{x \mid \text{$x$ is an accumulation point of $A$}\}$. Let $x \in S$. If $x \in A$, then $x \in \overline{A}$ so suppose $x$ is an accumulation point of $A$. Let $B$ be an arbitrary closed set which contains $A$. Then $^c B$ is open. Since for all $r > 0$ we have $B_r(x) \cap A \neq \emptyset$, we also have $B_r(x) \cap B \neq \emptyset$ and so $x \notin ^c B$. Thus $x \in B$ and so $x$ is in every closed set which contains $A$. Thus $S \subseteq \overline{A}$.\newline
+
+Now let $x \in \overline{A}$. Suppose that $x \notin A$ and $x$ is not an accumulation point of $A$. Then there exists some $r > 0$ such that $(B_r(x) \backslash \{x\}) \cap A = \emptyset$. Since $x \notin A$ we also have $B_r(x) \cap A = \emptyset$. This implies that there exists some closed set which contains $A$ but doesn't contain $x$. But $x$ is in every closed set which contains $A$ since $x \in \overline{A}$. This is a contradiction and so $x \in S$. Therefore $\overline{A} \subseteq S$.
+\end{proof}
+
+\begin{problem}
+Suppose $A$ is a subset of a metric space $X$. Prove or disprove: $\overline{A} = A \cup \partial A$.
+\end{problem}
+\begin{proof}
+Let $X = \mathbb{R} \backslash (1,2)$. Consider the subset $(0,1) \subseteq X$ with the $d_2$ metric. Then $1$ is an accumulation point of $(0,1)$ but $1 \notin \partial (0,1)$ because $B_{1/2}(1)$ contains no points of $X$ which are not in $(0,1)$. Thus $1 \in \overline{(0,1)}$ but $1 \notin A \cup \partial A$.
+\end{proof}
+
+\begin{problem}
+Let $X$ be a metric space and let $x_0 \in X$ suppose that $r > 0$. Prove or disprove: $\overline{B_r(x_0)} = \{x \in X \mid d(x, x_0) \leq r\}$.
+\end{problem}
+\begin{proof}
+Let $X$ be a metric space with at least two points and the discrete metric. Let $r = 1$. Then $\{x \in X \mid d(x, x_0) \leq r\} = X$. But in the discrete metric, there are no accumulation points and so $\overline{B_r(x_0)} = \{x_0\}$.
+\end{proof}
+
+\begin{problem}
+1) Consider the set of $2 \times 2$ matrices over $\mathbb{R}$, that is $M_2(\mathbb{R})$. Make this into a metric space by identifying it with $\mathbb{R}^4$ with the usual metric. Show that $GL_2(\mathbb{R})$ is an open subset of $M_2(\mathbb{R})$ and that $\overline{GL_2(\mathbb{R})} = M_2(\mathbb{R})$.\\
+2) Show that $SL_2(\mathbb{R})$ is a closed subset of $GL_2(\mathbb{R})$.
+\end{problem}
+\begin{proof}
+1) Let $x \in GL_2(\mathbb{R})$. Then $\det (x) \neq 0$. But also we can find elements of $M_2$ which are arbitrarily close to $x$ with nonzero determinants. We can do this because we can change each coordinate an arbitrarily small amount which will make the determinant different. From here we also see that every element of $M_2$ with a zero determinant is an accumulation point of $GL_2$. Note every ball with arbitrarily small radius around such an element must contain elements of $M_2$ with slightly different coordinates and therefore different determinants. Thus $\overline{GL_2(\mathbb{R})} = M_2$.\newline
+
+2) The proof to show that $^c SL_2(\mathbb{R})$ is open in $GL_2(\mathbb{R})$ is the same as showing that $GL_2(\mathbb{R})$ is open in $M_2$.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a subset of a metric space $X$ and let $x$ be an isolated point of $A$. Show that $x$ is in the boundary of $A$ if and only if $x$ is an accumulation point of $^cA$.
+\end{problem}
+\begin{proof}
+Suppose that $x \in \partial A$. Then for all $r > 0$ we have $B_r(x) \cap ^c A \neq \emptyset$. Since $x$ is an isolated point of $A$, $x \in A$. Thus we can write for all $r > 0$ we have $(B_r(x) \backslash \{x\}) \cap ^c A \neq \emptyset$. Thus $x$ is an accumulation point of $^c A$.\newline
+
+Now suppose that $x$ is an accumulation point of $^c A$. Then for all $r > 0$ we have $(B_r(x) \backslash \{x\}) \cap ^c A \neq \emptyset$ which means $B_r(x) \cap ^c A \neq \emptyset$. Because $x$ is an isolated point of $A$, there exists $r > 0$ such that $B_r(x) \cap A = \{x\}$. But then for $r' > r$ we have $B_{r'}(x) \cap A \neq \emptyset$ and for $r' < r$ we have $B_{r'}(x) \cap A = \{x\} \neq \emptyset$. Thus $x \in \partial A$.
+\end{proof}
+
+\begin{**}
+For $x,y \in \mathbb{R}^n$, define $d_1(x, y) = \sum_{i=1}^{n} |x_i-y_i|$. Show that this is a metric.
+\end{**}
+\begin{proof}
+By definition, $|x| \geq 0$ and so $d_1(x, y) = \sum_{i=1}^{n} |x_i-y_i|$ is the sum of nonnegative real numbers. Thus $d_1(x, y) \geq 0$. Suppose that $d_1(x, y) = 0$. Then since each of $|x_i-y_i|$ for $1 \leq i \leq n$ is greater than or equal to zero, $|x_i-y_i| = 0$ for all $1 \leq i \leq n$. Thus $x_i = y_i$ for $1 \leq i \leq n$ and so $x = y$. Conversely, suppose that $x = y$. Then $x_i = y_i$ and $|x_i-y_i| = 0$ for $1 \leq i \leq n$. Then $d_1(x, y) = \sum_{i=1}^{n} |x_i-y_i| = 0$.\newline
+
+Next note that $|a-b|=|b-a|$ for all $a,b \in \mathbb{R}$. Then
+\[
+d_1(x, y) = \sum_{i=1}^{n} |x_i-y_i| = \sum_{i=1}^{n} |y_i-x_i| = d_1(y, x).
+\]\newline
+
+Finally, let $z \in \mathbb{R}^n$ as well. The triangle quality on $\mathbb{R}$ states that $|a - c| \leq |a-b| + |b-c|$ for $a,b,c \in \mathbb{R}$. Extending this we see that $|x_i-z_i| \leq |x_i-y_i| + |y_i-z_i|$ for $1 \leq i \leq n$. Thus
+\[
+d_1(x, z) = \sum_{i=1}^{n} |x_i-z_i| \leq \sum_{i=1}^{n} |x_i-y_i| + \sum_{i=1}^{n} |y_i-z_i| = d_1(x, y) + d_1(y, z).
+\]
+\end{proof}
+
+\begin{**}
+For $x,y \in \mathbb{R}^n$, define $d_{\infty} (x, y) = \max_{1 \leq i \leq n} |x_i-y_i|$. Show that this is a metric.
+\end{**}
+\begin{proof}
+Certainly $d_{\infty} (x, y) = \max_{1 \leq i \leq n} |x_i-y_i| \geq 0$. Also if $x = y$ then $x_i = y_i$ for $1 \leq i \leq n$ and so $d_{\infty} (x, y) = 0$. Conversely, if $d_{\infty} (x, y) = 0$ then $\max_{1 \leq i \leq n} |x_i-y_i| = 0$. But if this is the maximum difference in coordinate values for $x$ and $y$, they must be identically zero. Thus $x_i = y_i$ for all $1 \leq i \leq n$ and so $x = y$.\newline
+
+Note that
+\[
+d_{\infty} (x, y) = \max_{1 \leq i \leq n} |x_i-y_i| = \max_{1 \leq i \leq n} |y_i-x_i| = d_{\infty} (y, x).
+\]\newline
+
+Finally, let $z \in \mathbb{R}^n$ as well. Note that
+\[
+\max_{1 \leq i \leq n} |x_i-y_i| + \max_{1 \leq i \leq n} |y_i-z_i| \geq |x_i-y_i| + |y_i-z_i|
+\]
+for arbitrary $1 \leq i \leq n$. But this quantity is also greater than $\max_{1 \leq i \leq n} |x_i-z_i|$.
+\end{proof}
+
+\begin{problem}
+Let $X$ be a metric space and let $A \subseteq X$. How many possible sets can be made from $A$ with the operations interior, closure and boundary?
+\end{problem}
+\begin{proof}
+Let $I(A)$, $C(A)$ and $B(A)$ be operators which result in the interior of $A$, the closure of $A$ and the boundary of $A$ respectively. Note that $I(I(A))=I(A)$, $C(C(A))=C(A)$ and $B(B(A)) = B(A)$. Also that $C(I(A)) = C(A)$, $I(C(A)) = I(A)$, $C(B(A)) = B(A)$, $I(B(A)) = \emptyset$, $B(C(A)) = B(A)$ and $B(I(A)) = B(A)$. With these identities it is possible to reduce any chain of these operations to one set, namely, $A$, $C(A)$, $I(A)$, $B(A)$ or $\emptyset$.
+\end{proof}
+
+\begin{problem}
+Show that $\mathbb{R}$ endowed with the discrete metric is still an ordered field with the least upper bound property, but that neither the rational or irrational numbers are dense in $\mathbb{R}$. Determine which other relevant properties of $\mathbb{R}$ with the usual metric do not hold with the discrete metric.
+\end{problem}
+\begin{proof}
+Since none of addition, multiplication or the less than relation on $\mathbb{R}$ are dependent on a metric, it follows that $\mathbb{R}$ is still an ordered field with the least upper bound property. If a set $A$ is dense in a set $B$, then $\overline{A} = B$. But since the discrete metric has no accumulation points, $\overline{\mathbb{Q}} = \mathbb{Q}$. The same can be said for $\mathbb{R} \backslash \overline{Q}$. Another property is that the only Cauchy sequences are those sequences which are constant after finitely many terms.
+\end{proof}
+
+\begin{problem}
+Show that, in the usual metric on $\mathbb{R}$, the interior of $\mathbb{Q}$ is empty, that is $\mathbb{Q}^{\circ} = \emptyset$, but the interior of $\overline{\mathbb{Q}}$ is $\mathbb{R}$, that is $(\overline{\mathbb{Q}})^{\circ} = \mathbb{R}$.
+\end{problem}
+\begin{proof}
+There are no nonempty open subsets of $\mathbb{Q}$ in $\mathbb{R}$. To see this, consider some nonempty subset $A \subseteq \mathbb{Q}$. Let $x \in A$ and $r > 0$. Then the open interval $(x-r, x+r)$ must contain points not in $\mathbb{Q}$. Thus there exists no ball around $x$ which is completely contained in $\mathbb{Q}$. Therefore $A$ is not open. Thus, the union of all open subsets of $\mathbb{Q}$ is empty.\newline
+
+Note that for any point $x \in \mathbb{R}$ a ball of arbitrary radius around $x$ will contain rational and irrational points other than $x$. Thus, every point of $\mathbb{R}$ is an accumulation point for $\mathbb{Q}$. Thus $\overline{\mathbb{Q}} = \mathbb{R}$. Then consider some point $x \in \mathbb{R}$. We know that $x$ is certainly in some open subset of $\mathbb{R}$ and so $x \in (\overline{\mathbb{Q}})^{\circ}$. Thus $(\overline{\mathbb{Q}})^{\circ} \subseteq \mathbb{R}$. Thus the two sets must be equal.
+\end{proof}
+
+\begin{problem}
+1) Show that the diameter of a set is $0$ if and only if the set consists of a single point.\\
+2) Suppose $A$ is a nonempty subset of a metric space $X$. Show that $\diam (A) = \diam (\overline{A})$.
+\end{problem}
+\begin{proof}
+1) Let $\{x\}$ be a subset of a metric space $(X, d)$. Then by definition of a metric, $d(x,x) = 0$ and so
+\[
+\diam (\{x\}) = \sup_{x,y \in \{x\}} d(x,y) = d(x,x) = 0.
+\]
+Now suppose that the diameter of a set $A$ in a metric space $(X, d)$ is $0$. Then $\sup_{x,y \in A} d(x,y) = 0$. But since $d(x,y) = 0$ implies $x = y$, we see that $A$ must only contain one point.\newline
+
+2) Note that since $A \subseteq \overline{A}$ it must be the case that $\diam (A) \leq \diam (\overline{A})$. Note also that in the case that every accumulation point of $A$ is in $A$, we have $\diam (A) \geq \diam (\overline{A})$. Thus $\diam (A) = \diam (\overline{A})$.
+\end{proof}
+
+\begin{problem}
+Show that the unit ball in $\ell_n^p (\mathbb{R})$, for $1 \leq p \leq \infty$, is a convex set in $\mathbb{R}^n$.
+\end{problem}
+\begin{proof}
+Let $a, b \in \{x \in \mathbb{R}^n \mid d_p (\mathbf{0}, x) < 1\}$. Let $x \in \{(1-t)a + tb \mid t \in \mathbb{R}, 0 \leq t \leq 1\}$. Then $x = (1-t)a + tb$ for some $0 \leq t \leq 1$. Note that since $d_p(\mathbf{0}, a) < 1$ and $d_p(\mathbf{0}, b) < 1$ we have
+\[
+\sum_{i=1}^{n} |a_i|^p < 1
+\]
+and
+\[
+\sum_{i=1}^{n} |b_i|^p < 1
+\]
+which together imply that
+\[
+\sum_{i=1}^{n} |(1-t)a + tb|^p < 1
+\]
+and so $d_p(\mathbf{0}, (1-t)a + tb) < 1$. Therefore $\{(1-t)a + tb \mid t \in \mathbb{R}, 0 \leq t \leq 1\} \subseteq B_1(\mathbf{0})$ and so $B_1(\mathbf{0})$ is convex.
+\end{proof}
+
+\begin{problem}
+Let $A$ be a nonempty subset of $\mathbb{R}^n$ and let $C$ be the convex hull of $A$.\\
+1) Prove or disprove the closed convex hull of $A$ is $\overline{C}$.\\
+2) Show that the diameter of $A$ is the diameter of $C$.
+\end{problem}
+\begin{proof}
+1) We know $\overline{C}$ is the intersection of every closed set which contains the intersection of every convex set containing $A$. Thus if $x \in \overline{C}$ then $x$ is also in every closed convex set containing $A$. Since know the intersection of every closed convex set is a subset of $C$, the intersection of every convex set, which is a subset of $C$, we have shown both subset inclusions so the sets are equal.\newline
+
+2) A convex set containing $A$ will contain all the possible line segments drawn between two points in $A$. The diameter of $A$ is the longest possible line segments drawn between two points in $A$. Since $C$ is the smallest convex set containing $A$, there is no other convex set, smaller than $C$, which will contain this line segment. Thus the diameter of $C$ must also be the length of this line segment.
+\end{proof}
+
+\begin{problem}
+1) Describe the closed convex hull of the unit ball in $\ell_n^p (\mathbb{R})$ for $1 \leq p \leq \infty$.\\
+2) Suppose $0 < p < 1$. For $x \in \mathbb{R}^n$, define,
+\[
+||x||_p = \left ( \sum_{i=1}^{n} |x_i|^p \right )^{\frac{1}{p}}.
+\]
+Define $S_p = \{x \in \mathbb{R}^n \mid ||x||_p \leq 1\}$. Determine whether $S_p$ is convex. If not, find the closed convex hull of $S_p$.
+\end{problem}
+\begin{proof}
+1) The convex hull of the unit ball in $\ell_n^p (\mathbb{R})$ is the resulting figure if a membrane were stretched around the ball and tightened.\newline
+
+2) $S_p$ is not convex. Consider the example $x = (1/2, 0, 0, \dots , 0)$ and $y = (0, 1/2, 0, \dots , 0)$. Then $||x||_p = ||y||_p = 1/2 < 1$. But letting $t=1/2$ we see that
+\[
+||(1-t)x + ty||_p = ||(1/4, 1/4, 0, 0, \dots , 0)||_p = \left ( \frac{2}{4^p} \right )^{\frac{1}{p}} = \frac{2^{\frac{1}{p}}}{4} > 1.
+\]
+The convex hull of $S_p$ is the unit ball in $n$ dimensions for $p=1$. This is because $S_p$ is this unit ball with concave sides.
+\end{proof}
+
+\end{flushleft}
+\end{document}

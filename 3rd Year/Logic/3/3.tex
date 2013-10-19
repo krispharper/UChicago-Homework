@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper\\
+
+MATH 27700\\
+
+October 19, 2009
+\end{flushright}
+
+\begin{center}
+Homework 3
+\end{center}
+
+\begin{problem}
+Let $A$, $B$, $C$ be wffs and $T$ a consistent set of wffs.\\
+(a) $\{A, C\} \vdash B$ if and only if $A \vdash C \rightarrow B$.\\
+(b) Suppose $T_0 \vdash A$, where $T_0 \subseteq T$ is finite. Then there exists a wff $Y$ such that $T_0 \vdash Y$, $Y \vdash T_0$ and $Y \vdash A$.
+\end{problem}
+\begin{proof}
+(a) Suppose $A \vdash C \rightarrow B$. Then clearly $\{A, C\} \vdash C \rightarrow B$ and of course $\{A, C\} \vdash C$. Therefore we have the deduction $C$, $C \rightarrow B$, $B$. Thus $\{A, C\} \vdash B$. Conversely, suppose that $\{A, C\} \vdash B$. Then since $B$ is not necessarily a tautology, we must have a chain of wffs which either ends with $A \rightarrow B$, $B$ or $C \rightarrow B$, $B$. Without loss of generality suppose it is the latter. Then we have $\{A, C\} \vdash C \rightarrow B$. But this is equivalent to saying $A \vdash C \rightarrow B$.
+
+(b) Let $T_0 = \{B_1 \dots B_n\}$. Now let $Y = \bigwedge_{i=1}^n B_i$. Now note that for each $i$ we have $T_0 \vdash B_i$ and therefore $T_0 \vdash Y$. Furthermore, for $B_i \in T_0$, we know that $Y \rightarrow B_i$ is a tautology as well. This follows because $Y$ is only true if $B_i$ is true for all $i$. Finally, note that since we can deduce all $B_i \in T_0$ from $Y$, we can further deduce all elements in the deduction of $A$ from $T_0$ from $Y$. From here, we can deduce $A$ and so we also have $Y \vdash A$.
+\end{proof}
+
+\begin{problem}
+Let $M$ be a model, let $A$, $B$, $C$ be wffs, and let $T$ be a maximal consistent theory.\\
+(a) For each wff $A$, either $A \in T$ or $\neg A \in T$. $A \wedge B$ is in $T$ if and only if $A$, $B$ are both in $T$.\\
+(b) Suppose $M \models C$, $M \models C \rightarrow B$. Then $M \models B$.
+\end{problem}
+\begin{proof}
+(a) Suppose that $A \wedge B \in T$. Then $A \wedge B \rightarrow A$ is a tautology. Therefore $T \vdash A$ which means that $T \cup \{A\}$ is consistent. Since $T$ is maximal, $T \cup \{A\} = T$ and $A \in T$. The same can be said for $B$. Conversely, given that $A, B \in T$, we can deduce $A \wedge B$. Once again, since $T$ is maximal, we must have $T = T \cup \{A \wedge B\}$ and so $A \wedge B \in T$.
+
+Now suppose that $A \in T$ and $\neg A \in T$. We can inductively deduce any sentence symbol or it's negation which is used in $A$. That is, if $S_i \in A$ then $T \vdash S_i$ using the previous statement and the fact that $A$ and it's negation are both in $T$. But since both $S_i$ and $\neg S_i$ are in $T$, from the previous statement we also have $S_i \wedge \neg S_i \in T$. Thus $T$ is not consistent which is contradiction. Therefore exactly one of $A$ or $\neg A$ is in $T$.
+
+(b) Note that $C \rightarrow B \equiv \neg (C \wedge \neg B)$. Thus $M \models \neg (C \wedge \neg B)$ which means that $M$ does not model $C$ or $M$ does not model $\neg B$. We've assumed that $M \models C$ which implies that $M \models B$.
+\end{proof}
+
+\begin{problem}
+Let $A$, $B$ be wffs which are not tautologies. Show that if $A \models B$ there is some $C$ with $\sup(C) \subseteq \sup(A) \cap \sup(B)$ such that $A \models C$ and $C \models B$.
+\end{problem}
+\begin{proof}
+Let $Y$ be a wff which is always true and $Z$ be a wff which is always false. For each wff $A$ and sentence symbol $S$, let $A_S^+$ be the wff formed by replacing $S$ in $A$ with $Y$ and $A_S^-$ be the wff formed by replacing $S$ in $A$ with $Z$. Define $A_S = A_S^+ \vee A_S^-$. We claim that $A \models A_S$. Suppose that $M$ is a model for $A$. We can inductively deconstruct $A$ into it's component wffs, keeping track of whether or not $M$ is a model for each wff. Eventually we will deduce either that $M$ is a model of $S$ or $M$ is not a model of $S$. In the former case we must have $M \models A_S^+$ and in the later case $M \models A_S^-$. Therefore $M \models A_S$ and $A \models A_S$.
+
+Now suppose that $A \models B$ and let $S \notin \sup(B)$. Note that since $A \models A_S$ for any model $M$ with $M \models A$ we have $M \models A_S$ and $M \models B$. Therefore, given a model $M$ of $A_S$, we know $M \models B$ provided that $M \models A$. But since $B \notin S$, if $M$ is a model such that $S \notin M$, then $M \models A_S$. Again, since $S \notin M$ then we must also have $M \models A$ and thus $M \models B$. Therefore $A_S \models B$.
+
+Let $X \in \sup(A)$. Now let $C$ be the wff formed by replacing each $S \in \sup(A) \backslash \sup(B)$ as above with $Y = X \vee \neg X$ and $Z = X \wedge \neg X$. Then $\sup(C) \subseteq \sup(A) \cap \sup(B)$ and from the above statements we see that $A \models C$ and $C \models B$.
+\end{proof}
+
+\begin{problem}
+Let $A, B_1, B_2, \dots$ be wffs and $S_1, S_2 \dots$ be elements of $\sup(A)$. Let $C$ be the wff obtained by replacing every instance of $S_i$ in $A$ by $B_i$ for each $i$. Let $M$, $N$ be models such that, for each $i$, $M \models S_i$ if and only if $N \models B_i$. Show by induction that $M \models A$ if and only if $N \models C$.
+\end{problem}
+\begin{proof}
+Suppose that $M \models A$ we induct on $i$. For the case $i = 1$ we have $A = S_1$ and therefore since $M \models S_1$ if and only if $N \models B_1$, we know that $N \models C$. Now suppose that $|sup(A)| = i$ for some $i$ and that $N \models C$. Let $A'$ be the wff which contains $S_1, \dots , S_{i+1}$ and define $C'$ accordingly. Note that we must either have $A' = A \wedge S_{i+1}$ or $A' \wedge \neg S_{i+1}$. In the former case we know that if $M \models A'$ then $M \models A$ and $M \models S_{i+1}$. Thus $N \models B_{i+1}$ and since $N \models C$ and $N \models B_{i+1}$ we know $N \models C'$. The case where $A' = A \wedge \neg S_{i+1}$ follows similarly.
+
+Conversely, we consider the case where $N \models C$. The base case $i = 1$ is identical to above. Suppose that for some $i$ with $|\sup(A)| = i$ we have $M \models A$. Let $A'$ and $C'$ be as above and note that $C' = C \wedge B_{i+1}$ or $C' = C \wedge \neg B_{i+1}$. For the former case we know $N \models C$ and $N \models B_{i+1}$. Therefore $M \models S_{i+1}$ which along with our inductive hypothesis that $M \models A$ gives us $M \models A \wedge S_{i+1}$. Therefore $M \models A'$.
+\end{proof}
+
+\begin{problem}
+State the special case of the Recursion Theorem which says that given a model $M$, the function which maps each wff $A$ into $\{0, 1\}$ according to whether or not $M \models A$ exists. That is, state explicitly what each of the sets and functions mentioned should be in this case.
+\end{problem}
+\begin{proof}
+Let $f_{\wedge}$ and $f_{\neg}$ be the sentence building functions. Let $U$ be the set of all expressions. Note that $f_{\wedge} : U \times U \to U$ and $f_{\neg} : U \to U$. Let $B$ be the set of basic sentence symbols. Let $C$ be the set of wffs which are generated by $f_{\wedge}$ and $f_{\neg}$ from $B$. That is, $C$ is the set of elements of $U$ which arise by applying $f_{\wedge}$ and $f_{\neg}$ finitely many times to elements of $B$.
+
+To see that $f_{\wedge}$ is injective, take $(A_1, B_1), (A_2,B_2) \in U \times U$. Then without loss of generality, assume that some truth assignment gives different values for $A_1$ and $A_2$. Then we see that $A_1 \wedge B_1 \neq A_2 \wedge B_2$. This shows that $f_{\wedge}$ is injective. Similarly, if we take $A, B \in U$ with $A \neq B$ then we have $f_{\neg}(A) = \neg A \neq \neg B = f_{\neg}(B)$ because of opposite truth assignments under negation. Therefore $f_{\wedge}$ and $f_{\neg}$ are both injective. It's easy to see that $B$ is disjoint from $f_{\wedge}(C)$ and $f_{\neg}(C)$ because elements of $B$ have no connectives. We also see that $f_{\wedge}(C) \cap f_{\neg}(C) = \emptyset$ since elements of these sets use different connectives. This shows that $C$ is freely generated from $B$ by $f_{\wedge}$ and $f_{\neg}$.
+
+Now let $h : B \to \{0, 1\}$ be the function such that $h(S) = 0$ if $S \notin M$ and $h(S) = 1$ if $S \in M$. Let $F : V \times V \to V$ be the function such that $F(x) = 1$ if and only if $x = (1,1)$. Let $G : V \to V$ be the function such that $G(x) = 1 - x$. Since $C$ is freely generated from $B$ by $f_{\wedge}$ and $f_{\neg}$ we now know from the Recursion Theorem that there exists $\overline{h}$ such that $\overline{h}(S) = h(S)$ for $S \in B$, and for $A, B \in C$ we have $\overline{h}(A \wedge B) = \overline{h}(f_{\wedge}(A, B)) = F(\overline{h}(A), \overline{h}(B)) = 1$ only if $\overline{h}(A) = \overline{h}(B) = 1$. Thus $M \models A \wedge B$ if and only if $M \models A$ and $M \models B$. Likewise, $\overline{h}(\neg A) = \overline{h}(g(A)) = G(\overline{h}(A)) = 1$ only if $\overline{h}(A) = 0$. Therefore, $M \models \neg A$ if and only if $M$ does not model $A$.
+\end{proof}
+
+\end{document}

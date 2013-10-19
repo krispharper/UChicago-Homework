@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 15, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 18: Convergence of Functions\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{For $a < b$ with $a,b \in \mathbb{R}$ let
+\[
+B[a;b] = \{f \; : \; [a;b] \rightarrow \mathbb{R} \mid \text{$f$ is bounded on $[a;b]$}\}
+\]
+be the set of bounded real functions on $[a;b]$.}\newline
+
+\textbf{Definition 2}
+\textsl{We say that $f$ is the pointwise limit of $(f_n)$, or
+\[
+\lim_{n \rightarrow \infty}^{\bullet} f_n = f
+\]
+if for all $x \in [a;b]$ we have
+\[
+\lim_{n \rightarrow \infty} f_n (x) = f(x).
+\]}\newline
+
+\textbf{Definition 3}
+\textsl{For $f,g \in B$ let
+\[
+d(f,g) = \sup_{x \in [a;b]} | f(x) - g(x) |.
+\]}\newline
+
+\textbf{Theorem 4}
+\textsl{$d$ is a metric on $B$.}
+\begin{proof}
+Let $f,g,h \in B$. We have $|f(x) - g(x)| \geq 0$ for all $x \in [a;b]$ so then $d(f,g) = \sup_{x \in [a;b]} |f(x) - g(x)| \geq 0$. Also if $d(f,g) = \sup_{x \in [a;b]} |f(x) - g(x)| = 0$ then $|f(x) - g(x)| = 0$ for all $x \in [a;b]$ because $d(f,g)$ is an upper bound. But then $f(x) = g(x)$ for $x \in [a;b]$. Conversely suppose that $f(x) = g(x)$ for all $x \in [a;b]$. Then $|f(x) - g(x)| = 0$ for all $x \in [a;b]$ and so $d(f,g) = \sup_{x \in [a;b]} |f(x) - g(x)| = 0$. Also $d(f,g) = \sup_{x \in [a;b]} |f(x) - g(x)| = \sup_{x \in [a;b]} |g(x) - f(x)| = d(g,f)$. Finally from the triangle inequality we have $|f(x) - g(x)| + |g(x) - h(x)| \geq |f(x) - h(x)|$ for all $x \in [a;b]$ so $|f(x) - g(x)| + |g(x) - h(x)| \geq \sup_{x \in [a;b]} |f(x) - h(x)|$ for all $x \in [a;b]$. But then $d(f,g) + d(g,h) = \sup_{x \in [a;b]} |f(x) - g(x)| + \sup_{x \in [a;b]} |g(x) - h(x)| \geq |f(x) - g(x)| + |g(x) - h(x)| \geq \sup_{x \in [a;b]} |f(x) - h(x)| = d(f,h)$ for all $x \in [a;b]$.
+\end{proof}
+
+\textbf{Definition 5}
+\textsl{We say that $f$ is the uniform limit of $(f_n)$, or
+\[
+\lim_{n \rightarrow \infty} f_n = f
+\]
+if $\lim_{n \rightarrow \infty} f_n = f$ in the metric $d$.}\newline
+
+\textbf{Theorem 6}
+\textsl{W have $\lim_{n \rightarrow \infty} f_n = f$ if and only if for all $\varepsilon > 0$ there exists $N$ such that for all $n > N$ and for all $x \in [a;b]$ we have $|f(x) - f_n(x)| < \varepsilon$.}
+\begin{proof}
+Suppose that $\lim_{n \rightarrow \infty} f_n = f$. Then $\lim_{n \rightarrow \infty} f_n = f$ in the metric $d$. Thus $\lim_{n \rightarrow \infty} d(f,f_n) = 0$ which means $\lim_{n \rightarrow \infty} \sup_{x \in [a;b]} |f(x)-f_n(x)| = 0$ (17.1). Then for all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ we have $|\sup_{x \in [a;b]} |f(x)-f_n(x)|| < \varepsilon$. But then for all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ and for all $x \in [a;b]$ we have $|f(x) - f_n(x)| < \varepsilon$.\newline
+
+Conversely suppose that for all $\varepsilon > 0$ there exists $N$ such that for all $n > N$ and for all $x \in [a;b]$ we have $|f(x) - f_n(x)| < \varepsilon$. Since this is true for all $x \in [a;b]$ then for all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ we have $\sup_{x \in [a;b]} |f(x)-f_n(x)| = |\sup_{x \in [a;b]} |f(x)-f_n(x)| - 0| = |d(f,f_n) - 0| < \varepsilon$. But then $\lim_{n \rightarrow \infty} d(f,f_n) = 0$ and so $\lim_{n \rightarrow \infty} f_n = f$ (17.1).
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{If $\lim_{n \rightarrow \infty} f_n = f$ then $\lim_{n \rightarrow \infty}^{\bullet} f_n = f$.}
+\begin{proof}
+We have $\lim_{n \rightarrow \infty} f_n = f$ and so for all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ and all $x \in [a;b]$ we have $|f(x)-f_n(x)| < \varepsilon$. But then for all $x \in [a;b]$ and all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ we have $|f(x)-f_n(x)| < \varepsilon$. Thus $\lim_{n \rightarrow \infty}^{\bullet} f_n = f$.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{The sequence $f_n(x) = x^n$ on the interval $[0;1]$ converges pointwise but not uniformly.}
+\begin{proof}
+Let
+\[
+f=
+\begin{cases}
+0 & \text{if $0 \leq x < 1$}\\
+1 & \text{if $x=1$}
+\end{cases}
+\]
+and let $x \in [0;1)$. Since $0 \leq x < 1$ we have $\lim_{n \rightarrow \infty} f_n(x) = \lim_{n \rightarrow \infty} x^n = 0 = f(x)$. If $x=1$ then $x^n = 1$ for all $n$ and so $\lim_{n \rightarrow \infty} x^n = 1 = f(x)$. Thus, $(f_n)$ converges pointwise. Suppose that $(f_n)$ converges uniformly and let $1 > \varepsilon > 0$. Then there exists an $N$ such that for all $n>N$ and for all $x \in [0;1]$ we have $|f(x)-f_n(x)| < \varepsilon$. But since $f(x) = 0$ for $x \in [0;1)$ we can choose $x$ large enough such that $x^n \geq \varepsilon < 1$. Thus there exists $\varepsilon > 0$ such that for all $N$ there exists $n>N$ and $x \in [0;1]$ such that $|f(x) - f_n(x)| \geq \varepsilon$ and so $(f_n)$ doesn't converge uniformly.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{Let $(f_n)$ be a sequence of continuous functions on $[a;b]$ that uniformly converges to $f$ on $[a;b]$. Then $f$ is continuous on $[a;b]$.}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\varepsilon/3$. We know $(f_n)$ uniformly converges to $f$ so there exists $N$ such that for all $n>N$ and for all $x,y \in [a;b]$ we have $|f(x)-f_n(x)| < \varepsilon/3$ and $|f(y)-f_n(y)| < \varepsilon/3$. Also $f_n$ is continuous for all $n$ so for all $n>N$ and for all $x \in [a;b]$ there exists $\delta_n > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta_n$ we have $|f_n(x) - f_n(y)| < \varepsilon/3$. Consider $\delta_{N+1}$. Then for all $x \in [a;b]$ there exists $\delta_{N+1} > 0$, which may depend on $x$, such that for all $y \in [a;b]$ with $|x-y| < \delta_{N+1}$ we have $|f_{N+1}(x)+f_{N+1}(y)| < \varepsilon/3$. By the triangle inequality we have $|f(x)-f_{N+1}(y)| \leq |f_{N+1}(x)-f_{N+1}(y)| + |f(x)-f_{N+1}(x)| < 2\varepsilon/3$ and then $|f(x)-f(y)| < |f(x)-f_{N+1}(y)| + |f(y)-f_{N+1}(y)| < \varepsilon$. Thus for all $x \in [a;b]$ there exists some $\delta > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta$ we have $|f(x)-f(y)| < \varepsilon$. Therefore $f$ is continuous on $[a;b]$.
+\end{proof}
+
+\end{flushleft}
+\end{document}

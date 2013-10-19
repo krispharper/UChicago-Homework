@@ -1,0 +1,333 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\im}{\text{Im}}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20900\\
+
+April 6, 2009
+\end{flushright}
+
+\begin{center}
+Homework 1
+\end{center}
+
+\begin{flushleft}
+
+\begin{**}
+For two partitions $P$ and $P'$ such that $P \subseteq P'$, we have $L(f,P) \leq L(f,P')$ and $U(f,P') \leq U(f,P)$.
+\end{**}
+\begin{proof}
+Suppose first that $P'$ contains just one more point that $P$ and write $P = \{a_0, a_2, \dots, a_n\}$ and $P' = \{a_0, a_2, \dots a_{k-1}, b, a_k, \dots a_n\}$. Let $m_1 = \inf \{f(x) \mid a_{k-1} \leq x \leq b\}$ and $m_2 = \inf \{f(x) \mid b \leq x \leq a_k\}$. We have
+\[
+L(f,P) = \sum_{i=1}^{n} m_i (a_i - a_{i-1})
+\]
+and
+\[
+L(f,P') = \sum_{i=1}^{k-1} m_i (a_i - a_{i-1}) + m_1 (b-a_{k-1}) + m_2 (a_k-b) + \sum_{i=k+1}^{n} m_i (a_i-a_{i-1}).
+\]
+Note that
+\[
+\{f(x) \mid a_{k-1} \leq x \leq b\} \subseteq \{f(x) \mid a_{k-1} \leq x \leq a_k\}
+\]
+and
+\[
+\{f(x) \mid b \leq x \leq a_k\} \subseteq \{f(x) \mid a_{k-1} \leq x \leq a_k\}.
+\]
+Thus $m_k \leq m_1$ and $m_k \leq m_2$. Therefore
+\[
+m_k (a_k-a_{k-1}) = m_k (b-a_{k-1}) + m_k (a_k-b) \leq m_1 (b-a_{k-1}) + m_2 (a_k-b)
+\]
+and so $L(f,P) \leq L(f,P')$. Now suppose that $P'$ contains $n$ more points that $P$. Then we can create a sequence of partitions, each with one more point than the one before it, $P, P_1, \dots , P_{n-1}, P'$. Then
+\[
+L(f,P) \leq L(f,P_1) \leq \dots \leq L(f,P_{n-1}) \leq L(f,P').
+\]
+A similar proof holds using the least upper bound to show that $U(f,P') \leq U(f,P)$.
+\end{proof}
+
+\begin{**}
+If $P$ and $P'$ are partitions then $L(f,P) \leq U(f,P')$.
+\end{**}
+\begin{proof}
+Consider $P'' = P \cup P'$. Then by **Problem 1 we have
+\[
+L(f,P) \leq L(f,P'') \leq U(f,P'') \leq U(f,P').
+\]
+\end{proof}
+
+\begin{**}
+Let $f$ and $g$ be integrable on $[a,b]$ and $\alpha \in \mathbb{R}$. Show the following:\\
+1) A function $f$ is integrable on $[a,b]$ if and only if for all $\varepsilon > 0$ there exists $P \in \mathcal{P}$ such that $U(f,P) - L(f,P) < \varepsilon$.\\
+2) The function $\alpha f + g$ is integrable on $[a,b]$ and
+\[
+\int_a^b \alpha f + g = \alpha \int_a^b f + \int_a^b g.
+\]\\
+3) If $f(x) \leq g(x)$ for $x \in [a,b]$ then
+\[
+\int_a^b f \leq \int_a^b g.
+\]\\
+4) The function $|f|$ is integrable on $[a,b]$ and
+\[
+\left | \int_a^b f \right | \leq \int_a^b |f|.
+\]\\
+5) A function $f$ is integrable on $[a,b]$ if and only if for all $\varepsilon > 0$ there exists $\delta > 0$ such that $|P| < \delta$ implies $U(f,P) - L(f,P) < \varepsilon$.
+\end{**}
+\begin{proof}
+1) Suppose that for all $\varepsilon > 0$ there exists a partition, $P$, such that $U(f,P) - L(f,P) < \varepsilon$ and let $\varepsilon > 0$. Note that $\inf \mathcal{U} (f,P) \leq U(f,P)$ and $\sup \mathcal{L} (f,P) \geq L(f,P)$ so we have
+\[
+\inf \mathcal{U} (f,P) - \sup \mathcal{L} (f,P) < \varepsilon.
+\]
+Note that it's never the case that $\inf \mathcal{U} (f,P) < \sup \mathcal{L} (f,P)$ and if $\inf \mathcal{U} (f,P) > \sup \mathcal{L} (f,P)$ then we have $\inf \mathcal{U} (f,P) - \sup \mathcal{L} (f,P) > 0$. Then there exists $c \in \mathbb{R}$ such that
+\[
+\inf \mathcal{U} (f,P) - \sup \mathcal{L} (f,P) > c > 0
+\]
+and letting $c = \varepsilon$ we have a contradiction. Thus $\inf \mathcal{U} (f,P) = \sup \mathcal{L} (f,P)$ which shows that $f$ is integrable on $[a,b]$. Conversely, assume that $f$ is integrable on $[a,b]$. Then $\inf \mathcal{U} (f,P) = \sup \mathcal{L} (f,P)$. Thus for all $\varepsilon > 0$ there exist partitions $P_1$ and $P_1$ of $[a,b]$ such that $U(f,P_1) - L(f,P_2) < \varepsilon$. Letting $P$ be a partition such that $P_1 \subseteq P$ and $P_2 \subseteq P$ we have
+\[
+U(f,P) - L(f,P) \leq U(f,P_1) - L(f,P_1) \leq \varepsilon.
+\]\newline
+
+2) Let $P = \{a_0, \dots a_n\}$ be a partition of $[a,b]$. Define
+\[
+m_i = \inf \{(f+g)(x) \mid a_{i-1} \leq x \leq a_i\},
+\]
+\[
+m_i' = \inf \{f(x) \mid a_{i-1} \leq x \leq a_i\}
+\]
+and
+\[
+m_i'' = \inf \{g(x) \mid a_{i-1} \leq x \leq a_i\},
+\]
+with $M_i$, $M_i'$, and $M_i''$ defined in a similar fashion. Since $f$ and $g$ are bounded, we have $m_i \geq m_i' + m_i''$ and $M_i \leq M_i' + M_i''$. It then follows that $L(f,P) + L(g,P) \leq L(f+g,P)$ and $U(f,P) + U(g,P) \geq U(f+g,P)$ and so
+\[
+L(f,P) + L(g,P) \leq L(f+g,P) \leq U(f+g,P) \leq U(f,P) + U(g,P).
+\]
+Since $f$ and $g$ are integrable, for $\varepsilon > 0$, there exist partitions $P_1$ and $P_2$ such that
+\[
+U(f,P_1) - L(f,P_1) < \frac{\varepsilon}{2}
+\]
+and
+\[
+U(g,P_2) - L(g,P_2) < \frac{\varepsilon}{2}.
+\]
+If $P = P_1 \cup P_2$ then we have
+\[
+(U(f,P) + U(f,P)) - (L(f,P) + L(f,P)) < \varepsilon
+\]
+and so $U(f+g,P) - L(f+g,P) < \varepsilon$ which means $f+g$ is integrable on $[a,b]$. Also we have
+\[
+L(f,P) + L(g,P) \leq L(f+g,P) \leq U(f+g,P) \leq U(f,P) + U(g,P).
+\]
+for all partitions, $P$, of $[a,b]$. Thus
+\[
+\sup \mathcal{L}(f,P) + \sup \mathcal{L}(g,P) \leq \sup \mathcal{L}(f+g,P) \leq \inf \mathcal{U}(f+g,P) \leq \inf \mathcal{U}(f,P) + \inf \mathcal{U}(f,P)
+\]
+which means
+\[
+\int_a^b f + \int_a^b g = \int_a^b f+g.
+\]
+Now suppose that $\alpha \geq 0$. Then for all $\varepsilon > 0$ there exists some partition $P = \{a_0, \dots , a_n\}$ such that $U(f,P) - L(f,P) < \varepsilon/\alpha$. Then note that for all $1 \leq i \leq n$ if $m_i = \inf \{f(x) \mid a_{i-1} \leq x \leq a_i\}$ then $\alpha m_i = \inf \{\alpha f(x) \mid a_{i-1} \leq x \leq a_i\}$. A similar statement follows for $M_i$ and $\alpha M_i$. Thus
+\[
+U(\alpha f,P) - L(\alpha f,P) = \sum_{i=1}^{n} (\alpha M_i - \alpha m_i) (t_i - t_{i-1}) = \alpha \sum_{i=1}^{n} (M_i - m_i)(t_i-t_{i-1}) = \alpha (U(f,P) - L(f,P)) < \varepsilon
+\]
+which shows $\alpha f$ is integrable on $[a,b]$. Since $L(\alpha f, P) = \alpha L(f,P)$ for all partitions, $P$, we have
+\[
+\int_a^b \alpha f = \sup \mathcal{L}(\alpha f,P) = \alpha \mathcal{L}(f,P) = \alpha \int_a^b f.
+\]\newline
+
+3) Suppose that $f(x) \leq g(x)$ for all $x \in [a,b]$. Then for some partition, $P = \{a_0, \dots, a_n\}$, we have
+\[
+m_i = \inf \{f(x) \mid a_{i-1} \leq x \leq a_i\} \leq \inf \{g(x) \mid a_{i-1} \leq x \leq a_i\} = m_i'
+\]
+and similarly for $M_i$ and $M_i'$. Then
+\[
+L(f,P) = \sum_{i=1}^n m_i(a_i-a_{i-1}) \leq \sum_{i=1}^n m_i'(a_i-a_{i-1}) = L(g,P).
+\]
+Since this is true for all $P \in \mathcal{P}$ we must have
+\[
+\int_a^b f \leq \int_a^b g.
+\]\newline
+
+4) Let $P=\{a_0, \dots , a_n\}$ be a partition. Define
+\[
+m_i = \inf \{f(x) \mid a_{i-1} \leq x \leq a_i\}
+\]
+and
+\[
+m_i' = \inf \{|f(x)| \mid a_{i-1} \leq x \leq a_i\}.
+\]
+Define $M_i$ and $M_i'$ similarly. If $f \geq 0$ on $[a_{i-1}, a_i]$ we have $m_i = m_i'$ and $M_i = M_i'$. Thus $M_i' - m_i' \leq M_i - m_i$. If $f(x) \leq 0$ on $[a_{i-1}, a_i]$ then $m_i = -M_i'$ and $m_i' = -M_i$. Thus $M_i' - m_i' \leq M_i - m_i$. Now suppose that $f$ takes on negative and positive values on $[a_{i-1}, a_i]$. Then we have $m_i \leq 0 \leq M_i$. First suppose that $-m_i \leq M_i$. Then $M_i = M_i'$ and since $m_i < 0$ we have $M_i' - m_i' \leq M_i' = M_i \leq M_i - m_i	$. We can consider $-f$ for the case where $-m_i \geq M_i$ and obtain the same result. Now let $\varepsilon > 0$ so that $U(f,P) - L(f,P) < \varepsilon$. Then since $M_i' - m_i' \leq M_i - m_i$ we have
+\[
+U(|f|,P) - L(|f|,P) = \sum_{i=1}^{n} (M_i' - m_i')(a_{i-1}-a_i) \leq \sum_{i=1}^{n} (M_i - m_i)(a_{i-1}-a_i) = U(f,P) - L(f,P) < \varepsilon.
+\]
+Thus $|f|$ is integrable on $[a,b]$. Moreover, we know that
+\[
+\left | \sum_{i=1}^n m_i \right | \leq \sum_{i=1}^n |m_i|
+\]
+from the triangle inequality. Then since $(a_i - a_{i-1}) \geq 0$ for $1 \leq i \leq n$ we have
+\[
+L(f,P) = \left | \sum_{i=1}^{n} m_i (a_i-a_{i-1}) \right | \leq \sum_{i=1}^n |m_i|(a_i - a_{i-1}) \leq \sum{i=1}^{n} m_i' (a_i-a_{i-1}) = L(|f|,P).
+\]
+Thus
+\[
+|\sup \mathcal{L} (f,P)| = \left | \int_a^b f \right | \leq \int_a^b |f| = \sup \mathcal{L} (|f|,P).
+\]\newline
+
+5) Let $|f(x)| \leq M$ for some constant $M$. Suppose first that $f$ is integrable on $[a,b]$. Let $\varepsilon > 0$ and choose a partition $P'$ such that $U(f,P') - L(f,P') < \varepsilon/2$. Let $N$ be the number of partition points in $P'$ and let $\delta = \varepsilon/(8MN (b-a))$. Suppose that $|P| < \delta$. Using the common refinement of $P$ and $P'$, it follows that $U(f,P) - L(f,P) < \varepsilon$.\newline
+
+Conversely, suppose that for $\varepsilon > 0$ there exists $\delta > 0$ such that if $|P| < \delta$ we have $U(f,P)-L(f,P) < \varepsilon$. Let $\varepsilon > 0$ and consider a partition, $P$, such that $|P| < \delta$. This partition clearly exists. But then for all $\varepsilon > 0$ there exists a partition $P$ such that $U(f,P) - L(f,P) < \varepsilon$. Therefore, $f$ is integrable on $[a,b]$.
+\end{proof}
+
+\begin{**}
+Suppose $f : [a,b] \rightarrow \mathbb{R}$ is continuous. Show that $f$ is Riemann-integrable on $[a,b]$.
+\end{**}
+\begin{proof}
+Note that since $f$ is continuous on $[a,b]$ and $[a,b]$ is compact, $f$ is uniformly continuous. Consider $\varepsilon/(b-a)$. Then there exists $\delta > 0$ such that for all $x,y \in [a,b]$ with $|x-y| < \delta$ we have $|f(x) - f(y)| < \varepsilon/(b-a)$. Now choose a partition $P = \{a_0, \dots , a_n\}$ such that $|a_i-a_{i-1}| < \delta$ for all $1 \leq i \leq n$. Then if $x,y \in [a_i-a_{i-1}|$ we have $|f(x)-f(y)| < \varepsilon/(b-a)$. Since $f$ is continuous we know that it takes on minimum and maximum values $m_i$ and $M_i$ on this interval so for all $i$ we have $M_i-m_i < \varepsilon/(b-a)$. Thus
+\[
+U(f,P) - L(f,P) = \sum_{i=1}^{n} (M_i-m_i)(a_i-a_{i-1}) < \frac{\varepsilon}{b-a} \sum_{i=1}^{n} (a_i-a_{i-1}) = \frac{\varepsilon}{b-a}(b-a) = \varepsilon.
+\]
+Therefore $f$ is integrable on $[a,b]$.
+\end{proof}
+
+\begin{**}
+Let $f : [a,b] \rightarrow \mathbb{R}$ be bounded. Show that $f$ is Riemann-integrable if and only if $f$ is continuous almost everywhere.
+\end{**}
+\begin{proof}
+Let $A$ be the set of measure $0$ on which $f$ is not continuous. Let $\varepsilon > 0$ and let $B_j$ be a series of intervals which cover $A$, such that $\sum_{j=1}^{\infty} Vol(B_j) < \varepsilon$. We want to find the intervals on which $f$ has a large change in values. For $B \subseteq [a,b]$ define $d(B)$ to be $\sup_{x \in B} f(x) - \inf_{x \in B} f(x)$. Now let $J = \{j \in \mathbb{N} \mid d(B_j) > \varepsilon\}$ and let $V = \bigcup_{j \in J} B_j$. Note that the total length of $V$ is still less than $\varepsilon$. We want to find a partition in which every interval has a small change in value or is in $V$. We consider equidistant partitions with each interval having length $(b-a)/N$.\newline
+
+Now suppose that for every $N \in \mathbb{N}$ we can can find $i$ with $1 \leq i \leq N$ such that $d([a_i-a_{i-1}]) > \varepsilon$, but $[a_i-a_{i-1}] \cap V \neq \emptyset$. Then for every $N$ we have $s_N, t_N, z_N \in [a_i-a_{i-1}]$ such that $d([a_i-a_{i-1}]) \geq f(s_N) - f(t_N) < \varepsilon$ and $z_N \in ^c V$. The sequence $(s_N)$ lies in $[a,b]$ and so it's bounded. Thus it has a convergent subsequence such that $\lim_{k \rightarrow \infty} s_{N_k} = y$. Since $t_N$ and $z_N$ have at most distance $(b-a)/N$ from $s_N$, they both converge to under the same subsequence to $y$ as well. Note that $f$ is discontinuous at $y$ since $f(s_N) - f(t_N) > \varepsilon$ doesn't converge to $0$. So $y \in A$ and $y \in B_j$ for some $j \in \mathbb{N}$. But also $(z_N)$ is a sequence in $^c V$. Since $V$ is open $^c V$ is closed and must contain the limit $\lim_{k \rightarrow \infty} z_{N_k} = y$. Thus $y \notin V$ and so $y \in B_j$ such that $d(B_j) \leq \varepsilon$. But $B_j$ is open and thus must contain $s_{N_k}$ and $t_{N_k}$ for large enough $k$. Thus $\varepsilon < f(s_{N_k}) - f(t_{N_k}) \leq d(B_j) \leq \varepsilon$. Therefore, there exists $N \in \mathbb{N}$ such that for all $i$ with $1 \leq i \leq N$, if $d([a_i-a_{i-1}]) > \varepsilon$ we have $[a_i-a_{i-1}] \subseteq V$.\newline
+
+Now let $\varepsilon' > 0$. Let $\varepsilon = \varepsilon' ((b-a) + d([a,b]))^{-1}$. Note that $d([a,b])$ exists because $f$ is bounded. Now we have
+\[
+U(f,P) - L(f,P) = \sum_{i=1}^{N} \frac{b-a}{N} d([a_i-a_{i-1}]) \leq \sum_{i=1}^{N} \frac{b-a}{N} \varepsilon + C \frac{b-a}{N} d([a_i-a_{i-1}])
+\]
+where $C$ represents the number of intervals $[a_i-a_{i-1}]$ which are subsets of $V$. The total length of these intervals is $K (b-a)/N$, but they are all contained in $V$ and overlap at most at endpoints. Thus the total length is bounded by $\varepsilon$ since $V$ is bounded by this. Then we have
+\[
+U(f,P) - L(f,P) < (b-a) \varepsilon + \varepsilon d([a_i-a_{i-1}]) = \varepsilon'.
+\]
+This shows that $f$ is integrable on $[a,b]$.\newline
+
+Conversely, suppose that $f$ is integrable on $[a,b]$. We can write $A = B_{1} \cup B_{1/2} \cup B_{1/3} \cup \dots$ where $B_{1/n} = \{x \in [a,b] \mid d([a,b]) \geq \varepsilon\}$. Let $\varepsilon > 0$ and choose a partition $P$ such that $U(f,P) - L(f,P) < \varepsilon/n$. Let $S$ be the set of subintervals of $P$ which contain points in $B_{1/n}$. Then $S$ is a cover of $B_{1/n}$. Now for $I \in S$ we have $\sup_{x \in I} f(x) - \inf_{x \in I} f(x) \geq 1/n$. Thus
+\[
+\frac{1}{n} \sum_{I \in S} Vol(I) \leq \sum_{I \in S} \left ( \sup_{x \in I} f(x) - \inf_{x \in I} f(x) \right ) Vol(I) \leq \sum_{I} \left ( \sup_{x \in I} f(x) - \inf_{x \in I} f(x) \right ) Vol(I) < \frac{\varepsilon}{n}.
+\]
+Therefore $\sum_{I \in S} Vol(S) < \varepsilon$. This shows that $B_{1/n}$ has measure $0$ which shows that $A$ has measure $0$.
+\end{proof}
+
+
+\begin{**}
+What about the Fundamental Theorem of Calculus when $f$ is not everywhere continuous?
+\end{**}
+\begin{proof}
+The second part of the fundamental theorem of calculus only requires that $f$ have a primitive. If $f$ is everywhere continuous then the result from the second part can be obtained from the first part. The second part strengthens this result by removing continuity from $f$ and only assuming a primitive exists.
+\end{proof}
+
+\begin{**}
+Find
+\[
+\int_0^{\infty} \frac{\sin x}{x} dx
+\]
+\end{**}
+\begin{proof}
+Let
+\[
+f(a,b) = \int_0^{\infty} e^{-ax} \frac{\sin b x}{x} dx.
+\]
+Differentiate with respect to $a$ as
+\[
+\frac{df}{da} = \frac{d}{da} \int_0^{\infty} e^{-ax} \frac{\sin b x}{x} dx.
+\]
+Since the integrand and it's derivative are both continuous we can write
+\[
+\frac{d}{da} \int_0^{\infty} e^{-ax} \frac{\sin b x}{x} dx = \int_0^{\infty} e^{-ax} \frac{\partial}{\partial a} \frac{\sin b x}{x} dx = \int_0^{\infty} e^{-ax} \sin (bx) dx.
+\]
+Note that $e^{ibx} = \cos(bx) + i \sin(bx)$. Then if $\im$ represents the imaginary part, we have
+\[
+-\im \int_0^{\infty} e^{-ax} e^{ibx} dx = \im \frac{1}{-a+ib} = \im \frac{-a-ib}{a^2+b^2} = \frac{-b}{a^2+b^2}.
+\]
+Now we have
+\[
+\int_0^{\infty} \frac{df}{da} da = \int_0^{\infty} \frac{-b}{a^2+b^2}da = -\lim_{a \rightarrow \infty} \arctan \frac{a}{b} + \arctan (0) = \frac{\pi}{2}.
+\]
+\end{proof}
+
+\begin{**}
+1) $\Gamma(1) = 1$.\\
+2) $\Gamma(s+1) = s \Gamma(s)$.\\
+3) If $n \in \mathbb{N}$ then $\Gamma(n+1) = n!$.
+\end{**}
+\begin{proof}
+1) We have
+\[
+\Gamma(1) = \int_0^{\infty} e^{-t} dt = \lim_{a \rightarrow \infty} \int_0^a e^{-t} dt = \lim_{a \rightarrow \infty} -e^{-t} - (-1) = 1.
+\]\newline
+
+2) We have
+\[
+\Gamma(s+1) = \int_0^{\infty} e^{-t} t^{s} dt.
+\]
+Letting $u = t^s$ and $dv = e^{-t} dt$ we have $du = s t^{s-1} dt$ and $v = -e^{-t}$. Then
+\[
+\Gamma(s+1) = \left. uv \right |_{0}^{\infty} - \int_{0}^{\infty} v du = \left. -t^s e^{-t} \right |_{0}^{\infty} + \int_{0}^{\infty} e^{-t} s t^{s-1} dt = s \Gamma(s).
+\]\newline
+
+3) Use induction on $n$. We already know from Part 1) that $\Gamma(1) = 1$. Supposing that $\Gamma(n) = (n-1)!$, we consider $\Gamma(n+1)$. But then by Part 2) we have
+\[
+\Gamma(n+1) = n \Gamma(n) = n(n-1)! = n!.
+\]
+\end{proof}
+
+\begin{**}
+What happens if $n < 0$ for $-n \in \mathbb{N}$ and we take $\lim_{s \rightarrow n^+} \Gamma(s)$ and $\lim_{s \rightarrow n^-} \Gamma(s)$?
+\end{**}
+\begin{proof}
+Note that at $0$ we have $\Gamma(0) = \int_0^{\infty} e^{-t} t^{-1} dt$ which approaches $+\infty$ from the right and $-\infty$ from the left. Now note that $\Gamma(-1) = \Gamma(0)/(-1)$. This means that the signs of the function are reversed so that $\Gamma(-1)$ approaches $-\infty$ from the right and $+\infty$ from the left. Inductively, we have $\lim_{s \rightarrow n^+} \Gamma(s) = +\infty$ and $\lim_{s \rightarrow n^-} \Gamma(s) = -\infty$ for $n$ even. The signs are switched for $n$ odd.
+\end{proof}
+
+\begin{**}
+Find $\min_{s > 0} \Gamma(s)$.
+\end{**}
+\begin{proof}
+We have $\min_{s > 0} \Gamma(s) = 1.46163\dots$.
+\end{proof}
+
+\begin{**}
+Show $\Gamma(1/2) = \sqrt(\pi)$.
+\end{**}
+\begin{proof}
+We have
+\[
+\Gamma \left ( \frac{1}{2} \right ) = \int_0^{\infty} e^{-t} t^{-1/2} dt.
+\]
+Letting $u = t^2$ we have
+\[
+\Gamma \left ( \frac{1}{2} \right ) = 2 \int_{u(0)}^{\infty} e^{-x^2} = \sqrt{\pi}.
+\]
+\end{proof}
+
+\begin{**}
+Suppose $\phi : [a,b] \rightarrow \mathbb{R}$ is $C^1$ and $\phi' > 0$ on $[a,b]$. Then if $f$ is integrable on $[a,b]$ then
+\[
+\int_a^b f(\phi(t)) \phi'(t) dt = \int_{\phi(a)}^{\phi(b)} f(x) dx.
+\]
+\end{**}
+\begin{proof}
+Since $\phi$ and $\phi'$ are continuous, they are integrable and thus the above integrals exist. Let $F$ be the function which has derivative $f$. This must exist by the fundamental theorem of calculus. Now consider $F \circ \phi : [a,b] \rightarrow \mathbb{R}$. Using the chain rule we have
+\[
+(F \circ \phi)'(t) = F'(\phi(t))\phi'(t) = f(\phi(t))\phi'(t).
+\]
+Now using the fundamental theorem of calculus we have
+\[
+\int_a^b f(\phi(t))\phi'(t)dt = (F \circ \phi)(b) - (F \circ \phi)(a) = F(\phi(b)) - F(\phi(a)) = \int_{\phi(a)}^{\phi(b)} f(x) dx.
+\]
+\end{proof}
+
+\end{flushleft}
+\end{document}

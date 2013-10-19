@@ -1,0 +1,156 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+
+\begin{document}
+\author{Kris, Isaac, Michael, Katya}
+\title{Sheet 22: Integrals}
+\date{}
+\maketitle
+
+We want to define a semblance of area for functions on a closed interval. To do this we will create rectangles to approximate the area. Then we will make the approximation more precise. For the purposes of this sheet, a function $f$ is a real function $f \; : \; [a;b] \rightarrow \mathbb{R}$.\\
+
+\noindent \textbf{Definition 1}
+\textit{Let $a<b$. A \emph{partition} of the interval $[a;b]$ is a finite collection of points in $[a,b]$, one of which is $a$ and one of which is $b$.}\\
+
+The points of a partition can be numbered $t_0, \dots ,t_n$ so that
+\[
+a=t_0 < t_1 < \dots < t_{n-1} < t_n = b.
+\]
+We will always assume that such a numbering has been assigned.
+
+This partition defines the width of each rectangle. To define the height we use lower and upper sums.\\
+
+\noindent \textbf{Definition 2}
+\textit{Suppose $f$ is bounded on $[a;b]$ and $P=\{t_0, \dots t_n\}$ is a partition of $[a;b]$. Let
+\[
+m_i = \inf \{f(x) \mid t_{i-1} \leq x \leq t_i\}
+\]
+\[
+M_i = \sup \{f(x) \mid t_{i-1} \leq x \leq t_i\}.
+\]
+The \emph{lower sum} of $f$ for $P$, denoted by $L(f,P)$, is defined as
+\[
+L(f,P) = \sum_{i=1}^n m_i (t_i - t_{i-1}).
+\]
+The \emph{upper sum} of $f$ for $P$, denoted by $U(f,P)$, is defined as
+\[
+U(f,P) = \sum_{i=1}^n M_i (t_i - t_{i-1}).
+\]}\\
+
+\noindent \textbf{Theorem 3}
+\textit{Let $P_1$ and $P_2$ be partitions of $[a;b]$, and let $f$ be a function which is bounded on $[a;b]$. Then
+\[
+L(f,P_1) \leq U(f,P_2).
+\]}\\
+
+What does this imply about the set of lower sums and the set of upper sums for arbitrary partitions on $[a;b]$? We can define a specific property of functions on a closed interval using lower and upper sums.\\
+
+\noindent \textbf{Definition 4}
+\textit{A function $f$ which is bounded on $[a;b]$ is \emph{integrable} on $[a;b]$ if
+\[
+\sup \{L(f,P) \mid \text{$P$ is a partition of $[a;b]$} \} = \inf \{U(f,P) \mid \text{$P$ is a partition of $[a;b]$} \}.
+\]
+In this case, this common number is called the \emph{integral} of $f$ on $[a;b]$ and is denoted by
+\[
+\int_a^b f = \int_a^b f(x) dx.
+\]
+When $f(x) \geq 0$ for all $x \in [a;b]$, the integral is also called the \emph{area} of the region defined by $f$, $x=a$, $x=b$ and $f(x) = 0$.}\\
+
+\noindent \textbf{Exercise 5}
+\textit{Show that for $c \in \mathbb{R}$, the function $f(x) = c$ is integrable on the interval $[a;b]$.}\\
+
+\noindent \textbf{Exercise 6}
+\textit{Let $f$ be defined by
+\[
+f(x) =
+\begin{cases}
+0 & \text{if $x$ is irrational}\\
+1 & \text{if $x$ is rational}.
+\end{cases}
+\]
+Show that $f$ is not integrable on the closed interval $[a;b]$.}\\
+
+Notice that showing non-constant functions are integrable directly from the definition is difficult.\\
+
+\noindent \textbf{Theorem 7}
+\textit{If $f$ is bounded on $[a;b]$, then $f$ is integrable on $[a;b]$ if and only if for every $\varepsilon > 0$ there exists a partition, $P$, of $[a;b]$ such that
+\[
+U(f,P) - L(f,P) < \varepsilon.
+\]}\\
+
+\noindent \textbf{Exercise 8}
+\textit{Show that $y=x$ is integrable on the closed interval $[a;b]$.}\\
+
+Now we want to show some nice properties about integrable functions.\\
+
+\noindent \textbf{Theorem 9}
+\textit{If $f$ is continuous on $[a;b]$, then $f$ is integrable on $[a;b]$.}\\
+
+Hint: Remember that continuous functions on closed intervals are uniformly continuous. How does this help us pick a useful partition?\\
+
+\noindent \textbf{Theorem 10}
+\textit{Let $a<c<b$ for $a,b,c \in \mathbb{R}$. Then $f$ is integrable on $[a;b]$ if and only if $f$ is integrable on $[a;c]$ and on $[c;b]$. Also, if $f$ is integrable on $[a;b]$, then
+\[
+\int_a^b f = \int_a^c f + \int_c^b f.
+\]}\\
+
+\noindent \textbf{Theorem 11}
+\textit{If $f$ and $g$ are integrable functions on $[a;b]$, then $f+g$ is integrable on $[a;b]$ and
+\[
+\int_a^b (f+g) = \int_a^b f + \int_a^b g.
+\]}\\
+
+\noindent \textbf{Theorem 12}
+\textit{If $f$ is integrable on $[a;b]$, then for any number $c$, the function $cf$ is integrable on $[a;b]$ and
+\[
+\int_a^b cf = c \int_a^b f.
+\]}\\
+
+Here is an interesting result.\\
+
+\noindent \textbf{Exercise 13}
+\textit{If $f$ is integrable on $[a;b]$, then so is $|f|$.}\\
+
+\noindent \textbf{Exercise 14}
+\textit{If $f$ is integrable on $[a;b]$, then
+\[
+\left | \int_a^b f(x) dx \right | \leq \int_a^b |f(x)| dx.
+\]}\\
+
+The derivative does not display its full strength, nay display any strength at all, until amalgamated with the integral.\\
+
+\noindent \textbf{Lemma 15}
+\textit{Suppose $f$ is integrable on $[a;b]$ and that
+\[
+m \leq f(x) \leq M
+\]
+for all $x \in [a;b]$. Then
+\[
+m (b-a) \leq \int_a^b f \leq M (b-a).
+\]}\\
+
+\noindent \textbf{Theorem 16}
+\textit{If $f$ is integrable on $[a;b]$ and $F$ is defined on $[a;b]$ by
+\[
+F(x) = \int_a^x f,
+\]
+then $F$ is continuous on $[a;b]$.}\\
+
+\noindent \textbf{Theorem 17 (The First Fundamental Theorem of Calculus)}
+\textit{Let $f$ be integrable on $[a;b]$, and define $F$ on $[a;b]$ by
+\[
+F(x) = \int_a^x f.
+\]
+If $f$ is continuous at $c \in [a;b]$, then $F$ is differentiable at $c$, and
+\[
+F'(c) = f(c).
+\]
+(If $c=a$ or $c=b$, then $F'(c)$ is understood to mean the right- or left-hand derivative of $F$.)}\\
+
+\noindent \textbf{Theorem 18 (The Second Fundamental Theorem of Calculus)}
+\textit{If $f$ is integrable on $[a;b]$ and $f=g'$ for some function $g$, then
+\[
+\int_a^b f = g(b)-g(a).
+\]}\\
+
+\end{document}

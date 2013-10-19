@@ -1,0 +1,185 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{**}{** Problem}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20700\\
+
+December 1, 2008
+\end{flushright}
+
+\begin{center}
+Homework 9
+\end{center}
+
+\begin{flushleft}
+
+\begin{lemma}
+Suppose that $p,q \in \mathbb{R}$ such that $1/p + 1/q = 1$. Then
+\[
+rs \leq \frac{r^p}{p} + \frac{s^q}{q}
+\]
+for all nonnegative real numbers, $r$ and $s$.
+\end{lemma}
+\begin{proof}
+Suppose that $0 < \alpha < 1$ and let $f(t) = t^{\alpha} - \alpha t$ when $t > 0$. Then $f$ takes on its maximum value when $t=1$ so $t^{\alpha} - \alpha t \leq 1 - \alpha$ when $t > 0$. Now let $u,v \in \mathbb{N}$ and let $t = u/v$. Multiplying by $v$ we obtain
+\[
+u^{\alpha} v^{1 - \alpha} \leq \alpha u + (1 - \alpha) v.
+\]
+The inequality also holds when $u,v \geq 0$. Finally, for nonnegative reals $r$ and $s$, let $u = r^p$, $v = s^q$, $\alpha = p^{-1}$ so that $1 - \alpha = q^{-1}$ and make the appropriate substitutions to see the result.
+\end{proof}
+
+\begin{lemma}
+Let $1 \leq p \leq \infty$ and let $q \in \mathbb{R}$ such that $1/p + 1/q = 1$. Let $a = (a_n)$ and $b = (b_m)$ be sequences in $\mathbb{R}$ or $\mathbb{C}$. Then
+\[
+||a b||_1 \leq ||a||_p ||b||_q.
+\]
+\end{lemma}
+\begin{proof}
+We can assume that neither $(a_n)$ nor $(b_m)$ is the zero sequence and therefore that $||a||_p$ and $||b||_q$ are nonzero. We can also assume these two terms are finite and so $||a||_p$ and $||b||_q$ are both positive reals. Let $\alpha = ||a||_p$ and $\beta = ||b||_q$. Assume, for the moment that the inequality holds for $\alpha = \beta = 1$. We see that
+\[
+||\alpha^{-1} a||_p = ||\beta^{-1} b||_q = 1
+\]
+and from this we have
+\[
+\alpha^{-1} \beta^{-1} ||a b||_1 = ||\alpha^{-1} a \beta^{-1} b||_1 \leq ||\alpha^{-1} a||_p ||\beta^{-1} b||_q = 1.
+\]
+Multiplying by $||a||_p ||b||_q$ gives the desired result. Thus, we can assume that $||a||_p = ||b||_q = 1$ and so we must show that $||a b||_1 \leq 1$. First suppose that $p = 1$. Then $q = \infty$. Since $||b||_{\infty} = 1$ it must be the case that $|b_m| \leq 1$ for all $m$ and thus
+\[
+||ab||_1 = \sum_{n=1}^{\infty} |a_nb_n| \leq \sum_{n=1}^{\infty} |a_n| = ||a||_1 = 1.
+\]
+Now let $1 \leq p \leq \infty$. From Lemma 1 we have
+\[
+||ab||_1 = \sum_{n=1}^{\infty} |a_n b_n| \leq \sum_{n=1}^{\infty} \left ( \frac{|a_n|^p}{p} + \frac{|b_n|^q}{q} \right ) = \frac{||a||_p^p}{p} + \frac{||b||_q^q}{q} = \frac{1}{p} + \frac{1}{q} = 1.
+\]
+\end{proof}
+
+\begin{**}
+Show that $||\cdot||_p$ is a norm on $\ell^p(F)$ for $1 \leq p \leq \infty$ where $F = \mathbb{R}$ or $\mathbb{C}$.
+\end{**}
+\begin{proof}
+First let $1 \leq p < \infty$. For $x = (x_n)$ where $(x_n) \in \ell^p(F)$ we have
+\[
+||x||_p = \left ( \sum_{i \in \mathbb{N}} |x_i|^p \right )^{\frac{1}{p}}.
+\]
+It is thus clear that $||x||_p \geq 0$. Suppose that $||x||_p = 0$. Then since $|x_i| \geq 0$ for all $i \in \mathbb{N}$ it must be the case that $|x_i| = 0$ for all $i \in \mathbb{N}$. Now suppose that $(x_n) = 0$, that is, $|x_i| = 0$ for all $i \in \mathbb{N}$. Then it must be the case that $||x||_p = 0$. Next for some constant $a \in F$ consider
+\[
+||a \cdot x||_p = \left ( \sum_{i \in \mathbb{N}} |a \cdot x_i|^p \right )^{\frac{1}{p}} = \left ( \sum_{i \in \mathbb{N}} |a|^p |x_i|^p \right )^{\frac{1}{p}} = |a| \left ( \sum_{i \in \mathbb{N}} |x_i|^p \right )^{\frac{1}{p}} = |a| \cdot ||x||_p.
+\]
+For the case where $p = \infty$ we have
+\[
+||x||_p = \sup_{n \in \mathbb{N}} |x_n|
+\]
+so that clearly $||x||_p \geq 0$. Assuming that $||x||_p = 0$ implies that the absolute value of the greatest term of $(x_n)$ is $0$ and so all the terms must then be $0$. Conversely, if each term is zero then the greatest term must also be zero. Additionally, for $a \in F$ we have
+\[
+||a \cdot x||_p = \sup_{n \in \mathbb{N}} |a \cdot x_n| = |a| \sup_{n \in \mathbb{N}} |x_n| = |a| \cdot ||x||_p.
+\]
+Finally, suppose that $1 \leq p \leq \infty$. Then from Lemma 2 we can apply H\"{o}lder's Inequality to infinite sequences in the same way we applied it to finite ones for $\mathbb{R}^n$ and $\mathbb{C}^n$. That is, we note that
+\[
+||x+y||_p^p = \sum_{n=1}^{\infty} |x_n + y_n|^p \leq \sum_{n=1}^{\infty} |x_n + y_n|^{p-1} |x_n| + \sum_{n=1}^{\infty} |x_n + y_n|^{p-1} |y_n|.
+\]
+Letting $q = p/(p-1)$ we can apply H\"{o}lder's Inequality on the right so that we have
+\[
+||x+y||_p^p \leq \left ( \sum_{n=1}^{\infty} |x_n|^p \right )^{\frac{1}{p}} \left ( \sum_{n=1}^{\infty} |x_n + y_n|^{(p-1)q} \right )^{\frac{1}{q}} + \left ( \sum_{n=1}^{\infty} |y_n|^p \right )^{\frac{1}{p}} \left ( \sum_{n=1}^{\infty} |x_n + y_n|^{(p-1)q} \right )^{\frac{1}{q}}.
+\]
+Now multiply both sides by
+\[
+\left ( \sum_{n=1}^{\infty} |x_n + y_n|^{(p-1)q} \right )^{-\frac{1}{q}}
+\]
+and note that $1 - 1/q = 1/p$ so that we have
+\[
+||x+y||_p^p = \left ( \sum_{n=1}^{\infty} |x_n + y_n|^p \right )^{\frac{1}{p}} \leq \left ( \sum_{n=1}^{\infty} |x_n|^p \right )^{\frac{1}{p}} + \left ( \sum_{n=1}^{\infty} |y_n|^p \right )^{\frac{1}{p}}.
+\]
+This shows the triangle inequality for $||\cdot||_p$.
+\end{proof}
+
+\begin{**}
+Show that if $A$ and $B$ are compact then $d(A,B)$ is assumed.
+\end{**}
+\begin{proof}
+Suppose that the $p = d(A, B)$ is not assumed. Then we can choose $a \in A$ and $b \in B$ such that $d(a, b)$ is arbitrarily close to $p$. We know that $A$ is closed, because it's compact. So arbitrarily take $b_1 \in B$ and then $d(b, A)$ is assumed (since $A$ is compact). Now take $b_2 \in B$ such that $d(b_2, A) > d(b_1,	 A)$. Inductively, choose $b_k \in B$ such that $d(b_k, A) > d(b_{k-1}, A)$. But since $B$ is compact, then it is sequentially compact and so this sequence has a convergent subsequence to some element $b \in B$. Since $d(b, A) < d(b_k, A)$ for all $k$, we see that $d(b, A) = p$. But then we can't choose points from $B$ and $A$ which have a distance arbitrarily close to $p$. This is a contradiction and so $d(A, B)$ must be assumed.
+\end{proof}
+
+\begin{problem}
+A sequentially compact metric space is totally bounded.
+\end{problem}
+\begin{proof}
+Let $X$ be a sequentially compact metric space and let $\varepsilon > 0$. Suppose that we need an infinite number of balls of radius $\varepsilon$ to cover $X$. Then create a sequence by taking one point form each of the balls. This is an infinite sequence, but the distance between any two points is always greater than $\varepsilon$ and so there can never be a convergent subsequence. This is a contradiction and so the space must be totally bounded.
+\end{proof}
+
+\begin{problem}
+Let $X$ be a metric space. If $A \subseteq X$ has the property that every infinite subset of $A$ has an accumulation point in $X$, then there exists a countable collection of open sets $\{U_i \mid i \in \mathbb{N} \}$ such that, if $V$ is any open set in $X$ and $x \in A \cap V$, then there is some $U_i$ such that $x \in U_i \subseteq V$.
+\end{problem}
+\begin{proof}
+Suppose, to produce a contradiction, that for some $n \in \mathbb{N}$ there is no finite collection of balls with radius $\frac{1}{n}$ centered at points in $A$ which cover $A$. Then for every $k \in \mathbb{N}$, assume that $A$ is infinite and then we can create a sequence of points in $A$ as follows. For $y_1 \in A$ the ball $B_{\frac{1}{n}} (y_1)$ does not cover $A$. Choose $y_2 \in A \backslash B_{\frac{1}{n}} (y_1)$. Then $B_{\frac{1}{n}} (y_1) \cup B_{\frac{1}{n}} (y_2)$ doesn't cover $A$ and $d(y_1, y_2) \geq \frac{1}{n}$. Inductively, we choose $y_1, y_2, \dots , y_k$ such that $B_k = B_{\frac{1}{n}} (y_1) \cup B_{\frac{1}{n}} (y_2) \cup \dots \cup B_{\frac{1}{n}} (y_k)$ doesn't cover $A$, and $d(y_i, y_j) \geq \frac{1}{n}$ for all $i \neq j$. Choose $y_{k+1} \in A \backslash B_k$. But since the distance between every point in $(y_k)$ is greater than or equal to $\frac{1}{n}$ the sequence doesn't have an accumulation point in $X$, which is a contradiction. Thus for every $n \in \mathbb{N}$ there exist finitely many points in $A$ such that the set of open balls of radius $\frac{1}{n}$ centered at these points covers $A$. These balls form the required collection of sets.
+\end{proof}
+
+\begin{problem}
+Verify that the collection mentioned in Problem 2 satisfies the conclusion of the Problem.
+\end{problem}
+\begin{proof}
+Let $V \subseteq X$ be an open set and let $x \in A \cap V$. From the previous problem we know that the collection of sets covers $A$ and so it must be the case that $x$ is contained in one of the sets. We then need to verify the condition that this set is also a subset of $V$. Since $V$ is open there exists $r \in \mathbb{R}$ such that $B_r (x) \subseteq V$. So now simply choose $n$ large enough such that $1/n < r$. Then the set of balls of radius $1/n$ which cover $A$ will also contain a set which is a subset of $V$.
+\end{proof}
+
+\begin{problem}
+Let $X$ be a metric space. If $A \subseteq X$ has the property that every infinite subset of $A$ has an accumulation point in $A$, show that for any open cover of $A$, there exists a countable subcover.
+\end{problem}
+\begin{proof}
+Let $\{V_i\}_{i \in I}$ be an open covering of $A$. We apply Problem 2 and note that there exists a finite collection of sets $\{U_1, U_2, \dots , U_n\}$ such that if $x \in A \cap V_i$ then there is some $U_j$ such that $x \in U_j \subseteq V_i$. Thus for any open cover there is a finite subcover.
+\end{proof}
+
+\begin{problem}
+1) Show that a compact metric space is complete.\\
+2) Show that a totally bounded complete metric space is compact.
+\end{problem}
+\begin{proof}
+1) Let $(X,d)$ be a compact metric space and suppose that $(X,d)$ is not complete. Then there exists some Cauchy sequence $(a_n) \in X$ such that $(a_n)$ does not converge. Therefore for all $x \in X$ there exists some ball $B_{\varepsilon}(x)$ such that there are infinitely many $n$ with $a_n \notin B_{\varepsilon}(x)$. Let $\mathcal{A}$ be the set of all such balls and let $\mathcal{A}' = \{B_{\varepsilon/2}(x) \mid B_{\varepsilon/2}(x) \in \mathcal{A}\}$. Then $\mathcal{A}'$ is an open cover for $X$ and $X$ is compact so let $\mathcal{B}$ be a finite subcover for $\mathcal{A}'$. Take $B_{\varepsilon/2}(x) \in \mathcal{B}$. Note that there are infinitely many $n$ such that $a_n \notin B_{\varepsilon}(x)$ so there are infinitely many $n$ such that $a_n \notin B_{\varepsilon/2}(x)$. We have $(a_n)$ is Cauchy so there exists $N$ such that for all $n,m > N$ we have $d(a_n,a_m) < \varepsilon/2$. Suppose that there are infinitely many $n$ with $a_n \in B_{\varepsilon/2}(x)$. Since there are infinitely many $n$ with $a_n \in B_{\varepsilon/2}(x)$ and $a_n \notin B_{\varepsilon/2}(x)$, choose $n,m>N$ with $a_n \in B_{\varepsilon/2}(x)$ and $a_m \notin B_{\varepsilon/2}(x)$. But then $d(x,a_m) \leq d(x,a_n) + d(a_n,a_m) < \varepsilon$. Thus there are infinitely many $n$ with $a_n \notin B_{\varepsilon}(x)$ which is a contradiction. Therefore there are finitely many $n$ with $a_n \in B_{\varepsilon/2}(x)$. But this is true for all $B_{\varepsilon/2}(x) \in \mathcal{B}$ and there are finitely many elements of $\mathcal{B}$ which is an open cover for $X$. So we have finitely many $n$ with $a_n \in X$ which is a contradiction. Therefore $(X,d)$ is complete.\newline
+
+2) Let $(X,d)$ be a totally bounded, complete metric space and consider a sequence $(a_n) \in X$. Since $X$ is totally bounded, cover the set with finitely many balls of radius $1$. One of these must contain infinitely many points of $(a_n)$. Inductively, for each $k \in \mathbb{N}$, define a ball $B_{1/k}$ of radius $1/k$ such that $B_{1/k}$ contains infinitely many points of $(a_n)$, all of which are contained in the ball of radius $1/(k-1)$. Then choose one distinct point of $(a_n)$ from each of these balls so that we have a Cauchy subsequence of $(a_n)$. But since $X$ is complete, this sequence is convergent. Therefore $X$ is sequentially compact and thus compact.
+\end{proof}
+
+\begin{problem}
+Suppose that $X$ and $X'$ are metric space with $X$ separable. Let $f : X \rightarrow X'$ be a continuous surjection. Show that $X'$ is separable.
+\end{problem}
+\begin{proof}
+Let $A$ be a countable subset of $X$ which is dense in $X$. Then we can create a sequence $(a_n) \in A$ such that every nonempty open subset of $X$ must contain a term of $(a_n)$. Then note that for some open set $B \subseteq X'$ we have $f^{-1}(B)$ is open in $X$ because $f$ is continuous. But then there exists $n$ such that $a_n \in f^{-1}(B)$ and so $f(a_n) \in B$. Since this is true for all open sets in $X'$, the images of the points in $(a_n)$ form an infinite sequence such that at least one term must be in any open set in $X'$. Thus $f(A)$ is a dense countable subset of $X'$ and so $X'$ is separable.
+\end{proof}
+
+\begin{problem}
+Determine the conditions, if they exist, for which the following metric spaces are separable:\\
+1) $\mathbb{R}$\\
+2) $\mathcal{B} (X, F)$\\
+3) $\mathcal{BC} (X, F)$.
+\end{problem}
+\begin{proof}
+1) $\mathbb{R}$ with the usual metric is separable because $\mathbb{Q}$ is a dense, countable subset.\newline
+
+2) If $X$ is separable then $\mathcal{B} (X, F)$ is separable.\newline
+
+3) If $X$ is a compact metric space then $\mathcal{BC} (X, F)$ is separable. This follows from the fact that every element of $\mathcal{BC} (X, F)$ is a uniformly continuous function from $X$ to $F$.
+\end{proof}
+
+\begin{problem}
+1) Show that an open ball in $\mathbb{R}^n$ or $\mathbb{C}^n$ with the usual metric is a connected set.\\
+2) Show that a closed ball in $\mathbb{R}^n$ or $\mathbb{C}^n$ with the usual metric is a connected set.\\
+3) Show that $GL(2, \mathbb{R})$ with the metric inherited from $M_2(\mathbb{R})$ is not a connected set.\\
+4) Show that $GL(2, \mathbb{C})$ with the metric inherited from $M_2(\mathbb{C})$ is a connected set.
+\end{problem}
+\begin{proof}
+1) Let $F$ be $\mathbb{R}^n$ or $\mathbb{C}^n$. Let $B$ be an open ball in $F$ and suppose that $B$ is disconnected. Then there exist open sets $U$ and $V$ such that $U \cap B \neq \emptyset$, $V \cap B \neq \emptyset$, $(U \cap B) \cap (V \cap B) = \emptyset$ and $B = (U \cap B) \cup (V \cap B)$. Since $B$, $U$ and $V$ are all open, we can replace $U$ and $V$ with $U \cap B$ and $V \cap B$ so that we have two sets $U$ and $V$ such that $U \cup V = B$ and $U \cap V = \emptyset$. But then note that $F \backslash U$ and $F \backslash V$ are both closed since $U$ and $V$ are open. Then $U \cup V$ is closed and $U \cup V = B$. This is a contradiction since $B$ is open. Therefore $B$ is a connected set.\newline
+
+2) Let $F$ be $\mathbb{R}^n$ or $\mathbb{C}^n$. Let $B$ be an open ball of radius $m$ in $F$ and suppose that $B$ is disconnected. Consider the distance function $d : F \rightarrow \mathbb{R}$ where $d(x) = d(\mathbf{0}, x)$. Then $f$ is continuous and maps to an interval $[0, m]$ in $\mathbb{R}$. But since $B$ is disconnected it must be the case that one of these values is not mapped to. This is a contradiction and so $B$ must be connected.\newline
+
+3) Assume that $GL(2, \mathbb{R})$ is connected. Then for any continuous function $f : X \rightarrow \mathbb{R}$, $f(GL(2, \mathbb{R}))$ is an interval with the condition that if $x \in f(GL(2, \mathbb{R})$ then there exists $a \in GL(2, \mathbb{R})$ such that $f(a) = x$. Note that the determinant function is continuous, but that no elements of $GL(2, \mathbb{R})$ have a determinant of $0$. Since some determinants have negative values and positive values, this violates the Intermediate Value Theorem since $0$ will be in the interval which the determinant function maps $GL(2, \mathbb{R})$ to.\newline
+
+4) Assume that $GL(2, \mathbb{C})$ is not connected. Then consider $f : GL(2, \mathbb{C}) \rightarrow \mathbb{R}$ where $f$ is the absolute value of the determinant function. Then $f$ is continuous, but since $GL(2, \mathbb{C})$ is disconnected, there must be some element of $\mathbb{R}$ which is between two other elements in the image of $f$ but is not in the image of $f$. But this is not the case because the only nonnegative value of $f$ which is not taken on is $0$. Thus $f(GL(2, \mathbb{C}))$ is an interval $(0, c)$ for some constant $c \in \mathbb{R}$ and $GL(2, \mathbb{C})$ is connected.
+\end{proof}
+
+\end{flushleft}
+\end{document}

@@ -1,0 +1,888 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,fullpage}
+
+\begin{document}
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 15, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 14: Cauchy Sequences\newline
+
+\normalsize
+
+\textbf{Definition 1 (Cauchy Sequence)}
+\textsl{We say that a sequence $(a_n)$ is a Cauchy sequence if for each $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that if $n,m \geq N$, then $|a_n-a_m| < \varepsilon$.}\newline
+
+\textbf{Lemma 2}
+\textsl{Every convergent sequence has the Cauchy property.}
+\begin{proof}
+Let $(a_n)$ converge to $a$ and let $\varepsilon > 0$. Consider $\varepsilon/2$. Then there exists $N \in \mathbb{N}$ such that for all $n>N$ we have $a_n \in (a - \varepsilon/2 ; a + \varepsilon/2)$. But then also for all $m,n > N$ we have $a_m, a_n \in (a - \varepsilon/2 ; a + \varepsilon/2)$. Then the distance between $a_m$ and $a_n$ is no more than $\varepsilon / 2 + \varepsilon /2 = \varepsilon$. Thus, there exists $N \in \mathbb{N}$ such that for all $m,n > N$ we have $|a_m-a_n| < \varepsilon$.
+\end{proof}
+
+\textbf{Lemma 3}
+\textsl{Let $(a_n)$ be a Cauchy sequence and let $(b_k = a_{n_k})$ be a subsequence. If $(b_k)$ converges then so does $(a_n)$.}
+\begin{proof}
+Let $(b_k = a_{n_k})$ be a subsequence of $(a_n)$ which converges to $a$ and let $\varepsilon > 0$. Then there exists $N_1 \in \mathbb{N}$ such that for all $k > N_1$ we have $|a-b_k| < \varepsilon/2$. But also $(a_n)$ is a Cauchy sequence and so there exists some $N_2 \in \mathbb{N}$ such that for all $n,m > N_2$ we have $|a_m - a_n| < \varepsilon/2$. Let $N = \max (N_1,N_2)$. Then for all $n,m > N$ we have $|a-b_n| < \varepsilon/2$ and $|a_m - a_n| < \varepsilon/2$. Thus by the triangle inequality for all $n>N$ we have $|a - a_n| < \varepsilon$ and so $(a_n)$ converges to $a$.
+\end{proof}
+
+\textbf{Lemma 4}
+\textsl{Every Cauchy sequence is bounded.}
+\begin{proof}
+Let $(a_n)$ be a Cauchy sequence and let $\varepsilon > 0$. There exists $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_N - a_n| < \varepsilon$. Then there are finitely many $n \in \mathbb{N}$ such that $a_n \notin (-\varepsilon + a_N ; \varepsilon + a_N)$. Then the largest of these $a_n$ is greater than or equal to every other term of $(a_n)$. Note that if there are no terms of $(a_n)$ greater than $a_N + \varepsilon$, then we can choose a smaller epsilon so that such a term exists. A similar argument shows that there is a lower bound of $(a_n)$.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{A sequence is convergent if and only if it is Cauchy.}
+\begin{proof}
+Let $(a_n)$ be a Cauchy sequence. Then by Lemma 4 we know $(a_n)$ is bounded and therefore there exists a convergent subsequence of $(a_n)$ (13.16, 14.4). But then by Lemma 3 we know $(a_n)$ converges (14.3). Conversely if a sequence is convergent then it Cauchy by Lemma 2 (14.2).
+\end{proof}
+
+\textbf{Definition 6}
+\textsl{Let $(a_n)$ be a bounded sequence and $A$ be the set of its accumulation points. We define its limes inferior, $\lim \inf_{n \rightarrow \infty} a_n$, to be the first point of $A$ and the limes superior, $\lim \sup_{n \rightarrow \infty} a_n$, to be the last point of $A$.}\newline
+
+\textbf{Corollary 7}
+\textsl{Let $(a_n)$ be a bounded sequence. Then $\lim \inf_{n \rightarrow \infty} a_n \leq 
+\lim \sup_{n \rightarrow \infty} a_n$ and equality holds if and only if the sequence is convergent.}
+\begin{proof}
+Let $A$ be the set of accumulation points for $(a_n)$. Since $\lim \inf_{n \rightarrow \infty} a_n$ is the first point of $A$, we have $\lim \inf_{n \rightarrow \infty} a_n \leq a$ for all $a \in A$. But since $\lim \sup_{n \rightarrow \infty} a_n \in A$ we have $\lim \inf_{n \rightarrow \infty} a_n \leq \lim \sup_{n \rightarrow \infty} a_n$. Suppose now that $\lim \inf_{n \rightarrow \infty} a_n = \lim \sup_{n \rightarrow \infty} a_n$. Then the first and last points of $A$ are equal and so $A$ only has one accumulation point. But then since $(a_n)$ is bounded we have $(a_n)$ is convergent (13.17). Conversely assume that $(a_n)$ is convergent. Then $(a_n)$ only has one accumulation point and so $A$ contains one point (13.17). But then $\lim \inf_{n \rightarrow \infty} a_n = \lim \sup_{n \rightarrow \infty} a_n$.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{Let $(a_n)$ be a bounded sequence. Then
+\[
+\lim \inf_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} (\inf \{a_k \mid k > n\})
+\]
+and
+\[
+\lim \sup_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} (\sup \{a_k \mid k > n\}).
+\]}
+\begin{proof}
+Consider the sequence $(b_n)$ where $b_n = \inf \{a_k \mid k > n\}$. Then $(b_n)$ is bounded because $(a_n)$ is bounded and it's increasing because each infimum will either be less than or equal to the previous one. Thus $\lim_{n \rightarrow \infty} b_n = \sup \{b_n \mid n \in \mathbb{N}\} = s$ (13.18). Now consider some region $(p;q)$ with $s \in (p;q)$. Note that $p < \inf \{a_k \mid k > n\} = r$ for some $n$, otherwise there would exist some point in $(p;s)$ which would be an upper bound for $\{b_n \mid n \in \mathbb{N}\}$. Note that there are finitely many $n$ such that $a_n < r$ because of how $r$ is defined. Thus there are finitely many $n$ with $a_n < p$. But also there must be finitely many $n$ with $a_n > q$ because if there were infinitely many then there would exist $a_k > q$ such that $k$ is greater than every index of $a_n \leq q$. But this contradicts how $s$ is defined. Thus there are infinitely many $n$ with $a_n \in (p;q)$ and so $s$ is an accumulation point of $(a_n)$. But there can't be an accumulation point of $(a_n)$ less than $s$ because for each term or $(b_n)$ there are finitely many $n$ with $a_n$ less that it and an accumulation point would imply infinitely many such $n$. Thus $s = \lim \inf_{n \rightarrow \infty} a_n$. A similar proof holds to show $\lim \sup_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} (\sup \{a_k \mid k > n\})$.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{Let $(a_n)$ be a bounded sequence. Then
+\[
+\lim \inf_{n \rightarrow \infty} a_n = \sup \{x \mid \text{ there are finitely many $n$ with $a_n \in (-\infty ; x)$} \}
+\]
+and
+\[
+\lim \sup_{n \rightarrow \infty} a_n = \inf \{x \mid \text{ there are finitely many $n$ with $a_n \in (x ; \infty)$} \}
+\]}
+\begin{proof}
+Let $S = \{x \mid \text{ there are finitely many $n$ with $a_n \in (-\infty ; x)$} \}$. Note that $S$ is nonempty because $(a_n)$ is bounded. Thus a lower bound for $(a_n)$ shows that $S$ is nonempty and an upper bound for $(a_n)$ shows that $S$ is bounded. Thus $\sup S = t$ exists. Let $(b_n)$ be defined such that $b_n = \inf \{a_k \mid k > n\}$ and let $s = \lim_{n \rightarrow \infty} b_n = \sup \{b_n \mid n \in \mathbb{N}\}$ (13.18, 14,8). First suppose that $t > s$. Then there exists $x \in (s;t)$ such that there are finitely many $n$ with $a_n < x$. But then if we take the largest index, $i$, of all such $a_n$ we have $\inf \{a_k \mid k > i\} > s$ which is a contradiction. So $t \leq s$. Suppose that $t < s$. Then for all $x \in (t;s)$ there are infinitely many $n$ with $a_n < x$. But this implies that there are infinitely many $n$ with $a_n \in (t;s)$ because there exists $x < t$ such that there are finitely many $n$ with $a_n < x$. But then there exists some element of $b_n$ which is less than $s$, but greater than infinitely many terms of $(a_n)$. This cannot happen and so $s=t$. But then using Theorem 8 we have $t = \lim \inf_{n \rightarrow \infty} a_n$ (14.8).
+\end{proof}
+
+\end{flushleft}
+
+\newpage
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 15, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 15: Series\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A series of real numbers is an expression $\sum_{n=1}^{\infty} a_n$, where $(a_n)$ is a real sequence.}\newline
+
+\textbf{Definition 2 (Convergent Series)}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be a series. The sequence of partial sums is defined as
+\[
+s_n = a_1 + a_2 + \dots + a_n = \sum_{i=1}^{n} a_i.
+\]
+We say that the series $\sum_{n=1}^{\infty} a_n$ converges to $s$ (or $\sum_{n=1}^{\infty} a_n = s$) if $\lim_{n \rightarrow \infty} s_n = s$. If such an $s$ exists, we say that $\sum_{n=1}^{\infty} a_n$ is convergent, otherwise it is divergent.}\newline
+
+\textbf{Exercise 3}
+\textsl{Reformulate convergence using the Cauchy property.}\newline
+
+We say a series $\sum_{n=1}^{\infty} a_n$ is convergent if for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n, m > N$ we have $|s_n - s_m| < \varepsilon$.\newline
+
+\textbf{Lemma 4}
+\textsl{If $\sum_{n=1}^{\infty} a_n$ is a convergent series, the the sequence $(a_n)$ converges to $0$.}
+\begin{proof}
+Let $\sum_{n=1}^{\infty} a_n = s$. Then the sequence of partial sums $(s_n)$ converges to $s$ and $(s_n)$ is a Cauchy sequence. Thus for all $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n,m > N$ we have $|s_n - s_m| < \varepsilon$. But note that $s_{n+1} - s_n= a_n$ so for $n > N+1$ we have $|a_n| < \varepsilon$ which means $\lim_{n \rightarrow \infty} a_n = 0$.
+\end{proof}
+
+\textbf{Lemma 5}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be convergent with a partial sum sequence $(s_n)$. Let $n_0 = 0$ and $n_1 < n_2 < \dots$ be a sequence of natural numbers. For $k \in \mathbb{N}$ let
+\[
+b_k = a_{n_{k-1}+1} + \dots + a_{n_k} = \sum_{i = n_{k-1} + 1}^{n_k} a_i.
+\]
+Then
+\[
+\sum_{k=1}^{\infty} b_k = \sum_{n=1}^{\infty} a_n.
+\]}
+\begin{proof}
+Let $s_{b_k} = \sum_{i=1}^{k} b_i$ and $s_{a_n} = \sum_{i=1}^{n} a_i$. Then note that
+\[
+s_{b_k} = \sum_{i=1}^{k} b_i = \sum_{i=1}^{n_1} a_i + \sum_{i = n_{1} + 1}^{n_2} a_i + \dots + \sum_{i = n_{k-1} + 1}^{n_k} a_i = s_{a_{n_k}}.
+\]
+We know $\sum_{n=1}^{\infty} a_n$ is convergent so $(s_{a_n})$ converges. Also $(s_{a_{n_k}})$ is a subsequence of $(s_{a_n})$ so it converges as well (13.12). But $(s_{b_k}) = (s_{a_{n_k}})$ so $\lim_{n \rightarrow \infty} s_{b_k} = \lim_{n \rightarrow \infty} s_{a_{n_k}}$ which implies
+\[
+\sum_{k=1}^{\infty} b_k = \sum_{n=1}^{\infty} a_n.
+\]
+\end{proof}
+
+\textbf{Theorem 6 (Geometric Series)}
+\textsl{For all $t < |1|$, we have
+\[
+\sum_{n=0}^{\infty} t^n \frac{1}{1-t}.
+\]}
+\begin{proof}
+Consider a partial sum of $\sum_{n=0}^{\infty} t^n$,
+\[
+s_k = \sum_{n=0}^{\infty} t^n= 1+t+\dots+t^k = \frac{1-t^{k+1}}{1-t} = \frac{1}{1-t} - \frac{t^k}{1-t}.
+\]
+But since $t < |1|$ we have $\lim_{k \rightarrow \infty} t^k/(1-t) = 0$. So then $\lim_{k \rightarrow \infty} s_k = 1/(1-t) + 0$ which means
+\[
+\sum_{n=0}^{\infty} t^n \frac{1}{1-t}.
+\]
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{The series $\sum_{n=1}^{\infty} 1/n$ is not convergent.}
+\begin{proof}
+Suppose that $\sum_{n=1}^{\infty} 1/n$ is convergent. Create a sequence $(b_k)$ as in Lemma 5 such that
+\[
+b_k = \sum_{i = n_{k-1} + 1}^{n_k} \frac{1}{n}
+\]
+where $n_k = 2^{k-1}$ for $k \in \mathbb{N}$ and $n_0 = 0$. Note that for $k \geq 2$, $b_k$ has $2^{k-1} - 2^{k-2} = 2^{k-2}$ terms, the smallest of which is $1/2^{k-1}$. Thus, for all $k \geq 2$, $b_k \geq 2^{k-2}/2^{k-1} = 1/2$. Also $b_1 = \sum_{n=1}^{1} 1/n = 1$. So for all $k \in \mathbb{N}$ we have $b_k \geq 1/2$. But then there are infinitely many $k \in \mathbb{N}$ such that $b_k \notin (-1/2 ; 1/2)$ so $\lim_{k \rightarrow \infty} b_k \neq 0$. Thus, $\sum_{k=1}^{\infty} k_n$ is not convergent (15.4). But we know that $\sum_{k=1}^{\infty} b_k = \sum_{n=1}^{\infty} a_n$ which is a contradiction (15.5). Thus $\sum_{n=1}^{\infty} 1/n$ is not convergent.
+\end{proof}
+
+\textbf{Theorem 8 (Alternating Sign Series)}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be a series with the following properties:
+1) $a_n$ is positive if $n$ is odd and negative if $n$ is even;
+2) $|a_{n+1}| < |a_n|$ for all $n$;
+3) $\lim_{n \rightarrow \infty} a_n = 0$.
+Then $\sum_{n=1}^{\infty} a_n$ is convergent.}
+\begin{proof}
+Let $\varepsilon > 0$. Then there exists $N \in \mathbb{N}$ such that for all $n > N$ we have $|a_n| < \varepsilon$. Let $n \in \mathbb{N}$ such that $n > N$ and $n$ is even. Then $a_{n+1} > 0$. We have $s_{n+1} = s_{n} + a_{n+1} > s_{n}$. Also $a_{n+2} < 0$ and $|a_{n+2}| < |a_{n+1}|$ so $a_{n+1} + a_{n+2} > 0$. Then $s_{n+1} > s_{n+1} + a_{n+2} = s_{n+2} = s_{n} + a_{n+1} + a_{n+2} > s_{n}$. So for $n > N$ even we have $s_{n} \leq s_{n+2} \leq s_{n+1}$ and a similar proof shows that for $n > N$ odd we have $s_{n} \geq s_{n+2} \geq s_{n+1}$. Use strong induction on $n$ to show that for $k + N$ even $s_{N} \leq s_{k+N} \leq s_{N+1}$. We see that for $k=1$ we have $s_N \leq s_{N+1} \leq s_{N+1}$ which is true since $a_{N+1}$ is positive.
+We've also shown the case for $k=2$. Assume that for $n+N$ even we have $s_N \leq s_{N+n} \leq s_{N+1}$. Consider $s_{N+n+2}$. We know $s_{N+n} \leq s_{N+n+2} \leq s_{N+n+1}$ and $s_{N+n-1} \leq s_{N+n+1} \leq s_{N+n}$. Combining these three inequalities we have $s_N \leq s_{N+n+2} \leq s_{N+1}$. Thus for all even $N+n$ we have $s_N \leq s_{N+n} \leq s_{N+1}$. A similar proof holds to show that for odd $N+n$ we have $s_{N} \leq s_{N+n} \leq s_{N+1}$. Since this is true for any $N$ given $\varepsilon$, for any region $(s_{N};s_{N+1})$ there are finitely many $n$ with $s_n$ not in the region. Thus $\sum_{n=1}^{\infty} a_n$ is convergent.
+\end{proof}
+
+\textbf{Exercise 9}
+\textsl{The series
+\[
+\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}
+\]
+is convergent.}
+\begin{proof}
+Note that for $n$ odd we have $a_n = (-1)^{n+1}/n$ and since $n+1$ is even and $n > 0$ we have $a_n = 1/n > 0$. For $n$ even $n+1$ is odd so $a_n = (-1)^{n+1}/n = -1/n < 0$. Also $|a_{n+1}| = 1/(n+1) < 1/n = |a_n|$. Finally we know that $\lim_{n \rightarrow \infty} a_n = 0$ (13.4). Since this series fulfills the requirements of Theorem 8, it must be convergent.
+\end{proof}
+
+\textbf{Definition 10}
+\textsl{A series $\sum_{n=1}^{\infty} a_n$ is called absolutely convergent if the series $\sum_{n=1}^{\infty} |a_n|$ is convergent.}\newline
+
+\textbf{Lemma 11}
+\textsl{$\sum_{n=1}^{\infty} a_n$ is absolutely convergent if and only if there exists $C \in \mathbb{R}$ such that for all $N \in \mathbb{N}$, $\sum_{n=1}^{N} |a_n| \leq C$.}
+\begin{proof}
+Suppose that $\sum_{n=1}^{\infty} a_n$ is absolutely convergent. Let $s_k = \sum_{n=1}^{k} |a_n|$. Then $(s_n)$ is convergent and therefore bounded (13.15). Thus there exists $C \in \mathbb{R}$ such that for all $N$ we have $s_N = \sum{n=1}^{N} |a_n| \leq C$.\newline
+
+Now suppose there exists $C \in \mathbb{R}$ such that $s_N \leq C$ for all $N$. Thus $(s_n)$ is bounded. Note that $s_n = s_{n-1} + |a_n|$ and since $|a_n| \geq 0$ for all $n$ we have $(s_n)$ is an increasing sequence. Since $(s_n)$ is bounded and increasing we know it is convergent (13.18). Thus $\sum_{n=1}^{\infty} |a_n|$ is convergent and so $\sum_{n=1}^{\infty} a_n$ is absolutely convergent.
+\end{proof}
+
+\textbf{Theorem 12 (Comparison Criterion)}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{\infty} b_n$ be two series. Suppose there is some $N$ such that for all $n \geq N$ we have $|a_n| \leq |b_n|$. Then if $\sum_{n=1}^{\infty} b_n$ is absolutely convergent so is $\sum_{n=1}^{\infty} a_n$.}
+\begin{proof}
+For all $M \geq N$ note that
+\[
+\sum_{n=N}^{M} |a_n| \leq \sum_{n=N}^{M} |b_n| \leq \sum_{n=1}^{M} \leq C
+\]
+for some $C \in \mathbb{R}$ because every term in $(|b_n|)$ is greater than or equal to zero (15.11). Also note that
+\[
+\sum_{n=1}^{M} |a_n| \leq C + \sum_{n=1}^{N-1} |a_n| \leq C'
+\]
+for some $C' \in \mathbb{R}$ because every term of $(|a_n|)$ is greater than or equal to zero. Also note that for $M' < N \leq M$ we have
+\[
+\sum_{n=1}^{M'} |a_n| \leq \sum_{n=1}^{M} \leq C'
+\]
+so that for all $M$ we have $\sum_{n=1}^{M} |a_n| \leq C'$. By Lemma 11 $\sum_{n=1}^{\infty} a_n$ is absolutely convergent (15.11).
+\end{proof}
+
+\textbf{Corollary 13 (Quotient Criterion)}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be a series. Suppose that there is an $N \in \mathbb{N}$ and $0<r<1$, such that $|a_{n+1}/a_n| \leq r$ for all $n \geq N$. Then $\sum_{n=1}^{\infty} a_n$ is absolutely convergent.}
+\begin{proof}
+Use induction on $n$ to show that $|a_{N+n}| \leq |a_N| r^n$. For the base case, $n=1$ we have $|a_{N+1}| \leq |a_N| r$ by assumption. Assume that for all $n \in \mathbb{N}$ we have $|a_{N+n}| \leq |a_N| r^n$ so $|a_{N+n}| r \leq |a_N| r^{n+1}$. Then note that $|a_{N+n+1}| \leq |a_{N+n}| r \leq |a_N| r^{n+1}$ as desired. Thus for $n \geq N$ we have $|a_n| \leq |a_N| r^{n-N}$. Let $b_n = |a_N| r^{n-N}$. Then for $n>N$ we have $|a_n| \leq |a_N| r^{n-N} = |a_N r^{n-N}| = |b_n|$ since $r>0$. But also
+\[
+\sum_{n=1}^{\infty} |a_N r^{n-N} | = \sum_{n=0}^{\infty} |a_N| r^{n-N+1} = |a_N| r^{-N+1} \sum_{n=0}^{\infty} r^n
+\]
+and so $\sum_{n=1}^{\infty} b_n$ is absolutely convergent by Theorem 6, because $r>0$ and because $|a_N| r^{-N+1}$ is a constant value (15.6). Thus, by Theorem 12 we have $\sum_{n=1}^{\infty} a_n$ is absolutely convergent.
+\end{proof}
+
+\textbf{Definition 14}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be a series. A reordering of $\sum_{n=1}^{\infty} a_n$ is a series of the form $\sum_{n=1}^{\infty} b_n$, where $b_n=a_{f(n)}$ for some bijection $f \; : \; \mathbb{N} \rightarrow \mathbb{N}$.}\newline
+
+\textbf{Lemma 15}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be an absolutely convergent series, and let $\sum_{n=1}^{\infty} b_n$ be a reordering of it. Then for every $k \in \mathbb{N}$ there exists $L \in \mathbb{N}$ such that for all $l \geq L$,
+\[
+\left | \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{l} b_n \right | \leq \sum_{n=k+1}^{\infty} |a_n|.
+\]}
+\begin{proof}
+Let $g \; : \; \mathbb{R} \rightarrow \mathbb{R}$ be a function such that $g(x) = |x|$. We know that since $g$ is continuous, for a sequence $(a_n)$, if $\lim_{n \rightarrow \infty} a_n = a$, then $\lim_{n \rightarrow \infty} |a_n| = |a|$ (13.7). We have $\sum_{n=1}^{\infty} a_n$ is absolutely convergent so $|\sum_{n=1}^{\infty} a_n| = \lim_{n \rightarrow \infty} |s_n|$. Then use induction on $n$ to show that $|s_n| \leq \sum_{k=1}^{n} |a_k|$. For $n=1$ we have $|s_1| = |a_1| = \sum_{k=1}^{1} |a_1|$. Assume that for $n \in \mathbb{N}$, $\sum_{k=1}^{n} |a_k| \geq |s_n|$. Then
+\[
+\sum_{k=1}^{n+1} |a_k| = \sum_{k=1}^{n} |a_k| + |a_{n+1}| \geq |s_n| + |a_{n+1}| \geq |s_n + a_{n+1}| = |s_{n+1}|
+\]
+by the triangle inequality and our inductive hypothesis (9.36). Therefore we have
+\[
+\left | \sum_{n=1}^{\infty} a_n \right | \leq \sum_{n=1}^{\infty} |a_n|.
+\]
+Let $k \in \mathbb{N}$ and consider the sets $A = \{a_n \mid n \leq k\}$ and $S = \{f(n) \mid n \leq k\}$ Let $L = \sup S$. Consider $l \geq L$ and let $B = \{b_n \mid n \leq l\}$ and $T = \{n \mid b_n \in B\}$. Note that every element of $B$ is in $A$ because $L \geq k$. Finally let $C = \{a_n \mid n \notin T\}$. Make a new sequence $c_n$ where $n$ is the $n$th element of $C$. Note that by definition, $\sum_{n=1}^{\infty} c_n = \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{l} b_n$. Then
+\[
+\left | \sum_{n=1}^{\infty} c_n \right | = \left | \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{l} b_n \right | \leq \sum_{n=1}^{\infty} |c_n| \leq \sum_{k+1}^{\infty} |a_n|.
+\]
+The last inequality holds because $(c_n)$ is the sequence $(a_n)$, but with at least $k$ terms missing.
+\end{proof}
+
+\textbf{Theorem 16 (Abel Resummation Theorem)}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be an absolutely convergent series, and let $\sum_{n=1}^{\infty} b_n$ be a reordering of it. Then $\sum_{n=1}^{\infty} b_n$ absolutely convergent and
+\[
+\sum_{n=1}^{\infty} b_n = \sum_{n=1}^{\infty} a_n.
+\]}
+\begin{proof}
+Let $k \in \mathbb{N}$ and consider the sets $A = \{a_n \mid n \leq k\}$ and $S = \{f(n) \mid n \leq k\}$ Let $L = \sup S$ and let $B = \{b_n \mid n \leq L\}$. Note that every element of $B$ is in $A$ because $L \geq k$. But then
+\[
+\sum_{n=1}^{L} |b_n| = \sum_{n=1}^{L} |a_n| \leq C
+\]
+for some $C \in \mathbb{R}$ (15.11). Since $f$ is a bijection, $L$ can be any value of $\mathbb{N}$, so every partial sum of $\sum_{n=1}^{\infty} |b_n|$ is bounded and thus $\sum_{n=1}^{\infty} b_n$ is absolutely convergent (15.11). Now consider $\sum_{n=k+1}^{\infty} |a_n| = \sum_{n=1}^{\infty} |a_n| - \sum_{n=1}^{k} |a_n|$ (15.5). Take the limit as $k$ goes to infinity. We have
+\[
+\lim_{k \rightarrow \infty} \sum_{n=k+1}^{\infty} |a_n| = \lim_{k \rightarrow \infty} \left ( \sum_{n=1}^{\infty} |a_n| - \sum_{n=1}^{k} |a_n| \right ) = \sum_{n=1}^{\infty} |a_n| - \lim_{k \rightarrow \infty} s_k = 0.
+\]
+But then we have
+\[
+\lim_{l \rightarrow \infty} \left | \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{l} b_n \right | = \left | \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{\infty} b_n \right | \leq \lim_{n \rightarrow \infty} \sum_{n=k+1}^{\infty} |a_n| = 0 \text{ (15.15)}.
+\]
+Thus,
+\[
+\sum_{n=1}^{\infty} b_n = \sum_{n=1}^{\infty} a_n.
+\]
+\end{proof}
+
+\textbf{Theorem 17}
+\textsl{Let $\sum_{n=1}^{\infty} a_n$ be a convergent, but not absolutely convergent series. Then for all $c \in \mathbb{R}$ there exists a reordering $\sum_{n=1}^{\infty} b_n$ of $\sum_{n=1}^{\infty} a_n$ such that
+\[
+\sum_{n=1}^{\infty} b_n = c.
+\]}
+\begin{proof}
+Let $A = \{a_n \mid n \in \mathbb{N}\}$. Then $A$ is nonempty and bounded, so $\sup A$ exists (6. 11, 13.15). Suppose that for any positive term of $(a_n)$ there are infinitely many terms greater than or equal to it. Consider some term $a_k>0$ and the region $(-a_k ; a_k)$. Then there are infinitely many terms of $(a_n)$ which are not in $(-a_k ; a_k)$. But then $(a_n)$ does not converge to zero which means $\sum_{n=1}^{\infty} a_n$ is not convergent (13.4). This is a contradiction and so for all positive terms of $(a_n)$ there are finitely many terms greater than or equal to it. A similar proof holds to show that for a negative term of $(a_n)$, there are finitely many terms less than or equal to it.\newline
+
+We have $\sum_{n=1}^{\infty} a_n = a$ for some $a \in \mathbb{R}$. Assume that $a_n = 0$ for finitely many $n$. We can order the positive elements of $(a_n)$ in decreasing order and the negative elements of $(a_n)$ in increasing order because there are finitely many positive or negative terms of $(a_n)$ greater than or less than any given term respectively. Define $(x_k)$ where $x_k$ is the $k$th positive element of $(a_n)$ and $(y_k)$ where $y_k$ is the $k$th negative element of $(a_n)$. Then for all $k \in \mathbb{N}$ we have $y_k < 0 \leq x_k$. Suppose there are finitely many negative terms of $(a_n)$. Then there exists a largest element, $j$, of $N$ so that
+\[
+\sum_{k=1}^{j} y_k = q \text{ and } \sum_{k=1}^{j} |y_k| = -q
+\]
+for some $q \in \mathbb{R}$ because $y_k < 0$ for all $k$. Then we have
+\[
+\sum_{n=1}^{\infty} a_n = \sum_{k=1}^{\infty} x_k + \sum_{k=1}^{j} y_k \text{ and so } \sum_{k=1}^{\infty} x_n = \sum_{k=1}^{\infty} |x_k| = a-q.
+\]
+This follows from Lemma 5. But then
+\[
+(a-q)+q = \sum_{k=p_1}^{\infty} |x_k| + \sum_{k=n_1}^{n_j} |y_k| = \sum_{n=1}^{\infty} |a_n|
+\]
+which means $\sum_{n=1}^{\infty} a_n$ is absolutely convergent which is a contradiction. Thus there are infinitely many terms of $(y_k)$ and a similar proof shows there are infinitely many terms of $(x_k)$.\newline
+
+Let $c \in \mathbb{R}$. Now suppose that for all $j \in \mathbb{N}$ we have $\sum_{k=1}^{j} x_k \leq c$. Since $x_k > 0$ for all $k$, we have the partial sums of $\sum_{k=1}^{\infty} x_k$ are bounded and increasing so it must converge to $x$ for some $x \in \mathbb{R}$ (13.18). Suppose that $\sum_{k=1}^{\infty} |y_k| = y$ for some $y \in \mathbb{R}$. Then $\sum_{n=1}^{\infty} |a_n| = \sum_{k=1}^{\infty} |x_k| + \sum_{k=1}^{\infty} |y_k| = x+y$ which is a contradiction (15.16). Thus $\sum_{k=1}^{\infty} y_k$ is not absolutely convergent so there exists $l \in \mathbb{N}$ such that $\sum_{k=1}^{l} |y_k| > c$ (15.11). But since $y_k < 0$ for all $k$ we have $-c < \sum_{k=1}^{l} y_k$.\newline
+
+Now consider the sequence $(a'_n)$ where $a'_n = a_n$ if $a_n < 0$ and $0$ if $a_n \geq 0$. Then a partial sum of
+\[
+\sum_{n=1}^{\infty} a'_n \text{ is } s_{a'_n} = \sum_{k=1}^{n} a_k - \sum_{k=1}^{n'} x_k
+\]
+supposing there are $n'$ positive terms in the first $n$ terms of $(a_n)$. Then if we consider $\lim_{n \rightarrow \infty} s_{a'_n}$ we simply have $a-x$ since $n'$ will go to $\infty$ as $n$ does. Hence
+\[
+\sum_{n=1}^{\infty} a'_n = \sum_{k=1}^{\infty} y_k + 0 = a-x.
+\]
+Thus $\sum_{k=1}^{\infty} y_k$ is convergent, but we just showed that the partial sums of this series are unbounded which is a contradiction (13.15). Thus, for $c \in \mathbb{R}$ there exists $j \in \mathbb{N}$ such that $\sum_{k=1}^{j} x_k > c$. A similar proof shows that for $c \in \mathbb{R}$ there exists $j \in \mathbb{N}$ such that $\sum_{k=1}^{j} y_k < c$\newline
+
+Define a reordering of $\sum_{n=1}^{\infty} a_n$, $\sum_{n=1}^{\infty} b_n$ where the first $n_1$ terms of $b_n$ are the least number of terms of $(x_k)$ such that $\sum_{k=1}^{n_1} x_k > c$. Then let the next $n_2$ terms be the least number of terms of $(y_k)$ such that $\sum_{k=1}^{n_1} x_k + \sum_{k=1}^{n_2} y_k < c$. Note that we can always do this because the partial sums of
+\[
+\sum_{k=1}^{\infty} x_k \text{ and } \sum_{k=1}^{\infty} y_k
+\]
+are unbounded. Then for odd $i \in \mathbb{N}$, $n_i$ is the least number of terms of $(x_k)$ such that
+\[
+\sum_{n=1}^{n_i} b_n = \sum_{k=1}^{n_i} x_k + \sum_{k=1}^{n_{i-1}} y_k > c
+\]
+and for even $i$, $n_i$ is the least number of terms of $(y_k)$ such that
+\[
+\sum_{n=1}^{n_i} b_n = \sum_{k=1}^{n_{i-1}} + \sum_{k=1}^{n_i} y_k < c.
+\]
+Let $s_k = \sum_{n=1}^{k} b_n$. Note that $s_k$ for $k$ between $n_i$ and $n_{i+1}$ for $i \in \mathbb{N}$ is between $s_{n_i}$ and $s_{n_{i+1}}$ because the terms of $b_n$ change sign at $n_i$. Consider some region $(p;q)$ such that $c \in (p;q)$. Since the least number of elements of $(y_k)$ are added to $s_{n_{i-1}}$ so that $s_{n_i} < c$, we have $|c - s_{n_i}|$ is always less than or equal to the absolute value of some element of $(y_k)$. Suppose that $p > s_{n_i}$ for an infinite number of odd $i$. Then $|c-p|$ is less than or equal to an infinite number of absolute values of terms of $(y_k)$. But then if we consider some $|y_k| > |c-p|$ there are an infinite number of $n$ such that $|y_n| > |y_k|$. This is a contradiction and so $p > s_{n_i}$ for finitely many odd $i$. But also for all $s_{n_i}$ with odd $i$ there are finitely many $s_k$ such that $i < k < i+1$ because the positive and negative partial sums are unbounded. Thus there are finitely many $n$ such that $s_n < p$. A similar proof shows that there are finitely many $n$ with $s_n > q$ so there are finitely many $n$ with $s_n \notin (p;q)$. Therefore $\lim_{n \rightarrow \infty} s_n = c$ and so
+\[
+\sum_{n=1}^{\infty} b_n = c.
+\]
+If there are infinitely many $n$ such that $a_n=0$ the change $b_n$ so that a zero term is added to each $n_i$th partial sum. This will not change the resulting series convergence.
+\end{proof}
+
+\end{flushleft}
+
+\newpage
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 15, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 16: Metric Spaces\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{Let $X$ be a set. A topology on $X$ is a set $\mathcal{A}$ of subsets of $X$, that we call open sets, satisfying the following:\newline
+1) $\emptyset \in \mathcal{A}$ and $X \in \mathcal{A}$;\newline
+2) if $A, B \in \mathcal{A}$ then $A \cap B \in \mathcal{A}$;\newline
+3) if $\mathcal{B} \subset \mathcal{A}$ then
+\[
+\bigcup_{B \in \mathcal{B}} B \in \mathcal{A}.
+\]}\newline
+
+\textbf{Definition 2}
+\textsl{A topological space is a pair $(X, \mathcal{A})$ such that $\mathcal{A}$ is a topology on $X$.}\newline
+
+\textbf{Definition 3}
+\textsl{Let $X$ be a set and let $d \; : \; X \times X \rightarrow \mathbb{R}$ be a function. We say that $(X, d)$ is a metric space if the following hold:\newline
+1) $d(x,y) \geq 0$ and $d(x,y) = 0$ if and only if $x=y$;\newline
+2) $d(x,y) = d(y,x)$;\newline
+3) $d(x,y) + d(y,z) \geq d(x,z)$.}\newline
+
+\textbf{Definition 4}
+\textsl{For $c \in X$ and $r \in \mathbb{R}$ with $r > 0$ let
+\[
+B(c,r) = \{x \in X \mid d(c,x) < r\}
+\]
+be the ball of radius $r$ centered at $c$.}\newline
+
+\textbf{Definition 5}
+\textsl{A subset $A \subseteq X$ is open if for every $a \in A$ there exists $r > 0$ such that $B(a,r) \subseteq A$. This topology is the topology generated by $d$.}\newline
+
+\textbf{Theorem 6}
+\textsl{For all $c \in X$ and $r > 0$ the ball $B(c,r)$ is open.}
+\begin{proof}
+Let $a \in B(c,r)$. Then $d(c,a) < r$. Consider the ball $B(a, r-d(c,a))$. For $x \in B(a, r-d(c,a))$ we have $d(a,x) < r - d(c,a)$ so $d(c,a) + d(a,x) < r$. By the triangle inequality we have $d(c,x) < r$ so $x \in B(c,r)$. Thus, $B(a, r-d(c,a)) \subseteq B(c,r)$ and $B(c,r)$ is open.
+\end{proof}
+
+\textbf{Proposition 7}
+\textsl{There is a topology on $\{0,1\}$ that cannot be generated by any metric on $\{0,1\}$.}
+\begin{proof}
+Consider the topology $\mathcal{A} = \{\emptyset, \{0,1\}\}$ and consider some arbitrary metric on $\{0,1\}$, $d(0,1) = a$ for $a \in \mathbb{R}$. Then the ball $B(0,a)$ will be in the topology generated by this metric, but $B(0,a) = \{0\}$ which is not in $\mathcal{A}$.
+\end{proof}
+
+\textbf{Theorem 8 (Metric Spaces are Hausdorff)}
+\textsl{Let $(X,d)$ be a metric space and let $a,b \in X$ with $a \neq b$. Then there exist $A, B \subseteq X$ open such that $a \in A$, $b \in B$ and $A \cap B = \emptyset$.}
+\begin{proof}
+Consider the two balls $B(a, d(a,b)/2)$ and $B(b, d(a,b)/2)$. Suppose there exists $x \in X$ such that $x \in B(a, d(a,b)/2)$ and $x \in B(b, d(a,b)/2)$. Then $d(a,x) < d(a,b)/2$ and $d(b,x) < d(a,b)/2$ so $d(a,x) + d(x,b) < d(a,b)$ which contradicts the triangle inequality. Thus $B(a, d(a,b)/2) \cap B(b, d(a,b)/2) = \emptyset$. We also have $B(a, d(a,b)/2)$ and $B(a, d(a,b)/2)$ are open (16.6).
+\end{proof}
+
+\textbf{Definition 9}
+\textsl{Let $A \subseteq X$ be a subset. We say that $x \in X$ is a limit point of $A$ if for all open sets $B \subseteq X$ with $x \in B$ the intersection $A \cap B$ is infinite.}\newline
+
+\textbf{Lemma 10}
+\textsl{Let $A \subseteq X$ be a subset. Then $x \in X$ is a limit point of $A$ if for all $r>0$ the intersection $A \cap B(x,r)$ is infinite.}
+\begin{proof}
+Suppose that for $x \in X$ and all $r > 0$ we have $A \cap B(x,r)$ is infinite. Consider some open set $B \subseteq X$ with $x \in B$. Then there exists $B(x,r) \subseteq B$ because $B$ is open. But then $B \cap A$ is infinite since $B(x,r) \cap A$ is infinite.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{A subset of $X$ is closed if and only if it contains all its limit points.}
+\begin{proof}
+Let $A \subseteq X$ be closed and consider some point $p \in X \backslash A$. Since $X \backslash A$ is open, there exists some ball $B(p, r) \subseteq X \backslash A$. But since this ball is open and disjoint from $X$ we have $p$ is not a limit point of $A$ (16.6). Thus there are no limit points of $A$ in $X \backslash A$ so $A$ must contain all its limit points. Conversely let $A \subseteq X$ be a subset which contains all its limit points and let $p \in X \backslash A$. Since $p$ is not a limit point of $A$, there exists some ball $B(p,r)$ such that $B(p,r) \cap A$ is finite. Then consider the point $x \in B(p,r) \cap A$ such that $d(p,x) = \min \{d(p,y) \mid y \in B(p,r) \cap A\}$. The ball $B(p,x)$ will then contain no points of $A$ which means $B(p,x) \subseteq X \backslash A$ and thus $X \backslash A$ is open. Then $A$ is closed.
+\end{proof}
+
+\textbf{Theorem 12 (Metric Spaces are T3)}
+\textsl{Let $C \subseteq X$ be closed and let $b \in X$ such that $b \notin C$. Then there exist $A, B \subseteq X$ open such that $C \subseteq A$, $b \in B$ and $A \cap B = \emptyset$.}
+\begin{proof}
+Since $C$ is closed, $X \backslash C$ is open and so there exists a ball $B = B(b, r) \subseteq X \backslash C$. Consider the set $S = \{B(a, (d(a,b)-r)/2) \mid a \in C\}$. Then let
+\[
+A = \bigcup_{B(a,r) \in S} B(a,r)
+\]
+so that $C \subseteq A$. Now let $x \in A$. Then there exists some ball $B(a, (d(a,b)-r)/2) \subseteq A$ such that $a \in C$ and $x \in B(a, (d(a,b)-r)/2)$. Then $d(x,a) < d(a,b)-r$ so $r < d(a,b) - d(a,x) \leq d(x,b)$. Thus $x \notin B(b,r)$ and so $A \cap B = \emptyset$.
+\end{proof}
+
+\textbf{Definition 13}
+\textsl{A subset $C \subseteq X$ is compact if every open cover of $C$ has a finite subcover.}\newline
+
+\textbf{Definition 14}
+\textsl{A sequence on $X$ is a function from $\mathbb{N}$ to $X$. The sequence $(a_n)$ converges to $a$ (or $\lim_{n \rightarrow \infty} a_n = a$) if for every open set $A \subseteq X$ with $a \in A$ there are only finitely many $n$ with $a_n \notin A$.}\newline
+
+\textbf{Proposition 15}
+\textsl{There is a topological space on every set where every sequence converges to every element.}
+\begin{proof}
+Consider the trivial topology, $\{\emptyset, X\}$. Consider some sequence $(a_n) \in X$ and let $a \in X$. The only open set which contains $a$ is $X$, but there are no terms of $(a_n)$ not in $X$ so we have for all open sets $A$ with $a \in A$, there are finitely many terms of $(a_n)$ not in $A$. Thus $(a_n)$ converges to $a$. This is true of all sequences and points in $X$.
+\end{proof}
+
+\textbf{Proposition 16}
+\textsl{There is a topological space on every set where the only convergent sequences are the ones that are constant up to finitely many elements.}
+\begin{proof}
+Consider the full topology where every subset is open. Then for all $x \in X$, the set $\{x\}$ is open. Thus for a sequence $(a_n)$, there are finitely many $n$ such that $a_n \notin \{x\}$ which means there are finitely many $n$ such that $a_n \neq x$.
+\end{proof}
+
+\textbf{Definition 17}
+\textsl{Let $(X, \mathcal{A})$ and $(Y, \mathcal{B})$ be topological spaces. A function $f \; : \; X \rightarrow Y$ is continuous if for all $B \in \mathcal{B}$ the preimage $f^{-1}(B) \in \mathcal{A}$}\newline
+
+\textbf{Theorem 18}
+\textsl{Let $(X, \mathcal{A})$ be a Hausdorff topological space and let $(a_n)$ be a sequence on $X$. If $\lim_{n \rightarrow \infty} a_n = a$ and $\lim_{n \rightarrow \infty} a_n = b$ then $a=b$.}
+\begin{proof}
+Suppose that $a \neq b$. Then there exist two open sets $A$ and $B$ such that $a \in A$ and $b \in B$ and $A \cap B = \emptyset$ by the Hausdorff property. There are finitely many $n$ with $a_n \notin A$ so there are infinitely many $n$ with $a_n \in A$. But then there are finitely many $n$ with $a_n \notin B$ which is a contradiction because $\lim_{n \rightarrow \infty} a_n = b$. Thus $a=b$.
+\end{proof}
+
+\textbf{Theorem 19}
+\textsl{Let $(X,d)$ and $(X',d')$ be metric spaces and let $f \; : \; X \rightarrow X'$ be a function. Then the following are equivalent:\newline
+1) $f$ is continuous;\newline
+2) for all $x \in X$ and for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $y \in X$ with $d(x,y) < \delta$ we have $d'(f(x),f(y)) < \varepsilon$;\newline
+3) for all convergent sequences $a_n \in X$ we have
+\[
+\lim_{n \rightarrow \infty} f(a_n) = f \left ( \lim_{n \rightarrow \infty} a_n \right ).
+\]}
+\begin{proof}
+Let $f$ be continuous and let $x \in X$ and consider the ball $B(f(x), \varepsilon)$ for $\varepsilon > 0$. Then since $f$ is continuous, $f^{-1}(B(f(x), \varepsilon))$ is open. And since $x \in f^{-1}(B(f(x), \varepsilon))$ there exists some ball $B(x, \delta) \subseteq B(f(x), \varepsilon)$. But then for all $y \in B(x, \delta)$, $f(y) \in B(f(x), \varepsilon)$. Thus for all $y \in X$ such that $d(x,y) < \delta$ we have $d'(f(x),f(y)) < \varepsilon$.\newline
+
+Now suppose that for all $x \in X$ and for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $y \in X$ with $d(x,y) < \delta$ we have $d'(f(x),f(y)) < \varepsilon$. Let $a_n \in X$ be a sequence which converges to $a$ and let $\varepsilon > 0$. Consider $B(a, \delta)$. Since $\lim_{n \rightarrow \infty} a_n = a$, there are finitely many $n$ with $a_n \notin B(a, \delta)$. But then there are finitely many $n$ such that $d(a,a_n) \geq \delta$ which means there are finitely many $n$ with $d'(f(a),f(a_n)) \geq \varepsilon$. Therefore there are finitely many $n$ with $f(a_n) \notin B(f(a), \varepsilon)$ and since this is true for all $\varepsilon > 0$, we have $\lim_{n \rightarrow \infty} f(a_n) = f(a)$.\newline
+
+Finally use the contrapositive and assume that $f$ is not continuous. Then there exists some set $A \subseteq X'$ such that $f^{-1}(A)$ is not open. Then there exists $a \in f^{-1}(A)$ such that for all $r>0$ there exists $x \in B(a,r)$ such that $x \notin A$. Create a sequence $a_n \in X$ where $a_n \in B(a, 1/n)$, but $a_n \notin A$. We know that $a_n$ exists for all $n$ because $f^{-1}(A)$ is not open. Note that for the ball $B(a,r)$ with $r>1$ there are no terms of $(a_n)$ not in $B(a,r)$ and for $r \leq 1$ we can use the Archimedean Property to show that there are finitely many terms not in $B(a,r)$. Thus $(a_n)$ converges to $a$. Note that for all $n$, $a_n \notin f^{-1}(A)$ and thus $f(a_n) \notin A$, while $a \in f^{-1}(A)$ and so $f(a) \in A$. But $A$ is open so there exists some ball $B(a,r) \subseteq A$ for which $a_n \notin B(a,r)$ for all $n$. But then $\lim_{n \rightarrow \infty} f(a_n) \neq f(a)$.
+\end{proof}
+
+\textbf{Theorem 20}
+\textsl{Let $(X, \mathcal{A})$ and $(Y, \mathcal{B})$ be topological spaces and let $f \; : \; X \rightarrow Y$ be continuous. Then for every compact subset $C \subseteq X$ the image $f(C)$ is also compact.}
+\begin{proof}
+Let $\mathcal{E} \subseteq \mathcal{B}$ be an open cover of $f(C)$. For all $x \in C$ we have $x \in f(C)$ and so for all $x \in C$ there exist an open set $B \in \mathcal{E}$ such that $f(x) \in B$. But then for all $x \in C$, $x \in f^{-1}(B)$ for some $B \in \mathcal{E}$. So we have $C \subseteq \bigcup_{B \in \mathcal{E}} f^{-1}(B)$ and since $f$ is continuous $\{f^{-1}(B) \mid B \in \mathcal{E}\} \subseteq \mathcal{A}$ is an open cover for $C$. But $C$ is compact so there exists a finite subcover, $\{f^{-1}(B_1), f^{-1}(B_2), \dots , f^{-1}(B_n)\}$ which covers $C$. So for all $x \in C$ there exists some $B_i \in \mathcal{E}$ such that $x \in f^{-1}(B_i)$. But then $f(x) \in B_i$ and since $f(C) = \{ y \in Y \mid x \in C, y=f(x) \}$, we have for all $y \in f(C)$, $y \in B_i$. Since every $B_i \in \mathcal{E}$ we have found a finite subcover of $\mathcal{E}$ which covers $f(C)$. Thus $f(C)$ is compact.
+\end{proof}
+
+\textbf{Theorem 21}
+\textsl{Let $(X, d)$ be a metric space. Then every compact subset of $X$ is bounded and closed.}
+\begin{proof}
+Let $C$ be a compact subset of $X$ and suppose that $C$ is not bounded below. Let $\mathcal{A}$ be the set of all balls centered at $c \in C$. Then $\mathcal{A}$ covers $C$ and since $C$ is compact there exists a finite subcover $\mathcal{B} \subseteq \mathcal{A}$ which covers $C$. Then $\mathcal{B} = \{B(c,r_1), B(c,r_2), \dots , B(c,r_n)\}$. Take the largest $r_i$ such that $B(c,r_i) \in \mathcal{B}$. But we have $C$ is not bounded below so there exists $x \in C$ such that $d(x,c) > r_i$. Thus $C \nsubseteq \bigcup_{B \in \mathcal{B}} B$ and so $\mathcal{B}$ doesn't cover $C$. This is a contradiction and so compact sets are bounded below. A similar proof holds to show compact sets must be bounded above.\newline
+
+Now suppose that $C \subseteq X$ is compact and $C$ is not closed. Let $p \notin C$ be a limit point of $C$. Let $\mathcal{A} = \{X \backslash B(p,r) \mid r \in \mathbb{R}\}$. Since $p \notin C$ we see that $\mathcal{A}$ covers $C$. Since $C$ is compact, let $\mathcal{B}$ be a finite subset of $\mathcal{A}$ which covers $C$. We have $X$ is open and $X \backslash \emptyset$ is closed so $X \neq \emptyset$. Thus if $\mathcal{B} = \emptyset$, $\mathcal{B}$ does not cover $X$. Then $\mathcal{B} = \{X \backslash B_1(p,r_1), X \backslash B_2(p,r_2), \dots , X \backslash B_n(p,r_n)\}$. Take the smallest $r_i$ such that $B_i(p,r_i) \in \mathcal{B}$ and consider $B(p,r_i/2)$. This ball contains $p$, which is a limit point of $C$, and since balls are open, $B(p,r_i/2) \cap C \neq \emptyset$. But $B(p,r_i/2)$ is defined such that $B(p,r_i/2) \nsubseteq \bigcup_{B \in \mathcal{B}} B$ and so $C \nsubseteq \bigcup_{B \in \mathcal{B}} B$. But then $\mathcal{B}$ doesn't cover $C$ which is a contradiction. Therefore compact sets are closed.
+\end{proof}
+
+\textbf{Proposition 22}
+\textsl{Let $X$ be an infinite set. Then there is a metric on $X$ such that there exists a bounded and closed set that is not compact.}
+\begin{proof}
+Consider the metric $d(x,y) = a$ for some $a \in \mathbb{R}$. Let $Y \subseteq X$ be a bounded closed infinite set and let $\mathcal{A} = \{B(y, a) \mid y \in Y\}$. This set covers $Y$, but each element contains only one element of $Y$ so a finite subset of $\mathcal{A}$ will only contain finitely many elements of $Y$.
+\end{proof}
+
+\textbf{Definition 23}
+\textsl{Let $(X,d)$ and $(X',d')$ be metric spaces and let $f \; : \; X \rightarrow X'$ be a function. We say that $f$ is uniformly continuous if for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x, y \in X$ with $d(x,y) < \delta$ we have $d'(f(x),f(y)) < \varepsilon$.}\newline
+
+\textbf{Theorem 24}
+\textsl{Let $(X,d)$ and $(X',d')$ be metric spaces and let $f \; : \; X \rightarrow X'$ be a continuous function. If $X$ is compact then $f$ is uniformly continuous.}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\varepsilon/2 > 0$. We have $f$ is continuous so for all $x \in X$ there exists $\delta (x) > 0$ such that for all $y \in X$ with $d(x,y) < \delta (x)$ we have $d'(f(x),f(y)) < \varepsilon/2$ (16.19). Consider the set of balls $\mathcal{A} = \{B(x, \delta (x)) \mid x\in X\}$ and let $\mathcal{A}' = \{B(x, \delta(x)/2) \mid B(x, \delta(x)) \in \mathcal{A}\}$. $\mathcal{A}'$ is an open cover for $X$ and since $X$ is compact there exists a finite subcover, $\mathcal{B} \subseteq \mathcal{A}'$. Let $\delta = \min \{\delta(x)/2 \mid B(x, \delta(x)/2) \in \mathcal{B} \}$. Then consider two points $x,y \in X$ such that $d(x,y) < \delta$. $\mathcal{B}$ is an open cover for $X$ so there exists some ball $B(z, \delta(z)/2) \in \mathcal{B}$ such that $x \in B(z, \delta(z)/2)$. Then $d(x,z) < \delta(z)/2 < \delta(z)$ and $d(x,y) < \delta \leq \delta(z)/2$ so $d(z,y) \leq d(z,x) + d(x,y) < \delta(z)$. But then $d'(f(z),f(x)) < \varepsilon/2$ and $d'(f(z),f(y)) < \varepsilon/2$ so $d'(f(x),f(y)) \leq d'(f(x),f(z)) + d'(f(z),f(y)) < \varepsilon$. Therefore for every $\varepsilon > 0$ there exists a $\delta > 0$ such that for all $x,y \in X$ with $d(x,y) < \delta$ we have $d'(f(x),f(y)) < \varepsilon$.
+\end{proof}
+
+\end{flushleft}
+
+\newpage
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 15, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 17: More About Metric Spaces\newline
+
+\normalsize
+
+\textbf{Theorem 1}
+\textsl{Let $(X,d)$ be a metric space and let $(a_n)$ be a sequence in $X$. Then $\lim_{n \rightarrow \infty} a_n = a$ if and only if $\lim_{n \rightarrow \infty} d(a_n,a) = 0$.}
+\begin{proof}
+Let $\lim_{n \rightarrow \infty} a_n = a$. Then for every open set $A \subseteq X$ with $a \in A$ there are finitely many $n$ with $a_n \notin A$. But then for $r \in \mathbb{R}$, there are finitely many $n$ with $a_n \notin B(a,r)$. Then there are finitely many $n$ such that $d(a_n,a) < r$ which means there are finitely many $n$ such that $d(a_n,a) \notin (-r,r)$. Thus, $\lim_{n \rightarrow \infty} d(a_n,a) = 0$.\newline
+
+Conversely, let $\lim_{n \rightarrow \infty} d(a_n,a) = 0$. Then for all $r \in \mathbb{R}$ there are finitely many $n$ such that $d(a_n,a) \notin (-r,r)$ which means there are finitely many $n$ such that $d(a_n,a) > r$. But then there are finitely many $n$ such that $a_n \notin B(a,r)$. If we consider some open set $A \subseteq X$ such that $a \in A$, there there exists some ball $B(a,r) \subseteq A$. But since there are finitely many $n$ with $a_n \notin B(a,r)$, there are only finitely $n$ with $a_n \notin A$. Thus, $\lim_{n \rightarrow \infty} a_n = a$.
+\end{proof}
+
+\textbf{Definition 2}
+\textsl{Let $\mathbb{R}^n = \{(a_1, a_2, \dots ,a_n) \mid a_i \in \mathbb{R}\}$ denote the set of real n-tuples.}\newline
+
+\textbf{Definition 3}
+\textsl{For $\mathbf{a} = (a_1, a_2, \dots ,a_n) \in \mathbb{R}^n$ and $\mathbf{b} = (b_1,b_2, \dots b_n) \in \mathbb{R}^n$ let
+\[
+d_{0} (\mathbf{a},\mathbf{b}) = \max_{1 \leq i \leq n} |a_i - b_i|,
+\]
+\[
+d_{1} (\mathbf{a}, \mathbf{b}) = \sum_{i=1}^{n} |a_i - b_i|
+\]
+and
+\[
+d_{2} (\mathbf{a}, \mathbf{b}) = \sqrt{\sum_{i=1}^{n} (a_i-b_i)^2}.
+\]}\newline
+
+\textbf{Theorem 4}
+\textsl{The functions $d_0$, $d_1$ and $d_2$ are all metrics on $\mathbb{R}^n$.}
+\begin{proof}
+Let $\mathbf{a}, \mathbf{b}, \mathbf{c} \in \mathbb{R}^n$. It's clear that $d_0(\mathbf{a},\mathbf{b})$, $d_1(\mathbf{a},\mathbf{b})$ and $d_2(\mathbf{a},\mathbf{b})$ are all greater than or equal to $0$. Let $d_0(\mathbf{a},\mathbf{b}) = 0$. Then $\max_{1 \leq i \leq n} |a_i - b_i| = 0$ and so $a_i = b_i$. Since the maximum positive difference between two coordinates is $0$, all the distances must be $0$ as well. Now let $\mathbf{a} = \mathbf{b}$. Then $a_i = b_i$ for $1 \leq i \leq n$. Thus $\max_{1 \leq i \leq n} |a_i - b_i| = 0$ and $d_0(\mathbf{a},\mathbf{b}) = 0$.\newline
+
+Let $d_1(\mathbf{a},\mathbf{b}) = 0$. Then $\sum_{i=1}^{n} |a_i - b_i| = 0$. But since $|a_i - b_i| \geq 0$ for $1 \leq i \leq n$ we have $|a_i - b_i| = 0$ for $1 \leq i \leq n$. Thus $a_i = b_i$ and $\mathbf{a} = \mathbf{b}$. Now suppose that $\mathbf{a}=\mathbf{b}$. Then we have $a_i = b_i$ for $1 \leq i \leq n$ and so $|a_i - b_i| = 0$. But then $\sum_{i=1}^{n} |a_i - b_i| = 0$ and so $d_1(\mathbf{a},\mathbf{b}) = 0$.\newline
+
+Let $d_2(\mathbf{a},\mathbf{b}) = 0$. Then $\sqrt{\sum_{i=1}^{n} (a_i-b_i)^2} = 0$ which means $\sum_{i=1}^{n} (a_i-b_i)^2 = 0$. From here the proof follows similarly to that of $d_1(\mathbf{a},\mathbf{b})$.\newline
+
+Since $|a-b| = |b-a|$ and $(a-b)^2 = (b-a)^2$ for all $a,b \in \mathbb{R}$, we have $d_i(\mathbf{a},\mathbf{b}) = d_i(\mathbf{b},\mathbf{a})$ for $0 \leq i \leq 2$. Finally, note that using the triangle inequality we have $\max_{1 \leq i \leq n} |a_i-b_i| + \max_{1 \leq i \leq n} |b_i-c_i| \geq |a_i-b_i|+|b_i-c_i|$ for arbitrary $1 \leq i \leq n$ which is in turn greater than $\max_{1 \leq i \leq n} |a_i - c_i|$. Note also that by the triangle inequality we have $|a_i - b_i| + |b_i - c_i| \geq |a_i - c_i|$ for $1 \leq i \leq n$. But then if we sum this inequality $n$ times we have $\sum_{i=1}^n |a_i - b_i| + \sum_{i=1}^n |b_i - c_i| \geq \sum_{i=1}^n |a_i-c_i|$. Lastly note that
+\[
+\sqrt{\sum_{i=1}^n (a_i-b_i)^2} + \sqrt{\sum_{i=1}^n (b_i-c_i)^2} \geq \sqrt{\sum_{i=1}^n \left ( (a_i-b_i)^2 + (b_i-c_i)^2 \right ) } \geq \sqrt{\sum_{i=1}^n (a_i-c_i)^2}.
+\]
+Thus all three distance functions satisfy the triangle inequality. Therefore all three are metrics.
+\end{proof}
+
+\textbf{Theorem 5}
+\textsl{For all $0 \leq i \leq 2$, $0 \leq j \leq 2$ and for all $\mathbf x \in \mathbb{R}^n$ and $r>0$ there exists $r'>0$ such that
+\[
+B_{d_i} (x, r') \subseteq B_{d_j} (x,r).
+\]}
+\begin{proof}
+Let $\mathbf x \in \mathbb{R}^n$ and let $r>0$. Consider $B_{d_0}(\mathbf x, r)$, let $r = r'$ and let $\mathbf y \in B_{d_1}(\mathbf x, r')$. Then $\sum_{i=1}^n |x_i - y_i| < r'$ and so $d_0(\mathbf x, \mathbf y) = \max_{1 \leq i \leq n} |x_i - y_i| < r' = r$. Thus $\mathbf y \in B_{d_0}(\mathbf x, r)$ and $B_{d_1}(\mathbf x, r') \subseteq B_{d_0}(\mathbf x, r)$. Now let $r=r'$ again and let $\mathbf y \in B_{d_2}(\mathbf x, r')$. Then
+\[
+\sqrt{\sum_{i=1}^n (x_i - y_i)^2} < r'
+\]
+so $\max_{1 \leq i \leq n} (x_i - y_i)^2 < \sum_{i=1}^n (x_i - y_i)^2 < r'^2$ and $d_0(\mathbf x, \mathbf y) = \max_{1 \leq i \leq n} |x_i - y_i| < r' = r$. Thus $\mathbf y \in B_{d_0}(\mathbf x, r)$ and $B_{d_2}(\mathbf x, r') \subseteq B_{d_0}(\mathbf x, r)$.\newline
+
+Next consider $B_{d_1}(\mathbf x, r)$, let $r' = r/n$ and let $\mathbf y \in B_{d_0}(\mathbf x, r')$. Then $\max_{1 \leq i \leq n} |x_i - y_i| < r/n$ which means $d_1(\mathbf x, \mathbf y) = \sum_{i=1}^n |x_i - y_i| < r$ and $\mathbf{y} \in B_{d_1}(\mathbf x, r)$. Thus $B_{d_0}(\mathbf x, r') \subseteq B_{d_1}(\mathbf x, r)$. Now let $r' = r/\sqrt{n}$ and let $\mathbf y \in B_{d_2}(\mathbf x, r')$. Then
+\[
+\sqrt{\sum_{i=1}^n (x_i - y_i)^2} < \frac{r}{\sqrt{n}}
+\]
+so $\sum_{i=1}^n (x_i - y_i)^2 < r^2/n$ and $(x_i - y_i)^2 < r^2/n^2$ for $1 \leq i \leq n$. Thus $|x_i - y_i| < r/n$ for $1 \leq i \leq n$ and so $d_1(\mathbf x, \mathbf y) = \sum_{i=1}^n |x_i - y_i| < r$. Thus $B_{d_2}(\mathbf x, r') \subseteq B_{d_1}(\mathbf x, r)$.\newline
+
+Finally, consider $B_{d_2}(\mathbf x, r)$, let $r' = r/\sqrt{n}$ and let $\mathbf y \in B_{d_0}(\mathbf x, r')$. Then $\max_{1 \leq i \leq n} |x_i - y_i| < r/\sqrt{n}$ which means $\max_{1 \leq i \leq n} (x_i - y_i)^2 < r^2/n$ and
+\[
+d_2(\mathbf x, \mathbf y) = \sqrt{\sum_{i=1}^n (x_i-y_i)^2} < r.
+\]
+Thus $\mathbf y \in B_{d_2}(\mathbf x, r)$ and $B_{d_0}(\mathbf x, r') \subseteq B_{d_2}(\mathbf x, r)$. Now let $r' = r/n\sqrt{n}$ and let $\mathbf y \in B_{d_1}(\mathbf x, r')$. Then $\sum_{i=1}^n |x_i - y_i| < r/n\sqrt{n}$ so $|x_i - y_i| < r/\sqrt{n}$ and $(x_i - y_i)^2 < r^2/n$ for $1 \leq i \leq n$. Then $\sum_{i=1}^n (x_i - y_i)^2 < r^2$ and
+\[
+d_2(\mathbf x, \mathbf y) = \sqrt{\sum_{i=1}^n (x_i-y_i)^2} < r.
+\]
+Thus $\mathbf y \in B_{d_2}(\mathbf x, r)$ and $B_{d_1} (\mathbf x, r') \subseteq B_{d_2}(\mathbf x, r)$.
+\end{proof}
+
+\textbf{Corollary 6}
+\textsl{The metrics $d_0$, $d_1$ and $d_2$ generate the same topology on $\mathbb{R}^n$, namely, a subset $A \subseteq \mathbb{R}^n$ is open in $(\mathbb{R}^n, d_i)$ if it is open in $(\mathbb{R}^n, d_j)$ ($0 \leq i \leq 2$, $0 \leq j \leq 2)$.}
+\begin{proof}
+Let $A \subseteq \mathbb{R}^n$ be an open set in $(\mathbb{R}^n, d_j)$. Then for all $a \in A$ there exists $r \in \mathbb{R}$ such that $B_{d_j}(a,r) \subseteq A$. But from Theorem 5 we know that there exists $r' \in \mathbb{R}$ such that $B_{d_i}(a,r') \subseteq B_{d_j}(a,r) \subseteq A$ (17.5). Thus $A$ is open for $(\mathbb{R}, d_i)$. This is true for arbitrary $0 \leq i \leq 2$, $0 \leq j \leq 2$.
+\end{proof}
+
+\textbf{Definition 7}
+\textsl{Let $(X,d)$ be a metric space. A sequence $(a_n)$ on $X$ has the Cauchy property if for all $\varepsilon > 0$ there exists $N$ such that for all $n,m > N$ we have $d(a_n,a_m) < \varepsilon$.}\newline
+
+\textbf{Definition 8}
+\textsl{A metric space $(X,d)$ is complete if every Cauchy sequence on $X$ is convergent.}\newline
+
+\textbf{Theorem 9}
+\textsl{$\mathbb{R}^n$ is complete.}
+\begin{proof}
+Let $(\mathbf{a}_n)$ be a Cauchy sequence on $\mathbb{R}^d$ and let $\varepsilon' > 0$. Then there exists $N$ such that for all $n,m > N$ we have
+\[
+d_2(\mathbf{a}_n,\mathbf{a}_m) = \sqrt{\sum_{i=1}^{d} (a_{ni}-a_{mi})^2} < \varepsilon'
+\]
+so $(a_{ni}-a_{mi})^2 \leq \sum_{i=1}^{d} (a_{ni}-a_{mi})^2 < \varepsilon'^2$ and $|a_{ni}-a_{mi}| < \varepsilon'$. Thus the $i$th coordinate of the terms of $(\mathbf{a}_n)$ forms a Cauchy sequence which converges to some $b_i$ (14.5). Then let $\mathbf{b}=(b_1,b_2, \dots ,b_d)$, let $\varepsilon > 0$ and consider $\varepsilon/\sqrt{d}$. For all $i \leq d$ there exists some $N_i$ such that for $n>N_i$ we have $|a_{ni}-b_{i}| < \varepsilon/\sqrt{d}$ by convergence (13.3). Let $N$ be the largest of all such $N_i$ so that for all $n>N$ we have $|a_{ni}-b_{i}| < \varepsilon/\sqrt{d}$. Then $(a_{ni}-b_{i})^2 < \varepsilon^2/d$ and $\sum_{i=1}^{d} (a_{ni}-b_{i})^2 < \varepsilon^2$. Then $d_2(\mathbf{a}_n,\mathbf{b}) < \varepsilon$ for all $n > N$ and $|d(\mathbf{a}_n, \mathbf{b})| < \varepsilon$ for all $n>N$. Thus $\lim_{n \rightarrow \infty} \mathbf{a}_n = \mathbf{b}$ because $\lim_{n \rightarrow \infty} d(\mathbf{a}_n, \mathbf{b}) = 0$ (13.3, 17.1).
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{Every compact metric space is complete.}
+\begin{proof}
+Let $(X,d)$ be a compact metric space and suppose that $(X,d)$ is not complete. Then there exists some Cauchy sequence $(a_n) \in X$ such that $(a_n)$ does not converge. Therefore for all $x \in X$ there exists some ball $B(x,\varepsilon)$ such that there are infinitely many $n$ with $a_n \notin B(x,\varepsilon)$. Let $\mathcal{A}$ be the set of all such balls and let $\mathcal{A}' = \{B(x,\varepsilon/2) \mid B(x, \varepsilon) \in \mathcal{A}\}$. Then $\mathcal{A}'$ is an open cover for $X$ and $X$ is compact so let $\mathcal{B}$ be a finite subcover for $\mathcal{A}'$. Let $B(x,\varepsilon/2) \in \mathcal{B}$. Note that there are infinitely many $n$ such that $a_n \notin B(x,\varepsilon)$ so there are infinitely many $n$ such that $a_n \notin B(x, \varepsilon/2)$. We have $(a_n)$ is Cauchy so there exists $N$ such that for all $n,m > N$ we have $d(a_n,a_m) < \varepsilon/2$. Suppose that there are infinitely many $n$ with $a_n \in B(x, \varepsilon/2)$. Since there are infinitely many $n$ with $a_n \in B(x, \varepsilon/2)$ and $a_n \notin B(x, \varepsilon/2)$, choose $n,m>N$ with $a_n \in B(x, \varepsilon/2)$ and $a_m \notin B(x, \varepsilon/2)$. But then $d(x,a_m) \leq d(x,a_n) + d(a_n,a_m) < \varepsilon$. Thus there are infinitely many $n$ with $a_n \notin B(x,\varepsilon)$ which is a contradiction. Therefore there are finitely many $n$ with $a_n \in B(x,\varepsilon/2)$. But this is true for all $B(x,\varepsilon/2) \in \mathcal{B}$ and there are finitely many elements of $\mathcal{B}$ which is an open cover for $X$. So we have finitely many $n$ with $a_n \in X$ which is a contradiction. Therefore $(X,d)$ is complete.
+\end{proof}
+
+\textbf{Theorem 11}
+\textsl{Let $(\mathbf{a}_n)$ be a bounded sequence in $\mathbb{R}^d$. Show that $(\mathbf{a}_n)$ has a convergent subsequence.}
+\begin{proof}
+Consider the sequence $(a_{1n})$ where $a_{1n}$ is the $1$st coordinate in the $n$th term of $(\mathbf{a}_n)$. Then we have $(a_{1n})$ is a bounded sequence so there exists some convergent subsequence $(b_{1k})$. Use induction on $n$. We have shown the base case for $n=1$. Now assume that a bounded sequence $(\mathbf{a}_n) \in \mathbb{R}^d$ has a convergent subsequence for $d \in \mathbb{N}$. Consider a bounded sequence $(\mathbf{a}_n) \in \mathbb{R}^{d+1}$. By our Inductive Hypothesis there exists a convergent subsequence in $\mathbb{R}^d$ formed by the first $d$ coordinates of terms in $(\mathbf{a}_n)$. Let the corresponding terms in $(\mathbf{a}_n)$ be the sequence $(\mathbf{b}_k = \mathbf{a}_{n_k})$  Form a subsequence $(\mathbf{c}_k = \mathbf{a}_{n_k})$ of $(\mathbf{a}_n)$ where the $k$th term has the coordinates of $\mathbf{b}_k$ as the first $d$ coordinates and the $d+1$th coordinate of $\mathbf{a}_{n_k}$ as the $d+1$th coordinate. Now take the sequence in $\mathbb{R}$ where the $k$th term is the $d+1$th coordinate of $\mathbf{c}_k$. Then this sequence is bounded so there exists a convergent subsequence $(e_i = c_{k_i (d+1)})$. Finally form a subsequence of $(\mathbf{a}_n)$ where the $i$th term is $c_{k_i}$. Now every coordinate in $(\mathbf{c}_{k_i})$ forms a convergent sequence in $\mathbb{R}$ so $(\mathbf{c}_{k+i})$ converges to some $\mathbf{f} \in \mathbb{R}^{d+1}$ using a similar proof as in Theorem 9.
+\end{proof}
+
+\textbf{Theorem 12}
+\textsl{Show that a set $A \subseteq \mathbb{R}^d$ is open if and only if for all $\mathbf{x} \in A$ there is a rational ball $O$ such that $\mathbf{x} \in O$ and $O \subseteq A$.}
+\begin{proof}
+Suppose that for all $\mathbf{x} \in A$ there is a rational ball $B(\mathbf{a}, r) \subseteq A$ such that $\mathbf{x} \in B(\mathbf{a}, r)$. Then consider the ball $B(\mathbf{x}, r-d(\mathbf{a}, \mathbf{x}))$. For $\mathbf{y} \in B(\mathbf{x}, r-d(\mathbf{a}, \mathbf{x}))$ we have $d(\mathbf{x}, \mathbf{y}) < r-d(\mathbf{a}, \mathbf{x})$ which means $d(\mathbf{a}, \mathbf{y}) \leq d(\mathbf{a}, \mathbf{x}) + d(\mathbf{x}, \mathbf{y}) < r$ and so $\mathbf{y} \in B(\mathbf{a}, r)$. Thus $B(\mathbf{x}, r-d(\mathbf{a}, \mathbf{x})) \subseteq B(\mathbf{a}, r) \subseteq A$. Then for all $\mathbf{x} \in A$ there exists a ball $B(\mathbf{x}, r') \subseteq A$ so $A$ is open.\newline
+
+Conversely let $A \subseteq \mathbb{R}^d$ be open. Let $\mathbf{x} \in A$. There exists a ball $B(\mathbf{x}, r) \subseteq A$ where $r$ may be rational or not. If $r \notin \mathbb{Q}$ then consider some $r' \in \mathbb{Q}$ such that $0 < r' < r$ and then $B(\mathbf{x}, r') \subseteq B(\mathbf{x}, r) \subseteq A$ (9.12). We have $B(\mathbf{x}, r'/2) \subseteq B(\mathbf{x}, r') \subseteq A$. Let $\mathbf{y} = (y_1, y_2, \dots ,y_d)$ where $y_i \in \mathbb{Q}$ and $0 < y_i < r'/(2\sqrt{d}) + x_i$ (9.12). Then $y_i-x_i < r'/(2\sqrt{d})$ and $|x_i-y_i| < r'/(2\sqrt{d})$. Also $(x_i-y_i)^2 < r'^2/(4d)$ so $\sum_{i=1}^{d} (x_i-y_i)^2 < r'^2/4$ and $d(\mathbf{x}, \mathbf{y}) < r'/2$. Finally consider $\mathbf{z} \in B(\mathbf{y}, r'/2)$. Then $d(\mathbf{y}, \mathbf{z}) < r'/2$. But also $d(\mathbf{x}, \mathbf{y}) < r'/2$ so we have $d(\mathbf{x}, \mathbf{z}) \leq d(\mathbf{x}, \mathbf{y}) + d(\mathbf{y}, \mathbf{z}) < r'/2 + r'/2 = r'$. Thus $B(\mathbf{y}, r'/2) \subseteq B(\mathbf{x}, r') \subseteq A$. Also $d(\mathbf{y}, \mathbf{x}) < r'/2 < r'$ so $\mathbf{x} \in B(\mathbf{y}, r'/2)$. Note that $r'/2 \in \mathbb{Q}$ and $\mathbf{y} \in \mathbb{Q}^d$.
+\end{proof}
+
+\textbf{Theorem 13}
+\textsl{Let $C$ be a closed, bounded subset of $\mathbb{R}^d$ and let $\mathcal{A}$ be an open cover for $C$. Then $\mathcal{A}$ has a countable subcover.}
+\begin{proof}
+Let $\mathbf{x} \in C$. Then there exists $A \in \mathcal{A}$ such that $\mathbf{x} \in A$. We have $A$ is open, so there exists some rational ball $O \subseteq A$ such that $\mathbf{x} \in O$. Let $\mathcal{B}$ be the set of all such rational balls for all $\mathbf{x} \in C$. Each of these balls has a center in $\mathbb{Q}^d$ which is countable, so there are countably many of them. Then let $\mathcal{C} \subseteq \mathcal{A}$ be set set of elements of $\mathcal{A}$ which have subsets in $\mathcal{B}$. Since every element of $\mathcal{B}$ is a subset of some element of $\mathcal{A}$, there are countable many elements of $\mathcal{C}$. But $\mathcal{C}$ covers $C$.
+\end{proof}
+
+\textbf{Theorem 14}
+\textsl{Closed bounded subsets of $\mathbb{R}^d$ are compact.}
+\begin{proof}
+Assume $C$ is a closed bounded subset of $\mathbb{R}^d$ which is not compact. Let $\mathcal{A}$ be an open cover for $C$ which does not have a finite subcover. Let $\mathcal{B} = \{B_i \mid i \in \mathbb{N}\} \subseteq \mathcal{A}$ be a countably infinite subcover for $C$ (17.13). Create a sequence $(\mathbf{a}_n) \in C$ such that $\mathbf{a}_1 \in B_1$ and for $n>1$
+\[
+\mathbf{a}_n \in C \backslash (B_1 \cup B_2 \cup \dots B_{n-1}).
+\]
+Then for all $j > i$, $\mathbf{a}_j \notin B_i$. Thus for all $B_i \in \mathcal{B}$, there are infinitely many $n$ with $\mathbf{a}_n \notin B_i$. Note that $(\mathbf{a}_n)$ is bounded since $C$ is bounded, so there exists a subsequence $(\mathbf{b}_n) \in C$ such that $\lim_{n \rightarrow \infty} \mathbf{b}_n = \mathbf{b}$. Note that $C$ is closed, so if $\mathbf{b} \notin C$ then there exists some ball $B(\mathbf{b}, r) \subseteq \mathbb{R}^d \backslash C$ because $\mathbb{R}^d \backslash C$ is open. But $(\mathbf{b}_n) \in C$ so there are infinitely many $n$ such that $\mathbf{b}_n \notin \mathbb{R}^d \backslash C$. Thus $\mathbf{b} \in C$. Then $\mathbf{b} \in B_i$ for some $B_i \in \mathcal{B}$. But there are infinitely many $n$ such that $\mathbf{a}_n \notin B_i$ and so $\lim_{n \rightarrow \infty} \mathbf{b}_n \notin B_i$. Thus, $(\mathbf{b}_n)$ does not converge which is a contradiction. Therefore $C$ is compact.
+\end{proof}
+
+\end{flushleft}
+
+\newpage
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 15, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 18: Convergence of Functions\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{For $a < b$ with $a,b \in \mathbb{R}$ let
+\[
+B[a;b] = \{f \; : \; [a;b] \rightarrow \mathbb{R} \mid \text{$f$ is bounded on $[a;b]$}\}
+\]
+be the set of bounded real functions on $[a;b]$.}\newline
+
+\textbf{Definition 2}
+\textsl{We say that $f$ is the pointwise limit of $(f_n)$, or
+\[
+\lim_{n \rightarrow \infty}^{\bullet} f_n = f
+\]
+if for all $x \in [a;b]$ we have
+\[
+\lim_{n \rightarrow \infty} f_n (x) = f(x).
+\]}\newline
+
+\textbf{Definition 3}
+\textsl{For $f,g \in B$ let
+\[
+d(f,g) = \sup_{x \in [a;b]} | f(x) - g(x) |.
+\]}\newline
+
+\textbf{Theorem 4}
+\textsl{$d$ is a metric on $B$.}
+\begin{proof}
+Let $f,g,h \in B$. We have $|f(x) - g(x)| \geq 0$ for all $x \in [a;b]$ so then $d(f,g) = \sup_{x \in [a;b]} |f(x) - g(x)| \geq 0$. Also if $d(f,g) = \sup_{x \in [a;b]} |f(x) - g(x)| = 0$ then $|f(x) - g(x)| = 0$ for all $x \in [a;b]$ because $d(f,g)$ is an upper bound. But then $f(x) = g(x)$ for $x \in [a;b]$. Conversely suppose that $f(x) = g(x)$ for all $x \in [a;b]$. Then $|f(x) - g(x)| = 0$ for all $x \in [a;b]$ and so $d(f,g) = \sup_{x \in [a;b]} |f(x) - g(x)| = 0$. Also $d(f,g) = \sup_{x \in [a;b]} |f(x) - g(x)| = \sup_{x \in [a;b]} |g(x) - f(x)| = d(g,f)$. Finally from the triangle inequality we have $|f(x) - g(x)| + |g(x) - h(x)| \geq |f(x) - h(x)|$ for all $x \in [a;b]$ so $|f(x) - g(x)| + |g(x) - h(x)| \geq \sup_{x \in [a;b]} |f(x) - h(x)|$ for all $x \in [a;b]$. But then $d(f,g) + d(g,h) = \sup_{x \in [a;b]} |f(x) - g(x)| + \sup_{x \in [a;b]} |g(x) - h(x)| \geq |f(x) - g(x)| + |g(x) - h(x)| \geq \sup_{x \in [a;b]} |f(x) - h(x)| = d(f,h)$ for all $x \in [a;b]$.
+\end{proof}
+
+\textbf{Definition 5}
+\textsl{We say that $f$ is the uniform limit of $(f_n)$, or
+\[
+\lim_{n \rightarrow \infty} f_n = f
+\]
+if $\lim_{n \rightarrow \infty} f_n = f$ in the metric $d$.}\newline
+
+\textbf{Theorem 6}
+\textsl{W have $\lim_{n \rightarrow \infty} f_n = f$ if and only if for all $\varepsilon > 0$ there exists $N$ such that for all $n > N$ and for all $x \in [a;b]$ we have $|f(x) - f_n(x)| < \varepsilon$.}
+\begin{proof}
+Suppose that $\lim_{n \rightarrow \infty} f_n = f$. Then $\lim_{n \rightarrow \infty} f_n = f$ in the metric $d$. Thus $\lim_{n \rightarrow \infty} d(f,f_n) = 0$ which means $\lim_{n \rightarrow \infty} \sup_{x \in [a;b]} |f(x)-f_n(x)| = 0$ (17.1). Then for all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ we have $|\sup_{x \in [a;b]} |f(x)-f_n(x)|| < \varepsilon$. But then for all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ and for all $x \in [a;b]$ we have $|f(x) - f_n(x)| < \varepsilon$.\newline
+
+Conversely suppose that for all $\varepsilon > 0$ there exists $N$ such that for all $n > N$ and for all $x \in [a;b]$ we have $|f(x) - f_n(x)| < \varepsilon$. Since this is true for all $x \in [a;b]$ then for all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ we have $\sup_{x \in [a;b]} |f(x)-f_n(x)| = |\sup_{x \in [a;b]} |f(x)-f_n(x)| - 0| = |d(f,f_n) - 0| < \varepsilon$. But then $\lim_{n \rightarrow \infty} d(f,f_n) = 0$ and so $\lim_{n \rightarrow \infty} f_n = f$ (17.1).
+\end{proof}
+
+\textbf{Theorem 7}
+\textsl{If $\lim_{n \rightarrow \infty} f_n = f$ then $\lim_{n \rightarrow \infty}^{\bullet} f_n = f$.}
+\begin{proof}
+We have $\lim_{n \rightarrow \infty} f_n = f$ and so for all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ and all $x \in [a;b]$ we have $|f(x)-f_n(x)| < \varepsilon$. But then for all $x \in [a;b]$ and all $\varepsilon > 0$ there exists $N$ such that for all $n>N$ we have $|f(x)-f_n(x)| < \varepsilon$. Thus $\lim_{n \rightarrow \infty}^{\bullet} f_n = f$.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{The sequence $f_n(x) = x^n$ on the interval $[0;1]$ converges pointwise but not uniformly.}
+\begin{proof}
+Let
+\[
+f=
+\begin{cases}
+0 & \text{if $0 \leq x < 1$}\\
+1 & \text{if $x=1$}
+\end{cases}
+\]
+and let $x \in [0;1)$. Since $0 \leq x < 1$ we have $\lim_{n \rightarrow \infty} f_n(x) = \lim_{n \rightarrow \infty} x^n = 0 = f(x)$. If $x=1$ then $x^n = 1$ for all $n$ and so $\lim_{n \rightarrow \infty} x^n = 1 = f(x)$. Thus, $(f_n)$ converges pointwise. Suppose that $(f_n)$ converges uniformly and let $1 > \varepsilon > 0$. Then there exists an $N$ such that for all $n>N$ and for all $x \in [0;1]$ we have $|f(x)-f_n(x)| < \varepsilon$. But since $f(x) = 0$ for $x \in [0;1)$ we can choose $x$ large enough such that $x^n \geq \varepsilon < 1$. Thus there exists $\varepsilon > 0$ such that for all $N$ there exists $n>N$ and $x \in [0;1]$ such that $|f(x) - f_n(x)| \geq \varepsilon$ and so $(f_n)$ doesn't converge uniformly.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{Let $(f_n)$ be a sequence of continuous functions on $[a;b]$ that uniformly converges to $f$ on $[a;b]$. Then $f$ is continuous on $[a;b]$.}
+\begin{proof}
+Let $\varepsilon > 0$ and consider $\varepsilon/3$. We know $(f_n)$ uniformly converges to $f$ so there exists $N$ such that for all $n>N$ and for all $x,y \in [a;b]$ we have $|f(x)-f_n(x)| < \varepsilon/3$ and $|f(y)-f_n(y)| < \varepsilon/3$. Also $f_n$ is continuous for all $n$ so for all $n>N$ and for all $x \in [a;b]$ there exists $\delta_n > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta_n$ we have $|f_n(x) - f_n(y)| < \varepsilon/3$. Consider $\delta_{N+1}$. Then for all $x \in [a;b]$ there exists $\delta_{N+1} > 0$, which may depend on $x$, such that for all $y \in [a;b]$ with $|x-y| < \delta_{N+1}$ we have $|f_{N+1}(x)+f_{N+1}(y)| < \varepsilon/3$. By the triangle inequality we have $|f(x)-f_{N+1}(y)| \leq |f_{N+1}(x)-f_{N+1}(y)| + |f(x)-f_{N+1}(x)| < 2\varepsilon/3$ and then $|f(x)-f(y)| < |f(x)-f_{N+1}(y)| + |f(y)-f_{N+1}(y)| < \varepsilon$. Thus for all $x \in [a;b]$ there exists some $\delta > 0$ such that for all $y \in [a;b]$ with $|x-y| < \delta$ we have $|f(x)-f(y)| < \varepsilon$. Therefore $f$ is continuous on $[a;b]$.
+\end{proof}
+
+\end{flushleft}
+
+\newpage
+
+\begin{flushright}
+Kris Harper
+
+MATH 16300
+
+Mikl\'{o}s Ab\'{e}rt
+
+April 15, 2008
+\end{flushright}
+
+\begin{flushleft}
+
+\Large
+
+Sheet 19: Polynomials\newline
+
+\normalsize
+
+\textbf{Definition 1}
+\textsl{A real polynomial of degree $n$ is a function of the form
+\[
+p(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0
+\]
+where $a_i \in \mathbb{R}$ $(0 \leq i \leq n)$ and $a_n \neq 0$. If $p(x) = 0$ then we define the degree $\deg p = - \infty$. The set of real polynomials is denoted by $\mathbb{R}[x]$.}\newline
+
+\textbf{Theorem 2}
+\textsl{For all $p,q \in \mathbb{R}[x]$ we have
+\[
+\deg(p+q) \leq \max(\deg(p), \deg(q))
+\]
+and
+\[
+\deg(pq) = \deg(p) + \deg(q)
+\]}
+\begin{proof}
+Let $p(x) = \sum_{i=0}^n a_i x^i$ and $q(x) = \sum_{i=0}^m b_i x^i$. Then
+\[
+p+q(x) = p(x) + q(x) = \left ( \sum_{i=0}^n a_i x^i \right ) + \left ( \sum_{i=0}^m b_i x^i \right )
+\]
+and so $\deg(p+q) = \max(n,m) = \max(\deg(p), \deg(q))$. Also
+\[
+pq(x) = p(x)q(x) = \left ( \sum_{i=0}^n a_i x^i \right ) \left ( \sum_{i=0}^m b_i x^i \right )
+\]
+and so using the product of powers $\deg pq = n+m = \deg(p) + \deg(q)$.
+\end{proof}
+
+\textbf{Theorem 3 (Division Remainder)}
+\textsl{Let $a,b \in \mathbb{R}[x]$ be polynomials with $b \neq 0$. Then there exists unique $q,r \in \mathbb{R}[x]$ such that
+\[
+a = bq + r
+\]
+and
+\[
+\deg r < \deg b.
+\]}
+\begin{proof}
+To show existence consider the set $S = \{a-bc \mid c \in \mathbb{R}[x]\}$. Suppose that for all $r \in S$, $\deg(r) \geq \deg(b)$. Choose $p \in S$ such that $\deg(p)$ is the minimum degree of all elements of $S$ using the Well Ordering Principle. Note that $p=a-bc$ for some $c \in \mathbb{R}[x]$. Now let $q = p-bd$ for some $d \in \mathbb{R}[x]$. Then $q = a-bc-bd=a-b(c+d)$ and so $q \in S$. Thus $\deg(q) \geq \deg(p)$. But then if $p(x) = \sum_{i=0}^n a_i x^i$ and $b(x) = \sum_{i=0}^m b_i x^i$ then consider $d = (a_n/b_m) x^{(n-m)}$. Then $\deg(bd) = n$ and so $\deg(q) < \deg(p)$ since $q = p-bd$. This is a contradiction and so there exists $r \in S$ such that $\deg(r) < \deg(b)$.\newline
+
+For uniqueness suppose that there exists $q,q',r,r'$ with $q \neq q'$ and $r \neq r'$ such that $a=bq+r$, $a=bq'+r'$, $\deg(r) < b$ and $\deg(r') < b$. Then $bq+r = bq'+r'$ and $b(q-q') = r'-r$. Note that since $q \neq q'$ and $r \neq r'$, $\deg(q-q') \geq 0$ and $\deg(r-r') \geq 0$. But then using Theorem 2 we have $\deg(r-r') < b$ and $\deg(b(q-q')) = \deg(b) + \deg(q-q') \geq \deg(b)$ (19.2). This is a contradiction and so $q=q'$ and $r=r'$ which means $q$ and $r$ are unique.
+\end{proof}
+
+\textbf{Definition 4}
+\textsl{We call $r$ the remainder of $a$ divided by $b$.}\newline
+
+\textbf{Exercise 5}
+\textsl{Divide $x^3 + 4$ by $2x^2 - 1$ with remainder. Also $x^4-1$ by $x^2 - 1$.}\newline
+
+$x^3+4$ divided by $2x^2-1$ is $x/2$ with $x/2+4$ as a remainder because $x^3+4 = x^3 + x/2 - x/2 + 4 = (2x^2-1)(x/2) + x/2+4$. Also $(x^2-1)(x^2+1) = x^4-1$ so $x^4-1$ divided by $x^2-1$ is $x^2+1$ with no remainder.\newline
+
+\textbf{Definition 6}
+\textsl{A real number $\alpha$ is a root of $p(x) \in \mathbb{R}[x]$ if $p(\alpha) = 0$.}\newline
+
+\textbf{Theorem 7}
+\textsl{Let $p,q \in \mathbb{R}[x]$. Then $\alpha$ is a root of $pq$ if and only if $\alpha$ is a root of $p$ or $q$.}
+\begin{proof}
+Let $p(x) = \sum_{i=0}^n a_i x^i$ and $q(x) = \sum_{i=0}^m b_i x^i$ and suppose that $\alpha$ is a root of $p$ or $q$. Without loss of generality suppose that $\alpha$ is a root of $p$. Then $\sum_{i=0}^n a_i \alpha^i = 0$ and so
+\[
+pq(\alpha) = p(\alpha) q(\alpha) = \left ( \sum_{i=0}^n a_i \alpha^i \right ) \left( \sum_{i=1}^m b_i \alpha^i \right ) = 0 \cdot \left ( \sum_{i=1}^m b_i \alpha^i \right ) = 0
+\]
+which means $\alpha$ is a root of $pq$. For the converse we use the contrapositive. Suppose that $\alpha$ is not a root of $p$ and $q$. Then $p(\alpha) \neq 0$ and $q(\alpha) \neq 0$. But then $pq(\alpha) = p(\alpha) q(\alpha) \neq 0$.
+\end{proof}
+
+\textbf{Theorem 8}
+\textsl{Let $p \in \mathbb{R}[x]$. Then $\alpha$ is a root of $p$ if and only if $p = (x-\alpha)q$ for some $q \in \mathbb{R}[x]$.}
+\begin{proof}
+Suppose that $p = (x - \alpha)q$ for some $q \in \mathbb{R}[x]$. Then $p(\alpha) = (\alpha-\alpha)q = 0$ and so $\alpha$ is a root of $p$. Conversely suppose that $\alpha$ is a root of $p$. From Theorem 3 we know that $p = (x-\alpha)q + r$ for $q,r \in \mathbb{R}[x]$ and $\deg (r) = 0$ (19.3). Thus $r$ is a constant and since $\alpha$ is a root of $p$ we have $p(\alpha) = (\alpha - \alpha)q + r = r = 0$. Thus $p = (x-\alpha)q$ for some $q \in \mathbb{R}[x]$.
+\end{proof}
+
+\textbf{Theorem 9}
+\textsl{Let $p \in \mathbb{R}[x]$ be a nonzero polynomial of degree $n$. Then $p$ has at most $n$ roots.}
+\begin{proof}
+Suppose that $\deg(p) = n$ and $p$ has $m$ distinct roots with $m>n$. Let the $m$ roots be $\alpha_1, \alpha_2, \dots ,\alpha_m$. From Theorem 8 we know that $p = (x-\alpha_1)q_1$ for some $q \in \mathbb{R}[x]$ (19.8). From Theorem 7 we know that since $\alpha_2$ is a root of $p$ it is a root of $(x-\alpha_1)$ or $q$ (19.7). Since $\alpha_2-\alpha_1 \neq 0$, $\alpha_2$ is a root of $q_1$. This $q_1 = (x-\alpha_2)q_2$ and $p = (x-\alpha_1)(x-\alpha_2)q_2$ (19.8). We can continue in this process $m$ times until we have
+\[
+p = \prod_{i=1}^m (x-\alpha_i) q_m.
+\]
+But then $\deg(p) = m \neq n$ which is a contradiction.
+\end{proof}
+
+\textbf{Theorem 10}
+\textsl{For every even $n$ there exists a real polynomial of degree $n$ with no roots. Every real polynomial of odd degree has a root.}
+\begin{proof}
+Let $n$ be even. Consider the polynomial $p(x)=x^n+1$. Since $n$ is even, $n=2k$ for some $k \in \mathbb{N}$. Then $p(x)=x^{2k}+1=(x^k)^2+1$. But then $p(x) > 0$ for all $x \in \mathbb{R}$ and so $p(x)$ has no roots.\newline
+
+Now let $p$ be a polynomial of degree $n$ with $n$ odd such that $p(x) = \sum_{i=0}^n a_i x^i$. Suppose that $a_n > 0$. We know $\lim_{x \rightarrow \infty} p(x)/(a_n x^n) = 1$. Let $\varepsilon = 1/2$. Then there exists $m \in \mathbb{R}$ such that for all $x > m$ we have $|p(x)/(a_n x^n) - 1| < 1/2$. Thus there exists $x_1>0$ such that $1/2 < p(x_1)/(a_n x_1^n)$. Since $x_1, a_n > 0$ and $n$ is odd we have $0 < (a_n x_1^n)/2 < p(x_1)$. Thus $p(x_1)$ is positive. Similarly take $\lim_{x \rightarrow -\infty} p(x)/(a_n x^n) = 1$ and let $\varepsilon = 1/2$. Then there exists $m \in \mathbb{R}$ such that for all $x<m$ we have $|p(x)/(a_n x^n)-1| < 1/2$. Then there exists $x_2 < 0$ such that $1/2 < p(x)/(a_n x^n)$. But since $x_2 < 0$ and $a_n > 0$ we have $a_n x^n < 0$ so then $p(x) < (a_n x^n)/2 < 0$. Thus $p(x_2) < 0$. Therefore there exist $x_1,x_2 \in \mathbb{R}$ with $p(x_2) < 0$ and $p(x_1) > 0$ so there must exist $c \in (x_2;x_1)$ with $p(c) = 0$ by the Intermediate Value Theorem. A very similar proof holds if $a_n < 0$ where the limits give values of opposite signs as in this proof.
+\end{proof}
+
+\textbf{Theorem 11 (Lagrange Interpolation)}
+\textsl{Let $a_1 < a_2 < \dots < a_n$ and $b_1, b_2, \dots , b_n$ be real numbers. Then there exists a polynomial $p(x)$ of degree at most $n-1$ such that
+\[
+p(a_i) = b_i \; (1 \leq i \leq n).
+\]}
+\begin{proof}
+Consider the polynomial
+\[
+p(x) = \sum_{i=1}^n b_i \prod_{j=1, j \neq i}^n \frac{(x-a_j)}{(a_i-a_j)}.
+\]
+Note that
+\[
+p(a_k) = \sum_{i=1}^n b_i \prod_{j=1, j \neq i}^n \frac{(a_k-a_j)}{(a_i-a_j)} = b_k \prod_{j=1, j \neq k}^n \frac{(a_k-a_j)}{(a_k-a_j)} = b_k.
+\]
+\end{proof}
+
+\textbf{Exercise 12}
+\textsl{Is this polynomial unique?}\newline
+
+Yes.
+\begin{proof}
+Let $a_1 < a_2 < \dots < a_n$ and $b_1, b_2, \dots , b_n$ be real numbers. Consider two polynomials $f(x)$ and $g(x)$ such that $f(a_i) = b_i$ and $g(a_i) = b_i$ $(1 \leq i \leq n)$. Then consider $h(x) = f(x) - g(x)$. We see $h(x) = 0$ for each $a_i$ and so $h$ has $n$ roots. But then $n \leq \deg(h) \leq \max(\deg(p), \deg(q))$ (19.2, 19.9). Thus $\deg(p)$ or $\deg(q)$ is greater than or equal to $n$ which means there exists only one such polynomial with degree less than $n$.
+\end{proof}
+
+\textbf{Theorem 13}
+\textsl{Let $p$ be a real polynomial which maps rationals to rationals. Then all the coefficients of $p$ are rational.}
+\begin{proof}
+Take $n+1$ rational points $a_1 < a_2 < \dots < a_{n+1}$ and their images $p(a_1) = b_1, p_(a_2) = b_2, \dots , p(a_{n+1}) = b_{n+1}$. From Theorem 11 we know that there exists a polynomial of degree $n$
+\[
+p'(x) = \sum_{i=1}^n b_i \prod_{j=1, j \neq i}^n \frac{(x-a_j)}{(a_i-a_j)}
+\]
+such that $p'(a_i) = b_i$ $(1 \leq i \leq n+1)$ (19.11). Note that the coefficients of $p'$ are all rational because $a_i,b_i \in \mathbb{Q}$ $(1 \leq i \leq n)$. From Exercise 12 we know that this polynomial is unique and so $p=p'$ (19.12). Thus $p$ has all rational coefficients.
+\end{proof}
+
+\end{flushleft}
+\end{document}

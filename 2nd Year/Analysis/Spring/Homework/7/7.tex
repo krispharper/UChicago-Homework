@@ -1,0 +1,172 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,fullpage}
+
+\newtheorem{**}{** Problem}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\dmu}{d\mu}
+
+\begin{document}
+\begin{flushright}
+Kris Harper\\
+
+MATH 20900\\
+
+May 18, 2009
+\end{flushright}
+
+\begin{center}
+Homework 7
+\end{center}
+
+\begin{problem}
+Let $f$ be a measurable function and $\int_X f \dmu = 0$. Then $f = 0$ almost everywhere.
+\begin{proof}
+Suppose that $f \neq 0$ on a set $A$ such that $\mu(A) \neq 0$. If $f$ has a minimum on $A$, then take the characteristic function on $A$, $\chi_A$. If $f$ has no minimum on $A$, then we can take a subset $B \subseteq A$ which is closed and bounded such that $f$ has a minimum on $B$. Then we can assume that $f$ has a minimum on $A$. The function $\chi_A$ is a simple function, and given a scaling factor $\alpha \neq 0$, we have $\alpha \chi_A \leq f$ on $A$. But then
+\[
+0 < \alpha \mu(A) \leq \int_A \alpha \chi_A \dmu \leq \int_A f \dmu \leq \int_X f \dmu.
+\]
+This is a contradiction and so $f = 0$ almost everywhere.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $f$ be measurable, $\mu(X) < \infty$ and $f^q$ is integrable for $q > 0$. Show $f^p$ is integrable if $0 \leq p \leq q$.
+\begin{proof}
+Since $f^q$ is integrable, we know that $|f|^q$ is integrable. It follows that since $|f|^p \leq |f|^q$ that $|f|^p$ is integrable, and thus $f^p$ is integrable.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $f$ be a non-decreasing function on $[0,1]$. Show for all $t \in [0,1]$ and for all $A \subseteq [0,1]$ with $m(A) = t$,
+\[
+\int_{[0,t]} f dx \leq \int_A f dx.
+\]
+\begin{proof}
+We can take $f$ to be positive by adding an appropriate constant. Note that since $f$ is non-decreasing, if $A \backslash [0,t] \neq \emptyset$ then $\sup_{x \in [0,t]} f(x) \leq \sup_{x \in A} f(x)$. Then there exist simple functions $s$ and $s'$ such that $s \leq s'$ and $s \leq f$ on $[0,t]$ and $s' \leq f$ on $A$. Taking the supremum over these simple functions we have
+\[
+\int_{[0,t]} f dx = \int_{[0,t]} \sup_{s \leq f} s dx \leq \int_A \sup_{s' \leq f} s' dx = \int_A f dx.
+\]
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $f$ be integrable on $X$ and $f > 0$ on $X$. Show
+\[
+\lim_{n \rightarrow \infty} \int_X f^{\frac{1}{n}} \dmu = \mu(X).
+\]
+\begin{proof}
+We know that $f$ is integrable and that $|f^{1/n}| \leq f$ almost everywhere on $X$. Then by the dominated convergence theorem we have
+\[
+\lim_{n \rightarrow \infty} \int_X f^{\frac{1}{n}} \dmu = \int_X \lim_{n \rightarrow \infty} f^{\frac{1}{n}} \dmu = \int_X \dmu = \mu(X).
+\]
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $f$ be integrable on $\mathbb{R}$ and $p > 0$. Show
+\[
+\lim_{n \rightarrow \infty} n^{-p} f(nx) = 0
+\]
+almost everywhere.
+\begin{proof}
+Note that $(n^{-p} f(nx))$ is a sequence of measurable functions. Moreover, since $n^{-p} < 1$ we have $|n^{-p} f(nx)| \leq |f(nx)| \leq Mf(x)$ for some large $M$. Then using the dominated convergence theorem we have
+\[
+\int_X \lim_{n \rightarrow \infty} n^{-p} f(nx) \dmu = \lim_{n \rightarrow \infty} n^{-p} \int_X f(nx) \dmu = \lim_{n \rightarrow \infty} n^{-p-1} \int_X f(x) \dmu = 0.
+\]
+Thus by Problem 1, we know that $\lim_{n \rightarrow \infty} n^{-p} f(nx) = 0$ almost everywhere.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Suppose $(f_n)$ is a sequence of measurable functions and $g$ is integrable. Suppose $f_n \geq g$ for all $n$ almost everywhere. Then
+\[
+\int_X \liminf_{n \rightarrow \infty} f_n \dmu \leq \liminf_{n \rightarrow \infty} \int_X f_n \dmu.
+\]
+\begin{proof}
+Create a new sequence of functions $h_n = f_n - g$. Then $(h_n)$ is a sequence of nonnegative measurable functions and so Fatou's Lemma holds. Then since $g$ is independent of $n$ in this sequence we have
+\begin{align*}
+\int_X \liminf_{n \rightarrow \infty} f_n \dmu - \int_X g \dmu
+&= \int_X \liminf_{n \rightarrow \infty} (f_n - g) \dmu\\
+&= \int_X \liminf_{n \rightarrow \infty} h_n \dmu\\
+&\leq \liminf_{n \rightarrow \infty} \int_X h_n \dmu\\
+&= \liminf_{n \rightarrow \infty} \int_X (f_n - g) \dmu\\
+&= \liminf_{n \rightarrow \infty} \int_X f_n \dmu - \int_X g \dmu.
+\end{align*}
+The result follows by adding $\int_X g \dmu$ to each side.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Suppose $f_n$ converges to $f$ uniformly, and $f_n$ is integrable for all $n$.\\
+1) If $\mu(X) < \infty$, show $f$ is integrable and $\int_X f_n \dmu$ converges to $\int_X f \dmu$.
+\begin{proof}
+Since $\mu(X) < \infty$ and since $f_n$ is integrable, we know that $f$ must be bounded because of uniform convergence. Then the bounded convergence theorem applies and so
+\[
+\int_X f \dmu \int_X \lim_{n \rightarrow \infty} f_n \dmu = \lim_{n \rightarrow \infty} \int_X f_n \dmu.
+\]
+\end{proof}
+2) If $\mu(X) = \infty$ show Part 1) is false.
+\begin{proof}
+Let $f_n = 1/n$. Then $\int_X f_n \dmu$ does not exist, as it's constantly infinite. But $(f_n)$ converges to the zero function uniformly and $\int_X f \dmu = 0$ where $f = 0$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $f \in L^p(X)$, then for all $\alpha > 0$, if $1 \leq p \leq \infty$ we have
+\[
+\mu(\{x \in X \mid |f(x)| \geq \alpha\}) \leq \left ( \frac{||f||_p}{\alpha} \right )^p.
+\]
+\begin{proof}
+Define the set $A_{\alpha} = \{x \in X \mid f(x) \geq \alpha\}$. Then we have
+\[
+0 \leq \alpha^p \chi_{A_{\alpha}} \leq f^p \chi_{A_{\alpha}} \leq f^p
+\]
+and it follows that
+\[
+\alpha^p \mu(A_{\alpha}) = \int_X \alpha^p \chi_{A_{\alpha}} \dmu \leq \int_{A_t} f^p \dmu \leq \int_X f^p \dmu = ||f||_p^p.
+\]
+Dividing by $\alpha^p$ gives the result.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+If $f \in L^1(X) \cap L^2(X)$ then
+\[
+\lim_{p \rightarrow 1^+} \int_X |f|^p \dmu = \int_X |f| \dmu.
+\]
+\begin{proof}
+Note that since $f \in L^2(X)$, $f \in L^q(X)$ for $1 \leq q \leq 2$ by Problem 2). Let $p = 1/n + 1$. Then as $p$ approaches $1$, $n$ approaches infinity. Thus we have
+\[
+\lim_{p \rightarrow 1^+} \int_X |f|^p \dmu = \lim_{n \rightarrow \infty} \int_X |f|^{1+\frac{1}{n}} \dmu
+\]
+Since $|f|^{1/n}|f| \leq |f|^2$ for all $n$, we use the dominated convergence theorem and
+\[
+\lim_{p \rightarrow 1^+} \int_X |f|^p \dmu = \int_X \lim_{n \rightarrow \infty} |f|^{1+\frac{1}{n}} \dmu = \int_X |f|.
+\]
+\end{proof}
+\end{problem}
+
+\begin{problem}
+If $\mu(X) < \infty$ and $0 \leq p_1 \leq p_2 \leq \infty$ then $L^{p_2}(X) \subseteq L^{p_1}(X)$.
+\begin{proof}
+Let $f \in L^{p_2} (X)$. Then $\int_X |f|^{p_2} \dmu < \infty$. The result follows from Problem 2 and H\"{o}lder's Inequality.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+If $0 < r < p < s \leq \infty$ and $f \in L^r(X) \cap L^s(X)$ then $f \in L^p(X)$ and
+\[
+||f||_p \leq ||f||_r^{\lambda} ||f||_s^{1-\lambda}
+\]
+where
+\[
+\frac{1}{p} = \frac{\lambda}{r} + \frac{1-\lambda}{s}.
+\]
+\begin{proof}
+We use H\"{o}lder's inequality. We can choose $r' = p\lambda /r$ and $s' = p(1-\lambda)/s$ so that $||f||_1 \leq ||f||_{r'}||f||_{s'}$. Then this inequality can be modified, by taking powers of $\lambda$ so that we obtain $||f||_p \leq ||f||_r^{\lambda} ||f||_s^{1-\lambda} < \infty$. This shows that $f \in L^p$.
+\end{proof}
+\end{problem}
+
+\end{document}
